@@ -90,7 +90,89 @@ Term counting and cache invalidation are deferred during the run and restored at
 
 ---
 
-## 3. WP All Import
+## 3. Chapters from text files or a ZIP archive
+
+The most common shape a translator has is a folder of numbered files. The importer takes that directly — no manifest required.
+
+```bash
+# a folder of files into one title
+php tools/import-novels.php --wp=/var/www/site --from-dir=./chapters --novel="Seal of the Ninth Heaven"
+
+# the same, packed as an archive
+php tools/import-novels.php --wp=/var/www/site --from-zip=chapters.zip --novel-slug=seal-of-the-ninth
+
+# add to a title that already exists, marking everything from 40 on as PLUS
+php tools/import-novels.php --wp=/var/www/site --from-zip=vol3.zip --novel-id=412 --locked-from=40
+```
+
+| Option | Meaning |
+|---|---|
+| `--from-dir=PATH` | Folder with chapter files |
+| `--from-zip=PATH` | Archive with the same. A single wrapper folder inside is unwrapped automatically |
+| `--novel=NAME` | Target title. Created if it does not exist yet |
+| `--novel-slug=SLUG` | Target title by slug |
+| `--novel-id=ID` | Target title by post ID |
+| `--start=N` | First number to use when file names carry none. Default `1` |
+| `--locked-from=N` | Mark chapters from this number onwards as PLUS |
+| `--encoding=ENC` | Force the source encoding, for example `windows-1251` |
+| `--status`, `--author`, `--dry-run` | Same as in manifest mode |
+
+### Supported file types
+
+| Extension | How it is treated |
+|---|---|
+| `.txt` | Plain text. A blank line starts a new paragraph, a single line break inside a paragraph becomes `<br>` — which is how dialogue is usually typed |
+| `.html`, `.htm` | Used as is. If the file is a whole document, only what is inside `<body>` is taken |
+| `.md` | Headings (`#`, `##`, `###`), `**bold**` and `*italic*` are converted, everything else becomes paragraphs |
+
+Files with any other extension are ignored, so cover images and notes sitting in the same folder do no harm.
+
+### File names become numbers and titles
+
+| File name | Number | Chapter title |
+|---|---|---|
+| `001. The shard.txt` | 1 | The shard |
+| `002 - First snow.txt` | 2 | First snow |
+| `012.5_Side story.html` | 12.5 | Side story |
+| `Chapter 3 - The debt.md` | 3 | The debt |
+| `Глава 4. Ночной гость.txt` | 4 | Ночной гость |
+| `The shard.txt` | file order | The shard |
+
+Files are sorted the way a person would sort them, so `2` comes before `10`. When a name carries no number, the file's position in that order is used, starting from `--start`.
+
+### One archive, several titles
+
+If the archive or folder contains **sub-folders** and you do not pass `--novel`, each sub-folder becomes its own title, named after the folder:
+
+```
+collection.zip
+├── Seal of the Ninth Heaven/
+│   ├── 001. The shard.txt
+│   └── 002. First snow.txt
+└── Midnight Bakery/
+    ├── 001. Opening hours.txt
+    └── 002. The regular.txt
+```
+
+```bash
+php tools/import-novels.php --wp=/var/www/site --from-zip=collection.zip
+```
+
+Titles that already exist are matched by slug and reused; missing ones are created empty, ready for a cover and a description in the studio.
+
+### Encodings
+
+Files are read as UTF-8, and a byte order mark is stripped. If the content is not valid UTF-8, it is converted from `windows-1251` — the usual case for older Word and Notepad exports. Anything else can be forced with `--encoding=`, for example `--encoding=koi8-r`.
+
+### Re-running
+
+Chapters match by number inside the title, so re-importing the same archive updates the existing chapters instead of adding copies. Fix a typo in a file, run the command again, and only that chapter changes.
+
+Extracted archives are unpacked into a temporary folder and removed when the run finishes; entries pointing outside the archive and the junk that archivers add (`__MACOSX`, `.DS_Store`) are skipped.
+
+---
+
+## 4. WP All Import
 
 If you prefer a UI, map the columns like this:
 
@@ -107,7 +189,7 @@ Import the titles first, then the chapters, using the title's unique key to reso
 
 ---
 
-## 4. WP-CLI
+## 5. WP-CLI
 
 For scripted migrations:
 
@@ -129,7 +211,7 @@ wp post meta set 413 _xin_number 1
 
 ---
 
-## 5. Server settings for heavy files
+## 6. Server settings for heavy files
 
 Covers, wide artwork and bulk import files hit five different limits. Raise them all — a single low one is enough to fail the upload.
 
@@ -229,7 +311,7 @@ wp media regenerate --only-missing --yes
 
 ---
 
-## 6. Import performance
+## 7. Import performance
 
 For a few thousand chapters:
 
@@ -245,14 +327,14 @@ Turn off any page-cache and image-optimization plugin during the run — they ho
 
 ---
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
 | **413 Request Entity Too Large** | Web server body limit | `client_max_body_size` (nginx) or Max Request Body Size (LiteSpeed) |
 | Form comes back empty, nothing saved | POST exceeded `post_max_size`, PHP discarded it | Raise `post_max_size` above `upload_max_filesize`. The studio shows a readable notice for exactly this case |
 | **HTTP error** in the media library | Memory, or a missing image library | Raise `memory_limit`, check that GD or Imagick is installed |
-| "The site is experiencing technical difficulties" mid-import | Fatal from memory or timeout | Run the importer through PHP CLI, raise `memory_limit` |
+| The import stops halfway with a blank page | Not enough memory, or the request timed out | Run the importer through PHP CLI, raise `memory_limit` |
 | Chapters appear in the wrong order | `_xin_number` stored as text | Store a number: `1`, `2`, `12.5` |
 | Chapters exist but the title shows none | `_xin_novel` missing or pointing at the wrong ID | Check the meta value against the title's post ID |
 | Covers look stretched | Source image is not 2:3 | Upload 800×1200 and regenerate thumbnails |

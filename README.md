@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.0.4-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.0.5-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -27,7 +27,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.0.4**
+> ### 🚧 Status: **beta 0.0.5**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -163,7 +163,7 @@ screenshots/           what it looks like
 
 * **[Installation](docs/install.md)** — production install, dev sandbox on SQLite, permalinks, first title ([RU](docs/install.ru.md))
 * **[Authoring](docs/authoring.md)** — the studio, chapter numbering, early access ([RU](docs/authoring.ru.md))
-* **[Import & heavy uploads](docs/import.md)** — the bundled importer, JSON/CSV manifests, WP All Import and WP-CLI recipes, and every PHP / nginx / LiteSpeed / Cloudflare limit you must raise before large covers will upload ([RU](docs/import.ru.md))
+* **[Import & heavy uploads](docs/import.md)** — the bundled importer: JSON/CSV manifests **and folders or ZIP archives of `.txt` / `.html` / `.md` chapter files**, plus WP All Import and WP-CLI recipes, and every PHP / nginx / LiteSpeed / Cloudflare limit you must raise before large covers will upload ([RU](docs/import.ru.md))
 * **[Customizing](docs/customizing.md)** — design tokens, customizer options, child theme, hooks
 * **[Development](docs/development.md)** — file map, data model, template hierarchy, translations, coding style
 

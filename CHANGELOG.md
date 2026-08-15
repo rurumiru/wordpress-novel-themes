@@ -12,6 +12,24 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.5-beta] — 2026-08-15
+
+### Added
+
+- **Chapter import from text files and ZIP archives.** Point the importer at a folder or an archive of `.txt`, `.html` or `.md` files and it turns them into chapters:
+  - the file name gives the number and the chapter title — `001. The shard.txt`, `002 - First snow.txt`, `012.5_Side story.html`, `Chapter 3 - The debt.md`, `Глава 4. Ночной гость.txt`, or a bare name numbered by file order;
+  - files are sorted naturally, so `2` comes before `10`;
+  - plain text becomes paragraphs on blank lines with single breaks kept as `<br>`, Markdown headings and emphasis are converted, HTML documents are reduced to their `<body>`;
+  - content is read as UTF-8, falls back to `windows-1251` for older exports, and any encoding can be forced with `--encoding=`;
+  - sub-folders inside an archive mean one title per folder, named after the folder;
+  - new options: `--from-dir`, `--from-zip`, `--novel`, `--novel-slug`, `--novel-id`, `--start`, `--locked-from`, `--encoding`.
+- Re-running a file import updates the matching chapters instead of adding copies. Archives are unpacked into a temporary folder and cleaned up afterwards; entries pointing outside the archive and archiver leftovers are skipped.
+- Both import guides gained a full section on the new mode, with tables of supported extensions, file-name patterns, the multi-title archive layout and encoding behaviour.
+
+### Changed
+
+- Wording pass across the documentation: the troubleshooting tables now describe what a reader actually sees ("the import stops halfway, the page is blank") instead of engine jargon.
+
 ## [0.0.4-beta] — 2026-08-15
 
 ### Added
@@ -58,7 +76,7 @@ First public beta. Everything below works end to end; the presentation layer is 
 ### Fixed since the first push
 
 - **Studio submissions no longer travel through `/wp-admin/admin-post.php`.** Project and chapter forms post to the studio page itself and are handled on `template_redirect`. That route survives hosts blocking direct access to `admin-post.php`, security plugins filtering it, and page caches serving a stale nonce — which is where creating a title broke on production.
-- Failures now return as a readable notice inside the studio instead of a WordPress die screen: expired session, upload larger than `post_max_size` (the case where PHP discards the entire POST), missing permission, missing project.
+- Failures now return as a readable notice inside the studio instead of a bare WordPress error page: expired session, upload larger than `post_max_size` (the case where PHP discards the entire POST), missing permission, missing project.
 - Signed-out submissions redirect to the login form and come back to the studio afterwards instead of dying with `0`.
 
 ### Platform
