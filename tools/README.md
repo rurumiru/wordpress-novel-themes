@@ -1,6 +1,17 @@
 # Tools
 
-Three small scripts. None of them is required to run the theme.
+Four small scripts. None of them is required to run the theme.
+
+## `build-zip.php`
+
+Packs a folder into a distributable zip with forward-slash entry paths and a single root folder — the shape WordPress expects when installing a theme.
+
+```bash
+php tools/build-zip.php --src=themes/xi-novels --out=dist/xi-novels.zip
+php tools/build-zip.php --src=demo --out=dist/demo.zip --root=demo
+```
+
+Use it instead of PowerShell's `Compress-Archive`: that one writes backslashes into entry names, and WordPress then reports `the theme is missing style.css`. The script checks its own output and prints the count of bad entries, which should be zero.
 
 ## `import-novels.php`
 

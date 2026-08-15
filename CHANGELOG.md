@@ -14,6 +14,11 @@ Shared component markup (navbar, offcanvas, modal, forms, tabs) may change betwe
 
 ## [0.0.6-beta] — 2026-08-15
 
+### Fixed
+
+- **The theme zip would not install.** Release archives were packed with PowerShell's `Compress-Archive`, which writes entry paths with backslashes; WordPress then unpacked `xi-novels\style.css` as one long file name, found no theme folder and reported a missing stylesheet. Archives are now built by `tools/build-zip.php` (PHP `ZipArchive`, forward slashes, one root folder), and the script verifies its own output before finishing. Both release assets were rebuilt.
+- Dropped `threaded-comments` from the theme tags — the theme ships without discussions — and added `custom-colors` and `editor-style`, which it actually supports.
+
 ### Added
 
 - **Demo content package** in `demo/`. One command fills a fresh install so the theme can be judged with a full catalog instead of empty states:
