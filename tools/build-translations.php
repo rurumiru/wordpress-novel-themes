@@ -433,6 +433,9 @@ $T = array(
 	'Выйти' => 'Sign out',
 	'Неверная пара логин / пароль.' => 'Wrong login or password.',
 	'Популярные жанры' => 'Popular genres',
+	'Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова.' => 'Your session expired — the form has been open for too long. Reload the page and submit again.',
+	'Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize.' => 'The file is too large: the server rejected the whole submission. Shrink the cover or ask your host to raise upload_max_filesize.',
+	'Недостаточно прав для этого действия.' => 'You are not allowed to do that.',
 	'Профиль' => 'Profile',
 );
 

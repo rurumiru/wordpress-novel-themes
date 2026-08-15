@@ -16,6 +16,12 @@ Shared component markup (navbar, offcanvas, modal, forms, tabs) may change betwe
 
 First public beta. Everything below works end to end; the presentation layer is still under evaluation.
 
+### Fixed since the first push
+
+- **Studio submissions no longer travel through `/wp-admin/admin-post.php`.** Project and chapter forms post to the studio page itself and are handled on `template_redirect`. That route survives hosts blocking direct access to `admin-post.php`, security plugins filtering it, and page caches serving a stale nonce — which is where creating a title broke on production.
+- Failures now return as a readable notice inside the studio instead of a WordPress die screen: expired session, upload larger than `post_max_size` (the case where PHP discards the entire POST), missing permission, missing project.
+- Signed-out submissions redirect to the login form and come back to the studio afterwards instead of dying with `0`.
+
 ### Platform
 
 - Custom post types `novel` and `chapter` with a numeric-meta ordering model that survives thousands of chapters per title.

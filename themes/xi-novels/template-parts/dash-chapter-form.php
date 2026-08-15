@@ -13,9 +13,9 @@ $xin_last   = xin_last_chapter( $xin_novel_id );
 $xin_number = $xin_id ? xin_chapter_label( $xin_id ) : ( $xin_last ? (float) xin_chapter_number( $xin_last->ID ) + 1 : 1 );
 ?>
 
-<form class="xin-panel" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-xin-chapter-editor="<?php echo (int) $xin_novel_id; ?>">
+<form class="xin-panel" method="post" action="<?php echo esc_url( xin_dashboard_url() ); ?>" data-xin-chapter-editor="<?php echo (int) $xin_novel_id; ?>">
 	<?php wp_nonce_field( 'xin_save_chapter' ); ?>
-	<input type="hidden" name="action" value="xin_save_chapter">
+	<input type="hidden" name="xin_action" value="save_chapter">
 	<input type="hidden" name="chapter_id" value="<?php echo (int) $xin_id; ?>">
 	<input type="hidden" name="novel_id" value="<?php echo (int) $xin_novel_id; ?>">
 

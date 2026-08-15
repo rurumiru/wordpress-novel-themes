@@ -34,21 +34,58 @@ function xin_user_novels( $user_id = 0, $limit = -1 ) {
 	) );
 }
 
+function xin_studio_guard( $nonce_action, $back = array() ) {
+	if ( ! is_user_logged_in() ) {
+		wp_safe_redirect( wp_login_url( xin_dashboard_url( $back ) ) );
+		exit;
+	}
+
+	if ( 'POST' === $_SERVER['REQUEST_METHOD'] && empty( $_POST ) && ! empty( $_SERVER['CONTENT_LENGTH'] ) ) {
+		xin_redirect_back( array_merge( $back, array( 'msg' => 'too-big' ) ) );
+	}
+
+	$nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
+	if ( ! wp_verify_nonce( $nonce, $nonce_action ) ) {
+		xin_redirect_back( array_merge( $back, array( 'msg' => 'expired' ) ) );
+	}
+
+	if ( ! xin_can_author() ) {
+		xin_redirect_back( array_merge( $back, array( 'msg' => 'denied' ) ) );
+	}
+}
+
+function xin_studio_router() {
+	$action = '';
+	if ( isset( $_POST['xin_action'] ) ) {
+		$action = sanitize_key( wp_unslash( $_POST['xin_action'] ) );
+	} elseif ( isset( $_GET['xin_action'] ) ) {
+		$action = sanitize_key( wp_unslash( $_GET['xin_action'] ) );
+	}
+
+	switch ( $action ) {
+		case 'save_novel':
+			xin_handle_save_novel();
+			break;
+		case 'save_chapter':
+			xin_handle_save_chapter();
+			break;
+		case 'delete':
+			xin_handle_delete();
+			break;
+	}
+}
+add_action( 'template_redirect', 'xin_studio_router', 5 );
 function xin_redirect_back( $args ) {
 	wp_safe_redirect( xin_dashboard_url( $args ) );
 	exit;
 }
 
 function xin_handle_save_novel() {
-	check_admin_referer( 'xin_save_novel' );
-
-	if ( ! xin_can_author() ) {
-		wp_die( esc_html__( 'Недостаточно прав.', 'xi-novels' ) );
-	}
+	xin_studio_guard( 'xin_save_novel', array( 'view' => 'novels' ) );
 
 	$novel_id = isset( $_POST['novel_id'] ) ? absint( $_POST['novel_id'] ) : 0;
 	if ( $novel_id && ! xin_owns( $novel_id ) ) {
-		wp_die( esc_html__( 'Это не ваш проект.', 'xi-novels' ) );
+		xin_redirect_back( array( 'view' => 'novels', 'msg' => 'denied' ) );
 	}
 
 	$title = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
@@ -130,20 +167,17 @@ require_once ABSPATH . 'wp-admin/includes/file.php';
 add_action( 'admin_post_xin_save_novel', 'xin_handle_save_novel' );
 
 function xin_handle_save_chapter() {
-	check_admin_referer( 'xin_save_chapter' );
+	$novel_id = isset( $_POST['novel_id'] ) ? absint( $_POST['novel_id'] ) : 0;
 
-	if ( ! xin_can_author() ) {
-		wp_die( esc_html__( 'Недостаточно прав.', 'xi-novels' ) );
-	}
+	xin_studio_guard( 'xin_save_chapter', array( 'view' => 'chapters', 'project' => $novel_id ) );
 
 	$chapter_id = isset( $_POST['chapter_id'] ) ? absint( $_POST['chapter_id'] ) : 0;
-	$novel_id   = isset( $_POST['novel_id'] ) ? absint( $_POST['novel_id'] ) : 0;
 
 	if ( $chapter_id && ! xin_owns( $chapter_id ) ) {
-		wp_die( esc_html__( 'Это не ваша глава.', 'xi-novels' ) );
+		xin_redirect_back( array( 'view' => 'chapters', 'project' => $novel_id, 'msg' => 'denied' ) );
 	}
 	if ( ! $novel_id || ! xin_owns( $novel_id ) ) {
-		wp_die( esc_html__( 'Проект не найден.', 'xi-novels' ) );
+		xin_redirect_back( array( 'view' => 'novels', 'msg' => 'no-project' ) );
 	}
 
 	$title = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
@@ -203,11 +237,11 @@ wp_update_post( array( 'ID' => $novel_id, 'post_modified' => current_time( 'mysq
 add_action( 'admin_post_xin_save_chapter', 'xin_handle_save_chapter' );
 
 function xin_handle_delete() {
-	check_admin_referer( 'xin_delete' );
+	xin_studio_guard( 'xin_delete', array( 'view' => 'novels' ) );
 
 	$id = isset( $_REQUEST['id'] ) ? absint( $_REQUEST['id'] ) : 0;
 	if ( ! $id || ! xin_owns( $id ) ) {
-		wp_die( esc_html__( 'Недостаточно прав.', 'xi-novels' ) );
+		xin_redirect_back( array( 'view' => 'novels', 'msg' => 'denied' ) );
 	}
 
 	$type     = get_post_type( $id );
@@ -236,6 +270,10 @@ function xin_dashboard_notice() {
 		'deleted'       => array( 'ok', __( 'Удалено — запись в корзине.', 'xi-novels' ) ),
 		'no-title'      => array( 'err', __( 'Нужно название.', 'xi-novels' ) ),
 		'error'         => array( 'err', __( 'Не удалось сохранить. Попробуйте ещё раз.', 'xi-novels' ) ),
+		'expired'       => array( 'err', __( 'Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова.', 'xi-novels' ) ),
+		'too-big'       => array( 'err', __( 'Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize.', 'xi-novels' ) ),
+		'denied'        => array( 'err', __( 'Недостаточно прав для этого действия.', 'xi-novels' ) ),
+		'no-project'    => array( 'err', __( 'Проект не найден.', 'xi-novels' ) ),
 	);
 	if ( ! isset( $map[ $msg ] ) ) {
 		return;

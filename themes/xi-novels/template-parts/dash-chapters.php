@@ -58,7 +58,7 @@ $xin_chapters = get_posts( array(
 						<td class="xin-muted"><?php echo esc_html( get_the_date( 'j M Y', $xin_chapter->ID ) ); ?></td>
 						<td>
 							<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_dashboard_url( array( 'view' => 'edit-chapter', 'id' => $xin_chapter->ID ) ) ); ?>"><?php esc_html_e( 'Править', 'xi-novels' ); ?></a>
-							<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=xin_delete&id=' . $xin_chapter->ID ), 'xin_delete' ) ); ?>" onclick="return confirm('<?php echo esc_js( __( 'Удалить главу?', 'xi-novels' ) ); ?>')"><?php esc_html_e( 'Удалить', 'xi-novels' ); ?></a>
+							<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( wp_nonce_url( xin_dashboard_url( array( 'xin_action' => 'delete', 'id' => $xin_chapter->ID ) ), 'xin_delete' ) ); ?>" onclick="return confirm('<?php echo esc_js( __( 'Удалить главу?', 'xi-novels' ) ); ?>')"><?php esc_html_e( 'Удалить', 'xi-novels' ); ?></a>
 						</td>
 					</tr>
 				<?php endforeach; ?>

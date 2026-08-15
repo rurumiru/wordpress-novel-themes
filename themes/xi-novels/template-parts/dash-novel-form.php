@@ -11,9 +11,9 @@ $xin_cur_tags   = $xin_id ? wp_get_object_terms( $xin_id, 'novel_tag', array( 'f
 $xin_cover      = $xin_id ? xin_cover_url( $xin_id, 'xin-cover-sm' ) : '';
 ?>
 
-<form class="xin-panel" method="post" enctype="multipart/form-data" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+<form class="xin-panel" method="post" enctype="multipart/form-data" action="<?php echo esc_url( xin_dashboard_url() ); ?>">
 	<?php wp_nonce_field( 'xin_save_novel' ); ?>
-	<input type="hidden" name="action" value="xin_save_novel">
+	<input type="hidden" name="xin_action" value="save_novel">
 	<input type="hidden" name="novel_id" value="<?php echo (int) $xin_id; ?>">
 
 	<div class="xin-panel__head">
@@ -143,7 +143,7 @@ $xin_cover      = $xin_id ? xin_cover_url( $xin_id, 'xin-cover-sm' ) : '';
 				<?php esc_html_e( 'В черновики', 'xi-novels' ); ?>
 			</button>
 			<?php if ( $xin_id ) : ?>
-				<a class="btn btn-ghost" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=xin_delete&id=' . $xin_id ), 'xin_delete' ) ); ?>" onclick="return confirm('<?php echo esc_js( __( 'Удалить проект вместе со страницей?', 'xi-novels' ) ); ?>')">
+				<a class="btn btn-ghost" href="<?php echo esc_url( wp_nonce_url( xin_dashboard_url( array( 'xin_action' => 'delete', 'id' => $xin_id ) ), 'xin_delete' ) ); ?>" onclick="return confirm('<?php echo esc_js( __( 'Удалить проект вместе со страницей?', 'xi-novels' ) ); ?>')">
 					<?php esc_html_e( 'Удалить', 'xi-novels' ); ?>
 				</a>
 			<?php endif; ?>

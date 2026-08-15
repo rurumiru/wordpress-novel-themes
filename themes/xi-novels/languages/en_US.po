@@ -1271,6 +1271,15 @@ msgstr "Wrong login or password."
 msgid "Популярные жанры"
 msgstr "Popular genres"
 
+msgid "Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова."
+msgstr "Your session expired — the form has been open for too long. Reload the page and submit again."
+
+msgid "Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize."
+msgstr "The file is too large: the server rejected the whole submission. Shrink the cover or ask your host to raise upload_max_filesize."
+
+msgid "Недостаточно прав для этого действия."
+msgstr "You are not allowed to do that."
+
 msgid "Профиль"
 msgstr "Profile"
 
