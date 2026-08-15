@@ -12,6 +12,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.4-beta] — 2026-08-15
+
+### Added
+
+- **Bulk importer** — `tools/import-novels.php`. Takes a JSON or CSV manifest and creates or updates titles and chapters, downloads covers and wide artwork from URLs or local paths, and fills every meta field and taxonomy. Idempotent: titles match by slug, chapters by number inside the title, so re-running a manifest updates instead of duplicating. Term counting and cache invalidation are deferred during the run. Options for author, post status, skipping media and a dry run.
+- **[Import & heavy uploads](docs/import.md)** ([RU](docs/import.ru.md)) — the data model to import into, both manifest formats, WP All Import column mapping, WP-CLI recipes, and a complete list of the server limits that must be raised before large covers will upload: PHP (`upload_max_filesize`, `post_max_size`, `memory_limit`, `max_execution_time`, `max_input_time`, `max_input_vars`) with the four places to set them, nginx `client_max_body_size` and timeouts, LiteSpeed request body size, the Cloudflare 100 MB ceiling, `WP_MEMORY_LIMIT` / `WP_MAX_MEMORY_LIMIT`, the `upload_size_limit` and `big_image_size_threshold` filters, recommended cover dimensions, import speed tips and a troubleshooting table.
+- Documentation index restored in both READMEs, now listing the import guide.
+
 ## [0.0.3-beta] — 2026-08-15
 
 ### Added

@@ -1,6 +1,16 @@
 # Tools
 
-Two small scripts. Neither is required to run the theme.
+Three small scripts. None of them is required to run the theme.
+
+## `import-novels.php`
+
+Bulk importer for titles and chapters from a JSON or CSV manifest: creates or updates posts, downloads covers and artwork, sets every meta field and taxonomy.
+
+```bash
+php tools/import-novels.php --wp=/var/www/site --file=novels.json
+```
+
+Full manifest format, WP All Import mapping, WP-CLI recipes and the server limits you need for large uploads: [docs/import.md](../docs/import.md) ([RU](../docs/import.ru.md)).
 
 ## `dev-router.php`
 
