@@ -12,6 +12,19 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.7-beta] — 2026-08-15
+
+### Added
+
+- **The demo content is now a plugin.** `xi-demo-content.zip` installs under *Plugins → Add New → Upload* and adds a screen at *Tools → Demo content* with two buttons: install and remove. Options on the screen cover skipping the generated images and creating everything as drafts. No SSH, no command line.
+  - The screen reports how many demo records are on the site right now and warns when the theme is not active, instead of failing halfway.
+  - Both entry points — the plugin and the CLI scripts — share one implementation in `demo/plugin/xi-demo-content/importer.php`, so they cannot drift apart.
+
+### Fixed
+
+- **Installing the theme failed on servers where the old copy was uploaded by another user.** Documented in [docs/install.ru.md](docs/install.ru.md): WordPress deletes the previous theme folder before copying the new one, and when those files belong to a different system user the update stops with "some files could not be copied". The guide now carries the ownership and permission commands that resolve it, a panel-only route and the fallback of deleting the folder.
+- Made it explicit in the demo documentation that the demo package is a plugin, not a theme: uploading it under *Appearance → Themes* produces the misleading "missing style.css" error.
+
 ## [0.0.6-beta] — 2026-08-15
 
 ### Fixed
