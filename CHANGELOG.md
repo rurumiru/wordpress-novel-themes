@@ -3,9 +3,18 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
-## [1.0.0] — 2026-08-15
+## [Unreleased]
 
-First public release.
+### Planned
+
+- **Framework bake-off.** Bootstrap 5 is the current base, not the decision. The presentation layer will be measured against a built Tailwind subset, UnoCSS, Bulma, Pico.css and a no-framework build that relies only on the theme's own token system. Judged on gzip weight, render-blocking bytes, LCP on a mid-range phone, layout shift on the catalog grid, and reading comfort across a long session. Numbers and the verdict will be published here.
+- Reader typography pass: measured line length, optical margins, per-language line rhythm.
+
+Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
+
+## [0.0.1-beta] — 2026-08-15
+
+First public beta. Everything below works end to end; the presentation layer is still under evaluation.
 
 ### Platform
 

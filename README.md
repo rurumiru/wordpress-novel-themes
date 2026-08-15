@@ -7,6 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
+[![Version](https://img.shields.io/badge/version-beta%200.0.1-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -23,6 +24,18 @@
 ![Home page](screenshots/01-home.jpg)
 
 ---
+
+> ### 🚧 Status: **beta 0.0.1**
+>
+> The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
+>
+> **What gets measured before a framework stays:** payload after gzip, render-blocking bytes, Largest Contentful Paint on a mid-range phone, layout shift on the catalog grid, and how the reader feels during a 40-minute session — line rhythm, contrast at night, how quickly settings apply.
+>
+> **Candidates on the bench:** Bootstrap 5 (now) · Tailwind with a build-free CDN-less subset · UnoCSS · Bulma · Pico.css · plain CSS with only the theme's own tokens and no framework at all.
+>
+> Expect the markup of shared components (navbar, offcanvas, modal, forms, tabs) to change between betas. The data model, template hierarchy and hooks are already stable — themes built on top of them will survive the swap.
+>
+> Benchmarks and the decision will land in [CHANGELOG.md](CHANGELOG.md). Opinions and measurements from your own installs are welcome in issues.
 
 ## ⭐ Why you are reading this
 
@@ -167,6 +180,9 @@ php tools/build-translations.php
 
 Ideas that fit the “no dependencies” rule. Vote with 👍 in issues, or send a PR.
 
+- [ ] **Framework bake-off** — Bootstrap vs Tailwind subset vs UnoCSS vs Bulma vs Pico vs no framework, judged on gzip size, LCP on a mid-range phone, layout shift and reading comfort
+- [ ] **Zero-CSS-framework build** as the likely endgame: the theme already carries its own token system, so a framework may end up being dead weight
+- [ ] Reader typography pass: measured line length, optical margins, per-language line rhythm
 - [ ] EPUB / FBReader export for a whole title
 - [ ] Reading streaks and simple achievements
 - [ ] Translator teams (several authors per project)
