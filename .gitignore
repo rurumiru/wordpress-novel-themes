@@ -1,0 +1,25 @@
+# WordPress install (only the theme lives in this repository)
+wordpress/
+wp-config.php
+wp-content/uploads/
+wp-content/db.php
+wp-content/database/
+wp-content/upgrade/
+*.sqlite
+
+# Local dev artifacts
+*.log
+debug.log
+.env
+node_modules/
+vendor/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.code-workspace
+*~
+*.swp

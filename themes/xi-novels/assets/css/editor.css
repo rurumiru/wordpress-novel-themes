@@ -1,0 +1,19 @@
+.editor-styles-wrapper {
+	font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+	font-size: 16.5px;
+	line-height: 1.8;
+}
+.editor-styles-wrapper .wp-block {
+	max-width: 820px;
+}
+.editor-styles-wrapper h1, .editor-styles-wrapper h2,
+.editor-styles-wrapper h3, .editor-styles-wrapper h4 {
+	font-weight: 700;
+	letter-spacing: -.01em;
+}
+.editor-styles-wrapper blockquote {
+	border-left: 3px solid #e1173f;
+	padding-left: 1.125rem;
+	font-style: italic;
+}
+.editor-styles-wrapper a { color: #e1173f; }

@@ -1,0 +1,98 @@
+# Customizing
+
+## Design tokens
+
+Every color, radius and shadow comes from CSS custom properties declared at the top of `themes/xi-novels/style.css`. Colors are stored as bare HSL components so any of them can be used with transparency (`hsl(var(--primary) / .12)`).
+
+```css
+:root {
+	--bg: 220 20% 97%;
+	--fg: 222 14% 11%;
+	--card: 0 0% 100%;
+	--muted: 220 18% 95.5%;
+	--muted-fg: 220 9% 45%;
+	--border: 220 18% 91%;
+	--primary: 348 83% 47%;      /* accent */
+	--gold: 38 92% 50%;          /* premium marker */
+	--radius: 0.875rem;
+	--wrap: 1280px;
+	--header-h: 64px;
+}
+
+[data-theme="dark"] { /* the dark ladder */ }
+```
+
+Change `--primary` and the whole site follows: buttons, badges, focus rings, progress bars, the reader’s drop cap.
+
+Bootstrap is re-skinned from the same tokens in `assets/css/skin.css` — `--bs-body-bg`, `--bs-border-color`, `.btn`, `.form-control`, `.navbar`, `.dropdown-menu`, `.offcanvas`, `.modal`, `.nav-pills`, `.pagination` all read the theme variables.
+
+## Customizer options
+
+**Appearance → Customize**
+
+| Section | Options |
+|---|---|
+| **Brand and colors** | Default scheme (dark / light / follow system), accent color, premium color |
+| **Home page** | Twelve independent switches: hero showcase, quick links, stats bar, ranking, new releases, genres, trending, latest chapters, recently updated, reader favorites, top authors, CTA tiles. Plus the hero eyebrow label |
+| **Footer and social** | About text, copyright line, Telegram / VK / Discord / YouTube links |
+
+Colors are stored as hex and converted to HSL on output, so transparency variants keep working.
+
+## Menus and widgets
+
+Three menu locations: **Primary menu**, **Footer menu**, **Legal links**. The primary menu renders through a Bootstrap walker — a submenu becomes a dropdown on desktop and an indented list in the offcanvas on mobile.
+
+Three widget areas: **Blog sidebar**, **Title sidebar**, **Footer**. Two theme widgets: *Novel picks* (by views / rating / new / updated) and *Latest chapters*.
+
+## Child theme
+
+```php
+// wp-content/themes/xi-novels-child/style.css
+/*
+Theme Name: XI Novels Child
+Template: xi-novels
+*/
+```
+
+```php
+// wp-content/themes/xi-novels-child/functions.php
+add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_style( 'xi-child', get_stylesheet_uri(), array( 'xi-novels-parts' ), '1.0' );
+}, 20 );
+```
+
+Override any template by copying it into the child theme. Template parts are loaded with `get_template_part()`, so `template-parts/section-hero.php` and friends are overridable too.
+
+## Useful hooks
+
+The theme is plain WordPress, so all core hooks apply. The pieces most people want to change:
+
+| What | How |
+|---|---|
+| Home-page blocks | Toggle in the customizer, or copy `front-page.php` into a child theme |
+| Number of items in a home block | `xin_get_novels( 'popular', 12 )` calls in `front-page.php` |
+| Catalog page size | `xin_pre_get_posts()` in `functions.php` sets 24 |
+| Sorting options | The `$xin_sorts` array in `template-parts/catalog.php` and the `switch` in `xin_pre_get_posts()` |
+| Reader defaults | `defaults` object at the top of `assets/js/reader.js` |
+| Icons | `xin_icon_path()` in `inc/template-tags.php` — an inline SVG sprite |
+| Card markup | `xin_novel_card()`, `xin_chapter_card()`, `xin_post_card()` in `inc/template-tags.php` |
+| Hiding WordPress traces | `inc/cleanup.php` — every removal is one line, delete what you do not want |
+| Comments | Removed. To bring them back, drop the filters at the end of `functions.php` and add a `comments.php` |
+
+## Colors that stay readable
+
+The light and dark palettes are built on measured contrast, not intuition:
+
+* body text against background sits above 14:1 in both schemes;
+* secondary text stays above 6.7:1;
+* the accent as colored text on cards stays above 4.5:1, which is why the dark scheme uses a lighter pink than the light scheme’s crimson;
+* surface steps in dark mode grow in both lightness and saturation, so “card above background” reads by two cues instead of one.
+
+If you swap the accent, check the same three pairs before shipping.
+
+## Performance notes
+
+* Two stylesheets from the theme plus Bootstrap; two scripts plus the Bootstrap bundle. No fonts, no icon fonts, no CDN.
+* Chapter lists are cached in the object cache for five minutes and flushed on save.
+* Site statistics are a transient (10 minutes).
+* Covers use `loading="lazy"` everywhere except the first hero card.

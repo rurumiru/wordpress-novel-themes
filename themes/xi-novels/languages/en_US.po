@@ -1,0 +1,1276 @@
+# English (US) translation for the XI Novels theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Novels 1.0.0\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%d глав"
+msgstr "%d chapters"
+
+msgid "%d глава"
+msgstr "%d chapter"
+
+msgid "%d главы"
+msgstr "%d chapters"
+
+msgid "%s комментариев"
+msgstr "%s comments"
+
+msgid "%s комментарий"
+msgstr "%s comment"
+
+msgid "%s комментария"
+msgstr "%s comments"
+
+msgid "%s назад"
+msgstr "%s ago"
+
+msgid "%s отзыв"
+msgstr "%s review"
+
+msgid "%s отзыва"
+msgstr "%s reviews"
+
+msgid "%s отзывов"
+msgstr "%s reviews"
+
+msgid "%s тайтл"
+msgstr "%s title"
+
+msgid "%s тайтла"
+msgstr "%s titles"
+
+msgid "%s тайтлов"
+msgstr "%s titles"
+
+msgid "Esc — закрыть"
+msgstr "Press Esc to close"
+
+msgid "PLUS"
+msgstr "PLUS"
+
+msgid "XI Novels: бренд и цвета"
+msgstr "XI Novels: brand & colors"
+
+msgid "XI Novels: главная"
+msgstr "XI Novels: home page"
+
+msgid "XI Novels: подвал и соцсети"
+msgstr "XI Novels: footer & social"
+
+msgid "XI: подборка новелл"
+msgstr "XI: novel picks"
+
+msgid "XI: последние главы"
+msgstr "XI: latest chapters"
+
+msgid "~%d мин чтения"
+msgstr "~%d min read"
+
+msgid "© %1$s %2$s. Все права на тексты принадлежат их авторам."
+msgstr "© %1$s %2$s. All texts belong to their authors."
+
+msgid "Автор оригинала"
+msgstr "Original author"
+
+msgid "Автор: %s"
+msgstr "Author: %s"
+
+msgid "Авторам"
+msgstr "For authors"
+
+msgid "Админка"
+msgstr "WP admin"
+
+msgid "Акцентный цвет"
+msgstr "Accent color"
+
+msgid "Анонс"
+msgstr "Announced"
+
+msgid "Белая"
+msgstr "Paper"
+
+msgid "Библиотека"
+msgstr "Library"
+
+msgid "Блог"
+msgstr "Blog"
+
+msgid "Боковая колонка блога"
+msgstr "Blog sidebar"
+
+msgid "Боковая колонка тайтла"
+msgstr "Title sidebar"
+
+msgid "Бумага"
+msgstr "Background"
+
+msgid "Быстрая навигация"
+msgstr "Quick navigation"
+
+msgid "В библиотеке"
+msgstr "In library"
+
+msgid "В библиотеку"
+msgstr "Add to library"
+
+msgid "В каталог"
+msgstr "Browse catalog"
+
+msgid "В проекте ещё нет глав."
+msgstr "This project has no chapters yet."
+
+msgid "В черновики"
+msgstr "Save as draft"
+
+msgid "Ваша оценка"
+msgstr "Your rating"
+
+msgid "Весь каталог"
+msgstr "Full catalog"
+
+msgid "Весь рейтинг"
+msgstr "Full ranking"
+
+msgid "Витрина «Сейчас в тренде»"
+msgstr "Hero showcase"
+
+msgid "Во весь экран"
+msgstr "Fullscreen"
+
+msgid "Возможно, тайтл переехал или ссылка устарела. Попробуйте найти его в каталоге."
+msgstr "The title may have moved or the link is out of date. Try finding it in the catalog."
+
+msgid "Войдите в аккаунт, чтобы продолжить чтение и поддержать переводчика."
+msgstr "Sign in to keep reading and support the translator."
+
+msgid "Войдите под своей учётной записью, чтобы вести проекты и публиковать главы."
+msgstr "Sign in to manage projects and publish chapters."
+
+msgid "Войти"
+msgstr "Sign in"
+
+msgid "Вперёд"
+msgstr "Next"
+
+msgid "Все"
+msgstr "All"
+
+msgid "Все главы"
+msgstr "All chapters"
+
+msgid "Все новеллы"
+msgstr "All novels"
+
+msgid "Все обновления"
+msgstr "All updates"
+
+msgid "Вход для авторов"
+msgstr "Author login"
+
+msgid "Вчера"
+msgstr "Yesterday"
+
+msgid "Выберите настроение — остальное подберём"
+msgstr "Pick a mood — we will handle the rest"
+
+msgid "Выбор редакции (показывать в витрине главной)"
+msgstr "Editor's pick (show in the home showcase)"
+
+msgid "Выбрать арт"
+msgstr "Choose artwork"
+
+msgid "Выходит"
+msgstr "Ongoing"
+
+msgid "Гл. %s"
+msgstr "Ch. %s"
+
+msgid "Гл. %s — "
+msgstr "Ch. %s — "
+
+msgid "Глав не найдено"
+msgstr "No chapters found"
+
+msgid "Глава"
+msgstr "Chapter"
+
+msgid "Глава %s."
+msgstr "Chapter %s."
+
+msgid "Глава для подписчиков PLUS"
+msgstr "PLUS members only"
+
+msgid "Глава сохранена."
+msgstr "Chapter saved."
+
+msgid "Главная"
+msgstr "Home"
+
+msgid "Главное меню"
+msgstr "Primary menu"
+
+msgid "Главы"
+msgstr "Chapters"
+
+msgid "Главы ещё не опубликованы."
+msgstr "No chapters published yet."
+
+msgid "Год"
+msgstr "Year"
+
+msgid "Год выпуска"
+msgstr "Release year"
+
+msgid "Голосов: %d"
+msgstr "Votes: %d"
+
+msgid "Гротеск"
+msgstr "Sans"
+
+msgid "Дальше"
+msgstr "Next"
+
+msgid "Дата"
+msgstr "Date"
+
+msgid "Действия"
+msgstr "Actions"
+
+msgid "Десятка лидеров площадки"
+msgstr "Top ten on the platform"
+
+msgid "Добавить"
+msgstr "Add new"
+
+msgid "Добавить главу"
+msgstr "Add chapter"
+
+msgid "Добавить жанр"
+msgstr "Add genre"
+
+msgid "Добавить новеллу"
+msgstr "Add novel"
+
+msgid "Добавлен"
+msgstr "Added"
+
+msgid "Добро пожаловать в %s"
+msgstr "Welcome to %s"
+
+msgid "Дробный номер — экстра или интерлюдия: 12.5"
+msgstr "A fractional number means a side story: 12.5"
+
+msgid "Дробный номер — экстра/интерлюдия: 12.5"
+msgstr "A fractional number means a side story: 12.5"
+
+msgid "Ещё"
+msgstr "More"
+
+msgid "Жанр"
+msgstr "Genre"
+
+msgid "Жанры"
+msgstr "Genres"
+
+msgid "Жанры пока не заданы"
+msgstr "No genres yet"
+
+msgid "Завершён"
+msgstr "Completed"
+
+msgid "Заголовок"
+msgstr "Title"
+
+msgid "Задать обложку"
+msgstr "Set cover"
+
+msgid "Закладки"
+msgstr "Bookmarks"
+
+msgid "Закладки и история чтения хранятся в этом браузере — аккаунт не нужен."
+msgstr "Bookmarks and reading history live in this browser — no account needed."
+
+msgid "Закрыть"
+msgstr "Close"
+
+msgid "Заморожен"
+msgstr "On hiatus"
+
+msgid "Здесь пока пусто"
+msgstr "Nothing here yet"
+
+msgid "Имя автора"
+msgstr "Author name"
+
+msgid "Искать главы"
+msgstr "Search chapters"
+
+msgid "Искать новеллы"
+msgstr "Search novels"
+
+msgid "Используется в баннере главной и крупных блоках."
+msgstr "Used in the home banner and large blocks."
+
+msgid "История хранится в вашем браузере"
+msgstr "History is stored in your browser"
+
+msgid "Источник"
+msgstr "Source"
+
+msgid "К списку"
+msgstr "Back to list"
+
+msgid "К странице тайтла"
+msgstr "Back to title"
+
+msgid "Кабинет"
+msgstr "Studio"
+
+msgid "Кабинет автора"
+msgstr "Author studio"
+
+msgid "Как в системе"
+msgstr "Match system"
+
+msgid "Как сайт"
+msgstr "Site theme"
+
+msgid "Как только выйдет первая глава, она появится здесь."
+msgstr "The first chapter will show up here as soon as it is published."
+
+msgid "Как читать"
+msgstr "Reading settings"
+
+msgid "Карточка тайтла"
+msgstr "Title details"
+
+msgid "Каталог"
+msgstr "Catalog"
+
+msgid "Каталог новелл"
+msgstr "Novel catalog"
+
+msgid "Каталог пока пуст. Добавьте первый тайтл — и главная соберётся сама: витрина, рейтинги и лента обновлений появятся автоматически."
+msgstr "The catalog is empty. Add the first title and the home page builds itself: showcase, rankings and the update feed appear automatically."
+
+msgid "Каталог пуст. Добавьте первый тайтл:"
+msgstr "The catalog is empty. Add your first title:"
+
+msgid "Каталог тайтлов"
+msgstr "Title catalog"
+
+msgid "Коины, PLUS, медали рейтинга."
+msgstr "Coins, PLUS, ranking medals."
+
+msgid "Колонки виджетов в подвале (вместо меню)."
+msgstr "Footer widget columns (instead of menus)."
+
+msgid "Комментарий"
+msgstr "Comment"
+
+msgid "Краткое описание"
+msgstr "Short description"
+
+msgid "Крупнее"
+msgstr "Larger"
+
+msgid "Листайте клавишами %1$s и %2$s"
+msgstr "Use %1$s and %2$s to turn pages"
+
+msgid "Любой статус"
+msgstr "Any status"
+
+msgid "Материал 18+"
+msgstr "Adult content"
+
+msgid "Материал 18+ (обложка размывается в каталоге)"
+msgstr "Adult content (cover is blurred in the catalog)"
+
+msgid "Межстрочный интервал"
+msgstr "Line height"
+
+msgid "Мельче"
+msgstr "Smaller"
+
+msgid "Меню"
+msgstr "Menu"
+
+msgid "Меню подвала"
+msgstr "Footer menu"
+
+msgid "Мобильное меню"
+msgstr "Mobile menu"
+
+msgid "Мои проекты"
+msgstr "My projects"
+
+msgid "Мой профиль"
+msgstr "My profile"
+
+msgid "Моя библиотека"
+msgstr "My library"
+
+msgid "Моё"
+msgstr "Mine"
+
+msgid "На главную"
+msgstr "Go home"
+
+msgid "На площадке с %s"
+msgstr "Member since %s"
+
+msgid "На чём вы остановились"
+msgstr "Where you left off"
+
+msgid "Наверх"
+msgstr "Back to top"
+
+msgid "Нажмите на закладку у любой обложки в каталоге — тайтл появится здесь."
+msgstr "Tap the bookmark on any cover in the catalog and the title shows up here."
+
+msgid "Нажмите на закладку у любой обложки — тайтл появится здесь."
+msgstr "Tap the bookmark on any cover and the title shows up here."
+
+msgid "Назад"
+msgstr "Previous"
+
+msgid "Название"
+msgstr "Title"
+
+msgid "Название главы"
+msgstr "Chapter title"
+
+msgid "Название тайтла, автор, глава…"
+msgstr "Title, author, chapter…"
+
+msgid "Найден %s результат"
+msgstr "%s result found"
+
+msgid "Найдено %s результата"
+msgstr "%s results found"
+
+msgid "Найдено %s результатов"
+msgstr "%s results found"
+
+msgid "Найти"
+msgstr "Search"
+
+msgid "Например: Печать девятого неба"
+msgstr "For example: Seal of the Ninth Heaven"
+
+msgid "Настройки проекта"
+msgstr "Project settings"
+
+msgid "Настройки профиля"
+msgstr "Profile settings"
+
+msgid "Настройки сохраняются в этом браузере и применяются ко всем главам сайта."
+msgstr "Settings are saved in this browser and apply to every chapter on the site."
+
+msgid "Настройки чтения"
+msgstr "Reading settings"
+
+msgid "Начать читать"
+msgstr "Start reading"
+
+msgid "Не удалось сохранить. Попробуйте ещё раз."
+msgstr "Could not save. Please try again."
+
+msgid "Недавно обновлены"
+msgstr "Recently updated"
+
+msgid "Недостаточно прав."
+msgstr "Not allowed."
+
+msgid "Ничего не найдено"
+msgstr "Nothing found"
+
+msgid "Ничего не нашлось"
+msgstr "Nothing found"
+
+msgid "Новая глава"
+msgstr "New chapter"
+
+msgid "Новая новелла"
+msgstr "New novel"
+
+msgid "Новелл не найдено"
+msgstr "No novels found"
+
+msgid "Новелла"
+msgstr "Novel"
+
+msgid "Новеллы"
+msgstr "Novels"
+
+msgid "Новеллы → Добавить"
+msgstr "Novels → Add new"
+
+msgid "Новинки"
+msgstr "New releases"
+
+msgid "Новое"
+msgstr "New"
+
+msgid "Новости и статьи"
+msgstr "News & articles"
+
+msgid "Новости площадки, разборы тайтлов и заметки переводчиков."
+msgstr "Platform news, title breakdowns and translator notes."
+
+msgid "Новый проект"
+msgstr "New project"
+
+msgid "Номер"
+msgstr "Number"
+
+msgid "Номер главы"
+msgstr "Chapter number"
+
+msgid "Ночь"
+msgstr "Night"
+
+msgid "Нужно название."
+msgstr "A title is required."
+
+msgid "О тайтле"
+msgstr "About this title"
+
+msgid "Обложка"
+msgstr "Cover"
+
+msgid "Обложка (2:3)"
+msgstr "Cover (2:3)"
+
+msgid "Обновлений пока нет"
+msgstr "No updates yet"
+
+msgid "Обновления"
+msgstr "Updates"
+
+msgid "Обновлён"
+msgstr "Updated"
+
+msgid "Обсуждение закрыто."
+msgstr "Comments are closed."
+
+msgid "Оглавление"
+msgstr "Contents"
+
+msgid "Одна-две фразы для карточки в каталоге"
+msgstr "One or two lines for the catalog card"
+
+msgid "Описание"
+msgstr "Description"
+
+msgid "Опубликованных глав пока нет."
+msgstr "No published chapters yet."
+
+msgid "Опубликовать"
+msgstr "Publish"
+
+msgid "Опубликовать и начать следующую"
+msgstr "Publish and start the next one"
+
+msgid "Оригинальное название"
+msgstr "Original title"
+
+msgid "Основная навигация"
+msgstr "Primary navigation"
+
+msgid "Оставить комментарий"
+msgstr "Leave a comment"
+
+msgid "Оставить отзыв"
+msgstr "Write a review"
+
+msgid "Открыть каталог"
+msgstr "Open catalog"
+
+msgid "Открыть тайтл"
+msgstr "Open title"
+
+msgid "Отправить"
+msgstr "Submit"
+
+msgid "Отправить на модерацию"
+msgstr "Submit for review"
+
+msgid "Оценивать можно только новеллы."
+msgstr "Only novels can be rated."
+
+msgid "Оценить на %d"
+msgstr "Rate %d"
+
+msgid "Оценка"
+msgstr "Rating"
+
+msgid "Оценка (0–5)"
+msgstr "Rating (0–5)"
+
+msgid "Панель быстрых переходов"
+msgstr "Quick links bar"
+
+msgid "Параметры главы"
+msgstr "Chapter options"
+
+msgid "Перевод"
+msgstr "Translation"
+
+msgid "Перевод / команда"
+msgstr "Translation / team"
+
+msgid "Перейти к содержимому"
+msgstr "Skip to content"
+
+msgid "Платная глава"
+msgstr "Paid chapter"
+
+msgid "Платная глава (PLUS)"
+msgstr "Paid chapter (PLUS)"
+
+msgid "Платформа для чтения и публикации новелл, ранобэ и переводов. Читайте бесплатно, поддерживайте авторов."
+msgstr "A place to read and publish novels, light novels and translations. Read for free, support the authors."
+
+msgid "Плитки-приглашения"
+msgstr "Call-to-action tiles"
+
+msgid "Плотнее"
+msgstr "Tighter"
+
+msgid "По алфавиту"
+msgstr "A to Z"
+
+msgid "По обновлению"
+msgstr "Recently updated"
+
+msgid "По оценке"
+msgstr "By rating"
+
+msgid "По просмотрам"
+msgstr "By views"
+
+msgid "Подвал"
+msgstr "Footer"
+
+msgid "Поделиться"
+msgstr "Share"
+
+msgid "Подробнее"
+msgstr "Details"
+
+msgid "Поиск"
+msgstr "Search"
+
+msgid "Поиск по главам"
+msgstr "Search chapters"
+
+msgid "Поиск по главам…"
+msgstr "Search chapters…"
+
+msgid "Поиск по каталогу"
+msgstr "Search the catalog"
+
+msgid "Поиск: %s"
+msgstr "Search: %s"
+
+msgid "Пока вы здесь — популярное"
+msgstr "While you are here — popular now"
+
+msgid "Пока пусто"
+msgstr "Nothing here yet"
+
+msgid "Показывается в блоге и на записях."
+msgstr "Shown in the blog and on posts."
+
+msgid "Показывается в витрине, поиске и на карточке тайтла."
+msgstr "Shown in the showcase, search results and on the title page."
+
+msgid "Показывается на странице новеллы под блоком информации."
+msgstr "Shown on the novel page under the info panel."
+
+msgid "Полное описание"
+msgstr "Full description"
+
+msgid "Полоса цифр площадки"
+msgstr "Platform stats bar"
+
+msgid "Попробуйте другой запрос или загляните в каталог — там больше тысячи страниц текста."
+msgstr "Try another query or open the catalog — there are thousands of pages waiting."
+
+msgid "Попробуйте снять фильтры или загляните в другой жанр."
+msgstr "Try clearing the filters or browsing another genre."
+
+msgid "Популярное"
+msgstr "Popular"
+
+msgid "Порядок"
+msgstr "Order"
+
+msgid "Последние главы"
+msgstr "Latest chapters"
+
+msgid "Последняя глава"
+msgstr "Latest chapter"
+
+msgid "Похожее"
+msgstr "Similar titles"
+
+msgid "Править"
+msgstr "Edit"
+
+msgid "Правка"
+msgstr "Edit"
+
+msgid "Правка главы"
+msgstr "Edit chapter"
+
+msgid "Правка проекта"
+msgstr "Edit project"
+
+msgid "Правовые ссылки (низ подвала)"
+msgstr "Legal links (footer bottom)"
+
+msgid "Предыдущая"
+msgstr "Previous"
+
+msgid "Применить"
+msgstr "Apply"
+
+msgid "Продолжить чтение"
+msgstr "Continue reading"
+
+msgid "Проект"
+msgstr "Project"
+
+msgid "Проект не найден."
+msgstr "Project not found."
+
+msgid "Проект сохранён."
+msgstr "Project saved."
+
+msgid "Проектов пока нет."
+msgstr "No projects yet."
+
+msgid "Проектов пока нет. Создайте первый — это займёт минуту."
+msgstr "No projects yet. Create your first one — it takes a minute."
+
+msgid "Проекты"
+msgstr "Projects"
+
+msgid "Проекты, главы и черновики — всё редактируется прямо здесь."
+msgstr "Projects, chapters and drafts — all editable right here."
+
+msgid "Просмотры"
+msgstr "Views"
+
+msgid "Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп."
+msgstr "Publish your novels and translations, write chapters in a clean editor, grow your audience. Your format, your pace."
+
+msgid "Пусто — название сайта и год."
+msgstr "Leave empty for the site name and year."
+
+msgid "Пусто — фирменный кримсон."
+msgstr "Leave empty for the signature crimson."
+
+msgid "Размер текста"
+msgstr "Text size"
+
+msgid "Ранний доступ (PLUS)"
+msgstr "Early access (PLUS)"
+
+msgid "Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков."
+msgstr "Early access to chapters, members-only releases and a way to support your translators."
+
+msgid "Ранобэ, веб-новеллы и авторские переводы — весь каталог площадки."
+msgstr "Light novels, web novels and original translations — the full catalog."
+
+msgid "Редактировать главу"
+msgstr "Edit chapter"
+
+msgid "Редактировать новеллу"
+msgstr "Edit novel"
+
+msgid "Рейтинг"
+msgstr "Ranking"
+
+msgid "Рейтинг с вкладками"
+msgstr "Ranking with tabs"
+
+msgid "С засечками"
+msgstr "Serif"
+
+msgid "Самые любимые"
+msgstr "Reader favorites"
+
+msgid "Сбросить фильтры"
+msgstr "Clear filters"
+
+msgid "Свежие"
+msgstr "Fresh"
+
+msgid "Свежие главы со всей площадки — в порядке публикации."
+msgstr "Fresh chapters from across the platform, newest first."
+
+msgid "Свежие публикации со всего сайта"
+msgstr "Fresh releases from across the site"
+
+msgid "Свежие публикации со всего сайта."
+msgstr "Fresh releases from across the site."
+
+msgid "Свежие тайтлы на площадке"
+msgstr "New titles on the platform"
+
+msgid "Свернуть"
+msgstr "Collapse"
+
+msgid "Светлая"
+msgstr "Light"
+
+msgid "Свободнее"
+msgstr "Looser"
+
+msgid "Сегодня"
+msgstr "Today"
+
+msgid "Сейчас в тренде"
+msgstr "Trending now"
+
+msgid "Сейчас загружена:"
+msgstr "Currently uploaded:"
+
+msgid "Сепия"
+msgstr "Sepia"
+
+msgid "Сколько"
+msgstr "How many"
+
+msgid "Слайд %d"
+msgstr "Slide %d"
+
+msgid "Следить за обновлениями"
+msgstr "Follow updates"
+
+msgid "Следующая"
+msgstr "Next"
+
+msgid "Сменить тему"
+msgstr "Toggle theme"
+
+msgid "Смотреть новеллу"
+msgstr "View novel"
+
+msgid "Сначала выберите проект."
+msgstr "Pick a project first."
+
+msgid "Сначала новые"
+msgstr "Newest first"
+
+msgid "Создать аккаунт"
+msgstr "Create account"
+
+msgid "Сортировка"
+msgstr "Sorting"
+
+msgid "Сохранить и опубликовать"
+msgstr "Save and publish"
+
+msgid "Средняя"
+msgstr "Medium"
+
+msgid "Ссылка на первоисточник"
+msgstr "Original source link"
+
+msgid "Статей пока нет."
+msgstr "No articles yet."
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Статус выпуска"
+msgstr "Release status"
+
+msgid "Статусы"
+msgstr "Statuses"
+
+msgid "Стать автором"
+msgstr "Become an author"
+
+msgid "Статьи"
+msgstr "Articles"
+
+msgid "Строка копирайта"
+msgstr "Copyright line"
+
+msgid "Схема по умолчанию"
+msgstr "Default color scheme"
+
+msgid "Счётчик растёт сам; поле — для переноса статистики."
+msgstr "The counter grows on its own; this field is for migrating stats."
+
+msgid "Тайтлы"
+msgstr "Titles"
+
+msgid "Тайтлы со свежими главами"
+msgstr "Titles with fresh chapters"
+
+msgid "Тайтлы, набравшие больше всего внимания"
+msgstr "Titles pulling the most attention"
+
+msgid "Тайтлы, отмеченные закладкой в каталоге"
+msgstr "Titles you bookmarked in the catalog"
+
+msgid "Такой страницы нет"
+msgstr "This page does not exist"
+
+msgid "Тег"
+msgstr "Tag"
+
+msgid "Теги тайтлов"
+msgstr "Title tags"
+
+msgid "Теги через запятую"
+msgstr "Tags, comma separated"
+
+msgid "Текст главы"
+msgstr "Chapter text"
+
+msgid "Текст о проекте"
+msgstr "About text"
+
+msgid "Топ по оценкам сообщества"
+msgstr "Top rated by the community"
+
+msgid "Топ по просмотрам, оценке, новинки или обновления."
+msgstr "Top by views or rating, new releases or updates."
+
+msgid "Топ-авторы"
+msgstr "Top authors"
+
+msgid "Топ-авторы и статьи"
+msgstr "Top authors & articles"
+
+msgid "Тренд-блок с фоном"
+msgstr "Trending block with artwork"
+
+msgid "Тёмная"
+msgstr "Dark"
+
+msgid "Убрать"
+msgstr "Remove"
+
+msgid "Удалено — запись в корзине."
+msgstr "Deleted — moved to trash."
+
+msgid "Удалить"
+msgstr "Delete"
+
+msgid "Удалить главу?"
+msgstr "Delete this chapter?"
+
+msgid "Удалить проект вместе со страницей?"
+msgstr "Delete this project and its page?"
+
+msgid "Узкая"
+msgstr "Narrow"
+
+msgid "Узнать больше"
+msgstr "Learn more"
+
+msgid "Узнать как"
+msgstr "See how"
+
+msgid "Фильтр"
+msgstr "Filter"
+
+msgid "Фон-арт (широкий)"
+msgstr "Wide artwork"
+
+msgid "Фон-арт тайтла"
+msgstr "Title artwork"
+
+msgid "Цвет премиума"
+msgstr "Premium color"
+
+msgid "Читатели не могут оторваться"
+msgstr "Readers cannot put these down"
+
+msgid "Читателю"
+msgstr "For readers"
+
+msgid "Читать"
+msgstr "Read"
+
+msgid "Читать полностью"
+msgstr "Read more"
+
+msgid "Читать с начала"
+msgstr "Read from start"
+
+msgid "Читать статью"
+msgstr "Read article"
+
+msgid "Членство PLUS"
+msgstr "PLUS membership"
+
+msgid "Что думаете о главе?"
+msgstr "What did you think of this chapter?"
+
+msgid "Что ищем — тайтл, главу или статью?"
+msgstr "Looking for a title, a chapter or an article?"
+
+msgid "Что показывать"
+msgstr "What to show"
+
+msgid "Что читают сейчас"
+msgstr "What people are reading"
+
+msgid "Ширина колонки"
+msgstr "Column width"
+
+msgid "Широкая"
+msgstr "Wide"
+
+msgid "Широкая картинка для hero-блока и плиток «самые любимые»."
+msgstr "A wide image for the hero block and the favorites tiles."
+
+msgid "Широкий арт для витрины"
+msgstr "Wide artwork for the showcase"
+
+msgid "Шрифт"
+msgstr "Typeface"
+
+msgid "Это не ваш проект."
+msgstr "This project is not yours."
+
+msgid "Это не ваша глава."
+msgstr "This chapter is not yours."
+
+msgid "Это первая глава"
+msgstr "This is the first chapter"
+
+msgid "Это последняя глава"
+msgstr "This is the last chapter"
+
+msgid "Ярлык витрины"
+msgstr "Showcase label"
+
+msgid "автор"
+msgstr "author"
+
+msgid "библиотека"
+msgstr "library"
+
+msgid "в тренде"
+msgstr "trending"
+
+msgid "вы читали"
+msgstr "you were reading"
+
+msgid "выбор читателей"
+msgstr "reader favorites"
+
+msgid "глав"
+msgstr "chapters"
+
+msgid "глава"
+msgstr "chapter"
+
+msgid "главы"
+msgstr "chapters"
+
+msgid "дебюты"
+msgstr "debuts"
+
+msgid "журнал"
+msgstr "journal"
+
+msgid "лента"
+msgstr "feed"
+
+msgid "не выбрана"
+msgstr "not selected"
+
+msgid "не привязана"
+msgstr "not linked"
+
+msgid "новелл"
+msgstr "novels"
+
+msgid "новелла"
+msgstr "novel"
+
+msgid "новеллы"
+msgstr "novels"
+
+msgid "от %s"
+msgstr "by %s"
+
+msgid "отзывов"
+msgstr "reviews"
+
+msgid "открыть"
+msgstr "open"
+
+msgid "оценка"
+msgstr "rating"
+
+msgid "продолжить"
+msgstr "continue"
+
+msgid "проектов"
+msgstr "projects"
+
+msgid "просм."
+msgstr "views"
+
+msgid "просмотров"
+msgstr "views"
+
+msgid "прочтений"
+msgstr "reads"
+
+msgid "рейтинг"
+msgstr "ranking"
+
+msgid "система, культивация, перерождение"
+msgstr "system, cultivation, rebirth"
+
+msgid "слов"
+msgstr "words"
+
+msgid "статей"
+msgstr "articles"
+
+msgid "тайтлов"
+msgstr "titles"
+
+msgid "только что"
+msgstr "just now"
+
+msgid "черновик сохраняется в браузере"
+msgstr "draft is saved in your browser"
+
+msgid "черновик сохранён"
+msgstr "draft saved"
+
+msgid "читателей"
+msgstr "readers"
+
+msgid "№"
+msgstr "#"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "Абзац=p; Заголовок=h2; Подзаголовок=h3"
+msgstr "Paragraph=p; Heading=h2; Subheading=h3"
+
+msgid "Будьте первым, кто оставит мнение."
+msgstr "Be the first to share your thoughts."
+
+msgid "Вы вошли как %s"
+msgstr "Signed in as %s"
+
+msgid "Имя"
+msgstr "Name"
+
+msgid "Как вас зовут"
+msgstr "Your name"
+
+msgid "Комментарий ждёт проверки модератора."
+msgstr "This comment is awaiting moderation."
+
+msgid "Не публикуется — нужна только для аватара и уведомлений."
+msgstr "Never published — used only for your avatar and notifications."
+
+msgid "Ответить"
+msgstr "Reply"
+
+msgid "Пока тишина"
+msgstr "No replies yet"
+
+msgid "Показывается на странице тайтла под заголовком «Описание»."
+msgstr "Shown on the title page under the “Description” heading."
+
+msgid "Почта"
+msgstr "Email"
+
+msgid "Язык интерфейса"
+msgstr "Interface language"
+
+msgid "выйти"
+msgstr "sign out"
+
+msgid "последний %s"
+msgstr "latest %s"
+
+msgid "%1$d %2$s назад"
+msgstr "%1$d %2$s ago"
+
+msgid "год"
+msgstr "year"
+
+msgid "года"
+msgstr "years"
+
+msgid "лет"
+msgstr "years"
+
+msgid "месяц"
+msgstr "month"
+
+msgid "месяца"
+msgstr "months"
+
+msgid "месяцев"
+msgstr "months"
+
+msgid "день"
+msgstr "day"
+
+msgid "дня"
+msgstr "days"
+
+msgid "дней"
+msgstr "days"
+
+msgid "час"
+msgstr "hour"
+
+msgid "часа"
+msgstr "hours"
+
+msgid "часов"
+msgstr "hours"
+
+msgid "минуту"
+msgstr "minute"
+
+msgid "минуты"
+msgstr "minutes"
+
+msgid "минут"
+msgstr "minutes"
+
+msgid "Вернуться на %s"
+msgstr "Back to %s"
+
+msgid "Выйти"
+msgstr "Sign out"
+
+msgid "Неверная пара логин / пароль."
+msgstr "Wrong login or password."
+
+msgid "Популярные жанры"
+msgstr "Popular genres"
+
+msgid "Профиль"
+msgstr "Profile"
+
