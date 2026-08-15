@@ -87,7 +87,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🎛️ **Customizer** | Accent and premium colors, default color scheme, twelve home blocks you can switch off one by one, footer text, social links |
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 🚫 **No comments anywhere** | Shipped deliberately without discussions — front end, templates and admin section all clean |
-| 🌐 **Translation ready** | 423 strings, Russian source + compiled English `.mo`, plus a build script |
+| 🌐 **Translation ready** | 453 strings, Russian source + compiled English `.mo`, plus a build script |
 
 ![Reader](screenshots/04-reader.jpg)
 
@@ -174,7 +174,7 @@ screenshots/           what it looks like
 
 ## Languages
 
-The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 423 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
+The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 453 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
 
 Adding a third language is one file:
 
