@@ -12,54 +12,14 @@ $xin_stats     = xin_site_stats();
 $xin_hero_pool = $xin_featured ? $xin_featured : $xin_popular;
 $xin_hero      = array_slice( $xin_hero_pool, 0, 5 );
 
-$xin_banner = array();
-foreach ( $xin_hero_pool as $xin_id ) {
-	if ( xin_background_url( $xin_id ) ) {
-		$xin_banner[] = $xin_id;
-	}
+$xin_banner = xin_get_banners( 6 );
+if ( ! $xin_banner ) {
+	$xin_banner = array_slice( xin_banners_from_novels( $xin_hero_pool ), 0, 5 );
 }
-$xin_banner = array_slice( $xin_banner, 0, 5 );
 ?>
 
 <?php if ( $xin_banner ) : ?>
-	<section class="xin-banner" data-xin-banner>
-		<div class="xin-banner__track" data-xin-banner-track>
-			<?php foreach ( $xin_banner as $xin_id ) : ?>
-				<?php
-				$xin_status = xin_novel_status( $xin_id );
-				$xin_terms  = get_the_terms( $xin_id, 'genre' );
-				?>
-				<article class="xin-banner__slide">
-					<img src="<?php echo esc_url( xin_background_url( $xin_id ) ); ?>" alt="" loading="lazy">
-					<div class="xin-banner__body">
-						<?php if ( $xin_status ) : ?>
-							<div><span class="xin-badge xin-badge--primary"><?php echo esc_html( $xin_status->name ); ?></span></div>
-						<?php endif; ?>
-						<h2><?php echo esc_html( get_the_title( $xin_id ) ); ?></h2>
-						<p><?php echo esc_html( wp_trim_words( wp_strip_all_tags( get_the_excerpt( $xin_id ) ), 26 ) ); ?></p>
-						<div class="xin-flex xin-flex-wrap">
-							<a class="btn btn-primary" href="<?php echo esc_url( get_permalink( $xin_id ) ); ?>">
-								<?php xin_the_icon( 'book-open' ); ?><?php esc_html_e( 'Открыть тайтл', 'xi-novels' ); ?>
-							</a>
-							<?php if ( ! is_wp_error( $xin_terms ) && $xin_terms ) : ?>
-								<span class="xin-badge xin-badge--solid"><?php echo esc_html( $xin_terms[0]->name ); ?></span>
-							<?php endif; ?>
-						</div>
-					</div>
-				</article>
-			<?php endforeach; ?>
-		</div>
-
-		<?php if ( count( $xin_banner ) > 1 ) : ?>
-			<button type="button" class="xin-banner__arrow xin-banner__arrow--prev" data-xin-banner-prev aria-label="<?php esc_attr_e( 'Назад', 'xi-novels' ); ?>"><?php xin_the_icon( 'chevron-left' ); ?></button>
-			<button type="button" class="xin-banner__arrow xin-banner__arrow--next" data-xin-banner-next aria-label="<?php esc_attr_e( 'Вперёд', 'xi-novels' ); ?>"><?php xin_the_icon( 'chevron-right' ); ?></button>
-			<div class="xin-banner__dots" data-xin-banner-dots>
-				<?php foreach ( $xin_banner as $xin_i => $xin_id ) : ?>
-					<button type="button" class="<?php echo 0 === $xin_i ? 'is-active' : ''; ?>" data-index="<?php echo (int) $xin_i; ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Слайд %d', 'xi-novels' ), $xin_i + 1 ) ); ?>"></button>
-				<?php endforeach; ?>
-			</div>
-		<?php endif; ?>
-	</section>
+	<?php get_template_part( 'template-parts/section', 'banner', array( 'banners' => $xin_banner ) ); ?>
 <?php endif; ?>
 
 <?php if ( xin_show( 'xin_show_services' ) ) : ?>

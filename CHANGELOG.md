@@ -12,6 +12,20 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.2-beta] — 2026-08-15
+
+### Added
+
+- **Banners are now managed in WordPress.** A dedicated *Banners* section in the admin: image, title, subtitle, text, link, button label, badge, text position, optional mobile image, and display order through Page Attributes. The home slider uses them when present and falls back to titles with wide artwork when the section is empty.
+- **Banner height** is a customizer option (220–900 px).
+- **Quick links under the banner** come from a menu location — *Quick links (tiles under the banner)*. Icons are picked per item with an `icon-<name>` CSS class, `gold` marks the premium tile; without a menu the theme falls back to its defaults.
+
+### Changed
+
+- **New brand mark.** The flat pink letter tile is gone; the header and footer now carry a soft squircle with a book glyph drawn from the accent and premium colors. A custom logo still overrides it.
+- **Native WordPress widgets are styled.** Search (classic and block), tag cloud, calendar, categories dropdown, archives, latest posts and comments, RSS, and the block buttons — all follow the theme tokens instead of browser defaults.
+- **Avatars are round everywhere** — profile header, author cards, blog meta, studio.
+
 ## [0.0.1-beta] — 2026-08-15
 
 First public beta. Everything below works end to end; the presentation layer is still under evaluation.

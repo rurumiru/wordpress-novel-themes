@@ -76,6 +76,18 @@ $wp_customize->add_section( 'xin_home', array(
 		) );
 	}
 
+	$wp_customize->add_setting( 'xin_banner_height', array(
+		'default'           => 420,
+		'sanitize_callback' => 'absint',
+	) );
+	$wp_customize->add_control( 'xin_banner_height', array(
+		'label'       => __( 'Высота баннера, px', 'xi-novels' ),
+		'description' => __( 'Баннеры добавляются в админке: раздел «Баннеры».', 'xi-novels' ),
+		'section'     => 'xin_home',
+		'type'        => 'number',
+		'input_attrs' => array( 'min' => 220, 'max' => 900, 'step' => 10 ),
+	) );
+
 	$wp_customize->add_setting( 'xin_hero_eyebrow', array(
 		'default'           => __( 'Сейчас в тренде', 'xi-novels' ),
 		'sanitize_callback' => 'sanitize_text_field',

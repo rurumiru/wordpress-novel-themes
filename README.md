@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.0.1-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.0.2-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -17,6 +17,8 @@
 [![i18n](https://img.shields.io/badge/i18n-RU%20%2F%20EN-blue)](#languages)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](#contributing)
 
+**[🌐 Live demo — xi.community](https://xi.community)**
+
 [Русская версия →](README.ru.md) · [Install](#install-in-two-minutes) · [Docs](docs/) · [Screenshots](#screenshots) · [FAQ](#faq)
 
 </div>
@@ -25,7 +27,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.0.1**
+> ### 🚧 Status: **beta 0.0.2**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -36,6 +38,12 @@
 > Expect the markup of shared components (navbar, offcanvas, modal, forms, tabs) to change between betas. The data model, template hierarchy and hooks are already stable — themes built on top of them will survive the swap.
 >
 > Benchmarks and the decision will land in [CHANGELOG.md](CHANGELOG.md). Opinions and measurements from your own installs are welcome in issues.
+
+> ### 🌐 Live demo: [xi.community](https://xi.community)
+>
+> A real site running this theme — browse the catalog, open a title, try the reader and its settings.
+>
+> **Heads-up:** that demo runs on the WordPress build until the team's own platform on **Elixir** ships. Once the Elixir platform launches, xi.community moves over to it and this theme stays here as the WordPress implementation — free, GPL and maintained on its own track.
 
 ## ⭐ Why you are reading this
 

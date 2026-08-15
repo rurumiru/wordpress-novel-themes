@@ -1280,6 +1280,87 @@ msgstr "The file is too large: the server rejected the whole submission. Shrink 
 msgid "Недостаточно прав для этого действия."
 msgstr "You are not allowed to do that."
 
+msgid "Баннер"
+msgstr "Banner"
+
+msgid "Баннеры"
+msgstr "Banners"
+
+msgid "Баннеров пока нет"
+msgstr "No banners yet"
+
+msgid "Баннеры добавляются в админке: раздел «Баннеры»."
+msgstr "Banners are managed in the admin under Banners."
+
+msgid "Бейдж"
+msgstr "Badge"
+
+msgid "Быстрые переходы (плитки под баннером)"
+msgstr "Quick links (tiles under the banner)"
+
+msgid "Выбрать"
+msgstr "Choose"
+
+msgid "Высота баннера, px"
+msgstr "Banner height, px"
+
+msgid "Добавить баннер"
+msgstr "Add banner"
+
+msgid "Задать картинку"
+msgstr "Set image"
+
+msgid "Картинка"
+msgstr "Image"
+
+msgid "Картинка баннера"
+msgstr "Banner image"
+
+msgid "Картинка для телефона"
+msgstr "Mobile image"
+
+msgid "Надпись на кнопке"
+msgstr "Button label"
+
+msgid "Необязательно. Если не задана, на телефоне используется основная картинка."
+msgstr "Optional. Without it phones use the main image."
+
+msgid "Новинка"
+msgstr "New"
+
+msgid "Основная картинка — «Изображение записи» справа. Оптимальный размер 1920×720. Порядок показа задаётся полем «Порядок» в блоке «Атрибуты страницы»."
+msgstr "The main image is the featured image on the right. 1920x720 works best. Display order comes from the Order field in Page Attributes."
+
+msgid "Открыть"
+msgstr "Open"
+
+msgid "По центру"
+msgstr "Centered"
+
+msgid "Подзаголовок"
+msgstr "Subtitle"
+
+msgid "Положение текста"
+msgstr "Text position"
+
+msgid "Редактировать баннер"
+msgstr "Edit banner"
+
+msgid "Слева"
+msgstr "Left"
+
+msgid "Содержимое баннера"
+msgstr "Banner content"
+
+msgid "Справа"
+msgstr "Right"
+
+msgid "Ссылка"
+msgstr "Link"
+
+msgid "Текст"
+msgstr "Text"
+
 msgid "Профиль"
 msgstr "Profile"
 

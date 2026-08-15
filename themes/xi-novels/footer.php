@@ -7,17 +7,8 @@ $xin_socials = xin_social_links();
 		<div class="xin-footer__top">
 
 			<div class="xin-footer__about">
-				<a class="xin-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" style="margin-bottom:12px">
-					<?php
-					if ( has_custom_logo() ) {
-						the_custom_logo();
-					} else {
-						?>
-						<span class="xin-header__mark"><?php echo esc_html( mb_substr( get_bloginfo( 'name' ), 0, 1 ) ); ?></span>
-						<span><?php bloginfo( 'name' ); ?></span>
-						<?php
-					}
-					?>
+				<a class="navbar-brand xin-footer__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" style="margin-bottom:12px">
+					<?php xin_brand( 32 ); ?>
 				</a>
 				<p><?php echo wp_kses_post( get_theme_mod( 'xin_footer_about', __( 'Платформа для чтения и публикации новелл, ранобэ и переводов. Читайте бесплатно, поддерживайте авторов.', 'xi-novels' ) ) ); ?></p>
 

@@ -18,20 +18,7 @@
 	<div class="container">
 
 		<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-			<?php
-			if ( has_custom_logo() ) {
-				the_custom_logo();
-			} else {
-				$xin_name  = get_bloginfo( 'name' );
-				$xin_parts = explode( ' ', $xin_name, 2 );
-				?>
-				<span class="xin-header__mark"><?php echo esc_html( mb_substr( $xin_name, 0, 1 ) ); ?></span>
-				<span class="d-none d-sm-inline">
-					<?php echo esc_html( $xin_parts[0] ); ?><?php echo isset( $xin_parts[1] ) ? ' <b>' . esc_html( $xin_parts[1] ) . '</b>' : ''; ?>
-				</span>
-				<?php
-			}
-			?>
+			<?php xin_brand( 34 ); ?>
 		</a>
 
 		<nav class="collapse navbar-collapse d-none d-lg-flex" aria-label="<?php esc_attr_e( 'Основная навигация', 'xi-novels' ); ?>">
