@@ -12,6 +12,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.3-beta] — 2026-08-15
+
+### Added
+
+- **Landing pages that ship with the theme.** Three new page templates, created automatically on activation:
+  - *Become an author* — four-step onboarding, six benefit cards, an FAQ accordion, live platform numbers and CTAs that change depending on whether the visitor is signed in.
+  - *PLUS* — membership landing with benefit cards, a two-plan comparison table, a live list of chapters already in early access and an editable "how to join" block.
+  - *Info page* — reusable template for help, rules, contacts and policies, with a sidebar listing every other info page, quick links and social buttons. Ships as **Help**, **Site rules** and **Contacts**.
+- **Full author profile.** Cover image (own upload or artwork from the author's titles), tagline, bio, social links, a support button, a podium of the three most-read titles, tabs for projects / chapters / articles, and a feed of the author's latest chapters. Empty own profile gets a "create your first project" call to action.
+- **Profile fields in the admin** — tagline, cover image ID, Telegram, VK, Discord, website and a donation link, all editable on the user profile screen.
+
+### Changed
+
+- **The title page backdrop stepped back.** The blurred artwork behind a title's header ran at 45% opacity and fought the cover and the buttons; it now sits at 22% under a stronger gradient, so the content in front of it reads first.
+- **Buttons reworked.** Softer primary shadow that lifts on hover and disappears on press, a real focus ring, a subtle press shift instead of a scale jump, consistent heights across sizes, a visible surface on outline buttons and a proper disabled state.
+- English translation grew to 557 strings.
+
 ## [0.0.2-beta] — 2026-08-15
 
 ### Added

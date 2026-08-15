@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.0.2-beta' );
+define( 'XIN_VERSION', '0.0.3-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -15,6 +15,7 @@ require_once XIN_DIR . '/inc/customizer.php';
 require_once XIN_DIR . '/inc/widgets.php';
 require_once XIN_DIR . '/inc/authoring.php';
 require_once XIN_DIR . '/inc/banners.php';
+require_once XIN_DIR . '/inc/user-fields.php';
 require_once XIN_DIR . '/inc/i18n.php';
 require_once XIN_DIR . '/inc/nav-walker.php';
 require_once XIN_DIR . '/inc/cleanup.php';
@@ -68,6 +69,7 @@ function xin_assets() {
 	wp_enqueue_style( 'xi-novels-pages', XIN_URI . '/assets/css/pages.css', array( 'xi-novels-skin' ), $ver );
 	wp_enqueue_style( 'xi-novels-parts', XIN_URI . '/assets/css/parts.css', array( 'xi-novels-pages' ), $ver );
 	wp_enqueue_style( 'xi-novels-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xi-novels-parts' ), $ver );
+	wp_enqueue_style( 'xi-novels-landing', XIN_URI . '/assets/css/landing.css', array( 'xi-novels-widgets' ), $ver );
 
 	wp_enqueue_script( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), '5.3.3', true );
 

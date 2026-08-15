@@ -1361,6 +1361,318 @@ msgstr "Link"
 msgid "Текст"
 msgstr "Text"
 
+msgid "Boosty, Patreon, кошелёк — показывается кнопкой в профиле."
+msgstr "Boosty, Patreon, a wallet — shown as a button on your profile."
+
+msgid "ID картинки-обложки профиля"
+msgstr "Profile cover image ID"
+
+msgid "Автору. Площадка показывает текст и не претендует на права; удалить проект можно в любой момент из кабинета."
+msgstr "The author. The platform displays the text and claims no rights; you can delete a project from the studio at any time."
+
+msgid "Бесплатно"
+msgstr "Free"
+
+msgid "Библиотека без ограничений"
+msgstr "Library without limits"
+
+msgid "Библиотека привязана к аккаунту"
+msgstr "Library tied to your account"
+
+msgid "Весь открытый каталог"
+msgstr "The entire open catalog"
+
+msgid "Всё из бесплатного плана"
+msgstr "Everything in the free plan"
+
+msgid "Выходите по расписанию"
+msgstr "Publish on a schedule"
+
+msgid "Главы для подписчиков"
+msgstr "Chapters for members"
+
+msgid "Главы с отметкой PLUS открываются подписчикам раньше остальных читателей."
+msgstr "Chapters marked PLUS open for members before everyone else."
+
+msgid "Да. В карточке проекта есть отдельные поля для автора оригинала, оригинального названия и команды перевода."
+msgstr "Yes. The project card has separate fields for the original author, the original title and the translation team."
+
+msgid "Добавьте ссылку на донат в профиле — кнопка появится рядом с вашим именем."
+msgstr "Add a donation link to your profile and a button appears next to your name."
+
+msgid "Если планируете принимать оплату, подойдёт любой плагин членства: он решает, кто считается подписчиком, а тема уже умеет прятать главы от гостей."
+msgstr "If you plan to take payments, any membership plugin works: it decides who counts as a member, and the theme already hides chapters from guests."
+
+msgid "Жёсткого требования нет, но читатели возвращаются к тем, кто держит ритм. Даже одна глава в неделю работает лучше, чем десять раз в год."
+msgstr "There is no hard rule, but readers come back to whoever keeps a rhythm. One chapter a week beats ten bursts a year."
+
+msgid "Заведите аккаунт"
+msgstr "Create an account"
+
+msgid "Заведите первый тайтл — на это уходит пара минут, а страница профиля соберётся сама."
+msgstr "Start your first title — it takes a couple of minutes and your profile page builds itself."
+
+msgid "Закладки и история в браузере"
+msgstr "Bookmarks and history in the browser"
+
+msgid "Закладки и история чтения синхронизируются с аккаунтом, а не только с браузером."
+msgstr "Bookmarks and reading history follow your account, not just one browser."
+
+msgid "Здесь появятся ваши проекты"
+msgstr "Your projects will show up here"
+
+msgid "Инструменты, а не обещания"
+msgstr "Tools, not promises"
+
+msgid "Как подключить"
+msgstr "How to join"
+
+msgid "Как часто нужно выходить?"
+msgstr "How often should I publish?"
+
+msgid "Кнопка «Опубликовать и начать следующую» держит темп. Каждая глава поднимает тайтл в ленте обновлений."
+msgstr "The \"Publish and start the next one\" button keeps the pace. Every chapter lifts the title in the update feed."
+
+msgid "Кому принадлежат права на текст?"
+msgstr "Who owns the rights to the text?"
+
+msgid "Контакты"
+msgstr "Contacts"
+
+msgid "Короткая подпись"
+msgstr "Short tagline"
+
+msgid "Куда дальше"
+msgstr "Where to next"
+
+msgid "Лента обновлений"
+msgstr "Update feed"
+
+msgid "Можно перенести тайтл с другой площадки?"
+msgstr "Can I move a title from another platform?"
+
+msgid "Можно. Главы создаются по одной в кабинете, а для больших переносов подойдёт любой импортёр записей — модель данных простая."
+msgstr "Yes. Chapters are created one by one in the studio, and for bulk moves any post importer works — the data model is plain."
+
+msgid "Название, краткое описание, жанры, обложка. Всё в одной форме кабинета — админка WordPress не нужна."
+msgstr "Title, short description, genres, cover. One form in the studio — the WordPress admin is not needed."
+
+msgid "Напишите первую главу"
+msgstr "Write the first chapter"
+
+msgid "Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать."
+msgstr "Fill this page in the admin: site rules, answers, contacts, policies — whatever readers need to know."
+
+msgid "Начать публиковать"
+msgstr "Start publishing"
+
+msgid "Необязательно: ID файла из медиатеки. Пусто — рисуется градиент."
+msgstr "Optional: a media library file ID. Empty means a gradient is drawn."
+
+msgid "Нет. Публикация, страницы тайтлов, читалка и статистика бесплатны и остаются такими."
+msgstr "No. Publishing, title pages, the reader and the statistics are free and stay that way."
+
+msgid "Никаких промо-блоков в читалке — только текст, полоса прогресса и ваши настройки."
+msgstr "No promo blocks in the reader — just the text, the progress bar and your settings."
+
+msgid "Новая глава попадает в общую ленту площадки и в раздел «Недавно обновлены» на главной."
+msgstr "A new chapter lands in the site-wide feed and in Recently updated on the home page."
+
+msgid "Нужно ли платить за публикацию?"
+msgstr "Do I have to pay to publish?"
+
+msgid "Обновлено %s"
+msgstr "Updated %s"
+
+msgid "Одна строка под именем: «переводчик с корейского», «пишу тёмное фэнтези»."
+msgstr "One line under your name: \"translates from Korean\", \"writes dark fantasy\"."
+
+msgid "От регистрации до публикации — один вечер"
+msgstr "From sign-up to publication in one evening"
+
+msgid "Открыть кабинет"
+msgstr "Open the studio"
+
+msgid "Отмечайте главы как PLUS — они видны в оглавлении с замком и открываются подписчикам."
+msgstr "Mark chapters as PLUS — they appear in the contents with a lock and open for members."
+
+msgid "Отредактируйте эту страницу в админке и опишите здесь свои условия: стоимость, способы оплаты и как выдаётся доступ. Тема показывает главы с отметкой PLUS только вошедшим пользователям — остальное определяете вы."
+msgstr "Edit this page in the admin and describe your terms here: price, payment methods and how access is granted. The theme shows PLUS chapters only to signed-in users; the rest is up to you."
+
+msgid "Оценки и рейтинги"
+msgstr "Ratings and rankings"
+
+msgid "Первая глава начинается с пустой страницы"
+msgstr "Every first chapter starts with a blank page"
+
+msgid "Поддержать"
+msgstr "Support"
+
+msgid "Поддержка авторов и переводчиков"
+msgstr "Support for authors and translators"
+
+msgid "Поддержка от читателей"
+msgstr "Support from readers"
+
+msgid "Поддержка переводчиков"
+msgstr "Supporting translators"
+
+msgid "Подключить PLUS"
+msgstr "Get PLUS"
+
+msgid "Подписка для тех, кто читает много и хочет, чтобы любимые переводы выходили дальше. Ранний доступ к главам и прямая поддержка авторов."
+msgstr "A membership for people who read a lot and want their favourite translations to keep coming. Early access to chapters and direct support for authors."
+
+msgid "Подписка — прямая помощь тем, кто ведёт ваши тайтлы и держит расписание выхода."
+msgstr "The membership is direct help for the people running your titles and keeping the schedule."
+
+msgid "Полноценный редактор с картинками и вставкой из Word. Черновик сохраняется в браузере, пока вы печатаете."
+msgstr "A real editor with images and pasting from Word. The draft is saved in your browser as you type."
+
+msgid "Полноэкранная читалка и её настройки"
+msgstr "Full-screen reader and its settings"
+
+msgid "Последние главы автора"
+msgstr "Latest chapters by this author"
+
+msgid "Правила площадки"
+msgstr "Site rules"
+
+msgid "Приносите текст — остальное площадка берёт на себя: витрина, читалка, статистика и читатели, которые возвращаются за следующей главой."
+msgstr "Bring the text — the platform handles the rest: the showcase, the reader, the statistics and readers who come back for the next chapter."
+
+msgid "Просмотры тайтла и каждой главы, оценки читателей, позиция в рейтинге — без чёрного ящика."
+msgstr "Views for the title and every chapter, reader ratings, ranking position — no black box."
+
+msgid "Профиль автора"
+msgstr "Author profile"
+
+msgid "Профиль на площадке"
+msgstr "Platform profile"
+
+msgid "Публичная страница со статистикой, ссылками и лентой ваших глав. Читателю есть что открыть после первой главы."
+msgstr "A public page with statistics, links and a feed of your chapters. Readers have somewhere to go after chapter one."
+
+msgid "Разделы справки"
+msgstr "Help sections"
+
+msgid "Ранний доступ"
+msgstr "Early access"
+
+msgid "Ранний доступ к главам"
+msgstr "Early access to chapters"
+
+msgid "Ранний доступ к главам с отметкой PLUS"
+msgstr "Early access to chapters marked PLUS"
+
+msgid "Регистрация занимает минуту. Роль «Автор» открывает публикацию сразу, «Участник» отправляет первые главы на проверку редактору."
+msgstr "Signing up takes a minute. The Author role publishes right away; Contributor sends the first chapters to an editor for review."
+
+msgid "Сайт"
+msgstr "Website"
+
+msgid "Своя витрина"
+msgstr "Your own showcase"
+
+msgid "Связаться"
+msgstr "Get in touch"
+
+msgid "Создайте проект"
+msgstr "Create a project"
+
+msgid "Создать проект"
+msgstr "Create project"
+
+msgid "Справка"
+msgstr "Help"
+
+msgid "Ссылка автора"
+msgstr "Author link"
+
+msgid "Ссылка на поддержку"
+msgstr "Support link"
+
+msgid "Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны."
+msgstr "A title page with cover, contents, rating and similar works — no layout work on your side."
+
+msgid "У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге."
+msgstr "You already have the text — the platform just shows it. Create a project and see how it looks in the catalog."
+
+msgid "У меня есть аккаунт"
+msgstr "I already have an account"
+
+msgid "Частые вопросы"
+msgstr "Frequently asked questions"
+
+msgid "Честная статистика"
+msgstr "Honest statistics"
+
+msgid "Четыре шага до первой главы"
+msgstr "Four steps to your first chapter"
+
+msgid "Чистое чтение"
+msgstr "Clean reading"
+
+msgid "Читатель"
+msgstr "Reader"
+
+msgid "Читать каталог"
+msgstr "Browse the catalog"
+
+msgid "Читают чаще всего"
+msgstr "Most read"
+
+msgid "Что входит"
+msgstr "What is included"
+
+msgid "Что даёт членство"
+msgstr "What membership gives you"
+
+msgid "Я перевожу, а не пишу своё. Подойдёт?"
+msgstr "I translate rather than write my own. Does it fit?"
+
+msgid "авторам и переводчикам"
+msgstr "for authors and translators"
+
+msgid "визитка"
+msgstr "highlights"
+
+msgid "как это работает"
+msgstr "how it works"
+
+msgid "навсегда"
+msgstr "forever"
+
+msgid "опубликованных глав"
+msgstr "published chapters"
+
+msgid "по подписке"
+msgstr "by subscription"
+
+msgid "рекомендуем"
+msgstr "recommended"
+
+msgid "справка"
+msgstr "help"
+
+msgid "сравнение"
+msgstr "comparison"
+
+msgid "тайтлов на площадке"
+msgstr "titles on the platform"
+
+msgid "уже в раннем доступе"
+msgstr "already in early access"
+
+msgid "условия задаёт площадка"
+msgstr "terms set by the site"
+
+msgid "членство"
+msgstr "membership"
+
+msgid "что вы получаете"
+msgstr "what you get"
+
 msgid "Профиль"
 msgstr "Profile"
 

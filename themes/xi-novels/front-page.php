@@ -198,7 +198,7 @@ $xin_genres = get_terms( array(
 	<section class="xin-wrap xin-section">
 		<div class="xin-grid xin-grid--2">
 			<div class="xin-reveal">
-				<a class="xin-cta" href="<?php echo esc_url( wp_registration_url() ); ?>">
+				<a class="xin-cta" href="<?php echo esc_url( xin_page_url( 'become-author' ) ); ?>">
 					<span class="xin-cta__icon"><?php xin_the_icon( 'book-open' ); ?></span>
 					<h3><?php esc_html_e( 'Стать автором', 'xi-novels' ); ?></h3>
 					<p><?php esc_html_e( 'Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп.', 'xi-novels' ); ?></p>
@@ -206,7 +206,7 @@ $xin_genres = get_terms( array(
 				</a>
 			</div>
 			<div class="xin-reveal" style="transition-delay:90ms">
-				<a class="xin-cta xin-cta--gold" href="<?php echo esc_url( get_post_type_archive_link( 'novel' ) ); ?>">
+				<a class="xin-cta xin-cta--gold" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>">
 					<span class="xin-cta__icon"><?php xin_the_icon( 'sparkles' ); ?></span>
 					<h3><?php esc_html_e( 'Членство PLUS', 'xi-novels' ); ?></h3>
 					<p><?php esc_html_e( 'Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков.', 'xi-novels' ); ?></p>

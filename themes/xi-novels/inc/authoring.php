@@ -289,8 +289,13 @@ function xin_dashboard_notice() {
 
 function xin_create_pages() {
 	$pages = array(
-		'dashboard' => array( __( 'Кабинет автора', 'xi-novels' ), 'template-dashboard.php' ),
-		'library'   => array( __( 'Моя библиотека', 'xi-novels' ), 'template-library.php' ),
+		'dashboard'     => array( __( 'Кабинет автора', 'xi-novels' ), 'template-dashboard.php' ),
+		'library'       => array( __( 'Моя библиотека', 'xi-novels' ), 'template-library.php' ),
+		'become-author' => array( __( 'Стать автором', 'xi-novels' ), 'template-become-author.php' ),
+		'plus'          => array( __( 'PLUS', 'xi-novels' ), 'template-plus.php' ),
+		'help'          => array( __( 'Справка', 'xi-novels' ), 'template-info.php' ),
+		'rules'         => array( __( 'Правила площадки', 'xi-novels' ), 'template-info.php' ),
+		'contacts'      => array( __( 'Контакты', 'xi-novels' ), 'template-info.php' ),
 	);
 
 	foreach ( $pages as $slug => $data ) {
@@ -311,9 +316,13 @@ function xin_create_pages() {
 }
 add_action( 'after_switch_theme', 'xin_create_pages' );
 
+function xin_page_url( $slug ) {
+	$page = get_page_by_path( $slug );
+	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
+}
+
 function xin_library_url() {
-	$page = get_page_by_path( 'library' );
-	return $page ? get_permalink( $page ) : home_url( '/library/' );
+	return xin_page_url( 'library' );
 }
 
 function xin_author_stats( $user_id ) {
