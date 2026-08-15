@@ -4,12 +4,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.0.5-beta' );
+define( 'XIN_VERSION', '0.0.6-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
 require_once XIN_DIR . '/inc/cpt.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
+require_once XIN_DIR . '/inc/icons.php';
 require_once XIN_DIR . '/inc/template-tags.php';
 require_once XIN_DIR . '/inc/customizer.php';
 require_once XIN_DIR . '/inc/widgets.php';

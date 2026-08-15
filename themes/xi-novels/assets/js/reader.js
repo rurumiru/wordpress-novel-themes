@@ -112,6 +112,8 @@
 	var hotzone = $('[data-xin-rd-hotzone]');
 
 	var lastY = window.scrollY;
+	var lastPct = -1;
+	var lastHidden = null;
 	var lastSaved = 0;
 	var meta = root.dataset;
 
@@ -131,13 +133,21 @@
 	function onScroll() {
 		var y = window.scrollY;
 		var p = ratio();
+		var whole = Math.round(p * 100);
 
-		if (progress) progress.style.width = (p * 100).toFixed(2) + '%';
-		if (fill) fill.style.width = (p * 100).toFixed(1) + '%';
-		if (pct) pct.textContent = Math.round(p * 100) + '%';
+		if (whole !== lastPct) {
+			lastPct = whole;
+			if (progress) progress.style.width = whole + '%';
+			if (fill) fill.style.width = whole + '%';
+			if (pct) pct.textContent = whole + '%';
+		}
 
-if (Math.abs(y - lastY) > 6) {
-			chrome(y > lastY && y > 140);
+		if (Math.abs(y - lastY) > 6) {
+			var hide = y > lastY && y > 140;
+			if (hide !== lastHidden) {
+				lastHidden = hide;
+				chrome(hide);
+			}
 			lastY = y;
 		}
 
@@ -156,7 +166,17 @@ if (Math.abs(y - lastY) > 6) {
 		}
 	}
 
-	window.addEventListener('scroll', onScroll, { passive: true });
+	var rafPending = false;
+	function onScrollThrottled() {
+		if (rafPending) return;
+		rafPending = true;
+		requestAnimationFrame(function () {
+			rafPending = false;
+			onScroll();
+		});
+	}
+
+	window.addEventListener('scroll', onScrollThrottled, { passive: true });
 	onScroll();
 
 	if (hotzone) {

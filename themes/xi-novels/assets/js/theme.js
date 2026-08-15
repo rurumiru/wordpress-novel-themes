@@ -37,14 +37,50 @@ try { localStorage.setItem(LS_THEME, now); } catch (e) {}
 		});
 	}
 
-		function initHeader() {
+		function initScroll() {
 		var header = $('#xin-header');
-		if (!header) return;
-		var onScroll = function () {
-			header.classList.toggle('is-stuck', window.scrollY > 8);
-		};
-		onScroll();
+		var top = $('[data-xin-totop]');
+		if (!header && !top) return;
+
+		var stuck = null;
+		var visible = null;
+		var ticking = false;
+
+		function apply() {
+			ticking = false;
+			var y = window.scrollY;
+
+			if (header) {
+				var nowStuck = y > 8;
+				if (nowStuck !== stuck) {
+					stuck = nowStuck;
+					header.classList.toggle('is-stuck', nowStuck);
+				}
+			}
+
+			if (top) {
+				var nowVisible = y > 600;
+				if (nowVisible !== visible) {
+					visible = nowVisible;
+					top.classList.toggle('is-visible', nowVisible);
+				}
+			}
+		}
+
+		function onScroll() {
+			if (ticking) return;
+			ticking = true;
+			requestAnimationFrame(apply);
+		}
+
+		apply();
 		window.addEventListener('scroll', onScroll, { passive: true });
+
+		if (top) {
+			top.addEventListener('click', function () {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			});
+		}
 	}
 
 		function initOverlays() {
@@ -487,17 +523,7 @@ if (window.tinymce) window.tinymce.triggerSave();
 		count();
 	}
 
-		function initToTop() {
-		var btn = $('[data-xin-totop]');
-		if (!btn) return;
-		var onScroll = function () { btn.classList.toggle('is-visible', window.scrollY > 600); };
-		onScroll();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		btn.addEventListener('click', function () {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		});
-	}
-
+	
 		function initChapterFilter() {
 		var input = $('[data-xin-chapter-search]');
 		if (!input) return;
@@ -575,7 +601,7 @@ if (body.scrollHeight <= 240) {
 
 	document.addEventListener('DOMContentLoaded', function () {
 		initTheme();
-		initHeader();
+		initScroll();
 		initOverlays();
 		initBanner();
 		initHero();
@@ -587,7 +613,6 @@ if (body.scrollHeight <= 240) {
 		initContinue();
 		initLibraryPage();
 		initEditor();
-		initToTop();
 		initChapterFilter();
 		initSynopsis();
 		initRate();

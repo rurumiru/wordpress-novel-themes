@@ -12,6 +12,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.6-beta] — 2026-08-15
+
+### Added
+
+- **Demo content package** in `demo/`. One command fills a fresh install so the theme can be judged with a full catalog instead of empty states:
+  - 12 titles with synopses, descriptions, genres, tags, release statuses, author and translation credits, ratings and view counts, five of them marked as editor's picks;
+  - 48 chapters (4 per title) dated across recent weeks so the update feed shows a real timeline, with the last chapter of each title marked PLUS;
+  - 12 genres, 12 tags, 5 blog posts, 3 home banners;
+  - covers (800×1200) and wide artwork (1920×720) drawn at import time with GD — gradients and arcs, no third-party images.
+- **Reversible removal.** Everything the importer creates, including generated images, carries the post meta `_xin_demo = 1`; `demo/remove-demo.php` deletes exactly those records and nothing else, with `--dry-run` and `--trash` modes.
+- Re-running the import updates the same records instead of duplicating them: titles match by slug, chapters by number.
+
+### Changed
+
+- **Interface icons replaced.** The hand-drawn sprite gave way to [Lucide](https://lucide.dev) (54 icons, ISC) plus brand marks from [Simple Icons](https://simpleicons.org) (CC0). The sprite in `inc/icons.php` is now generated from the upstream SVG files, so the shapes are consistent and a couple of malformed paths are gone. Stroke width dropped to 1.75 so small sizes stay readable. Licences are recorded in `assets/vendor/ICONS-LICENSE.md`.
+- **Scroll work no longer fights the compositor.** The header and the back-to-top button shared two separate scroll listeners that rewrote a class on every event, forcing a style recalculation on an element with a backdrop filter. They are now one listener, throttled with `requestAnimationFrame`, writing only when the state actually changes. In the reader the progress bar updates on whole percent steps instead of four decimal places, turning three DOM writes per frame into one.
+
 ## [0.0.5-beta] — 2026-08-15
 
 ### Added

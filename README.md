@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.0.5-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.0.6-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -27,7 +27,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.0.5**
+> ### 🚧 Status: **beta 0.0.6**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -153,6 +153,7 @@ themes/xi-novels/      the theme — everything above lives here
   template-parts/      home sections, catalog, studio screens
   assets/              css (4 files), js (2 files), vendor/bootstrap
   languages/           en_US.po / en_US.mo
+demo/                  ready demo content: 12 titles, 48 chapters, blog, banners
 plugins/               which plugins the project uses and why
 tools/                 dev-server router, bulk importer, translation builder
 docs/                  install, authoring, import, customizing, development
@@ -166,6 +167,7 @@ screenshots/           what it looks like
 * **[Import & heavy uploads](docs/import.md)** — the bundled importer: JSON/CSV manifests **and folders or ZIP archives of `.txt` / `.html` / `.md` chapter files**, plus WP All Import and WP-CLI recipes, and every PHP / nginx / LiteSpeed / Cloudflare limit you must raise before large covers will upload ([RU](docs/import.ru.md))
 * **[Customizing](docs/customizing.md)** — design tokens, customizer options, child theme, hooks
 * **[Development](docs/development.md)** — file map, data model, template hierarchy, translations, coding style
+* **[Demo content](demo/README.md)** — one command fills the site with 12 titles, 48 chapters, blog posts and banners; one command removes it again
 
 ## Screenshots
 
