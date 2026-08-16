@@ -45,6 +45,38 @@ $wp_customize->add_section( 'xin_brand', array(
 		'section'     => 'xin_brand',
 	) ) );
 
+$wp_customize->add_section( 'xin_accounts', array(
+		'title'    => __( 'XI Novels: аккаунты', 'xi-novels' ),
+		'priority' => 26,
+	) );
+
+	$wp_customize->add_setting( 'xin_open_registration', array(
+		'default'           => true,
+		'sanitize_callback' => 'wp_validate_boolean',
+	) );
+	$wp_customize->add_control( 'xin_open_registration', array(
+		'label'       => __( 'Открытая регистрация', 'xi-novels' ),
+		'description' => __( 'Форма на странице «Вход и регистрация» принимает новых читателей. Работает независимо от галочки в «Настройки → Общие», которая относится к экрану wp-login.php.', 'xi-novels' ),
+		'section'     => 'xin_accounts',
+		'type'        => 'checkbox',
+	) );
+
+	$wp_customize->add_setting( 'xin_new_user_role', array(
+		'default'           => 'author',
+		'sanitize_callback' => 'sanitize_key',
+	) );
+	$wp_customize->add_control( 'xin_new_user_role', array(
+		'label'       => __( 'Кем становится новый пользователь', 'xi-novels' ),
+		'description' => __( 'Автор публикует сам, участник отправляет главы на проверку, читатель только читает.', 'xi-novels' ),
+		'section'     => 'xin_accounts',
+		'type'        => 'select',
+		'choices'     => array(
+			'author'      => __( 'Автор', 'xi-novels' ),
+			'contributor' => __( 'Участник', 'xi-novels' ),
+			'subscriber'  => __( 'Читатель', 'xi-novels' ),
+		),
+	) );
+
 $wp_customize->add_section( 'xin_home', array(
 		'title'    => __( 'XI Novels: главная', 'xi-novels' ),
 		'priority' => 26,

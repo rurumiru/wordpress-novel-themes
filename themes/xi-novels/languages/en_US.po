@@ -8,6 +8,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "%1$d %2$s назад"
+msgstr "%1$d %2$s ago"
+
 msgid "%d глав"
 msgstr "%d chapters"
 
@@ -38,6 +41,9 @@ msgstr "%s reviews"
 msgid "%s отзывов"
 msgstr "%s reviews"
 
+msgid "%s прочтений"
+msgstr "%s reads"
+
 msgid "%s тайтл"
 msgstr "%s title"
 
@@ -47,11 +53,20 @@ msgstr "%s titles"
 msgid "%s тайтлов"
 msgstr "%s titles"
 
+msgid "Boosty, Patreon, кошелёк — показывается кнопкой в профиле."
+msgstr "Boosty, Patreon, a wallet — shown as a button on your profile."
+
 msgid "Esc — закрыть"
 msgstr "Press Esc to close"
 
+msgid "ID картинки-обложки профиля"
+msgstr "Profile cover image ID"
+
 msgid "PLUS"
 msgstr "PLUS"
+
+msgid "XI Novels: аккаунты"
+msgstr "XI Novels: accounts"
 
 msgid "XI Novels: бренд и цвета"
 msgstr "XI Novels: brand & colors"
@@ -68,14 +83,26 @@ msgstr "XI: novel picks"
 msgid "XI: последние главы"
 msgstr "XI: latest chapters"
 
+msgid "name@example.com"
+msgstr "name@example.com"
+
 msgid "~%d мин чтения"
 msgstr "~%d min read"
 
 msgid "© %1$s %2$s. Все права на тексты принадлежат их авторам."
 msgstr "© %1$s %2$s. All texts belong to their authors."
 
+msgid "Абзац=p; Заголовок=h2; Подзаголовок=h3"
+msgstr "Paragraph=p; Heading=h2; Subheading=h3"
+
+msgid "Автор"
+msgstr "Author"
+
 msgid "Автор оригинала"
 msgstr "Original author"
+
+msgid "Автор публикует сам, участник отправляет главы на проверку, читатель только читает."
+msgstr "An author publishes directly, a contributor submits chapters for review, a reader only reads."
 
 msgid "Автор: %s"
 msgstr "Author: %s"
@@ -83,8 +110,17 @@ msgstr "Author: %s"
 msgid "Авторам"
 msgstr "For authors"
 
+msgid "Автору. Площадка показывает текст и не претендует на права; удалить проект можно в любой момент из кабинета."
+msgstr "The author. The platform displays the text and claims no rights; you can delete a project from the studio at any time."
+
 msgid "Админка"
 msgstr "WP admin"
+
+msgid "Аккаунт создан. Первый проект начинается с кнопки «Новый проект»."
+msgstr "Account created. Your first project starts with the “New project” button."
+
+msgid "Аккаунт уже есть?"
+msgstr "Already have an account?"
 
 msgid "Акцентный цвет"
 msgstr "Accent color"
@@ -92,11 +128,35 @@ msgstr "Accent color"
 msgid "Анонс"
 msgstr "Announced"
 
+msgid "Баннер"
+msgstr "Banner"
+
+msgid "Баннеров пока нет"
+msgstr "No banners yet"
+
+msgid "Баннеры"
+msgstr "Banners"
+
+msgid "Баннеры добавляются в админке: раздел «Баннеры»."
+msgstr "Banners are managed in the admin under Banners."
+
+msgid "Бейдж"
+msgstr "Badge"
+
 msgid "Белая"
 msgstr "Paper"
 
+msgid "Бесплатно"
+msgstr "Free"
+
 msgid "Библиотека"
 msgstr "Library"
+
+msgid "Библиотека без ограничений"
+msgstr "Library without limits"
+
+msgid "Библиотека привязана к аккаунту"
+msgstr "Library tied to your account"
 
 msgid "Блог"
 msgstr "Blog"
@@ -107,11 +167,17 @@ msgstr "Blog sidebar"
 msgid "Боковая колонка тайтла"
 msgstr "Title sidebar"
 
+msgid "Будьте первым, кто оставит мнение."
+msgstr "Be the first to share your thoughts."
+
 msgid "Бумага"
 msgstr "Background"
 
 msgid "Быстрая навигация"
 msgstr "Quick navigation"
+
+msgid "Быстрые переходы (плитки под баннером)"
+msgstr "Quick links (tiles under the banner)"
 
 msgid "В библиотеке"
 msgstr "In library"
@@ -131,8 +197,14 @@ msgstr "Save as draft"
 msgid "Ваша оценка"
 msgstr "Your rating"
 
+msgid "Вернуться на %s"
+msgstr "Back to %s"
+
 msgid "Весь каталог"
 msgstr "Full catalog"
+
+msgid "Весь открытый каталог"
+msgstr "The entire open catalog"
 
 msgid "Весь рейтинг"
 msgstr "Full ranking"
@@ -155,6 +227,9 @@ msgstr "Sign in to manage projects and publish chapters."
 msgid "Войти"
 msgstr "Sign in"
 
+msgid "Восстановление доступа"
+msgstr "Password recovery"
+
 msgid "Вперёд"
 msgstr "Next"
 
@@ -170,11 +245,26 @@ msgstr "All novels"
 msgid "Все обновления"
 msgstr "All updates"
 
+msgid "Всё из бесплатного плана"
+msgstr "Everything in the free plan"
+
+msgid "Вход"
+msgstr "Sign in"
+
 msgid "Вход для авторов"
 msgstr "Author login"
 
+msgid "Вход и регистрация"
+msgstr "Sign in and sign up"
+
 msgid "Вчера"
 msgstr "Yesterday"
+
+msgid "Вы вошли как %s"
+msgstr "Signed in as %s"
+
+msgid "Вы вышли из аккаунта."
+msgstr "You have signed out."
 
 msgid "Выберите настроение — остальное подберём"
 msgstr "Pick a mood — we will handle the rest"
@@ -182,11 +272,23 @@ msgstr "Pick a mood — we will handle the rest"
 msgid "Выбор редакции (показывать в витрине главной)"
 msgstr "Editor's pick (show in the home showcase)"
 
+msgid "Выбрать"
+msgstr "Choose"
+
 msgid "Выбрать арт"
 msgstr "Choose artwork"
 
+msgid "Выйти"
+msgstr "Sign out"
+
+msgid "Высота баннера, px"
+msgstr "Banner height, px"
+
 msgid "Выходит"
 msgstr "Ongoing"
+
+msgid "Выходите по расписанию"
+msgstr "Publish on a schedule"
 
 msgid "Гл. %s"
 msgstr "Ch. %s"
@@ -218,8 +320,14 @@ msgstr "Primary menu"
 msgid "Главы"
 msgstr "Chapters"
 
+msgid "Главы для подписчиков"
+msgstr "Chapters for members"
+
 msgid "Главы ещё не опубликованы."
 msgstr "No chapters published yet."
+
+msgid "Главы с отметкой PLUS открываются подписчикам раньше остальных читателей."
+msgstr "Chapters marked PLUS open for members before everyone else."
 
 msgid "Год"
 msgstr "Year"
@@ -232,6 +340,9 @@ msgstr "Votes: %d"
 
 msgid "Гротеск"
 msgstr "Sans"
+
+msgid "Да. В карточке проекта есть отдельные поля для автора оригинала, оригинального названия и команды перевода."
+msgstr "Yes. The project card has separate fields for the original author, the original title and the translation team."
 
 msgid "Дальше"
 msgstr "Next"
@@ -248,6 +359,9 @@ msgstr "Top ten on the platform"
 msgid "Добавить"
 msgstr "Add new"
 
+msgid "Добавить баннер"
+msgstr "Add banner"
+
 msgid "Добавить главу"
 msgstr "Add chapter"
 
@@ -260,6 +374,9 @@ msgstr "Add novel"
 msgid "Добавлен"
 msgstr "Added"
 
+msgid "Добавьте ссылку на донат в профиле — кнопка появится рядом с вашим именем."
+msgstr "Add a donation link to your profile and a button appears next to your name."
+
 msgid "Добро пожаловать в %s"
 msgstr "Welcome to %s"
 
@@ -269,8 +386,17 @@ msgstr "A fractional number means a side story: 12.5"
 msgid "Дробный номер — экстра/интерлюдия: 12.5"
 msgstr "A fractional number means a side story: 12.5"
 
+msgid "Если планируете принимать оплату, подойдёт любой плагин членства: он решает, кто считается подписчиком, а тема уже умеет прятать главы от гостей."
+msgstr "If you plan to take payments, any membership plugin works: it decides who counts as a member, and the theme already hides chapters from guests."
+
 msgid "Ещё"
 msgstr "More"
+
+msgid "Ещё нет аккаунта?"
+msgstr "No account yet?"
+
+msgid "Ещё раз"
+msgstr "Repeat"
 
 msgid "Жанр"
 msgstr "Genre"
@@ -281,11 +407,26 @@ msgstr "Genres"
 msgid "Жанры пока не заданы"
 msgstr "No genres yet"
 
+msgid "Жёсткого требования нет, но читатели возвращаются к тем, кто держит ритм. Даже одна глава в неделю работает лучше, чем десять раз в год."
+msgstr "There is no hard rule, but readers come back to whoever keeps a rhythm. One chapter a week beats ten bursts a year."
+
+msgid "Забыли?"
+msgstr "Forgot?"
+
+msgid "Заведите аккаунт"
+msgstr "Create an account"
+
+msgid "Заведите первый тайтл — на это уходит пара минут, а страница профиля соберётся сама."
+msgstr "Start your first title — it takes a couple of minutes and your profile page builds itself."
+
 msgid "Завершён"
 msgstr "Completed"
 
 msgid "Заголовок"
 msgstr "Title"
+
+msgid "Задать картинку"
+msgstr "Set image"
 
 msgid "Задать обложку"
 msgstr "Set cover"
@@ -293,8 +434,17 @@ msgstr "Set cover"
 msgid "Закладки"
 msgstr "Bookmarks"
 
+msgid "Закладки и история в браузере"
+msgstr "Bookmarks and history in the browser"
+
+msgid "Закладки и история чтения синхронизируются с аккаунтом, а не только с браузером."
+msgstr "Bookmarks and reading history follow your account, not just one browser."
+
 msgid "Закладки и история чтения хранятся в этом браузере — аккаунт не нужен."
 msgstr "Bookmarks and reading history live in this browser — no account needed."
+
+msgid "Закладки, история чтения и собственные проекты — в одном месте."
+msgstr "Bookmarks, reading history and your own projects in one place."
 
 msgid "Закрыть"
 msgstr "Close"
@@ -302,11 +452,35 @@ msgstr "Close"
 msgid "Заморожен"
 msgstr "On hiatus"
 
+msgid "Заполните оба поля."
+msgstr "Fill in both fields."
+
+msgid "Зарегистрироваться"
+msgstr "Create one"
+
 msgid "Здесь пока пусто"
 msgstr "Nothing here yet"
 
+msgid "Здесь появятся ваши проекты"
+msgstr "Your projects will show up here"
+
+msgid "Имя"
+msgstr "Name"
+
 msgid "Имя автора"
 msgstr "Author name"
+
+msgid "Имя пользователя"
+msgstr "Username"
+
+msgid "Имя пользователя или почта"
+msgstr "Username or email"
+
+msgid "Имя пользователя: от трёх символов, латиница, цифры, дефис и подчёркивание."
+msgstr "Username: three characters or more, Latin letters, digits, hyphen and underscore."
+
+msgid "Инструменты, а не обещания"
+msgstr "Tools, not promises"
 
 msgid "Искать главы"
 msgstr "Search chapters"
@@ -338,14 +512,35 @@ msgstr "Author studio"
 msgid "Как в системе"
 msgstr "Match system"
 
+msgid "Как вас зовут"
+msgstr "Your name"
+
+msgid "Как подключить"
+msgstr "How to join"
+
 msgid "Как сайт"
 msgstr "Site theme"
+
+msgid "Как стать автором"
+msgstr "How to become an author"
 
 msgid "Как только выйдет первая глава, она появится здесь."
 msgstr "The first chapter will show up here as soon as it is published."
 
+msgid "Как часто нужно выходить?"
+msgstr "How often should I publish?"
+
 msgid "Как читать"
 msgstr "Reading settings"
+
+msgid "Картинка"
+msgstr "Image"
+
+msgid "Картинка баннера"
+msgstr "Banner image"
+
+msgid "Картинка для телефона"
+msgstr "Mobile image"
 
 msgid "Карточка тайтла"
 msgstr "Title details"
@@ -365,6 +560,12 @@ msgstr "The catalog is empty. Add your first title:"
 msgid "Каталог тайтлов"
 msgstr "Title catalog"
 
+msgid "Кем становится новый пользователь"
+msgstr "Role for new accounts"
+
+msgid "Кнопка «Опубликовать и начать следующую» держит темп. Каждая глава поднимает тайтл в ленте обновлений."
+msgstr "The \"Publish and start the next one\" button keeps the pace. Every chapter lifts the title in the update feed."
+
 msgid "Коины, PLUS, медали рейтинга."
 msgstr "Coins, PLUS, ranking medals."
 
@@ -374,11 +575,29 @@ msgstr "Footer widget columns (instead of menus)."
 msgid "Комментарий"
 msgstr "Comment"
 
+msgid "Комментарий ждёт проверки модератора."
+msgstr "This comment is awaiting moderation."
+
+msgid "Кому принадлежат права на текст?"
+msgstr "Who owns the rights to the text?"
+
+msgid "Контакты"
+msgstr "Contacts"
+
+msgid "Короткая подпись"
+msgstr "Short tagline"
+
 msgid "Краткое описание"
 msgstr "Short description"
 
 msgid "Крупнее"
 msgstr "Larger"
+
+msgid "Куда дальше"
+msgstr "Where to next"
+
+msgid "Лента обновлений"
+msgstr "Update feed"
 
 msgid "Листайте клавишами %1$s и %2$s"
 msgstr "Use %1$s and %2$s to turn pages"
@@ -407,6 +626,12 @@ msgstr "Footer menu"
 msgid "Мобильное меню"
 msgstr "Mobile menu"
 
+msgid "Можно перенести тайтл с другой площадки?"
+msgstr "Can I move a title from another platform?"
+
+msgid "Можно. Главы создаются по одной в кабинете, а для больших переносов подойдёт любой импортёр записей — модель данных простая."
+msgstr "Yes. Chapters are created one by one in the studio, and for bulk moves any post importer works — the data model is plain."
+
 msgid "Мои проекты"
 msgstr "My projects"
 
@@ -428,8 +653,14 @@ msgstr "Member since %s"
 msgid "На чём вы остановились"
 msgstr "Where you left off"
 
+msgid "На эту почту аккаунт уже заведён. Войдите или восстановите пароль."
+msgstr "That email already has an account. Sign in or reset the password."
+
 msgid "Наверх"
 msgstr "Back to top"
+
+msgid "Надпись на кнопке"
+msgstr "Button label"
 
 msgid "Нажмите на закладку у любой обложки в каталоге — тайтл появится здесь."
 msgstr "Tap the bookmark on any cover in the catalog and the title shows up here."
@@ -449,6 +680,9 @@ msgstr "Chapter title"
 msgid "Название тайтла, автор, глава…"
 msgstr "Title, author, chapter…"
 
+msgid "Название, краткое описание, жанры, обложка. Всё в одной форме кабинета — админка WordPress не нужна."
+msgstr "Title, short description, genres, cover. One form in the studio — the WordPress admin is not needed."
+
 msgid "Найден %s результат"
 msgstr "%s result found"
 
@@ -460,6 +694,12 @@ msgstr "%s results found"
 
 msgid "Найти"
 msgstr "Search"
+
+msgid "Напишите первую главу"
+msgstr "Write the first chapter"
+
+msgid "Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать."
+msgstr "Fill this page in the admin: site rules, answers, contacts, policies — whatever readers need to know."
 
 msgid "Например: Печать девятого неба"
 msgstr "For example: Seal of the Ninth Heaven"
@@ -476,17 +716,53 @@ msgstr "Settings are saved in this browser and apply to every chapter on the sit
 msgid "Настройки чтения"
 msgstr "Reading settings"
 
+msgid "Начать публиковать"
+msgstr "Start publishing"
+
 msgid "Начать читать"
 msgstr "Start reading"
+
+msgid "Не выходить из аккаунта"
+msgstr "Keep me signed in"
+
+msgid "Не заполняйте это поле"
+msgstr "Leave this field empty"
+
+msgid "Не подходит: проверьте имя пользователя и пароль."
+msgstr "That did not match: check the username and the password."
+
+msgid "Не получилось. Попробуйте ещё раз."
+msgstr "That did not work. Try again."
+
+msgid "Не публикуется — нужна только для аватара и уведомлений."
+msgstr "Never published — used only for your avatar and notifications."
 
 msgid "Не удалось сохранить. Попробуйте ещё раз."
 msgstr "Could not save. Please try again."
 
+msgid "Неверная пара логин / пароль."
+msgstr "Wrong login or password."
+
 msgid "Недавно обновлены"
 msgstr "Recently updated"
 
+msgid "Недостаточно прав для этого действия."
+msgstr "You are not allowed to do that."
+
 msgid "Недостаточно прав."
 msgstr "Not allowed."
+
+msgid "Необязательно. Если не задана, на телефоне используется основная картинка."
+msgstr "Optional. Without it phones use the main image."
+
+msgid "Необязательно: ID файла из медиатеки. Пусто — рисуется градиент."
+msgstr "Optional: a media library file ID. Empty means a gradient is drawn."
+
+msgid "Нет. Публикация, страницы тайтлов, читалка и статистика бесплатны и остаются такими."
+msgstr "No. Publishing, title pages, the reader and the statistics are free and stay that way."
+
+msgid "Никаких промо-блоков в читалке — только текст, полоса прогресса и ваши настройки."
+msgstr "No promo blocks in the reader — just the text, the progress bar and your settings."
 
 msgid "Ничего не найдено"
 msgstr "Nothing found"
@@ -496,6 +772,9 @@ msgstr "Nothing found"
 
 msgid "Новая глава"
 msgstr "New chapter"
+
+msgid "Новая глава попадает в общую ленту площадки и в раздел «Недавно обновлены» на главной."
+msgstr "A new chapter lands in the site-wide feed and in Recently updated on the home page."
 
 msgid "Новая новелла"
 msgstr "New novel"
@@ -512,6 +791,9 @@ msgstr "Novels"
 msgid "Новеллы → Добавить"
 msgstr "Novels → Add new"
 
+msgid "Новинка"
+msgstr "New"
+
 msgid "Новинки"
 msgstr "New releases"
 
@@ -524,6 +806,9 @@ msgstr "News & articles"
 msgid "Новости площадки, разборы тайтлов и заметки переводчиков."
 msgstr "Platform news, title breakdowns and translator notes."
 
+msgid "Новые аккаунты сейчас не создаются. Если учётная запись уже есть — войдите."
+msgstr "New accounts are closed at the moment. If you already have one, sign in."
+
 msgid "Новый проект"
 msgstr "New project"
 
@@ -535,6 +820,9 @@ msgstr "Chapter number"
 
 msgid "Ночь"
 msgstr "Night"
+
+msgid "Нужно ли платить за публикацию?"
+msgstr "Do I have to pay to publish?"
 
 msgid "Нужно название."
 msgstr "A title is required."
@@ -554,6 +842,9 @@ msgstr "No updates yet"
 msgid "Обновления"
 msgstr "Updates"
 
+msgid "Обновлено %s"
+msgstr "Updated %s"
+
 msgid "Обновлён"
 msgstr "Updated"
 
@@ -562,6 +853,9 @@ msgstr "Comments are closed."
 
 msgid "Оглавление"
 msgstr "Contents"
+
+msgid "Одна строка под именем: «переводчик с корейского», «пишу тёмное фэнтези»."
+msgstr "One line under your name: \"translates from Korean\", \"writes dark fantasy\"."
 
 msgid "Одна-две фразы для карточки в каталоге"
 msgstr "One or two lines for the catalog card"
@@ -581,6 +875,9 @@ msgstr "Publish and start the next one"
 msgid "Оригинальное название"
 msgstr "Original title"
 
+msgid "Основная картинка — «Изображение записи» справа. Оптимальный размер 1920×720. Порядок показа задаётся полем «Порядок» в блоке «Атрибуты страницы»."
+msgstr "The main image is the featured image on the right. 1920x720 works best. Display order comes from the Order field in Page Attributes."
+
 msgid "Основная навигация"
 msgstr "Primary navigation"
 
@@ -590,17 +887,38 @@ msgstr "Leave a comment"
 msgid "Оставить отзыв"
 msgstr "Write a review"
 
+msgid "От регистрации до публикации — один вечер"
+msgstr "From sign-up to publication in one evening"
+
+msgid "Ответить"
+msgstr "Reply"
+
+msgid "Открытая регистрация"
+msgstr "Open registration"
+
+msgid "Открыть"
+msgstr "Open"
+
+msgid "Открыть кабинет"
+msgstr "Open the studio"
+
 msgid "Открыть каталог"
 msgstr "Open catalog"
 
 msgid "Открыть тайтл"
 msgstr "Open title"
 
+msgid "Отмечайте главы как PLUS — они видны в оглавлении с замком и открываются подписчикам."
+msgstr "Mark chapters as PLUS — they appear in the contents with a lock and open for members."
+
 msgid "Отправить"
 msgstr "Submit"
 
 msgid "Отправить на модерацию"
 msgstr "Submit for review"
+
+msgid "Отредактируйте эту страницу в админке и опишите здесь свои условия: стоимость, способы оплаты и как выдаётся доступ. Тема показывает главы с отметкой PLUS только вошедшим пользователям — остальное определяете вы."
+msgstr "Edit this page in the admin and describe your terms here: price, payment methods and how access is granted. The theme shows PLUS chapters only to signed-in users; the rest is up to you."
 
 msgid "Оценивать можно только новеллы."
 msgstr "Only novels can be rated."
@@ -614,11 +932,26 @@ msgstr "Rating"
 msgid "Оценка (0–5)"
 msgstr "Rating (0–5)"
 
+msgid "Оценки и рейтинги"
+msgstr "Ratings and rankings"
+
 msgid "Панель быстрых переходов"
 msgstr "Quick links bar"
 
 msgid "Параметры главы"
 msgstr "Chapter options"
+
+msgid "Пароли не совпали."
+msgstr "The passwords do not match."
+
+msgid "Пароль"
+msgstr "Password"
+
+msgid "Пароль короче восьми символов."
+msgstr "The password is shorter than eight characters."
+
+msgid "Первая глава начинается с пустой страницы"
+msgstr "Every first chapter starts with a blank page"
 
 msgid "Перевод"
 msgstr "Translation"
@@ -628,6 +961,9 @@ msgstr "Translation / team"
 
 msgid "Перейти к содержимому"
 msgstr "Skip to content"
+
+msgid "Письмо со ссылкой на смену пароля отправлено."
+msgstr "A link for setting a new password is on its way."
 
 msgid "Платная глава"
 msgstr "Paid chapter"
@@ -656,11 +992,38 @@ msgstr "By rating"
 msgid "По просмотрам"
 msgstr "By views"
 
+msgid "По центру"
+msgstr "Centered"
+
 msgid "Подвал"
 msgstr "Footer"
 
+msgid "Поддержать"
+msgstr "Support"
+
+msgid "Поддержка авторов и переводчиков"
+msgstr "Support for authors and translators"
+
+msgid "Поддержка от читателей"
+msgstr "Support from readers"
+
+msgid "Поддержка переводчиков"
+msgstr "Supporting translators"
+
 msgid "Поделиться"
 msgstr "Share"
+
+msgid "Подзаголовок"
+msgstr "Subtitle"
+
+msgid "Подключить PLUS"
+msgstr "Get PLUS"
+
+msgid "Подписка для тех, кто читает много и хочет, чтобы любимые переводы выходили дальше. Ранний доступ к главам и прямая поддержка авторов."
+msgstr "A membership for people who read a lot and want their favourite translations to keep coming. Early access to chapters and direct support for authors."
+
+msgid "Подписка — прямая помощь тем, кто ведёт ваши тайтлы и держит расписание выхода."
+msgstr "The membership is direct help for the people running your titles and keeping the schedule."
 
 msgid "Подробнее"
 msgstr "Details"
@@ -686,6 +1049,9 @@ msgstr "While you are here — popular now"
 msgid "Пока пусто"
 msgstr "Nothing here yet"
 
+msgid "Пока тишина"
+msgstr "No replies yet"
+
 msgid "Показывается в блоге и на записях."
 msgstr "Shown in the blog and on posts."
 
@@ -695,8 +1061,20 @@ msgstr "Shown in the showcase, search results and on the title page."
 msgid "Показывается на странице новеллы под блоком информации."
 msgstr "Shown on the novel page under the info panel."
 
+msgid "Показывается на странице тайтла под заголовком «Описание»."
+msgstr "Shown on the title page under the “Description” heading."
+
 msgid "Полное описание"
 msgstr "Full description"
+
+msgid "Полноценный редактор с картинками и вставкой из Word. Черновик сохраняется в браузере, пока вы печатаете."
+msgstr "A real editor with images and pasting from Word. The draft is saved in your browser as you type."
+
+msgid "Полноэкранная читалка и её настройки"
+msgstr "Full-screen reader and its settings"
+
+msgid "Положение текста"
+msgstr "Text position"
 
 msgid "Полоса цифр площадки"
 msgstr "Platform stats bar"
@@ -710,17 +1088,29 @@ msgstr "Try clearing the filters or browsing another genre."
 msgid "Популярное"
 msgstr "Popular"
 
+msgid "Популярные жанры"
+msgstr "Popular genres"
+
 msgid "Порядок"
 msgstr "Order"
 
 msgid "Последние главы"
 msgstr "Latest chapters"
 
+msgid "Последние главы автора"
+msgstr "Latest chapters by this author"
+
 msgid "Последняя глава"
 msgstr "Latest chapter"
 
 msgid "Похожее"
 msgstr "Similar titles"
+
+msgid "Почта"
+msgstr "Email"
+
+msgid "Правила площадки"
+msgstr "Site rules"
 
 msgid "Править"
 msgstr "Edit"
@@ -742,6 +1132,21 @@ msgstr "Previous"
 
 msgid "Применить"
 msgstr "Apply"
+
+msgid "Приносите текст — остальное площадка берёт на себя: витрина, читалка, статистика и читатели, которые возвращаются за следующей главой."
+msgstr "Bring the text — the platform handles the rest: the showcase, the reader, the statistics and readers who come back for the next chapter."
+
+msgid "Прислать ссылку"
+msgstr "Send the link"
+
+msgid "Пришлём ссылку, по которой можно задать новый пароль."
+msgstr "We will send a link for setting a new password."
+
+msgid "Проверьте адрес почты."
+msgstr "Check the email address."
+
+msgid "Продолжайте с той главы, на которой остановились."
+msgstr "Pick up from the chapter you stopped at."
 
 msgid "Продолжить чтение"
 msgstr "Continue reading"
@@ -770,8 +1175,23 @@ msgstr "Projects, chapters and drafts — all editable right here."
 msgid "Просмотры"
 msgstr "Views"
 
+msgid "Просмотры тайтла и каждой главы, оценки читателей, позиция в рейтинге — без чёрного ящика."
+msgstr "Views for the title and every chapter, reader ratings, ranking position — no black box."
+
+msgid "Профиль"
+msgstr "Profile"
+
+msgid "Профиль автора"
+msgstr "Author profile"
+
+msgid "Профиль на площадке"
+msgstr "Platform profile"
+
 msgid "Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп."
 msgstr "Publish your novels and translations, write chapters in a clean editor, grow your audience. Your format, your pace."
+
+msgid "Публичная страница со статистикой, ссылками и лентой ваших глав. Читателю есть что открыть после первой главы."
+msgstr "A public page with statistics, links and a feed of your chapters. Readers have somewhere to go after chapter one."
 
 msgid "Пусто — название сайта и год."
 msgstr "Leave empty for the site name and year."
@@ -779,17 +1199,41 @@ msgstr "Leave empty for the site name and year."
 msgid "Пусто — фирменный кримсон."
 msgstr "Leave empty for the signature crimson."
 
+msgid "Разделы справки"
+msgstr "Help sections"
+
 msgid "Размер текста"
 msgstr "Text size"
 
+msgid "Ранний доступ"
+msgstr "Early access"
+
 msgid "Ранний доступ (PLUS)"
 msgstr "Early access (PLUS)"
+
+msgid "Ранний доступ к главам"
+msgstr "Early access to chapters"
+
+msgid "Ранний доступ к главам с отметкой PLUS"
+msgstr "Early access to chapters marked PLUS"
 
 msgid "Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков."
 msgstr "Early access to chapters, members-only releases and a way to support your translators."
 
 msgid "Ранобэ, веб-новеллы и авторские переводы — весь каталог площадки."
 msgstr "Light novels, web novels and original translations — the full catalog."
+
+msgid "Регистрация"
+msgstr "Sign up"
+
+msgid "Регистрация занимает минуту. Роль «Автор» открывает публикацию сразу, «Участник» отправляет первые главы на проверку редактору."
+msgstr "Signing up takes a minute. The Author role publishes right away; Contributor sends the first chapters to an editor for review."
+
+msgid "Регистрация сейчас закрыта."
+msgstr "Registration is closed at the moment."
+
+msgid "Редактировать баннер"
+msgstr "Edit banner"
 
 msgid "Редактировать главу"
 msgstr "Edit chapter"
@@ -803,8 +1247,14 @@ msgstr "Ranking"
 msgid "Рейтинг с вкладками"
 msgstr "Ranking with tabs"
 
+msgid "С возвращением"
+msgstr "Welcome back"
+
 msgid "С засечками"
 msgstr "Serif"
+
+msgid "Сайт"
+msgstr "Website"
 
 msgid "Самые любимые"
 msgstr "Reader favorites"
@@ -836,6 +1286,12 @@ msgstr "Light"
 msgid "Свободнее"
 msgstr "Looser"
 
+msgid "Своя витрина"
+msgstr "Your own showcase"
+
+msgid "Связаться"
+msgstr "Get in touch"
+
 msgid "Сегодня"
 msgstr "Today"
 
@@ -848,17 +1304,26 @@ msgstr "Currently uploaded:"
 msgid "Сепия"
 msgstr "Sepia"
 
+msgid "Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова."
+msgstr "Your session expired — the form has been open for too long. Reload the page and submit again."
+
 msgid "Сколько"
 msgstr "How many"
 
 msgid "Слайд %d"
 msgstr "Slide %d"
 
+msgid "Слева"
+msgstr "Left"
+
 msgid "Следить за обновлениями"
 msgstr "Follow updates"
 
 msgid "Следующая"
 msgstr "Next"
+
+msgid "Слишком много попыток подряд. Подождите четверть часа."
+msgstr "Too many attempts in a row. Wait a quarter of an hour."
 
 msgid "Сменить тему"
 msgstr "Toggle theme"
@@ -872,8 +1337,23 @@ msgstr "Pick a project first."
 msgid "Сначала новые"
 msgstr "Newest first"
 
+msgid "Содержимое баннера"
+msgstr "Banner content"
+
+msgid "Создавая аккаунт, вы соглашаетесь с %s."
+msgstr "By creating an account you agree to the %s."
+
+msgid "Создайте проект"
+msgstr "Create a project"
+
+msgid "Создание аккаунта"
+msgstr "Create an account"
+
 msgid "Создать аккаунт"
 msgstr "Create account"
+
+msgid "Создать проект"
+msgstr "Create project"
 
 msgid "Сортировка"
 msgstr "Sorting"
@@ -881,11 +1361,26 @@ msgstr "Sorting"
 msgid "Сохранить и опубликовать"
 msgstr "Save and publish"
 
+msgid "Справа"
+msgstr "Right"
+
+msgid "Справка"
+msgstr "Help"
+
 msgid "Средняя"
 msgstr "Medium"
 
+msgid "Ссылка"
+msgstr "Link"
+
+msgid "Ссылка автора"
+msgstr "Author link"
+
 msgid "Ссылка на первоисточник"
 msgstr "Original source link"
+
+msgid "Ссылка на поддержку"
+msgstr "Support link"
 
 msgid "Статей пока нет."
 msgstr "No articles yet."
@@ -904,6 +1399,9 @@ msgstr "Become an author"
 
 msgid "Статьи"
 msgstr "Articles"
+
+msgid "Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны."
+msgstr "A title page with cover, contents, rating and similar works — no layout work on your side."
 
 msgid "Строка копирайта"
 msgstr "Copyright line"
@@ -926,6 +1424,12 @@ msgstr "Titles pulling the most attention"
 msgid "Тайтлы, отмеченные закладкой в каталоге"
 msgstr "Titles you bookmarked in the catalog"
 
+msgid "Такое имя уже занято."
+msgstr "That name is already taken."
+
+msgid "Такой пользователь не найден."
+msgstr "No such user."
+
 msgid "Такой страницы нет"
 msgstr "This page does not exist"
 
@@ -937,6 +1441,9 @@ msgstr "Title tags"
 
 msgid "Теги через запятую"
 msgstr "Tags, comma separated"
+
+msgid "Текст"
+msgstr "Text"
 
 msgid "Текст главы"
 msgstr "Chapter text"
@@ -962,6 +1469,12 @@ msgstr "Trending block with artwork"
 msgid "Тёмная"
 msgstr "Dark"
 
+msgid "У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге."
+msgstr "You already have the text — the platform just shows it. Create a project and see how it looks in the catalog."
+
+msgid "У меня есть аккаунт"
+msgstr "I already have an account"
+
 msgid "Убрать"
 msgstr "Remove"
 
@@ -986,6 +1499,15 @@ msgstr "Learn more"
 msgid "Узнать как"
 msgstr "See how"
 
+msgid "Участник"
+msgstr "Contributor"
+
+msgid "Учётная запись есть, но прав на публикацию у неё пока нет. Их выдаёт администрация площадки — напишите, и кабинет откроется."
+msgstr "The account exists, but it has no publishing rights yet. The site team grants them: write to us and the studio opens."
+
+msgid "Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize."
+msgstr "The file is too large: the server rejected the whole submission. Shrink the cover or ask your host to raise upload_max_filesize."
+
 msgid "Фильтр"
 msgstr "Filter"
 
@@ -995,17 +1517,41 @@ msgstr "Wide artwork"
 msgid "Фон-арт тайтла"
 msgstr "Title artwork"
 
+msgid "Форма была открыта слишком долго. Обновите страницу и отправьте снова."
+msgstr "The form sat open for too long. Refresh the page and send it again."
+
+msgid "Форма на странице «Вход и регистрация» принимает новых читателей. Работает независимо от галочки в «Настройки → Общие», которая относится к экрану wp-login.php."
+msgstr "The form on the sign-in page accepts new readers. It works independently of the checkbox in Settings -> General, which governs the wp-login.php screen."
+
 msgid "Цвет премиума"
 msgstr "Premium color"
 
+msgid "Частые вопросы"
+msgstr "Frequently asked questions"
+
+msgid "Честная статистика"
+msgstr "Honest statistics"
+
+msgid "Четыре шага до первой главы"
+msgstr "Four steps to your first chapter"
+
+msgid "Чистое чтение"
+msgstr "Clean reading"
+
 msgid "Читатели не могут оторваться"
 msgstr "Readers cannot put these down"
+
+msgid "Читатель"
+msgstr "Reader"
 
 msgid "Читателю"
 msgstr "For readers"
 
 msgid "Читать"
 msgstr "Read"
+
+msgid "Читать каталог"
+msgstr "Browse the catalog"
 
 msgid "Читать полностью"
 msgstr "Read more"
@@ -1016,8 +1562,17 @@ msgstr "Read from start"
 msgid "Читать статью"
 msgstr "Read article"
 
+msgid "Читают чаще всего"
+msgstr "Most read"
+
 msgid "Членство PLUS"
 msgstr "PLUS membership"
+
+msgid "Что входит"
+msgstr "What is included"
+
+msgid "Что даёт членство"
+msgstr "What membership gives you"
 
 msgid "Что думаете о главе?"
 msgstr "What did you think of this chapter?"
@@ -1058,11 +1613,20 @@ msgstr "This is the first chapter"
 msgid "Это последняя глава"
 msgstr "This is the last chapter"
 
+msgid "Я перевожу, а не пишу своё. Подойдёт?"
+msgstr "I translate rather than write my own. Does it fit?"
+
+msgid "Язык интерфейса"
+msgstr "Interface language"
+
 msgid "Ярлык витрины"
 msgstr "Showcase label"
 
 msgid "автор"
 msgstr "author"
+
+msgid "авторам и переводчикам"
+msgstr "for authors and translators"
 
 msgid "библиотека"
 msgstr "library"
@@ -1070,11 +1634,17 @@ msgstr "library"
 msgid "в тренде"
 msgstr "trending"
 
+msgid "визитка"
+msgstr "highlights"
+
 msgid "вы читали"
 msgstr "you were reading"
 
 msgid "выбор читателей"
 msgstr "reader favorites"
+
+msgid "выйти"
+msgstr "sign out"
 
 msgid "глав"
 msgstr "chapters"
@@ -1085,14 +1655,59 @@ msgstr "chapter"
 msgid "главы"
 msgstr "chapters"
 
+msgid "год"
+msgstr "year"
+
+msgid "года"
+msgstr "years"
+
 msgid "дебюты"
 msgstr "debuts"
+
+msgid "день"
+msgstr "day"
+
+msgid "дней"
+msgstr "days"
+
+msgid "дня"
+msgstr "days"
 
 msgid "журнал"
 msgstr "journal"
 
+msgid "как это работает"
+msgstr "how it works"
+
 msgid "лента"
 msgstr "feed"
+
+msgid "лет"
+msgstr "years"
+
+msgid "месяц"
+msgstr "month"
+
+msgid "месяца"
+msgstr "months"
+
+msgid "месяцев"
+msgstr "months"
+
+msgid "минут"
+msgstr "minutes"
+
+msgid "минуту"
+msgstr "minute"
+
+msgid "минуты"
+msgstr "minutes"
+
+msgid "навсегда"
+msgstr "forever"
+
+msgid "например, kuroi"
+msgstr "for example, kuroi"
 
 msgid "не выбрана"
 msgstr "not selected"
@@ -1109,8 +1724,14 @@ msgstr "novel"
 msgid "новеллы"
 msgstr "novels"
 
+msgid "опубликованных глав"
+msgstr "published chapters"
+
 msgid "от %s"
 msgstr "by %s"
+
+msgid "от 8 символов"
+msgstr "8 characters or more"
 
 msgid "отзывов"
 msgstr "reviews"
@@ -1120,6 +1741,15 @@ msgstr "open"
 
 msgid "оценка"
 msgstr "rating"
+
+msgid "по подписке"
+msgstr "by subscription"
+
+msgid "последний %s"
+msgstr "latest %s"
+
+msgid "правилами площадки"
+msgstr "site rules"
 
 msgid "продолжить"
 msgstr "continue"
@@ -1139,11 +1769,20 @@ msgstr "reads"
 msgid "рейтинг"
 msgstr "ranking"
 
+msgid "рекомендуем"
+msgstr "recommended"
+
 msgid "система, культивация, перерождение"
 msgstr "system, cultivation, rebirth"
 
 msgid "слов"
 msgstr "words"
+
+msgid "справка"
+msgstr "help"
+
+msgid "сравнение"
+msgstr "comparison"
 
 msgid "статей"
 msgstr "articles"
@@ -1151,95 +1790,17 @@ msgstr "articles"
 msgid "тайтлов"
 msgstr "titles"
 
+msgid "тайтлов на площадке"
+msgstr "titles on the platform"
+
 msgid "только что"
 msgstr "just now"
 
-msgid "черновик сохраняется в браузере"
-msgstr "draft is saved in your browser"
+msgid "уже в раннем доступе"
+msgstr "already in early access"
 
-msgid "черновик сохранён"
-msgstr "draft saved"
-
-msgid "читателей"
-msgstr "readers"
-
-msgid "№"
-msgstr "#"
-
-msgid "name@example.com"
-msgstr "name@example.com"
-
-msgid "Абзац=p; Заголовок=h2; Подзаголовок=h3"
-msgstr "Paragraph=p; Heading=h2; Subheading=h3"
-
-msgid "Будьте первым, кто оставит мнение."
-msgstr "Be the first to share your thoughts."
-
-msgid "Вы вошли как %s"
-msgstr "Signed in as %s"
-
-msgid "Имя"
-msgstr "Name"
-
-msgid "Как вас зовут"
-msgstr "Your name"
-
-msgid "Комментарий ждёт проверки модератора."
-msgstr "This comment is awaiting moderation."
-
-msgid "Не публикуется — нужна только для аватара и уведомлений."
-msgstr "Never published — used only for your avatar and notifications."
-
-msgid "Ответить"
-msgstr "Reply"
-
-msgid "Пока тишина"
-msgstr "No replies yet"
-
-msgid "Показывается на странице тайтла под заголовком «Описание»."
-msgstr "Shown on the title page under the “Description” heading."
-
-msgid "Почта"
-msgstr "Email"
-
-msgid "Язык интерфейса"
-msgstr "Interface language"
-
-msgid "выйти"
-msgstr "sign out"
-
-msgid "последний %s"
-msgstr "latest %s"
-
-msgid "%1$d %2$s назад"
-msgstr "%1$d %2$s ago"
-
-msgid "год"
-msgstr "year"
-
-msgid "года"
-msgstr "years"
-
-msgid "лет"
-msgstr "years"
-
-msgid "месяц"
-msgstr "month"
-
-msgid "месяца"
-msgstr "months"
-
-msgid "месяцев"
-msgstr "months"
-
-msgid "день"
-msgstr "day"
-
-msgid "дня"
-msgstr "days"
-
-msgid "дней"
-msgstr "days"
+msgid "условия задаёт площадка"
+msgstr "terms set by the site"
 
 msgid "час"
 msgstr "hour"
@@ -1250,422 +1811,14 @@ msgstr "hours"
 msgid "часов"
 msgstr "hours"
 
-msgid "минуту"
-msgstr "minute"
+msgid "черновик сохраняется в браузере"
+msgstr "draft is saved in your browser"
 
-msgid "минуты"
-msgstr "minutes"
+msgid "черновик сохранён"
+msgstr "draft saved"
 
-msgid "минут"
-msgstr "minutes"
-
-msgid "Вернуться на %s"
-msgstr "Back to %s"
-
-msgid "Выйти"
-msgstr "Sign out"
-
-msgid "Неверная пара логин / пароль."
-msgstr "Wrong login or password."
-
-msgid "Популярные жанры"
-msgstr "Popular genres"
-
-msgid "Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова."
-msgstr "Your session expired — the form has been open for too long. Reload the page and submit again."
-
-msgid "Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize."
-msgstr "The file is too large: the server rejected the whole submission. Shrink the cover or ask your host to raise upload_max_filesize."
-
-msgid "Недостаточно прав для этого действия."
-msgstr "You are not allowed to do that."
-
-msgid "Баннер"
-msgstr "Banner"
-
-msgid "Баннеры"
-msgstr "Banners"
-
-msgid "Баннеров пока нет"
-msgstr "No banners yet"
-
-msgid "Баннеры добавляются в админке: раздел «Баннеры»."
-msgstr "Banners are managed in the admin under Banners."
-
-msgid "Бейдж"
-msgstr "Badge"
-
-msgid "Быстрые переходы (плитки под баннером)"
-msgstr "Quick links (tiles under the banner)"
-
-msgid "Выбрать"
-msgstr "Choose"
-
-msgid "Высота баннера, px"
-msgstr "Banner height, px"
-
-msgid "Добавить баннер"
-msgstr "Add banner"
-
-msgid "Задать картинку"
-msgstr "Set image"
-
-msgid "Картинка"
-msgstr "Image"
-
-msgid "Картинка баннера"
-msgstr "Banner image"
-
-msgid "Картинка для телефона"
-msgstr "Mobile image"
-
-msgid "Надпись на кнопке"
-msgstr "Button label"
-
-msgid "Необязательно. Если не задана, на телефоне используется основная картинка."
-msgstr "Optional. Without it phones use the main image."
-
-msgid "Новинка"
-msgstr "New"
-
-msgid "Основная картинка — «Изображение записи» справа. Оптимальный размер 1920×720. Порядок показа задаётся полем «Порядок» в блоке «Атрибуты страницы»."
-msgstr "The main image is the featured image on the right. 1920x720 works best. Display order comes from the Order field in Page Attributes."
-
-msgid "Открыть"
-msgstr "Open"
-
-msgid "По центру"
-msgstr "Centered"
-
-msgid "Подзаголовок"
-msgstr "Subtitle"
-
-msgid "Положение текста"
-msgstr "Text position"
-
-msgid "Редактировать баннер"
-msgstr "Edit banner"
-
-msgid "Слева"
-msgstr "Left"
-
-msgid "Содержимое баннера"
-msgstr "Banner content"
-
-msgid "Справа"
-msgstr "Right"
-
-msgid "Ссылка"
-msgstr "Link"
-
-msgid "Текст"
-msgstr "Text"
-
-msgid "Boosty, Patreon, кошелёк — показывается кнопкой в профиле."
-msgstr "Boosty, Patreon, a wallet — shown as a button on your profile."
-
-msgid "ID картинки-обложки профиля"
-msgstr "Profile cover image ID"
-
-msgid "Автору. Площадка показывает текст и не претендует на права; удалить проект можно в любой момент из кабинета."
-msgstr "The author. The platform displays the text and claims no rights; you can delete a project from the studio at any time."
-
-msgid "Бесплатно"
-msgstr "Free"
-
-msgid "Библиотека без ограничений"
-msgstr "Library without limits"
-
-msgid "Библиотека привязана к аккаунту"
-msgstr "Library tied to your account"
-
-msgid "Весь открытый каталог"
-msgstr "The entire open catalog"
-
-msgid "Всё из бесплатного плана"
-msgstr "Everything in the free plan"
-
-msgid "Выходите по расписанию"
-msgstr "Publish on a schedule"
-
-msgid "Главы для подписчиков"
-msgstr "Chapters for members"
-
-msgid "Главы с отметкой PLUS открываются подписчикам раньше остальных читателей."
-msgstr "Chapters marked PLUS open for members before everyone else."
-
-msgid "Да. В карточке проекта есть отдельные поля для автора оригинала, оригинального названия и команды перевода."
-msgstr "Yes. The project card has separate fields for the original author, the original title and the translation team."
-
-msgid "Добавьте ссылку на донат в профиле — кнопка появится рядом с вашим именем."
-msgstr "Add a donation link to your profile and a button appears next to your name."
-
-msgid "Если планируете принимать оплату, подойдёт любой плагин членства: он решает, кто считается подписчиком, а тема уже умеет прятать главы от гостей."
-msgstr "If you plan to take payments, any membership plugin works: it decides who counts as a member, and the theme already hides chapters from guests."
-
-msgid "Жёсткого требования нет, но читатели возвращаются к тем, кто держит ритм. Даже одна глава в неделю работает лучше, чем десять раз в год."
-msgstr "There is no hard rule, but readers come back to whoever keeps a rhythm. One chapter a week beats ten bursts a year."
-
-msgid "Заведите аккаунт"
-msgstr "Create an account"
-
-msgid "Заведите первый тайтл — на это уходит пара минут, а страница профиля соберётся сама."
-msgstr "Start your first title — it takes a couple of minutes and your profile page builds itself."
-
-msgid "Закладки и история в браузере"
-msgstr "Bookmarks and history in the browser"
-
-msgid "Закладки и история чтения синхронизируются с аккаунтом, а не только с браузером."
-msgstr "Bookmarks and reading history follow your account, not just one browser."
-
-msgid "Здесь появятся ваши проекты"
-msgstr "Your projects will show up here"
-
-msgid "Инструменты, а не обещания"
-msgstr "Tools, not promises"
-
-msgid "Как подключить"
-msgstr "How to join"
-
-msgid "Как часто нужно выходить?"
-msgstr "How often should I publish?"
-
-msgid "Кнопка «Опубликовать и начать следующую» держит темп. Каждая глава поднимает тайтл в ленте обновлений."
-msgstr "The \"Publish and start the next one\" button keeps the pace. Every chapter lifts the title in the update feed."
-
-msgid "Кому принадлежат права на текст?"
-msgstr "Who owns the rights to the text?"
-
-msgid "Контакты"
-msgstr "Contacts"
-
-msgid "Короткая подпись"
-msgstr "Short tagline"
-
-msgid "Куда дальше"
-msgstr "Where to next"
-
-msgid "Лента обновлений"
-msgstr "Update feed"
-
-msgid "Можно перенести тайтл с другой площадки?"
-msgstr "Can I move a title from another platform?"
-
-msgid "Можно. Главы создаются по одной в кабинете, а для больших переносов подойдёт любой импортёр записей — модель данных простая."
-msgstr "Yes. Chapters are created one by one in the studio, and for bulk moves any post importer works — the data model is plain."
-
-msgid "Название, краткое описание, жанры, обложка. Всё в одной форме кабинета — админка WordPress не нужна."
-msgstr "Title, short description, genres, cover. One form in the studio — the WordPress admin is not needed."
-
-msgid "Напишите первую главу"
-msgstr "Write the first chapter"
-
-msgid "Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать."
-msgstr "Fill this page in the admin: site rules, answers, contacts, policies — whatever readers need to know."
-
-msgid "Начать публиковать"
-msgstr "Start publishing"
-
-msgid "Необязательно: ID файла из медиатеки. Пусто — рисуется градиент."
-msgstr "Optional: a media library file ID. Empty means a gradient is drawn."
-
-msgid "Нет. Публикация, страницы тайтлов, читалка и статистика бесплатны и остаются такими."
-msgstr "No. Publishing, title pages, the reader and the statistics are free and stay that way."
-
-msgid "Никаких промо-блоков в читалке — только текст, полоса прогресса и ваши настройки."
-msgstr "No promo blocks in the reader — just the text, the progress bar and your settings."
-
-msgid "Новая глава попадает в общую ленту площадки и в раздел «Недавно обновлены» на главной."
-msgstr "A new chapter lands in the site-wide feed and in Recently updated on the home page."
-
-msgid "Нужно ли платить за публикацию?"
-msgstr "Do I have to pay to publish?"
-
-msgid "Обновлено %s"
-msgstr "Updated %s"
-
-msgid "Одна строка под именем: «переводчик с корейского», «пишу тёмное фэнтези»."
-msgstr "One line under your name: \"translates from Korean\", \"writes dark fantasy\"."
-
-msgid "От регистрации до публикации — один вечер"
-msgstr "From sign-up to publication in one evening"
-
-msgid "Открыть кабинет"
-msgstr "Open the studio"
-
-msgid "Отмечайте главы как PLUS — они видны в оглавлении с замком и открываются подписчикам."
-msgstr "Mark chapters as PLUS — they appear in the contents with a lock and open for members."
-
-msgid "Отредактируйте эту страницу в админке и опишите здесь свои условия: стоимость, способы оплаты и как выдаётся доступ. Тема показывает главы с отметкой PLUS только вошедшим пользователям — остальное определяете вы."
-msgstr "Edit this page in the admin and describe your terms here: price, payment methods and how access is granted. The theme shows PLUS chapters only to signed-in users; the rest is up to you."
-
-msgid "Оценки и рейтинги"
-msgstr "Ratings and rankings"
-
-msgid "Первая глава начинается с пустой страницы"
-msgstr "Every first chapter starts with a blank page"
-
-msgid "Поддержать"
-msgstr "Support"
-
-msgid "Поддержка авторов и переводчиков"
-msgstr "Support for authors and translators"
-
-msgid "Поддержка от читателей"
-msgstr "Support from readers"
-
-msgid "Поддержка переводчиков"
-msgstr "Supporting translators"
-
-msgid "Подключить PLUS"
-msgstr "Get PLUS"
-
-msgid "Подписка для тех, кто читает много и хочет, чтобы любимые переводы выходили дальше. Ранний доступ к главам и прямая поддержка авторов."
-msgstr "A membership for people who read a lot and want their favourite translations to keep coming. Early access to chapters and direct support for authors."
-
-msgid "Подписка — прямая помощь тем, кто ведёт ваши тайтлы и держит расписание выхода."
-msgstr "The membership is direct help for the people running your titles and keeping the schedule."
-
-msgid "Полноценный редактор с картинками и вставкой из Word. Черновик сохраняется в браузере, пока вы печатаете."
-msgstr "A real editor with images and pasting from Word. The draft is saved in your browser as you type."
-
-msgid "Полноэкранная читалка и её настройки"
-msgstr "Full-screen reader and its settings"
-
-msgid "Последние главы автора"
-msgstr "Latest chapters by this author"
-
-msgid "Правила площадки"
-msgstr "Site rules"
-
-msgid "Приносите текст — остальное площадка берёт на себя: витрина, читалка, статистика и читатели, которые возвращаются за следующей главой."
-msgstr "Bring the text — the platform handles the rest: the showcase, the reader, the statistics and readers who come back for the next chapter."
-
-msgid "Просмотры тайтла и каждой главы, оценки читателей, позиция в рейтинге — без чёрного ящика."
-msgstr "Views for the title and every chapter, reader ratings, ranking position — no black box."
-
-msgid "Профиль автора"
-msgstr "Author profile"
-
-msgid "Профиль на площадке"
-msgstr "Platform profile"
-
-msgid "Публичная страница со статистикой, ссылками и лентой ваших глав. Читателю есть что открыть после первой главы."
-msgstr "A public page with statistics, links and a feed of your chapters. Readers have somewhere to go after chapter one."
-
-msgid "Разделы справки"
-msgstr "Help sections"
-
-msgid "Ранний доступ"
-msgstr "Early access"
-
-msgid "Ранний доступ к главам"
-msgstr "Early access to chapters"
-
-msgid "Ранний доступ к главам с отметкой PLUS"
-msgstr "Early access to chapters marked PLUS"
-
-msgid "Регистрация занимает минуту. Роль «Автор» открывает публикацию сразу, «Участник» отправляет первые главы на проверку редактору."
-msgstr "Signing up takes a minute. The Author role publishes right away; Contributor sends the first chapters to an editor for review."
-
-msgid "Сайт"
-msgstr "Website"
-
-msgid "Своя витрина"
-msgstr "Your own showcase"
-
-msgid "Связаться"
-msgstr "Get in touch"
-
-msgid "Создайте проект"
-msgstr "Create a project"
-
-msgid "Создать проект"
-msgstr "Create project"
-
-msgid "Справка"
-msgstr "Help"
-
-msgid "Ссылка автора"
-msgstr "Author link"
-
-msgid "Ссылка на поддержку"
-msgstr "Support link"
-
-msgid "Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны."
-msgstr "A title page with cover, contents, rating and similar works — no layout work on your side."
-
-msgid "У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге."
-msgstr "You already have the text — the platform just shows it. Create a project and see how it looks in the catalog."
-
-msgid "У меня есть аккаунт"
-msgstr "I already have an account"
-
-msgid "Частые вопросы"
-msgstr "Frequently asked questions"
-
-msgid "Честная статистика"
-msgstr "Honest statistics"
-
-msgid "Четыре шага до первой главы"
-msgstr "Four steps to your first chapter"
-
-msgid "Чистое чтение"
-msgstr "Clean reading"
-
-msgid "Читатель"
-msgstr "Reader"
-
-msgid "Читать каталог"
-msgstr "Browse the catalog"
-
-msgid "Читают чаще всего"
-msgstr "Most read"
-
-msgid "Что входит"
-msgstr "What is included"
-
-msgid "Что даёт членство"
-msgstr "What membership gives you"
-
-msgid "Я перевожу, а не пишу своё. Подойдёт?"
-msgstr "I translate rather than write my own. Does it fit?"
-
-msgid "авторам и переводчикам"
-msgstr "for authors and translators"
-
-msgid "визитка"
-msgstr "highlights"
-
-msgid "как это работает"
-msgstr "how it works"
-
-msgid "навсегда"
-msgstr "forever"
-
-msgid "опубликованных глав"
-msgstr "published chapters"
-
-msgid "по подписке"
-msgstr "by subscription"
-
-msgid "рекомендуем"
-msgstr "recommended"
-
-msgid "справка"
-msgstr "help"
-
-msgid "сравнение"
-msgstr "comparison"
-
-msgid "тайтлов на площадке"
-msgstr "titles on the platform"
-
-msgid "уже в раннем доступе"
-msgstr "already in early access"
-
-msgid "условия задаёт площадка"
-msgstr "terms set by the site"
+msgid "читателей"
+msgstr "readers"
 
 msgid "членство"
 msgstr "membership"
@@ -1673,6 +1826,6 @@ msgstr "membership"
 msgid "что вы получаете"
 msgstr "what you get"
 
-msgid "Профиль"
-msgstr "Profile"
+msgid "№"
+msgstr "#"
 

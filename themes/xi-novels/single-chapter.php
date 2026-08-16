@@ -97,7 +97,7 @@ while ( have_posts() ) :
 					<?php xin_the_icon( 'lock' ); ?>
 					<h2><?php esc_html_e( 'Глава для подписчиков PLUS', 'xi-novels' ); ?></h2>
 					<p class="xin-muted"><?php esc_html_e( 'Войдите в аккаунт, чтобы продолжить чтение и поддержать переводчика.', 'xi-novels' ); ?></p>
-					<a class="btn btn-gold xin-mt-2" href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>">
+					<a class="btn btn-gold xin-mt-2" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>">
 						<?php xin_the_icon( 'crown' ); ?><?php esc_html_e( 'Войти', 'xi-novels' ); ?>
 					</a>
 				</div>

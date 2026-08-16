@@ -44,7 +44,7 @@ $xin_plans = array(
 			__( 'Поддержка авторов и переводчиков', 'xi-novels' ),
 		),
 		'cta'      => __( 'Подключить PLUS', 'xi-novels' ),
-		'href'     => is_user_logged_in() ? '#xin-plus-how' : wp_registration_url(),
+		'href'     => is_user_logged_in() ? '#xin-plus-how' : xin_register_url(),
 		'featured' => true,
 	),
 );

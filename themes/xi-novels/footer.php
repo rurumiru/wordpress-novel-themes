@@ -77,7 +77,7 @@ $xin_socials = xin_social_links();
 							<?php if ( get_option( 'page_for_posts' ) ) : ?>
 								<li><a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Блог', 'xi-novels' ); ?></a></li>
 							<?php endif; ?>
-							<li><a href="<?php echo esc_url( wp_login_url() ); ?>"><?php esc_html_e( 'Вход для авторов', 'xi-novels' ); ?></a></li>
+							<li><a href="<?php echo esc_url( xin_login_url() ); ?>"><?php esc_html_e( 'Вход для авторов', 'xi-novels' ); ?></a></li>
 						</ul>
 						<?php
 					}

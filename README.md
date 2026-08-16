@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.0.7-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.0.8-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -27,7 +27,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.0.7**
+> ### 🚧 Status: **beta 0.0.8**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -66,6 +66,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🕒 **Updates feed** | Every fresh chapter on the site, grouped into a Today / Yesterday / date timeline |
 | 🏆 **Rankings** | Podium for the top three plus a list to tenth place, three competing orders in one block |
 | 🌙 **Dark & light** | Dark by default, toggle in the header, no white flash on load |
+| 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
 | 🌍 **RU / EN interface** | Language switch in the header, remembered in a cookie |
 
 ### For authors
@@ -87,7 +88,8 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🎛️ **Customizer** | Accent and premium colors, default color scheme, twelve home blocks you can switch off one by one, footer text, social links |
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 🚫 **No comments anywhere** | Shipped deliberately without discussions — front end, templates and admin section all clean |
-| 🌐 **Translation ready** | 557 strings, Russian source + compiled English `.mo`, plus a build script |
+| 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
+| 🌐 **Translation ready** | 608 strings, Russian source + compiled English `.mo`, plus a build script |
 
 ![Reader](screenshots/04-reader.jpg)
 
@@ -184,7 +186,7 @@ screenshots/           what it looks like
 
 ## Languages
 
-The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 557 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
+The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 608 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
 
 Adding a third language is one file:
 

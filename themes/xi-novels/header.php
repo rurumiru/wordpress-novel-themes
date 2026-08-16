@@ -77,7 +77,7 @@
 					</ul>
 				</div>
 			<?php else : ?>
-				<a class="btn btn-primary btn-sm d-none d-sm-inline-flex" href="<?php echo esc_url( wp_login_url( home_url( '/' ) ) ); ?>">
+				<a class="btn btn-primary btn-sm d-none d-sm-inline-flex" href="<?php echo esc_url( xin_login_url( xin_current_url() ) ); ?>">
 					<?php xin_the_icon( 'user' ); ?><?php esc_html_e( 'Войти', 'xi-novels' ); ?>
 				</a>
 			<?php endif; ?>
@@ -153,7 +153,7 @@
 			<?php if ( is_user_logged_in() ) : ?>
 				<li><a href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Выйти', 'xi-novels' ); ?></a></li>
 			<?php else : ?>
-				<li><a href="<?php echo esc_url( wp_login_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a></li>
+				<li><a href="<?php echo esc_url( xin_login_url( xin_current_url() ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a></li>
 			<?php endif; ?>
 		</ul>
 

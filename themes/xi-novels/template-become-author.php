@@ -51,12 +51,12 @@ $xin_faq = array(
 						<?php esc_html_e( 'Открыть кабинет', 'xi-novels' ); ?><?php xin_the_icon( 'chevron-right' ); ?>
 					</a>
 				<?php else : ?>
-					<?php if ( get_option( 'users_can_register' ) ) : ?>
-						<a class="btn btn-primary btn-lg" href="<?php echo esc_url( wp_registration_url() ); ?>">
+					<?php if ( xin_registration_open() ) : ?>
+						<a class="btn btn-primary btn-lg" href="<?php echo esc_url( xin_register_url( xin_dashboard_url() ) ); ?>">
 							<?php xin_the_icon( 'pen' ); ?><?php esc_html_e( 'Начать публиковать', 'xi-novels' ); ?>
 						</a>
 					<?php endif; ?>
-					<a class="btn btn-outline btn-lg" href="<?php echo esc_url( wp_login_url( xin_dashboard_url() ) ); ?>">
+					<a class="btn btn-outline btn-lg" href="<?php echo esc_url( xin_login_url( xin_dashboard_url() ) ); ?>">
 						<?php esc_html_e( 'У меня есть аккаунт', 'xi-novels' ); ?><?php xin_the_icon( 'chevron-right' ); ?>
 					</a>
 				<?php endif; ?>
@@ -146,7 +146,7 @@ $xin_faq = array(
 			<span class="xin-cta__icon"><?php xin_the_icon( 'book-open' ); ?></span>
 			<h2><?php esc_html_e( 'Первая глава начинается с пустой страницы', 'xi-novels' ); ?></h2>
 			<p><?php esc_html_e( 'У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге.', 'xi-novels' ); ?></p>
-			<a class="btn btn-primary btn-lg" href="<?php echo esc_url( $xin_logged ? xin_dashboard_url( array( 'view' => 'new-novel' ) ) : wp_registration_url() ); ?>">
+			<a class="btn btn-primary btn-lg" href="<?php echo esc_url( $xin_logged ? xin_dashboard_url( array( 'view' => 'new-novel' ) ) : xin_register_url( xin_dashboard_url() ) ); ?>">
 				<?php echo esc_html( $xin_logged ? __( 'Создать проект', 'xi-novels' ) : __( 'Начать публиковать', 'xi-novels' ) ); ?>
 				<?php xin_the_icon( 'chevron-right' ); ?>
 			</a>

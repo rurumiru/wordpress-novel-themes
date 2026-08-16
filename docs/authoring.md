@@ -12,6 +12,27 @@ Everything an author or translator needs, without touching `/wp-admin`.
 
 Give a new translator the *Author* role under **Users → Add new**.
 
+## Accounts
+
+Readers sign in on the site itself: `/account/`, a page the theme creates on activation and rebuilds if it goes missing. One page holds three states — sign in, sign up and password recovery — and `/wp-login.php` is no longer linked anywhere on the front end, though it keeps working for administrators.
+
+Two settings live in **Appearance → Customize → XI Novels: accounts**:
+
+| Setting | Meaning |
+|---|---|
+| **Open registration** | The sign-up form accepts new readers. It is independent of *Settings → General → Membership*, which only governs the `/wp-login.php` screen. Uncheck it and the tab disappears, the form refuses submissions and the page says registration is closed |
+| **Role for new accounts** | *Author* publishes straight away, *Contributor* sends chapters to review, *Reader* only reads. Default: author |
+
+What the page does on its own:
+
+* signs the new account in immediately after registration and sends the visitor to the studio (or to the library, for a reader role);
+* remembers where the visitor came from, so a locked PLUS chapter returns them to that chapter after signing in;
+* slows down after twelve failed attempts from one address, for fifteen minutes;
+* carries a hidden field that ordinary visitors never see and bots fill in — those submissions are dropped;
+* answers with a plain sentence for every case: wrong pair, name taken, email already registered, passwords not matching, password shorter than eight characters, expired form.
+
+Password recovery sends the standard WordPress email; the link inside it opens the core reset screen.
+
 ## The studio
 
 Open `/dashboard/` (header → *Studio*, or the profile menu). Four screens:

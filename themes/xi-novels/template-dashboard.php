@@ -19,17 +19,29 @@ $xin_edit_id  = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
 
 <div class="xin-wrap">
 
-	<?php if ( ! xin_can_author() ) : ?>
+	<?php if ( ! is_user_logged_in() ) : ?>
 
 		<div class="xin-empty" style="padding-block:80px">
 			<?php xin_the_icon( 'pen' ); ?>
 			<h1><?php esc_html_e( 'Кабинет автора', 'xi-novels' ); ?></h1>
 			<p><?php esc_html_e( 'Войдите под своей учётной записью, чтобы вести проекты и публиковать главы.', 'xi-novels' ); ?></p>
 			<div class="xin-flex xin-flex-wrap xin-mt-2" style="justify-content:center">
-				<a class="btn btn-primary" href="<?php echo esc_url( wp_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a>
-				<?php if ( get_option( 'users_can_register' ) ) : ?>
-					<a class="btn btn-outline" href="<?php echo esc_url( wp_registration_url() ); ?>"><?php esc_html_e( 'Создать аккаунт', 'xi-novels' ); ?></a>
+				<a class="btn btn-primary" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a>
+				<?php if ( xin_registration_open() ) : ?>
+					<a class="btn btn-outline" href="<?php echo esc_url( xin_register_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Создать аккаунт', 'xi-novels' ); ?></a>
 				<?php endif; ?>
+			</div>
+		</div>
+
+	<?php elseif ( ! xin_can_author() ) : ?>
+
+		<div class="xin-empty" style="padding-block:80px">
+			<?php xin_the_icon( 'lock' ); ?>
+			<h1><?php esc_html_e( 'Кабинет автора', 'xi-novels' ); ?></h1>
+			<p><?php esc_html_e( 'Учётная запись есть, но прав на публикацию у неё пока нет. Их выдаёт администрация площадки — напишите, и кабинет откроется.', 'xi-novels' ); ?></p>
+			<div class="xin-flex xin-flex-wrap xin-mt-2" style="justify-content:center">
+				<a class="btn btn-primary" href="<?php echo esc_url( xin_page_url( 'become-author' ) ); ?>"><?php esc_html_e( 'Как стать автором', 'xi-novels' ); ?></a>
+				<a class="btn btn-outline" href="<?php echo esc_url( xin_page_url( 'contacts' ) ); ?>"><?php esc_html_e( 'Связаться', 'xi-novels' ); ?></a>
 			</div>
 		</div>
 

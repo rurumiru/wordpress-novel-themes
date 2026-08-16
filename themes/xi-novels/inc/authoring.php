@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+const XIN_PAGES_VERSION = '2';
+
 function xin_dashboard_url( $args = array() ) {
 	$page = get_page_by_path( 'dashboard' );
 	$url  = $page ? get_permalink( $page ) : home_url( '/dashboard/' );
@@ -36,7 +38,7 @@ function xin_user_novels( $user_id = 0, $limit = -1 ) {
 
 function xin_studio_guard( $nonce_action, $back = array() ) {
 	if ( ! is_user_logged_in() ) {
-		wp_safe_redirect( wp_login_url( xin_dashboard_url( $back ) ) );
+		wp_safe_redirect( xin_login_url( xin_dashboard_url( $back ) ) );
 		exit;
 	}
 
@@ -274,6 +276,7 @@ function xin_dashboard_notice() {
 		'too-big'       => array( 'err', __( 'Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize.', 'xi-novels' ) ),
 		'denied'        => array( 'err', __( 'Недостаточно прав для этого действия.', 'xi-novels' ) ),
 		'no-project'    => array( 'err', __( 'Проект не найден.', 'xi-novels' ) ),
+		'welcome'       => array( 'ok', __( 'Аккаунт создан. Первый проект начинается с кнопки «Новый проект».', 'xi-novels' ) ),
 	);
 	if ( ! isset( $map[ $msg ] ) ) {
 		return;
@@ -289,6 +292,7 @@ function xin_dashboard_notice() {
 
 function xin_create_pages() {
 	$pages = array(
+		'account'       => array( __( 'Вход и регистрация', 'xi-novels' ), 'template-auth.php' ),
 		'dashboard'     => array( __( 'Кабинет автора', 'xi-novels' ), 'template-dashboard.php' ),
 		'library'       => array( __( 'Моя библиотека', 'xi-novels' ), 'template-library.php' ),
 		'become-author' => array( __( 'Стать автором', 'xi-novels' ), 'template-become-author.php' ),
@@ -315,6 +319,15 @@ function xin_create_pages() {
 	}
 }
 add_action( 'after_switch_theme', 'xin_create_pages' );
+
+function xin_sync_pages() {
+	if ( XIN_PAGES_VERSION === get_option( 'xin_pages_version' ) ) {
+		return;
+	}
+	xin_create_pages();
+	update_option( 'xin_pages_version', XIN_PAGES_VERSION, false );
+}
+add_action( 'init', 'xin_sync_pages', 20 );
 
 function xin_page_url( $slug ) {
 	$page = get_page_by_path( $slug );

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.0.7-beta' );
+define( 'XIN_VERSION', '0.0.8-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -15,6 +15,7 @@ require_once XIN_DIR . '/inc/template-tags.php';
 require_once XIN_DIR . '/inc/customizer.php';
 require_once XIN_DIR . '/inc/widgets.php';
 require_once XIN_DIR . '/inc/authoring.php';
+require_once XIN_DIR . '/inc/auth.php';
 require_once XIN_DIR . '/inc/banners.php';
 require_once XIN_DIR . '/inc/user-fields.php';
 require_once XIN_DIR . '/inc/i18n.php';

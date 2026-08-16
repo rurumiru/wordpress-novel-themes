@@ -12,6 +12,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.8-beta] — 2026-08-16
+
+### Fixed
+
+- **Every message on the login screen was replaced with “wrong username / password”.** The theme rewrote the `login_errors` filter unconditionally, so a visitor who pressed *Sign up* while registration was closed, or asked for a password reset, was told their credentials were wrong. The filter now touches only the three credential errors and passes everything else through untouched, so the real reason is finally visible.
+- **The registration links led nowhere.** The PLUS page and the “become an author” page pointed at `wp_registration_url()` regardless of whether the site accepted registrations, which sent visitors to a screen that refused them. Every link now goes through the theme, and the button is hidden when registration is closed.
+- **A signed-in reader without publishing rights saw “sign in to manage projects”.** The studio checked capability, not session, so the account that had just been created was told to sign in again. It now explains what the account can do and where to ask for the rest.
+
+### Added
+
+- **Sign-in, sign-up and password recovery on the site itself** — `/account/`, created on activation and restored if the page goes missing. One centered page, three states, in the theme’s own design: ambient gradient and grid, a card that rises on load, underline tabs, quiet inputs with a focus ring, square-cornered buttons. `/wp-login.php` is no longer linked anywhere on the front end but keeps working for administrators, and its title no longer ends with “— WordPress”.
+- **Accounts section in the customizer**: open registration on or off, and the role new accounts get — author (publishes immediately), contributor (sends chapters to review) or reader. The theme’s form is independent of *Settings → General → Membership*, which only governs the core login screen.
+- Registration signs the new account in at once and lands it in the studio; the page remembers where the visitor came from, so a locked PLUS chapter returns them to that chapter.
+- Twelve failed attempts from one address pause the forms for fifteen minutes, and a hidden field that only bots fill in drops their submissions.
+- English translation grew to 608 strings.
+
 ## [0.0.7-beta] — 2026-08-15
 
 ### Added

@@ -135,6 +135,11 @@ function xin_login_styles() {
 }
 add_action( 'login_head', 'xin_login_styles' );
 
+function xin_login_title( $login_title ) {
+	return str_replace( ' &#8212; WordPress', '', $login_title );
+}
+add_filter( 'login_title', 'xin_login_title' );
+
 function xin_login_logo_url() {
 	return home_url( '/' );
 }
@@ -154,7 +159,27 @@ function xin_login_back_text( $link ) {
 }
 add_filter( 'login_site_html_link', 'xin_login_back_text' );
 
-function xin_login_errors() {
-	return __( 'Неверная пара логин / пароль.', 'xi-novels' );
+function xin_login_errors( $errors ) {
+	if ( ! is_wp_error( $errors ) ) {
+		return $errors;
+	}
+
+	$vague = array( 'invalid_username', 'invalid_email', 'incorrect_password', 'incorrect_username' );
+	if ( ! array_intersect( $vague, $errors->get_error_codes() ) ) {
+		return $errors;
+	}
+
+	$clean = new WP_Error();
+	foreach ( $errors->get_error_codes() as $code ) {
+		if ( in_array( $code, $vague, true ) ) {
+			continue;
+		}
+		foreach ( $errors->get_error_messages( $code ) as $message ) {
+			$clean->add( $code, $message );
+		}
+	}
+	$clean->add( 'xin_credentials', __( 'Не подходит: проверьте имя пользователя и пароль.', 'xi-novels' ) );
+
+	return $clean;
 }
-add_filter( 'login_errors', 'xin_login_errors' );
+add_filter( 'wp_login_errors', 'xin_login_errors' );
