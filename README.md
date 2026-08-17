@@ -21,6 +21,8 @@
 
 [Русская версия →](README.ru.md) · [Install](#install-in-two-minutes) · [Docs](docs/) · [Screenshots](#screenshots) · [FAQ](#faq)
 
+**Telegram:** [📢 Channel](https://t.me/licht_re) · [💬 Community Chat](https://t.me/xicommunity)
+
 </div>
 
 ![Home page](screenshots/01-home.jpg)
