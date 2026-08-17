@@ -20,6 +20,8 @@
 
 [English README →](README.md) · [Установка](#установка-за-две-минуты) · [Документация](docs/) · [Скриншоты](#скриншоты) · [Вопросы](#частые-вопросы)
 
+**Telegram:** [📢 Канал](https://t.me/licht_re) · [💬 Чат сообщества](https://t.me/xicommunity)
+
 </div>
 
 ![Главная](screenshots/01-home.jpg)
