@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.0.9-beta' );
+define( 'XIN_VERSION', '0.0.10-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -63,16 +63,21 @@ if ( ! isset( $GLOBALS['content_width'] ) ) {
 }
 add_action( 'after_setup_theme', 'xin_setup' );
 
-function xin_assets() {
-	$ver = XIN_VERSION;
+function xin_asset_ver( $file ) {
+	$path = XIN_DIR . $file;
+	$time = file_exists( $path ) ? filemtime( $path ) : 0;
 
+	return $time ? XIN_VERSION . '.' . $time : XIN_VERSION;
+}
+
+function xin_assets() {
 	wp_enqueue_style( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.min.css', array(), '5.3.3' );
-	wp_enqueue_style( 'xi-novels', get_stylesheet_uri(), array( 'bootstrap' ), $ver );
-	wp_enqueue_style( 'xi-novels-skin', XIN_URI . '/assets/css/skin.css', array( 'xi-novels' ), $ver );
-	wp_enqueue_style( 'xi-novels-pages', XIN_URI . '/assets/css/pages.css', array( 'xi-novels-skin' ), $ver );
-	wp_enqueue_style( 'xi-novels-parts', XIN_URI . '/assets/css/parts.css', array( 'xi-novels-pages' ), $ver );
-	wp_enqueue_style( 'xi-novels-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xi-novels-parts' ), $ver );
-	wp_enqueue_style( 'xi-novels-landing', XIN_URI . '/assets/css/landing.css', array( 'xi-novels-widgets' ), $ver );
+	wp_enqueue_style( 'xi-novels', get_stylesheet_uri(), array( 'bootstrap' ), xin_asset_ver( '/style.css' ) );
+	wp_enqueue_style( 'xi-novels-skin', XIN_URI . '/assets/css/skin.css', array( 'xi-novels' ), xin_asset_ver( '/assets/css/skin.css' ) );
+	wp_enqueue_style( 'xi-novels-pages', XIN_URI . '/assets/css/pages.css', array( 'xi-novels-skin' ), xin_asset_ver( '/assets/css/pages.css' ) );
+	wp_enqueue_style( 'xi-novels-parts', XIN_URI . '/assets/css/parts.css', array( 'xi-novels-pages' ), xin_asset_ver( '/assets/css/parts.css' ) );
+	wp_enqueue_style( 'xi-novels-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xi-novels-parts' ), xin_asset_ver( '/assets/css/widgets.css' ) );
+	wp_enqueue_style( 'xi-novels-landing', XIN_URI . '/assets/css/landing.css', array( 'xi-novels-widgets' ), xin_asset_ver( '/assets/css/landing.css' ) );
 
 	wp_enqueue_script( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), '5.3.3', true );
 
@@ -81,7 +86,7 @@ $custom = xin_customizer_css();
 		wp_add_inline_style( 'xi-novels-pages', $custom );
 	}
 
-	wp_enqueue_script( 'xi-novels', XIN_URI . '/assets/js/theme.js', array(), $ver, true );
+	wp_enqueue_script( 'xi-novels', XIN_URI . '/assets/js/theme.js', array(), xin_asset_ver( '/assets/js/theme.js' ), true );
 	wp_localize_script( 'xi-novels', 'XIN', array(
 		'restUrl'      => esc_url_raw( rest_url( 'xin/v1/' ) ),
 		'nonce'        => wp_create_nonce( 'wp_rest' ),
@@ -99,7 +104,7 @@ $custom = xin_customizer_css();
 	) );
 
 	if ( is_singular( 'chapter' ) ) {
-		wp_enqueue_script( 'xi-novels-reader', XIN_URI . '/assets/js/reader.js', array( 'xi-novels' ), $ver, true );
+		wp_enqueue_script( 'xi-novels-reader', XIN_URI . '/assets/js/reader.js', array( 'xi-novels' ), xin_asset_ver( '/assets/js/reader.js' ), true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'xin_assets' );

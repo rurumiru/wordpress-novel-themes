@@ -12,6 +12,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.10-beta] — 2026-08-18
+
+### Fixed
+
+- **After an update the site kept showing the old design.** Stylesheet and script URLs were served without a version, because the theme stripped `ver=` from every asset to hide the WordPress fingerprint. A browser that had the old CSS held on to it, and a page cache served the old markup on top of that. Theme assets now carry a fingerprint built from the version and the file's modification time, so one update invalidates them; `ver=` is still stripped from everything that is not the theme, so nothing leaks.
+- **The theme now clears caches for you.** The first request after an update fires the purge hooks of LiteSpeed Cache, WP Rocket, W3 Total Cache, WP Super Cache and Autoptimize, and flushes the object cache. Nothing happens on later requests: the version stamp is stored.
+
+### Added
+
+- Both install guides gained a short section on what to do when a page still looks old: hard refresh, the panel's purge button, and where the plugin caches sit.
+
 ## [0.0.9-beta] — 2026-08-16
 
 ### Changed

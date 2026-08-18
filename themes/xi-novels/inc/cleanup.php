@@ -29,10 +29,15 @@ function xin_clean_headers( $headers ) {
 add_filter( 'wp_headers', 'xin_clean_headers' );
 
 function xin_strip_version( $src ) {
-	if ( strpos( $src, 'ver=' ) ) {
-		$src = remove_query_arg( 'ver', $src );
+	if ( ! strpos( $src, 'ver=' ) ) {
+		return $src;
 	}
-	return $src;
+
+	if ( false !== strpos( $src, XIN_URI . '/' ) ) {
+		return $src;
+	}
+
+	return remove_query_arg( 'ver', $src );
 }
 add_filter( 'style_loader_src', 'xin_strip_version', 20 );
 add_filter( 'script_loader_src', 'xin_strip_version', 20 );
@@ -183,3 +188,20 @@ function xin_login_errors( $errors ) {
 	return $clean;
 }
 add_filter( 'wp_login_errors', 'xin_login_errors' );
+
+function xin_flush_caches() {
+	if ( XIN_VERSION === get_option( 'xin_asset_stamp' ) ) {
+		return;
+	}
+
+	update_option( 'xin_asset_stamp', XIN_VERSION, false );
+
+	wp_cache_flush();
+	do_action( 'litespeed_purge_all' );
+	do_action( 'rocket_clean_domain' );
+	do_action( 'w3tc_flush_all' );
+	do_action( 'wpsc_delete_cache' );
+	do_action( 'autoptimize_action_cachepurged' );
+}
+add_action( 'init', 'xin_flush_caches', 30 );
+add_action( 'after_switch_theme', 'xin_flush_caches' );

@@ -104,3 +104,15 @@ Open `http://localhost:8080`, finish the five-minute install, activate the theme
 | Covers look stretched | Use 2:3 images, then regenerate thumbnails |
 | The visual editor does not appear in the studio | Rich editing is off in the user profile, or the request came from a browser WordPress does not recognise |
 | Home page shows the empty state | The catalog has no published titles yet |
+
+## The site still looks old after an update
+
+The theme updated but the page did not change — that is almost always a cache, not the installation.
+
+1. **Check that the new version is really on the server.** Open `https://your-site/wp-content/themes/xi-novels/style.css`; the version sits in the file header.
+2. **Reload without the cache**: `Ctrl` + `F5` (`Cmd` + `Option` + `R` in Safari).
+3. **Purge the site cache.** LiteSpeed Cache: *LiteSpeed Cache → Dashboard → Purge All*. WP Rocket: *Settings → Clear cache*. W3 Total Cache: *Performance → Purge All Caches*. With Cloudflare in front, also *Caching → Purge Everything*.
+4. **The host has its own cache.** Control panels built on LiteSpeed keep a server-side copy that outlives the browser one; purge it from the panel.
+
+Since 0.0.10 the theme purges the common cache plugins itself on the first request after an update, and its stylesheet URLs carry a fingerprint of the file, so browsers pick up new CSS on their own. If a page is still old after that, something in between is holding it — a CDN or a proxy at the host.
+
