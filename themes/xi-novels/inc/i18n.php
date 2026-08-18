@@ -30,7 +30,12 @@ function xin_current_lang() {
 		}
 	}
 
-	return 0 === strpos( get_option( 'WPLANG', 'ru_RU' ), 'en' ) ? 'en' : 'ru';
+	$default = get_theme_mod( 'xin_default_lang', '' );
+	if ( isset( $langs[ $default ] ) ) {
+		return $default;
+	}
+
+	return 0 === strpos( (string) get_option( 'WPLANG', 'ru_RU' ), 'en' ) ? 'en' : 'ru';
 }
 
 function xin_lang_cookie() {

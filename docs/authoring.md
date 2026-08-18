@@ -33,6 +33,22 @@ What the page does on its own:
 
 Password recovery sends the standard WordPress email; the link inside it opens the core reset screen.
 
+## Control panel
+
+Everything the site team needs day to day lives at `/manage/`, a page the theme creates on activation. Moderators (the *Moderator* role) see four tabs; administrators also get a fifth.
+
+| Tab | What it does |
+|---|---|
+| **Overview** | Users, PLUS members, titles, chapters, and how many records wait for review |
+| **Users** | Search by name, username or email; change the role; grant or remove PLUS access |
+| **Review queue** | Everything submitted by contributors: publish, send back to drafts, or trash |
+| **Titles** | Every title with its author, chapter count and status; publish or hide, jump to its chapters |
+| **Settings** | Open registration on or off, the role new accounts get, the main language, the default color scheme |
+
+**Roles** offered in the panel are Reader, Contributor, Author and Moderator. Administrators are never listed as a target and you cannot change your own role, so the panel cannot lock you out of your own site.
+
+**PLUS access** is a per-user grant: +30 days, +90 days, +1 year, no expiry, or removed. Adding days to an account that still has time extends it rather than resetting it. Chapters marked PLUS open for anyone holding it; moderators and administrators always see them. The state shows next to the user as `PLUS until 17 September 2026`.
+
 ## The studio
 
 Open `/dashboard/` (header → *Studio*, or the profile menu). Four screens:

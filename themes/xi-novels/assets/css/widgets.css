@@ -1,12 +1,10 @@
-.xin-brand__mark { display: inline-grid; place-items: center; width: var(--mark, 34px); height: var(--mark, 34px); flex: none; filter: drop-shadow(0 4px 12px hsl(var(--primary) / .25)); }
-.xin-brand__mark svg { display: block; }
-.xin-brand__text { font-weight: 800; letter-spacing: -.02em; }
+.xin-brand__text { font-weight: 800; letter-spacing: -.03em; font-size: 19px; color: hsl(var(--fg)); }
+.navbar-brand:hover .xin-brand__text { color: hsl(var(--primary)); transition: color .18s ease; }
 .xin-brand__text b { color: hsl(var(--primary)); font-weight: 800; }
-.navbar-brand:hover .xin-brand__mark { filter: drop-shadow(0 6px 16px hsl(var(--primary) / .38)); }
 .xin-footer__brand { margin-bottom: 12px; font-size: 18px; }
 
-.xin-banner__slide { min-height: var(--banner-h, 420px); }
-@media (max-width: 767px) { .xin-banner__slide { min-height: min(var(--banner-h, 420px), 320px); } }
+.xin-banner__slide { min-height: var(--banner-h, 360px); }
+@media (max-width: 767px) { .xin-banner__slide { min-height: min(var(--banner-h, 360px), 300px); } }
 .xin-banner__eyebrow { margin: 0 0 4px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: hsl(0 0% 100% / .78); }
 .xin-banner__actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .xin-banner__slide.is-center .xin-banner__body { text-align: center; align-content: center; }

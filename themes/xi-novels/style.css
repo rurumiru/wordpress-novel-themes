@@ -4,7 +4,7 @@ Theme URI: https://xi.community/
 Author: XI Community
 Author URI: https://xi.community/
 Description: Классическая тема-платформа для новелл и ранобэ: каталог тайтлов, главы с читалкой, рейтинги, коллекции и блог. Тёмная тема по умолчанию, кримсон-акцент и золото для премиума.
-Version: 0.0.8
+Version: 0.0.9
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -15,30 +15,30 @@ Tags: blog, custom-menu, custom-logo, featured-images, translation-ready, two-co
 */
 
 :root {
-	--bg: 220 20% 97%;
-	--fg: 222 14% 11%;
+	--bg: 220 20% 98.5%;
+	--fg: 220 15% 12%;
 	--card: 0 0% 100%;
 	--popover: 0 0% 100%;
-	--muted: 220 18% 95.5%;
-	--muted-fg: 220 9% 45%;
-	--accent: 220 20% 94.5%;
-	--border: 220 18% 91%;
-	--input: 220 18% 88%;
-	--primary: 348 83% 47%;
+	--muted: 220 14% 95.5%;
+	--muted-fg: 220 9% 44%;
+	--accent: 220 14% 92.5%;
+	--border: 220 13% 89%;
+	--input: 220 13% 85%;
+	--primary: 220 14% 21%;
 	--primary-fg: 0 0% 100%;
-	--gold: 38 92% 50%;
-	--gold-fg: 30 45% 14%;
-	--ring: 348 83% 47%;
+	--gold: 220 11% 38%;
+	--gold-fg: 0 0% 100%;
+	--ring: 220 14% 30%;
 
-	--radius: 0.875rem;
+	--radius: 0.75rem;
 	--radius-sm: 0.5rem;
-	--radius-lg: 1.25rem;
-	--wrap: 1280px;
-	--header-h: 64px;
+	--radius-lg: 1rem;
+	--wrap: 1160px;
+	--header-h: 60px;
 
-	--shadow-1: 0 1px 2px hsl(222 14% 11% / .06), 0 1px 3px hsl(222 14% 11% / .07);
-	--shadow-2: 0 4px 12px hsl(222 14% 11% / .08), 0 2px 4px hsl(222 14% 11% / .06);
-	--shadow-3: 0 12px 32px hsl(222 14% 11% / .12), 0 4px 8px hsl(222 14% 11% / .06);
+	--shadow-1: 0 1px 2px hsl(220 15% 12% / .05), 0 1px 3px hsl(220 15% 12% / .06);
+	--shadow-2: 0 4px 12px hsl(220 15% 12% / .07), 0 2px 4px hsl(220 15% 12% / .05);
+	--shadow-3: 0 12px 30px hsl(220 15% 12% / .10), 0 4px 8px hsl(220 15% 12% / .05);
 
 	--font: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 	--font-read: "Georgia", "Times New Roman", "Noto Serif", serif;
@@ -48,24 +48,24 @@ Tags: blog, custom-menu, custom-logo, featured-images, translation-ready, two-co
 }
 
 [data-theme="dark"] {
-	--bg: 228 13% 6%;
-	--fg: 225 15% 90%;
-	--card: 228 12% 10%;
-	--popover: 228 12% 13%;
-	--muted: 228 11% 15%;
-	--muted-fg: 226 11% 64%;
-	--accent: 228 11% 18%;
-	--border: 228 11% 22%;
-	--input: 228 12% 25%;
-	--primary: 338 66% 66%;
-	--primary-fg: 336 45% 12%;
-	--gold: 38 92% 56%;
-	--gold-fg: 30 45% 10%;
-	--ring: 338 76% 74%;
+	--bg: 220 14% 7%;
+	--fg: 220 14% 91%;
+	--card: 220 13% 11%;
+	--popover: 220 13% 14%;
+	--muted: 220 12% 16%;
+	--muted-fg: 220 10% 64%;
+	--accent: 220 12% 20%;
+	--border: 220 11% 24%;
+	--input: 220 11% 28%;
+	--primary: 220 16% 86%;
+	--primary-fg: 220 15% 11%;
+	--gold: 220 12% 68%;
+	--gold-fg: 220 15% 10%;
+	--ring: 220 14% 72%;
 
-	--shadow-1: 0 1px 2px hsl(0 0% 0% / .5);
-	--shadow-2: 0 6px 18px hsl(0 0% 0% / .55);
-	--shadow-3: 0 18px 44px hsl(0 0% 0% / .6);
+	--shadow-1: 0 1px 2px hsl(220 20% 2% / .5);
+	--shadow-2: 0 6px 18px hsl(220 20% 2% / .55);
+	--shadow-3: 0 18px 44px hsl(220 20% 2% / .6);
 
 	color-scheme: dark;
 }
@@ -99,8 +99,8 @@ body {
 body.xin-no-scroll { overflow: hidden; }
 
 h1, h2, h3, h4, h5, h6 { margin: 0 0 .5em; line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
-h1 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); }
-h2 { font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem); }
+h1 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.25rem); }
+h2 { font-size: clamp(1.25rem, 1.05rem + .8vw, 1.55rem); }
 h3 { font-size: 1.125rem; }
 p { margin: 0 0 1em; }
 a { color: inherit; text-decoration: none; transition: color .18s ease; }
@@ -337,22 +337,34 @@ th { font-weight: 600; background: hsl(var(--muted)); }
 @media (min-width: 768px) { .xin-bottomnav { display: none; } }
 @media (max-width: 767px) { body { padding-bottom: 62px; } }
 
-.xin-banner { position: relative; overflow: hidden; background: hsl(var(--muted)); }
+.xin-banner {
+	position: relative; overflow: hidden; background: hsl(var(--muted));
+	max-width: min(var(--wrap), calc(100% - 32px)); margin: 18px auto 0;
+	border: 1px solid hsl(var(--border)); border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-2);
+}
 .xin-banner__track { display: flex; transition: transform .55s cubic-bezier(.22,.9,.3,1); }
-.xin-banner__slide { position: relative; flex: 0 0 100%; width: 100%; min-width: 100%; max-width: 100%; min-height: 300px; }
-@media (min-width: 768px) { .xin-banner__slide { min-height: 420px; } }
+.xin-banner__slide { position: relative; flex: 0 0 100%; width: 100%; min-width: 100%; max-width: 100%; min-height: 260px; }
+@media (min-width: 768px) { .xin-banner__slide { min-height: 360px; } }
 .xin-banner__slide img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
 .xin-banner__slide::after {
 	content: ""; position: absolute; inset: 0; z-index: 1;
-	background: linear-gradient(to top, hsl(228 20% 3% / .92), hsl(228 20% 3% / .38) 45%, transparent 78%);
+	background: linear-gradient(to top, hsl(220 18% 4% / .94), hsl(220 18% 4% / .45) 48%, hsl(220 18% 4% / .12) 82%);
 }
 .xin-banner__body {
-	position: relative; z-index: 2; max-width: var(--wrap); margin-inline: auto;
-	padding: 32px 16px; display: grid; align-content: end; min-height: inherit; max-width: min(var(--wrap), 100%);
-	color: #fff;
+	position: relative; z-index: 2; display: grid; align-content: end; min-height: inherit;
+	padding: 26px 24px; color: #fff;
 }
-.xin-banner__body h2 { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.5rem); margin-bottom: .35rem; text-shadow: 0 2px 12px hsl(0 0% 0% / .5); }
+@media (min-width: 768px) { .xin-banner__body { padding: 32px 34px; } }
+.xin-banner__body h2 { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.5rem); margin-bottom: .35rem; color: #fff; --bs-heading-color: #fff; text-shadow: 0 2px 12px hsl(0 0% 0% / .5); }
 .xin-banner__body p { max-width: 620px; color: hsl(0 0% 100% / .85); margin-bottom: 1rem; }
+.xin-banner__body .xin-badge { background: hsl(0 0% 100% / .18); color: #fff; border-color: hsl(0 0% 100% / .28); }
+.xin-banner__actions .btn-primary {
+	--bs-btn-bg: #fff; --bs-btn-color: hsl(220 15% 12%);
+	--bs-btn-hover-bg: hsl(0 0% 100% / .88); --bs-btn-hover-color: hsl(220 15% 12%);
+	--bs-btn-active-bg: hsl(0 0% 100% / .82); --bs-btn-active-color: hsl(220 15% 12%);
+	box-shadow: 0 6px 18px hsl(220 20% 2% / .35);
+}
 .xin-banner__dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 7px; z-index: 3; }
 .xin-banner__dots button {
 	width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px;

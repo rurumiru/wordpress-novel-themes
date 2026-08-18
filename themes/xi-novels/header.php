@@ -18,7 +18,7 @@
 	<div class="container">
 
 		<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-			<?php xin_brand( 34 ); ?>
+			<?php xin_brand(); ?>
 		</a>
 
 		<nav class="collapse navbar-collapse d-none d-lg-flex" aria-label="<?php esc_attr_e( 'Основная навигация', 'xi-novels' ); ?>">
@@ -72,6 +72,9 @@
 						<li><a class="dropdown-item" href="<?php echo esc_url( xin_dashboard_url() ); ?>"><?php esc_html_e( 'Кабинет автора', 'xi-novels' ); ?></a></li>
 						<li><a class="dropdown-item" href="<?php echo esc_url( get_author_posts_url( get_current_user_id() ) ); ?>"><?php esc_html_e( 'Мой профиль', 'xi-novels' ); ?></a></li>
 						<li><a class="dropdown-item" href="<?php echo esc_url( xin_library_url() ); ?>"><?php esc_html_e( 'Моя библиотека', 'xi-novels' ); ?></a></li>
+						<?php if ( xin_can_moderate() ) : ?>
+							<li><a class="dropdown-item" href="<?php echo esc_url( xin_manage_url() ); ?>"><?php esc_html_e( 'Панель управления', 'xi-novels' ); ?></a></li>
+						<?php endif; ?>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item" href="<?php echo esc_url( wp_logout_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Выйти', 'xi-novels' ); ?></a></li>
 					</ul>

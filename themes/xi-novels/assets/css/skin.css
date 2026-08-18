@@ -28,12 +28,12 @@
 body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
 
 .btn {
-	--bs-btn-padding-y: .58rem;
-	--bs-btn-padding-x: 1.15rem;
+	--bs-btn-padding-y: .5rem;
+	--bs-btn-padding-x: .95rem;
 	--bs-btn-border-width: 1px;
-	--bs-btn-font-size: 14px;
+	--bs-btn-font-size: 13.5px;
 	--bs-btn-font-weight: 600;
-	--bs-btn-border-radius: 999px;
+	--bs-btn-border-radius: 9px;
 	--bs-btn-bg: hsl(var(--muted));
 	--bs-btn-color: hsl(var(--fg));
 	--bs-btn-border-color: transparent;
@@ -42,11 +42,11 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
 	--bs-btn-hover-border-color: transparent;
 	--bs-btn-active-bg: hsl(var(--accent));
 	--bs-btn-active-border-color: transparent;
-	--bs-btn-focus-shadow-rgb: 225, 23, 63;
+	--bs-btn-focus-shadow-rgb: 52, 57, 66;
 	display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
 	line-height: 1.2; transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
 }
-.btn:active { transform: translateY(1px) scale(.995); }
+.btn:active { transform: translateY(1px); }
 .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px hsl(var(--ring) / .35); }
 .btn:disabled, .btn.disabled { opacity: .5; box-shadow: none; pointer-events: none; }
 .btn-block { width: 100%; }
@@ -61,9 +61,9 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
 	--bs-btn-active-color: hsl(var(--primary-fg));
 	--bs-btn-disabled-bg: hsl(var(--primary) / .5);
 	--bs-btn-disabled-border-color: transparent;
-	box-shadow: 0 2px 10px hsl(var(--primary) / .18);
+	box-shadow: 0 1px 2px hsl(var(--primary) / .22);
 }
-.btn-primary:hover { box-shadow: 0 4px 16px hsl(var(--primary) / .26); }
+.btn-primary:hover { box-shadow: 0 4px 12px -4px hsl(var(--primary) / .5); }
 .btn-primary:active { box-shadow: none; }
 .btn-gold {
 	--bs-btn-bg: hsl(var(--gold));
@@ -85,15 +85,15 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
 	--bs-btn-hover-bg: hsl(var(--accent));
 	--bs-btn-hover-color: hsl(var(--fg));
 }
-.btn-lg { --bs-btn-padding-y: .8rem; --bs-btn-padding-x: 1.6rem; --bs-btn-font-size: 15.5px; }
-.btn-sm { --bs-btn-padding-y: .38rem; --bs-btn-padding-x: .85rem; --bs-btn-font-size: 12.5px; }
+.btn-lg { --bs-btn-padding-y: .62rem; --bs-btn-padding-x: 1.2rem; --bs-btn-font-size: 14.5px; --bs-btn-border-radius: 10px; }
+.btn-sm { --bs-btn-padding-y: .32rem; --bs-btn-padding-x: .7rem; --bs-btn-font-size: 12.5px; --bs-btn-border-radius: 8px; }
 .btn-icon {
 	--bs-btn-padding-y: 0; --bs-btn-padding-x: 0;
-	width: 38px; height: 38px; border-radius: 999px;
+	width: 36px; height: 36px; border-radius: 9px;
 	--bs-btn-bg: transparent; --bs-btn-color: hsl(var(--muted-fg));
 	--bs-btn-hover-bg: hsl(var(--accent)); --bs-btn-hover-color: hsl(var(--fg));
 }
-.btn-icon svg { width: 19px; height: 19px; }
+.btn-icon svg { width: 18px; height: 18px; }
 .btn-icon.is-active { --bs-btn-bg: hsl(var(--primary) / .14); --bs-btn-color: hsl(var(--primary)); }
 
 .navbar {

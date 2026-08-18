@@ -88,48 +88,48 @@ add_action( 'admin_init', 'xin_block_comments_screen' );
 
 function xin_login_styles() {
 	$primary = get_theme_mod( 'xin_primary', '' );
-	$accent  = $primary ? $primary : '#e1173f';
+	$accent  = $primary ? $primary : '#2e3238';
 	?>
 	<style>
 		body.login {
-			background: #0d0e11;
-			color: #e3e5ec;
+			background: #f5f6f8;
+			color: #1b1e24;
 			font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 		}
 		body.login::before {
-			content: ""; position: fixed; inset: -20% 40% 40% -20%;
-			background: radial-gradient(circle, <?php echo esc_html( $accent ); ?>55, transparent 65%);
+			content: ""; position: fixed; inset: -25% 45% 45% -25%;
+			background: radial-gradient(circle, <?php echo esc_html( $accent ); ?>22, transparent 65%);
 			filter: blur(90px); pointer-events: none;
 		}
 		.login h1 a {
 			background: none; width: auto; height: auto; text-indent: 0;
-			font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: #fff;
+			font-size: 24px; font-weight: 800; letter-spacing: -.03em; color: #1b1e24;
 			line-height: 1.2; margin-bottom: 8px;
 		}
 		.login h1 a::first-letter { color: <?php echo esc_html( $accent ); ?>; }
 		.login form {
-			background: #14161b; border: 1px solid #262a33; border-radius: 16px;
-			box-shadow: 0 18px 44px rgba(0, 0, 0, .55); padding: 26px 24px;
+			background: #fff; border: 1px solid #e0e3e8; border-radius: 14px;
+			box-shadow: 0 18px 40px rgba(27, 30, 36, .10); padding: 26px 24px;
 		}
-		.login form label { color: #aeb3c0; font-size: 13px; }
+		.login form label { color: #5a6270; font-size: 13px; }
 		.login input[type="text"], .login input[type="password"] {
-			background: #0d0e11; border: 1px solid #333846; color: #e3e5ec;
+			background: #fafbfc; border: 1px solid #d6dae1; color: #1b1e24;
 			border-radius: 10px; padding: 10px 12px; box-shadow: none;
 		}
 		.login input[type="text"]:focus, .login input[type="password"]:focus {
-			border-color: <?php echo esc_html( $accent ); ?>; box-shadow: 0 0 0 3px <?php echo esc_html( $accent ); ?>33;
+			border-color: <?php echo esc_html( $accent ); ?>; box-shadow: 0 0 0 3px <?php echo esc_html( $accent ); ?>26;
 		}
 		.wp-core-ui .button-primary {
-			background: <?php echo esc_html( $accent ); ?>; border: 0; border-radius: 999px;
-			padding: 6px 22px; height: auto; font-weight: 700; text-shadow: none; box-shadow: none;
+			background: <?php echo esc_html( $accent ); ?>; border: 0; border-radius: 9px;
+			padding: 6px 18px; height: auto; font-weight: 700; text-shadow: none; box-shadow: none;
 		}
-		.wp-core-ui .button-primary:hover { background: <?php echo esc_html( $accent ); ?>d9; }
-		.login .button.wp-hide-pw { color: #8b90a0; }
+		.wp-core-ui .button-primary:hover { background: <?php echo esc_html( $accent ); ?>e6; }
+		.login .button.wp-hide-pw { color: #838b98; }
 		.login #nav, .login #backtoblog { padding: 8px 24px; }
-		.login #nav a, .login #backtoblog a { color: #aeb3c0; }
+		.login #nav a, .login #backtoblog a { color: #5a6270; }
 		.login #nav a:hover, .login #backtoblog a:hover { color: <?php echo esc_html( $accent ); ?>; }
 		.login .language-switcher, .login .privacy-policy-page-link { display: none; }
-		.login .message, .login .notice { background: #14161b; border-left-color: <?php echo esc_html( $accent ); ?>; color: #e3e5ec; }
+		.login .message, .login .notice { background: #fff; border-left-color: <?php echo esc_html( $accent ); ?>; color: #1b1e24; }
 	</style>
 	<?php
 }

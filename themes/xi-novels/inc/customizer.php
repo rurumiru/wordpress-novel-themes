@@ -11,7 +11,7 @@ $wp_customize->add_section( 'xin_brand', array(
 	) );
 
 	$wp_customize->add_setting( 'xin_default_scheme', array(
-		'default'           => 'dark',
+		'default'           => 'light',
 		'sanitize_callback' => 'sanitize_key',
 	) );
 	$wp_customize->add_control( 'xin_default_scheme', array(
@@ -25,13 +25,28 @@ $wp_customize->add_section( 'xin_brand', array(
 		),
 	) );
 
+	$wp_customize->add_setting( 'xin_default_lang', array(
+		'default'           => 'ru',
+		'sanitize_callback' => 'sanitize_key',
+	) );
+	$wp_customize->add_control( 'xin_default_lang', array(
+		'label'       => __( 'Основной язык', 'xi-novels' ),
+		'description' => __( 'На каком языке сайт открывается у нового посетителя. Переключатель RU / EN в шапке остаётся.', 'xi-novels' ),
+		'section'     => 'xin_brand',
+		'type'        => 'select',
+		'choices'     => array(
+			'ru' => __( 'Русский', 'xi-novels' ),
+			'en' => __( 'Английский', 'xi-novels' ),
+		),
+	) );
+
 	$wp_customize->add_setting( 'xin_primary', array(
 		'default'           => '',
 		'sanitize_callback' => 'sanitize_hex_color',
 	) );
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'xin_primary', array(
 		'label'       => __( 'Акцентный цвет', 'xi-novels' ),
-		'description' => __( 'Пусто — фирменный кримсон.', 'xi-novels' ),
+		'description' => __( 'Пусто — фирменный тёмно-серый.', 'xi-novels' ),
 		'section'     => 'xin_brand',
 	) ) );
 
@@ -109,7 +124,7 @@ $wp_customize->add_section( 'xin_home', array(
 	}
 
 	$wp_customize->add_setting( 'xin_banner_height', array(
-		'default'           => 420,
+		'default'           => 360,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'xin_banner_height', array(
@@ -117,7 +132,7 @@ $wp_customize->add_section( 'xin_home', array(
 		'description' => __( 'Баннеры добавляются в админке: раздел «Баннеры».', 'xi-novels' ),
 		'section'     => 'xin_home',
 		'type'        => 'number',
-		'input_attrs' => array( 'min' => 220, 'max' => 900, 'step' => 10 ),
+		'input_attrs' => array( 'min' => 200, 'max' => 720, 'step' => 10 ),
 	) );
 
 	$wp_customize->add_setting( 'xin_hero_eyebrow', array(

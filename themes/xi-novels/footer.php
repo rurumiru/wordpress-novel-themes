@@ -8,7 +8,7 @@ $xin_socials = xin_social_links();
 
 			<div class="xin-footer__about">
 				<a class="navbar-brand xin-footer__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" style="margin-bottom:12px">
-					<?php xin_brand( 32 ); ?>
+					<?php xin_brand(); ?>
 				</a>
 				<p><?php echo wp_kses_post( get_theme_mod( 'xin_footer_about', __( 'Платформа для чтения и публикации новелл, ранобэ и переводов. Читайте бесплатно, поддерживайте авторов.', 'xi-novels' ) ) ); ?></p>
 

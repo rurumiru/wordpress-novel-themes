@@ -150,15 +150,17 @@ get_header();
 
 			<?php endif; ?>
 
-			<p class="xin-auth__switch">
-				<?php if ( 'login' === $xin_view && $xin_open ) : ?>
-					<?php esc_html_e( 'Ещё нет аккаунта?', 'xi-novels' ); ?>
-					<a href="<?php echo esc_url( xin_register_url( $xin_target ) ); ?>"><?php esc_html_e( 'Зарегистрироваться', 'xi-novels' ); ?></a>
-				<?php else : ?>
-					<?php esc_html_e( 'Аккаунт уже есть?', 'xi-novels' ); ?>
-					<a href="<?php echo esc_url( xin_login_url( $xin_target ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a>
-				<?php endif; ?>
-			</p>
+			<?php if ( 'login' !== $xin_view || $xin_open ) : ?>
+				<p class="xin-auth__switch">
+					<?php if ( 'login' === $xin_view ) : ?>
+						<?php esc_html_e( 'Ещё нет аккаунта?', 'xi-novels' ); ?>
+						<a href="<?php echo esc_url( xin_register_url( $xin_target ) ); ?>"><?php esc_html_e( 'Зарегистрироваться', 'xi-novels' ); ?></a>
+					<?php else : ?>
+						<?php esc_html_e( 'Аккаунт уже есть?', 'xi-novels' ); ?>
+						<a href="<?php echo esc_url( xin_login_url( $xin_target ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a>
+					<?php endif; ?>
+				</p>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( $xin_stats['novels'] > 0 ) : ?>

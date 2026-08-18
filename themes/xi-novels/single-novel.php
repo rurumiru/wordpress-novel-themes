@@ -18,28 +18,39 @@ while ( have_posts() ) :
 	$xin_adult    = (bool) get_post_meta( $xin_id, '_xin_adult', true );
 	?>
 
-	<article <?php post_class(); ?>>
+	<article <?php post_class( 'xin-nv' ); ?>>
 
-		<header class="xin-novel-hero">
+		<header class="xin-nv__hero">
 			<?php if ( $xin_bg || $xin_cover ) : ?>
-				<div class="xin-novel-hero__bg" aria-hidden="true">
+				<div class="xin-nv__backdrop" aria-hidden="true">
 					<img src="<?php echo esc_url( $xin_bg ? $xin_bg : $xin_cover ); ?>" alt="">
 				</div>
 			<?php endif; ?>
 
-			<div class="xin-novel-hero__inner">
-				<div>
-					<div class="xin-novel-hero__cover">
-						<?php if ( $xin_cover ) : ?>
-							<img src="<?php echo esc_url( $xin_cover ); ?>" alt="<?php the_title_attribute(); ?>">
-						<?php endif; ?>
-					</div>
+			<div class="xin-wrap xin-nv__heroin">
+				<div class="xin-nv__cover">
+					<?php if ( $xin_cover ) : ?>
+						<img src="<?php echo esc_url( $xin_cover ); ?>" alt="<?php the_title_attribute(); ?>">
+					<?php endif; ?>
 				</div>
 
-				<div>
+				<div class="xin-nv__intro">
 					<?php xin_breadcrumbs(); ?>
 
-					<div class="xin-novel-hero__tags">
+					<h1 class="xin-nv__title"><?php the_title(); ?></h1>
+
+					<?php
+					$xin_original = get_post_meta( $xin_id, '_xin_original_title', true );
+					if ( $xin_original ) :
+						?>
+						<p class="xin-nv__orig"><?php echo esc_html( $xin_original ); ?></p>
+					<?php endif; ?>
+
+					<p class="xin-nv__by">
+						<?php printf( esc_html__( 'Автор: %s', 'xi-novels' ), '<b>' . esc_html( xin_novel_author( $xin_id ) ) . '</b>' ); ?>
+					</p>
+
+					<div class="xin-nv__chips">
 						<?php if ( $xin_status ) : ?>
 							<span class="xin-badge xin-badge--primary"><?php echo esc_html( $xin_status->name ); ?></span>
 						<?php endif; ?>
@@ -53,42 +64,22 @@ while ( have_posts() ) :
 						<?php endif; ?>
 					</div>
 
-					<h1 class="xin-novel-hero__title"><?php the_title(); ?></h1>
-
-					<?php
-					$xin_original = get_post_meta( $xin_id, '_xin_original_title', true );
-					if ( $xin_original ) :
-						?>
-						<p class="xin-novel-hero__orig"><?php echo esc_html( $xin_original ); ?></p>
-					<?php endif; ?>
-
-					<p class="xin-muted">
-						<?php printf( esc_html__( 'Автор: %s', 'xi-novels' ), '<b>' . esc_html( xin_novel_author( $xin_id ) ) . '</b>' ); ?>
+					<p class="xin-nv__numbers">
+						<span><b><?php echo $xin_rating['count'] ? esc_html( number_format( $xin_rating['value'], 1, ',', '' ) ) : '—'; ?></b> <?php esc_html_e( 'оценка', 'xi-novels' ); ?></span>
+						<i></i>
+						<span><b><?php echo (int) count( $xin_chapters ); ?></b> <?php esc_html_e( 'глав', 'xi-novels' ); ?></span>
+						<i></i>
+						<span><b><?php echo esc_html( xin_num( xin_get_views( $xin_id ) ) ); ?></b> <?php esc_html_e( 'просмотров', 'xi-novels' ); ?></span>
 					</p>
 
-					<dl class="xin-statbar">
-						<div>
-							<b class="is-gold"><?php echo $xin_rating['count'] ? esc_html( number_format( $xin_rating['value'], 1, ',', '' ) ) : '—'; ?></b>
-							<span><?php esc_html_e( 'оценка', 'xi-novels' ); ?></span>
-						</div>
-						<div>
-							<b><?php echo (int) count( $xin_chapters ); ?></b>
-							<span><?php esc_html_e( 'глав', 'xi-novels' ); ?></span>
-						</div>
-						<div>
-							<b><?php echo esc_html( xin_num( xin_get_views( $xin_id ) ) ); ?></b>
-							<span><?php esc_html_e( 'просмотров', 'xi-novels' ); ?></span>
-						</div>
-					</dl>
-
-					<div class="xin-novel-hero__actions">
+					<div class="xin-nv__cta">
 						<?php if ( $xin_first ) : ?>
-							<a class="btn btn-primary btn-lg" href="<?php echo esc_url( get_permalink( $xin_first->ID ) ); ?>">
+							<a class="btn btn-primary" href="<?php echo esc_url( get_permalink( $xin_first->ID ) ); ?>">
 								<?php xin_the_icon( 'play' ); ?><?php esc_html_e( 'Читать с начала', 'xi-novels' ); ?>
 							</a>
 						<?php endif; ?>
 						<?php if ( $xin_last && $xin_last !== $xin_first ) : ?>
-							<a class="btn btn-outline btn-lg" href="<?php echo esc_url( get_permalink( $xin_last->ID ) ); ?>">
+							<a class="btn btn-outline" href="<?php echo esc_url( get_permalink( $xin_last->ID ) ); ?>">
 								<?php xin_the_icon( 'clock' ); ?><?php esc_html_e( 'Последняя глава', 'xi-novels' ); ?>
 							</a>
 						<?php endif; ?>
@@ -98,171 +89,171 @@ while ( have_posts() ) :
 			</div>
 		</header>
 
-		<div class="xin-wrap">
-			<div class="xin-novel-body">
+		<div class="xin-wrap xin-nv__grid">
 
-				<div>
-					<div class="xin-panel">
-						<div class="xin-panel__head">
-							<h2><?php xin_the_icon( 'book' ); ?><?php esc_html_e( 'Описание', 'xi-novels' ); ?></h2>
-						</div>
-						<div class="xin-synopsis xin-content is-collapsed" data-xin-synopsis>
-							<?php the_content(); ?>
-						</div>
-						<button
-							type="button"
-							class="xin-btn xin-btn--ghost xin-btn--sm xin-synopsis-toggle"
-							data-xin-synopsis-toggle
-							data-more="<?php esc_attr_e( 'Читать полностью', 'xi-novels' ); ?>"
-							data-less="<?php esc_attr_e( 'Свернуть', 'xi-novels' ); ?>"
-						><?php esc_html_e( 'Читать полностью', 'xi-novels' ); ?></button>
+			<div class="xin-nv__main">
 
-						<?php if ( ! is_wp_error( $xin_tags ) && $xin_tags ) : ?>
-							<div class="xin-tags" style="margin-bottom:0">
-								<?php foreach ( $xin_tags as $xin_tag ) : ?>
-									<a class="xin-badge" href="<?php echo esc_url( get_term_link( $xin_tag ) ); ?>"><?php xin_the_icon( 'tag' ); ?><?php echo esc_html( $xin_tag->name ); ?></a>
-								<?php endforeach; ?>
-							</div>
-						<?php endif; ?>
+				<section class="xin-nv__sec">
+					<div class="xin-nv__sechead">
+						<h2><?php esc_html_e( 'Описание', 'xi-novels' ); ?></h2>
 					</div>
 
-					<div class="xin-panel" id="chapters">
-						<div class="xin-panel__head">
-							<h2><?php xin_the_icon( 'list' ); ?><?php esc_html_e( 'Оглавление', 'xi-novels' ); ?></h2>
-							<span class="xin-muted" style="font-size:13px">
-								<?php
-								printf(
-									esc_html( xin_plural( count( $xin_chapters ), __( '%d глава', 'xi-novels' ), __( '%d главы', 'xi-novels' ), __( '%d глав', 'xi-novels' ) ) ),
-									(int) count( $xin_chapters )
-								);
-								?>
-							</span>
+					<div class="xin-synopsis xin-content is-collapsed" data-xin-synopsis>
+						<?php the_content(); ?>
+					</div>
+					<button
+						type="button"
+						class="xin-nv__more"
+						data-xin-synopsis-toggle
+						data-more="<?php esc_attr_e( 'Читать полностью', 'xi-novels' ); ?>"
+						data-less="<?php esc_attr_e( 'Свернуть', 'xi-novels' ); ?>"
+					><?php esc_html_e( 'Читать полностью', 'xi-novels' ); ?></button>
+
+					<?php if ( ! is_wp_error( $xin_tags ) && $xin_tags ) : ?>
+						<div class="xin-nv__tags">
+							<?php foreach ( $xin_tags as $xin_tag ) : ?>
+								<a href="<?php echo esc_url( get_term_link( $xin_tag ) ); ?>"><?php echo esc_html( $xin_tag->name ); ?></a>
+							<?php endforeach; ?>
 						</div>
-
-						<?php if ( $xin_chapters ) : ?>
-							<div class="xin-chaptertools">
-								<input class="form-control form-control-pill" type="search" placeholder="<?php esc_attr_e( 'Поиск по главам…', 'xi-novels' ); ?>" data-xin-chapter-search aria-label="<?php esc_attr_e( 'Поиск по главам', 'xi-novels' ); ?>">
-								<button type="button" class="btn btn-outline btn-sm" data-xin-chapter-sort>
-									<?php xin_the_icon( 'filter' ); ?><?php esc_html_e( 'Порядок', 'xi-novels' ); ?>
-								</button>
-							</div>
-
-							<ul class="xin-chapters" data-xin-chapter-list>
-								<?php foreach ( $xin_chapters as $xin_chapter ) : ?>
-									<?php
-									$xin_locked = (bool) get_post_meta( $xin_chapter->ID, '_xin_locked', true );
-									$xin_label  = xin_chapter_label( $xin_chapter->ID );
-									?>
-									<li data-xin-chapter-item>
-										<a href="<?php echo esc_url( get_permalink( $xin_chapter->ID ) ); ?>">
-											<span class="xin-chapters__num"><?php echo $xin_label ? esc_html( '#' . $xin_label ) : '—'; ?></span>
-											<span class="xin-chapters__title"><?php echo esc_html( $xin_chapter->post_title ); ?></span>
-											<?php if ( $xin_locked ) : ?>
-												<span class="xin-chapters__lock" title="<?php esc_attr_e( 'Платная глава', 'xi-novels' ); ?>"><?php xin_the_icon( 'lock' ); ?></span>
-											<?php endif; ?>
-											<span class="xin-chapters__date"><?php echo esc_html( get_the_date( 'j M Y', $xin_chapter->ID ) ); ?></span>
-										</a>
-									</li>
-								<?php endforeach; ?>
-							</ul>
-							<p class="xin-chapters__empty" data-xin-chapter-empty hidden><?php esc_html_e( 'Ничего не найдено', 'xi-novels' ); ?></p>
-						<?php else : ?>
-							<p class="xin-chapters__empty"><?php esc_html_e( 'Главы ещё не опубликованы.', 'xi-novels' ); ?></p>
-						<?php endif; ?>
-					</div>
-
-				</div>
-
-				<aside class="xin-sidebar">
-					<div class="widget">
-						<h2 class="widget-title"><?php esc_html_e( 'О тайтле', 'xi-novels' ); ?></h2>
-						<ul class="xin-infolist">
-							<?php if ( $xin_status ) : ?>
-								<li><span><?php esc_html_e( 'Статус', 'xi-novels' ); ?></span><b><?php echo esc_html( $xin_status->name ); ?></b></li>
-							<?php endif; ?>
-							<?php
-							$xin_year   = get_post_meta( $xin_id, '_xin_year', true );
-							$xin_transl = get_post_meta( $xin_id, '_xin_translator', true );
-							$xin_source = get_post_meta( $xin_id, '_xin_source', true );
-							?>
-							<?php if ( $xin_year ) : ?>
-								<li><span><?php esc_html_e( 'Год', 'xi-novels' ); ?></span><b><?php echo esc_html( $xin_year ); ?></b></li>
-							<?php endif; ?>
-							<?php if ( $xin_transl ) : ?>
-								<li><span><?php esc_html_e( 'Перевод', 'xi-novels' ); ?></span><b><?php echo esc_html( $xin_transl ); ?></b></li>
-							<?php endif; ?>
-							<li><span><?php esc_html_e( 'Добавлен', 'xi-novels' ); ?></span><b><?php echo esc_html( get_the_date() ); ?></b></li>
-							<li><span><?php esc_html_e( 'Обновлён', 'xi-novels' ); ?></span><b><?php echo esc_html( get_the_modified_date() ); ?></b></li>
-							<?php if ( $xin_source ) : ?>
-								<li><span><?php esc_html_e( 'Источник', 'xi-novels' ); ?></span><b><a href="<?php echo esc_url( $xin_source ); ?>" target="_blank" rel="noopener nofollow"><?php esc_html_e( 'открыть', 'xi-novels' ); ?></a></b></li>
-							<?php endif; ?>
-						</ul>
-					</div>
-
-					<div class="widget">
-						<h2 class="widget-title"><?php esc_html_e( 'Ваша оценка', 'xi-novels' ); ?></h2>
-						<div class="xin-rating" data-xin-rate="<?php echo (int) $xin_id; ?>">
-							<span class="xin-stars">
-								<?php for ( $xin_s = 1; $xin_s <= 5; $xin_s++ ) : ?>
-									<button type="button" class="btn btn-icon" data-value="<?php echo (int) $xin_s; ?>" style="width:26px;height:26px" aria-label="<?php echo esc_attr( sprintf( __( 'Оценить на %d', 'xi-novels' ), $xin_s ) ); ?>">
-										<?php xin_the_icon( 'star', $xin_s <= round( $xin_rating['value'] ) ? '' : 'is-off', true ); ?>
-									</button>
-								<?php endfor; ?>
-							</span>
-							<span>
-								<b data-xin-rate-value><?php echo $xin_rating['count'] ? esc_html( number_format( $xin_rating['value'], 1, ',', '' ) ) : '—'; ?></b>
-								<small class="xin-muted">(<span data-xin-rate-count><?php echo (int) $xin_rating['count']; ?></span>)</small>
-							</span>
-						</div>
-					</div>
-
-					<?php
-
-if ( ! is_wp_error( $xin_genres ) && $xin_genres ) :
-						$xin_related = get_posts( array(
-							'post_type'      => 'novel',
-							'posts_per_page' => 4,
-							'post__not_in'   => array( $xin_id ),
-							'tax_query'      => array(
-								array(
-									'taxonomy' => 'genre',
-									'field'    => 'term_id',
-									'terms'    => wp_list_pluck( $xin_genres, 'term_id' ),
-								),
-							),
-						) );
-						if ( $xin_related ) :
-							?>
-							<div class="widget">
-								<h2 class="widget-title"><?php esc_html_e( 'Похожее', 'xi-novels' ); ?></h2>
-								<div class="xin-widget-novels">
-									<?php foreach ( $xin_related as $xin_rel ) : ?>
-										<?php $xin_rel_cover = xin_cover_url( $xin_rel->ID, 'xin-cover-sm' ); ?>
-										<a class="xin-widget-novel" href="<?php echo esc_url( get_permalink( $xin_rel->ID ) ); ?>">
-											<span class="xin-widget-novel__cover">
-												<?php if ( $xin_rel_cover ) : ?>
-													<img src="<?php echo esc_url( $xin_rel_cover ); ?>" alt="" loading="lazy">
-												<?php endif; ?>
-											</span>
-											<span>
-												<h4><?php echo esc_html( $xin_rel->post_title ); ?></h4>
-												<small><?php echo esc_html( xin_num( xin_get_views( $xin_rel->ID ) ) ); ?> <?php esc_html_e( 'просм.', 'xi-novels' ); ?></small>
-											</span>
-										</a>
-									<?php endforeach; ?>
-								</div>
-							</div>
-							<?php
-						endif;
-					endif;
-					?>
-
-					<?php if ( is_active_sidebar( 'sidebar-novel' ) ) : ?>
-						<?php dynamic_sidebar( 'sidebar-novel' ); ?>
 					<?php endif; ?>
-				</aside>
+				</section>
+
+				<section class="xin-nv__sec" id="chapters">
+					<div class="xin-nv__sechead">
+						<h2><?php esc_html_e( 'Оглавление', 'xi-novels' ); ?></h2>
+						<span class="xin-nv__count">
+							<?php
+							printf(
+								esc_html( xin_plural( count( $xin_chapters ), __( '%d глава', 'xi-novels' ), __( '%d главы', 'xi-novels' ), __( '%d глав', 'xi-novels' ) ) ),
+								(int) count( $xin_chapters )
+							);
+							?>
+						</span>
+					</div>
+
+					<?php if ( $xin_chapters ) : ?>
+						<div class="xin-nv__tools">
+							<input type="search" placeholder="<?php esc_attr_e( 'Поиск по главам…', 'xi-novels' ); ?>" data-xin-chapter-search aria-label="<?php esc_attr_e( 'Поиск по главам', 'xi-novels' ); ?>">
+							<button type="button" class="xin-nv__sort" data-xin-chapter-sort>
+								<?php xin_the_icon( 'filter' ); ?><?php esc_html_e( 'Порядок', 'xi-novels' ); ?>
+							</button>
+						</div>
+
+						<ul class="xin-nv__chapters" data-xin-chapter-list>
+							<?php foreach ( $xin_chapters as $xin_chapter ) : ?>
+								<?php
+								$xin_locked = (bool) get_post_meta( $xin_chapter->ID, '_xin_locked', true );
+								$xin_label  = xin_chapter_label( $xin_chapter->ID );
+								?>
+								<li data-xin-chapter-item>
+									<a href="<?php echo esc_url( get_permalink( $xin_chapter->ID ) ); ?>">
+										<span class="xin-nv__num"><?php echo $xin_label ? esc_html( $xin_label ) : '—'; ?></span>
+										<span class="xin-nv__name"><?php echo esc_html( $xin_chapter->post_title ); ?></span>
+										<?php if ( $xin_locked ) : ?>
+											<span class="xin-nv__lock" title="<?php esc_attr_e( 'Ранний доступ PLUS', 'xi-novels' ); ?>"><?php xin_the_icon( 'lock' ); ?></span>
+										<?php endif; ?>
+										<span class="xin-nv__date"><?php echo esc_html( get_the_date( 'j M Y', $xin_chapter->ID ) ); ?></span>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+						<p class="xin-nv__empty" data-xin-chapter-empty hidden><?php esc_html_e( 'Ничего не найдено', 'xi-novels' ); ?></p>
+					<?php else : ?>
+						<p class="xin-nv__empty"><?php esc_html_e( 'Главы ещё не опубликованы.', 'xi-novels' ); ?></p>
+					<?php endif; ?>
+				</section>
 
 			</div>
+
+			<aside class="xin-nv__aside">
+
+				<section class="xin-nv__block">
+					<h2><?php esc_html_e( 'О тайтле', 'xi-novels' ); ?></h2>
+					<dl class="xin-nv__facts">
+						<?php if ( $xin_status ) : ?>
+							<div><dt><?php esc_html_e( 'Статус', 'xi-novels' ); ?></dt><dd><?php echo esc_html( $xin_status->name ); ?></dd></div>
+						<?php endif; ?>
+						<?php
+						$xin_year   = get_post_meta( $xin_id, '_xin_year', true );
+						$xin_transl = get_post_meta( $xin_id, '_xin_translator', true );
+						$xin_source = get_post_meta( $xin_id, '_xin_source', true );
+						?>
+						<?php if ( $xin_year ) : ?>
+							<div><dt><?php esc_html_e( 'Год', 'xi-novels' ); ?></dt><dd><?php echo esc_html( $xin_year ); ?></dd></div>
+						<?php endif; ?>
+						<?php if ( $xin_transl ) : ?>
+							<div><dt><?php esc_html_e( 'Перевод', 'xi-novels' ); ?></dt><dd><?php echo esc_html( $xin_transl ); ?></dd></div>
+						<?php endif; ?>
+						<div><dt><?php esc_html_e( 'Добавлен', 'xi-novels' ); ?></dt><dd><?php echo esc_html( get_the_date() ); ?></dd></div>
+						<div><dt><?php esc_html_e( 'Обновлён', 'xi-novels' ); ?></dt><dd><?php echo esc_html( get_the_modified_date() ); ?></dd></div>
+						<?php if ( $xin_source ) : ?>
+							<div><dt><?php esc_html_e( 'Источник', 'xi-novels' ); ?></dt><dd><a href="<?php echo esc_url( $xin_source ); ?>" target="_blank" rel="noopener nofollow"><?php esc_html_e( 'открыть', 'xi-novels' ); ?></a></dd></div>
+						<?php endif; ?>
+					</dl>
+				</section>
+
+				<section class="xin-nv__block">
+					<h2><?php esc_html_e( 'Ваша оценка', 'xi-novels' ); ?></h2>
+					<div class="xin-nv__rate" data-xin-rate="<?php echo (int) $xin_id; ?>">
+						<span class="xin-nv__stars">
+							<?php for ( $xin_s = 1; $xin_s <= 5; $xin_s++ ) : ?>
+								<button type="button" data-value="<?php echo (int) $xin_s; ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Оценить на %d', 'xi-novels' ), $xin_s ) ); ?>">
+									<?php xin_the_icon( 'star', $xin_s <= round( $xin_rating['value'] ) ? '' : 'is-off', true ); ?>
+								</button>
+							<?php endfor; ?>
+						</span>
+						<span class="xin-nv__ratenum">
+							<b data-xin-rate-value><?php echo $xin_rating['count'] ? esc_html( number_format( $xin_rating['value'], 1, ',', '' ) ) : '—'; ?></b>
+							<small>(<span data-xin-rate-count><?php echo (int) $xin_rating['count']; ?></span>)</small>
+						</span>
+					</div>
+				</section>
+
+				<?php
+				if ( ! is_wp_error( $xin_genres ) && $xin_genres ) :
+					$xin_related = get_posts( array(
+						'post_type'      => 'novel',
+						'posts_per_page' => 4,
+						'post__not_in'   => array( $xin_id ),
+						'tax_query'      => array(
+							array(
+								'taxonomy' => 'genre',
+								'field'    => 'term_id',
+								'terms'    => wp_list_pluck( $xin_genres, 'term_id' ),
+							),
+						),
+					) );
+					if ( $xin_related ) :
+						?>
+						<section class="xin-nv__block">
+							<h2><?php esc_html_e( 'Похожее', 'xi-novels' ); ?></h2>
+							<div class="xin-nv__related">
+								<?php foreach ( $xin_related as $xin_rel ) : ?>
+									<?php $xin_rel_cover = xin_cover_url( $xin_rel->ID, 'xin-cover-sm' ); ?>
+									<a href="<?php echo esc_url( get_permalink( $xin_rel->ID ) ); ?>">
+										<span class="xin-nv__relcover">
+											<?php if ( $xin_rel_cover ) : ?>
+												<img src="<?php echo esc_url( $xin_rel_cover ); ?>" alt="" loading="lazy">
+											<?php endif; ?>
+										</span>
+										<span class="xin-nv__reltext">
+											<b><?php echo esc_html( $xin_rel->post_title ); ?></b>
+											<small><?php echo esc_html( xin_num( xin_get_views( $xin_rel->ID ) ) ); ?> <?php esc_html_e( 'просм.', 'xi-novels' ); ?></small>
+										</span>
+									</a>
+								<?php endforeach; ?>
+							</div>
+						</section>
+						<?php
+					endif;
+				endif;
+				?>
+
+				<?php if ( is_active_sidebar( 'sidebar-novel' ) ) : ?>
+					<?php dynamic_sidebar( 'sidebar-novel' ); ?>
+				<?php endif; ?>
+			</aside>
+
 		</div>
 	</article>
 

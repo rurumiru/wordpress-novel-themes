@@ -4,31 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function xin_brand_mark( $size = 34 ) {
-	$uid     = wp_unique_id( 'xin-mark-' );
-
-	return sprintf(
-		'<span class="xin-brand__mark" style="--mark:%1$dpx" aria-hidden="true">
-			<svg viewBox="0 0 40 40" width="%1$d" height="%1$d" fill="none">
-				<defs>
-					<linearGradient id="%2$s" x1="0" y1="0" x2="1" y2="1">
-						<stop offset="0%%" stop-color="hsl(var(--primary))"/>
-						<stop offset="100%%" stop-color="hsl(var(--gold))"/>
-					</linearGradient>
-				</defs>
-				<rect x="1" y="1" width="38" height="38" rx="13" fill="url(#%2$s)" opacity=".16"/>
-				<rect x="1" y="1" width="38" height="38" rx="13" stroke="url(#%2$s)" stroke-width="1.5" opacity=".55"/>
-				<path d="M13 12.5h5.2c1.7 0 2.8.9 2.8 2.4v13.6M27 12.5h-5.2c-1.7 0-2.8.9-2.8 2.4"
-					stroke="hsl(var(--primary))" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M23.6 21.5h4.9M23.6 25.2h3.2" stroke="hsl(var(--gold))" stroke-width="2.1" stroke-linecap="round"/>
-			</svg>
-		</span>',
-		(int) $size,
-		esc_attr( $uid )
-	);
-}
-
-function xin_brand( $size = 34 ) {
+function xin_brand() {
 	if ( has_custom_logo() ) {
 		the_custom_logo();
 		return;
@@ -37,7 +13,6 @@ function xin_brand( $size = 34 ) {
 	$name  = get_bloginfo( 'name' );
 	$parts = explode( ' ', $name, 2 );
 
-	echo xin_brand_mark( $size ); 
 	printf(
 		'<span class="xin-brand__text">%s%s</span>',
 		esc_html( $parts[0] ),

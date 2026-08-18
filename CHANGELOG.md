@@ -12,6 +12,36 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.0.9-beta] — 2026-08-16
+
+### Changed
+
+- **New palette: white and graphite.** The crimson accent is gone; the light scheme is now near-white paper with a graphite accent, and the dark scheme is a neutral charcoal instead of a blue-black. Light is the default. The premium color that marks PLUS moved to the same neutral family, so nothing on a page shouts.
+- **Buttons stopped being bubbles.** Pill-shaped buttons gave way to a 9–10 px radius, smaller padding, a smaller type size and a flat shadow that only lifts on hover. Icon buttons follow the same shape.
+- **The site got narrower** — 1160 px instead of 1280 — with a tighter heading scale, so lines stay readable and the layout no longer sprawls on wide monitors.
+- **The logo is the name.** The gradient tile is gone; the header and footer carry the site name alone, with the second word in the accent color. A custom logo still overrides it.
+- **The home banner now sits inside the site container**: rounded, hairline border, 360 px tall by default, and its buttons and badges are legible against artwork.
+- **The title page was rebuilt.** No more stacked cards: a compact header (cover, title, chips, one line of numbers, three actions), then flat sections separated by hairlines — description, contents with search and order, and a sidebar of facts, rating and similar titles. Chapters became a hairline list with monospace numbers.
+- **The reader was rebuilt too**: a slimmer bar, a quieter title block, a hairline rule instead of a gradient bar, a calmer drop cap, flat chapter navigation, and a PLUS gate that reads as a panel instead of a dashed warning.
+
+### Added
+
+- **Control panel on the site** — `/manage/`, created on activation, for moderators and administrators:
+  - **Overview** with users, PLUS members, titles, chapters and the number of records waiting for review;
+  - **Users** — search, role changes (reader / contributor / author / moderator), PLUS access granted for 30, 90 or 365 days, with no expiry, or removed; adding days extends what is left instead of resetting it;
+  - **Review queue** — publish, return to drafts or trash anything a contributor submitted;
+  - **Titles** — every title with author, chapter count and status, publish or hide, jump to its chapters;
+  - **Settings** — open registration, the role new accounts get, the main language and the default color scheme.
+  - Administrators are never a target of role changes and you cannot change your own role, so the panel cannot lock you out.
+- **PLUS access is a real membership.** Chapters marked PLUS now open for members instead of for anyone signed in; moderators and administrators always see them. The gate explains the difference to a signed-in reader and links to the PLUS page.
+- **Main language is a theme setting** — customizer or the panel. It decides what a first-time visitor sees; the RU / EN switch in the header still wins for that visitor afterwards.
+- English translation grew to 666 strings.
+
+### Fixed
+
+- Headings over banner artwork inherited the page color and turned dark on dark. They are now white, with a stronger gradient behind them.
+- Sign-in page: with registration closed the footer line offered “already have an account? sign in” to someone already on the sign-in form. It is hidden in that case.
+
 ## [0.0.8-beta] — 2026-08-16
 
 ### Fixed

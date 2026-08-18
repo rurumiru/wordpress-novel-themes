@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const XIN_PAGES_VERSION = '2';
+const XIN_PAGES_VERSION = '3';
 
 function xin_dashboard_url( $args = array() ) {
 	$page = get_page_by_path( 'dashboard' );
@@ -294,6 +294,7 @@ function xin_create_pages() {
 	$pages = array(
 		'account'       => array( __( 'Вход и регистрация', 'xi-novels' ), 'template-auth.php' ),
 		'dashboard'     => array( __( 'Кабинет автора', 'xi-novels' ), 'template-dashboard.php' ),
+		'manage'        => array( __( 'Панель управления', 'xi-novels' ), 'template-manage.php' ),
 		'library'       => array( __( 'Моя библиотека', 'xi-novels' ), 'template-library.php' ),
 		'become-author' => array( __( 'Стать автором', 'xi-novels' ), 'template-become-author.php' ),
 		'plus'          => array( __( 'PLUS', 'xi-novels' ), 'template-plus.php' ),

@@ -5,8 +5,8 @@ if ( ! $xin_banners ) {
 	return;
 }
 
-$xin_height = (int) get_theme_mod( 'xin_banner_height', 420 );
-$xin_height = max( 220, min( 900, $xin_height ) );
+$xin_height = (int) get_theme_mod( 'xin_banner_height', 360 );
+$xin_height = max( 200, min( 720, $xin_height ) );
 ?>
 <section class="xin-banner" data-xin-banner style="--banner-h:<?php echo (int) $xin_height; ?>px">
 	<div class="xin-banner__track" data-xin-banner-track>
