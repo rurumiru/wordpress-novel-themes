@@ -15,8 +15,9 @@ $xin_socials = xin_social_links();
 				<?php if ( $xin_socials ) : ?>
 					<div class="xin-footer__social">
 						<?php foreach ( $xin_socials as $xin_key => $xin_url ) : ?>
-							<a href="<?php echo esc_url( $xin_url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( ucfirst( $xin_key ) ); ?>">
-								<?php xin_the_icon( $xin_key ); ?>
+							<?php $xin_meta = xin_social_meta( $xin_key ); ?>
+							<a href="<?php echo esc_url( $xin_url ); ?>" target="_blank" rel="noopener noreferrer" title="<?php echo esc_attr( $xin_meta[1] ); ?>" aria-label="<?php echo esc_attr( $xin_meta[1] ); ?>">
+								<?php xin_the_icon( $xin_meta[0] ); ?>
 							</a>
 						<?php endforeach; ?>
 						<a href="<?php echo esc_url( get_feed_link() ); ?>" aria-label="RSS"><?php xin_the_icon( 'rss' ); ?></a>

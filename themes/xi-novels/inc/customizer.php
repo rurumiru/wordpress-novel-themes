@@ -170,18 +170,19 @@ $wp_customize->add_section( 'xin_footer', array(
 	) );
 
 	$socials = array(
-		'telegram' => 'Telegram',
-		'vk'       => 'VK',
-		'discord'  => 'Discord',
-		'youtube'  => 'YouTube',
+		'telegram'      => array( __( 'Telegram: канал', 'xi-novels' ), 'https://t.me/licht_re' ),
+		'telegram_chat' => array( __( 'Telegram: чат сообщества', 'xi-novels' ), 'https://t.me/xicommunity' ),
+		'vk'            => array( 'VK', '' ),
+		'discord'       => array( 'Discord', '' ),
+		'youtube'       => array( 'YouTube', '' ),
 	);
-	foreach ( $socials as $key => $label ) {
+	foreach ( $socials as $key => $data ) {
 		$wp_customize->add_setting( 'xin_social_' . $key, array(
-			'default'           => '',
+			'default'           => $data[1],
 			'sanitize_callback' => 'esc_url_raw',
 		) );
 		$wp_customize->add_control( 'xin_social_' . $key, array(
-			'label'   => $label,
+			'label'   => $data[0],
 			'section' => 'xin_footer',
 			'type'    => 'url',
 		) );
@@ -243,12 +244,33 @@ function xin_customizer_css() {
 }
 
 function xin_social_links() {
+	$defaults = array(
+		'telegram'      => 'https://t.me/licht_re',
+		'telegram_chat' => 'https://t.me/xicommunity',
+		'vk'            => '',
+		'discord'       => '',
+		'youtube'       => '',
+	);
+
 	$out = array();
-	foreach ( array( 'telegram', 'vk', 'discord', 'youtube' ) as $key ) {
-		$url = get_theme_mod( 'xin_social_' . $key, '' );
+	foreach ( $defaults as $key => $default ) {
+		$url = get_theme_mod( 'xin_social_' . $key, $default );
 		if ( $url ) {
 			$out[ $key ] = $url;
 		}
 	}
+
 	return $out;
+}
+
+function xin_social_meta( $key ) {
+	$map = array(
+		'telegram'      => array( 'telegram', __( 'Telegram-канал', 'xi-novels' ) ),
+		'telegram_chat' => array( 'comment', __( 'Чат сообщества', 'xi-novels' ) ),
+		'vk'            => array( 'vk', 'VK' ),
+		'discord'       => array( 'discord', 'Discord' ),
+		'youtube'       => array( 'youtube', 'YouTube' ),
+	);
+
+	return isset( $map[ $key ] ) ? $map[ $key ] : array( $key, $key );
 }

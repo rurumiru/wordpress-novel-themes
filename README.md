@@ -177,18 +177,45 @@ screenshots/           what it looks like
 
 ## Screenshots
 
+Every shot below is the theme itself, running with the demo content from this repository. Nothing is mocked up.
+
+### Reading
+
+**Home page** — banner inside the site container, quick links, and the trending block.
+
+![Home page: banner, quick links, trending title](screenshots/01-home.jpg)
+
+**Catalog** — genre chips, status filter, five sort orders, six covers per row.
+
+![Catalog: genre chips, filters and a grid of covers](screenshots/02-catalog.jpg)
+
+**Title page** — a compact header, then flat sections: description, contents with search, and a sidebar of facts, rating and similar titles.
+
+![Title page: header with cover, description, contents and sidebar](screenshots/03-novel.jpg)
+
+**Reader** — no site header, no footer, no sidebar. The bar hides while you read.
+
+![Full-screen reader with the chapter text](screenshots/04-reader.jpg)
+
+### Accounts and running the site
+
 | | |
 |---|---|
-| ![Catalog](screenshots/02-catalog.jpg) | ![Title](screenshots/03-novel.jpg) |
-| Catalog: genre chips, filters, 6-up grid | Title page: synopsis, contents, rating, similar titles |
-| ![Updates](screenshots/08-updates.jpg) | ![Blog](screenshots/09-blog.jpg) |
-| Update feed grouped by day | Blog with a lead story and category pills |
-| ![Profile](screenshots/07-profile.jpg) | ![Reader settings](screenshots/06-reader-settings.jpg) |
-| Author profile with tabs and stats | Reader settings: size, leading, width, paper |
-| ![English](screenshots/11-home-en.jpg) | ![Mobile](screenshots/12-mobile.jpg) |
-| The same site in English | Mobile layout with bottom navigation |
-| ![Control panel](screenshots/13-manage.jpg) | ![Account](screenshots/14-account.jpg) |
-| Control panel: roles, PLUS access, review queue | Sign-in and sign-up on the site itself |
+| ![Sign-in and sign-up page](screenshots/14-account.jpg) | ![Control panel with the user list](screenshots/13-manage.jpg) |
+| **Sign in and sign up** on the site itself — one centered page for login, registration and password recovery | **Control panel** at `/manage/` — roles, PLUS access with a term, review queue, titles and settings |
+| ![Author profile with tabs and statistics](screenshots/07-profile.jpg) | ![Reader settings panel](screenshots/06-reader-settings.jpg) |
+| **Author profile** — cover, statistics, podium of the most-read titles, tabs | **Reading settings** — size, leading, column width, serif or sans, four papers |
+
+### Everything else
+
+| | |
+|---|---|
+| ![Update feed grouped by day](screenshots/08-updates.jpg) | ![Blog with a lead story](screenshots/09-blog.jpg) |
+| **Updates** — every fresh chapter, grouped into Today / Yesterday / date | **Blog** — lead story, category pills, sidebar |
+| ![Reader in the dark scheme](screenshots/05-reader-alt.jpg) | ![Library page](screenshots/10-library.jpg) |
+| **Dark scheme** — neutral charcoal, switched from the header | **Library** — bookmarks and history, kept in the browser |
+| ![The same home page in English](screenshots/11-home-en.jpg) | ![Mobile layout with bottom navigation](screenshots/12-mobile.jpg) |
+| **English** — the same site, `?lang=en` or the header switch | **Mobile** — bottom navigation, one-column layout |
 
 ## Languages
 

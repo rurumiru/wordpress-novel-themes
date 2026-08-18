@@ -77,6 +77,18 @@ msgstr "Profile cover image ID"
 msgid "PLUS"
 msgstr "PLUS"
 
+msgid "Telegram-канал"
+msgstr "Telegram channel"
+
+msgid "Telegram: канал"
+msgstr "Telegram: channel"
+
+msgid "Telegram: чат сообщества"
+msgstr "Telegram: community chat"
+
+msgid "Чат сообщества"
+msgstr "Community chat"
+
 msgid "XI Novels: аккаунты"
 msgstr "XI Novels: accounts"
 
