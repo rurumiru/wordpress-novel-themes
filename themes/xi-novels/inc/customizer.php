@@ -76,6 +76,17 @@ $wp_customize->add_section( 'xin_accounts', array(
 		'type'        => 'checkbox',
 	) );
 
+	$wp_customize->add_setting( 'xin_discussions', array(
+		'default'           => false,
+		'sanitize_callback' => 'wp_validate_boolean',
+	) );
+	$wp_customize->add_control( 'xin_discussions', array(
+		'label'       => __( 'Обсуждения под главами и тайтлами', 'xi-novels' ),
+		'description' => __( 'Модуль выключен по умолчанию. Пишут только вошедшие, ответы на один уровень, поддерживаются спойлеры.', 'xi-novels' ),
+		'section'     => 'xin_accounts',
+		'type'        => 'checkbox',
+	) );
+
 	$wp_customize->add_setting( 'xin_new_user_role', array(
 		'default'           => 'author',
 		'sanitize_callback' => 'sanitize_key',
@@ -157,6 +168,17 @@ $wp_customize->add_section( 'xin_footer', array(
 		'label'   => __( 'Текст о проекте', 'xi-novels' ),
 		'section' => 'xin_footer',
 		'type'    => 'textarea',
+	) );
+
+	$wp_customize->add_setting( 'xin_credit', array(
+		'default'           => false,
+		'sanitize_callback' => 'wp_validate_boolean',
+	) );
+	$wp_customize->add_control( 'xin_credit', array(
+		'label'       => __( 'Строка «Работает на XI Novels»', 'xi-novels' ),
+		'description' => __( 'Необязательная ссылка на тему в подвале. Лицензия этого не требует — но авторам приятно.', 'xi-novels' ),
+		'section'     => 'xin_footer',
+		'type'        => 'checkbox',
 	) );
 
 	$wp_customize->add_setting( 'xin_copyright', array(

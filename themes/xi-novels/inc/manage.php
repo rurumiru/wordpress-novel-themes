@@ -237,6 +237,7 @@ function xin_manage_do_settings( $back ) {
 	}
 
 	set_theme_mod( 'xin_open_registration', ! empty( $_POST['open_registration'] ) );
+	set_theme_mod( 'xin_discussions', ! empty( $_POST['discussions'] ) );
 
 	$role = isset( $_POST['new_user_role'] ) ? sanitize_key( wp_unslash( $_POST['new_user_role'] ) ) : 'author';
 	if ( in_array( $role, array( 'subscriber', 'contributor', 'author' ), true ) ) {

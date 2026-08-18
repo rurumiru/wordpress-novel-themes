@@ -84,6 +84,16 @@ while ( have_posts() ) :
 							</a>
 						<?php endif; ?>
 						<?php xin_fav_button( $xin_id, true ); ?>
+
+						<div class="xin-nv__dl">
+							<button type="button" class="btn btn-outline" data-xin-dl aria-expanded="false">
+								<?php xin_the_icon( 'download' ); ?><?php esc_html_e( 'Скачать', 'xi-novels' ); ?>
+							</button>
+							<div class="xin-nv__dlmenu" data-xin-dl-menu hidden>
+								<a href="<?php echo esc_url( xin_export_url( $xin_id, 'epub' ) ); ?>" rel="nofollow">EPUB<small><?php esc_html_e( 'для читалок и телефона', 'xi-novels' ); ?></small></a>
+								<a href="<?php echo esc_url( xin_export_url( $xin_id, 'fb2' ) ); ?>" rel="nofollow">FB2<small><?php esc_html_e( 'для классических программ', 'xi-novels' ); ?></small></a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -192,6 +202,25 @@ while ( have_posts() ) :
 					</dl>
 				</section>
 
+				<?php $xin_team = xin_novel_team_users( $xin_id ); ?>
+				<?php if ( $xin_team ) : ?>
+					<section class="xin-nv__block">
+						<h2><?php esc_html_e( 'Над проектом работают', 'xi-novels' ); ?></h2>
+						<div class="xin-nv__team">
+							<a class="xin-nv__member" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+								<?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?>
+								<span><b><?php the_author(); ?></b><small><?php esc_html_e( 'ведёт проект', 'xi-novels' ); ?></small></span>
+							</a>
+							<?php foreach ( $xin_team as $xin_member ) : ?>
+								<a class="xin-nv__member" href="<?php echo esc_url( get_author_posts_url( $xin_member->ID ) ); ?>">
+									<?php echo get_avatar( $xin_member->ID, 32 ); ?>
+									<span><b><?php echo esc_html( $xin_member->display_name ); ?></b><small><?php esc_html_e( 'переводчик', 'xi-novels' ); ?></small></span>
+								</a>
+							<?php endforeach; ?>
+						</div>
+					</section>
+				<?php endif; ?>
+
 				<section class="xin-nv__block">
 					<h2><?php esc_html_e( 'Ваша оценка', 'xi-novels' ); ?></h2>
 					<div class="xin-nv__rate" data-xin-rate="<?php echo (int) $xin_id; ?>">
@@ -253,6 +282,10 @@ while ( have_posts() ) :
 					<?php dynamic_sidebar( 'sidebar-novel' ); ?>
 				<?php endif; ?>
 			</aside>
+
+			<div class="xin-nv__talk">
+				<?php xin_talk_render( $xin_id ); ?>
+			</div>
 
 		</div>
 	</article>

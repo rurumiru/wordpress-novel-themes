@@ -4,6 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function xin_post_supports( $supports ) {
+	if ( function_exists( 'xin_discussions_on' ) && xin_discussions_on() ) {
+		$supports[] = 'comments';
+	}
+
+	return $supports;
+}
+
 function xin_register_post_types() {
 	register_post_type( 'novel', array(
 		'labels'              => array(
@@ -26,7 +34,7 @@ function xin_register_post_types() {
 		'menu_icon'           => 'dashicons-book-alt',
 		'menu_position'       => 5,
 		'show_in_rest'        => true,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'author', 'custom-fields', 'revisions' ),
+		'supports'            => xin_post_supports( array( 'title', 'editor', 'excerpt', 'thumbnail', 'author', 'custom-fields', 'revisions' ) ),
 		'taxonomies'          => array( 'genre', 'novel_tag', 'novel_status' ),
 		'rewrite'             => array( 'slug' => 'novels', 'with_front' => false ),
 		'exclude_from_search' => false,
@@ -48,7 +56,7 @@ function xin_register_post_types() {
 		'menu_icon'       => 'dashicons-media-text',
 		'menu_position'   => 6,
 		'show_in_rest'    => true,
-		'supports'        => array( 'title', 'editor', 'author', 'revisions', 'custom-fields' ),
+		'supports'        => xin_post_supports( array( 'title', 'editor', 'author', 'revisions', 'custom-fields' ) ),
 		'rewrite'         => array( 'slug' => 'read', 'with_front' => false ),
 	) );
 }

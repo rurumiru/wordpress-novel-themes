@@ -45,6 +45,11 @@ function xin_novel_box( $post ) {
 			<label for="xin_translator"><?php esc_html_e( 'Перевод', 'xi-novels' ); ?></label>
 			<input type="text" id="xin_translator" name="xin_translator" value="<?php echo esc_attr( $transl ); ?>">
 		</p>
+		<p class="xin-full">
+			<label for="xin_team"><?php esc_html_e( 'Соавторы и переводчики', 'xi-novels' ); ?></label>
+			<input type="text" id="xin_team" name="xin_team" value="<?php echo esc_attr( xin_team_names( $post->ID ) ); ?>">
+			<span class="description"><?php esc_html_e( 'Логины через запятую. Каждый сможет добавлять и править главы проекта.', 'xi-novels' ); ?></span>
+		</p>
 		<p>
 			<label for="xin_year"><?php esc_html_e( 'Год выпуска', 'xi-novels' ); ?></label>
 			<input type="number" id="xin_year" name="xin_year" value="<?php echo esc_attr( $year ); ?>" min="1900" max="2200">
@@ -141,8 +146,15 @@ function xin_chapter_box( $post ) {
 		<span class="description"><?php esc_html_e( 'Дробный номер — экстра/интерлюдия: 12.5', 'xi-novels' ); ?></span>
 	</p>
 	<p>
-		<label><input type="checkbox" name="xin_locked" value="1" <?php checked( $locked ); ?>> <?php esc_html_e( 'Платная глава (PLUS)', 'xi-novels' ); ?></label>
+		<label><input type="checkbox" name="xin_locked" value="1" <?php checked( $locked ); ?>> <?php esc_html_e( 'Ранний доступ: PLUS или покупка', 'xi-novels' ); ?></label>
 	</p>
+	<?php if ( xin_woo_active() ) : ?>
+		<p>
+			<label for="xin_product"><strong><?php esc_html_e( 'Товар WooCommerce', 'xi-novels' ); ?></strong></label>
+			<input type="number" id="xin_product" name="xin_product" value="<?php echo esc_attr( (int) get_post_meta( $post->ID, '_xin_product', true ) ); ?>" style="width:100%">
+			<span class="description"><?php esc_html_e( 'ID товара для разовой покупки главы. Пусто — только PLUS.', 'xi-novels' ); ?></span>
+		</p>
+	<?php endif; ?>
 	<?php
 }
 
@@ -155,6 +167,18 @@ function xin_save_meta( $post_id ) {
 	}
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
+	}
+
+	if ( isset( $_POST['xin_team'] ) ) {
+		xin_set_novel_team( $post_id, sanitize_text_field( wp_unslash( $_POST['xin_team'] ) ) );
+	}
+	if ( isset( $_POST['xin_product'] ) ) {
+		$product = absint( $_POST['xin_product'] );
+		if ( $product ) {
+			update_post_meta( $post_id, '_xin_product', $product );
+		} else {
+			delete_post_meta( $post_id, '_xin_product' );
+		}
 	}
 
 	$text_fields = array(

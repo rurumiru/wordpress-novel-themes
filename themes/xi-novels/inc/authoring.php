@@ -21,7 +21,19 @@ function xin_owns( $post_id ) {
 	if ( ! $post ) {
 		return false;
 	}
-	return current_user_can( 'edit_others_posts' ) || (int) $post->post_author === get_current_user_id();
+	if ( current_user_can( 'edit_others_posts' ) || (int) $post->post_author === get_current_user_id() ) {
+		return true;
+	}
+
+	if ( 'novel' === $post->post_type ) {
+		return xin_in_team( $post_id );
+	}
+	if ( 'chapter' === $post->post_type ) {
+		$novel_id = (int) get_post_meta( $post_id, '_xin_novel', true );
+		return $novel_id ? xin_in_team( $novel_id ) : false;
+	}
+
+	return false;
 }
 
 function xin_user_novels( $user_id = 0, $limit = -1 ) {
@@ -131,7 +143,11 @@ $genres = isset( $_POST['genres'] ) ? array_map( 'absint', (array) $_POST['genre
 		wp_set_object_terms( $novel_id, $tags, 'novel_tag' );
 	}
 
-$meta = array(
+if ( isset( $_POST['team'] ) ) {
+		xin_set_novel_team( $novel_id, sanitize_text_field( wp_unslash( $_POST['team'] ) ) );
+	}
+
+	$meta = array(
 		'_xin_author_name'    => 'author_name',
 		'_xin_original_title' => 'original_title',
 		'_xin_translator'     => 'translator',

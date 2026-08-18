@@ -64,6 +64,21 @@ $xin_tabs = array(
 				<div><b><?php echo esc_html( number_format_i18n( $xin_stats['posts'] ) ); ?></b><span><?php esc_html_e( 'статей', 'xi-novels' ); ?></span></div>
 			</div>
 
+			<?php
+			$xin_reading = xin_reading_stats( $xin_id );
+			if ( $xin_reading['read'] > 0 || $xin_reading['streak'] > 0 ) :
+				?>
+				<p class="xin-profile__streak">
+					<?php xin_the_icon( 'flame' ); ?>
+					<span>
+						<?php echo esc_html( xin_streak_note( $xin_id ) ); ?>
+						<?php if ( $xin_reading['read'] > 0 ) : ?>
+							· <?php echo esc_html( sprintf( xin_plural( $xin_reading['read'], __( '%d глава прочитана', 'xi-novels' ), __( '%d главы прочитано', 'xi-novels' ), __( '%d глав прочитано', 'xi-novels' ) ), $xin_reading['read'] ) ); ?>
+						<?php endif; ?>
+					</span>
+				</p>
+			<?php endif; ?>
+
 			<div class="xin-profile__actions">
 				<?php if ( $xin_self ) : ?>
 					<a class="btn btn-primary" href="<?php echo esc_url( xin_dashboard_url() ); ?>">
@@ -226,5 +241,28 @@ $xin_tabs = array(
 		</section>
 	<?php endif; ?>
 </div>
+
+<?php
+$xin_awards = xin_achievements( $xin_id );
+$xin_open   = array_filter( $xin_awards, static function ( $a ) { return $a['unlocked']; } );
+if ( $xin_open ) :
+	?>
+	<div class="xin-wrap">
+		<section class="xin-awards">
+			<h2 class="xin-awards__title"><?php esc_html_e( 'Достижения', 'xi-novels' ); ?></h2>
+			<div class="xin-awards__grid">
+				<?php foreach ( $xin_awards as $xin_award ) : ?>
+					<div class="xin-award<?php echo $xin_award['unlocked'] ? ' is-open' : ''; ?>" title="<?php echo esc_attr( $xin_award['note'] ); ?>">
+						<?php xin_the_icon( $xin_award['icon'] ); ?>
+						<b><?php echo esc_html( $xin_award['title'] ); ?></b>
+						<?php if ( ! $xin_award['unlocked'] ) : ?>
+							<small><?php echo esc_html( $xin_award['have'] . ' / ' . $xin_award['need'] ); ?></small>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</section>
+	</div>
+<?php endif; ?>
 
 <?php get_footer(); ?>

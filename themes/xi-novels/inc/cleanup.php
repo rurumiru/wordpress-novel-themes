@@ -70,6 +70,10 @@ add_filter( 'rest_url_prefix', function () {
 } );
 
 function xin_hide_comments_admin() {
+	if ( xin_discussions_on() ) {
+		return;
+	}
+
 	remove_menu_page( 'edit-comments.php' );
 	remove_meta_box( 'dashboard_recent_comments', 'dashboard', 'normal' );
 
@@ -83,6 +87,10 @@ function xin_hide_comments_admin() {
 add_action( 'admin_menu', 'xin_hide_comments_admin' );
 
 function xin_block_comments_screen() {
+	if ( xin_discussions_on() ) {
+		return;
+	}
+
 	global $pagenow;
 	if ( 'edit-comments.php' === $pagenow ) {
 		wp_safe_redirect( admin_url() );

@@ -320,6 +320,14 @@ if ( xin_can_manage() ) {
 				</span>
 			</label>
 
+			<label class="xin-manage__toggle">
+				<input type="checkbox" name="discussions" value="1" <?php checked( xin_discussions_on() ); ?>>
+				<span>
+					<b><?php esc_html_e( 'Обсуждения', 'xi-novels' ); ?></b>
+					<small><?php esc_html_e( 'Комментарии под главами и тайтлами. По умолчанию выключены.', 'xi-novels' ); ?></small>
+				</span>
+			</label>
+
 			<label class="xin-manage__field">
 				<span><?php esc_html_e( 'Кем становится новый пользователь', 'xi-novels' ); ?></span>
 				<select name="new_user_role">

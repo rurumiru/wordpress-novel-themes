@@ -627,3 +627,87 @@
 .xin-manage__field > span { font-size: 12.5px; font-weight: 600; color: hsl(var(--muted-fg)); }
 .xin-manage__field select { height: 38px; width: 100%; }
 .xin-manage__settings .btn { justify-self: start; }
+
+.xin-nv__dl { position: relative; }
+.xin-nv__dlmenu {
+	position: absolute; z-index: 40; top: calc(100% + 6px); left: 0; min-width: 210px; padding: 6px;
+	background: hsl(var(--popover)); border: 1px solid hsl(var(--border)); border-radius: 10px; box-shadow: var(--shadow-3);
+}
+.xin-nv__dlmenu a { display: block; padding: 8px 10px; border-radius: 7px; font-size: 13.5px; font-weight: 600; text-decoration: none; color: hsl(var(--fg)); }
+.xin-nv__dlmenu a:hover { background: hsl(var(--accent)); }
+.xin-nv__dlmenu small { display: block; font-weight: 400; font-size: 12px; color: hsl(var(--muted-fg)); }
+
+.xin-nv__team { display: grid; gap: 10px; }
+.xin-nv__member { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.xin-nv__member img { border-radius: 50%; flex: none; }
+.xin-nv__member b { display: block; font-size: 13.5px; font-weight: 600; color: hsl(var(--fg)); }
+.xin-nv__member small { font-size: 12px; color: hsl(var(--muted-fg)); }
+.xin-nv__member:hover b { color: hsl(var(--primary)); }
+.xin-nv__talk { grid-column: 1 / -1; }
+
+.xin-locked__actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+
+.xin-profile__streak { display: inline-flex; align-items: center; gap: .5rem; margin: 10px 0 0; font-size: 13.5px; color: hsl(var(--muted-fg)); }
+.xin-profile__streak svg { width: 16px; height: 16px; color: hsl(var(--gold)); }
+
+.xin-awards { padding: 26px 0 40px; border-top: 1px solid hsl(var(--border)); margin-top: 30px; }
+.xin-awards__title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: hsl(var(--muted-fg)); margin-bottom: 14px; }
+.xin-awards__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.xin-award {
+	display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px;
+	border: 1px solid hsl(var(--border)); background: hsl(var(--card)); opacity: .45;
+}
+.xin-award.is-open { opacity: 1; border-color: hsl(var(--primary) / .35); }
+.xin-award svg { width: 20px; height: 20px; flex: none; color: hsl(var(--muted-fg)); }
+.xin-award.is-open svg { color: hsl(var(--primary)); }
+.xin-award b { font-size: 13px; font-weight: 600; line-height: 1.3; }
+.xin-award small { display: block; font-size: 11.5px; color: hsl(var(--muted-fg)); font-variant-numeric: tabular-nums; }
+
+.xin-talk { max-width: var(--read-width, 720px); margin: 40px auto 0; padding-top: 26px; border-top: 1px solid hsl(var(--border)); }
+.xin-talk__head-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.xin-talk__head-row h2 { font-size: 16.5px; margin: 0; }
+.xin-talk__head-row span { font-size: 12.5px; color: hsl(var(--muted-fg)); }
+
+.xin-talk__form { display: grid; gap: 10px; margin-bottom: 24px; }
+.xin-talk__form textarea {
+	width: 100%; padding: 12px 14px; font-family: inherit; font-size: 14.5px; line-height: 1.6; resize: vertical;
+	color: hsl(var(--fg)); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 10px;
+}
+.xin-talk__form textarea:focus { outline: none; border-color: hsl(var(--primary) / .6); box-shadow: 0 0 0 3px hsl(var(--primary) / .1); }
+.xin-talk__formfoot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.xin-talk__formfoot small { font-size: 12px; color: hsl(var(--muted-fg)); font-family: var(--font-mono); }
+.xin-talk__reply-to { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: hsl(var(--muted-fg)); }
+.xin-talk__reply-to button { border: 0; background: none; padding: 0; color: hsl(var(--primary)); cursor: pointer; font-family: inherit; font-size: 12.5px; text-decoration: underline; text-underline-offset: 3px; }
+.xin-talk__guest { font-size: 14px; color: hsl(var(--muted-fg)); padding: 14px 16px; border: 1px solid hsl(var(--border)); border-radius: 10px; }
+
+.xin-talk__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.xin-talk__list--nested { margin-top: 14px; padding-left: 14px; border-left: 2px solid hsl(var(--border)); gap: 14px; }
+.xin-talk__item { display: flex; gap: 12px; }
+.xin-talk__avatar img { border-radius: 50%; }
+.xin-talk__body { min-width: 0; flex: 1; }
+.xin-talk__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 4px; }
+.xin-talk__head b { font-size: 13.5px; }
+.xin-talk__head time { font-size: 12px; color: hsl(var(--muted-fg)); }
+.xin-talk__text { font-size: 14.5px; line-height: 1.65; }
+.xin-talk__text p { margin: 0 0 .6em; }
+.xin-talk__spoiler {
+	background: hsl(var(--fg)); color: transparent; border-radius: 4px; padding: 0 3px; cursor: pointer;
+	transition: color .18s ease, background-color .18s ease;
+}
+.xin-talk__spoiler.is-open { background: hsl(var(--accent)); color: inherit; }
+.xin-talk__tools { display: flex; align-items: center; gap: 14px; margin-top: 7px; }
+.xin-talk__tools button { border: 0; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12.5px; color: hsl(var(--muted-fg)); display: inline-flex; align-items: center; gap: .35rem; }
+.xin-talk__tools button:hover { color: hsl(var(--fg)); }
+.xin-talk__like svg { width: 14px; height: 14px; }
+.xin-talk__like.is-on { color: hsl(var(--primary)); }
+.xin-talk__empty { font-size: 14px; color: hsl(var(--muted-fg)); padding: 18px 0; text-align: center; }
+
+.xin-rd__text { hanging-punctuation: first last; text-wrap: pretty; }
+.xin-rd__text p { margin: 0 0 1.15em; text-align: justify; text-indent: 1.4em; hyphens: auto; }
+.xin-rd__text p:first-of-type, .xin-rd__text h2 + p, .xin-rd__text h3 + p, .xin-rd__text hr + p { text-indent: 0; }
+.xin-rd__text[lang="en"] { --read-height: 1.72; hyphens: manual; }
+.xin-rd__text[lang="en"] p { text-align: left; text-indent: 0; margin-bottom: 1.35em; }
+.xin-rd__inner { --read-width: min(68ch, 100%); }
+.xin-rd__text em, .xin-rd__text i { font-style: italic; }
+.xin-rd__text blockquote { margin: 1.6em 0; padding-left: 1.2em; border-left: 2px solid hsl(var(--border)); font-style: italic; text-indent: 0; }
+.xin-rd__text blockquote p { text-indent: 0; }

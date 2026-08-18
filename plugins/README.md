@@ -39,3 +39,14 @@ Two things to know:
 
 * **`/wp-json/` is remapped to `/api/`** (`rest_url_prefix` filter in `inc/cleanup.php`). Plugins that hardcode `/wp-json/` instead of calling `rest_url()` will need that filter removed.
 * **Comments are closed by filters**, not just by post-type support. A plugin that expects open comments will see them closed.
+
+## XI Novels — импорт глав / chapter import
+
+`xi-novel-import.zip` — плагин массового импорта: **.docx**, .txt, .md, .html, ZIP с ними и **Google Docs** по ссылке. Экран — *Инструменты → Импорт глав*.
+
+* номер и название главы берутся из имени файла: `001. Десятый.docx`, `Глава 12.5 — Экстра.txt`;
+* файлы сортируются естественно, повторный запуск обновляет те же главы;
+* опции: начальный номер, ранний доступ с номера N, публикация или черновики, кодировка текстовых файлов;
+* Google Docs: документ должен быть открыт по ссылке или опубликован (Файл → Поделиться → Опубликовать в интернете).
+
+`xi-novel-import.zip` is the bulk import plugin: **.docx**, .txt, .md, .html, ZIP archives of them and **Google Docs** by link. It lives under *Tools → Chapter import*, reads the chapter number and title from the file name, sorts naturally, updates instead of duplicating on a re-run, and can mark chapters from a given number as early access.

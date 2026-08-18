@@ -116,6 +116,14 @@ $xin_socials = xin_social_links();
 			?>
 		</div>
 	</div>
+
+	<?php if ( get_theme_mod( 'xin_credit', false ) ) : ?>
+		<div class="xin-footer__credit">
+			<a href="https://github.com/rurumiru/wordpress-novel-themes" target="_blank" rel="noopener">
+				<?php esc_html_e( 'Работает на теме XI Novels', 'xi-novels' ); ?>
+			</a>
+		</div>
+	<?php endif; ?>
 </footer>
 
 <nav class="xin-bottomnav" aria-label="<?php esc_attr_e( 'Быстрая навигация', 'xi-novels' ); ?>">

@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.0.10-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.1.0-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.0.10**
+> ### 🚧 Status: **beta 0.1.0**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -68,6 +68,8 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🕒 **Updates feed** | Every fresh chapter on the site, grouped into a Today / Yesterday / date timeline |
 | 🏆 **Rankings** | Podium for the top three plus a list to tenth place, three competing orders in one block |
 | 🌙 **Dark & light** | Dark by default, toggle in the header, no white flash on load |
+| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them |
+| 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
 | 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
 | 🌍 **RU / EN interface** | Language switch in the header, remembered in a cookie |
 
@@ -89,11 +91,14 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🕵️ **Nothing screams WordPress** | Admin bar off; generator, RSD, wlwmanifest, shortlink, oEmbed, emoji, X-Pingback and asset version strings stripped; REST moved from `/wp-json/` to `/api/`; login page restyled in your brand |
 | 🛠️ **Control panel on the site** | `/manage/`: users and roles, PLUS access with an expiry date, the review queue for contributor submissions, every title, and the site settings — no `/wp-admin` needed |
 | 🎛️ **Customizer** | Accent and premium colors, default color scheme, twelve home blocks you can switch off one by one, footer text, social links |
+| 👥 **Co-authors** | A project can carry several translators; each of them adds and edits its chapters, and the team shows on the title page |
+| 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase, next to PLUS |
+| 💬 **Discussions (optional)** | Off by default. When on: own markup, one level of replies, spoilers, likes, author and team badges — nothing that looks like WordPress comments |
 | 👑 **PLUS access** | Grant a reader early access for 30 / 90 / 365 days or with no expiry; chapters marked PLUS open for them automatically |
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 🚫 **No comments anywhere** | Shipped deliberately without discussions — front end, templates and admin section all clean |
 | 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
-| 🌐 **Translation ready** | 666 strings, Russian source + compiled English `.mo`, plus a build script |
+| 🌐 **Translation ready** | 736 strings, Russian source + compiled English `.mo`, plus a build script |
 
 ![Reader](screenshots/04-reader.jpg)
 
@@ -219,7 +224,7 @@ Every shot below is the theme itself, running with the demo content from this re
 
 ## Languages
 
-The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 666 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
+The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 736 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
 
 Adding a third language is one file:
 
@@ -266,6 +271,18 @@ Chapter lists are cached and sorted by numeric meta; sites with thousands of cha
 
 **Is there a demo?**
 Clone it and run the sandbox — it seeds a demo catalog in one command. Screenshots above come from that sandbox.
+
+## Using it? A link back is nice
+
+The licence asks for nothing beyond the GPL: use the theme commercially, fork it, rebrand it, sell services around it. But if your site runs on it and you mention that somewhere — in the footer, in an about page, in a post — it genuinely helps the project stay alive.
+
+The theme ships a ready line: **Customize → footer → “Running on XI Novels”**, off by default. Or paste your own:
+
+```html
+<a href="https://github.com/rurumiru/wordpress-novel-themes">Running on the XI Novels theme</a>
+```
+
+**Want to support the work?** Come to Telegram — [📢 channel](https://t.me/licht_re) and [💬 community chat](https://t.me/xicommunity). Bug reports, screenshots of your site, feature ideas and plain thanks are all welcome; every version is discussed there first.
 
 ## Contributing
 

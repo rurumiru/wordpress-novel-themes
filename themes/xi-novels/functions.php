@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.0.10-beta' );
+define( 'XIN_VERSION', '0.1.0-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -17,6 +17,10 @@ require_once XIN_DIR . '/inc/widgets.php';
 require_once XIN_DIR . '/inc/authoring.php';
 require_once XIN_DIR . '/inc/auth.php';
 require_once XIN_DIR . '/inc/manage.php';
+require_once XIN_DIR . '/inc/access.php';
+require_once XIN_DIR . '/inc/reading.php';
+require_once XIN_DIR . '/inc/export.php';
+require_once XIN_DIR . '/inc/discussions.php';
 require_once XIN_DIR . '/inc/banners.php';
 require_once XIN_DIR . '/inc/user-fields.php';
 require_once XIN_DIR . '/inc/i18n.php';
@@ -179,10 +183,7 @@ function xin_excerpt_more() {
 }
 add_filter( 'excerpt_more', 'xin_excerpt_more' );
 
-add_filter( 'comments_open', '__return_false', 20 );
 add_filter( 'pings_open', '__return_false', 20 );
-add_filter( 'comments_array', '__return_empty_array', 20 );
-add_filter( 'get_comments_number', '__return_zero', 20 );
 add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
 function xin_pre_get_posts( $query ) {

@@ -49,6 +49,12 @@ $xin_cover      = $xin_id ? xin_cover_url( $xin_id, 'xin-cover-sm' ) : '';
 				<label for="xin-translator"><?php esc_html_e( 'Перевод / команда', 'xi-novels' ); ?></label>
 				<input class="form-control" type="text" id="xin-translator" name="translator" value="<?php echo esc_attr( $xin_id ? get_post_meta( $xin_id, '_xin_translator', true ) : '' ); ?>">
 			</div>
+
+			<div class="xin-field">
+				<label for="xin-team"><?php esc_html_e( 'Соавторы и переводчики', 'xi-novels' ); ?></label>
+				<input class="form-control" type="text" id="xin-team" name="team" value="<?php echo esc_attr( $xin_id ? xin_team_names( $xin_id ) : '' ); ?>">
+				<p class="xin-field__hint"><?php esc_html_e( 'Логины через запятую. Каждый сможет добавлять и править главы этого проекта.', 'xi-novels' ); ?></p>
+			</div>
 			<div class="xin-field">
 				<label for="xin-year"><?php esc_html_e( 'Год выпуска', 'xi-novels' ); ?></label>
 				<input class="form-control" type="number" id="xin-year" name="year" min="1900" max="2200" value="<?php echo esc_attr( $xin_id ? get_post_meta( $xin_id, '_xin_year', true ) : '' ); ?>">

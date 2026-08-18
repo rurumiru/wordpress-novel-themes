@@ -3,13 +3,14 @@ Theme Name: XI Novels
 Theme URI: https://xi.community/
 Author: XI Community
 Author URI: https://xi.community/
-Description: Классическая тема-платформа для новелл и ранобэ: каталог тайтлов, главы с читалкой, рейтинги, коллекции и блог. Тёмная тема по умолчанию, кримсон-акцент и золото для премиума.
-Version: 0.0.10
+Description: Классическая тема-платформа для новелл и ранобэ: каталог тайтлов, главы с читалкой, рейтинги, панель управления на сайте, выгрузка в EPUB и FB2. Белая и тёмно-серая гамма, светлая схема по умолчанию.
+Version: 0.1.0
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Attribution: not required by the licence, but a link back to https://github.com/rurumiru/wordpress-novel-themes makes the authors happy
 Text Domain: xi-novels
 Tags: blog, custom-menu, custom-logo, featured-images, translation-ready, two-columns, right-sidebar, full-width-template, custom-colors, editor-style
 */

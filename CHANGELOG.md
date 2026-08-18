@@ -12,6 +12,23 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.1.0-beta] — 2026-08-18
+
+### Added
+
+- **EPUB and FB2 export.** A *Download* button on every title builds a real e-book on the spot: cover, table of contents, chapters, metadata. EPUB 3 with `mimetype` first in the archive and a valid `content.opf`; FB2 with an embedded cover. Locked chapters land in the file only for readers who may read them, and the route is throttled per address.
+- **Reading streaks and achievements.** Days in a row and chapters read are counted for signed-in readers, once per chapter per day. Ten achievements — first chapter, ten, fifty, a hundred, three / seven / thirty days in a row, a first project, a first release, ten releases — show on the profile. No points, no leaderboards, nothing to farm.
+- **Co-authors on a project.** A title can list several translators: each of them adds and edits its chapters from the studio, the team shows on the title page, and a shared project appears in every member's project list. The field is in the studio and in the admin.
+- **Paid chapters through WooCommerce.** A bridge, not a checkout: attach a product to a chapter and it opens for whoever bought it, right next to the PLUS route. The gate shows the price and an add-to-cart link. Without WooCommerce nothing changes.
+- **Discussions — an optional module, off by default.** Turned on in the customizer or the control panel. Inside they are WordPress comments; outside there is nothing of WordPress about them: own markup, one level of replies, `||spoilers||`, `**bold**` and `_italic_`, likes over a REST route, author / team / PLUS badges, and no website field. Comments stay off — post types, admin menu and templates — while the module is off.
+- **A separate import plugin** — `xi-novel-import.zip`: bulk chapter import from **.docx**, .txt, .md, .html, ZIP archives of them, and **Google Docs** by link. Chapter number and title are read from the file name, files are sorted naturally, re-running updates the same chapters instead of duplicating, and options cover the starting number, marking chapters from N as early access, draft or published, and the encoding of text files. The screen sits under *Tools → Chapter import* and reports what it created and what it updated.
+- **An optional credit line** — *Customize → footer → “Running on XI Novels”*, off by default.
+
+### Changed
+
+- **Reader typography pass.** The column is measured in characters (`68ch`) rather than pixels, hanging punctuation is on, and the rhythm follows the language: Russian keeps justification, hyphenation and a paragraph indent; English drops the indent, sets ragged-right and a shorter leading. Block quotes, the drop cap and headings were retuned with it.
+- Access to a locked chapter is decided in one place now — PLUS, a purchase, the project team or the author — so the reader, the contents list and the export all answer the same way.
+
 ## [0.0.10-beta] — 2026-08-18
 
 ### Fixed

@@ -92,24 +92,42 @@ while ( have_posts() ) :
 
 			<div class="xin-rd__rule" aria-hidden="true"></div>
 
-			<?php if ( $xin_locked && ! xin_user_is_plus() ) : ?>
+			<?php if ( ! xin_can_read_chapter( $xin_id ) ) : ?>
+				<?php
+				$xin_price = xin_chapter_price( $xin_id );
+				$xin_buy   = xin_chapter_buy_url( $xin_id );
+				?>
 				<div class="xin-locked">
 					<?php xin_the_icon( 'lock' ); ?>
-					<h2><?php esc_html_e( 'Глава для подписчиков PLUS', 'xi-novels' ); ?></h2>
-					<?php if ( is_user_logged_in() ) : ?>
+					<h2><?php esc_html_e( 'Глава раннего доступа', 'xi-novels' ); ?></h2>
+
+					<?php if ( $xin_buy ) : ?>
+						<p class="xin-muted"><?php esc_html_e( 'Её можно открыть подпиской PLUS или разовой покупкой — деньги идут команде проекта.', 'xi-novels' ); ?></p>
+						<div class="xin-locked__actions">
+							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( $xin_buy ); ?>">
+								<?php
+								echo $xin_price
+									? esc_html( sprintf( __( 'Купить главу — %s', 'xi-novels' ), $xin_price ) )
+									: esc_html__( 'Купить главу', 'xi-novels' );
+								?>
+							</a>
+							<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>"><?php esc_html_e( 'Что даёт PLUS', 'xi-novels' ); ?></a>
+						</div>
+					<?php elseif ( is_user_logged_in() ) : ?>
 						<p class="xin-muted"><?php esc_html_e( 'Ранний доступ открывается подписчикам PLUS. Так переводчик получает поддержку раньше остальных.', 'xi-novels' ); ?></p>
-						<a class="btn btn-primary btn-sm xin-mt-2" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>">
-							<?php esc_html_e( 'Что даёт PLUS', 'xi-novels' ); ?>
-						</a>
+						<div class="xin-locked__actions">
+							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>"><?php esc_html_e( 'Что даёт PLUS', 'xi-novels' ); ?></a>
+						</div>
 					<?php else : ?>
 						<p class="xin-muted"><?php esc_html_e( 'Войдите в аккаунт с подпиской PLUS, чтобы продолжить чтение.', 'xi-novels' ); ?></p>
-						<a class="btn btn-primary btn-sm xin-mt-2" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>">
-							<?php esc_html_e( 'Войти', 'xi-novels' ); ?>
-						</a>
+						<div class="xin-locked__actions">
+							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Войти', 'xi-novels' ); ?></a>
+						</div>
 					<?php endif; ?>
 				</div>
 			<?php else : ?>
-				<div class="xin-rd__text" data-xin-rd-text>
+				<?php xin_track_reading( $xin_id ); ?>
+				<div class="xin-rd__text" data-xin-rd-text lang="<?php echo esc_attr( xin_current_lang() ); ?>">
 					<?php the_content(); ?>
 				</div>
 			<?php endif; ?>
@@ -150,6 +168,8 @@ while ( have_posts() ) :
 				);
 				?>
 			</p>
+
+			<?php xin_talk_render( $xin_id ); ?>
 
 		</div>
 	</main>

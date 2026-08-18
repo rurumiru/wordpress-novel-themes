@@ -119,3 +119,6 @@
 .wp-block-code { background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); border-radius: var(--radius-sm); padding: 1rem 1.125rem; }
 .wp-block-calendar table caption { color: hsl(var(--muted-fg)); }
 .screen-reader-text + .wp-block-search__inside-wrapper { margin-top: 0; }
+.xin-footer__credit { padding: 12px 16px 20px; text-align: center; font-size: 12px; color: hsl(var(--muted-fg) / .8); }
+.xin-footer__credit a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.xin-footer__credit a:hover { color: hsl(var(--primary)); }
