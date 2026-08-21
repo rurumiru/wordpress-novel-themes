@@ -23,3 +23,6 @@ desktop.ini
 *.code-workspace
 *~
 *.swp
+
+# Build output
+dist/

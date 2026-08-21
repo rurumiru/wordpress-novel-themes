@@ -194,8 +194,9 @@ while ( have_posts() ) :
 						<?php if ( $xin_transl ) : ?>
 							<div><dt><?php esc_html_e( 'Перевод', 'xi-novels' ); ?></dt><dd><?php echo esc_html( $xin_transl ); ?></dd></div>
 						<?php endif; ?>
-						<div><dt><?php esc_html_e( 'Добавлен', 'xi-novels' ); ?></dt><dd><?php echo esc_html( get_the_date() ); ?></dd></div>
-						<div><dt><?php esc_html_e( 'Обновлён', 'xi-novels' ); ?></dt><dd><?php echo esc_html( get_the_modified_date() ); ?></dd></div>
+						<?php $xin_when = get_option( 'date_format' ) . ', ' . get_option( 'time_format' ); ?>
+						<div><dt><?php esc_html_e( 'Добавлен', 'xi-novels' ); ?></dt><dd><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( $xin_when ) ); ?></time></dd></div>
+						<div><dt><?php esc_html_e( 'Обновлён', 'xi-novels' ); ?></dt><dd><time datetime="<?php echo esc_attr( get_the_modified_date( 'c' ) ); ?>"><?php echo esc_html( get_the_modified_date( $xin_when ) ); ?></time></dd></div>
 						<?php if ( $xin_source ) : ?>
 							<div><dt><?php esc_html_e( 'Источник', 'xi-novels' ); ?></dt><dd><a href="<?php echo esc_url( $xin_source ); ?>" target="_blank" rel="noopener nofollow"><?php esc_html_e( 'открыть', 'xi-novels' ); ?></a></dd></div>
 						<?php endif; ?>

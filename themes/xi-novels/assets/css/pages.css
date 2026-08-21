@@ -5,8 +5,8 @@
 .xin-crumbs a:hover { color: hsl(var(--primary)); }
 .xin-crumbs svg { width: 12px; height: 12px; opacity: .6; }
 
-.xin-novel-hero { position: relative; overflow: hidden; border-bottom: 1px solid hsl(var(--border)); }
-.xin-novel-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.xin-novel-hero { position: relative; border-bottom: 1px solid hsl(var(--border)); }
+.xin-novel-hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .xin-novel-hero__bg img { width: 100%; height: 100%; object-fit: cover; filter: blur(26px) saturate(1.05); transform: scale(1.18); opacity: .22; }
 .xin-novel-hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, hsl(var(--bg) / .78), hsl(var(--bg) / .94) 55%, hsl(var(--bg))); }
 .xin-novel-hero__inner { position: relative; z-index: 1; display: grid; gap: 20px; padding: 26px 16px 30px; max-width: var(--wrap); margin-inline: auto; }
@@ -460,8 +460,8 @@
 	.xin-reader__content { max-width: none; font-size: 12pt; }
 }
 
-.xin-nv__hero { position: relative; overflow: hidden; border-bottom: 1px solid hsl(var(--border)); }
-.xin-nv__backdrop { position: absolute; inset: 0; z-index: 0; }
+.xin-nv__hero { position: relative; border-bottom: 1px solid hsl(var(--border)); }
+.xin-nv__backdrop { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .xin-nv__backdrop img { width: 100%; height: 100%; object-fit: cover; filter: blur(34px) saturate(1.05); transform: scale(1.2); opacity: .14; }
 .xin-nv__backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, hsl(var(--bg) / .82), hsl(var(--bg) / .96) 60%, hsl(var(--bg))); }
 .xin-nv__heroin { position: relative; z-index: 1; display: grid; gap: 22px; padding-top: 24px; padding-bottom: 28px; }
@@ -630,9 +630,10 @@
 
 .xin-nv__dl { position: relative; }
 .xin-nv__dlmenu {
-	position: absolute; z-index: 40; top: calc(100% + 6px); left: 0; min-width: 210px; padding: 6px;
+	position: absolute; z-index: 40; top: calc(100% + 6px); left: 0; min-width: 210px; max-width: min(280px, calc(100vw - 24px)); padding: 6px;
 	background: hsl(var(--popover)); border: 1px solid hsl(var(--border)); border-radius: 10px; box-shadow: var(--shadow-3);
 }
+@media (max-width: 767px) { .xin-nv__dlmenu { left: 50%; transform: translateX(-50%); text-align: left; } }
 .xin-nv__dlmenu a { display: block; padding: 8px 10px; border-radius: 7px; font-size: 13.5px; font-weight: 600; text-decoration: none; color: hsl(var(--fg)); }
 .xin-nv__dlmenu a:hover { background: hsl(var(--accent)); }
 .xin-nv__dlmenu small { display: block; font-weight: 400; font-size: 12px; color: hsl(var(--muted-fg)); }

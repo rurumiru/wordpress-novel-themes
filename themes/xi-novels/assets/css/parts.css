@@ -101,8 +101,8 @@
 .xin-catpill.is-active b, .xin-catpill:hover b { color: inherit; opacity: .8; }
 .xin-catpill b { font-size: 11px; font-weight: 700; color: hsl(var(--muted-fg)); }
 
-.xin-profile { position: relative; overflow: hidden; border-bottom: 1px solid hsl(var(--border)); }
-.xin-profile__cover { position: absolute; inset: 0 0 auto 0; height: 220px; z-index: 0; background: linear-gradient(120deg, hsl(var(--primary) / .35), hsl(var(--gold) / .18) 55%, transparent); }
+.xin-profile { position: relative; border-bottom: 1px solid hsl(var(--border)); }
+.xin-profile__cover { position: absolute; inset: 0 0 auto 0; height: 220px; z-index: 0; overflow: hidden; background: linear-gradient(120deg, hsl(var(--primary) / .35), hsl(var(--gold) / .18) 55%, transparent); }
 .xin-profile__cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, hsl(var(--bg))); }
 .xin-profile__inner { position: relative; z-index: 1; display: grid; gap: 18px; padding: 56px 16px 26px; max-width: var(--wrap); margin-inline: auto; }
 @media (min-width: 768px) { .xin-profile__inner { grid-template-columns: auto minmax(0, 1fr); align-items: center; padding-top: 84px; } }

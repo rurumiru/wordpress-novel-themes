@@ -12,6 +12,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.3.1-beta] — 2026-08-21
+
+### Fixed
+
+- **The download menu on a title page was cut off.** The hero of a title clipped its own overflow, so that the blurred cover behind it would stay inside the block — and it clipped the EPUB / FB2 menu with it: only a strip of the dropdown showed under the buttons, the rest was cut at the edge of the hero. The clipping moved to the backdrop layer, which is the only thing that needed it, and the hero no longer cuts anything that opens out of it. The same construction on the author page was changed with it, so the next dropdown placed in a hero does not repeat the bug.
+- On a phone that menu could also run past the right edge of the screen. It is now bounded by the viewport and centred under the button.
+
+### Changed
+
+- **The dates of a title carry the time.** *Added* and *Updated* in the sidebar are printed with the site's date **and** time formats — `20/08/2026, 15:35` rather than `20/08/2026` — and both sit inside a `<time datetime="…">` element with an ISO timestamp, so a browser and a crawler read the exact moment. No new translatable strings: the format comes from the WordPress settings.
+
 ## [0.3.0-beta] — 2026-08-20
 
 ### Added
