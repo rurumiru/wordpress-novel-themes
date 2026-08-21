@@ -6,6 +6,15 @@
 	if (!root) return;
 
 	var defaults = { size: 19, height: 1.9, width: 720, font: 'serif', paper: 'default' };
+	if (window.XIN && window.XIN.read) {
+		defaults = {
+			size: parseInt(window.XIN.read.size, 10) || defaults.size,
+			height: parseFloat(window.XIN.read.height) || defaults.height,
+			width: parseInt(window.XIN.read.width, 10) || defaults.width,
+			font: window.XIN.read.font || defaults.font,
+			paper: window.XIN.read.paper || defaults.paper
+		};
+	}
 	var prefs = defaults;
 
 	try {
@@ -62,8 +71,10 @@
 		var panel = $('[data-xin-rd-panel]');
 	var toc = $('[data-xin-rd-toc-panel]');
 	var scrim = $('[data-xin-rd-scrim]');
+	var sheets = $$('[data-xin-rd-sheet]');
 
 	function closePanels() {
+		sheets.forEach(function (sheet) { sheet.classList.remove('is-open'); });
 		if (panel) panel.classList.remove('is-open');
 		if (toc) toc.classList.remove('is-open');
 		if (scrim) scrim.classList.remove('is-open');
@@ -76,6 +87,8 @@
 		el.classList.add('is-open');
 		if (scrim) scrim.classList.add('is-open');
 	}
+
+	window.xinReader = { open: openPanel, close: closePanels };
 
 	var settingsBtn = $('[data-xin-rd-settings]');
 	if (settingsBtn) settingsBtn.addEventListener('click', function () { openPanel(panel); });

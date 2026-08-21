@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.1.0-beta' );
+define( 'XIN_VERSION', '0.3.0-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -12,6 +12,8 @@ require_once XIN_DIR . '/inc/cpt.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
 require_once XIN_DIR . '/inc/icons.php';
 require_once XIN_DIR . '/inc/template-tags.php';
+require_once XIN_DIR . '/inc/skin.php';
+require_once XIN_DIR . '/inc/glossary.php';
 require_once XIN_DIR . '/inc/customizer.php';
 require_once XIN_DIR . '/inc/widgets.php';
 require_once XIN_DIR . '/inc/authoring.php';
@@ -96,6 +98,7 @@ $custom = xin_customizer_css();
 		'nonce'        => wp_create_nonce( 'wp_rest' ),
 		'homeUrl'      => home_url( '/' ),
 		'defaultTheme' => get_theme_mod( 'xin_default_scheme', 'light' ),
+		'read'         => xin_skin_reader_defaults(),
 		'i18n'         => array(
 			'added'   => __( 'В библиотеке', 'xi-novels' ),
 			'add'     => __( 'В библиотеку', 'xi-novels' ),
@@ -107,8 +110,66 @@ $custom = xin_customizer_css();
 		),
 	) );
 
+	wp_register_script( 'xi-novels-replace', XIN_URI . '/assets/js/replace.js', array(), xin_asset_ver( '/assets/js/replace.js' ), true );
+
 	if ( is_singular( 'chapter' ) ) {
 		wp_enqueue_script( 'xi-novels-reader', XIN_URI . '/assets/js/reader.js', array( 'xi-novels' ), xin_asset_ver( '/assets/js/reader.js' ), true );
+
+		wp_enqueue_script( 'xi-novels-glossary', XIN_URI . '/assets/js/glossary.js', array( 'xi-novels-reader', 'xi-novels-replace' ), xin_asset_ver( '/assets/js/glossary.js' ), true );
+		wp_localize_script( 'xi-novels-glossary', 'XIN_GL', array(
+			'project' => xin_glossary_for_js( xin_chapter_novel_id( get_queried_object_id() ) ),
+			'icons' => array(
+				'check' => xin_icon( 'check' ),
+				'trash' => xin_icon( 'trash' ),
+			),
+			'i18n'  => array(
+				'add'        => __( 'Добавить', 'xi-novels' ),
+				'save'       => __( 'Сохранить', 'xi-novels' ),
+				'empty'      => __( 'Правил пока нет. Выделите слово в тексте — или впишите его сами.', 'xi-novels' ),
+				'hint'       => __( 'Термин слева заменяется на термин справа прямо при чтении.', 'xi-novels' ),
+				'stat'       => __( 'Правил: %1$s · замен в главе: %2$s', 'xi-novels' ),
+				'scopeNovel' => __( 'Этот тайтл', 'xi-novels' ),
+				'scopeAll'   => __( 'Все тайтлы', 'xi-novels' ),
+				'scopeProject'   => __( 'От переводчика', 'xi-novels' ),
+				'fromTranslator' => __( 'Правило переводчика — его можно только выключить целиком', 'xi-novels' ),
+				'ruleOn'     => __( 'Включить правило', 'xi-novels' ),
+				'ruleOff'    => __( 'Выключить правило', 'xi-novels' ),
+				'ruleEdit'   => __( 'Изменить правило', 'xi-novels' ),
+				'ruleDelete' => __( 'Удалить правило', 'xi-novels' ),
+				'ruleCut'    => __( '— убрать —', 'xi-novels' ),
+				'flagCase'   => __( 'регистр', 'xi-novels' ),
+				'flagWhole'  => __( 'целиком', 'xi-novels' ),
+				'was'        => __( 'В оригинале: %s', 'xi-novels' ),
+				'imported'   => __( 'Добавлено правил: %s', 'xi-novels' ),
+				'badFile'    => __( 'Не получилось прочитать файл словаря.', 'xi-novels' ),
+			),
+		) );
+	}
+
+	if ( is_page_template( 'template-dashboard.php' ) ) {
+		$xin_project = isset( $_GET['project'] ) ? absint( $_GET['project'] ) : 0;
+		if ( ! $xin_project && isset( $_GET['id'] ) ) {
+			$xin_project = xin_chapter_novel_id( absint( $_GET['id'] ) );
+		}
+
+		if ( current_user_can( 'upload_files' ) ) {
+			wp_enqueue_media();
+		}
+
+		wp_enqueue_style( 'xi-novels-writer', XIN_URI . '/assets/css/writer.css', array( 'xi-novels-parts' ), xin_asset_ver( '/assets/css/writer.css' ) );
+		wp_enqueue_script( 'xi-novels-writer', XIN_URI . '/assets/js/writer.js', array( 'xi-novels', 'xi-novels-replace' ), xin_asset_ver( '/assets/js/writer.js' ), true );
+		wp_localize_script( 'xi-novels-writer', 'XIN_WRITER', array(
+			'glossary' => $xin_project ? xin_glossary_for_js( $xin_project ) : array(),
+			'i18n'     => array(
+				'stats'           => __( 'Слов: %1$s · знаков: %2$s · ~%3$s мин чтения', 'xi-novels' ),
+				'saved'           => __( 'черновик сохранён', 'xi-novels' ),
+				'tidied'          => __( 'текст причёсан', 'xi-novels' ),
+				'replaced'        => __( 'Заменено: %s', 'xi-novels' ),
+				'glossaryApplied' => __( 'Словарь проекта применён, замен: %s', 'xi-novels' ),
+				'draftFound'      => __( 'В браузере остался черновик от %s', 'xi-novels' ),
+				'pickImage'       => __( 'Выбрать картинку', 'xi-novels' ),
+			),
+		) );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'xin_assets' );

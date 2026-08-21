@@ -92,6 +92,10 @@ case 'chapters':
 						get_template_part( 'template-parts/dash', 'chapters', array( 'novel_id' => $xin_novel_id ) );
 						break;
 
+					case 'glossary':
+						get_template_part( 'template-parts/dash', 'glossary', array( 'novel_id' => $xin_novel_id ) );
+						break;
+
 case 'new-chapter':
 					case 'edit-chapter':
 						$xin_chapter = $xin_edit_id ? get_post( $xin_edit_id ) : null;

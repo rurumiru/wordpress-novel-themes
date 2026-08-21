@@ -83,6 +83,12 @@ function xin_studio_router() {
 		case 'save_chapter':
 			xin_handle_save_chapter();
 			break;
+		case 'save_glossary':
+			xin_handle_save_glossary();
+			break;
+		case 'apply_glossary':
+			xin_handle_apply_glossary();
+			break;
 		case 'delete':
 			xin_handle_delete();
 			break;
@@ -254,6 +260,67 @@ wp_update_post( array( 'ID' => $novel_id, 'post_modified' => current_time( 'mysq
 }
 add_action( 'admin_post_xin_save_chapter', 'xin_handle_save_chapter' );
 
+/**
+ * Сохраняет словарь проекта из формы кабинета.
+ */
+function xin_handle_save_glossary() {
+	$novel_id = isset( $_POST['novel_id'] ) ? absint( $_POST['novel_id'] ) : 0;
+
+	xin_studio_guard( 'xin_glossary', array( 'view' => 'glossary', 'project' => $novel_id ) );
+
+	if ( ! $novel_id || ! xin_owns( $novel_id ) ) {
+		xin_redirect_back( array( 'view' => 'novels', 'msg' => 'no-project' ) );
+	}
+
+	$lines = isset( $_POST['rules'] ) ? (string) wp_unslash( $_POST['rules'] ) : '';
+	$rules = xin_glossary_parse_lines( $lines );
+	$ci    = isset( $_POST['ci'] );
+	$whole = isset( $_POST['whole'] );
+
+	foreach ( $rules as $index => $rule ) {
+		$rules[ $index ]['ci']    = $ci;
+		$rules[ $index ]['whole'] = $whole;
+	}
+
+	xin_glossary_save( $novel_id, $rules );
+
+	xin_redirect_back( array( 'view' => 'glossary', 'project' => $novel_id, 'msg' => 'glossary-saved' ) );
+}
+
+/**
+ * Считает или вписывает замены по всем главам проекта.
+ */
+function xin_handle_apply_glossary() {
+	$novel_id = isset( $_POST['novel_id'] ) ? absint( $_POST['novel_id'] ) : 0;
+
+	xin_studio_guard( 'xin_glossary', array( 'view' => 'glossary', 'project' => $novel_id ) );
+
+	if ( ! $novel_id || ! xin_owns( $novel_id ) ) {
+		xin_redirect_back( array( 'view' => 'novels', 'msg' => 'no-project' ) );
+	}
+
+	$rules = xin_glossary_rules( $novel_id );
+	if ( ! $rules ) {
+		xin_redirect_back( array( 'view' => 'glossary', 'project' => $novel_id ) );
+	}
+
+	$dry    = ! empty( $_POST['dry'] ) || empty( $_POST['sure'] );
+	$result = xin_glossary_bulk( $novel_id, $rules, $dry );
+
+	$back = array(
+		'view'    => 'glossary',
+		'project' => $novel_id,
+		'hits'    => $result['hits'],
+		'touched' => $result['touched'],
+	);
+
+	if ( ! $dry ) {
+		$back['msg'] = 'glossary-applied';
+	}
+
+	xin_redirect_back( $back );
+}
+
 function xin_handle_delete() {
 	xin_studio_guard( 'xin_delete', array( 'view' => 'novels' ) );
 
@@ -292,6 +359,8 @@ function xin_dashboard_notice() {
 		'too-big'       => array( 'err', __( 'Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize.', 'xi-novels' ) ),
 		'denied'        => array( 'err', __( 'Недостаточно прав для этого действия.', 'xi-novels' ) ),
 		'no-project'    => array( 'err', __( 'Проект не найден.', 'xi-novels' ) ),
+		'glossary-saved'   => array( 'ok', __( 'Словарь проекта сохранён.', 'xi-novels' ) ),
+		'glossary-applied' => array( 'ok', __( 'Словарь вписан в текст глав.', 'xi-novels' ) ),
 		'welcome'       => array( 'ok', __( 'Аккаунт создан. Первый проект начинается с кнопки «Новый проект».', 'xi-novels' ) ),
 	);
 	if ( ! isset( $map[ $msg ] ) ) {

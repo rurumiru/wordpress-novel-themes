@@ -24,6 +24,9 @@ $xin_chapters = get_posts( array(
 			<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( xin_dashboard_url( array( 'view' => 'edit-novel', 'id' => $xin_novel_id ) ) ); ?>">
 				<?php xin_the_icon( 'settings' ); ?><?php esc_html_e( 'Настройки проекта', 'xi-novels' ); ?>
 			</a>
+			<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( xin_dashboard_url( array( 'view' => 'glossary', 'project' => $xin_novel_id ) ) ); ?>">
+				<?php xin_the_icon( 'languages' ); ?><?php esc_html_e( 'Словарь проекта', 'xi-novels' ); ?>
+			</a>
 			<a class="btn btn-primary btn-sm" href="<?php echo esc_url( xin_dashboard_url( array( 'view' => 'new-chapter', 'project' => $xin_novel_id ) ) ); ?>">
 				<?php xin_the_icon( 'plus' ); ?><?php esc_html_e( 'Добавить главу', 'xi-novels' ); ?>
 			</a>

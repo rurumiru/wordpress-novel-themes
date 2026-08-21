@@ -10,55 +10,64 @@ $wp_customize->add_section( 'xin_brand', array(
 		'priority' => 25,
 	) );
 
-	$wp_customize->add_setting( 'xin_default_scheme', array(
-		'default'           => 'light',
-		'sanitize_callback' => 'sanitize_key',
-	) );
-	$wp_customize->add_control( 'xin_default_scheme', array(
-		'label'   => __( 'Схема по умолчанию', 'xi-novels' ),
-		'section' => 'xin_brand',
-		'type'    => 'select',
-		'choices' => array(
-			'dark'  => __( 'Тёмная', 'xi-novels' ),
-			'light' => __( 'Светлая', 'xi-novels' ),
-			'auto'  => __( 'Как в системе', 'xi-novels' ),
-		),
-	) );
-
 	$wp_customize->add_setting( 'xin_default_lang', array(
 		'default'           => 'ru',
 		'sanitize_callback' => 'sanitize_key',
 	) );
+	$xin_lang_choices = array();
+	foreach ( xin_languages() as $xin_lang_key => $xin_lang_data ) {
+		$xin_lang_choices[ $xin_lang_key ] = $xin_lang_data['name'];
+	}
+
 	$wp_customize->add_control( 'xin_default_lang', array(
 		'label'       => __( 'Основной язык', 'xi-novels' ),
-		'description' => __( 'На каком языке сайт открывается у нового посетителя. Переключатель RU / EN в шапке остаётся.', 'xi-novels' ),
+		'description' => __( 'На каком языке сайт открывается у нового посетителя. Переключатель языков в шапке остаётся.', 'xi-novels' ),
 		'section'     => 'xin_brand',
 		'type'        => 'select',
-		'choices'     => array(
-			'ru' => __( 'Русский', 'xi-novels' ),
-			'en' => __( 'Английский', 'xi-novels' ),
-		),
+		'choices'     => $xin_lang_choices,
 	) );
 
-	$wp_customize->add_setting( 'xin_primary', array(
-		'default'           => '',
-		'sanitize_callback' => 'sanitize_hex_color',
+	$wp_customize->add_section( 'xin_look', array(
+		'title'       => __( 'XI Novels: облик', 'xi-novels' ),
+		'description' => __( 'То же самое живьём и с предпросмотром — в «Студии темы».', 'xi-novels' ),
+		'priority'    => 25,
 	) );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'xin_primary', array(
-		'label'       => __( 'Акцентный цвет', 'xi-novels' ),
-		'description' => __( 'Пусто — фирменный тёмно-серый.', 'xi-novels' ),
-		'section'     => 'xin_brand',
-	) ) );
 
-	$wp_customize->add_setting( 'xin_gold', array(
-		'default'           => '',
-		'sanitize_callback' => 'sanitize_hex_color',
-	) );
-	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'xin_gold', array(
-		'label'       => __( 'Цвет премиума', 'xi-novels' ),
-		'description' => __( 'Коины, PLUS, медали рейтинга.', 'xi-novels' ),
-		'section'     => 'xin_brand',
-	) ) );
+	foreach ( xin_skin_fields() as $xin_key => $xin_field ) {
+		$xin_section = 'color' === $xin_field['group'] ? 'xin_brand' : 'xin_look';
+
+		$wp_customize->add_setting( $xin_key, array(
+			'default'           => $xin_field['default'],
+			'sanitize_callback' => function ( $value ) use ( $xin_key ) {
+				return xin_skin_sanitize( $xin_key, $value );
+			},
+		) );
+
+		$xin_args = array(
+			'label'       => $xin_field['label'],
+			'description' => isset( $xin_field['hint'] ) ? $xin_field['hint'] : '',
+			'section'     => $xin_section,
+		);
+
+		if ( 'color' === $xin_field['type'] ) {
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $xin_key, $xin_args ) );
+			continue;
+		}
+
+		if ( 'choice' === $xin_field['type'] ) {
+			$xin_args['type']    = 'select';
+			$xin_args['choices'] = $xin_field['choices'];
+		} else {
+			$xin_args['type']        = 'number';
+			$xin_args['input_attrs'] = array(
+				'min'  => $xin_field['min'],
+				'max'  => $xin_field['max'],
+				'step' => $xin_field['step'],
+			);
+		}
+
+		$wp_customize->add_control( $xin_key, $xin_args );
+	}
 
 $wp_customize->add_section( 'xin_accounts', array(
 		'title'    => __( 'XI Novels: аккаунты', 'xi-novels' ),
@@ -252,17 +261,7 @@ function xin_hex_to_hsl( $hex ) {
 }
 
 function xin_customizer_css() {
-	$css     = '';
-	$primary = xin_hex_to_hsl( get_theme_mod( 'xin_primary', '' ) );
-	$gold    = xin_hex_to_hsl( get_theme_mod( 'xin_gold', '' ) );
-
-	if ( $primary ) {
-		$css .= ':root,[data-theme="dark"]{--primary:' . $primary . ';--ring:' . $primary . ';}';
-	}
-	if ( $gold ) {
-		$css .= ':root,[data-theme="dark"]{--gold:' . $gold . ';}';
-	}
-	return $css;
+	return xin_skin_css();
 }
 
 function xin_social_links() {

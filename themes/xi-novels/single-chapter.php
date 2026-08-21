@@ -11,6 +11,7 @@ while ( have_posts() ) :
 	$xin_label    = xin_chapter_label( $xin_id );
 	$xin_all      = $xin_novel_id ? xin_get_chapters( $xin_novel_id, 'ASC' ) : array();
 	$xin_words    = str_word_count( wp_strip_all_tags( get_the_content() ) );
+	$xin_gloss    = $xin_novel_id ? xin_glossary_rules( $xin_novel_id ) : array();
 	$xin_minutes  = max( 1, (int) round( $xin_words / 180 ) );
 	?>
 <!doctype html>
@@ -48,7 +49,7 @@ while ( have_posts() ) :
 			<?php xin_the_icon( 'list' ); ?>
 		</button>
 
-		<div class="xin-rd__bar-title">
+		<div class="xin-rd__bar-title" data-xin-gl-scope>
 			<b><?php the_title(); ?></b>
 			<?php if ( $xin_novel_id ) : ?>
 				<small><?php echo esc_html( get_the_title( $xin_novel_id ) ); ?></small>
@@ -56,6 +57,9 @@ while ( have_posts() ) :
 		</div>
 
 		<div class="xin-rd__actions">
+			<button type="button" class="btn btn-icon" data-xin-gl-open aria-label="<?php esc_attr_e( 'Глоссарий', 'xi-novels' ); ?>">
+				<?php xin_the_icon( 'languages' ); ?>
+			</button>
 			<button type="button" class="btn btn-icon xin-theme-toggle" data-xin-theme aria-label="<?php esc_attr_e( 'Сменить тему', 'xi-novels' ); ?>">
 				<?php xin_the_icon( 'sun', 'xin-i-sun' ); ?><?php xin_the_icon( 'moon', 'xin-i-moon' ); ?>
 			</button>
@@ -71,12 +75,12 @@ while ( have_posts() ) :
 	<main class="xin-rd__main">
 		<div class="xin-rd__inner">
 			<?php if ( $xin_novel_id ) : ?>
-				<a class="xin-rd__eyebrow" href="<?php echo esc_url( get_permalink( $xin_novel_id ) ); ?>">
+				<a class="xin-rd__eyebrow" data-xin-gl-scope href="<?php echo esc_url( get_permalink( $xin_novel_id ) ); ?>">
 					<?php echo esc_html( get_the_title( $xin_novel_id ) ); ?>
 				</a>
 			<?php endif; ?>
 
-			<h1 class="xin-rd__title">
+			<h1 class="xin-rd__title" data-xin-gl-scope>
 				<?php if ( $xin_label ) : ?>
 					<span class="xin-muted"><?php printf( esc_html__( 'Глава %s.', 'xi-novels' ), esc_html( $xin_label ) ); ?></span>
 				<?php endif; ?>
@@ -127,12 +131,12 @@ while ( have_posts() ) :
 				</div>
 			<?php else : ?>
 				<?php xin_track_reading( $xin_id ); ?>
-				<div class="xin-rd__text" data-xin-rd-text lang="<?php echo esc_attr( xin_current_lang() ); ?>">
+				<div class="xin-rd__text" data-xin-rd-text data-xin-gl-scope lang="<?php echo esc_attr( xin_current_lang() ); ?>">
 					<?php the_content(); ?>
 				</div>
 			<?php endif; ?>
 
-			<nav class="xin-rd__nav">
+			<nav class="xin-rd__nav" data-xin-gl-scope>
 				<?php if ( $xin_prev ) : ?>
 					<a href="<?php echo esc_url( get_permalink( $xin_prev->ID ) ); ?>" data-xin-prev>
 						<?php xin_the_icon( 'chevron-left' ); ?>
@@ -189,12 +193,12 @@ while ( have_posts() ) :
 		<?php endif; ?>
 	</div>
 
-	<aside class="xin-rd__toc" data-xin-rd-toc-panel aria-label="<?php esc_attr_e( 'Оглавление', 'xi-novels' ); ?>">
+	<aside class="xin-rd__toc" data-xin-rd-sheet data-xin-rd-toc-panel aria-label="<?php esc_attr_e( 'Оглавление', 'xi-novels' ); ?>">
 		<h3 style="display:flex;justify-content:space-between;align-items:center">
 			<?php esc_html_e( 'Оглавление', 'xi-novels' ); ?>
 			<button type="button" class="btn btn-icon" data-xin-rd-close><?php xin_the_icon( 'close' ); ?></button>
 		</h3>
-		<ul>
+		<ul data-xin-gl-scope>
 			<?php foreach ( $xin_all as $xin_item ) : ?>
 				<li>
 					<a href="<?php echo esc_url( get_permalink( $xin_item->ID ) ); ?>" class="<?php echo (int) $xin_item->ID === (int) $xin_id ? 'is-current' : ''; ?>">
@@ -209,7 +213,7 @@ while ( have_posts() ) :
 		</ul>
 	</aside>
 
-	<aside class="xin-rd__panel" data-xin-rd-panel aria-label="<?php esc_attr_e( 'Настройки чтения', 'xi-novels' ); ?>">
+	<aside class="xin-rd__panel" data-xin-rd-sheet data-xin-rd-panel aria-label="<?php esc_attr_e( 'Настройки чтения', 'xi-novels' ); ?>">
 		<h3>
 			<?php esc_html_e( 'Как читать', 'xi-novels' ); ?>
 			<button type="button" class="btn btn-icon" data-xin-rd-close><?php xin_the_icon( 'close' ); ?></button>
@@ -264,6 +268,82 @@ while ( have_posts() ) :
 			<?php esc_html_e( 'Настройки сохраняются в этом браузере и применяются ко всем главам сайта.', 'xi-novels' ); ?>
 		</p>
 	</aside>
+
+	<aside class="xin-rd__panel xin-rd__panel--wide" data-xin-rd-sheet data-xin-gl-panel aria-label="<?php esc_attr_e( 'Глоссарий', 'xi-novels' ); ?>">
+		<h3>
+			<?php esc_html_e( 'Глоссарий', 'xi-novels' ); ?>
+			<button type="button" class="btn btn-icon" data-xin-rd-close><?php xin_the_icon( 'close' ); ?></button>
+		</h3>
+
+		<label class="xin-gl__switch">
+			<input type="checkbox" data-xin-gl-toggle checked>
+			<span><?php esc_html_e( 'Заменять термины при чтении', 'xi-novels' ); ?></span>
+		</label>
+
+		<?php if ( $xin_gloss ) : ?>
+			<label class="xin-gl__switch">
+				<input type="checkbox" data-xin-gl-project checked>
+				<span>
+					<?php
+					printf(
+						/* translators: %s: number of rules */
+						esc_html__( 'Словарь переводчика (%s)', 'xi-novels' ),
+						esc_html( xin_num( count( $xin_gloss ) ) )
+					);
+					?>
+				</span>
+			</label>
+		<?php endif; ?>
+
+		<form class="xin-gl__form" data-xin-gl-form>
+			<div class="xin-gl__pair">
+				<input type="text" data-xin-gl-from autocomplete="off" spellcheck="false" required
+					placeholder="<?php esc_attr_e( 'как в тексте', 'xi-novels' ); ?>"
+					aria-label="<?php esc_attr_e( 'Что заменить', 'xi-novels' ); ?>">
+				<?php xin_the_icon( 'arrow-right' ); ?>
+				<input type="text" data-xin-gl-to autocomplete="off" spellcheck="false"
+					placeholder="<?php esc_attr_e( 'как надо', 'xi-novels' ); ?>"
+					aria-label="<?php esc_attr_e( 'Чем заменить', 'xi-novels' ); ?>">
+			</div>
+
+			<div class="xin-checks xin-gl__opts">
+				<label class="xin-check"><input type="checkbox" data-xin-gl-ci checked><?php esc_html_e( 'Любой регистр', 'xi-novels' ); ?></label>
+				<label class="xin-check"><input type="checkbox" data-xin-gl-whole><?php esc_html_e( 'Слово целиком', 'xi-novels' ); ?></label>
+				<label class="xin-check"><input type="checkbox" data-xin-gl-all><?php esc_html_e( 'Во всех тайтлах', 'xi-novels' ); ?></label>
+			</div>
+
+			<div class="xin-gl__actions">
+				<button type="submit" class="btn btn-primary btn-sm" data-xin-gl-submit><?php esc_html_e( 'Добавить', 'xi-novels' ); ?></button>
+				<button type="button" class="btn btn-ghost btn-sm" data-xin-gl-cancel hidden><?php esc_html_e( 'Отмена', 'xi-novels' ); ?></button>
+			</div>
+		</form>
+
+		<div class="xin-gl__list" data-xin-gl-list></div>
+
+		<label class="xin-gl__switch">
+			<input type="checkbox" data-xin-gl-mark>
+			<span><?php esc_html_e( 'Подсвечивать замены', 'xi-novels' ); ?></span>
+		</label>
+
+		<div class="xin-gl__io">
+			<button type="button" class="btn btn-outline btn-sm" data-xin-gl-export>
+				<?php xin_the_icon( 'download' ); ?><?php esc_html_e( 'Выгрузить файл', 'xi-novels' ); ?>
+			</button>
+			<button type="button" class="btn btn-outline btn-sm" data-xin-gl-import>
+				<?php xin_the_icon( 'upload' ); ?><?php esc_html_e( 'Загрузить файл', 'xi-novels' ); ?>
+			</button>
+			<input type="file" accept=".json,application/json" hidden data-xin-gl-file>
+		</div>
+
+		<p class="xin-muted xin-gl__note" data-xin-gl-note></p>
+		<p class="xin-muted" style="font-size:12px">
+			<?php esc_html_e( 'Словарь хранится в этом браузере и никуда не отправляется. Файлом его можно перенести на другое устройство или отдать другому читателю.', 'xi-novels' ); ?>
+		</p>
+	</aside>
+
+	<button type="button" class="xin-gl-pop" data-xin-gl-pop hidden>
+		<?php xin_the_icon( 'languages' ); ?><?php esc_html_e( 'В глоссарий', 'xi-novels' ); ?>
+	</button>
 
 	<div class="xin-rd__scrim" data-xin-rd-scrim></div>
 </article>

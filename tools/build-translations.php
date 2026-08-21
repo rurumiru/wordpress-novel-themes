@@ -1,841 +1,206 @@
 <?php
 /**
- * Builds themes/xi-novels/languages/en_US.po and en_US.mo.
+ * Builds the .po and .mo files for the theme and for every bundled plugin.
  *
  *   php tools/build-translations.php
  *
- * Extracts every translatable string from the theme, checks it against the
- * RU -> EN map below, reports anything missing, then writes both files.
- * No msgfmt required.
+ * For each target it extracts every translatable string from the source,
+ * checks it against the RU -> * maps in tools/i18n/, reports what is missing
+ * or no longer used, then writes both files for every locale it finds.
+ * No msgfmt required; a missing string exits non-zero, so it doubles as a check.
  */
 
-$theme    = dirname( __DIR__ ) . '/themes/xi-novels';
-$lang_dir = $theme . '/languages';
-$T = array(
-	'%1$d %2$s назад' => '%1$d %2$s ago',
-	'%1$s · %2$s · %3$s' => '%1$s · %2$s · %3$s',
-	'%d глав' => '%d chapters',
-	'%d глав прочитано' => '%d chapters read',
-	'%d глава' => '%d chapter',
-	'%d глава прочитана' => '%d chapter read',
-	'%d главы' => '%d chapters',
-	'%d главы прочитано' => '%d chapters read',
-	'%d сообщение' => '%d message',
-	'%d сообщений' => '%d messages',
-	'%d сообщения' => '%d messages',
-	'%s комментариев' => '%s comments',
-	'%s комментарий' => '%s comment',
-	'%s комментария' => '%s comments',
-	'%s назад' => '%s ago',
-	'%s отзыв' => '%s review',
-	'%s отзыва' => '%s reviews',
-	'%s отзывов' => '%s reviews',
-	'%s прочтений' => '%s reads',
-	'%s тайтл' => '%s title',
-	'%s тайтла' => '%s titles',
-	'%s тайтлов' => '%s titles',
-	'**жирный**, _курсив_, ||спойлер||' => '**bold**, _italic_, ||spoiler||',
-	'+30 дней' => '+30 days',
-	'+90 дней' => '+90 days',
-	'+год' => '+1 year',
-	'Boosty, Patreon, кошелёк — показывается кнопкой в профиле.' => 'Boosty, Patreon, a wallet — shown as a button on your profile.',
-	'Esc — закрыть' => 'Press Esc to close',
-	'ID картинки-обложки профиля' => 'Profile cover image ID',
-	'ID товара для разовой покупки главы. Пусто — только PLUS.' => 'Product ID for buying this chapter outright. Empty means PLUS only.',
-	'PLUS' => 'PLUS',
-	'Telegram-канал' => 'Telegram channel',
-	'Telegram: канал' => 'Telegram: channel',
-	'Telegram: чат сообщества' => 'Telegram: community chat',
-	'XI Novels: аккаунты' => 'XI Novels: accounts',
-	'XI Novels: бренд и цвета' => 'XI Novels: brand & colors',
-	'XI Novels: главная' => 'XI Novels: home page',
-	'XI Novels: подвал и соцсети' => 'XI Novels: footer & social',
-	'XI: подборка новелл' => 'XI: novel picks',
-	'XI: последние главы' => 'XI: latest chapters',
-	'name@example.com' => 'name@example.com',
-	'~%d мин чтения' => '~%d min read',
-	'© %1$s %2$s. Все права на тексты принадлежат их авторам.' => '© %1$s %2$s. All texts belong to their authors.',
-	'Абзац=p; Заголовок=h2; Подзаголовок=h3' => 'Paragraph=p; Heading=h2; Subheading=h3',
-	'Автор' => 'Author',
-	'Автор оригинала' => 'Original author',
-	'Автор публикует сам, участник отправляет главы на проверку, читатель только читает.' => 'An author publishes directly, a contributor submits chapters for review, a reader only reads.',
-	'Автор: %s' => 'Author: %s',
-	'Авторам' => 'For authors',
-	'Автору. Площадка показывает текст и не претендует на права; удалить проект можно в любой момент из кабинета.' => 'The author. The platform displays the text and claims no rights; you can delete a project from the studio at any time.',
-	'Администратор' => 'Administrator',
-	'Админка' => 'WP admin',
-	'Аккаунт создан. Первый проект начинается с кнопки «Новый проект».' => 'Account created. Your first project starts with the “New project” button.',
-	'Аккаунт уже есть?' => 'Already have an account?',
-	'Акцентный цвет' => 'Accent color',
-	'Английский' => 'English',
-	'Анонс' => 'Announced',
-	'Баннер' => 'Banner',
-	'Баннеров пока нет' => 'No banners yet',
-	'Баннеры' => 'Banners',
-	'Баннеры добавляются в админке: раздел «Баннеры».' => 'Banners are managed in the admin under Banners.',
-	'Бейдж' => 'Badge',
-	'Белая' => 'Paper',
-	'Бесплатно' => 'Free',
-	'Бессрочно' => 'No expiry',
-	'Библиотека' => 'Library',
-	'Библиотека без ограничений' => 'Library without limits',
-	'Библиотека привязана к аккаунту' => 'Library tied to your account',
-	'Блог' => 'Blog',
-	'Боковая колонка блога' => 'Blog sidebar',
-	'Боковая колонка тайтла' => 'Title sidebar',
-	'Будьте первым, кто оставит мнение.' => 'Be the first to share your thoughts.',
-	'Бумага' => 'Background',
-	'Быстрая навигация' => 'Quick navigation',
-	'Быстрые переходы (плитки под баннером)' => 'Quick links (tiles under the banner)',
-	'В библиотеке' => 'In library',
-	'В библиотеку' => 'Add to library',
-	'В каталог' => 'Browse catalog',
-	'В корзину' => 'To trash',
-	'В проекте ещё нет глав.' => 'This project has no chapters yet.',
-	'В черновики' => 'Save as draft',
-	'В этом тайтле пока нет доступных глав.' => 'This title has no chapters you can download yet.',
-	'Ваша оценка' => 'Your rating',
-	'Вернуться на %s' => 'Back to %s',
-	'Весь каталог' => 'Full catalog',
-	'Весь открытый каталог' => 'The entire open catalog',
-	'Весь рейтинг' => 'Full ranking',
-	'Витрина «Сейчас в тренде»' => 'Hero showcase',
-	'Во весь экран' => 'Fullscreen',
-	'Возможно, тайтл переехал или ссылка устарела. Попробуйте найти его в каталоге.' => 'The title may have moved or the link is out of date. Try finding it in the catalog.',
-	'Войдите в аккаунт с подпиской PLUS, чтобы продолжить чтение.' => 'Sign in with a PLUS account to keep reading.',
-	'Войдите в аккаунт, чтобы продолжить чтение и поддержать переводчика.' => 'Sign in to keep reading and support the translator.',
-	'Войдите под своей учётной записью, чтобы вести проекты и публиковать главы.' => 'Sign in to manage projects and publish chapters.',
-	'Войти' => 'Sign in',
-	'Восстановление доступа' => 'Password recovery',
-	'Вперёд' => 'Next',
-	'Все' => 'All',
-	'Все главы' => 'All chapters',
-	'Все новеллы' => 'All novels',
-	'Все обновления' => 'All updates',
-	'Всё из бесплатного плана' => 'Everything in the free plan',
-	'Вход' => 'Sign in',
-	'Вход для авторов' => 'Author login',
-	'Вход и регистрация' => 'Sign in and sign up',
-	'Вчера' => 'Yesterday',
-	'Вы вошли как %s' => 'Signed in as %s',
-	'Вы вышли из аккаунта.' => 'You have signed out.',
-	'Выберите настроение — остальное подберём' => 'Pick a mood — we will handle the rest',
-	'Выбор редакции (показывать в витрине главной)' => "Editor's pick (show in the home showcase)",
-	'Выбрать' => 'Choose',
-	'Выбрать арт' => 'Choose artwork',
-	'Выйти' => 'Sign out',
-	'Высота баннера, px' => 'Banner height, px',
-	'Выходит' => 'Ongoing',
-	'Выходите по расписанию' => 'Publish on a schedule',
-	'Гл. %s' => 'Ch. %s',
-	'Гл. %s — ' => 'Ch. %s — ',
-	'Глав' => 'Chapters',
-	'Глав не найдено' => 'No chapters found',
-	'Глава' => 'Chapter',
-	'Глава %s.' => 'Chapter %s.',
-	'Глава для подписчиков PLUS' => 'PLUS members only',
-	'Глава раннего доступа' => 'Early access chapter',
-	'Глава сохранена.' => 'Chapter saved.',
-	'Главная' => 'Home',
-	'Главное меню' => 'Primary menu',
-	'Главы' => 'Chapters',
-	'Главы для подписчиков' => 'Chapters for members',
-	'Главы ещё не опубликованы.' => 'No chapters published yet.',
-	'Главы с отметкой PLUS открываются подписчикам раньше остальных читателей.' => 'Chapters marked PLUS open for members before everyone else.',
-	'Год' => 'Year',
-	'Год выпуска' => 'Release year',
-	'Голосов: %d' => 'Votes: %d',
-	'Гротеск' => 'Sans',
-	'Да. В карточке проекта есть отдельные поля для автора оригинала, оригинального названия и команды перевода.' => 'Yes. The project card has separate fields for the original author, the original title and the translation team.',
-	'Дальше' => 'Next',
-	'Дата' => 'Date',
-	'Действия' => 'Actions',
-	'Десятка лидеров площадки' => 'Top ten on the platform',
-	'Десять выпусков' => 'Ten releases',
-	'Десять глав' => 'Ten chapters',
-	'Добавить' => 'Add new',
-	'Добавить баннер' => 'Add banner',
-	'Добавить главу' => 'Add chapter',
-	'Добавить жанр' => 'Add genre',
-	'Добавить новеллу' => 'Add novel',
-	'Добавлен' => 'Added',
-	'Добавьте ссылку на донат в профиле — кнопка появится рядом с вашим именем.' => 'Add a donation link to your profile and a button appears next to your name.',
-	'Добро пожаловать в %s' => 'Welcome to %s',
-	'Достижения' => 'Achievements',
-	'Доступ PLUS' => 'PLUS access',
-	'Доступ PLUS выдан.' => 'PLUS access granted.',
-	'Доступ PLUS снят.' => 'PLUS access removed.',
-	'Дробный номер — экстра или интерлюдия: 12.5' => 'A fractional number means a side story: 12.5',
-	'Дробный номер — экстра/интерлюдия: 12.5' => 'A fractional number means a side story: 12.5',
-	'Если планируете принимать оплату, подойдёт любой плагин членства: он решает, кто считается подписчиком, а тема уже умеет прятать главы от гостей.' => 'If you plan to take payments, any membership plugin works: it decides who counts as a member, and the theme already hides chapters from guests.',
-	'Ещё' => 'More',
-	'Ещё нет аккаунта?' => 'No account yet?',
-	'Ещё раз' => 'Repeat',
-	'Её можно открыть подпиской PLUS или разовой покупкой — деньги идут команде проекта.' => 'A PLUS membership or a one-off purchase opens it, and the money goes to the project team.',
-	'Жанр' => 'Genre',
-	'Жанры' => 'Genres',
-	'Жанры пока не заданы' => 'No genres yet',
-	'Ждут проверки' => 'Waiting for review',
-	'Жёсткого требования нет, но читатели возвращаются к тем, кто держит ритм. Даже одна глава в неделю работает лучше, чем десять раз в год.' => 'There is no hard rule, but readers come back to whoever keeps a rhythm. One chapter a week beats ten bursts a year.',
-	'Забыли?' => 'Forgot?',
-	'Заведите аккаунт' => 'Create an account',
-	'Заведите первый тайтл — на это уходит пара минут, а страница профиля соберётся сама.' => 'Start your first title — it takes a couple of minutes and your profile page builds itself.',
-	'Завершён' => 'Completed',
-	'Заголовок' => 'Title',
-	'Задать картинку' => 'Set image',
-	'Задать обложку' => 'Set cover',
-	'Закладки' => 'Bookmarks',
-	'Закладки и история в браузере' => 'Bookmarks and history in the browser',
-	'Закладки и история чтения синхронизируются с аккаунтом, а не только с браузером.' => 'Bookmarks and reading history follow your account, not just one browser.',
-	'Закладки и история чтения хранятся в этом браузере — аккаунт не нужен.' => 'Bookmarks and reading history live in this browser — no account needed.',
-	'Закладки, история чтения и собственные проекты — в одном месте.' => 'Bookmarks, reading history and your own projects in one place.',
-	'Закрыть' => 'Close',
-	'Заморожен' => 'On hiatus',
-	'Заполните оба поля.' => 'Fill in both fields.',
-	'Зарегистрироваться' => 'Create one',
-	'Здесь пока пусто' => 'Nothing here yet',
-	'Здесь появятся ваши проекты' => 'Your projects will show up here',
-	'Имя' => 'Name',
-	'Имя автора' => 'Author name',
-	'Имя пользователя' => 'Username',
-	'Имя пользователя или почта' => 'Username or email',
-	'Имя пользователя: от трёх символов, латиница, цифры, дефис и подчёркивание.' => 'Username: three characters or more, Latin letters, digits, hyphen and underscore.',
-	'Имя, логин или почта' => 'Name, username or email',
-	'Инструменты, а не обещания' => 'Tools, not promises',
-	'Искать главы' => 'Search chapters',
-	'Искать новеллы' => 'Search novels',
-	'Используется в баннере главной и крупных блоках.' => 'Used in the home banner and large blocks.',
-	'История хранится в вашем браузере' => 'History is stored in your browser',
-	'Источник' => 'Source',
-	'К списку' => 'Back to list',
-	'К странице тайтла' => 'Back to title',
-	'Кабинет' => 'Studio',
-	'Кабинет автора' => 'Author studio',
-	'Как в системе' => 'Match system',
-	'Как вас зовут' => 'Your name',
-	'Как подключить' => 'How to join',
-	'Как сайт' => 'Site theme',
-	'Как стать автором' => 'How to become an author',
-	'Как только выйдет первая глава, она появится здесь.' => 'The first chapter will show up here as soon as it is published.',
-	'Как часто нужно выходить?' => 'How often should I publish?',
-	'Как читать' => 'Reading settings',
-	'Картинка' => 'Image',
-	'Картинка баннера' => 'Banner image',
-	'Картинка для телефона' => 'Mobile image',
-	'Карточка тайтла' => 'Title details',
-	'Каталог' => 'Catalog',
-	'Каталог новелл' => 'Novel catalog',
-	'Каталог пока пуст. Добавьте первый тайтл — и главная соберётся сама: витрина, рейтинги и лента обновлений появятся автоматически.' => 'The catalog is empty. Add the first title and the home page builds itself: showcase, rankings and the update feed appear automatically.',
-	'Каталог пуст. Добавьте первый тайтл:' => 'The catalog is empty. Add your first title:',
-	'Каталог тайтлов' => 'Title catalog',
-	'Кем становится новый пользователь' => 'Role for new accounts',
-	'Кнопка «Опубликовать и начать следующую» держит темп. Каждая глава поднимает тайтл в ленте обновлений.' => 'The "Publish and start the next one" button keeps the pace. Every chapter lifts the title in the update feed.',
-	'Коины, PLUS, медали рейтинга.' => 'Coins, PLUS, ranking medals.',
-	'Колонки виджетов в подвале (вместо меню).' => 'Footer widget columns (instead of menus).',
-	'Комментарии под главами и тайтлами. По умолчанию выключены.' => 'Comments under chapters and titles. Off by default.',
-	'Комментарий' => 'Comment',
-	'Комментарий ждёт проверки модератора.' => 'This comment is awaiting moderation.',
-	'Комментарий не найден.' => 'Comment not found.',
-	'Кому принадлежат права на текст?' => 'Who owns the rights to the text?',
-	'Контакты' => 'Contacts',
-	'Короткая подпись' => 'Short tagline',
-	'Краткое описание' => 'Short description',
-	'Крупнее' => 'Larger',
-	'Куда дальше' => 'Where to next',
-	'Купить главу' => 'Buy this chapter',
-	'Купить главу — %s' => 'Buy this chapter — %s',
-	'Лента обновлений' => 'Update feed',
-	'Листайте клавишами %1$s и %2$s' => 'Use %1$s and %2$s to turn pages',
-	'Логины через запятую. Каждый сможет добавлять и править главы проекта.' => 'Usernames separated by commas. Each of them can add and edit chapters of the project.',
-	'Логины через запятую. Каждый сможет добавлять и править главы этого проекта.' => 'Usernames separated by commas. Each of them can add and edit chapters of this project.',
-	'Любой статус' => 'Any status',
-	'Материал 18+' => 'Adult content',
-	'Материал 18+ (обложка размывается в каталоге)' => 'Adult content (cover is blurred in the catalog)',
-	'Межстрочный интервал' => 'Line height',
-	'Мельче' => 'Smaller',
-	'Меню' => 'Menu',
-	'Меню подвала' => 'Footer menu',
-	'Месяц подряд' => 'A month in a row',
-	'Мобильное меню' => 'Mobile menu',
-	'Модератор' => 'Moderator',
-	'Модерация' => 'Review queue',
-	'Модуль выключен по умолчанию. Пишут только вошедшие, ответы на один уровень, поддерживаются спойлеры.' => 'The module is off by default. Only signed-in readers write, replies go one level deep, spoilers are supported.',
-	'Можно перенести тайтл с другой площадки?' => 'Can I move a title from another platform?',
-	'Можно. Главы создаются по одной в кабинете, а для больших переносов подойдёт любой импортёр записей — модель данных простая.' => 'Yes. Chapters are created one by one in the studio, and for bulk moves any post importer works — the data model is plain.',
-	'Мои проекты' => 'My projects',
-	'Мой профиль' => 'My profile',
-	'Моя библиотека' => 'My library',
-	'Моё' => 'Mine',
-	'На главную' => 'Go home',
-	'На каком языке сайт открывается у нового посетителя. Переключатель RU / EN в шапке остаётся.' => 'The language a first-time visitor sees. The RU / EN switch in the header stays.',
-	'На площадке с %s' => 'Member since %s',
-	'На сервере нет расширения ZipArchive — EPUB собрать нечем. Попробуйте FB2.' => 'The server has no ZipArchive extension, so an EPUB cannot be built. Try FB2.',
-	'На чём вы остановились' => 'Where you left off',
-	'На эту почту аккаунт уже заведён. Войдите или восстановите пароль.' => 'That email already has an account. Sign in or reset the password.',
-	'Наверх' => 'Back to top',
-	'Над проектом работают' => 'Working on this project',
-	'Надпись на кнопке' => 'Button label',
-	'Нажмите на закладку у любой обложки в каталоге — тайтл появится здесь.' => 'Tap the bookmark on any cover in the catalog and the title shows up here.',
-	'Нажмите на закладку у любой обложки — тайтл появится здесь.' => 'Tap the bookmark on any cover and the title shows up here.',
-	'Назад' => 'Previous',
-	'Название' => 'Title',
-	'Название главы' => 'Chapter title',
-	'Название тайтла, автор, глава…' => 'Title, author, chapter…',
-	'Название, краткое описание, жанры, обложка. Всё в одной форме кабинета — админка WordPress не нужна.' => 'Title, short description, genres, cover. One form in the studio — the WordPress admin is not needed.',
-	'Найден %s результат' => '%s result found',
-	'Найдено %s результата' => '%s results found',
-	'Найдено %s результатов' => '%s results found',
-	'Найти' => 'Search',
-	'Напишите первую главу' => 'Write the first chapter',
-	'Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать.' => 'Fill this page in the admin: site rules, answers, contacts, policies — whatever readers need to know.',
-	'Например: Печать девятого неба' => 'For example: Seal of the Ninth Heaven',
-	'Настройки' => 'Settings',
-	'Настройки проекта' => 'Project settings',
-	'Настройки профиля' => 'Profile settings',
-	'Настройки сохранены.' => 'Settings saved.',
-	'Настройки сохраняются в этом браузере и применяются ко всем главам сайта.' => 'Settings are saved in this browser and apply to every chapter on the site.',
-	'Настройки чтения' => 'Reading settings',
-	'Начать публиковать' => 'Start publishing',
-	'Начать читать' => 'Start reading',
-	'Не выходить из аккаунта' => 'Keep me signed in',
-	'Не заполняйте это поле' => 'Leave this field empty',
-	'Не подходит: проверьте имя пользователя и пароль.' => 'That did not match: check the username and the password.',
-	'Не получилось. Попробуйте ещё раз.' => 'That did not work. Try again.',
-	'Не получилось: запись или пользователь не найдены.' => 'No luck: the record or the user was not found.',
-	'Не публикуется — нужна только для аватара и уведомлений.' => 'Never published — used only for your avatar and notifications.',
-	'Не удалось собрать файл.' => 'The file could not be built.',
-	'Не удалось сохранить. Попробуйте ещё раз.' => 'Could not save. Please try again.',
-	'Неверная пара логин / пароль.' => 'Wrong login or password.',
-	'Недавно обновлены' => 'Recently updated',
-	'Неделя подряд' => 'A week in a row',
-	'Недостаточно прав для этого действия.' => 'You are not allowed to do that.',
-	'Недостаточно прав.' => 'Not allowed.',
-	'Необязательная ссылка на тему в подвале. Лицензия этого не требует — но авторам приятно.' => 'An optional link to the theme in the footer. The licence does not ask for it, but the authors appreciate it.',
-	'Необязательно. Если не задана, на телефоне используется основная картинка.' => 'Optional. Without it phones use the main image.',
-	'Необязательно: ID файла из медиатеки. Пусто — рисуется градиент.' => 'Optional: a media library file ID. Empty means a gradient is drawn.',
-	'Нет. Публикация, страницы тайтлов, читалка и статистика бесплатны и остаются такими.' => 'No. Publishing, title pages, the reader and the statistics are free and stay that way.',
-	'Никаких промо-блоков в читалке — только текст, полоса прогресса и ваши настройки.' => 'No promo blocks in the reader — just the text, the progress bar and your settings.',
-	'Никого не нашлось.' => 'Nobody found.',
-	'Ничего не найдено' => 'Nothing found',
-	'Ничего не нашлось' => 'Nothing found',
-	'Новая глава' => 'New chapter',
-	'Новая глава попадает в общую ленту площадки и в раздел «Недавно обновлены» на главной.' => 'A new chapter lands in the site-wide feed and in Recently updated on the home page.',
-	'Новая новелла' => 'New novel',
-	'Новелл не найдено' => 'No novels found',
-	'Новелла' => 'Novel',
-	'Новеллы' => 'Novels',
-	'Новеллы → Добавить' => 'Novels → Add new',
-	'Новинка' => 'New',
-	'Новинки' => 'New releases',
-	'Новое' => 'New',
-	'Новости и статьи' => 'News & articles',
-	'Новости площадки, разборы тайтлов и заметки переводчиков.' => 'Platform news, title breakdowns and translator notes.',
-	'Новые аккаунты сейчас не создаются. Если учётная запись уже есть — войдите.' => 'New accounts are closed at the moment. If you already have one, sign in.',
-	'Новый проект' => 'New project',
-	'Номер' => 'Number',
-	'Номер главы' => 'Chapter number',
-	'Ночь' => 'Night',
-	'Нужно ли платить за публикацию?' => 'Do I have to pay to publish?',
-	'Нужно название.' => 'A title is required.',
-	'О тайтле' => 'About this title',
-	'Обзор' => 'Overview',
-	'Обложка' => 'Cover',
-	'Обложка (2:3)' => 'Cover (2:3)',
-	'Обновлений пока нет' => 'No updates yet',
-	'Обновления' => 'Updates',
-	'Обновлено %s' => 'Updated %s',
-	'Обновлён' => 'Updated',
-	'Обсуждение' => 'Discussion',
-	'Обсуждение закрыто.' => 'Comments are closed.',
-	'Обсуждение открыто для тех, кто вошёл в аккаунт.' => 'The discussion is open to signed-in readers.',
-	'Обсуждения' => 'Discussions',
-	'Обсуждения под главами и тайтлами' => 'Discussions under chapters and titles',
-	'Оглавление' => 'Contents',
-	'Одна строка под именем: «переводчик с корейского», «пишу тёмное фэнтези».' => 'One line under your name: "translates from Korean", "writes dark fantasy".',
-	'Одна-две фразы для карточки в каталоге' => 'One or two lines for the catalog card',
-	'Описание' => 'Description',
-	'Опубликована первая глава' => 'Published a first chapter',
-	'Опубликованных глав пока нет.' => 'No published chapters yet.',
-	'Опубликовано десять глав' => 'Published ten chapters',
-	'Опубликовано.' => 'Published.',
-	'Опубликовать' => 'Publish',
-	'Опубликовать и начать следующую' => 'Publish and start the next one',
-	'Оригинальное название' => 'Original title',
-	'Основная картинка — «Изображение записи» справа. Оптимальный размер 1920×720. Порядок показа задаётся полем «Порядок» в блоке «Атрибуты страницы».' => 'The main image is the featured image on the right. 1920x720 works best. Display order comes from the Order field in Page Attributes.',
-	'Основная навигация' => 'Primary navigation',
-	'Основной язык' => 'Main language',
-	'Оставить комментарий' => 'Leave a comment',
-	'Оставить отзыв' => 'Write a review',
-	'От регистрации до публикации — один вечер' => 'From sign-up to publication in one evening',
-	'Ответ для %s' => 'Replying to %s',
-	'Ответить' => 'Reply',
-	'Открытая регистрация' => 'Open registration',
-	'Открыть' => 'Open',
-	'Открыть кабинет' => 'Open the studio',
-	'Открыть каталог' => 'Open catalog',
-	'Открыть тайтл' => 'Open title',
-	'Отмечайте главы как PLUS — они видны в оглавлении с замком и открываются подписчикам.' => 'Mark chapters as PLUS — they appear in the contents with a lock and open for members.',
-	'Отправить' => 'Submit',
-	'Отправить на модерацию' => 'Submit for review',
-	'Отредактируйте эту страницу в админке и опишите здесь свои условия: стоимость, способы оплаты и как выдаётся доступ. Тема показывает главы с отметкой PLUS только вошедшим пользователям — остальное определяете вы.' => 'Edit this page in the admin and describe your terms here: price, payment methods and how access is granted. The theme shows PLUS chapters only to signed-in users; the rest is up to you.',
-	'Оценивать можно только новеллы.' => 'Only novels can be rated.',
-	'Оценить на %d' => 'Rate %d',
-	'Оценка' => 'Rating',
-	'Оценка (0–5)' => 'Rating (0–5)',
-	'Оценки и рейтинги' => 'Ratings and rankings',
-	'Очередь на проверку' => 'Review queue',
-	'Очередь пуста — проверять нечего.' => 'The queue is empty: nothing to review.',
-	'Панель быстрых переходов' => 'Quick links bar',
-	'Панель управления' => 'Control panel',
-	'Параметры главы' => 'Chapter options',
-	'Пароли не совпали.' => 'The passwords do not match.',
-	'Пароль' => 'Password',
-	'Пароль короче восьми символов.' => 'The password is shorter than eight characters.',
-	'Первая глава' => 'First chapter',
-	'Первая глава начинается с пустой страницы' => 'Every first chapter starts with a blank page',
-	'Первая публикация' => 'First release',
-	'Перевод' => 'Translation',
-	'Перевод / команда' => 'Translation / team',
-	'Перейти к содержимому' => 'Skip to content',
-	'Перенесено в корзину.' => 'Moved to trash.',
-	'Письмо со ссылкой на смену пароля отправлено.' => 'A link for setting a new password is on its way.',
-	'Платная глава' => 'Paid chapter',
-	'Платная глава (PLUS)' => 'Paid chapter (PLUS)',
-	'Платформа для чтения и публикации новелл, ранобэ и переводов. Читайте бесплатно, поддерживайте авторов.' => 'A place to read and publish novels, light novels and translations. Read for free, support the authors.',
-	'Плитки-приглашения' => 'Call-to-action tiles',
-	'Плотнее' => 'Tighter',
-	'По алфавиту' => 'A to Z',
-	'По обновлению' => 'Recently updated',
-	'По оценке' => 'By rating',
-	'По просмотрам' => 'By views',
-	'По центру' => 'Centered',
-	'Подвал' => 'Footer',
-	'Поддержать' => 'Support',
-	'Поддержка авторов и переводчиков' => 'Support for authors and translators',
-	'Поддержка от читателей' => 'Support from readers',
-	'Поддержка переводчиков' => 'Supporting translators',
-	'Поделиться' => 'Share',
-	'Подзаголовок' => 'Subtitle',
-	'Подключить PLUS' => 'Get PLUS',
-	'Подписка для тех, кто читает много и хочет, чтобы любимые переводы выходили дальше. Ранний доступ к главам и прямая поддержка авторов.' => 'A membership for people who read a lot and want their favourite translations to keep coming. Early access to chapters and direct support for authors.',
-	'Подписка — прямая помощь тем, кто ведёт ваши тайтлы и держит расписание выхода.' => 'The membership is direct help for the people running your titles and keeping the schedule.',
-	'Подробнее' => 'Details',
-	'Поиск' => 'Search',
-	'Поиск по главам' => 'Search chapters',
-	'Поиск по главам…' => 'Search chapters…',
-	'Поиск по каталогу' => 'Search the catalog',
-	'Поиск: %s' => 'Search: %s',
-	'Пока вы здесь — популярное' => 'While you are here — popular now',
-	'Пока пусто' => 'Nothing here yet',
-	'Пока тихо. Скажите первое слово.' => 'Quiet so far. Say the first word.',
-	'Пока тишина' => 'No replies yet',
-	'Показывается в блоге и на записях.' => 'Shown in the blog and on posts.',
-	'Показывается в витрине, поиске и на карточке тайтла.' => 'Shown in the showcase, search results and on the title page.',
-	'Показывается на странице новеллы под блоком информации.' => 'Shown on the novel page under the info panel.',
-	'Показывается на странице тайтла под заголовком «Описание».' => 'Shown on the title page under the “Description” heading.',
-	'Полное описание' => 'Full description',
-	'Полноценный редактор с картинками и вставкой из Word. Черновик сохраняется в браузере, пока вы печатаете.' => 'A real editor with images and pasting from Word. The draft is saved in your browser as you type.',
-	'Полноэкранная читалка и её настройки' => 'Full-screen reader and its settings',
-	'Положение текста' => 'Text position',
-	'Полоса цифр площадки' => 'Platform stats bar',
-	'Полсотни' => 'Fifty',
-	'Пользователей' => 'Users',
-	'Пользователи' => 'Users',
-	'Пользователи и PLUS' => 'Users and PLUS',
-	'Попробуйте другой запрос или загляните в каталог — там больше тысячи страниц текста.' => 'Try another query or open the catalog — there are thousands of pages waiting.',
-	'Попробуйте снять фильтры или загляните в другой жанр.' => 'Try clearing the filters or browsing another genre.',
-	'Популярное' => 'Popular',
-	'Популярные жанры' => 'Popular genres',
-	'Порядок' => 'Order',
-	'Последние главы' => 'Latest chapters',
-	'Последние главы автора' => 'Latest chapters by this author',
-	'Последняя глава' => 'Latest chapter',
-	'Похожее' => 'Similar titles',
-	'Почта' => 'Email',
-	'Правила площадки' => 'Site rules',
-	'Править' => 'Edit',
-	'Правка' => 'Edit',
-	'Правка главы' => 'Edit chapter',
-	'Правка проекта' => 'Edit project',
-	'Правовые ссылки (низ подвала)' => 'Legal links (footer bottom)',
-	'Предыдущая' => 'Previous',
-	'Применить' => 'Apply',
-	'Приносите текст — остальное площадка берёт на себя: витрина, читалка, статистика и читатели, которые возвращаются за следующей главой.' => 'Bring the text — the platform handles the rest: the showcase, the reader, the statistics and readers who come back for the next chapter.',
-	'Прислать ссылку' => 'Send the link',
-	'Пришлём ссылку, по которой можно задать новый пароль.' => 'We will send a link for setting a new password.',
-	'Проверьте адрес почты.' => 'Check the email address.',
-	'Продолжайте с той главы, на которой остановились.' => 'Pick up from the chapter you stopped at.',
-	'Продолжить чтение' => 'Continue reading',
-	'Проект' => 'Project',
-	'Проект не найден.' => 'Project not found.',
-	'Проект сохранён.' => 'Project saved.',
-	'Проектов пока нет.' => 'No projects yet.',
-	'Проектов пока нет. Создайте первый — это займёт минуту.' => 'No projects yet. Create your first one — it takes a minute.',
-	'Проекты' => 'Projects',
-	'Проекты, главы и черновики — всё редактируется прямо здесь.' => 'Projects, chapters and drafts — all editable right here.',
-	'Проза' => 'Prose',
-	'Просмотры' => 'Views',
-	'Просмотры тайтла и каждой главы, оценки читателей, позиция в рейтинге — без чёрного ящика.' => 'Views for the title and every chapter, reader ratings, ranking position — no black box.',
-	'Профиль' => 'Profile',
-	'Профиль автора' => 'Author profile',
-	'Профиль на площадке' => 'Platform profile',
-	'Прочитана первая глава на площадке' => 'Read a first chapter on the site',
-	'Прочитано десять глав' => 'Read ten chapters',
-	'Прочитано пятьдесят глав' => 'Read fifty chapters',
-	'Прочитано сто глав' => 'Read a hundred chapters',
-	'Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп.' => 'Publish your novels and translations, write chapters in a clean editor, grow your audience. Your format, your pace.',
-	'Публичная страница со статистикой, ссылками и лентой ваших глав. Читателю есть что открыть после первой главы.' => 'A public page with statistics, links and a feed of your chapters. Readers have somewhere to go after chapter one.',
-	'Пусто — название сайта и год.' => 'Leave empty for the site name and year.',
-	'Пусто — фирменный кримсон.' => 'Leave empty for the signature crimson.',
-	'Пусто — фирменный тёмно-серый.' => 'Empty means the house graphite.',
-	'Работает на теме XI Novels' => 'Running on the XI Novels theme',
-	'Раздел для модераторов и администрации площадки.' => 'This section is for moderators and the site team.',
-	'Разделы панели' => 'Panel sections',
-	'Разделы справки' => 'Help sections',
-	'Размер текста' => 'Text size',
-	'Ранний доступ' => 'Early access',
-	'Ранний доступ (PLUS)' => 'Early access (PLUS)',
-	'Ранний доступ PLUS' => 'PLUS early access',
-	'Ранний доступ к главам' => 'Early access to chapters',
-	'Ранний доступ к главам с отметкой PLUS' => 'Early access to chapters marked PLUS',
-	'Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков.' => 'Early access to chapters, members-only releases and a way to support your translators.',
-	'Ранний доступ открывается подписчикам PLUS. Так переводчик получает поддержку раньше остальных.' => 'Early access is open to PLUS members. That is how the translator gets support ahead of everyone else.',
-	'Ранний доступ: PLUS или покупка' => 'Early access: PLUS or purchase',
-	'Ранобэ, веб-новеллы и авторские переводы — весь каталог площадки.' => 'Light novels, web novels and original translations — the full catalog.',
-	'Регистрация' => 'Sign up',
-	'Регистрация занимает минуту. Роль «Автор» открывает публикацию сразу, «Участник» отправляет первые главы на проверку редактору.' => 'Signing up takes a minute. The Author role publishes right away; Contributor sends the first chapters to an editor for review.',
-	'Регистрация сейчас закрыта.' => 'Registration is closed at the moment.',
-	'Редактировать баннер' => 'Edit banner',
-	'Редактировать главу' => 'Edit chapter',
-	'Редактировать новеллу' => 'Edit novel',
-	'Рейтинг' => 'Ranking',
-	'Рейтинг с вкладками' => 'Ranking with tabs',
-	'Роли, доступ PLUS, очередь на проверку и настройки площадки — здесь, без админки WordPress.' => 'Roles, PLUS access, the review queue and site settings live here, with no WordPress admin involved.',
-	'Роль' => 'Role',
-	'Роль изменена.' => 'Role changed.',
-	'Русский' => 'Russian',
-	'С возвращением' => 'Welcome back',
-	'С доступом PLUS' => 'With PLUS access',
-	'С засечками' => 'Serif',
-	'Сайт' => 'Website',
-	'Самые любимые' => 'Reader favorites',
-	'Сбросить' => 'Reset',
-	'Сбросить фильтры' => 'Clear filters',
-	'Свежие' => 'Fresh',
-	'Свежие главы со всей площадки — в порядке публикации.' => 'Fresh chapters from across the platform, newest first.',
-	'Свежие публикации со всего сайта' => 'Fresh releases from across the site',
-	'Свежие публикации со всего сайта.' => 'Fresh releases from across the site.',
-	'Свежие тайтлы на площадке' => 'New titles on the platform',
-	'Свернуть' => 'Collapse',
-	'Светлая' => 'Light',
-	'Свободнее' => 'Looser',
-	'Свой проект' => 'Own project',
-	'Своя витрина' => 'Your own showcase',
-	'Связаться' => 'Get in touch',
-	'Сегодня' => 'Today',
-	'Сейчас в тренде' => 'Trending now',
-	'Сейчас загружена:' => 'Currently uploaded:',
-	'Сепия' => 'Sepia',
-	'Серия начнётся с первой главы за сегодня.' => 'The streak starts with the first chapter you read today.',
-	'Сессия истекла — форма открыта слишком давно. Обновите страницу и отправьте снова.' => 'Your session expired — the form has been open for too long. Reload the page and submit again.',
-	'Скачать' => 'Download',
-	'Сколько' => 'How many',
-	'Скрыть' => 'Hide',
-	'Слайд %d' => 'Slide %d',
-	'Слева' => 'Left',
-	'Следить за обновлениями' => 'Follow updates',
-	'Следующая' => 'Next',
-	'Слишком много выгрузок подряд. Попробуйте через несколько минут.' => 'Too many downloads in a row. Try again in a few minutes.',
-	'Слишком много попыток подряд. Подождите четверть часа.' => 'Too many attempts in a row. Wait a quarter of an hour.',
-	'Сменить' => 'Change',
-	'Сменить тему' => 'Toggle theme',
-	'Смотреть новеллу' => 'View novel',
-	'Сначала выберите проект.' => 'Pick a project first.',
-	'Сначала новые' => 'Newest first',
-	'Снять' => 'Remove',
-	'Соавторы и переводчики' => 'Co-authors and translators',
-	'Содержимое баннера' => 'Banner content',
-	'Создавая аккаунт, вы соглашаетесь с %s.' => 'By creating an account you agree to the %s.',
-	'Создайте проект' => 'Create a project',
-	'Создан первый проект' => 'Created a first project',
-	'Создание аккаунта' => 'Create an account',
-	'Создать аккаунт' => 'Create account',
-	'Создать проект' => 'Create project',
-	'Сортировка' => 'Sorting',
-	'Сотня' => 'A hundred',
-	'Сохранить' => 'Save',
-	'Сохранить и опубликовать' => 'Save and publish',
-	'Справа' => 'Right',
-	'Справка' => 'Help',
-	'Средняя' => 'Medium',
-	'Ссылка' => 'Link',
-	'Ссылка автора' => 'Author link',
-	'Ссылка на первоисточник' => 'Original source link',
-	'Ссылка на поддержку' => 'Support link',
-	'Статей пока нет.' => 'No articles yet.',
-	'Статус' => 'Status',
-	'Статус выпуска' => 'Release status',
-	'Статусы' => 'Statuses',
-	'Стать автором' => 'Become an author',
-	'Статьи' => 'Articles',
-	'Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны.' => 'A title page with cover, contents, rating and similar works — no layout work on your side.',
-	'Строка «Работает на XI Novels»' => 'The “Running on XI Novels” line',
-	'Строка копирайта' => 'Copyright line',
-	'Схема по умолчанию' => 'Default color scheme',
-	'Счётчик растёт сам; поле — для переноса статистики.' => 'The counter grows on its own; this field is for migrating stats.',
-	'Тайтл' => 'Title',
-	'Тайтлов' => 'Titles',
-	'Тайтлов пока нет.' => 'No titles yet.',
-	'Тайтлы' => 'Titles',
-	'Тайтлы со свежими главами' => 'Titles with fresh chapters',
-	'Тайтлы, набравшие больше всего внимания' => 'Titles pulling the most attention',
-	'Тайтлы, отмеченные закладкой в каталоге' => 'Titles you bookmarked in the catalog',
-	'Такое имя уже занято.' => 'That name is already taken.',
-	'Такой пользователь не найден.' => 'No such user.',
-	'Такой страницы нет' => 'This page does not exist',
-	'Тег' => 'Tag',
-	'Теги тайтлов' => 'Title tags',
-	'Теги через запятую' => 'Tags, comma separated',
-	'Текст' => 'Text',
-	'Текст главы' => 'Chapter text',
-	'Текст о проекте' => 'About text',
-	'Товар WooCommerce' => 'WooCommerce product',
-	'Топ по оценкам сообщества' => 'Top rated by the community',
-	'Топ по просмотрам, оценке, новинки или обновления.' => 'Top by views or rating, new releases or updates.',
-	'Топ-авторы' => 'Top authors',
-	'Топ-авторы и статьи' => 'Top authors & articles',
-	'Тренд-блок с фоном' => 'Trending block with artwork',
-	'Три дня подряд' => 'Three days in a row',
-	'Тёмная' => 'Dark',
-	'У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге.' => 'You already have the text — the platform just shows it. Create a project and see how it looks in the catalog.',
-	'У меня есть аккаунт' => 'I already have an account',
-	'Убрано в черновики.' => 'Moved to drafts.',
-	'Убрать' => 'Remove',
-	'Удалено — запись в корзине.' => 'Deleted — moved to trash.',
-	'Удалить' => 'Delete',
-	'Удалить главу?' => 'Delete this chapter?',
-	'Удалить проект вместе со страницей?' => 'Delete this project and its page?',
-	'Узкая' => 'Narrow',
-	'Узнать больше' => 'Learn more',
-	'Узнать как' => 'See how',
-	'Участник' => 'Contributor',
-	'Учётная запись есть, но прав на публикацию у неё пока нет. Их выдаёт администрация площадки — напишите, и кабинет откроется.' => 'The account exists, but it has no publishing rights yet. The site team grants them: write to us and the studio opens.',
-	'Файл слишком большой: сервер отверг отправку целиком. Уменьшите обложку или попросите хостинг поднять upload_max_filesize.' => 'The file is too large: the server rejected the whole submission. Shrink the cover or ask your host to raise upload_max_filesize.',
-	'Фильтр' => 'Filter',
-	'Фон-арт (широкий)' => 'Wide artwork',
-	'Фон-арт тайтла' => 'Title artwork',
-	'Форма была открыта слишком долго. Обновите страницу и отправьте снова.' => 'The form sat open for too long. Refresh the page and send it again.',
-	'Форма была открыта слишком долго. Обновите страницу и повторите.' => 'The form sat open for too long. Refresh the page and try again.',
-	'Форма на странице «Вход и регистрация» принимает новых читателей. Работает независимо от галочки в «Настройки → Общие», которая относится к экрану wp-login.php.' => 'The form on the sign-in page accepts new readers. It works independently of the checkbox in Settings -> General, which governs the wp-login.php screen.',
-	'Форма на странице входа принимает новых читателей.' => 'The form on the sign-in page accepts new readers.',
-	'Цвет премиума' => 'Premium color',
-	'Частые вопросы' => 'Frequently asked questions',
-	'Чат сообщества' => 'Community chat',
-	'Честная статистика' => 'Honest statistics',
-	'Четыре шага до первой главы' => 'Four steps to your first chapter',
-	'Чистое чтение' => 'Clean reading',
-	'Читатели не могут оторваться' => 'Readers cannot put these down',
-	'Читатель' => 'Reader',
-	'Читателю' => 'For readers',
-	'Читать' => 'Read',
-	'Читать каталог' => 'Browse the catalog',
-	'Читать полностью' => 'Read more',
-	'Читать с начала' => 'Read from start',
-	'Читать статью' => 'Read article',
-	'Читают чаще всего' => 'Most read',
-	'Членство PLUS' => 'PLUS membership',
-	'Чтение семь дней подряд' => 'Reading seven days in a row',
-	'Чтение три дня подряд' => 'Reading three days in a row',
-	'Чтение тридцать дней подряд' => 'Reading thirty days in a row',
-	'Что входит' => 'What is included',
-	'Что даёт PLUS' => 'What PLUS gives you',
-	'Что даёт членство' => 'What membership gives you',
-	'Что думаете о главе?' => 'What did you think of this chapter?',
-	'Что ищем — тайтл, главу или статью?' => 'Looking for a title, a chapter or an article?',
-	'Что показывать' => 'What to show',
-	'Что скажете? ||так прячется спойлер||' => 'What do you think? ||this is how a spoiler hides||',
-	'Что читают сейчас' => 'What people are reading',
-	'Чтобы участвовать в обсуждении, войдите в аккаунт.' => 'Sign in to take part in the discussion.',
-	'Ширина колонки' => 'Column width',
-	'Широкая' => 'Wide',
-	'Широкая картинка для hero-блока и плиток «самые любимые».' => 'A wide image for the hero block and the favorites tiles.',
-	'Широкий арт для витрины' => 'Wide artwork for the showcase',
-	'Шрифт' => 'Typeface',
-	'Это не ваш проект.' => 'This project is not yours.',
-	'Это не ваша глава.' => 'This chapter is not yours.',
-	'Это первая глава' => 'This is the first chapter',
-	'Это последняя глава' => 'This is the last chapter',
-	'Эту учётную запись менять нельзя: администраторы и собственная роль защищены.' => 'That account cannot be changed: administrators and your own role are protected.',
-	'Я перевожу, а не пишу своё. Подойдёт?' => 'I translate rather than write my own. Does it fit?',
-	'Язык интерфейса' => 'Interface language',
-	'Ярлык витрины' => 'Showcase label',
-	'автор' => 'author',
-	'авторам и переводчикам' => 'for authors and translators',
-	'библиотека' => 'library',
-	'в тренде' => 'trending',
-	'ведёт проект' => 'runs the project',
-	'визитка' => 'highlights',
-	'вы читали' => 'you were reading',
-	'выбор читателей' => 'reader favorites',
-	'выйти' => 'sign out',
-	'глав' => 'chapters',
-	'глава' => 'chapter',
-	'главы' => 'chapters',
-	'год' => 'year',
-	'года' => 'years',
-	'дебюты' => 'debuts',
-	'день' => 'day',
-	'для классических программ' => 'for classic readers',
-	'для читалок и телефона' => 'for e-readers and phones',
-	'дней' => 'days',
-	'дня' => 'days',
-	'до %s' => 'until %s',
-	'журнал' => 'journal',
-	'истёк' => 'expired',
-	'как это работает' => 'how it works',
-	'команда' => 'team',
-	'лента' => 'feed',
-	'лет' => 'years',
-	'месяц' => 'month',
-	'месяца' => 'months',
-	'месяцев' => 'months',
-	'минут' => 'minutes',
-	'минуту' => 'minute',
-	'минуты' => 'minutes',
-	'навсегда' => 'forever',
-	'например, kuroi' => 'for example, kuroi',
-	'не выбрана' => 'not selected',
-	'не привязана' => 'not linked',
-	'новелл' => 'novels',
-	'новелла' => 'novel',
-	'новеллы' => 'novels',
-	'опубликован' => 'published',
-	'опубликованных глав' => 'published chapters',
-	'от %s' => 'by %s',
-	'от 8 символов' => '8 characters or more',
-	'отзывов' => 'reviews',
-	'отменить' => 'cancel',
-	'открыть' => 'open',
-	'оценка' => 'rating',
-	'переводчик' => 'translator',
-	'по подписке' => 'by subscription',
-	'последний %s' => 'latest %s',
-	'правилами площадки' => 'site rules',
-	'продолжить' => 'continue',
-	'проектов' => 'projects',
-	'просм.' => 'views',
-	'просмотров' => 'views',
-	'прочтений' => 'reads',
-	'рейтинг' => 'ranking',
-	'рекомендуем' => 'recommended',
-	'система, культивация, перерождение' => 'system, cultivation, rebirth',
-	'слов' => 'words',
-	'справка' => 'help',
-	'сравнение' => 'comparison',
-	'статей' => 'articles',
-	'тайтлов' => 'titles',
-	'тайтлов на площадке' => 'titles on the platform',
-	'только что' => 'just now',
-	'уже в раннем доступе' => 'already in early access',
-	'условия задаёт площадка' => 'terms set by the site',
-	'час' => 'hour',
-	'часа' => 'hours',
-	'часов' => 'hours',
-	'черновик сохраняется в браузере' => 'draft is saved in your browser',
-	'черновик сохранён' => 'draft saved',
-	'читателей' => 'readers',
-	'членство' => 'membership',
-	'что вы получаете' => 'what you get',
-	'№' => '#',
+$root  = dirname( __DIR__ );
+$theme = $root . '/themes/xi-novels';
+
+/* Что переводим: тема и плагины, у каждого свой текстовый домен. */
+$targets = array(
+	array(
+		'domain' => 'xi-novels',
+		'name'   => 'XI Novels',
+		'src'    => $theme,
+		'maps'   => __DIR__ . '/i18n',
+		'out'    => $theme . '/languages',
+		'prefix' => '',
+	),
+	array(
+		'domain' => 'xi-studio',
+		'name'   => 'XI Studio',
+		'src'    => $root . '/plugins/xi-studio',
+		'maps'   => __DIR__ . '/i18n/xi-studio',
+		'out'    => $root . '/plugins/xi-studio/languages',
+		'prefix' => 'xi-studio-',
+	),
 );
 
-/* ---------------------------------------------------------------- Проверка */
+$version = '1.0.0';
+if ( preg_match( "/define\(\s*'XIN_VERSION',\s*'([^']+)'/", file_get_contents( $theme . '/functions.php' ), $m ) ) {
+	$version = $m[1];
+}
 
-$all = array();
-$rii = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $theme ) );
-foreach ( $rii as $file ) {
-	if ( $file->isDir() || 'php' !== strtolower( $file->getExtension() ) ) {
-		continue;
+$plurals = array(
+	'en_US' => 'nplurals=2; plural=(n != 1);',
+	'pt_BR' => 'nplurals=2; plural=(n > 1);',
+);
+
+$names = array(
+	'en_US' => 'English (US)',
+	'pt_BR' => 'Brazilian Portuguese',
+);
+
+/* ----------------------------------------------------- Строки из исходников */
+
+$collect = static function ( $dir, $domain ) {
+	$all = array();
+
+	if ( ! is_dir( $dir ) ) {
+		return $all;
 	}
-	$code = file_get_contents( $file->getPathname() );
-	if ( preg_match_all( "/(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\(\s*'((?:[^'\\\\]|\\\\.)*)'\s*,\s*'xi-novels'/", $code, $m ) ) {
-		foreach ( $m[1] as $s ) {
-			$all[ stripslashes( $s ) ] = true;
+
+	$quoted = preg_quote( $domain, '/' );
+	$re     = "/(?:__|_e|esc_html__|esc_html_e|esc_attr__|esc_attr_e)\(\s*'((?:[^'\\\\]|\\\\.)*)'\s*,\s*'{$quoted}'/";
+
+	$rii = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+
+	foreach ( $rii as $file ) {
+		if ( $file->isDir() || 'php' !== strtolower( $file->getExtension() ) ) {
+			continue;
+		}
+
+		$code = file_get_contents( $file->getPathname() );
+
+		if ( preg_match_all( $re, $code, $found ) ) {
+			foreach ( $found[1] as $string ) {
+				$all[ stripslashes( $string ) ] = true;
+			}
 		}
 	}
-}
-$all = array_keys( $all );
-sort( $all );
-$missing = array_values( array_diff( $all, array_keys( $T ) ) );
-if ( $missing ) {
-	echo "MISSING (" . count( $missing ) . "):\n" . implode( "\n", $missing ) . "\n";
-}
 
-/* --------------------------------------------------------------------- PO */
+	$all = array_keys( $all );
+	sort( $all );
 
-$header = "Project-Id-Version: XI Novels 1.0.0\\n"
-	. "Language: en_US\\n"
-	. "MIME-Version: 1.0\\n"
-	. "Content-Type: text/plain; charset=UTF-8\\n"
-	. "Content-Transfer-Encoding: 8bit\\n"
-	. "Plural-Forms: nplurals=2; plural=(n != 1);\\n";
+	return $all;
+};
 
-$po = "# English (US) translation for the XI Novels theme.\n"
-	. "msgid \"\"\nmsgstr \"\"\n";
-foreach ( explode( '\\n', $header ) as $line ) {
-	if ( '' === $line ) {
-		continue;
-	}
-	$po .= '"' . $line . '\n"' . "\n";
-}
-$po .= "\n";
+/* ------------------------------------------------------------------ Запись */
 
 $esc = static function ( $s ) {
 	return str_replace( array( '\\', '"', "\n" ), array( '\\\\', '\"', '\n' ), $s );
 };
 
-foreach ( $T as $src => $dst ) {
-	$po .= 'msgid "' . $esc( $src ) . "\"\n";
-	$po .= 'msgstr "' . $esc( $dst ) . "\"\n\n";
+$write_po = static function ( $file, $name, $header, $map ) use ( $esc ) {
+	$po = '# ' . $name . " translation for the XI Novels project.\n"
+		. "msgid \"\"\nmsgstr \"\"\n";
+
+	foreach ( explode( '\\n', $header ) as $line ) {
+		if ( '' === $line ) {
+			continue;
+		}
+		$po .= '"' . $line . '\n"' . "\n";
+	}
+	$po .= "\n";
+
+	foreach ( $map as $src => $dst ) {
+		$po .= 'msgid "' . $esc( $src ) . "\"\n";
+		$po .= 'msgstr "' . $esc( $dst ) . "\"\n\n";
+	}
+
+	file_put_contents( $file, $po );
+};
+
+$write_mo = static function ( $file, $header, $map ) {
+	$entries = array( '' => str_replace( '\\n', "\n", $header ) );
+	foreach ( $map as $src => $dst ) {
+		$entries[ $src ] = $dst;
+	}
+	ksort( $entries, SORT_STRING );
+
+	$count       = count( $entries );
+	$offsets_o   = array();
+	$offsets_t   = array();
+	$data        = '';
+	$origin_size = 28 + 16 * $count;
+
+	foreach ( $entries as $src => $dst ) {
+		$offsets_o[] = array( strlen( $src ), $origin_size + strlen( $data ) );
+		$data       .= $src . "\0";
+	}
+	foreach ( $entries as $src => $dst ) {
+		$offsets_t[] = array( strlen( $dst ), $origin_size + strlen( $data ) );
+		$data       .= $dst . "\0";
+	}
+
+	$mo = pack( 'V*', 0x950412de, 0, $count, 28, 28 + 8 * $count, 0, 28 + 16 * $count );
+	foreach ( $offsets_o as $o ) {
+		$mo .= pack( 'VV', $o[0], $o[1] );
+	}
+	foreach ( $offsets_t as $o ) {
+		$mo .= pack( 'VV', $o[0], $o[1] );
+	}
+	$mo .= $data;
+
+	file_put_contents( $file, $mo );
+
+	return $count;
+};
+
+/* ----------------------------------------------------------------- Сборка */
+
+$fail = 0;
+
+foreach ( $targets as $target ) {
+	$all = $collect( $target['src'], $target['domain'] );
+
+	if ( ! $all ) {
+		echo $target['domain'] . ": nothing to translate, skipped\n";
+		continue;
+	}
+
+	$maps = glob( $target['maps'] . '/*.php' );
+	sort( $maps );
+
+	if ( ! $maps ) {
+		echo $target['domain'] . ': no maps in ' . $target['maps'] . "\n";
+		$fail++;
+		continue;
+	}
+
+	if ( ! is_dir( $target['out'] ) ) {
+		mkdir( $target['out'], 0777, true );
+	}
+
+	echo $target['domain'] . ': ' . count( $all ) . " source strings\n";
+
+	foreach ( $maps as $map_file ) {
+		$locale = basename( $map_file, '.php' );
+		$map    = require $map_file;
+		$name   = isset( $names[ $locale ] ) ? $names[ $locale ] : $locale;
+
+		$missing = array_values( array_diff( $all, array_keys( $map ) ) );
+		$unused  = array_values( array_diff( array_keys( $map ), $all ) );
+
+		if ( $missing ) {
+			$fail++;
+			echo '  ' . $locale . ' MISSING (' . count( $missing ) . "):\n    " . implode( "\n    ", $missing ) . "\n";
+		}
+		if ( $unused ) {
+			echo '  ' . $locale . ' UNUSED (' . count( $unused ) . ")\n";
+		}
+
+		$header = 'Project-Id-Version: ' . $target['name'] . ' ' . $version . "\\n"
+			. 'Language: ' . $locale . "\\n"
+			. "MIME-Version: 1.0\\n"
+			. "Content-Type: text/plain; charset=UTF-8\\n"
+			. "Content-Transfer-Encoding: 8bit\\n"
+			. 'Plural-Forms: ' . ( isset( $plurals[ $locale ] ) ? $plurals[ $locale ] : 'nplurals=2; plural=(n != 1);' ) . "\\n";
+
+		$base = $target['out'] . '/' . $target['prefix'] . $locale;
+
+		$write_po( $base . '.po', $name, $header, $map );
+		$count = $write_mo( $base . '.mo', $header, $map );
+
+		echo '  ' . $locale . ': ' . $count . " entries written\n";
+	}
 }
 
-if ( ! is_dir( $lang_dir ) ) {
-	mkdir( $lang_dir, 0777, true );
-}
-file_put_contents( $lang_dir . '/en_US.po', $po );
-
-/* --------------------------------------------------------------------- MO */
-
-$entries = array( '' => str_replace( '\\n', "\n", $header ) );
-foreach ( $T as $src => $dst ) {
-	$entries[ $src ] = $dst;
-}
-ksort( $entries, SORT_STRING );
-
-$count       = count( $entries );
-$offsets_o   = array();
-$offsets_t   = array();
-$data        = '';
-$origin_size = 28 + 16 * $count;
-
-foreach ( $entries as $src => $dst ) {
-	$offsets_o[] = array( strlen( $src ), $origin_size + strlen( $data ) );
-	$data       .= $src . "\0";
-}
-foreach ( $entries as $src => $dst ) {
-	$offsets_t[] = array( strlen( $dst ), $origin_size + strlen( $data ) );
-	$data       .= $dst . "\0";
-}
-
-$mo  = pack( 'V*', 0x950412de, 0, $count, 28, 28 + 8 * $count, 0, 28 + 16 * $count );
-foreach ( $offsets_o as $o ) {
-	$mo .= pack( 'VV', $o[0], $o[1] );
-}
-foreach ( $offsets_t as $o ) {
-	$mo .= pack( 'VV', $o[0], $o[1] );
-}
-$mo .= $data;
-
-file_put_contents( $lang_dir . '/en_US.mo', $mo );
-
-echo 'po/mo written: ' . $count . " entries\n";
+exit( $fail ? 1 : 0 );

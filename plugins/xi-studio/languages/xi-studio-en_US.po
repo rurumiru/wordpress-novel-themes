@@ -1,0 +1,118 @@
+# English (US) translation for the XI Novels project.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Studio 0.3.0-beta\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "XI Novels — облик сайта целиком"
+msgstr "XI Novels — the whole look of the site"
+
+msgid "Вернуть все значения по умолчанию?"
+msgstr "Return every value to its default?"
+
+msgid "Вернуть цвет темы"
+msgstr "Back to the theme colour"
+
+msgid "Всё сохранено"
+msgstr "Everything is saved"
+
+msgid "Выгрузить"
+msgstr "Export"
+
+msgid "Глава"
+msgstr "Chapter"
+
+msgid "Главная"
+msgstr "Home"
+
+msgid "Готовый набор меняет сразу всё. Дальше можно править по мелочи."
+msgstr "A preset changes everything at once. Fine-tune afterwards."
+
+msgid "Есть несохранённые изменения"
+msgstr "Unsaved changes"
+
+msgid "Загрузить"
+msgstr "Import"
+
+msgid "Каталог"
+msgstr "Catalog"
+
+msgid "Монитор"
+msgstr "Desktop"
+
+msgid "Набор применён — проверьте и сохраните"
+msgstr "Preset applied — look it over and save"
+
+msgid "Наборы"
+msgstr "Presets"
+
+msgid "Настройки из файла подставлены — проверьте и сохраните"
+msgstr "Settings from the file are in — look them over and save"
+
+msgid "Настройки не сохранены. Уйти со страницы?"
+msgstr "The settings are not saved. Leave the page?"
+
+msgid "Не удалось сохранить"
+msgstr "Could not save"
+
+msgid "Недостаточно прав."
+msgstr "Not enough permissions."
+
+msgid "Обновить"
+msgstr "Reload"
+
+msgid "Открыть студию"
+msgstr "Open the studio"
+
+msgid "Планшет"
+msgstr "Tablet"
+
+msgid "Предпросмотр сайта"
+msgstr "Site preview"
+
+msgid "Сбросить"
+msgstr "Reset"
+
+msgid "Светлая"
+msgstr "Light"
+
+msgid "Сохранено"
+msgstr "Saved"
+
+msgid "Сохранить"
+msgstr "Save"
+
+msgid "Страница"
+msgstr "Page"
+
+msgid "Студия настраивает тему XI Novels — включите её в «Внешний вид → Темы», и экран заработает."
+msgstr "The studio tunes the XI Novels theme — activate it under Appearance → Themes and this screen comes alive."
+
+msgid "Студия темы"
+msgstr "Theme studio"
+
+msgid "Схема"
+msgstr "Scheme"
+
+msgid "Тайтл"
+msgstr "Title"
+
+msgid "Телефон"
+msgstr "Phone"
+
+msgid "Тёмная"
+msgstr "Dark"
+
+msgid "Файл не похож на настройки студии"
+msgstr "That file does not look like studio settings"
+
+msgid "Ширина экрана"
+msgstr "Screen width"
+
+msgid "по умолчанию"
+msgstr "default"
+

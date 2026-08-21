@@ -340,8 +340,9 @@ if ( xin_can_manage() ) {
 			<label class="xin-manage__field">
 				<span><?php esc_html_e( 'Основной язык', 'xi-novels' ); ?></span>
 				<select name="default_lang">
-					<option value="ru" <?php selected( get_theme_mod( 'xin_default_lang', 'ru' ), 'ru' ); ?>><?php esc_html_e( 'Русский', 'xi-novels' ); ?></option>
-					<option value="en" <?php selected( get_theme_mod( 'xin_default_lang', 'ru' ), 'en' ); ?>><?php esc_html_e( 'Английский', 'xi-novels' ); ?></option>
+					<?php foreach ( xin_languages() as $xin_lang_key => $xin_lang_data ) : ?>
+						<option value="<?php echo esc_attr( $xin_lang_key ); ?>" <?php selected( get_theme_mod( 'xin_default_lang', 'ru' ), $xin_lang_key ); ?>><?php echo esc_html( $xin_lang_data['name'] ); ?></option>
+					<?php endforeach; ?>
 				</select>
 			</label>
 

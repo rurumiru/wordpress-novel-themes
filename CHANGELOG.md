@@ -12,6 +12,35 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.3.0-beta] — 2026-08-20
+
+### Added
+
+- **A chapter editor of the theme’s own.** TinyMCE is gone from the studio; in its place is a `contenteditable` editor written for prose — about 600 lines, no npm, no vendor bundle. Pasting from Word, Google Docs or another site arrives clean: the markup is filtered down to a whitelist, `class`, `style` and `<span>` wrappers are dropped, `<div>` becomes a paragraph, `<b>`/`<i>` become `<strong>`/`<em>`, and a `javascript:` link loses its href. A scene break is one button, images come from the media library, and the block select covers paragraph, two heading levels and a quote. Below the toolbar: **find and replace** across the whole chapter, **tidy** — straight quotes to «», double hyphens to em dashes, `...` to an ellipsis, stray spaces away — and **the project glossary applied to the text in one press**. The footer counts words, characters and reading time; the draft is saved to the browser as you type and offered back if the tab died. Focus mode drops the site chrome and leaves the page. `Ctrl+B`, `Ctrl+I`, `Ctrl+K`, `Ctrl+H`, `Ctrl+S` and `Esc` do what you expect. The same editor, with a shorter toolbar, now edits a title’s description.
+- **A glossary the translator keeps.** A project screen in the studio — *Chapters → Project glossary* — holds the rules as plain lines, `from = to`, so a list can be pasted in from a spreadsheet in one go. The rules travel to every reader of that title automatically and work exactly like the reader’s own, except a reader’s own rule always wins; the reader can switch the translator’s glossary off in one click, and sees it as a separate, read-only group in the panel. The same rules can be **written into the chapters themselves**: *Count the matches* runs a dry pass and reports how many hits sit in how many chapters, and *Write into the chapters* rewrites them for good. The engine that does it in PHP answers exactly like the JavaScript one — the same 24 cases are tested on both sides.
+- **XI Studio — the theme studio, as a bundled plugin.** One admin screen: the knobs on the left, the live site in a frame on the right, and every movement of a slider visible immediately. Colour (accent, premium, and the neutral hue and saturation that rebuild the whole light and dark ladder from one tone), shape (corner radius, shadow depth, site width), fonts (system stacks only), and the reading defaults a new reader starts from. Five presets — graphite, paper, ink, neon, newsprint. The preview switches between the home page, the catalog, a title and a chapter, between desktop, tablet and phone widths, and between the light and dark schemes. Settings export and import as JSON, and everything is stored as ordinary theme mods: switch the plugin off and the site looks the same.
+
+### Changed
+
+- **The look of the theme became a set of declared knobs.** `inc/skin.php` holds one registry — name, type, range, default — and one CSS generator built from it. The customizer draws its controls from that registry (a new *Look* section), the studio plugin draws its screen from it, and the live preview asks the theme for the CSS over REST instead of keeping a second generator in JavaScript, so the preview cannot drift from the site. Adding a knob is one entry plus one line.
+- **One replacement engine.** The matching code the reader glossary used moved into `assets/js/replace.js`, and the editor’s find-and-replace and glossary button now run on the very same code — longest rule first, no cascade, case carried over, Unicode word boundaries.
+- **The translation builder covers plugins too.** `tools/build-translations.php` now walks a list of targets: the theme’s `xi-novels` domain and the plugin’s `xi-studio` domain, each with its own maps under `tools/i18n/`. The theme carries 815 strings in English and Brazilian Portuguese, the studio 36 more.
+- Reading defaults (size, column width, leading, paper, reading font) are settings now, not constants in JavaScript: the reader takes them as its starting point and still lets each reader override everything.
+
+## [0.2.0-beta] — 2026-08-20
+
+### Added
+
+- **A glossary in the reader — fix the terms yourself.** Select a word inside a chapter and an *Add to glossary* button appears next to the selection; type how it should read and every occurrence changes on the spot — in the text, the title, the contents and the chapter navigation, without a reload. A rule can ignore case, and then it carries the capitalisation over (`ye chen` stays as you typed it, `Ye Chen` gets a capital, `YE CHEN` goes all caps); it can demand a whole word, which understands Cyrillic and CJK, not only `\b`; and an empty replacement simply cuts the term. Longer rules win over shorter ones, and what a rule produced is never read again by another rule, so `A → B` next to `B → C` cannot cascade. Rules belong either to one title or to the whole site, live in `localStorage` — nothing is sent anywhere — and travel as a JSON file: *Save to a file* writes everything, *Load a file* merges it back and also accepts a hand-written `{"term": "reading"}` map. Highlighting the replacements is one switch away, and each highlight keeps the original word in its tooltip. Built for machine-translated releases, where a name changes spelling every other chapter and nobody edits it.
+- **The interface speaks Brazilian Portuguese.** A third language next to Russian and English — 729 strings, compiled into `languages/pt_BR.mo`. The header switch is now RU / EN / PT, the *Main language* setting in the customizer and in the control panel lists every registered language instead of a hard-coded pair, and a locale added to `xin_languages()` shows up in all three places at once.
+- **README in Brazilian Portuguese** — [README.pt-BR.md](README.pt-BR.md), linked from both other READMEs.
+
+### Changed
+
+- **Translations are built per locale.** The RU → EN map moved out of `tools/build-translations.php` into `tools/i18n/en_US.php`, joined by `tools/i18n/pt_BR.php`. The script now compiles `.po` and `.mo` for every map it finds, reports both what a map is missing and what it carries that the theme no longer uses, and exits non-zero when something is missing — so it works as a check, not only as a build. Adding a language is one copied file plus one line in `xin_languages()`.
+- Reader panels (contents, reading settings, glossary) share one open / close mechanism, and the reader exposes `window.xinReader.open()` so another script can raise a panel of its own.
+- The reader bar gained a glossary button; below 420 px the full-screen button steps aside so the chapter title keeps its room.
+
 ## [0.1.0-beta] — 2026-08-18
 
 ### Added

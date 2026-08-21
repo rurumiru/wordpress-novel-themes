@@ -67,26 +67,15 @@ $xin_cover      = $xin_id ? xin_cover_url( $xin_id, 'xin-cover-sm' ) : '';
 			<p class="xin-field__hint"><?php esc_html_e( 'Показывается в витрине, поиске и на карточке тайтла.', 'xi-novels' ); ?></p>
 		</div>
 
-		<div class="xin-field xin-editor">
-			<label for="xin-description"><?php esc_html_e( 'Полное описание', 'xi-novels' ); ?></label>
-			<?php
-			wp_editor(
-				$xin_novel ? $xin_novel->post_content : '',
-				'xin-description',
-				array(
-					'textarea_name' => 'description',
-					'media_buttons' => current_user_can( 'upload_files' ),
-					'quicktags'     => true,
-					'editor_height' => 300,
-					'tinymce'       => array(
-						'toolbar1' => 'bold,italic,blockquote,bullist,numlist,link,unlink,removeformat,undo,redo',
-						'toolbar2' => '',
-					),
-				)
-			);
-			?>
-			<p class="xin-field__hint"><?php esc_html_e( 'Показывается на странице тайтла под заголовком «Описание».', 'xi-novels' ); ?></p>
-		</div>
+		<?php
+		get_template_part( 'template-parts/writer', null, array(
+			'name'  => 'description',
+			'value' => $xin_novel ? $xin_novel->post_content : '',
+			'key'   => '',
+			'label' => __( 'Полное описание', 'xi-novels' ),
+			'lite'  => true,
+		) );
+		?>
 
 		<div class="xin-field">
 			<label><?php esc_html_e( 'Жанры', 'xi-novels' ); ?></label>

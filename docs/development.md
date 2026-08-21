@@ -28,7 +28,9 @@ themes/xi-novels/
 │   ├── customizer.php         options + hex→HSL conversion
 │   ├── widgets.php            two widgets
 │   ├── authoring.php          studio: form handlers, permissions, pages
-│   ├── i18n.php               RU/EN switch, locale filter
+│   ├── i18n.php               language switch (RU/EN/PT-BR), locale filter
+│   ├── skin.php               design knobs, CSS generator, presets, REST route
+│   ├── glossary.php           project glossary: meta, replacement, bulk apply
 │   ├── nav-walker.php         Bootstrap navbar + offcanvas walkers
 │   └── cleanup.php            hides WordPress traces, restyles login
 ├── template-parts/            home sections, catalog, studio screens
@@ -39,8 +41,11 @@ themes/xi-novels/
 │   ├── css/editor.css         editor styles
 │   ├── js/theme.js            sliders, tabs, reveal, counters, library, editor
 │   ├── js/reader.js           reading settings, progress, TOC, keyboard
+│   ├── js/replace.js          term matching engine, shared by reader and editor
+│   ├── js/glossary.js         reader glossary: rules, panel, project rules
+│   ├── js/writer.js           chapter editor: toolbar, paste cleanup, drafts
 │   └── vendor/bootstrap/      5.3.3 css + bundle js
-└── languages/                 en_US.po, en_US.mo
+└── languages/                 en_US.po/.mo, pt_BR.po/.mo
 ```
 
 ## Data model
@@ -92,16 +97,17 @@ Each handler verifies the nonce, checks `xin_can_author()` and `xin_owns()`, wri
 | `xin-read-<novelId>` | array of read chapter IDs |
 | `xin-draft-<novel>-<chapter>` | studio draft |
 | `xin-rated-<novelId>` | rating guard |
+| `xin-glossary` | `{on, mark, project, global: [rule], novels: {<novelId>: [rule]}}`, one rule being `{id, from, to, ci, whole, on}` |
 
 ## Translations
 
-Source strings are Russian; English lives in `languages/en_US.mo`.
+Source strings are Russian; English lives in `languages/en_US.mo` and Brazilian Portuguese in `languages/pt_BR.mo`.
 
 ```bash
-php tools/build-translations.php     # writes en_US.po and en_US.mo
+php tools/build-translations.php     # writes .po and .mo for every map in tools/i18n/
 ```
 
-The script holds the RU → EN map, verifies that every extracted string is covered, and writes a binary `.mo` without needing `msgfmt`. To add a locale, copy the map, translate the values, and point the output at your locale file.
+Each locale is one file in `tools/i18n/` returning `array( russian => translation )`. The script extracts every translatable string from the theme, reports what a map misses and what it no longer needs, exits non-zero when something is missing, and writes a binary `.mo` without needing `msgfmt`. To add a locale, copy a map, translate the values, name the file after the locale and add it to `xin_languages()`.
 
 The visitor-facing switch lives in `inc/i18n.php`: `?lang=en` sets a cookie and a `locale` filter swaps the theme’s text domain. Core strings follow only if the matching language pack is installed.
 

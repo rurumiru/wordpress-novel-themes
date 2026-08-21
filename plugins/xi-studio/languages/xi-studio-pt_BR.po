@@ -1,0 +1,118 @@
+# Brazilian Portuguese translation for the XI Novels project.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Studio 0.3.0-beta\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "XI Novels — облик сайта целиком"
+msgstr "XI Novels — a aparência do site inteiro"
+
+msgid "Вернуть все значения по умолчанию?"
+msgstr "Voltar todos os valores ao padrão?"
+
+msgid "Вернуть цвет темы"
+msgstr "Voltar à cor do tema"
+
+msgid "Всё сохранено"
+msgstr "Tudo salvo"
+
+msgid "Выгрузить"
+msgstr "Exportar"
+
+msgid "Глава"
+msgstr "Capítulo"
+
+msgid "Главная"
+msgstr "Início"
+
+msgid "Готовый набор меняет сразу всё. Дальше можно править по мелочи."
+msgstr "Um conjunto pronto muda tudo de uma vez. Depois é só ajustar os detalhes."
+
+msgid "Есть несохранённые изменения"
+msgstr "Há alterações não salvas"
+
+msgid "Загрузить"
+msgstr "Importar"
+
+msgid "Каталог"
+msgstr "Catálogo"
+
+msgid "Монитор"
+msgstr "Monitor"
+
+msgid "Набор применён — проверьте и сохраните"
+msgstr "Conjunto aplicado — confira e salve"
+
+msgid "Наборы"
+msgstr "Conjuntos"
+
+msgid "Настройки из файла подставлены — проверьте и сохраните"
+msgstr "As configurações do arquivo entraram — confira e salve"
+
+msgid "Настройки не сохранены. Уйти со страницы?"
+msgstr "As configurações não foram salvas. Sair da página?"
+
+msgid "Не удалось сохранить"
+msgstr "Não foi possível salvar"
+
+msgid "Недостаточно прав."
+msgstr "Permissões insuficientes."
+
+msgid "Обновить"
+msgstr "Recarregar"
+
+msgid "Открыть студию"
+msgstr "Abrir o estúdio"
+
+msgid "Планшет"
+msgstr "Tablet"
+
+msgid "Предпросмотр сайта"
+msgstr "Prévia do site"
+
+msgid "Сбросить"
+msgstr "Restaurar padrões"
+
+msgid "Светлая"
+msgstr "Clara"
+
+msgid "Сохранено"
+msgstr "Salvo"
+
+msgid "Сохранить"
+msgstr "Salvar"
+
+msgid "Страница"
+msgstr "Página"
+
+msgid "Студия настраивает тему XI Novels — включите её в «Внешний вид → Темы», и экран заработает."
+msgstr "O estúdio configura o tema XI Novels — ative-o em «Aparência → Temas» e esta tela ganha vida."
+
+msgid "Студия темы"
+msgstr "Estúdio do tema"
+
+msgid "Схема"
+msgstr "Esquema"
+
+msgid "Тайтл"
+msgstr "Obra"
+
+msgid "Телефон"
+msgstr "Celular"
+
+msgid "Тёмная"
+msgstr "Escura"
+
+msgid "Файл не похож на настройки студии"
+msgstr "Esse arquivo não parece ser de configurações do estúdio"
+
+msgid "Ширина экрана"
+msgstr "Largura da tela"
+
+msgid "по умолчанию"
+msgstr "padrão"
+

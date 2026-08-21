@@ -7,19 +7,19 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.1.0-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.3.0-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-7952b3)](https://getbootstrap.com/)
 [![Build step](https://img.shields.io/badge/build%20step-none-2ea44f)](#tech-stack)
 [![npm dependencies](https://img.shields.io/badge/npm%20dependencies-0-2ea44f)](#tech-stack)
-[![i18n](https://img.shields.io/badge/i18n-RU%20%2F%20EN-blue)](#languages)
+[![i18n](https://img.shields.io/badge/i18n-RU%20%2F%20EN%20%2F%20PT--BR-blue)](#languages)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](#contributing)
 
 **[🌐 Live demo — xi.community](https://xi.community)**
 
-[Русская версия →](README.ru.md) · [Install](#install-in-two-minutes) · [Docs](docs/) · [Screenshots](#screenshots) · [FAQ](#faq)
+[Русская версия →](README.ru.md) · [Português (BR) →](README.pt-BR.md) · [Install](#install-in-two-minutes) · [Docs](docs/) · [Screenshots](#screenshots) · [FAQ](#faq)
 
 **Telegram:** [📢 Channel](https://t.me/licht_re) · [💬 Community Chat](https://t.me/xicommunity)
 
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.1.0**
+> ### 🚧 Status: **beta 0.3.0**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -64,6 +64,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 📚 **Catalog** | Covers, genres, tags, release status, sorting by views / rating / freshness, filters that survive pagination |
 | 📖 **Full-screen reader** | No site header, no footer, no sidebar. Auto-hiding top bar, contents drawer, progress dock, `←` / `→` paging |
 | 🎨 **Reading settings** | Font size, line height, column width, serif / sans, four paper themes (site / white / sepia / night) — saved per browser, applied to every chapter |
+| 🔤 **Glossary in the reader** | Rename anything while you read: select a word, type how it should read, and every chapter follows — any case or exact case, whole word or not, for one title or for the whole site. Kept in the browser and exportable as a file, so a machine-translated release gets fixed once and passed on |
 | 🔖 **Library without an account** | Bookmarks, reading history and “continue reading” live in `localStorage` |
 | 🕒 **Updates feed** | Every fresh chapter on the site, grouped into a Today / Yesterday / date timeline |
 | 🏆 **Rankings** | Podium for the top three plus a list to tenth place, three competing orders in one block |
@@ -71,14 +72,15 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them |
 | 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
 | 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
-| 🌍 **RU / EN interface** | Language switch in the header, remembered in a cookie |
+| 🌍 **RU / EN / PT-BR interface** | Language switch in the header, remembered in a cookie |
 
 ### For authors
 
 | | |
 |---|---|
 | ✍️ **Author studio on the front end** | Create projects and chapters without ever opening `/wp-admin` |
-| 🧰 **The real editor** | WordPress TinyMCE with media upload, plus a code tab for pasted HTML |
+| 🧰 **An editor built for chapters** | The theme’s own editor, not TinyMCE: paste from Word arrives clean, a scene break is one button, «tidy» fixes quotes, dashes and stray spaces, find-and-replace works across the chapter, and focus mode drops everything but the page |
+| 🔤 **Project glossary** | Keep the names of the project in one list and every reader gets them automatically — or write them into the chapters in one pass, with a dry run that counts the matches first |
 | 💾 **Drafts that survive** | Chapter text auto-saves to the browser while you write; live word count |
 | 🔢 **Chapter numbering** | Next number pre-filled; fractional numbers (`12.5`) for side stories |
 | 👑 **Early access** | Mark chapters as PLUS — locked for guests, badged in the contents |
@@ -90,7 +92,8 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 |---|---|
 | 🕵️ **Nothing screams WordPress** | Admin bar off; generator, RSD, wlwmanifest, shortlink, oEmbed, emoji, X-Pingback and asset version strings stripped; REST moved from `/wp-json/` to `/api/`; login page restyled in your brand |
 | 🛠️ **Control panel on the site** | `/manage/`: users and roles, PLUS access with an expiry date, the review queue for contributor submissions, every title, and the site settings — no `/wp-admin` needed |
-| 🎛️ **Customizer** | Accent and premium colors, default color scheme, twelve home blocks you can switch off one by one, footer text, social links |
+| 🎨 **Theme studio** | A bundled plugin: one screen with the knobs on the left and the live site on the right. Colour, corner radius, shadows, site width, fonts and the reading defaults — every change visible before it is saved, five presets, JSON export |
+| 🎛️ **Customizer** | The same knobs without the plugin, plus twelve home blocks you can switch off one by one, footer text, social links |
 | 👥 **Co-authors** | A project can carry several translators; each of them adds and edits its chapters, and the team shows on the title page |
 | 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase, next to PLUS |
 | 💬 **Discussions (optional)** | Off by default. When on: own markup, one level of replies, spoilers, likes, author and team badges — nothing that looks like WordPress comments |
@@ -98,7 +101,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 🚫 **No comments anywhere** | Shipped deliberately without discussions — front end, templates and admin section all clean |
 | 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
-| 🌐 **Translation ready** | 736 strings, Russian source + compiled English `.mo`, plus a build script |
+| 🌐 **Translation ready** | 729 strings, Russian source + compiled English and Brazilian Portuguese `.mo`, plus a build script |
 
 ![Reader](screenshots/04-reader.jpg)
 
@@ -126,9 +129,9 @@ Deliberately boring and dependency-light — you can read the whole thing in an 
 | PHP | **7.4+**, plain procedural WordPress API | No composer, no autoloader, no framework — drops into any host |
 | CSS framework | **Bootstrap 5.3.3**, bundled locally in `assets/vendor/` | Grid, navbar, offcanvas, modal, dropdown, tabs, forms, pagination — accessible and battle-tested |
 | Design layer | **Custom CSS with HSL design tokens** (`style.css`, `skin.css`, `pages.css`, `parts.css`) | Bootstrap is re-skinned through CSS variables; the light and dark ladders are built from measured contrast |
-| JS | **Vanilla ES5**, ~700 lines + Bootstrap bundle | No build step, no npm, no framework |
+| JS | **Vanilla ES5**, ~2.5k lines + Bootstrap bundle | No build step, no npm, no framework |
 | Data model | Two post types (`novel`, `chapter`), three taxonomies (`genre`, `novel_tag`, `novel_status`), post meta | Standard WordPress — your content stays portable |
-| Editor | `wp_editor()` / TinyMCE on the front end | Authors get the editor they already know |
+| Editor | Own `contenteditable` editor, ~600 lines | A chapter needs paste cleanup, scene breaks and focus — not a page builder |
 | Client storage | `localStorage` for library, history, reading settings, drafts | Readers keep their place without an account |
 | REST | One namespaced route (`/api/xin/v1/rate`) | Anonymous rating without a plugin |
 | i18n | Gettext `.po` / `.mo` + build script | No translation plugin required |
@@ -162,11 +165,13 @@ themes/xi-novels/      the theme — everything above lives here
   inc/                 post types, meta boxes, template tags, customizer,
                        widgets, author studio, i18n, nav walkers, cleanup
   template-parts/      home sections, catalog, studio screens
-  assets/              css (4 files), js (2 files), vendor/bootstrap
-  languages/           en_US.po / en_US.mo
+  assets/              css (7 files), js (5 files), vendor/bootstrap
+  languages/           en_US and pt_BR, .po + .mo
 demo/                  demo content: a plugin with two buttons, plus CLI scripts
-plugins/               which plugins the project uses and why
-tools/                 dev-server router, bulk importer, translation builder
+plugins/               xi-studio (theme studio), xi-novel-import, and notes
+                       on which third-party plugins the project uses and why
+tools/                 dev-server router, bulk importer, translation builder,
+                       i18n/ with one RU -> locale map per language
 docs/                  install, authoring, import, customizing, development
 screenshots/           what it looks like
 ```
@@ -224,15 +229,17 @@ Every shot below is the theme itself, running with the demo content from this re
 
 ## Languages
 
-The interface ships in **Russian** (source strings) and **English** (`languages/en_US.mo`, 736 strings). A visitor switches with the RU / EN control in the header; the choice is remembered in a cookie.
+The interface ships in **Russian** (source strings), **English** (`languages/en_US.mo`) and **Brazilian Portuguese** (`languages/pt_BR.mo`) — 815 strings each, plus 36 more for the studio plugin. A visitor switches with the RU / EN / PT control in the header and the choice is remembered in a cookie; **Customize → Brand → Main language** decides what a first-time visitor sees.
 
-Adding a third language is one file:
+Adding a fourth language is one file — a PHP map of Russian source string to translation:
 
 ```bash
-cp themes/xi-novels/languages/en_US.po themes/xi-novels/languages/de_DE.po
-# translate, then
+cp tools/i18n/en_US.php tools/i18n/de_DE.php
+# translate the right-hand side of every line, then
 php tools/build-translations.php
 ```
+
+The script re-reads every translatable string in the theme, reports what a map is missing or no longer uses, and writes `.po` and `.mo` for every map in `tools/i18n/`. Register the locale in `xin_languages()` (`inc/i18n.php`) and it joins the header switch. WordPress’s own strings and date formats come from the site language pack — install it under **Settings → General** if the admin should speak that language too.
 
 ## Roadmap
 
@@ -247,7 +254,7 @@ Ideas that fit the “no dependencies” rule. Vote with 👍 in issues, or send
 - [ ] Optional paid chapters via WooCommerce bridge
 - [ ] Bulk chapter import from `.docx` / `.txt` / Google Docs
 - [ ] Optional discussions module (opt-in, off by default)
-- [ ] Additional locales: DE, ES, PT-BR, ID, VI
+- [ ] Additional locales: DE, ES, ID, VI
 
 ## FAQ
 

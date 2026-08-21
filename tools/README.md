@@ -48,8 +48,16 @@ php tools/build-translations.php
 
 What it does:
 
-1. reads the string list extracted from the theme;
-2. checks every string against the RU → EN map inside the script and reports anything missing;
-3. writes `themes/xi-novels/languages/en_US.po` and a binary `en_US.mo`.
+1. extracts every translatable string from the theme;
+2. loads one map per locale from `tools/i18n/` — `en_US.php`, `pt_BR.php`, … — each a plain `return array( russian => translation )`;
+3. reports what a map is missing and what it still carries but the theme no longer uses;
+4. writes `themes/xi-novels/languages/<locale>.po` and a binary `<locale>.mo` for every map it found.
 
-To add a locale, copy the map, translate the values and change the output paths. Adjust the paths at the top of the script if your checkout lives somewhere else.
+To add a locale, copy a map, translate the values, and name the file after the locale:
+
+```bash
+cp tools/i18n/en_US.php tools/i18n/de_DE.php
+php tools/build-translations.php
+```
+
+A missing string is reported and the script exits non-zero, so it doubles as a CI check. Add the locale to `xin_languages()` in `themes/xi-novels/inc/i18n.php` to put it in the header switch, and to `$plurals` / `$names` in the script for the `.po` header.

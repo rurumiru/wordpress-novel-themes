@@ -42,31 +42,15 @@ $xin_number = $xin_id ? xin_chapter_label( $xin_id ) : ( $xin_last ? (float) xin
 			</div>
 		</div>
 
-		<div class="xin-field xin-editor">
-			<label for="xin-ch-content"><?php esc_html_e( 'Текст главы', 'xi-novels' ); ?></label>
-			<?php
-
-wp_editor(
-				$xin_chapter ? $xin_chapter->post_content : '',
-				'xin-ch-content',
-				array(
-					'textarea_name' => 'content',
-					'media_buttons' => current_user_can( 'upload_files' ),
-					'quicktags'     => true,
-					'editor_height' => 520,
-					'tinymce'       => array(
-						'toolbar1' => 'formatselect,bold,italic,underline,strikethrough,blockquote,bullist,numlist,alignleft,aligncenter,alignright,link,unlink,hr,removeformat,undo,redo,fullscreen',
-						'toolbar2' => '',
-						'block_formats' => __( 'Абзац=p; Заголовок=h2; Подзаголовок=h3', 'xi-novels' ),
-					),
-				)
-			);
-			?>
-			<p class="xin-field__hint">
-				<span data-xin-wordcount>0</span> <?php esc_html_e( 'слов', 'xi-novels' ); ?> ·
-				<span data-xin-autosave-note><?php esc_html_e( 'черновик сохраняется в браузере', 'xi-novels' ); ?></span>
-			</p>
-		</div>
+		<?php
+		get_template_part( 'template-parts/writer', null, array(
+			'name'     => 'content',
+			'value'    => $xin_chapter ? $xin_chapter->post_content : '',
+			'key'      => 'xin-draft-' . (int) $xin_novel_id . '-' . ( $xin_id ? (int) $xin_id : 'new' ),
+			'label'    => __( 'Текст главы', 'xi-novels' ),
+			'glossary' => (bool) xin_glossary_rules( $xin_novel_id ),
+		) );
+		?>
 
 		<div class="xin-field">
 			<div class="xin-checks">

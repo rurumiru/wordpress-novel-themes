@@ -10,6 +10,7 @@ function xin_languages() {
 	return array(
 		'ru' => array( 'label' => 'RU', 'locale' => 'ru_RU', 'name' => 'Русский' ),
 		'en' => array( 'label' => 'EN', 'locale' => 'en_US', 'name' => 'English' ),
+		'pt' => array( 'label' => 'PT', 'locale' => 'pt_BR', 'name' => 'Português (BR)' ),
 	);
 }
 
@@ -35,7 +36,15 @@ function xin_current_lang() {
 		return $default;
 	}
 
-	return 0 === strpos( (string) get_option( 'WPLANG', 'ru_RU' ), 'en' ) ? 'en' : 'ru';
+	$wplang = (string) get_option( 'WPLANG', 'ru_RU' );
+
+	foreach ( $langs as $key => $lang ) {
+		if ( 0 === strpos( $wplang, substr( $lang['locale'], 0, 2 ) ) ) {
+			return $key;
+		}
+	}
+
+	return 'ru';
 }
 
 function xin_lang_cookie() {
