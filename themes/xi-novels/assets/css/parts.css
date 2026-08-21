@@ -1,4 +1,8 @@
-.xin-aurora { position: relative; isolation: isolate; }
+/* The glow blobs are deliberately oversized; the right-hand one hung 120px past
+   the edge and gave every page that uses the decoration a sideways scroll.
+   Clip sideways only, so the top blob still bleeds upward as designed. */
+.xin-aurora { position: relative; isolation: isolate; overflow-x: clip; overflow-y: visible; }
+.xin-hero.xin-aurora { overflow: hidden; }
 .xin-aurora::before, .xin-aurora::after {
 	content: ""; position: absolute; z-index: -1; border-radius: 999px;
 	filter: blur(90px); opacity: .5; pointer-events: none;
@@ -70,7 +74,7 @@
 .xin-update-row__cover { aspect-ratio: 2/3; border-radius: 6px; overflow: hidden; background: hsl(var(--muted)); }
 .xin-update-row__cover img { width: 100%; height: 100%; object-fit: cover; }
 .xin-update-row__novel { font-size: 11.5px; color: hsl(var(--muted-fg)); }
-.xin-update-row__title { font-size: 14.5px; font-weight: 600; margin: 1px 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.xin-update-row__title { display: block; font-size: 14.5px; font-weight: 600; margin: 1px 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .xin-update-row:hover .xin-update-row__title { color: hsl(var(--primary)); }
 .xin-update-row__time { font-size: 11.5px; color: hsl(var(--muted-fg)); white-space: nowrap; }
 @media (max-width: 600px) { .xin-update-row { grid-template-columns: 40px minmax(0, 1fr); } .xin-update-row__time { grid-column: 2; } }
@@ -127,7 +131,8 @@
 
 .xin-dash { display: grid; gap: 22px; padding-top: 24px; }
 @media (min-width: 1024px) { .xin-dash { grid-template-columns: 250px minmax(0, 1fr); align-items: start; } }
-.xin-dash__nav { display: grid; gap: 4px; position: sticky; top: calc(var(--header-h) + 16px); }
+.xin-dash__nav { display: grid; gap: 4px; }
+@media (min-width: 1024px) { .xin-dash__nav { position: sticky; top: calc(var(--header-h) + 16px); } }
 .xin-dash__nav a {
 	display: flex; align-items: center; gap: .6rem; padding: .6rem .85rem; border-radius: var(--radius-sm);
 	font-size: 14px; font-weight: 600; color: hsl(var(--muted-fg));

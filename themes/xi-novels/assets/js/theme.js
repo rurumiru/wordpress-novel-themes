@@ -607,13 +607,32 @@ if (body.scrollHeight <= 240) {
 
 		function close() {
 			menu.hidden = true;
+			menu.style.transform = '';
 			btn.setAttribute('aria-expanded', 'false');
+		}
+
+		// The button rides in a wrapping row, so it can sit anywhere across the
+		// width. Nudge the open menu back inside the viewport instead of letting
+		// it run off an edge.
+		function place() {
+			menu.style.transform = '';
+			var pad = 8;
+			var box = menu.getBoundingClientRect();
+			var vw = document.documentElement.clientWidth;
+			var shift = 0;
+			if (box.right > vw - pad) shift = vw - pad - box.right;
+			if (box.left + shift < pad) shift = pad - box.left;
+			if (shift) menu.style.transform = 'translateX(' + Math.round(shift) + 'px)';
 		}
 
 		btn.addEventListener('click', function (e) {
 			e.stopPropagation();
 			menu.hidden = !menu.hidden;
 			btn.setAttribute('aria-expanded', menu.hidden ? 'false' : 'true');
+			if (!menu.hidden) place();
+		});
+		window.addEventListener('resize', function () {
+			if (!menu.hidden) place();
 		});
 		document.addEventListener('click', function (e) {
 			if (!menu.hidden && !menu.contains(e.target)) close();

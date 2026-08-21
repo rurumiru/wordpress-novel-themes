@@ -25,7 +25,13 @@
 	--bs-highlight-bg: hsl(var(--gold) / .25);
 }
 
-body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
+/* Nothing on a page is allowed to widen the document: a stray decoration or an
+   untruncated title used to add a sideways scroll, and every fixed thing on
+   top of it — header, search dialog, off-canvas menu — drifted with it.
+   `clip` rather than `hidden` so sticky positioning keeps working. */
+html { overflow-x: clip; }
+
+body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 
 .btn {
 	--bs-btn-padding-y: .5rem;
@@ -150,6 +156,9 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); }
 .dropdown-item { border-radius: var(--radius-sm); font-weight: 500; }
 
 .offcanvas, .modal-content {
+	/* Bootstrap ships a flat 400px panel, which is wider than a phone: the menu
+	   opened larger than the screen and hung off the side. */
+	--bs-offcanvas-width: min(400px, 86vw);
 	--bs-offcanvas-bg: hsl(var(--card));
 	--bs-offcanvas-color: hsl(var(--fg));
 	--bs-offcanvas-border-color: hsl(var(--border));

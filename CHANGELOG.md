@@ -12,6 +12,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 Shared component markup (navbar, offcanvas, modal, forms, tabs) may change between betas. The data model, template hierarchy and hooks are stable.
 
+## [0.3.2-beta] — 2026-08-22
+
+### Fixed
+
+- **Pages no longer drift sideways on a phone.** The glow behind a page heading is drawn by two oversized blurred circles, and the right-hand one sat 120px past the edge of its block. Nothing clipped it, so on a 360px screen the document was 480px wide: the catalog, the updates feed, the blog and the landing pages all scrolled to the right into empty space. Every fixed thing floating above that document drifted with it — the search dialog opened away from the middle of the screen, the header slid out of place, the off-canvas menu came in at an angle. The decoration is now clipped horizontally, and the document itself is held to the width of the screen, so a single stray element can no longer take the whole layout with it.
+- **Titles in the chapter cards ran off the page.** The novel name above a chapter card, the title in a ranking row and the chapter title in the updates feed were each written as a `<span>`, and an inline box ignores `overflow` and `text-overflow` — only `white-space: nowrap` took hold. A long title became one unbreakable line that walked out of its card, over the card beside it and off the edge of the screen; the author page, with its six recent chapters, showed it worst. All three are block boxes now and truncate with an ellipsis as they were meant to.
+- **The author's studio no longer sits on top of its own content.** The list of studio sections — projects, new project, profile, library — is a sticky sidebar on a wide screen. On a phone there is no sidebar: the list stacks above the content, and sticking it to the top dragged it down over the project form as the page scrolled, two layers of text in the same place. It sticks only from 1024px up, where there is a column to stick to. The widget sidebar on the blog carried the same construction and was changed with it.
+- **The off-canvas menu is no longer wider than the phone.** It inherited a flat 400px from Bootstrap, which is more than a 360px screen holds, so the panel opened larger than the display and hung off the side. It is capped at 86% of the viewport now.
+- **The download menu stays on screen.** Centring it under its button only worked while the button sat near the middle of the row; on a title page the button is on the right, so EPUB / FB2 opened past the edge of the screen. The menu is now measured when it opens and nudged back inside the viewport, whichever way the buttons happen to wrap.
+
 ## [0.3.1-beta] — 2026-08-21
 
 ### Fixed

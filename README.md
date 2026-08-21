@@ -7,7 +7,7 @@
 **A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.3.1-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.3.2-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.3.1**
+> ### 🚧 Status: **beta 0.3.2**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >

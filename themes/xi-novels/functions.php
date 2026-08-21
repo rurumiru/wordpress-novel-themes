@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.3.1-beta' );
+define( 'XIN_VERSION', '0.3.2-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
