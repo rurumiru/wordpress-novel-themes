@@ -58,14 +58,49 @@ function xin_talk_likes( $comment_id ) {
 	return (int) get_comment_meta( $comment_id, XIN_TALK_LIKES, true );
 }
 
+function xin_talk_allowed_html() {
+	return array(
+		'strong'     => array(),
+		'em'         => array(),
+		'b'          => array(),
+		'i'          => array(),
+		'br'         => array(),
+		'p'          => array(),
+		'a'          => array( 'href' => array(), 'class' => array() ),
+		'blockquote' => array( 'class' => array() ),
+		'ins'        => array(),
+		'del'        => array(),
+		'span'       => array(
+			'class'            => array(),
+			'data-xin-spoiler' => array(),
+			'tabindex'         => array(),
+			'role'             => array(),
+		),
+	);
+}
+
 function xin_talk_format( $text ) {
-	$text = wp_kses( $text, array( 'strong' => array(), 'em' => array(), 'b' => array(), 'i' => array(), 'br' => array(), 'p' => array(), 'a' => array( 'href' => array() ) ) );
+	$text = preg_replace_callback(
+		'/\[quote\](.*?)\[\/quote\]/su',
+		static function ( $m ) {
+			$inner = $m[1];
+			$inner = preg_replace( '/\[ins\](.*?)\[\/ins\]/su', '<ins>$1</ins>', $inner );
+			$inner = preg_replace( '/\[del\](.*?)\[\/del\]/su', '<del>$1</del>', $inner );
+			$inner = preg_replace(
+				'/\[anchor\](paragraph-\d+)\[\/anchor\]/',
+				'<a class="xin-talk__anchor" href="#$1">¶</a>',
+				$inner
+			);
+			return '<blockquote class="xin-talk__quote">' . $inner . '</blockquote>';
+		},
+		$text
+	);
 
 	$text = preg_replace( '/\|\|(.+?)\|\|/su', '<span class="xin-talk__spoiler" data-xin-spoiler tabindex="0" role="button">$1</span>', $text );
 	$text = preg_replace( '/(?<!\w)\*\*(.+?)\*\*(?!\w)/su', '<strong>$1</strong>', $text );
 	$text = preg_replace( '/(?<!\w)_(.+?)_(?!\w)/su', '<em>$1</em>', $text );
 
-	return $text;
+	return wp_kses( $text, xin_talk_allowed_html() );
 }
 add_filter( 'comment_text', 'xin_talk_format', 30 );
 

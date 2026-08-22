@@ -57,6 +57,9 @@ while ( have_posts() ) :
 		</div>
 
 		<div class="xin-rd__actions">
+			<button type="button" class="btn btn-icon" data-xin-jump-bm hidden aria-label="<?php esc_attr_e( 'Jump to bookmark', 'xi-novels' ); ?>">
+				<?php xin_the_icon( 'bookmark', '', true ); ?>
+			</button>
 			<button type="button" class="btn btn-icon" data-xin-gl-open aria-label="<?php esc_attr_e( 'Глоссарий', 'xi-novels' ); ?>">
 				<?php xin_the_icon( 'languages' ); ?>
 			</button>
@@ -134,6 +137,69 @@ while ( have_posts() ) :
 				<div class="xin-rd__text" data-xin-rd-text data-xin-gl-scope lang="<?php echo esc_attr( xin_current_lang() ); ?>">
 					<?php the_content(); ?>
 				</div>
+				<div id="xin-paragraph-tools" class="xin-pkit" hidden data-xin-ptools data-nosnippet>
+					<div class="xin-pkit__rule" aria-hidden="true"></div>
+					<div class="xin-pkit__top">
+						<span class="xin-pkit__kicker"><?php esc_html_e( 'This paragraph', 'xi-novels' ); ?></span>
+						<button type="button" class="xin-pkit__x" data-xin-ptool="close" aria-label="<?php esc_attr_e( 'Close', 'xi-novels' ); ?>">
+							<?php xin_the_icon( 'close' ); ?>
+						</button>
+					</div>
+					<div class="xin-pkit__grid">
+						<section class="xin-pkit__col">
+							<h3><?php esc_html_e( 'Keep', 'xi-novels' ); ?></h3>
+							<button type="button" class="xin-pkit__act" data-xin-ptool="bookmark">
+								<?php xin_the_icon( 'bookmark' ); ?>
+								<span><?php esc_html_e( 'Pin', 'xi-novels' ); ?></span>
+							</button>
+							<div class="xin-pkit__inks" data-xin-bm-colors>
+								<button type="button" data-xin-bm-color="default" title="<?php esc_attr_e( 'Ink', 'xi-novels' ); ?>"><span><?php esc_html_e( 'Ink', 'xi-novels' ); ?></span></button>
+								<button type="button" data-xin-bm-color="beta" title="<?php esc_attr_e( 'Jade', 'xi-novels' ); ?>"><span><?php esc_html_e( 'Jade', 'xi-novels' ); ?></span></button>
+								<button type="button" data-xin-bm-color="gamma" title="<?php esc_attr_e( 'Gold', 'xi-novels' ); ?>"><span><?php esc_html_e( 'Gold', 'xi-novels' ); ?></span></button>
+								<button type="button" data-xin-bm-color="delta" title="<?php esc_attr_e( 'Crimson', 'xi-novels' ); ?>"><span><?php esc_html_e( 'Crimson', 'xi-novels' ); ?></span></button>
+							</div>
+							<button type="button" class="xin-pkit__act xin-pkit__act--ghost" data-xin-ptool="link">
+								<?php xin_the_icon( 'link' ); ?>
+								<span><?php esc_html_e( 'Copy link', 'xi-novels' ); ?></span>
+							</button>
+						</section>
+						<section class="xin-pkit__col">
+							<h3><?php esc_html_e( 'Respond', 'xi-novels' ); ?></h3>
+							<button type="button" class="xin-pkit__act" data-xin-ptool="quote">
+								<?php xin_the_icon( 'quote' ); ?>
+								<span><?php esc_html_e( 'Quote', 'xi-novels' ); ?></span>
+							</button>
+							<button type="button" class="xin-pkit__act" data-xin-ptool="suggestion">
+								<?php xin_the_icon( 'highlighter' ); ?>
+								<span><?php esc_html_e( 'Suggest', 'xi-novels' ); ?></span>
+							</button>
+						</section>
+						<section class="xin-pkit__col xin-pkit__col--listen">
+							<h3><?php esc_html_e( 'Listen', 'xi-novels' ); ?></h3>
+							<button type="button" class="xin-pkit__act xin-pkit__act--loud" data-xin-ptool="tts">
+								<?php xin_the_icon( 'play', '', true ); ?>
+								<span><?php esc_html_e( 'Listen', 'xi-novels' ); ?></span>
+							</button>
+							<button type="button" class="xin-pkit__voice" data-xin-ptool="voices">
+								<?php xin_the_icon( 'volume' ); ?>
+								<span data-xin-tts-voice-name><?php esc_html_e( 'Choose a voice', 'xi-novels' ); ?></span>
+							</button>
+						</section>
+					</div>
+				</div>
+				<div class="xin-suggest" data-xin-suggest hidden>
+					<div class="xin-suggest__panel" role="dialog" aria-modal="true" aria-labelledby="xin-suggest-title">
+						<button type="button" class="xin-suggest__x" data-xin-suggest-close aria-label="<?php esc_attr_e( 'Close', 'xi-novels' ); ?>"><?php xin_the_icon( 'close' ); ?></button>
+						<h2 id="xin-suggest-title"><?php esc_html_e( 'Suggestion', 'xi-novels' ); ?></h2>
+						<div class="xin-suggest__box" data-xin-suggest-original></div>
+						<textarea class="xin-suggest__input" data-xin-suggest-input rows="4"></textarea>
+						<div class="xin-suggest__box xin-suggest__diff" data-xin-suggest-diff></div>
+						<div class="xin-suggest__actions">
+							<button type="button" class="btn btn-outline btn-sm" data-xin-suggest-reset><?php esc_html_e( 'Reset', 'xi-novels' ); ?></button>
+							<button type="button" class="btn btn-primary btn-sm" data-xin-suggest-submit><?php esc_html_e( 'Append to comment', 'xi-novels' ); ?></button>
+						</div>
+					</div>
+				</div>
 			<?php endif; ?>
 
 			<nav class="xin-rd__nav" data-xin-gl-scope>
@@ -177,6 +243,49 @@ while ( have_posts() ) :
 
 		</div>
 	</main>
+
+	<div class="xin-tts" data-xin-tts hidden>
+		<div class="xin-tts__transport">
+			<button type="button" class="xin-tts__btn" data-xin-tts-play aria-label="<?php esc_attr_e( 'Play', 'xi-novels' ); ?>"><?php xin_the_icon( 'play', '', true ); ?></button>
+			<button type="button" class="xin-tts__btn" data-xin-tts-pause aria-label="<?php esc_attr_e( 'Pause', 'xi-novels' ); ?>"><?php xin_the_icon( 'pause', '', true ); ?></button>
+			<button type="button" class="xin-tts__btn" data-xin-tts-stop aria-label="<?php esc_attr_e( 'Stop', 'xi-novels' ); ?>"><?php xin_the_icon( 'stop', '', true ); ?></button>
+			<button type="button" class="xin-tts__btn" data-xin-tts-skip aria-label="<?php esc_attr_e( 'Skip', 'xi-novels' ); ?>"><?php xin_the_icon( 'skip-forward', '', true ); ?></button>
+			<div class="xin-tts__now">
+				<small><?php esc_html_e( 'Reading', 'xi-novels' ); ?></small>
+				<span data-xin-tts-label></span>
+			</div>
+			<button type="button" class="xin-tts__voices-toggle" data-xin-tts-studio-toggle>
+				<?php xin_the_icon( 'volume' ); ?>
+				<span data-xin-tts-voice-name><?php esc_html_e( 'Voices', 'xi-novels' ); ?></span>
+			</button>
+		</div>
+		<div class="xin-tts__studio" data-xin-tts-studio hidden>
+			<div class="xin-tts__studio-head">
+				<label class="xin-tts__search">
+					<?php xin_the_icon( 'search' ); ?>
+					<input type="search" data-xin-tts-filter placeholder="<?php esc_attr_e( 'Filter voices on this device', 'xi-novels' ); ?>">
+				</label>
+				<label class="xin-tts__local">
+					<input type="checkbox" data-xin-tts-local checked>
+					<?php esc_html_e( 'On-device only', 'xi-novels' ); ?>
+				</label>
+			</div>
+			<div class="xin-tts__list" data-xin-tts-list></div>
+			<div class="xin-tts__dials">
+				<label><?php esc_html_e( 'Speed', 'xi-novels' ); ?> <output data-xin-tts-rate-out>1.0</output>
+					<input type="range" min="0.5" max="1.8" step="0.1" value="1" data-xin-tts-rate>
+				</label>
+				<label><?php esc_html_e( 'Pitch', 'xi-novels' ); ?> <output data-xin-tts-pitch-out>1.0</output>
+					<input type="range" min="0.5" max="1.8" step="0.1" value="1" data-xin-tts-pitch>
+				</label>
+				<label><?php esc_html_e( 'Volume', 'xi-novels' ); ?> <output data-xin-tts-vol-out>100</output>
+					<input type="range" min="0" max="100" step="1" value="100" data-xin-tts-vol>
+				</label>
+				<button type="button" class="xin-pkit__act xin-pkit__act--ghost" data-xin-tts-preview><?php esc_html_e( 'Preview voice', 'xi-novels' ); ?></button>
+			</div>
+			<p class="xin-tts__hint" data-xin-tts-hint></p>
+		</div>
+	</div>
 
 	<div class="xin-rd__dock" data-xin-rd-dock>
 		<?php if ( $xin_novel_id ) : ?>
