@@ -389,6 +389,8 @@ function xin_create_pages() {
 		'contacts'      => array( __( 'Контакты', 'xi-novels' ), 'template-info.php' ),
 	);
 
+	$made = 0;
+
 	foreach ( $pages as $slug => $data ) {
 		if ( get_page_by_path( $slug ) ) {
 			continue;
@@ -402,8 +404,11 @@ function xin_create_pages() {
 		) );
 		if ( $id && ! is_wp_error( $id ) ) {
 			update_post_meta( $id, '_wp_page_template', $data[1] );
+			$made++;
 		}
 	}
+
+	return $made;
 }
 add_action( 'after_switch_theme', 'xin_create_pages' );
 
@@ -411,8 +416,19 @@ function xin_sync_pages() {
 	if ( XIN_PAGES_VERSION === get_option( 'xin_pages_version' ) ) {
 		return;
 	}
-	xin_create_pages();
+	$made = xin_create_pages();
 	update_option( 'xin_pages_version', XIN_PAGES_VERSION, false );
+
+	/*
+	 * A new page means a new entry in the header, and the header sits on every
+	 * page a full-page cache has already stored. The version-stamped purge in
+	 * cleanup.php fires once and may well have fired before this ran — during a
+	 * deploy the theme's files do not all land in the same instant — so ask for
+	 * a purge here too, on the requests that actually created something.
+	 */
+	if ( $made && function_exists( 'xin_purge_caches' ) ) {
+		xin_purge_caches();
+	}
 }
 add_action( 'init', 'xin_sync_pages', 20 );
 

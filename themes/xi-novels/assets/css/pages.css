@@ -764,8 +764,13 @@
 .xin-rank__value b { font-size: 15px; font-weight: 800; color: hsl(var(--fg)); }
 .xin-rank__value small { font-size: 11.5px; }
 
-.xin-rank__list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 4px; counter-reset: none; }
-.xin-rank__list .xin-rankrow { gap: 12px; }
+/* The rows hold a title set to nowrap, and a grid item refuses to shrink below
+   its own min-content, so on a phone the row grew past the screen and the
+   score column was clipped away. Every box down the chain is allowed to
+   shrink so the ellipsis can do its job. */
+.xin-rank__list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.xin-rank__list li { min-width: 0; }
+.xin-rank__list .xin-rankrow { gap: 12px; min-width: 0; }
 .xin-rank__list .xin-rankrow__num { width: 30px; }
 
 .xin-rank__bar { display: block; height: 4px; margin-top: 7px; border-radius: 999px; background: hsl(var(--muted)); overflow: hidden; }

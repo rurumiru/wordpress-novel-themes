@@ -197,6 +197,22 @@ function xin_login_errors( $errors ) {
 }
 add_filter( 'wp_login_errors', 'xin_login_errors' );
 
+/**
+ * Empties whatever cache the site runs in front of WordPress.
+ *
+ * Kept separate from the once-per-version check below so anything that changes
+ * what every page shows — the navigation gaining a section, for instance — can
+ * ask for a purge on its own terms.
+ */
+function xin_purge_caches() {
+	wp_cache_flush();
+	do_action( 'litespeed_purge_all' );
+	do_action( 'rocket_clean_domain' );
+	do_action( 'w3tc_flush_all' );
+	do_action( 'wpsc_delete_cache' );
+	do_action( 'autoptimize_action_cachepurged' );
+}
+
 function xin_flush_caches() {
 	if ( XIN_VERSION === get_option( 'xin_asset_stamp' ) ) {
 		return;
@@ -204,12 +220,7 @@ function xin_flush_caches() {
 
 	update_option( 'xin_asset_stamp', XIN_VERSION, false );
 
-	wp_cache_flush();
-	do_action( 'litespeed_purge_all' );
-	do_action( 'rocket_clean_domain' );
-	do_action( 'w3tc_flush_all' );
-	do_action( 'wpsc_delete_cache' );
-	do_action( 'autoptimize_action_cachepurged' );
+	xin_purge_caches();
 }
 add_action( 'init', 'xin_flush_caches', 30 );
 add_action( 'after_switch_theme', 'xin_flush_caches' );
