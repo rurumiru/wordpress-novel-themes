@@ -125,6 +125,36 @@ function xin_achievements( $user_id ) {
 	return $out;
 }
 
+/**
+ * Number chapter paragraphs so the reader toolbar can bookmark / quote / TTS them.
+ *
+ * @param string $content Post content.
+ * @return string
+ */
+function xin_add_chapter_paragraph_ids( $content ) {
+	if ( ! is_singular( 'chapter' ) || ! in_the_loop() || ! is_main_query() ) {
+		return $content;
+	}
+	if ( post_password_required() ) {
+		return $content;
+	}
+
+	static $paragraph_id = 0;
+	if ( did_action( 'the_post' ) === 1 ) {
+		$paragraph_id = 0;
+	}
+
+	return preg_replace_callback(
+		'/<p(?=\s|>)/i',
+		static function () use ( &$paragraph_id ) {
+			$id = $paragraph_id++;
+			return '<p id="paragraph-' . $id . '" data-paragraph-id="' . $id . '" ';
+		},
+		$content
+	);
+}
+add_filter( 'the_content', 'xin_add_chapter_paragraph_ids', 12 );
+
 function xin_streak_note( $user_id ) {
 	$streak = xin_streak( $user_id );
 

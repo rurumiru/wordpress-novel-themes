@@ -5,6 +5,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Added
+
+- **Reader paragraph tools.** Click a chapter paragraph to pin it (four colours, stored in the browser), quote it or suggest an edit into the discussion form, copy a `#paragraph-N` link, or start text-to-speech from that line. Suggestions open a modal with original, edit, and a live diff. TTS uses the browser’s on-device `speechSynthesis` voices, grouped by language, with speed, pitch, volume, preview, and play / pause / skip. Toasts sit above the reader dock (and above the TTS bar when it is open) so they are not covered.
+
 ### Planned
 
 - **Framework bake-off.** Bootstrap 5 is the current base, not the decision. The presentation layer will be measured against a built Tailwind subset, UnoCSS, Bulma, Pico.css and a no-framework build that relies only on the theme's own token system. Judged on gzip weight, render-blocking bytes, LCP on a mid-range phone, layout shift on the catalog grid, and reading comfort across a long session. Numbers and the verdict will be published here.
