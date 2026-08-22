@@ -31,6 +31,22 @@ $targets = array(
 		'out'    => $root . '/plugins/xi-studio/languages',
 		'prefix' => 'xi-studio-',
 	),
+	array(
+		'domain' => 'xi-novel-import',
+		'name'   => 'XI Novels — chapter import',
+		'src'    => $root . '/plugins/xi-novel-import',
+		'maps'   => __DIR__ . '/i18n/xi-novel-import',
+		'out'    => $root . '/plugins/xi-novel-import/languages',
+		'prefix' => 'xi-novel-import-',
+	),
+	array(
+		'domain' => 'xi-novel-manager',
+		'name'   => 'XI Novels — bulk management',
+		'src'    => $root . '/plugins/xi-novel-manager',
+		'maps'   => __DIR__ . '/i18n/xi-novel-manager',
+		'out'    => $root . '/plugins/xi-novel-manager/languages',
+		'prefix' => 'xi-novel-manager-',
+	),
 );
 
 $version = '1.0.0';

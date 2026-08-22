@@ -1,0 +1,292 @@
+# English (US) translation for the XI Novels project.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Novels — bulk management 0.3.4-beta\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "XI Novels — управление тайтлами"
+msgstr "XI Novels — bulk title management"
+
+msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels."
+msgstr "Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XI Novels theme."
+
+msgid "Массовое управление"
+msgstr "Bulk management"
+
+msgid "Массовое управление тайтлами"
+msgstr "Bulk title management"
+
+msgid "Открыть"
+msgstr "Open"
+
+msgid "Добавить"
+msgstr "Add new"
+
+msgid "Показать"
+msgstr "Show"
+
+msgid "Сбросить"
+msgstr "Reset"
+
+msgid "Поиск по названию"
+msgstr "Search by title"
+
+msgid "Название или часть описания"
+msgstr "Title, or part of the description"
+
+msgid "Найдено: %s"
+msgstr "Found: %s"
+
+msgid "Ничего не найдено. Попробуйте ослабить фильтры."
+msgstr "Nothing found. Try loosening the filters."
+
+msgid "Применить ко всем %s найденным, а не только к отмеченным на этой странице"
+msgstr "Apply to all %s found, not only to the ones ticked on this page"
+
+msgid "Отметить все"
+msgstr "Tick all"
+
+msgid "Владелец"
+msgstr "Owner"
+
+msgid "Жанр"
+msgstr "Genre"
+
+msgid "Жанры"
+msgstr "Genres"
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Обложка"
+msgstr "Cover"
+
+msgid "Есть"
+msgstr "Has one"
+
+msgid "Нет"
+msgstr "None"
+
+msgid "18+"
+msgstr "18+"
+
+msgid "Только 18+"
+msgstr "18+ only"
+
+msgid "Без 18+"
+msgstr "Without 18+"
+
+msgid "Сортировка"
+msgstr "Sort by"
+
+msgid "Порядок"
+msgstr "Order"
+
+msgid "По дате"
+msgstr "By date"
+
+msgid "По алфавиту"
+msgstr "Alphabetically"
+
+msgid "По изменению"
+msgstr "By last change"
+
+msgid "По просмотрам"
+msgstr "By views"
+
+msgid "По оценке"
+msgstr "By score"
+
+msgid "По убыванию"
+msgstr "Descending"
+
+msgid "По возрастанию"
+msgstr "Ascending"
+
+msgid "— любой —"
+msgstr "— any —"
+
+msgid "Публикация"
+msgstr "Publication"
+
+msgid "Любая"
+msgstr "Any"
+
+msgid "Опубликованные"
+msgstr "Published"
+
+msgid "Черновики"
+msgstr "Drafts"
+
+msgid "На проверке"
+msgstr "Pending"
+
+msgid "Личные"
+msgstr "Private"
+
+msgid "В корзине"
+msgstr "In the trash"
+
+msgid "Название"
+msgstr "Title"
+
+msgid "Глав"
+msgstr "Chapters"
+
+msgid "Просм."
+msgstr "Views"
+
+msgid "Изменён"
+msgstr "Changed"
+
+msgid "Изменить"
+msgstr "Edit"
+
+msgid "Смотреть"
+msgstr "View"
+
+msgid "Действие"
+msgstr "Action"
+
+msgid "Действие над отмеченными…"
+msgstr "Action on the ticked ones…"
+
+msgid "Применить"
+msgstr "Apply"
+
+msgid "Опубликовать"
+msgstr "Publish"
+
+msgid "В черновики"
+msgstr "To drafts"
+
+msgid "Сделать личными"
+msgstr "Make private"
+
+msgid "Состояние тайтла"
+msgstr "Title state"
+
+msgid "Поставить статус…"
+msgstr "Set status…"
+
+msgid "Пометить 18+"
+msgstr "Mark 18+"
+
+msgid "Снять 18+"
+msgstr "Clear 18+"
+
+msgid "Жанры и метки"
+msgstr "Genres and tags"
+
+msgid "Добавить жанры…"
+msgstr "Add genres…"
+
+msgid "Убрать жанры…"
+msgstr "Remove genres…"
+
+msgid "Заменить жанры на…"
+msgstr "Replace genres with…"
+
+msgid "Добавить метки…"
+msgstr "Add tags…"
+
+msgid "Убрать метки…"
+msgstr "Remove tags…"
+
+msgid "Заменить метки на…"
+msgstr "Replace tags with…"
+
+msgid "Через запятую: Фэнтези, Драма"
+msgstr "Comma separated: Fantasy, Drama"
+
+msgid "Авторство"
+msgstr "Authorship"
+
+msgid "Сменить владельца…"
+msgstr "Change owner…"
+
+msgid "Поставить команду перевода…"
+msgstr "Set translation team…"
+
+msgid "Название команды (пусто — очистить)"
+msgstr "Team name (empty clears it)"
+
+msgid "Обложка и PLUS"
+msgstr "Cover and PLUS"
+
+msgid "Поставить обложку…"
+msgstr "Set a cover…"
+
+msgid "Убрать обложку"
+msgstr "Remove the cover"
+
+msgid "Выбрать файл…"
+msgstr "Choose a file…"
+
+msgid "Выберите обложку"
+msgstr "Choose a cover"
+
+msgid "Поставить обложкой"
+msgstr "Use as cover"
+
+msgid "Все главы — ранний доступ PLUS"
+msgstr "All chapters — PLUS early access"
+
+msgid "Снять PLUS со всех глав"
+msgstr "Clear PLUS from every chapter"
+
+msgid "Прочее"
+msgstr "Other"
+
+msgid "Выгрузить в CSV"
+msgstr "Export to CSV"
+
+msgid "В корзину"
+msgstr "To the trash"
+
+msgid "Восстановить из корзины"
+msgstr "Restore from the trash"
+
+msgid "Удалить навсегда"
+msgstr "Delete permanently"
+
+msgid "Готово: %1$s — тайтлов затронуто: %2$s."
+msgstr "Done: %1$s — titles touched: %2$s."
+
+msgid "Ни один тайтл не был отмечен — ничего не изменилось."
+msgstr "No title was ticked — nothing changed."
+
+msgid "Ничего не изменилось — возможно, не заполнено поле действия."
+msgstr "Nothing changed — the action’s field may be empty."
+
+msgid "Сначала отметьте хотя бы один тайтл."
+msgstr "Tick at least one title first."
+
+msgid "Выберите действие."
+msgstr "Choose an action."
+
+msgid "Применить действие к выбранным тайтлам?"
+msgstr "Apply the action to the selected titles?"
+
+msgid "Переместить выбранные тайтлы в корзину?"
+msgstr "Move the selected titles to the trash?"
+
+msgid "Удалить выбранные тайтлы навсегда? Вместе с ними удалятся их главы. Это действие необратимо."
+msgstr "Delete the selected titles permanently? Their chapters go with them. This cannot be undone."
+
+msgid "Недостаточно прав."
+msgstr "Not enough permissions."
+
+msgid "Недостаточно прав на удаление."
+msgstr "Not enough permissions to delete."
+
+msgid "Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем."
+msgstr "The Novel post type is not registered. Enable the XI Novels theme — there is nothing to manage."
+
+msgid "Пересобрать адреса глав"
+msgstr "Rebuild chapter URLs"
+

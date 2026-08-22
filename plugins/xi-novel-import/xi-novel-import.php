@@ -2,13 +2,14 @@
 /**
  * Plugin Name: XI Novels — импорт глав
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
- * Description: Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs. Работает с типами записей темы XI Novels.
- * Version: 1.0.0
+ * Description: Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска.
+ * Version: 1.1.0
  * Requires PHP: 7.4
  * Author: XI Community
  * Author URI: https://xi.community/
  * License: GPL-2.0-or-later
  * Text Domain: xi-novel-import
+ * Domain Path: /languages
  *
  * @package XI_Novel_Import
  */
@@ -17,11 +18,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XNI_VERSION', '1.0.0' );
+define( 'XNI_VERSION', '1.1.0' );
+define( 'XNI_URL', plugin_dir_url( __FILE__ ) );
 define( 'XNI_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once XNI_DIR . 'includes/parser.php';
 require_once XNI_DIR . 'includes/importer.php';
+require_once XNI_DIR . 'includes/schedule.php';
+require_once XNI_DIR . 'includes/batch.php';
+require_once XNI_DIR . 'includes/fix.php';
+require_once XNI_DIR . 'includes/screen.php';
+require_once XNI_DIR . 'includes/countdown.php';
+require_once XNI_DIR . 'includes/studio.php';
 
 function xni_menu() {
 	add_management_page(
@@ -115,168 +123,44 @@ function xni_handle() {
 }
 add_action( 'admin_post_xni_import', 'xni_handle' );
 
-function xni_screen() {
-	$report = get_transient( 'xni_report_' . get_current_user_id() );
-	if ( $report ) {
-		delete_transient( 'xni_report_' . get_current_user_id() );
+function xni_assets( $hook ) {
+	if ( 'tools_page_xni-import' !== $hook ) {
+		return;
 	}
-	?>
-	<div class="wrap">
-		<h1><?php esc_html_e( 'Импорт глав', 'xi-novel-import' ); ?></h1>
 
-		<?php if ( ! xni_theme_ready() ) : ?>
-			<div class="notice notice-error"><p><?php esc_html_e( 'Тема XI Novels не активна — импортировать некуда: типов записей «Новеллы» и «Главы» не существует.', 'xi-novel-import' ); ?></p></div>
-			</div>
-			<?php
-			return;
-		endif;
-		?>
+	wp_enqueue_style( 'xni', XNI_URL . 'assets/import.css', array(), XNI_VERSION );
+	wp_enqueue_script( 'xni', XNI_URL . 'assets/import.js', array(), XNI_VERSION, true );
 
-		<?php if ( $report ) : ?>
-			<?php if ( ! empty( $report['errors'] ) ) : ?>
-				<div class="notice notice-warning">
-					<?php foreach ( $report['errors'] as $error ) : ?>
-						<p><?php echo esc_html( $error ); ?></p>
-					<?php endforeach; ?>
-				</div>
-			<?php endif; ?>
-
-			<?php if ( isset( $report['created'] ) ) : ?>
-				<div class="notice notice-success">
-					<p>
-						<?php
-						printf(
-							/* translators: 1: created, 2: updated, 3: title link */
-							esc_html__( 'Создано глав: %1$d, обновлено: %2$d. Проект: %3$s', 'xi-novel-import' ),
-							(int) $report['created'],
-							(int) $report['updated'],
-							'<a href="' . esc_url( get_permalink( $report['novel_id'] ) ) . '">' . esc_html( get_the_title( $report['novel_id'] ) ) . '</a>'
-						);
-						?>
-					</p>
-				</div>
-
-				<?php if ( ! empty( $report['report'] ) ) : ?>
-					<table class="widefat striped" style="max-width:760px;margin-bottom:24px">
-						<thead>
-							<tr>
-								<th style="width:70px"><?php esc_html_e( 'Номер', 'xi-novel-import' ); ?></th>
-								<th><?php esc_html_e( 'Глава', 'xi-novel-import' ); ?></th>
-								<th style="width:180px"><?php esc_html_e( 'Файл', 'xi-novel-import' ); ?></th>
-								<th style="width:110px"><?php esc_html_e( 'Что сделано', 'xi-novel-import' ); ?></th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach ( $report['report'] as $row ) : ?>
-								<tr>
-									<td><?php echo esc_html( rtrim( rtrim( number_format( $row['number'], 1, '.', '' ), '0' ), '.' ) ); ?></td>
-									<td><?php echo esc_html( $row['title'] ); ?></td>
-									<td><?php echo esc_html( $row['source'] ); ?></td>
-									<td><?php echo $row['new'] ? esc_html__( 'создана', 'xi-novel-import' ) : esc_html__( 'обновлена', 'xi-novel-import' ); ?></td>
-								</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-				<?php endif; ?>
-			<?php endif; ?>
-		<?php endif; ?>
-
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" enctype="multipart/form-data">
-			<?php wp_nonce_field( 'xni_import' ); ?>
-			<input type="hidden" name="action" value="xni_import">
-
-			<h2 class="title"><?php esc_html_e( 'Куда', 'xi-novel-import' ); ?></h2>
-			<table class="form-table" role="presentation">
-				<tr>
-					<th scope="row"><label for="xni-novel"><?php esc_html_e( 'Проект', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<select name="novel_id" id="xni-novel">
-							<option value="0"><?php esc_html_e( '— создать новый —', 'xi-novel-import' ); ?></option>
-							<?php foreach ( xni_novels() as $novel ) : ?>
-								<option value="<?php echo (int) $novel->ID; ?>"><?php echo esc_html( $novel->post_title ); ?></option>
-							<?php endforeach; ?>
-						</select>
-						<p class="description"><?php esc_html_e( 'Если выбрано «создать новый» — заполните название ниже.', 'xi-novel-import' ); ?></p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="xni-title"><?php esc_html_e( 'Название нового проекта', 'xi-novel-import' ); ?></label></th>
-					<td><input type="text" id="xni-title" name="novel_title" class="regular-text"></td>
-				</tr>
-			</table>
-
-			<h2 class="title"><?php esc_html_e( 'Откуда', 'xi-novel-import' ); ?></h2>
-			<table class="form-table" role="presentation">
-				<tr>
-					<th scope="row"><label for="xni-files"><?php esc_html_e( 'Файлы', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<input type="file" id="xni-files" name="files[]" multiple accept=".txt,.md,.html,.htm,.docx,.zip">
-						<p class="description">
-							<?php esc_html_e( '.docx, .txt, .md, .html или ZIP с ними. Номер и название берутся из имени файла: «001. Десятый.docx», «Глава 12.5 — Экстра.txt».', 'xi-novel-import' ); ?>
-						</p>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="xni-gdoc"><?php esc_html_e( 'Google Docs', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<input type="url" id="xni-gdoc" name="gdoc" class="regular-text" placeholder="https://docs.google.com/document/d/…">
-						<p class="description"><?php esc_html_e( 'Документ должен быть открыт по ссылке или опубликован: Файл → Поделиться → Опубликовать в интернете.', 'xi-novel-import' ); ?></p>
-					</td>
-				</tr>
-			</table>
-
-			<h2 class="title"><?php esc_html_e( 'Как', 'xi-novel-import' ); ?></h2>
-			<table class="form-table" role="presentation">
-				<tr>
-					<th scope="row"><label for="xni-start"><?php esc_html_e( 'Начать с номера', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<input type="number" step="0.1" id="xni-start" name="start" class="small-text" placeholder="<?php esc_attr_e( 'авто', 'xi-novel-import' ); ?>">
-						<span class="description"><?php esc_html_e( 'Пусто — продолжить нумерацию проекта.', 'xi-novel-import' ); ?></span>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="xni-locked"><?php esc_html_e( 'Ранний доступ с номера', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<input type="number" step="0.1" id="xni-locked" name="locked_from" class="small-text">
-						<span class="description"><?php esc_html_e( 'Главы с этого номера получат отметку PLUS.', 'xi-novel-import' ); ?></span>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="xni-status"><?php esc_html_e( 'Статус', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<select name="status" id="xni-status">
-							<option value="publish"><?php esc_html_e( 'Опубликовать', 'xi-novel-import' ); ?></option>
-							<option value="draft"><?php esc_html_e( 'Черновики', 'xi-novel-import' ); ?></option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><label for="xni-encoding"><?php esc_html_e( 'Кодировка текстовых файлов', 'xi-novel-import' ); ?></label></th>
-					<td>
-						<select name="encoding" id="xni-encoding">
-							<option value=""><?php esc_html_e( 'определить самому', 'xi-novel-import' ); ?></option>
-							<option value="UTF-8">UTF-8</option>
-							<option value="windows-1251">windows-1251</option>
-							<option value="koi8-r">koi8-r</option>
-						</select>
-					</td>
-				</tr>
-			</table>
-
-			<p class="submit">
-				<button type="submit" class="button button-primary"><?php esc_html_e( 'Импортировать', 'xi-novel-import' ); ?></button>
-			</p>
-
-			<p class="description" style="max-width:640px">
-				<?php
-				printf(
-					/* translators: %s: upload_max_filesize value */
-					esc_html__( 'Предел загрузки на этом сервере: %s. Если файлы больше — поднимите upload_max_filesize и post_max_size или загружайте частями.', 'xi-novel-import' ),
-					esc_html( ini_get( 'upload_max_filesize' ) )
-				);
-				?>
-			</p>
-		</form>
-	</div>
-	<?php
+	wp_localize_script( 'xni', 'XNI', array(
+		'ajax'       => admin_url( 'admin-ajax.php' ),
+		'nonce'      => wp_create_nonce( 'xni_job' ),
+		'needZip'    => __( 'Нужен ZIP-архив.', 'xi-novel-import' ),
+		'pickFirst'  => __( 'Сначала выберите архив.', 'xi-novel-import' ),
+		'uploading'  => __( 'Загружаю архив…', 'xi-novel-import' ),
+		'finished'   => __( 'Готово.', 'xi-novel-import' ),
+		'cancelled'  => __( 'Прервано.', 'xi-novel-import' ),
+		'failed'     => __( 'Не получилось — попробуйте ещё раз.', 'xi-novel-import' ),
+		'issues'     => __( 'Не прошло: %s — разберитесь с этими файлами', 'xi-novel-import' ),
+		// Фразы для строки «что получится»: собираются в браузере по мере того,
+		// как меняются переключатели, поэтому каждая переводится отдельно.
+		'outPublish' => __( 'Главы появятся на сайте сразу после загрузки.', 'xi-novel-import' ),
+		'outDraft'   => __( 'Главы лягут черновиками: на сайте их не будет, пока вы не опубликуете их сами.', 'xi-novel-import' ),
+		'outQueue'   => __( 'Главы встанут в очередь. Первая выйдет %1$s, дальше по одной: %2$s в %3$s.', 'xi-novel-import' ),
+		'outNoSched' => __( 'Главы встанут в очередь, но расписание не задано — заполните дни и время справа.', 'xi-novel-import' ),
+		'outFree'    => __( 'Открыты всем.', 'xi-novel-import' ),
+		'outPaid'    => __( 'Под ранним доступом PLUS, цена %s.', 'xi-novel-import' ),
+		'outLocked'  => __( 'Под ранним доступом PLUS, без цены.', 'xi-novel-import' ),
+		'outUnlock'  => __( 'Замок снимется %s и глава встанет в ленту сегодняшним числом.', 'xi-novel-import' ),
+		'confirmFix' => __( 'Заменить текст глав этого проекта содержимым архива? Даты, статусы и цены не изменятся.', 'xi-novel-import' ),
+		/* translators: 1: done, 2: total, 3: created, 4: updated, 5: skipped, 6: failed. */
+		'progress'   => __( '%1$s из %2$s · создано %3$s · обновлено %4$s · пропущено %5$s · ошибок %6$s', 'xi-novel-import' ),
+	) );
 }
+add_action( 'admin_enqueue_scripts', 'xni_assets' );
+
+function xni_load_textdomain() {
+	load_plugin_textdomain( 'xi-novel-import', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', 'xni_load_textdomain' );
+
+register_deactivation_hook( __FILE__, 'xni_deactivate_cron' );

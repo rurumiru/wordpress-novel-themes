@@ -1,0 +1,46 @@
+.xni-count {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 18px;
+	margin: 18px 0;
+	border-radius: var(--radius, 12px);
+	background:
+		radial-gradient(120% 140% at 0% 0%, hsl(var(--primary, 262 83% 66%) / .10), transparent 60%),
+		hsl(var(--card, 220 14% 10%));
+	border: 1px solid hsl(var(--border, 220 11% 24%));
+	overflow: hidden;
+}
+/* Полоса слева — отдельным слоем: у неё свой цвет и она не спорит с рамкой. */
+.xni-count::before {
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 3px;
+	background: linear-gradient(hsl(var(--primary, 262 83% 66%)), hsl(var(--gold, 38 92% 55%)));
+}
+.xni-count__icon {
+	display: grid; place-items: center; flex: none;
+	width: 38px; height: 38px; border-radius: 10px;
+	background: hsl(var(--primary, 262 83% 66%) / .12);
+	color: hsl(var(--primary, 262 83% 66%));
+}
+.xni-count__icon svg { width: 20px; height: 20px; }
+.xni-count__body { display: grid; gap: 2px; min-width: 0; }
+.xni-count__label {
+	font-size: 10.5px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+	color: hsl(var(--muted-fg, 220 10% 64%));
+}
+.xni-count__clock {
+	font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+	font-size: 21px; font-weight: 800; font-variant-numeric: tabular-nums;
+	color: hsl(var(--fg, 220 14% 96%));
+	letter-spacing: .02em;
+}
+.xni-count__when { font-size: 11.5px; color: hsl(var(--muted-fg, 220 10% 64%)); }
+.xni-count.is-out .xni-count__clock { color: hsl(var(--primary, 262 83% 66%)); }
+
+@media (max-width: 520px) {
+	.xni-count__clock { font-size: 17px; }
+}

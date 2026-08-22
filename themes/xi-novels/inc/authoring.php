@@ -185,6 +185,16 @@ require_once ABSPATH . 'wp-admin/includes/file.php';
 		}
 	}
 
+	/**
+	 * Форма проекта сохранена — можно забрать свои поля из того же запроса.
+	 *
+	 * Парой к xin_novel_form_extra: что плагин нарисовал, то он здесь и
+	 * сохраняет. Права и nonce уже проверены выше.
+	 *
+	 * @param int $novel_id Проект.
+	 */
+	do_action( 'xin_novel_form_save', $novel_id );
+
 	delete_transient( 'xin_site_stats' );
 	xin_redirect_back( array( 'view' => 'chapters', 'project' => $novel_id, 'msg' => 'novel-saved' ) );
 }

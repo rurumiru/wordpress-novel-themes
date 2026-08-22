@@ -4,11 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.3.4-beta' );
+define( 'XIN_VERSION', '0.4.0-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
 require_once XIN_DIR . '/inc/cpt.php';
+require_once XIN_DIR . '/inc/permalinks.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
 require_once XIN_DIR . '/inc/icons.php';
 require_once XIN_DIR . '/inc/template-tags.php';
@@ -110,22 +111,22 @@ $custom = xin_customizer_css();
 			'library' => __( 'Моя библиотека', 'xi-novels' ),
 			'hint'    => __( 'Нажмите на закладку у любой обложки — тайтл появится здесь.', 'xi-novels' ),
 			'saved'   => __( 'черновик сохранён', 'xi-novels' ),
-			'quoted'  => __( 'Quote added to the discussion.', 'xi-novels' ),
-			'copied'  => __( 'Copied to clipboard.', 'xi-novels' ),
-			'linkCopied' => __( 'Paragraph link copied.', 'xi-novels' ),
-			'bookmarked' => __( 'Paragraph bookmarked.', 'xi-novels' ),
-			'bookmarkOff' => __( 'Bookmark removed.', 'xi-novels' ),
-			'suggested' => __( 'Suggestion appended to the discussion. Scroll down to send it.', 'xi-novels' ),
-			'ttsOff'  => __( 'Text-to-speech is not available in this browser.', 'xi-novels' ),
-			'loginTalk' => __( 'Sign in to quote or suggest.', 'xi-novels' ),
-			'jumpBookmark' => __( 'Jump to bookmark', 'xi-novels' ),
+			'quoted'  => __( 'Цитата добавлена в обсуждение.', 'xi-novels' ),
+			'copied'  => __( 'Скопировано в буфер обмена.', 'xi-novels' ),
+			'linkCopied' => __( 'Ссылка на абзац скопирована.', 'xi-novels' ),
+			'bookmarked' => __( 'Абзац отмечен закладкой.', 'xi-novels' ),
+			'bookmarkOff' => __( 'Закладка снята.', 'xi-novels' ),
+			'suggested' => __( 'Правка добавлена в обсуждение. Пролистайте вниз и отправьте.', 'xi-novels' ),
+			'ttsOff'  => __( 'Синтез речи в этом браузере недоступен.', 'xi-novels' ),
+			'loginTalk' => __( 'Войдите, чтобы цитировать и предлагать правки.', 'xi-novels' ),
+			'jumpBookmark' => __( 'К закладке', 'xi-novels' ),
 			'quoteEllipsis' => '…',
-			'voiceLocal' => __( 'On device', 'xi-novels' ),
-			'voiceNet' => __( 'Browser', 'xi-novels' ),
-			'voiceEmpty' => __( 'No voices found. Windows: Settings → Time & language → Speech. Chrome also lists Google voices if you uncheck On-device only.', 'xi-novels' ),
-			'voiceCount' => __( '%d voices on this device', 'xi-novels' ),
-			'previewSample' => __( 'The seal was broken a thousand years ago so no one could hold it whole.', 'xi-novels' ),
-			'chooseVoice' => __( 'Choose a voice', 'xi-novels' ),
+			'voiceLocal' => __( 'На устройстве', 'xi-novels' ),
+			'voiceNet' => __( 'Браузерный', 'xi-novels' ),
+			'voiceEmpty' => __( 'Голосов не нашлось. Windows: Параметры → Время и язык → Речь. В Chrome появятся ещё и голоса Google, если снять «Только на устройстве».', 'xi-novels' ),
+			'voiceCount' => __( 'Голосов на этом устройстве: %d', 'xi-novels' ),
+			'previewSample' => __( 'Печать сломали тысячу лет назад, чтобы никто не удержал её целиком.', 'xi-novels' ),
+			'chooseVoice' => __( 'Выберите голос', 'xi-novels' ),
 		),
 	) );
 

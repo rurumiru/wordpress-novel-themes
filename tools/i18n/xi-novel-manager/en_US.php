@@ -1,0 +1,116 @@
+<?php
+/**
+ * RU -> EN strings for the bulk title management plugin.
+ *
+ * Loaded by tools/build-translations.php. One entry per Russian source string.
+ */
+
+return array(
+	// Plugin header.
+	'XI Novels — управление тайтлами' => 'XI Novels — bulk title management',
+	'Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels.' => 'Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XI Novels theme.',
+
+	// Screen.
+	'Массовое управление' => 'Bulk management',
+	'Массовое управление тайтлами' => 'Bulk title management',
+	'Открыть' => 'Open',
+	'Добавить' => 'Add new',
+	'Показать' => 'Show',
+	'Сбросить' => 'Reset',
+	'Поиск по названию' => 'Search by title',
+	'Название или часть описания' => 'Title, or part of the description',
+	'Найдено: %s' => 'Found: %s',
+	'Ничего не найдено. Попробуйте ослабить фильтры.' => 'Nothing found. Try loosening the filters.',
+	'Применить ко всем %s найденным, а не только к отмеченным на этой странице' => 'Apply to all %s found, not only to the ones ticked on this page',
+	'Отметить все' => 'Tick all',
+
+	// Filters.
+	'Владелец' => 'Owner',
+	'Жанр' => 'Genre',
+	'Жанры' => 'Genres',
+	'Статус' => 'Status',
+	'Обложка' => 'Cover',
+	'Есть' => 'Has one',
+	'Нет' => 'None',
+	'18+' => '18+',
+	'Только 18+' => '18+ only',
+	'Без 18+' => 'Without 18+',
+	'Сортировка' => 'Sort by',
+	'Порядок' => 'Order',
+	'По дате' => 'By date',
+	'По алфавиту' => 'Alphabetically',
+	'По изменению' => 'By last change',
+	'По просмотрам' => 'By views',
+	'По оценке' => 'By score',
+	'По убыванию' => 'Descending',
+	'По возрастанию' => 'Ascending',
+	'— любой —' => '— any —',
+
+	// Publication states.
+	'Публикация' => 'Publication',
+	'Любая' => 'Any',
+	'Опубликованные' => 'Published',
+	'Черновики' => 'Drafts',
+	'На проверке' => 'Pending',
+	'Личные' => 'Private',
+	'В корзине' => 'In the trash',
+
+	// Table.
+	'Название' => 'Title',
+	'Глав' => 'Chapters',
+	'Просм.' => 'Views',
+	'Изменён' => 'Changed',
+	'Изменить' => 'Edit',
+	'Смотреть' => 'View',
+
+	// Actions.
+	'Действие' => 'Action',
+	'Действие над отмеченными…' => 'Action on the ticked ones…',
+	'Применить' => 'Apply',
+	'Опубликовать' => 'Publish',
+	'В черновики' => 'To drafts',
+	'Сделать личными' => 'Make private',
+	'Состояние тайтла' => 'Title state',
+	'Поставить статус…' => 'Set status…',
+	'Пометить 18+' => 'Mark 18+',
+	'Снять 18+' => 'Clear 18+',
+	'Жанры и метки' => 'Genres and tags',
+	'Добавить жанры…' => 'Add genres…',
+	'Убрать жанры…' => 'Remove genres…',
+	'Заменить жанры на…' => 'Replace genres with…',
+	'Добавить метки…' => 'Add tags…',
+	'Убрать метки…' => 'Remove tags…',
+	'Заменить метки на…' => 'Replace tags with…',
+	'Через запятую: Фэнтези, Драма' => 'Comma separated: Fantasy, Drama',
+	'Авторство' => 'Authorship',
+	'Сменить владельца…' => 'Change owner…',
+	'Поставить команду перевода…' => 'Set translation team…',
+	'Название команды (пусто — очистить)' => 'Team name (empty clears it)',
+	'Обложка и PLUS' => 'Cover and PLUS',
+	'Поставить обложку…' => 'Set a cover…',
+	'Убрать обложку' => 'Remove the cover',
+	'Выбрать файл…' => 'Choose a file…',
+	'Выберите обложку' => 'Choose a cover',
+	'Поставить обложкой' => 'Use as cover',
+	'Все главы — ранний доступ PLUS' => 'All chapters — PLUS early access',
+	'Снять PLUS со всех глав' => 'Clear PLUS from every chapter',
+	'Прочее' => 'Other',
+	'Выгрузить в CSV' => 'Export to CSV',
+	'В корзину' => 'To the trash',
+	'Восстановить из корзины' => 'Restore from the trash',
+	'Удалить навсегда' => 'Delete permanently',
+
+	// Messages.
+	'Готово: %1$s — тайтлов затронуто: %2$s.' => 'Done: %1$s — titles touched: %2$s.',
+	'Ни один тайтл не был отмечен — ничего не изменилось.' => 'No title was ticked — nothing changed.',
+	'Ничего не изменилось — возможно, не заполнено поле действия.' => 'Nothing changed — the action’s field may be empty.',
+	'Сначала отметьте хотя бы один тайтл.' => 'Tick at least one title first.',
+	'Выберите действие.' => 'Choose an action.',
+	'Применить действие к выбранным тайтлам?' => 'Apply the action to the selected titles?',
+	'Переместить выбранные тайтлы в корзину?' => 'Move the selected titles to the trash?',
+	'Удалить выбранные тайтлы навсегда? Вместе с ними удалятся их главы. Это действие необратимо.' => 'Delete the selected titles permanently? Their chapters go with them. This cannot be undone.',
+	'Недостаточно прав.' => 'Not enough permissions.',
+	'Недостаточно прав на удаление.' => 'Not enough permissions to delete.',
+	'Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем.' => 'The Novel post type is not registered. Enable the XI Novels theme — there is nothing to manage.',
+	'Пересобрать адреса глав' => 'Rebuild chapter URLs',
+);

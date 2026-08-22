@@ -103,6 +103,18 @@ while ( have_posts() ) :
 
 			<div class="xin-nv__main">
 
+				<?php
+				/**
+				 * Сразу под шапкой тайтла, до описания.
+				 *
+				 * Сюда плагин очереди вешает таймер до следующей главы. Без плагина
+				 * не выводится ничего, и вёрстка не меняется.
+				 *
+				 * @param int $xin_id Тайтл.
+				 */
+				do_action( 'xin_novel_after_hero', $xin_id );
+				?>
+
 				<section class="xin-nv__sec">
 					<div class="xin-nv__sechead">
 						<h2><?php esc_html_e( 'Описание', 'xi-novels' ); ?></h2>

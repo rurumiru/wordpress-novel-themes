@@ -1,0 +1,391 @@
+# Brazilian Portuguese translation for the XI Novels project.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Novels — chapter import 0.3.4-beta\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "XI Novels — импорт глав"
+msgstr "XI Novels — importação de capítulos"
+
+msgid "Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска."
+msgstr "Importação em massa de capítulos a partir de .docx, .txt, .md, .html, arquivos ZIP e Google Docs — em lotes, sem sobrecarregar o servidor. Substituição de texto em capítulos existentes, fila de publicação por agenda, desbloqueio automático de capítulos pagos e contagem regressiva até o próximo lançamento."
+
+msgid "Импорт глав"
+msgstr "Importação de capítulos"
+
+msgid "Проект"
+msgstr "Projeto"
+
+msgid "Загрузка архива"
+msgstr "Envio do arquivo"
+
+msgid "Замена текста"
+msgstr "Substituição de texto"
+
+msgid "Расписание проекта"
+msgstr "Agenda do projeto"
+
+msgid "Обработка"
+msgstr "Processando"
+
+msgid "ZIP с файлами .txt, .md, .html или .docx. Имя файла становится названием главы."
+msgstr "Um ZIP com arquivos .txt, .md, .html ou .docx. O nome do arquivo vira o título do capítulo."
+
+msgid "ZIP с файлами, которые заменят текст уже существующих глав. Сопоставление — по номеру в имени файла, иначе по названию. Дата публикации, статус, ярлык, порядок, цена и замок не меняются."
+msgstr "Um ZIP com arquivos que substituem o texto de capítulos já existentes. A correspondência é pelo número no nome do arquivo, senão pelo título. Data de publicação, status, slug, ordem, preço e bloqueio não mudam."
+
+msgid "Перетащите ZIP сюда"
+msgstr "Arraste um ZIP até aqui"
+
+msgid "или нажмите, чтобы выбрать"
+msgstr "ou clique para escolher"
+
+msgid "только замена текста"
+msgstr "apenas substituição de texto"
+
+msgid "Файлы идут в порядке имён: 1 → 2 → 10, а не 1 → 10 → 2. Между главами ставится разбег в две секунды, чтобы они не слиплись одной меткой времени. Обрабатывается по десять штук за проход — сервер между порциями свободен."
+msgstr "Os arquivos seguem a ordem dos nomes: 1 → 2 → 10, e não 1 → 10 → 2. Entre os capítulos há um intervalo de dois segundos, para que não fiquem com o mesmo horário. São dez por passagem — o servidor fica livre entre os lotes."
+
+msgid "Например, «Глава 12.txt» и «Глава 12 — Тишина.txt» попадут в одну и ту же главу этого проекта. Большие архивы идут теми же порциями по десять."
+msgstr "Por exemplo, “Capítulo 12.txt” e “Capítulo 12 — Silêncio.txt” caem no mesmo capítulo deste projeto. Arquivos grandes seguem nos mesmos lotes de dez."
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Опубликовать"
+msgstr "Publicar"
+
+msgid "Черновики"
+msgstr "Rascunhos"
+
+msgid "Нумерация с"
+msgstr "Numerar a partir de"
+
+msgid "применяется к файлам, в имени которых номера нет"
+msgstr "vale para arquivos sem número no nome"
+
+msgid "Поведение"
+msgstr "Comportamento"
+
+msgid "Пропускать дубликаты"
+msgstr "Pular duplicados"
+
+msgid "Пересортировать после загрузки"
+msgstr "Reordenar após o envio"
+
+msgid "Платный доступ для всей пачки"
+msgstr "Acesso pago para todo o lote"
+
+msgid "Цена главы"
+msgstr "Preço do capítulo"
+
+msgid "0 — глава бесплатная. Больше нуля — глава выходит под ранним доступом, цена сохраняется, и при включённом WooCommerce под неё создаётся товар."
+msgstr "0 — o capítulo é gratuito. Acima de zero — o capítulo sai em acesso antecipado, o preço é guardado e, com o WooCommerce ativo, um produto é criado para ele."
+
+msgid "WooCommerce сейчас выключен — цена сохранится, но купить главу отдельно будет нельзя, доступ пойдёт по PLUS."
+msgstr "O WooCommerce está desligado — o preço será guardado, mas o capítulo não poderá ser comprado avulso; o acesso passa pelo PLUS."
+
+msgid "Открыть всем"
+msgstr "Abrir para todos"
+
+msgid "В этот момент замок снимется сам, а глава встанет в ленту обновлений сегодняшним числом."
+msgstr "Nesse momento o bloqueio cai sozinho e o capítulo entra no feed de atualizações com a data de hoje."
+
+msgid "Очередь"
+msgstr "Fila"
+
+msgid "Поставить главы в очередь по расписанию"
+msgstr "Colocar os capítulos na fila conforme a agenda"
+
+msgid "Главы лягут черновиками и выйдут в дни и часы из расписания ниже. Перекрывает выбранный статус."
+msgstr "Os capítulos ficam como rascunhos e saem nos dias e horários da agenda abaixo. Sobrepõe o status escolhido."
+
+msgid "Загрузить архив"
+msgstr "Enviar arquivo"
+
+msgid "Заменить текст"
+msgstr "Substituir texto"
+
+msgid "Выпускать главы по расписанию"
+msgstr "Lançar capítulos por agenda"
+
+msgid "Дни"
+msgstr "Dias"
+
+msgid "Время"
+msgstr "Horários"
+
+msgid "через запятую, по часовому поясу сайта"
+msgstr "separados por vírgula, no fuso do site"
+
+msgid "Из очереди главы выходят сразу бесплатными"
+msgstr "Os capítulos saem da fila já gratuitos"
+
+msgid "Если снять — глава выйдет под ранним доступом PLUS."
+msgstr "Se desmarcar, o capítulo sai em acesso antecipado PLUS."
+
+msgid "Сохранить расписание"
+msgstr "Salvar agenda"
+
+msgid "Расписание сохранено."
+msgstr "Agenda salva."
+
+msgid "Ближайшая публикация: «%1$s» — %2$s"
+msgstr "Próximo lançamento: “%1$s” — %2$s"
+
+msgid "Тик очереди: ближайший в %s. Раз в минуту — при условии, что wp-cron.php дёргает системный cron."
+msgstr "Tique da fila: o próximo às %s. Uma vez por minuto, desde que um cron do sistema chame o wp-cron.php."
+
+msgid "Тик очереди не запланирован — перезайдите на страницу."
+msgstr "O tique da fila não está agendado — recarregue a página."
+
+msgid "Каждую минуту (XI Novels)"
+msgstr "A cada minuto (XI Novels)"
+
+msgid "Пн"
+msgstr "Seg"
+
+msgid "Вт"
+msgstr "Ter"
+
+msgid "Ср"
+msgstr "Qua"
+
+msgid "Чт"
+msgstr "Qui"
+
+msgid "Пт"
+msgstr "Sex"
+
+msgid "Сб"
+msgstr "Sáb"
+
+msgid "Вс"
+msgstr "Dom"
+
+msgid "Следующая глава через"
+msgstr "Próximo capítulo em"
+
+msgid "%1$dд : %2$02dч : %3$02dм : %4$02dс"
+msgstr "%1$dd : %2$02dh : %3$02dm : %4$02ds"
+
+msgid "%1$s из %2$s · создано %3$s · обновлено %4$s · пропущено %5$s · ошибок %6$s"
+msgstr "%1$s de %2$s · criados %3$s · atualizados %4$s · pulados %5$s · com erro %6$s"
+
+msgid "Загружаю архив…"
+msgstr "Enviando o arquivo…"
+
+msgid "Готово."
+msgstr "Pronto."
+
+msgid "Прервать"
+msgstr "Interromper"
+
+msgid "Прервано."
+msgstr "Interrompido."
+
+msgid "Не получилось — попробуйте ещё раз."
+msgstr "Não deu certo — tente de novo."
+
+msgid "Сначала выберите архив."
+msgstr "Escolha um arquivo primeiro."
+
+msgid "Нужен ZIP-архив."
+msgstr "É preciso um arquivo ZIP."
+
+msgid "Заменить текст глав этого проекта содержимым архива? Даты, статусы и цены не изменятся."
+msgstr "Substituir o texto dos capítulos deste projeto pelo conteúdo do arquivo? Datas, status e preços não mudam."
+
+msgid "Глава %s"
+msgstr "Capítulo %s"
+
+msgid "Выйдет %s"
+msgstr "Sai em %s"
+
+msgid "Заменён текст: %s"
+msgstr "Texto substituído: %s"
+
+msgid "Такая глава уже есть."
+msgstr "Esse capítulo já existe."
+
+msgid "Текст не изменился."
+msgstr "O texto não mudou."
+
+msgid "Файл пустой — не затираю главу."
+msgstr "O arquivo está vazio — deixando o capítulo como está."
+
+msgid "Не нашлось главы с таким номером или названием."
+msgstr "Nenhum capítulo com esse número ou título foi encontrado."
+
+msgid "WordPress не сохранил запись."
+msgstr "O WordPress não salvou o post."
+
+msgid "Недостаточно прав."
+msgstr "Permissões insuficientes."
+
+msgid "Не выбран проект."
+msgstr "Nenhum projeto escolhido."
+
+msgid "Не выбран проект и не задано название нового."
+msgstr "Nenhum projeto escolhido e nenhum título dado para um novo."
+
+msgid "Задание не найдено — возможно, оно уже завершилось."
+msgstr "A tarefa não foi encontrada — talvez já tenha terminado."
+
+msgid "Архив не загрузился: сервер отверг отправку."
+msgstr "O arquivo não subiu: o servidor recusou o envio."
+
+msgid "Файл не похож на загруженный — отказываю."
+msgstr "Isso não parece um arquivo enviado — recusando."
+
+msgid "Архив не открывается — возможно, он повреждён."
+msgstr "O arquivo não abre — pode estar corrompido."
+
+msgid "Архив не открывается."
+msgstr "O arquivo não abre."
+
+msgid "В архиве нет ни одного файла главы (.txt, .md, .html, .docx)."
+msgstr "O arquivo não contém nenhum capítulo (.txt, .md, .html, .docx)."
+
+msgid "В архиве нет файлов поддерживаемых форматов."
+msgstr "O arquivo não contém nenhum formato suportado."
+
+msgid "Не удалось создать папку для распаковки в uploads."
+msgstr "Não foi possível criar a pasta de descompactação dentro de uploads."
+
+msgid "На сервере нет расширения ZipArchive — архив не распаковать."
+msgstr "O servidor não tem a extensão ZipArchive — não dá para descompactar."
+
+msgid "На сервере нет расширения ZipArchive — .docx разобрать нечем."
+msgstr "O servidor não tem a extensão ZipArchive — não há como ler .docx."
+
+msgid "На сервере нет расширения ZipArchive."
+msgstr "O servidor não tem a extensão ZipArchive."
+
+msgid "Нечего импортировать: файлы не выбраны или не разобрались."
+msgstr "Nada a importar: nenhum arquivo foi escolhido, ou nenhum pôde ser lido."
+
+msgid "Сначала заведите хотя бы один проект в разделе «Новеллы»."
+msgstr "Crie ao menos um projeto em Novels primeiro."
+
+msgid "Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует."
+msgstr "O tema XI Novels não está ativo: os tipos de post Novel e Chapter não existem."
+
+msgid "Формат .%s не поддерживается."
+msgstr "O formato .%s não é suportado."
+
+msgid "Файл «%s» не загрузился: сервер отверг отправку."
+msgstr "O arquivo “%s” não subiu: o servidor recusou o envio."
+
+msgid "Файл «%s» пустой."
+msgstr "O arquivo “%s” está vazio."
+
+msgid "Файл .docx не открывается."
+msgstr "O arquivo .docx não abre."
+
+msgid "Внутри .docx нет документа."
+msgstr "Não há documento dentro do .docx."
+
+msgid "Документ пустой."
+msgstr "O documento está vazio."
+
+msgid "Документ закрыт: Google просит вход. Откройте доступ по ссылке и повторите."
+msgstr "O documento é privado: o Google está pedindo login. Compartilhe por link e tente de novo."
+
+msgid "Google не отдал документ. Откройте доступ по ссылке или опубликуйте документ в интернете: Файл → Поделиться → Опубликовать в интернете."
+msgstr "O Google não devolveu o documento. Compartilhe por link ou publique na web: Arquivo → Compartilhar → Publicar na web."
+
+msgid "Это не похоже на ссылку Google Docs. Нужен адрес вида docs.google.com/document/d/…"
+msgstr "Isso não parece um link do Google Docs. O endereço deve ser algo como docs.google.com/document/d/…"
+
+msgid "Не прошло: %s — разберитесь с этими файлами"
+msgstr "Não passaram: %s — esses arquivos precisam de atenção"
+
+msgid "Как выйдут главы"
+msgstr "Como os capítulos saem"
+
+msgid "Опубликовать сразу"
+msgstr "Publicar de uma vez"
+
+msgid "все главы появятся на сайте по окончании загрузки"
+msgstr "todos os capítulos aparecem no site assim que o envio termina"
+
+msgid "Сохранить черновиками"
+msgstr "Salvar como rascunhos"
+
+msgid "ничего не публикуется, выпустите вручную"
+msgstr "nada é publicado; solte-os manualmente"
+
+msgid "Поставить в очередь"
+msgstr "Colocar na fila"
+
+msgid "по одной в дни и часы из расписания"
+msgstr "um por vez, nos dias e horários da agenda"
+
+msgid "Что получится"
+msgstr "O que vai acontecer"
+
+msgid "Главы появятся на сайте сразу после загрузки."
+msgstr "Os capítulos aparecem no site assim que o envio terminar."
+
+msgid "Главы лягут черновиками: на сайте их не будет, пока вы не опубликуете их сами."
+msgstr "Os capítulos ficam como rascunhos: não vão ao ar até você publicá-los."
+
+msgid "Главы встанут в очередь. Первая выйдет %1$s, дальше по одной: %2$s в %3$s."
+msgstr "Os capítulos entram na fila. O primeiro sai em %1$s, depois um por vez: %2$s às %3$s."
+
+msgid "Главы встанут в очередь, но расписание не задано — заполните дни и время справа."
+msgstr "Os capítulos entram na fila, mas não há agenda definida — preencha os dias e horários à direita."
+
+msgid "Открыты всем."
+msgstr "Abertos a todos."
+
+msgid "Под ранним доступом PLUS, цена %s."
+msgstr "Em acesso antecipado PLUS, preço %s."
+
+msgid "Под ранним доступом PLUS, без цены."
+msgstr "Em acesso antecipado PLUS, sem preço."
+
+msgid "Замок снимется %s и глава встанет в ленту сегодняшним числом."
+msgstr "O bloqueio cai em %s e o capítulo entra no feed com a data daquele dia."
+
+msgid "В очереди"
+msgstr "Na fila"
+
+msgid "В очереди, по PLUS"
+msgstr "Na fila, PLUS"
+
+msgid "через %s"
+msgstr "em %s"
+
+msgid "%1$d дн. %2$d ч."
+msgstr "%1$dd %2$dh"
+
+msgid "%1$d ч. %2$d мин."
+msgstr "%1$dh %2$dm"
+
+msgid "%d мин."
+msgstr "%d min"
+
+msgid "Расписание выхода"
+msgstr "Agenda de lançamento"
+
+msgid "Расписание выхода глав можно будет задать сразу после сохранения проекта."
+msgstr "A agenda de lançamento pode ser definida assim que o projeto for salvo."
+
+msgid "Из очереди выходят бесплатными"
+msgstr "Saem da fila gratuitos"
+
+msgid "Время через запятую, по часовому поясу сайта."
+msgstr "Horários separados por vírgula, no fuso do site."
+
+msgid "В очереди сейчас: %s"
+msgstr "Esperando na fila: %s"
+
+msgid "ближайшая «%1$s» выйдет %2$s"
+msgstr "o próximo, “%1$s”, sai em %2$s"
+

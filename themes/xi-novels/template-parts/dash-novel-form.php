@@ -129,6 +129,19 @@ $xin_cover      = $xin_id ? xin_cover_url( $xin_id, 'xin-cover-sm' ) : '';
 			</div>
 		</div>
 
+		<?php
+		/**
+		 * Дополнительные настройки проекта.
+		 *
+		 * Сюда плагин очереди вешает расписание выхода: автору незачем ходить за
+		 * ним в админку, если весь проект он ведёт отсюда. Без плагина не
+		 * выводится ничего.
+		 *
+		 * @param int $xin_id Проект (0 у нового).
+		 */
+		do_action( 'xin_novel_form_extra', (int) $xin_id );
+		?>
+
 		<div class="xin-flex xin-flex-wrap">
 			<button type="submit" name="status" value="publish" class="btn btn-primary btn-lg">
 				<?php xin_the_icon( 'check' ); ?>

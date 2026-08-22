@@ -1,0 +1,116 @@
+<?php
+/**
+ * RU -> PT-BR strings for the bulk title management plugin.
+ *
+ * Loaded by tools/build-translations.php. One entry per Russian source string.
+ */
+
+return array(
+	// Plugin header.
+	'XI Novels — управление тайтлами' => 'XI Novels — gerenciamento de títulos',
+	'Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels.' => 'Edição e exclusão de títulos em massa: busca e filtros, gêneros e etiquetas, autor e equipe, capas, PLUS e 18+, exportação em CSV. Funciona com os tipos de post do tema XI Novels.',
+
+	// Screen.
+	'Массовое управление' => 'Gerenciamento em massa',
+	'Массовое управление тайтлами' => 'Gerenciamento de títulos em massa',
+	'Открыть' => 'Abrir',
+	'Добавить' => 'Adicionar',
+	'Показать' => 'Mostrar',
+	'Сбросить' => 'Limpar',
+	'Поиск по названию' => 'Busca por título',
+	'Название или часть описания' => 'Título, ou parte da descrição',
+	'Найдено: %s' => 'Encontrados: %s',
+	'Ничего не найдено. Попробуйте ослабить фильтры.' => 'Nada encontrado. Tente afrouxar os filtros.',
+	'Применить ко всем %s найденным, а не только к отмеченным на этой странице' => 'Aplicar a todos os %s encontrados, não só aos marcados nesta página',
+	'Отметить все' => 'Marcar todos',
+
+	// Filters.
+	'Владелец' => 'Dono',
+	'Жанр' => 'Gênero',
+	'Жанры' => 'Gêneros',
+	'Статус' => 'Status',
+	'Обложка' => 'Capa',
+	'Есть' => 'Tem',
+	'Нет' => 'Não tem',
+	'18+' => '18+',
+	'Только 18+' => 'Somente 18+',
+	'Без 18+' => 'Sem 18+',
+	'Сортировка' => 'Ordenar por',
+	'Порядок' => 'Ordem',
+	'По дате' => 'Por data',
+	'По алфавиту' => 'Por ordem alfabética',
+	'По изменению' => 'Pela última alteração',
+	'По просмотрам' => 'Por visualizações',
+	'По оценке' => 'Por nota',
+	'По убыванию' => 'Decrescente',
+	'По возрастанию' => 'Crescente',
+	'— любой —' => '— qualquer —',
+
+	// Publication states.
+	'Публикация' => 'Publicação',
+	'Любая' => 'Qualquer',
+	'Опубликованные' => 'Publicados',
+	'Черновики' => 'Rascunhos',
+	'На проверке' => 'Em revisão',
+	'Личные' => 'Privados',
+	'В корзине' => 'Na lixeira',
+
+	// Table.
+	'Название' => 'Título',
+	'Глав' => 'Caps.',
+	'Просм.' => 'Views',
+	'Изменён' => 'Alterado',
+	'Изменить' => 'Editar',
+	'Смотреть' => 'Ver',
+
+	// Actions.
+	'Действие' => 'Ação',
+	'Действие над отмеченными…' => 'Ação sobre os marcados…',
+	'Применить' => 'Aplicar',
+	'Опубликовать' => 'Publicar',
+	'В черновики' => 'Para rascunho',
+	'Сделать личными' => 'Tornar privados',
+	'Состояние тайтла' => 'Estado da obra',
+	'Поставить статус…' => 'Definir status…',
+	'Пометить 18+' => 'Marcar 18+',
+	'Снять 18+' => 'Tirar 18+',
+	'Жанры и метки' => 'Gêneros e etiquetas',
+	'Добавить жанры…' => 'Adicionar gêneros…',
+	'Убрать жанры…' => 'Remover gêneros…',
+	'Заменить жанры на…' => 'Substituir gêneros por…',
+	'Добавить метки…' => 'Adicionar etiquetas…',
+	'Убрать метки…' => 'Remover etiquetas…',
+	'Заменить метки на…' => 'Substituir etiquetas por…',
+	'Через запятую: Фэнтези, Драма' => 'Separados por vírgula: Fantasia, Drama',
+	'Авторство' => 'Autoria',
+	'Сменить владельца…' => 'Trocar o dono…',
+	'Поставить команду перевода…' => 'Definir equipe de tradução…',
+	'Название команды (пусто — очистить)' => 'Nome da equipe (vazio limpa)',
+	'Обложка и PLUS' => 'Capa e PLUS',
+	'Поставить обложку…' => 'Definir uma capa…',
+	'Убрать обложку' => 'Remover a capa',
+	'Выбрать файл…' => 'Escolher arquivo…',
+	'Выберите обложку' => 'Escolha uma capa',
+	'Поставить обложкой' => 'Usar como capa',
+	'Все главы — ранний доступ PLUS' => 'Todos os capítulos — acesso antecipado PLUS',
+	'Снять PLUS со всех глав' => 'Tirar o PLUS de todos os capítulos',
+	'Прочее' => 'Outros',
+	'Выгрузить в CSV' => 'Exportar em CSV',
+	'В корзину' => 'Para a lixeira',
+	'Восстановить из корзины' => 'Restaurar da lixeira',
+	'Удалить навсегда' => 'Excluir definitivamente',
+
+	// Messages.
+	'Готово: %1$s — тайтлов затронуто: %2$s.' => 'Pronto: %1$s — títulos afetados: %2$s.',
+	'Ни один тайтл не был отмечен — ничего не изменилось.' => 'Nenhum título foi marcado — nada mudou.',
+	'Ничего не изменилось — возможно, не заполнено поле действия.' => 'Nada mudou — talvez o campo da ação esteja vazio.',
+	'Сначала отметьте хотя бы один тайтл.' => 'Marque ao menos um título primeiro.',
+	'Выберите действие.' => 'Escolha uma ação.',
+	'Применить действие к выбранным тайтлам?' => 'Aplicar a ação aos títulos selecionados?',
+	'Переместить выбранные тайтлы в корзину?' => 'Mover os títulos selecionados para a lixeira?',
+	'Удалить выбранные тайтлы навсегда? Вместе с ними удалятся их главы. Это действие необратимо.' => 'Excluir os títulos selecionados definitivamente? Os capítulos vão junto. Isso não pode ser desfeito.',
+	'Недостаточно прав.' => 'Permissões insuficientes.',
+	'Недостаточно прав на удаление.' => 'Permissões insuficientes para excluir.',
+	'Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем.' => 'O tipo de post Novel não está registrado. Ative o tema XI Novels — não há o que gerenciar.',
+	'Пересобрать адреса глав' => 'Recriar os endereços dos capítulos',
+);

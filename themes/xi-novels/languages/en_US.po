@@ -1,7 +1,7 @@
 # English (US) translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.3.0-beta\n"
+"Project-Id-Version: XI Novels 0.3.4-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2572,4 +2572,166 @@ msgstr "— cut —"
 
 msgid "№"
 msgstr "#"
+
+msgid "· голосов: %s"
+msgstr "· votes: %s"
+
+msgid "Все жанры"
+msgstr "All genres"
+
+msgid "За всё время"
+msgstr "All time"
+
+msgid "За всё время, все жанры"
+msgstr "All time, all genres"
+
+msgid "За месяц"
+msgstr "This month"
+
+msgid "За неделю"
+msgstr "This week"
+
+msgid "Лучшее на площадке — по оценке читателей, по числу просмотров и по объёму. Пересчитывается автоматически."
+msgstr "The best on the platform — by reader score, by views and by length. Worked out automatically."
+
+msgid "Ни один тайтл не набрал показателей для этой доски. Попробуйте другой период или снимите фильтр по жанру."
+msgstr "No title has the figures for this board yet. Try another period, or drop the genre filter."
+
+msgid "Оценка взвешенная: пока у тайтла меньше %s голосов, его средняя подтягивается к средней по площадке. Так одна пятёрка не обгоняет сотню честных оценок."
+msgstr "The score is weighted: until a title has %s votes, its average is pulled towards the site average. That way one five-star does not outrank a hundred honest ones."
+
+msgid "Период"
+msgstr "Period"
+
+msgid "По числу глав"
+msgstr "By chapter count"
+
+msgid "Показатель"
+msgstr "Measure"
+
+msgid "доска"
+msgstr "board"
+
+msgid "Голосов на этом устройстве: %d"
+msgstr "%d voices on this device"
+
+msgid "Добавить в комментарий"
+msgstr "Append to comment"
+
+msgid "Закладка снята."
+msgstr "Bookmark removed."
+
+msgid "Браузерный"
+msgstr "Browser"
+
+msgid "Выберите голос"
+msgstr "Choose a voice"
+
+msgid "Скопировано в буфер обмена."
+msgstr "Copied to clipboard."
+
+msgid "Скопировать ссылку"
+msgstr "Copy link"
+
+msgid "Багровый"
+msgstr "Crimson"
+
+msgid "Поиск по голосам устройства"
+msgstr "Filter voices on this device"
+
+msgid "Золотой"
+msgstr "Gold"
+
+msgid "Чернильный"
+msgstr "Ink"
+
+msgid "Нефритовый"
+msgstr "Jade"
+
+msgid "К закладке"
+msgstr "Jump to bookmark"
+
+msgid "Слушать"
+msgstr "Listen"
+
+msgid "Голосов не нашлось. Windows: Параметры → Время и язык → Речь. В Chrome появятся ещё и голоса Google, если снять «Только на устройстве»."
+msgstr "No voices found. Windows: Settings → Time & language → Speech. Chrome also lists Google voices if you uncheck On-device only."
+
+msgid "На устройстве"
+msgstr "On device"
+
+msgid "Только на устройстве"
+msgstr "On-device only"
+
+msgid "Абзац отмечен закладкой."
+msgstr "Paragraph bookmarked."
+
+msgid "Ссылка на абзац скопирована."
+msgstr "Paragraph link copied."
+
+msgid "Пауза"
+msgstr "Pause"
+
+msgid "Закладка"
+msgstr "Pin"
+
+msgid "Тон"
+msgstr "Pitch"
+
+msgid "Воспроизвести"
+msgstr "Play"
+
+msgid "Прослушать голос"
+msgstr "Preview voice"
+
+msgid "Цитата добавлена в обсуждение."
+msgstr "Quote added to the discussion."
+
+msgid "Читает"
+msgstr "Reading"
+
+msgid "Войдите, чтобы цитировать и предлагать правки."
+msgstr "Sign in to quote or suggest."
+
+msgid "Скорость"
+msgstr "Speed"
+
+msgid "Остановить"
+msgstr "Stop"
+
+msgid "Предложить правку"
+msgstr "Suggest"
+
+msgid "Предложенная правка"
+msgstr "Suggestion"
+
+msgid "Правка добавлена в обсуждение. Пролистайте вниз и отправьте."
+msgstr "Suggestion appended to the discussion. Scroll down to send it."
+
+msgid "Синтез речи в этом браузере недоступен."
+msgstr "Text-to-speech is not available in this browser."
+
+msgid "Печать сломали тысячу лет назад, чтобы никто не удержал её целиком."
+msgstr "The seal was broken a thousand years ago so no one could hold it whole."
+
+msgid "Этот абзац"
+msgstr "This paragraph"
+
+msgid "Голоса"
+msgstr "Voices"
+
+msgid "Громкость"
+msgstr "Volume"
+
+msgid "Сохранить себе"
+msgstr "Keep"
+
+msgid "Обсудить"
+msgstr "Respond"
+
+msgid "Выйдет %s"
+msgstr "Comes out %s"
+
+msgid "Отложена"
+msgstr "Scheduled"
 

@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.3.0-beta\n"
+"Project-Id-Version: XI Novels 0.3.4-beta\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2461,4 +2461,166 @@ msgstr "— remover —"
 
 msgid "№"
 msgstr "nº"
+
+msgid "· голосов: %s"
+msgstr "· votos: %s"
+
+msgid "Все жанры"
+msgstr "Todos os gêneros"
+
+msgid "За всё время"
+msgstr "Desde sempre"
+
+msgid "За всё время, все жанры"
+msgstr "Desde sempre, todos os gêneros"
+
+msgid "За месяц"
+msgstr "No mês"
+
+msgid "За неделю"
+msgstr "Na semana"
+
+msgid "Лучшее на площадке — по оценке читателей, по числу просмотров и по объёму. Пересчитывается автоматически."
+msgstr "O melhor da plataforma — por nota dos leitores, por visualizações e por tamanho. Recalculado automaticamente."
+
+msgid "Ни один тайтл не набрал показателей для этой доски. Попробуйте другой период или снимите фильтр по жанру."
+msgstr "Nenhuma obra reuniu números para este quadro. Tente outro período, ou tire o filtro de gênero."
+
+msgid "Оценка взвешенная: пока у тайтла меньше %s голосов, его средняя подтягивается к средней по площадке. Так одна пятёрка не обгоняет сотню честных оценок."
+msgstr "A nota é ponderada: enquanto a obra não tem %s votos, sua média é puxada para a média do site. Assim um único cinco não passa à frente de cem votos honestos."
+
+msgid "Период"
+msgstr "Período"
+
+msgid "По числу глав"
+msgstr "Por número de capítulos"
+
+msgid "Показатель"
+msgstr "Medida"
+
+msgid "доска"
+msgstr "quadro"
+
+msgid "Голосов на этом устройстве: %d"
+msgstr "Vozes neste dispositivo: %d"
+
+msgid "Добавить в комментарий"
+msgstr "Adicionar ao comentário"
+
+msgid "Закладка снята."
+msgstr "Marcador removido."
+
+msgid "Браузерный"
+msgstr "Do navegador"
+
+msgid "Выберите голос"
+msgstr "Escolha uma voz"
+
+msgid "Скопировано в буфер обмена."
+msgstr "Copiado para a área de transferência."
+
+msgid "Скопировать ссылку"
+msgstr "Copiar link"
+
+msgid "Багровый"
+msgstr "Carmesim"
+
+msgid "Поиск по голосам устройства"
+msgstr "Filtrar vozes deste dispositivo"
+
+msgid "Золотой"
+msgstr "Dourado"
+
+msgid "Чернильный"
+msgstr "Tinta"
+
+msgid "Нефритовый"
+msgstr "Jade"
+
+msgid "К закладке"
+msgstr "Ir para o marcador"
+
+msgid "Слушать"
+msgstr "Ouvir"
+
+msgid "Голосов не нашлось. Windows: Параметры → Время и язык → Речь. В Chrome появятся ещё и голоса Google, если снять «Только на устройстве»."
+msgstr "Nenhuma voz encontrada. Windows: Configurações → Hora e idioma → Fala. O Chrome também mostra vozes do Google se você desmarcar “Somente no dispositivo”."
+
+msgid "На устройстве"
+msgstr "No dispositivo"
+
+msgid "Только на устройстве"
+msgstr "Somente no dispositivo"
+
+msgid "Абзац отмечен закладкой."
+msgstr "Parágrafo marcado."
+
+msgid "Ссылка на абзац скопирована."
+msgstr "Link do parágrafo copiado."
+
+msgid "Пауза"
+msgstr "Pausar"
+
+msgid "Закладка"
+msgstr "Marcar"
+
+msgid "Тон"
+msgstr "Tom"
+
+msgid "Воспроизвести"
+msgstr "Tocar"
+
+msgid "Прослушать голос"
+msgstr "Ouvir a voz"
+
+msgid "Цитата добавлена в обсуждение."
+msgstr "Citação adicionada à discussão."
+
+msgid "Читает"
+msgstr "Lendo"
+
+msgid "Войдите, чтобы цитировать и предлагать правки."
+msgstr "Entre para citar ou sugerir."
+
+msgid "Скорость"
+msgstr "Velocidade"
+
+msgid "Остановить"
+msgstr "Parar"
+
+msgid "Предложить правку"
+msgstr "Sugerir"
+
+msgid "Предложенная правка"
+msgstr "Sugestão"
+
+msgid "Правка добавлена в обсуждение. Пролистайте вниз и отправьте."
+msgstr "Sugestão adicionada à discussão. Role para baixo e envie."
+
+msgid "Синтез речи в этом браузере недоступен."
+msgstr "A leitura em voz alta não está disponível neste navegador."
+
+msgid "Печать сломали тысячу лет назад, чтобы никто не удержал её целиком."
+msgstr "O selo foi quebrado há mil anos para que ninguém o tivesse por inteiro."
+
+msgid "Этот абзац"
+msgstr "Este parágrafo"
+
+msgid "Голоса"
+msgstr "Vozes"
+
+msgid "Громкость"
+msgstr "Volume"
+
+msgid "Сохранить себе"
+msgstr "Guardar"
+
+msgid "Обсудить"
+msgstr "Responder"
+
+msgid "Выйдет %s"
+msgstr "Sai em %s"
+
+msgid "Отложена"
+msgstr "Agendado"
 

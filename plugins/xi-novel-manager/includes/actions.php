@@ -47,6 +47,7 @@ function xnm_actions() {
 			'plus_off'     => __( 'Снять PLUS со всех глав', 'xi-novel-manager' ),
 		),
 		__( 'Прочее', 'xi-novel-manager' ) => array(
+			'reslug'  => __( 'Пересобрать адреса глав', 'xi-novel-manager' ),
 			'export'  => __( 'Выгрузить в CSV', 'xi-novel-manager' ),
 			'trash'   => __( 'В корзину', 'xi-novel-manager' ),
 			'restore' => __( 'Восстановить из корзины', 'xi-novel-manager' ),
@@ -238,6 +239,9 @@ function xnm_apply_one( $action, $id, $payload ) {
 		case 'cover_remove':
 			return (bool) delete_post_thumbnail( $id );
 
+		case 'reslug':
+			return xnm_reslug( $id );
+
 		case 'plus_on':
 		case 'plus_off':
 			$on      = 'plus_on' === $action;
@@ -394,4 +398,50 @@ function xnm_term_list( $id, $taxonomy ) {
 		return '';
 	}
 	return implode( ', ', wp_list_pluck( $terms, 'name' ) );
+}
+
+/**
+ * Пересобирает адреса глав проекта под схему chapter-N-название.
+ *
+ * Старые адреса не пропадают: WordPress запоминает прежний слаг в _wp_old_slug
+ * и сам уводит с него редиректом, поэтому ссылки из закладок и поисковиков
+ * продолжают работать.
+ *
+ * @param int $novel_id Проект.
+ * @return bool Изменился ли хоть один адрес.
+ */
+function xnm_reslug( $novel_id ) {
+	if ( ! function_exists( 'xin_build_chapter_slug' ) ) {
+		return false;
+	}
+
+	$chapters = get_posts( array(
+		'post_type'      => 'chapter',
+		'post_status'    => array( 'publish', 'draft', 'pending', 'future', 'private' ),
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			array( 'key' => '_xin_novel', 'value' => (string) absint( $novel_id ) ),
+		),
+	) );
+
+	$touched = false;
+
+	foreach ( $chapters as $chapter_id ) {
+		$wanted = xin_build_chapter_slug(
+			get_the_title( $chapter_id ),
+			get_post_meta( $chapter_id, '_xin_number', true )
+		);
+
+		if ( get_post_field( 'post_name', $chapter_id ) === $wanted ) {
+			continue;
+		}
+
+		// Пустой post_name заставляет WordPress собрать слаг заново — а фильтр
+		// темы подставит нужный и разведёт совпадения внутри проекта.
+		wp_update_post( array( 'ID' => $chapter_id, 'post_name' => '' ) );
+		$touched = true;
+	}
+
+	return $touched;
 }

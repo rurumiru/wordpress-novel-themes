@@ -565,3 +565,75 @@ function xin_hidden_query_fields( $url, $except = array() ) {
 		printf( '<input type="hidden" name="%s" value="%s">', esc_attr( $key ), esc_attr( $value ) );
 	}
 }
+
+/**
+ * Как показать состояние главы в списке кабинета.
+ *
+ * Список показывал «Черновик» и дату создания даже у главы, которая стоит в
+ * очереди на публикацию: по такой строке не понять ни что глава ждёт выхода,
+ * ни когда он будет. Состояние собирается здесь, а плагин очереди может
+ * дописать своё через фильтр — тема при этом от него не зависит.
+ *
+ * @param int|WP_Post $chapter Глава.
+ * @return array badges (list of ['text','class','icon']) и date.
+ */
+function xin_chapter_state( $chapter ) {
+	$chapter = get_post( $chapter );
+
+	if ( ! $chapter ) {
+		return array( 'badges' => array(), 'date' => '' );
+	}
+
+	$badges = array();
+
+	if ( get_post_meta( $chapter->ID, '_xin_locked', true ) ) {
+		$badges[] = array( 'text' => 'PLUS', 'class' => 'xin-badge--gold', 'icon' => 'lock' );
+	}
+
+	if ( 'future' === $chapter->post_status ) {
+		// Штатное отложенное WordPress: дата публикации уже известна.
+		$badges[] = array(
+			'text'  => __( 'Отложена', 'xi-novels' ),
+			'class' => 'xin-badge--primary',
+			'icon'  => 'clock',
+		);
+		$date = sprintf(
+			/* translators: %s: date and time the chapter goes out. */
+			__( 'Выйдет %s', 'xi-novels' ),
+			get_the_date( 'j M Y, H:i', $chapter->ID )
+		);
+	} else {
+		if ( 'publish' !== $chapter->post_status ) {
+			$status = get_post_status_object( $chapter->post_status );
+			$badges[] = array(
+				'text'  => $status ? $status->label : $chapter->post_status,
+				'class' => '',
+				'icon'  => '',
+			);
+		}
+		$date = get_the_date( 'j M Y', $chapter->ID );
+	}
+
+	/**
+	 * Позволяет дополнить состояние главы — например, временем из очереди.
+	 *
+	 * @param array $state   badges и date.
+	 * @param int   $chapter Идентификатор главы.
+	 */
+	return apply_filters( 'xin_chapter_state', array( 'badges' => $badges, 'date' => $date, 'note' => '' ), $chapter->ID );
+}
+
+/**
+ * Печатает значки состояния главы.
+ *
+ * @param array $badges Значки из xin_chapter_state().
+ */
+function xin_the_chapter_badges( $badges ) {
+	foreach ( (array) $badges as $badge ) {
+		printf( '<span class="xin-badge %s">', esc_attr( $badge['class'] ) );
+		if ( ! empty( $badge['icon'] ) ) {
+			xin_the_icon( $badge['icon'] );
+		}
+		echo esc_html( $badge['text'] ) . '</span>';
+	}
+}

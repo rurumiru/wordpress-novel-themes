@@ -1,0 +1,292 @@
+# Brazilian Portuguese translation for the XI Novels project.
+msgid ""
+msgstr ""
+"Project-Id-Version: XI Novels — bulk management 0.3.4-beta\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "XI Novels — управление тайтлами"
+msgstr "XI Novels — gerenciamento de títulos"
+
+msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels."
+msgstr "Edição e exclusão de títulos em massa: busca e filtros, gêneros e etiquetas, autor e equipe, capas, PLUS e 18+, exportação em CSV. Funciona com os tipos de post do tema XI Novels."
+
+msgid "Массовое управление"
+msgstr "Gerenciamento em massa"
+
+msgid "Массовое управление тайтлами"
+msgstr "Gerenciamento de títulos em massa"
+
+msgid "Открыть"
+msgstr "Abrir"
+
+msgid "Добавить"
+msgstr "Adicionar"
+
+msgid "Показать"
+msgstr "Mostrar"
+
+msgid "Сбросить"
+msgstr "Limpar"
+
+msgid "Поиск по названию"
+msgstr "Busca por título"
+
+msgid "Название или часть описания"
+msgstr "Título, ou parte da descrição"
+
+msgid "Найдено: %s"
+msgstr "Encontrados: %s"
+
+msgid "Ничего не найдено. Попробуйте ослабить фильтры."
+msgstr "Nada encontrado. Tente afrouxar os filtros."
+
+msgid "Применить ко всем %s найденным, а не только к отмеченным на этой странице"
+msgstr "Aplicar a todos os %s encontrados, não só aos marcados nesta página"
+
+msgid "Отметить все"
+msgstr "Marcar todos"
+
+msgid "Владелец"
+msgstr "Dono"
+
+msgid "Жанр"
+msgstr "Gênero"
+
+msgid "Жанры"
+msgstr "Gêneros"
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Обложка"
+msgstr "Capa"
+
+msgid "Есть"
+msgstr "Tem"
+
+msgid "Нет"
+msgstr "Não tem"
+
+msgid "18+"
+msgstr "18+"
+
+msgid "Только 18+"
+msgstr "Somente 18+"
+
+msgid "Без 18+"
+msgstr "Sem 18+"
+
+msgid "Сортировка"
+msgstr "Ordenar por"
+
+msgid "Порядок"
+msgstr "Ordem"
+
+msgid "По дате"
+msgstr "Por data"
+
+msgid "По алфавиту"
+msgstr "Por ordem alfabética"
+
+msgid "По изменению"
+msgstr "Pela última alteração"
+
+msgid "По просмотрам"
+msgstr "Por visualizações"
+
+msgid "По оценке"
+msgstr "Por nota"
+
+msgid "По убыванию"
+msgstr "Decrescente"
+
+msgid "По возрастанию"
+msgstr "Crescente"
+
+msgid "— любой —"
+msgstr "— qualquer —"
+
+msgid "Публикация"
+msgstr "Publicação"
+
+msgid "Любая"
+msgstr "Qualquer"
+
+msgid "Опубликованные"
+msgstr "Publicados"
+
+msgid "Черновики"
+msgstr "Rascunhos"
+
+msgid "На проверке"
+msgstr "Em revisão"
+
+msgid "Личные"
+msgstr "Privados"
+
+msgid "В корзине"
+msgstr "Na lixeira"
+
+msgid "Название"
+msgstr "Título"
+
+msgid "Глав"
+msgstr "Caps."
+
+msgid "Просм."
+msgstr "Views"
+
+msgid "Изменён"
+msgstr "Alterado"
+
+msgid "Изменить"
+msgstr "Editar"
+
+msgid "Смотреть"
+msgstr "Ver"
+
+msgid "Действие"
+msgstr "Ação"
+
+msgid "Действие над отмеченными…"
+msgstr "Ação sobre os marcados…"
+
+msgid "Применить"
+msgstr "Aplicar"
+
+msgid "Опубликовать"
+msgstr "Publicar"
+
+msgid "В черновики"
+msgstr "Para rascunho"
+
+msgid "Сделать личными"
+msgstr "Tornar privados"
+
+msgid "Состояние тайтла"
+msgstr "Estado da obra"
+
+msgid "Поставить статус…"
+msgstr "Definir status…"
+
+msgid "Пометить 18+"
+msgstr "Marcar 18+"
+
+msgid "Снять 18+"
+msgstr "Tirar 18+"
+
+msgid "Жанры и метки"
+msgstr "Gêneros e etiquetas"
+
+msgid "Добавить жанры…"
+msgstr "Adicionar gêneros…"
+
+msgid "Убрать жанры…"
+msgstr "Remover gêneros…"
+
+msgid "Заменить жанры на…"
+msgstr "Substituir gêneros por…"
+
+msgid "Добавить метки…"
+msgstr "Adicionar etiquetas…"
+
+msgid "Убрать метки…"
+msgstr "Remover etiquetas…"
+
+msgid "Заменить метки на…"
+msgstr "Substituir etiquetas por…"
+
+msgid "Через запятую: Фэнтези, Драма"
+msgstr "Separados por vírgula: Fantasia, Drama"
+
+msgid "Авторство"
+msgstr "Autoria"
+
+msgid "Сменить владельца…"
+msgstr "Trocar o dono…"
+
+msgid "Поставить команду перевода…"
+msgstr "Definir equipe de tradução…"
+
+msgid "Название команды (пусто — очистить)"
+msgstr "Nome da equipe (vazio limpa)"
+
+msgid "Обложка и PLUS"
+msgstr "Capa e PLUS"
+
+msgid "Поставить обложку…"
+msgstr "Definir uma capa…"
+
+msgid "Убрать обложку"
+msgstr "Remover a capa"
+
+msgid "Выбрать файл…"
+msgstr "Escolher arquivo…"
+
+msgid "Выберите обложку"
+msgstr "Escolha uma capa"
+
+msgid "Поставить обложкой"
+msgstr "Usar como capa"
+
+msgid "Все главы — ранний доступ PLUS"
+msgstr "Todos os capítulos — acesso antecipado PLUS"
+
+msgid "Снять PLUS со всех глав"
+msgstr "Tirar o PLUS de todos os capítulos"
+
+msgid "Прочее"
+msgstr "Outros"
+
+msgid "Выгрузить в CSV"
+msgstr "Exportar em CSV"
+
+msgid "В корзину"
+msgstr "Para a lixeira"
+
+msgid "Восстановить из корзины"
+msgstr "Restaurar da lixeira"
+
+msgid "Удалить навсегда"
+msgstr "Excluir definitivamente"
+
+msgid "Готово: %1$s — тайтлов затронуто: %2$s."
+msgstr "Pronto: %1$s — títulos afetados: %2$s."
+
+msgid "Ни один тайтл не был отмечен — ничего не изменилось."
+msgstr "Nenhum título foi marcado — nada mudou."
+
+msgid "Ничего не изменилось — возможно, не заполнено поле действия."
+msgstr "Nada mudou — talvez o campo da ação esteja vazio."
+
+msgid "Сначала отметьте хотя бы один тайтл."
+msgstr "Marque ao menos um título primeiro."
+
+msgid "Выберите действие."
+msgstr "Escolha uma ação."
+
+msgid "Применить действие к выбранным тайтлам?"
+msgstr "Aplicar a ação aos títulos selecionados?"
+
+msgid "Переместить выбранные тайтлы в корзину?"
+msgstr "Mover os títulos selecionados para a lixeira?"
+
+msgid "Удалить выбранные тайтлы навсегда? Вместе с ними удалятся их главы. Это действие необратимо."
+msgstr "Excluir os títulos selecionados definitivamente? Os capítulos vão junto. Isso não pode ser desfeito."
+
+msgid "Недостаточно прав."
+msgstr "Permissões insuficientes."
+
+msgid "Недостаточно прав на удаление."
+msgstr "Permissões insuficientes para excluir."
+
+msgid "Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем."
+msgstr "O tipo de post Novel não está registrado. Ative o tema XI Novels — não há o que gerenciar."
+
+msgid "Пересобрать адреса глав"
+msgstr "Recriar os endereços dos capítulos"
+

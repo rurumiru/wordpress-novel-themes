@@ -41,24 +41,25 @@ $xin_chapters = get_posts( array(
 				<tr>
 					<th style="width:64px"><?php esc_html_e( '№', 'xi-novels' ); ?></th>
 					<th><?php esc_html_e( 'Название', 'xi-novels' ); ?></th>
-					<th style="width:120px"><?php esc_html_e( 'Дата', 'xi-novels' ); ?></th>
+					<th style="width:150px"><?php esc_html_e( 'Дата', 'xi-novels' ); ?></th>
 					<th style="width:170px"><?php esc_html_e( 'Действия', 'xi-novels' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach ( $xin_chapters as $xin_chapter ) : ?>
+					<?php $xin_state = xin_chapter_state( $xin_chapter ); ?>
 					<tr>
 						<td class="xin-muted"><?php echo esc_html( xin_chapter_label( $xin_chapter->ID ) ); ?></td>
 						<td>
 							<a href="<?php echo esc_url( get_permalink( $xin_chapter->ID ) ); ?>"><?php echo esc_html( $xin_chapter->post_title ); ?></a>
-							<?php if ( get_post_meta( $xin_chapter->ID, '_xin_locked', true ) ) : ?>
-								<span class="xin-badge xin-badge--gold"><?php xin_the_icon( 'lock' ); ?>PLUS</span>
-							<?php endif; ?>
-							<?php if ( 'publish' !== $xin_chapter->post_status ) : ?>
-								<span class="xin-badge"><?php echo esc_html( get_post_status_object( $xin_chapter->post_status )->label ); ?></span>
+							<?php xin_the_chapter_badges( $xin_state['badges'] ); ?>
+						</td>
+						<td class="xin-muted xin-chaptable__when">
+							<?php echo esc_html( $xin_state['date'] ); ?>
+							<?php if ( ! empty( $xin_state['note'] ) ) : ?>
+								<small><?php echo esc_html( $xin_state['note'] ); ?></small>
 							<?php endif; ?>
 						</td>
-						<td class="xin-muted"><?php echo esc_html( get_the_date( 'j M Y', $xin_chapter->ID ) ); ?></td>
 						<td>
 							<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_dashboard_url( array( 'view' => 'edit-chapter', 'id' => $xin_chapter->ID ) ) ); ?>"><?php esc_html_e( 'Править', 'xi-novels' ); ?></a>
 							<a class="btn btn-ghost btn-sm" href="<?php echo esc_url( wp_nonce_url( xin_dashboard_url( array( 'xin_action' => 'delete', 'id' => $xin_chapter->ID ) ), 'xin_delete' ) ); ?>" onclick="return confirm('<?php echo esc_js( __( 'Удалить главу?', 'xi-novels' ) ); ?>')"><?php esc_html_e( 'Удалить', 'xi-novels' ); ?></a>
