@@ -66,3 +66,23 @@ CSS предпросмотра собирает сама тема (`xin_skin_css
 * Google Docs: документ должен быть открыт по ссылке или опубликован (Файл → Поделиться → Опубликовать в интернете).
 
 `xi-novel-import.zip` is the bulk import plugin: **.docx**, .txt, .md, .html, ZIP archives of them and **Google Docs** by link. It lives under *Tools → Chapter import*, reads the chapter number and title from the file name, sorts naturally, updates instead of duplicating on a re-run, and can mark chapters from a given number as early access.
+
+## XI Novels — управление тайтлами / bulk title management
+
+`xi-novel-manager.zip` — массовое редактирование и удаление тайтлов. Экран — *Новеллы → Массовое управление*.
+
+* поиск по названию и фильтры: владелец, жанр, статус тайтла, состояние публикации, наличие обложки, 18+;
+* сортировка по дате, алфавиту, изменению, просмотрам и оценке;
+* галочки с выделением диапазона по Shift, а если найденное не помещается на страницу — отдельный флажок «применить ко всем найденным»;
+* публикация: опубликовать, в черновики, сделать личными;
+* состояние: поставить статус тайтла, включить и снять 18+;
+* жанры и метки: добавить, убрать или заменить списком через запятую — понимает и названия, и слаги, недостающие термины создаёт;
+* авторство: сменить владельца, проставить команду перевода;
+* обложка: поставить одну на пачку из медиатеки или убрать;
+* PLUS: пометить все главы тайтла ранним доступом или снять пометку;
+* выгрузка выбранного в CSV — 19 колонок, с BOM, чтобы Excel не ломал кириллицу;
+* корзина: в корзину, восстановить, удалить навсегда (вместе с главами, с отдельным подтверждением).
+
+Удаление требует права `delete_others_posts`, всё остальное — `edit_others_posts`, и каждый идентификатор ещё раз проверяется через `current_user_can( 'edit_post' )`, поэтому редактор не тронет чужой тайтл, даже если подменит форму.
+
+`xi-novel-manager.zip` is the bulk editor for titles, under *Novels → Bulk management*. Search and filter by owner, genre, status, publication state, cover and 18+; then act on the ticked rows — or on everything the filter matches — with publication changes, novel status, genres and tags (add, remove, replace), owner and translation team, a shared cover, the PLUS flag across a title's chapters, CSV export, and trash / restore / permanent delete. Deleting needs `delete_others_posts`; every id is re-checked against `current_user_can( 'edit_post' )` before anything is touched.

@@ -33,12 +33,27 @@
 				) );
 			} else {
 				?>
+				<?php
+				/*
+				 * Without a menu assigned to the theme location WordPress marks nothing as
+				 * current, so the built-in links never showed which section was open — and a
+				 * hovered link was the only one that looked selected. Work it out here.
+				 */
+				$xin_rating_on  = isset( $_GET['sort'] ) && 'rating' === $_GET['sort'];
+				$xin_in_catalog = is_post_type_archive( 'novel' ) || is_tax( array( 'genre', 'novel_status', 'novel_tag' ) );
+				$xin_here       = array(
+					'catalog' => $xin_in_catalog && ! $xin_rating_on,
+					'updates' => is_post_type_archive( 'chapter' ),
+					'rating'  => $xin_in_catalog && $xin_rating_on,
+					'blog'    => is_home() || is_singular( 'post' ) || is_category() || is_tag(),
+				);
+				?>
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="<?php echo esc_url( get_post_type_archive_link( 'novel' ) ); ?>"><?php esc_html_e( 'Каталог', 'xi-novels' ); ?></a></li>
-					<li class="nav-item"><a class="nav-link" href="<?php echo esc_url( get_post_type_archive_link( 'chapter' ) ); ?>"><?php esc_html_e( 'Обновления', 'xi-novels' ); ?></a></li>
-					<li class="nav-item"><a class="nav-link" href="<?php echo esc_url( add_query_arg( 'sort', 'rating', get_post_type_archive_link( 'novel' ) ) ); ?>"><?php esc_html_e( 'Рейтинг', 'xi-novels' ); ?></a></li>
+					<li class="nav-item"><a class="nav-link<?php echo $xin_here['catalog'] ? ' is-current' : ''; ?>"<?php echo $xin_here['catalog'] ? ' aria-current="page"' : ''; ?> href="<?php echo esc_url( get_post_type_archive_link( 'novel' ) ); ?>"><?php esc_html_e( 'Каталог', 'xi-novels' ); ?></a></li>
+					<li class="nav-item"><a class="nav-link<?php echo $xin_here['updates'] ? ' is-current' : ''; ?>"<?php echo $xin_here['updates'] ? ' aria-current="page"' : ''; ?> href="<?php echo esc_url( get_post_type_archive_link( 'chapter' ) ); ?>"><?php esc_html_e( 'Обновления', 'xi-novels' ); ?></a></li>
+					<li class="nav-item"><a class="nav-link<?php echo $xin_here['rating'] ? ' is-current' : ''; ?>"<?php echo $xin_here['rating'] ? ' aria-current="page"' : ''; ?> href="<?php echo esc_url( add_query_arg( 'sort', 'rating', get_post_type_archive_link( 'novel' ) ) ); ?>"><?php esc_html_e( 'Рейтинг', 'xi-novels' ); ?></a></li>
 					<?php if ( get_option( 'page_for_posts' ) ) : ?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Блог', 'xi-novels' ); ?></a></li>
+						<li class="nav-item"><a class="nav-link<?php echo $xin_here['blog'] ? ' is-current' : ''; ?>"<?php echo $xin_here['blog'] ? ' aria-current="page"' : ''; ?> href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Блог', 'xi-novels' ); ?></a></li>
 					<?php endif; ?>
 				</ul>
 				<?php

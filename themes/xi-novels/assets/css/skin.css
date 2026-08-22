@@ -127,11 +127,22 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 	border-radius: 999px; font-size: 14px; font-weight: 600; white-space: nowrap;
 	display: flex; align-items: center; gap: .3rem;
 }
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus-visible,
+/* Hover and "you are here" used to paint the same flat grey pill, so a link the
+   pointer happened to rest on read as the current section. Hover stays neutral;
+   the current section is the only one that takes the accent colour. */
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus-visible {
+	background: hsl(var(--accent)); color: hsl(var(--fg));
+}
 .navbar-nav .nav-item.current-menu-item > .nav-link,
 .navbar-nav .nav-item.current-menu-parent > .nav-link,
-.navbar-nav .nav-item.current_page_item > .nav-link {
-	background: hsl(var(--accent)); color: hsl(var(--fg));
+.navbar-nav .nav-item.current-menu-ancestor > .nav-link,
+.navbar-nav .nav-item.current_page_item > .nav-link,
+.navbar-nav .nav-link.is-current {
+	background: hsl(var(--primary) / .12); color: hsl(var(--primary)); font-weight: 700;
+}
+.navbar-nav .nav-item.current-menu-item > .nav-link:hover,
+.navbar-nav .nav-link.is-current:hover {
+	background: hsl(var(--primary) / .18); color: hsl(var(--primary));
 }
 .navbar-toggler { padding: .35rem .5rem; color: hsl(var(--muted-fg)); }
 .navbar-toggler:hover { color: hsl(var(--fg)); }

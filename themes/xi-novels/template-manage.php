@@ -116,6 +116,7 @@ if ( xin_can_manage() ) {
 		?>
 
 		<form class="xin-manage__search" method="get" action="<?php echo esc_url( xin_manage_url() ); ?>">
+			<?php xin_hidden_query_fields( xin_manage_url(), array( 'tab', 'q' ) ); ?>
 			<input type="hidden" name="tab" value="users">
 			<input type="search" name="q" value="<?php echo esc_attr( $xin_q ); ?>" placeholder="<?php esc_attr_e( 'Имя, логин или почта', 'xi-novels' ); ?>">
 			<button class="btn btn-outline btn-sm" type="submit"><?php esc_html_e( 'Найти', 'xi-novels' ); ?></button>

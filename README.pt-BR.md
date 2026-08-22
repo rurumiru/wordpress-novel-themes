@@ -7,7 +7,7 @@
 **Um tema WordPress gratuito, GPL e sem nenhuma dependência que transforma uma instalação limpa em um site completo de light novels, web novels e traduções — catálogo, capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca do leitor.**
 **E em nenhum momento parece WordPress.**
 
-[![Versão](https://img.shields.io/badge/version-beta%200.3.2-f59e0b)](CHANGELOG.md)
+[![Versão](https://img.shields.io/badge/version-beta%200.3.3-f59e0b)](CHANGELOG.md)
 [![Licença](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.3.2**
+> ### 🚧 Status: **beta 0.3.3**
 >
 > A plataforma funciona de ponta a ponta — dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**. O Bootstrap 5 é a base atual, não o destino: o plano é medir as alternativas e ficar com a que vencer em números reais.
 >

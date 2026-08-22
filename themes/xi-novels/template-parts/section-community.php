@@ -19,7 +19,7 @@ if ( ! $xin_authors && ! $xin_posts ) {
 }
 ?>
 <section class="xin-wrap xin-section">
-	<div class="xin-grid xin-grid--2 xin-reveal">
+	<div class="xin-grid xin-grid--2 xin-grid--start xin-reveal">
 
 		<?php if ( $xin_authors ) : ?>
 			<div class="xin-panel">

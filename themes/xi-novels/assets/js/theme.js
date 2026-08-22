@@ -704,8 +704,148 @@ if (body.scrollHeight <= 240) {
 		});
 	}
 
+	// A native select hands its option list to the operating system, which drops a
+	// plain grey box over the page. The select itself stays in the form — it carries
+	// the value and keeps working with scripting off — and gains a listbox in the
+	// theme's own design on top of it.
+	function initSelects() {
+		var selects = document.querySelectorAll('select[data-xin-select]');
+		if (!selects.length) return;
+
+		var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+		var open = null;
+
+		function closeAll() {
+			if (!open) return;
+			open.wrap.classList.remove('is-open');
+			open.list.hidden = true;
+			open.btn.setAttribute('aria-expanded', 'false');
+			Array.prototype.forEach.call(open.list.children, function (li) { li.classList.remove('is-focus'); });
+			open = null;
+		}
+
+		document.addEventListener('click', closeAll);
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && open) {
+				var btn = open.btn;
+				closeAll();
+				btn.focus();
+			}
+		});
+
+		Array.prototype.forEach.call(selects, function (select) {
+			if (select.parentNode.classList.contains('xin-select')) return;
+
+			var wrap = document.createElement('div');
+			wrap.className = 'xin-select';
+			select.parentNode.insertBefore(wrap, select);
+			wrap.appendChild(select);
+
+			var btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'xin-select__btn';
+			btn.setAttribute('aria-haspopup', 'listbox');
+			btn.setAttribute('aria-expanded', 'false');
+			var label = select.getAttribute('aria-label');
+			if (label) btn.setAttribute('aria-label', label);
+
+			var list = document.createElement('ul');
+			list.className = 'xin-select__list';
+			list.setAttribute('role', 'listbox');
+			list.hidden = true;
+
+			var options = [];
+			Array.prototype.forEach.call(select.options, function (opt, i) {
+				var li = document.createElement('li');
+				li.className = 'xin-select__opt';
+				li.setAttribute('role', 'option');
+				li.setAttribute('aria-selected', i === select.selectedIndex ? 'true' : 'false');
+				li.textContent = opt.textContent;
+				li.addEventListener('click', function (e) {
+					e.stopPropagation();
+					pick(i);
+				});
+				list.appendChild(li);
+				options.push(li);
+			});
+
+			function paint() {
+				btn.innerHTML = '';
+				btn.appendChild(document.createTextNode(select.options[select.selectedIndex].textContent));
+				btn.insertAdjacentHTML('beforeend', CHEVRON);
+				options.forEach(function (li, i) {
+					li.setAttribute('aria-selected', i === select.selectedIndex ? 'true' : 'false');
+				});
+			}
+
+			function pick(i) {
+				if (i !== select.selectedIndex) {
+					select.selectedIndex = i;
+					paint();
+					select.dispatchEvent(new Event('change', { bubbles: true }));
+				}
+				closeAll();
+				btn.focus();
+			}
+
+			// The menu opens under a button that can sit anywhere across a wrapping
+			// row, so pull it back inside the viewport rather than let it run off.
+			function place() {
+				list.style.transform = '';
+				var pad = 8;
+				var box = list.getBoundingClientRect();
+				var vw = document.documentElement.clientWidth;
+				var shift = 0;
+				if (box.right > vw - pad) shift = vw - pad - box.right;
+				if (box.left + shift < pad) shift = pad - box.left;
+				if (shift) list.style.transform = 'translateX(' + Math.round(shift) + 'px)';
+			}
+
+			function toggle() {
+				var wasOpen = open && open.wrap === wrap;
+				closeAll();
+				if (wasOpen) return;
+				wrap.classList.add('is-open');
+				list.hidden = false;
+				btn.setAttribute('aria-expanded', 'true');
+				open = { wrap: wrap, list: list, btn: btn };
+				place();
+				var current = options[select.selectedIndex];
+				if (current) current.classList.add('is-focus');
+			}
+
+			btn.addEventListener('click', function (e) {
+				e.stopPropagation();
+				toggle();
+			});
+
+			btn.addEventListener('keydown', function (e) {
+				var last = select.options.length - 1;
+				if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+					e.preventDefault();
+					var next = select.selectedIndex + (e.key === 'ArrowDown' ? 1 : -1);
+					pick(Math.min(last, Math.max(0, next)));
+				} else if (e.key === 'Home') {
+					e.preventDefault();
+					pick(0);
+				} else if (e.key === 'End') {
+					e.preventDefault();
+					pick(last);
+				}
+			});
+
+			list.addEventListener('click', function (e) { e.stopPropagation(); });
+			window.addEventListener('resize', function () { if (open && open.wrap === wrap) place(); });
+
+			paint();
+			wrap.appendChild(btn);
+			wrap.appendChild(list);
+		});
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		initTheme();
+		initSelects();
 		initScroll();
 		initDownload();
 		initTalk();

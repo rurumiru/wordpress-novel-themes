@@ -56,16 +56,25 @@ $xin_genres   = get_terms( array( 'taxonomy' => 'genre', 'hide_empty' => true, '
 	<?php endif; ?>
 
 	<form class="xin-filters xin-mt-2" method="get" action="<?php echo esc_url( $xin_base ); ?>">
+		<?php
+		/*
+		 * A GET form throws away whatever query string the action URL carries, so on a
+		 * site with plain permalinks — where the archive is /?post_type=novel — picking
+		 * a sort order used to land on the front page instead of the filtered catalog.
+		 * Carrying the base query back in as hidden fields keeps the target intact.
+		 */
+		xin_hidden_query_fields( $xin_base, array( 'sort', 'status' ) );
+		?>
 		<span class="xin-filters__label"><?php xin_the_icon( 'filter' ); ?><?php esc_html_e( 'Фильтр', 'xi-novels' ); ?></span>
 
-		<select class="form-select form-select-pill form-select-sm w-auto" name="sort" onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Сортировка', 'xi-novels' ); ?>">
+		<select class="form-select form-select-pill form-select-sm w-auto" name="sort" data-xin-select onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Сортировка', 'xi-novels' ); ?>">
 			<?php foreach ( $xin_sorts as $xin_key => $xin_label ) : ?>
 				<option value="<?php echo esc_attr( $xin_key ); ?>" <?php selected( $xin_sort, $xin_key ); ?>><?php echo esc_html( $xin_label ); ?></option>
 			<?php endforeach; ?>
 		</select>
 
 		<?php if ( ! is_wp_error( $xin_statuses ) && $xin_statuses && ! is_tax( 'novel_status' ) ) : ?>
-			<select class="form-select form-select-pill form-select-sm w-auto" name="status" onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Статус', 'xi-novels' ); ?>">
+			<select class="form-select form-select-pill form-select-sm w-auto" name="status" data-xin-select onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Статус', 'xi-novels' ); ?>">
 				<option value=""><?php esc_html_e( 'Любой статус', 'xi-novels' ); ?></option>
 				<?php foreach ( $xin_statuses as $xin_st ) : ?>
 					<option value="<?php echo esc_attr( $xin_st->slug ); ?>" <?php selected( $xin_status, $xin_st->slug ); ?>><?php echo esc_html( $xin_st->name ); ?></option>

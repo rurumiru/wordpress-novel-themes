@@ -136,6 +136,46 @@
 .xin-filters__label svg { width: 15px; height: 15px; }
 .xin-filters__count { margin-left: auto; font-size: 13px; color: hsl(var(--muted-fg)); }
 
+/* A native select paints its option list with the operating system, which lands a
+   plain grey box in the middle of the page. The real select stays in the form and
+   still works with scripting off; when scripting is on it is swapped for this. */
+.xin-select { position: relative; display: inline-flex; }
+.xin-select__btn {
+	display: inline-flex; align-items: center; gap: .4rem;
+	height: 32px; padding: 0 .7rem 0 .85rem;
+	font-family: inherit; font-size: 13.5px; font-weight: 600; color: hsl(var(--fg));
+	background: hsl(var(--bg)); border: 1px solid hsl(var(--input)); border-radius: 999px;
+	cursor: pointer; white-space: nowrap;
+	transition: border-color .16s ease, background-color .16s ease;
+}
+.xin-select__btn:hover { background: hsl(var(--accent)); }
+.xin-select__btn:focus-visible { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .18); }
+.xin-select.is-open .xin-select__btn { border-color: hsl(var(--primary) / .55); }
+.xin-select__btn svg { width: 14px; height: 14px; opacity: .6; transition: transform .18s ease; }
+.xin-select.is-open .xin-select__btn svg { transform: rotate(180deg); }
+
+.xin-select__list {
+	position: absolute; z-index: 40; top: calc(100% + 6px); left: 0;
+	min-width: 100%; max-width: min(280px, calc(100vw - 24px));
+	margin: 0; padding: 6px; list-style: none;
+	background: hsl(var(--popover)); border: 1px solid hsl(var(--border));
+	border-radius: 10px; box-shadow: var(--shadow-3);
+}
+.xin-select__list[hidden] { display: none; }
+.xin-select__opt {
+	display: flex; align-items: center; gap: .5rem;
+	padding: 7px 10px; border-radius: 7px; cursor: pointer;
+	font-size: 13.5px; font-weight: 600; color: hsl(var(--fg)); white-space: nowrap;
+}
+.xin-select__opt:hover, .xin-select__opt.is-focus { background: hsl(var(--accent)); }
+.xin-select__opt[aria-selected="true"] { color: hsl(var(--primary)); }
+.xin-select__opt::before {
+	content: ""; flex: none; width: 6px; height: 6px; border-radius: 999px;
+	background: hsl(var(--primary)); opacity: 0;
+}
+.xin-select__opt[aria-selected="true"]::before { opacity: 1; }
+.xin-select select { display: none; }
+
 .xin-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 36px; }
 .xin-pagination .page-numbers {
 	display: grid; place-items: center; min-width: 38px; height: 38px; padding: 0 12px;

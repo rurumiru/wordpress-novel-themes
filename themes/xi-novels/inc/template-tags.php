@@ -526,3 +526,42 @@ function xin_site_stats() {
 	set_transient( 'xin_site_stats', $stats, 10 * MINUTE_IN_SECONDS );
 	return $stats;
 }
+
+/**
+ * Prints the query arguments of a URL as hidden inputs.
+ *
+ * A GET form replaces the query string of its action URL with its own fields, so
+ * any argument the action already carried is lost on submit. On a site with plain
+ * permalinks that argument is what identifies the page — `?post_type=novel`,
+ * `?genre=fantasy`, `?page_id=12` — and dropping it sends the visitor to the front
+ * page. Re-emitting those arguments as hidden fields keeps the form on its own page.
+ *
+ * @param string $url    URL whose query arguments should be carried over.
+ * @param array  $except Names the form supplies itself and must not duplicate.
+ */
+function xin_hidden_query_fields( $url, $except = array() ) {
+	$query = wp_parse_url( $url, PHP_URL_QUERY );
+	if ( ! $query ) {
+		return;
+	}
+
+	$args = array();
+	wp_parse_str( $query, $args );
+
+	foreach ( $args as $key => $value ) {
+		if ( in_array( $key, (array) $except, true ) ) {
+			continue;
+		}
+		if ( is_array( $value ) ) {
+			foreach ( $value as $item ) {
+				printf(
+					'<input type="hidden" name="%s" value="%s">',
+					esc_attr( $key . '[]' ),
+					esc_attr( $item )
+				);
+			}
+			continue;
+		}
+		printf( '<input type="hidden" name="%s" value="%s">', esc_attr( $key ), esc_attr( $value ) );
+	}
+}
