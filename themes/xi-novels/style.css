@@ -487,8 +487,6 @@ th { font-weight: 600; background: hsl(var(--muted)); }
 @media (min-width: 1024px) { .xin-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .xin-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .xin-grid--2 { grid-template-columns: minmax(0, 1fr); }
-/* A row of panels used to stretch every panel to the tallest one, so a short
-   list left a tall empty box beside a long one. */
 .xin-grid--start { align-items: start; }
 @media (min-width: 768px) { .xin-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -663,6 +661,15 @@ th { font-weight: 600; background: hsl(var(--muted)); }
 .xin-chapcard:hover .xin-chapcard__title { color: hsl(var(--primary)); }
 .xin-chapcard__num { font-family: var(--font-mono); font-size: 12px; color: hsl(var(--muted-fg)); margin-right: 4px; }
 .xin-chapcard__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; font-size: 10.5px; color: hsl(var(--muted-fg)); }
+
+/* Top authors beside the news feed. Two equal halves stretched to the taller
+   panel, so a site with a couple of authors got a short card and then half a
+   screen of nothing beside a long list of posts. The authors take a column
+   sized to what they need and the feed takes the rest, and each panel keeps
+   its own height. */
+.xin-community { display: grid; gap: 22px; align-items: start; }
+@media (min-width: 900px) { .xin-community { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); } }
+.xin-community__authors { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
 
 .xin-author-card { display: grid; justify-items: center; gap: 4px; position: relative; padding: 12px 8px; border-radius: var(--radius); background: hsl(var(--muted) / .5); text-align: center; transition: background-color .2s ease; }
 .xin-author-card:hover { background: hsl(var(--accent)); }

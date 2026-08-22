@@ -12,6 +12,7 @@ require_once XIN_DIR . '/inc/cpt.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
 require_once XIN_DIR . '/inc/icons.php';
 require_once XIN_DIR . '/inc/template-tags.php';
+require_once XIN_DIR . '/inc/ranking.php';
 require_once XIN_DIR . '/inc/skin.php';
 require_once XIN_DIR . '/inc/glossary.php';
 require_once XIN_DIR . '/inc/customizer.php';
@@ -360,6 +361,13 @@ function xin_rest_rate( WP_REST_Request $request ) {
 	$new = round( $sum / $count, 2 );
 	update_post_meta( $id, '_xin_rating', $new );
 	update_post_meta( $id, '_xin_rating_count', $count );
+
+	/**
+	 * A new vote reorders the rating board.
+	 *
+	 * @param int $id Novel that was rated.
+	 */
+	do_action( 'xin_rating_saved', $id );
 
 	return array(
 		'rating' => $new,

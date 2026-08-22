@@ -37,7 +37,7 @@ if ( $xin_menu_items ) {
 	$xin_services = array(
 	array(
 		'label' => __( 'Рейтинг', 'xi-novels' ),
-		'href'  => add_query_arg( 'sort', 'rating', get_post_type_archive_link( 'novel' ) ),
+		'href'  => xin_ranking_link(),
 		'icon'  => 'trophy',
 	),
 	array(

@@ -19,7 +19,7 @@ if ( ! $xin_authors && ! $xin_posts ) {
 }
 ?>
 <section class="xin-wrap xin-section">
-	<div class="xin-grid xin-grid--2 xin-grid--start xin-reveal">
+	<div class="xin-community xin-reveal">
 
 		<?php if ( $xin_authors ) : ?>
 			<div class="xin-panel">
@@ -30,7 +30,7 @@ if ( ! $xin_authors && ! $xin_posts ) {
 					</a>
 				</div>
 
-				<div class="xin-grid" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+				<div class="xin-community__authors">
 					<?php foreach ( $xin_authors as $xin_i => $xin_author ) : ?>
 						<?php
 						$xin_count = count_user_posts( $xin_author->ID, 'novel' );

@@ -176,7 +176,7 @@ $xin_genres = get_terms( array(
 			'title'      => __( 'Самые любимые', 'xi-novels' ),
 			'subtitle'   => __( 'Топ по оценкам сообщества', 'xi-novels' ),
 			'icon'       => 'heart',
-			'more_href'  => add_query_arg( 'sort', 'rating', get_post_type_archive_link( 'novel' ) ),
+			'more_href'  => xin_ranking_link(),
 			'more_label' => __( 'Весь рейтинг', 'xi-novels' ),
 		) );
 		?>
