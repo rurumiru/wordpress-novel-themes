@@ -1,7 +1,7 @@
 # English (US) translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.3.4-beta\n"
+"Project-Id-Version: XI Novels 0.4.0-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2734,4 +2734,223 @@ msgstr "Comes out %s"
 
 msgid "Отложена"
 msgstr "Scheduled"
+
+msgid "Уголок читателя"
+msgstr "Reader Hub"
+
+msgid "Разговор с теми, кто читает рядом: обсуждения, отметки и то, что происходит прямо сейчас."
+msgstr "A conversation with the people reading alongside you: discussions, reactions and what is happening right now."
+
+msgid "Заметное за неделю"
+msgstr "Notable this week"
+
+msgid "Самый читаемый тайтл"
+msgstr "Most read title"
+
+msgid "Самый плодовитый автор"
+msgstr "Most prolific author"
+
+msgid "Больше всех пишет"
+msgstr "Writes the most"
+
+msgid "Таблица лидеров"
+msgstr "Leaderboard"
+
+msgid "По комментариям"
+msgstr "By comments"
+
+msgid "По отметкам"
+msgstr "By reactions"
+
+msgid "Уровень"
+msgstr "Level"
+
+msgid "Уровень %s"
+msgstr "Level %s"
+
+msgid "Обсуждений пока нет — самое время начать."
+msgstr "No discussions yet — a good moment to start one."
+
+msgid "Обсуждают главы"
+msgstr "Chapters being discussed"
+
+msgid "Глава %s"
+msgstr "Chapter %s"
+
+msgid "За две недели никто ничего не обсуждал."
+msgstr "Nobody has discussed anything in the past two weeks."
+
+msgid "Лучшие комментарии"
+msgstr "Top comments"
+
+msgid "С отметками"
+msgstr "Most reacted"
+
+msgid "С ответами"
+msgstr "Most replied"
+
+msgid "Ни одного отмеченного комментария пока нет."
+msgstr "Not a single comment has been reacted to yet."
+
+msgid "Сейчас читают"
+msgstr "Reading right now"
+
+msgid "читает «%1$s», глава %2$s"
+msgstr "is reading “%1$s”, chapter %2$s"
+
+msgid "Пока тихо. Как только кто-нибудь откроет главу, это появится здесь."
+msgstr "Quiet for now. The moment somebody opens a chapter, it shows up here."
+
+msgid "%s сек. назад"
+msgstr "%s sec ago"
+
+msgid "Ваши цифры"
+msgstr "Your numbers"
+
+msgid "Глав прочитано"
+msgstr "Chapters read"
+
+msgid "Дней подряд"
+msgstr "Days in a row"
+
+msgid "Комментариев"
+msgstr "Comments"
+
+msgid "Отметок собрано"
+msgstr "Reactions received"
+
+msgid "Лучшая серия"
+msgstr "Best streak"
+
+msgid "Чтобы увидеть свои цифры, %s."
+msgstr "To see your numbers, %s."
+
+msgid "войдите"
+msgstr "sign in"
+
+msgid "Площадка в цифрах"
+msgstr "The site in numbers"
+
+msgid "Читателей"
+msgstr "Readers"
+
+msgid "Новых тайтлов за месяц"
+msgstr "New titles this month"
+
+msgid "Отметок"
+msgstr "Reactions"
+
+msgid "%s сек."
+msgstr "%s sec"
+
+msgid "%s мин."
+msgstr "%s min"
+
+msgid "%s ч."
+msgstr "%s h"
+
+msgid "%s дн."
+msgstr "%s d"
+
+msgid "%1$s · %2$s"
+msgstr "%1$s · %2$s"
+
+msgid "Кто читает рядом, о чём спорят и что происходит на площадке прямо сейчас."
+msgstr "Who is reading alongside you, what they argue about and what is happening on the site right now."
+
+msgid "Пишет больше всех"
+msgstr "Publishes the most"
+
+msgid "Говорит больше всех"
+msgstr "Talks the most"
+
+msgid "Кто говорит"
+msgstr "Who is talking"
+
+msgid "по комментариям"
+msgstr "by comments"
+
+msgid "по отметкам"
+msgstr "by reactions"
+
+msgid "уровень %s"
+msgstr "level %s"
+
+msgid "О чём спорят"
+msgstr "What they argue about"
+
+msgid "Главы, набравшие больше всего разговора за две недели."
+msgstr "The chapters that drew the most conversation over two weeks."
+
+msgid "глава %s"
+msgstr "chapter %s"
+
+msgid "реплик"
+msgstr "replies"
+
+msgid "отметок"
+msgstr "reactions"
+
+msgid "Сказано"
+msgstr "Said"
+
+msgid "с отметками"
+msgstr "with reactions"
+
+msgid "с ответами"
+msgstr "with replies"
+
+msgid "Прямо сейчас"
+msgstr "Right now"
+
+msgid "ваш уровень"
+msgstr "your level"
+
+msgid "прочитано"
+msgstr "chapters read"
+
+msgid "дней подряд"
+msgstr "days in a row"
+
+msgid "Свои цифры видны после того, как %s."
+msgstr "Your own numbers show up once you %s."
+
+msgid "войдёте"
+msgstr "sign in"
+
+msgid "поток активен"
+msgstr "stream live"
+
+msgid "синхронизация %s"
+msgstr "synced %s"
+
+msgid "Проектов"
+msgstr "Series"
+
+msgid "Новых за месяц"
+msgstr "New this month"
+
+msgid "Семь человек, вокруг которых больше всего разговора. Шкала показывает долю от первого места."
+msgstr "The seven people the conversation revolves around. The bar shows the share of first place."
+
+msgid "прочитано %s"
+msgstr "%s read"
+
+msgid "глава %1$s · %2$s"
+msgstr "chapter %1$s · %2$s"
+
+msgid "Реплики, которые собрали отклик. Длинные обрезаны."
+msgstr "The replies that drew a response. Long ones are trimmed."
+
+msgid "ответов"
+msgstr "replies"
+
+msgid "ваш профиль"
+msgstr "your profile"
+
+msgid "очков до уровня %s"
+msgstr "points to level %s"
+
+msgid "Цифры обновляются раз в пять минут."
+msgstr "The numbers refresh every five minutes."
 

@@ -23,6 +23,7 @@ require_once XIN_DIR . '/inc/auth.php';
 require_once XIN_DIR . '/inc/manage.php';
 require_once XIN_DIR . '/inc/access.php';
 require_once XIN_DIR . '/inc/reading.php';
+require_once XIN_DIR . '/inc/hub.php';
 require_once XIN_DIR . '/inc/export.php';
 require_once XIN_DIR . '/inc/discussions.php';
 require_once XIN_DIR . '/inc/banners.php';

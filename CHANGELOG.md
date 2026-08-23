@@ -7,7 +7,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
-- **Reader paragraph tools.** Click a chapter paragraph to pin it (four colours, stored in the browser), quote it or suggest an edit into the discussion form, copy a `#paragraph-N` link, or start text-to-speech from that line. Suggestions open a modal with original, edit, and a live diff. TTS uses the browser’s on-device `speechSynthesis` voices, grouped by language, with speed, pitch, volume, preview, and play / pause / skip. Toasts sit above the reader dock (and above the TTS bar when it is open) so they are not covered.
+- **Уголок читателя.** Отдельная страница `/hub/`, которая показывает площадку изнутри: кто говорит, о чём спорят, что сказано и кто что читает прямо сейчас. Шапка держит шесть счётчиков площадки, в таблице лидеров видны обе метрики сразу, у вошедшего есть карточка профиля со шкалой до следующего уровня. Страница заводится сама при обновлении темы, ссылка появляется в шапке и боковом меню.
+- **Оформление уголка — терминал.** Своё тёмное полотно поверх любой темы сайта: сетка, два пятна света, медленная развёртка и строчная маска. Срезанные углы вместо скруглений, моноширинные подписи, сегментные шкалы вместо гладких полос, мигающий курсор в конце ленты. Всё движение гаснет по `prefers-reduced-motion`.
+- **Лента «прямо сейчас» без слежки.** Единственное новое хранилище — кольцо на 40 записей в одной опции с `autoload = false`. Пишется только для вошедших и не чаще раза в сутки на главу; в записи только кто, что и когда. Удалённая опция `xin_hub_activity` выключает ленту совсем.
+- **Уголок на трёх языках.** Все его строки — от состояния в шапке до подписей под числами — переведены на английский и бразильский португальский. Интервал в ленте считается своими строками, а не `human_time_diff()`: ядро переводит его по языку сайта, а не по выбранному в переключателе.
 
 ### Planned
 

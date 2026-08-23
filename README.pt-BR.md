@@ -245,15 +245,24 @@ O script relê cada string traduzível do tema, aponta o que falta e o que sobra
 
 Ideias que cabem na regra do “sem dependências”. Vote com 👍 nas issues ou mande um PR.
 
+### Pronto
+
+- [x] **Espaço do leitor** — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que estão lendo agora. No estilo terminal: grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas. Nada de novo é coletado sobre as pessoas além de um anel de 40 leituras recentes
+- [x] Exportação EPUB / FB2 de uma obra inteira
+- [x] Sequências de leitura e conquistas simples
+- [x] Equipes de tradução (vários autores por projeto)
+- [x] Capítulos pagos opcionais por uma ponte com o WooCommerce
+- [x] Importação em massa de capítulos — `.txt`, `.md`, `.html`, `.docx` e lotes ZIP, processados dez arquivos por vez para aguentar hospedagem compartilhada. Exporte um Google Doc como `.docx` e ele segue o mesmo caminho
+- [x] Módulo opcional de discussões (opt-in, desligado por padrão)
+- [x] Ferramentas de parágrafo no leitor e leitura em voz alta com vozes do aparelho
+- [x] Fila de capítulos agendados com contagem regressiva até a publicação
+- [x] Três idiomas de ponta a ponta: russo, inglês e português do Brasil — tema, estúdio e os dois plugins
+
+### A seguir
+
 - [ ] **Comparativo de frameworks** — Bootstrap contra um subconjunto de Tailwind, UnoCSS, Bulma, Pico e nenhum framework, julgados por tamanho após gzip, LCP em celular mediano, deslocamento de layout e conforto de leitura
 - [ ] **Build sem framework CSS** como final provável: o tema já carrega o próprio sistema de tokens, então um framework pode acabar sendo peso morto
 - [ ] Revisão tipográfica do leitor: comprimento de linha medido, margens ópticas, ritmo de linha por idioma
-- [ ] Exportação EPUB / FBReader de uma obra inteira
-- [ ] Sequências de leitura e conquistas simples
-- [ ] Equipes de tradução (vários autores por projeto)
-- [ ] Capítulos pagos opcionais por uma ponte com o WooCommerce
-- [ ] Importação em massa de capítulos de `.docx` / `.txt` / Google Docs
-- [ ] Módulo opcional de discussões (opt-in, desligado por padrão)
 - [ ] Mais idiomas: DE, ES, ID, VI
 
 ## FAQ

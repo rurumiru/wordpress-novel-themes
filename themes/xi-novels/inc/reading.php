@@ -35,6 +35,12 @@ function xin_track_reading( $chapter_id ) {
 
 	update_user_meta( $user_id, XIN_READ_COUNT, (int) get_user_meta( $user_id, XIN_READ_COUNT, true ) + 1 );
 
+	// Витрина «сейчас на площадке» в уголке читателя. Кольцо короткое, гостей в
+	// нём нет: их прочтения тема и так не считает.
+	if ( function_exists( 'xin_hub_log_read' ) ) {
+		xin_hub_log_read( $user_id, $chapter_id );
+	}
+
 	$today = xin_today();
 	$last  = (int) get_user_meta( $user_id, XIN_READ_DAY, true );
 

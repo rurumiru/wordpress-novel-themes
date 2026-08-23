@@ -245,15 +245,24 @@ The script re-reads every translatable string in the theme, reports what a map i
 
 Ideas that fit the “no dependencies” rule. Vote with 👍 in issues, or send a PR.
 
+### Done
+
+- [x] **Reader Hub** — one page that shows the site from the inside: who talks, what they argue about, what people are reading right now. Styled as a terminal: grid and sweep on the canvas, cut corners, monospace readouts, segmented bars. Nothing new is collected about people except a 40-entry ring of recent reads
+- [x] EPUB / FB2 export for a whole title
+- [x] Reading streaks and simple achievements
+- [x] Translator teams (several authors per project)
+- [x] Optional paid chapters via WooCommerce bridge
+- [x] Bulk chapter import — `.txt`, `.md`, `.html`, `.docx` and ZIP batches, processed ten files at a time so shared hosting survives it. Export a Google Doc as `.docx` and it goes through the same path
+- [x] Optional discussions module (opt-in, off by default)
+- [x] Reader paragraph tools and on-device text-to-speech
+- [x] Scheduled chapter queue with a release countdown
+- [x] Three languages end to end: Russian, English, Brazilian Portuguese — theme, studio and both plugins
+
+### Next
+
 - [ ] **Framework bake-off** — Bootstrap vs Tailwind subset vs UnoCSS vs Bulma vs Pico vs no framework, judged on gzip size, LCP on a mid-range phone, layout shift and reading comfort
 - [ ] **Zero-CSS-framework build** as the likely endgame: the theme already carries its own token system, so a framework may end up being dead weight
 - [ ] Reader typography pass: measured line length, optical margins, per-language line rhythm
-- [ ] EPUB / FBReader export for a whole title
-- [ ] Reading streaks and simple achievements
-- [ ] Translator teams (several authors per project)
-- [ ] Optional paid chapters via WooCommerce bridge
-- [ ] Bulk chapter import from `.docx` / `.txt` / Google Docs
-- [ ] Optional discussions module (opt-in, off by default)
 - [ ] Additional locales: DE, ES, ID, VI
 
 ## FAQ
