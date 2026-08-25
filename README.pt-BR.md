@@ -44,8 +44,6 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 > [!TIP]
 > **Demo ao vivo — [xi.community](https://xi.community).** Um site de verdade rodando este tema: navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
 
-> [!IMPORTANT]
-> **Agora são dois temas.** [**XI Aurora**](https://github.com/rurumiru/wordpress-novel-aurora) é a mesma plataforma em um visual escuro de vidro e luz — a página inicial, a página da obra e o leitor refeitos do zero. Mesmos tipos de post, mesmos hooks, mesmos plugins; escolha a sua luz.
 
 <details>
 <summary><b>O que ainda muda e o que já está estável</b></summary>

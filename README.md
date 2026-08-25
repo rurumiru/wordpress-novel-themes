@@ -44,8 +44,6 @@ rankings, an author studio, a reader library and a reader hub.<br>
 > [!TIP]
 > **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
 
-> [!IMPORTANT]
-> **There are two themes now.** [**XI Aurora**](https://github.com/rurumiru/wordpress-novel-aurora) is the same platform in a dark, glass-and-light design — the home page, the novel page and the reader rebuilt from scratch. Same post types, same hooks, same plugins; pick the light you want.
 
 <details>
 <summary><b>What is still moving, and what is already stable</b></summary>
