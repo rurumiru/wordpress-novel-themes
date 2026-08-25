@@ -4,10 +4,10 @@
 
 ### Pare de manter um blog. Coloque uma plataforma de novels no ar.
 
-**Um tema WordPress gratuito, GPL e sem nenhuma dependência que transforma uma instalação limpa em um site completo de light novels, web novels e traduções — catálogo, capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca do leitor.**
+**Um tema WordPress gratuito, GPL e sem nenhuma dependência que transforma uma instalação limpa em um site completo de light novels, web novels e traduções — catálogo, capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaço do leitor.**
 **E em nenhum momento parece WordPress.**
 
-[![Versão](https://img.shields.io/badge/version-beta%200.4.0-f59e0b)](CHANGELOG.md)
+[![Versão](https://img.shields.io/badge/version-beta%200.5.0-f59e0b)](CHANGELOG.md)
 [![Licença](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.4.0**
+> ### 🚧 Status: **beta 0.5.0**
 >
 > A plataforma funciona de ponta a ponta — dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**. O Bootstrap 5 é a base atual, não o destino: o plano é medir as alternativas e ficar com a que vencer em números reais.
 >
@@ -46,6 +46,17 @@
 > Um site de verdade rodando este tema — navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
 >
 > **Aviso:** esse demo roda na versão WordPress até a plataforma própria da equipe, em **Elixir**, ficar pronta. Quando ela entrar no ar, o xi.community migra para lá e este tema continua aqui como a implementação em WordPress — grátis, GPL e mantida em sua própria trilha.
+
+## 🆕 O que chegou recentemente
+
+| | |
+|---|---|
+| **0.5.0** | **Espaço do leitor** em `/hub/` — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora. Seis contadores do site no cabeçalho, as duas métricas de uma vez no quadro de líderes, um cartão de perfil com a barra até o próximo nível. Desenhado como um terminal — grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas — e não coleta nada novo sobre ninguém além de um anel de 40 leituras recentes |
+| **0.4.0** | **Ferramentas de parágrafo e leitura em voz alta com vozes do aparelho.** Clique em um parágrafo: marque-o em uma de quatro cores, link direto para ele, cite-o na discussão, sugira uma correção com comparação ao vivo ou ouça o capítulo a partir dali. **Capítulos na fila dizem quando saem**, e a agenda de publicação passou a morar nas configurações do projeto, com o autor |
+| **0.3.3** | **Os rankings viraram uma página própria** em `/ranking/`: três quadros, três janelas de tempo, filtro por gênero e uma nota ponderada — um voto cinco estrelas não passa à frente de quatrocentos votos honestos. A **gestão em massa de obras** chegou como plugin |
+| **0.3.0** | **Um editor de capítulos do próprio tema** no lugar do TinyMCE, um **glossário de projeto** mantido pelo tradutor e o **XI Studio** — o estúdio do tema com o site ao vivo ao lado dos controles |
+
+Todas as versões, na íntegra: **[CHANGELOG.md](CHANGELOG.md)**.
 
 ## ⭐ Por que você está lendo isto
 
@@ -67,8 +78,10 @@ As outras respostas são um **tema de marketplace de US$ 59 a US$ 99** soldado a
 | 🔤 **Glossário no leitor** | Renomeie o que quiser durante a leitura: selecione uma palavra, escreva como ela deve aparecer, e todos os capítulos passam a seguir a regra — qualquer caixa ou caixa exata, palavra inteira ou parte dela, para uma obra só ou para o site inteiro. Fica no navegador e sai em arquivo, então uma tradução de máquina se conserta uma vez e é passada adiante |
 | 🔖 **Biblioteca sem conta** | Marcadores, histórico de leitura e “continuar lendo” vivem no `localStorage` |
 | 🕒 **Feed de atualizações** | Todo capítulo novo do site, agrupado em uma linha do tempo Hoje / Ontem / data |
-| 🏆 **Rankings** | Pódio dos três primeiros mais a lista até o décimo lugar, três ordens concorrentes em um bloco |
-| 🌙 **Escuro e claro** | Escuro por padrão, alternador no cabeçalho, sem estouro branco ao carregar |
+| 🏆 **Rankings** | Uma página própria em `/ranking/`: três quadros — nota, visualizações e número de capítulos —, três janelas de tempo e filtro por gênero. Os três primeiros sobem ao pódio, o resto vem em linhas com uma barra em relação ao líder |
+| 🛰️ **Espaço do leitor** | `/hub/` mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora, seis contadores e um quadro de líderes. No estilo terminal, e todo o movimento para sob `prefers-reduced-motion` |
+| 🗣️ **Ferramentas de parágrafo e leitura em voz alta** | Clique em um parágrafo: marque-o em uma de quatro cores, gere um link para ele, cite-o, sugira uma correção com comparação ao vivo ou ouça o capítulo a partir dali, com uma voz já instalada no aparelho — velocidade, tom, volume e prévia inclusos |
+| 🌙 **Claro, escuro ou o do sistema** | Claro por padrão, escuro e “seguir o sistema” a um toque no cabeçalho — e sem estouro branco ao carregar |
 | 📥 **EPUB e FB2** | Qualquer obra baixa como um e-book de verdade — capa, sumário, capítulos. Capítulos trancados entram no arquivo apenas para quem pode lê-los |
 | 🏅 **Sequências e conquistas** | Dias seguidos, capítulos lidos, dez conquistas discretas no perfil — sem pontos, sem placares |
 | 🔑 **Entrada no próprio site** | Entrar, cadastrar e recuperar a senha em uma página centralizada com o seu design — o leitor nunca vê `/wp-login.php` |
@@ -84,6 +97,7 @@ As outras respostas são um **tema de marketplace de US$ 59 a US$ 99** soldado a
 | 💾 **Rascunhos que sobrevivem** | O texto do capítulo salva sozinho no navegador enquanto você escreve; contagem de palavras ao vivo |
 | 🔢 **Numeração de capítulos** | O próximo número vem preenchido; números quebrados (`12.5`) para extras |
 | 👑 **Acesso antecipado** | Marque capítulos como PLUS — trancados para visitantes, com selo no índice |
+| 🗓️ **Agenda e fila de publicação** | Dias da semana e horário de publicação ficam nas configurações do projeto, com um resumo de quantos capítulos esperam e quando sai o próximo. Um capítulo na fila leva o selo “Na fila”, a data de saída e quanto falta |
 | 🧑‍🎤 **Perfis públicos** | Página do autor com estatísticas e abas: projetos / capítulos / artigos |
 
 ### Para quem administra
@@ -98,10 +112,11 @@ As outras respostas são um **tema de marketplace de US$ 59 a US$ 99** soldado a
 | 🛒 **Capítulos pagos** | Uma ponte para o WooCommerce: associe um produto a um capítulo e ele abre depois da compra, ao lado do PLUS |
 | 💬 **Discussões (opcional)** | Desligadas por padrão. Ligadas: marcação própria, respostas em um nível, spoilers, curtidas, selos de autor e de equipe — nada com cara de comentário do WordPress |
 | 👑 **Acesso PLUS** | Dê acesso antecipado a um leitor por 30 / 90 / 365 dias ou sem prazo; os capítulos marcados com PLUS abrem para ele automaticamente |
+| 🗂️ **Gestão de obras em massa** | Um plugin que vem junto: filtre por dono, gênero, status, capa ou 18+, selecione com Shift — ou pegue tudo o que o filtro encontrou — e então publique, troque gêneros e tags, mude o dono ou a equipe, aplique uma capa ao lote, libere PLUS em todos os capítulos de uma obra, exporte CSV ou apague. Cada id é conferido de novo com `current_user_can()`, então um formulário adulterado não toca na obra de outra pessoa |
 | 🧩 **Widgets próprios** | “Seleção de novels” (visualizações / nota / novidades / atualizações) e “Últimos capítulos” |
 | 🚫 **Sem comentários em lugar nenhum** | Entregue de propósito sem discussões — front-end, templates e admin todos limpos |
 | 👥 **Contas nas suas regras** | O interruptor do cadastro e o papel que uma conta nova recebe (autor / colaborador / leitor) ficam no customizer; tentativas repetidas são freadas e um campo escondido pega robôs |
-| 🌐 **Pronto para tradução** | 729 strings, original em russo mais os `.mo` compilados em inglês e português do Brasil, além do script de build |
+| 🌐 **Pronto para tradução** | 982 strings no tema e mais 257 nos três plugins que vêm junto — original em russo, `.mo` compilados em inglês e português do Brasil, além do script de build |
 
 ![Leitor](screenshots/04-reader.jpg)
 
@@ -110,7 +125,7 @@ As outras respostas são um **tema de marketplace de US$ 59 a US$ 99** soldado a
 | | Este repositório | Temas pagos de marketplace | Plataformas SaaS de novels |
 |---|---|---|---|
 | Preço | **Grátis, GPL** | US$ 59–99 + renovações | Divisão de receita / mensalidade |
-| Código que dá para ler | **Sim, ~7 mil linhas, API comentada** | JSON ofuscado de construtor | Nenhum |
+| Código que dá para ler | **Sim, ~19 mil linhas, API comentada** | JSON ofuscado de construtor | Nenhum |
 | Exige construtor de páginas | **Não** | Em geral sim | n/d |
 | npm / composer / build | **Nenhum** | Muitas vezes | n/d |
 | Chamadas externas em execução | **Zero** | Fontes em CDN, rastreadores | Tudo |
@@ -129,14 +144,15 @@ Deliberadamente sem graça e com poucas dependências — dá para ler tudo em u
 | PHP | **7.4+**, API do WordPress em PHP procedural | Sem composer, sem autoloader, sem framework — entra em qualquer hospedagem |
 | Framework CSS | **Bootstrap 5.3.3**, empacotado localmente em `assets/vendor/` | Grade, navbar, offcanvas, modal, dropdown, abas, formulários, paginação — acessíveis e testados no mundo real |
 | Camada de design | **CSS próprio com tokens em HSL** (`style.css`, `skin.css`, `pages.css`, `parts.css`) | O Bootstrap é repaginado por variáveis CSS; as escalas clara e escura vêm de contraste medido |
-| JS | **ES5 puro**, ~2,5 mil linhas + o bundle do Bootstrap | Sem etapa de build, sem npm, sem framework |
+| JS | **ES5 puro**, ~3,2 mil linhas + o bundle do Bootstrap | Sem etapa de build, sem npm, sem framework |
 | Modelo de dados | Dois tipos de post (`novel`, `chapter`), três taxonomias (`genre`, `novel_tag`, `novel_status`), post meta | WordPress padrão — o seu conteúdo continua portátil |
 | Editor | Editor próprio em `contenteditable`, ~600 linhas | Um capítulo precisa de limpeza de colagem, quebra de cena e foco — não de um construtor de páginas |
 | Armazenamento no cliente | `localStorage` para biblioteca, histórico, configurações de leitura, glossário e rascunhos | O leitor guarda o lugar dele sem criar conta |
-| REST | Uma rota com namespace (`/api/xin/v1/rate`) | Avaliação anônima sem plugin |
+| REST | Três rotas sob `/api/xin/v1/` — `rate`, `like`, `skin` | Avaliação anônima, curtidas nas discussões e a prévia ao vivo do estúdio, sem plugin |
 | i18n | Gettext `.po` / `.mo` + script de build | Nenhum plugin de tradução necessário |
 | Ícones | Sprite SVG inline em PHP | Sem fonte de ícones, sem requisição externa |
 | Fontes | Pilha do sistema | Nada carregado do Google |
+| Plugins que vêm junto | **XI Studio**, **XI Novels Import**, **XI Novels Manager** — ~3,7 mil linhas de PHP | Todos opcionais: o tema roda sozinho, e os plugins acrescentam o estúdio, a importação em massa e a gestão em massa |
 | Ambiente de desenvolvimento | Servidor embutido do PHP + drop-in **SQLite** | Prévia sem instalar MySQL |
 
 ## Instalação em dois minutos
@@ -168,7 +184,8 @@ themes/xi-novels/      o tema — tudo que foi descrito acima vive aqui
   assets/              css (7 arquivos), js (5 arquivos), vendor/bootstrap
   languages/           en_US e pt_BR, .po + .mo
 demo/                  conteúdo de demonstração: um plugin com dois botões e scripts de CLI
-plugins/               xi-studio (estúdio do tema), xi-novel-import e notas
+plugins/               xi-studio (estúdio do tema), xi-novel-import (importação
+                       em massa), xi-novel-manager (gestão de obras em massa) e notas
                        sobre quais plugins de terceiros o projeto usa e por quê
 tools/                 roteador do servidor de dev, importador em massa, gerador de traduções,
                        i18n/ com um mapa RU -> idioma por língua
@@ -229,7 +246,7 @@ Cada imagem abaixo é o próprio tema, rodando com o conteúdo de demonstração
 
 ## Idiomas
 
-A interface vem em **russo** (as strings de origem), **inglês** (`languages/en_US.mo`) e **português do Brasil** (`languages/pt_BR.mo`) — 815 strings cada, mais 36 do plugin do estúdio. O visitante troca pelo controle RU / EN / PT no cabeçalho e a escolha fica em um cookie; **Customizer → Marca → Idioma principal** decide com o que o site abre para quem chega pela primeira vez.
+A interface vem em **russo** (as strings de origem), **inglês** (`languages/en_US.mo`) e **português do Brasil** (`languages/pt_BR.mo`) — 982 strings cada, mais 257 nos plugins que vêm junto (estúdio 36, importação 127, gestão 94). O visitante troca pelo controle RU / EN / PT no cabeçalho e a escolha fica em um cookie; **Customizer → Marca → Idioma principal** decide com o que o site abre para quem chega pela primeira vez.
 
 Um quarto idioma é um arquivo só — um mapa PHP de string em russo para tradução:
 
@@ -248,6 +265,8 @@ Ideias que cabem na regra do “sem dependências”. Vote com 👍 nas issues o
 ### Pronto
 
 - [x] **Espaço do leitor** — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que estão lendo agora. No estilo terminal: grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas. Nada de novo é coletado sobre as pessoas além de um anel de 40 leituras recentes
+- [x] **Rankings como página própria** — três quadros, três janelas de tempo, filtro por gênero e nota ponderada
+- [x] **Gestão de obras em massa** — filtrar, selecionar com Shift e agir sobre centenas de obras de uma vez, com saída em CSV
 - [x] Exportação EPUB / FB2 de uma obra inteira
 - [x] Sequências de leitura e conquistas simples
 - [x] Equipes de tradução (vários autores por projeto)
@@ -286,7 +305,7 @@ Capítulos e obras usam o editor clássico de propósito (autores escrevem texto
 As listas de capítulos são cacheadas e ordenadas por meta numérica; sites com milhares de capítulos por obra são o alvo do projeto.
 
 **Existe um demo?**
-Clone e rode o sandbox — ele semeia um catálogo de demonstração com um comando. As capturas acima vêm desse sandbox.
+Sim — [xi.community](https://xi.community) é um site de verdade rodando este tema. Você também pode clonar o repositório e rodar o sandbox: ele semeia um catálogo de demonstração com um comando, e todas as capturas acima vêm dele.
 
 ## Usando o tema? Um link de volta cai bem
 
@@ -303,6 +322,8 @@ O tema traz uma linha pronta: **Customizer → rodapé → “Feito com XI Novel
 ## Contribuindo
 
 Issues e pull requests são bem-vindos. Duas regras: **nenhuma etapa de build** (o tema continua editável em um editor de texto) e **nenhuma dependência externa em execução**.
+
+O trabalho aceito é creditado pelo nome no [CHANGELOG.md](CHANGELOG.md) — foi assim que chegaram as ferramentas de parágrafo do leitor e o estúdio de vozes, de [@HeavenlyCatCodes](https://github.com/HeavenlyCatCodes).
 
 ## Licença
 

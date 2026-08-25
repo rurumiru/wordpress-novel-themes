@@ -4,10 +4,10 @@
 
 ### Stop running a blog. Run a novel platform.
 
-**A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library.**
+**A free, GPL, zero-dependency WordPress theme that turns a plain install into a full light-novel / web-novel / ranobe site — catalog, chapters, distraction-free reader, rankings, author studio, reader library, reader hub.**
 **And it never looks like WordPress.**
 
-[![Version](https://img.shields.io/badge/version-beta%200.4.0-f59e0b)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-beta%200.5.0-f59e0b)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)](https://www.php.net/)
@@ -29,7 +29,7 @@
 
 ---
 
-> ### 🚧 Status: **beta 0.4.0**
+> ### 🚧 Status: **beta 0.5.0**
 >
 > The platform works end to end — you can install it today and publish titles and chapters. What is not final is the **presentation layer**. Bootstrap 5 is the current base, not the destination: the plan is to benchmark alternatives and keep whichever wins on real numbers.
 >
@@ -46,6 +46,17 @@
 > A real site running this theme — browse the catalog, open a title, try the reader and its settings.
 >
 > **Heads-up:** that demo runs on the WordPress build until the team's own platform on **Elixir** ships. Once the Elixir platform launches, xi.community moves over to it and this theme stays here as the WordPress implementation — free, GPL and maintained on its own track.
+
+## 🆕 What landed recently
+
+| | |
+|---|---|
+| **0.5.0** | **Reader Hub** at `/hub/` — one page that shows the site from the inside: who talks, what they argue about, what is being read right now. Six site counters in the header, both metrics at once on the leaderboard, a profile card with a bar to the next level. Drawn as a terminal — grid and sweep on the canvas, cut corners, monospace readouts, segmented bars — and it collects nothing new about anyone beyond a 40-entry ring of recent reads |
+| **0.4.0** | **Paragraph tools and on-device text-to-speech.** Click a paragraph: bookmark it in one of four colours, link straight to it, quote it into the discussion, suggest an edit with a live diff, or have the chapter read aloud from that point. **Queued chapters say when they go out**, and the release schedule moved into the author’s own project settings |
+| **0.3.3** | **Rankings became a page of their own** at `/ranking/`: three boards, three time windows, a genre filter and a weighted score, so one five-star vote cannot outrun four hundred honest ones. **Bulk title management** arrived as a bundled plugin |
+| **0.3.0** | **A chapter editor of the theme’s own** instead of TinyMCE, a **project glossary** the translator keeps, and **XI Studio** — the theme studio with a live preview of the site beside the knobs |
+
+Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 
 ## ⭐ Why you are reading this
 
@@ -67,8 +78,10 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🔤 **Glossary in the reader** | Rename anything while you read: select a word, type how it should read, and every chapter follows — any case or exact case, whole word or not, for one title or for the whole site. Kept in the browser and exportable as a file, so a machine-translated release gets fixed once and passed on |
 | 🔖 **Library without an account** | Bookmarks, reading history and “continue reading” live in `localStorage` |
 | 🕒 **Updates feed** | Every fresh chapter on the site, grouped into a Today / Yesterday / date timeline |
-| 🏆 **Rankings** | Podium for the top three plus a list to tenth place, three competing orders in one block |
-| 🌙 **Dark & light** | Dark by default, toggle in the header, no white flash on load |
+| 🏆 **Rankings** | A page of their own at `/ranking/`: three boards — score, views, chapter count — three time windows and a genre filter. The top three stand on a podium, the rest run as rows with a bar against the leader |
+| 🛰️ **Reader Hub** | `/hub/` shows the site from the inside — talk, arguments, what is being read right now, six counters and a leaderboard. Styled as a terminal, and every animation stops under `prefers-reduced-motion` |
+| 🗣️ **Paragraph tools and read-aloud** | Click a paragraph: bookmark it in one of four colours, link to it, quote it, suggest an edit with a live diff, or have the chapter read aloud from there in a voice already installed on the device — rate, pitch, volume and a preview included |
+| 🌙 **Light, dark, or system** | Light by default, dark and “follow the system” one switch away in the header — and no white flash on load |
 | 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them |
 | 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
 | 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
@@ -84,6 +97,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 💾 **Drafts that survive** | Chapter text auto-saves to the browser while you write; live word count |
 | 🔢 **Chapter numbering** | Next number pre-filled; fractional numbers (`12.5`) for side stories |
 | 👑 **Early access** | Mark chapters as PLUS — locked for guests, badged in the contents |
+| 🗓️ **Release schedule and queue** | Days of the week and a release time sit in the project settings, with a summary of how many chapters wait and when the next one goes out. A queued chapter carries a “Queued” badge, its release date and the time left |
 | 🧑‍🎤 **Public profiles** | Author page with stats and tabs: projects / chapters / articles |
 
 ### For the owner
@@ -98,10 +112,11 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase, next to PLUS |
 | 💬 **Discussions (optional)** | Off by default. When on: own markup, one level of replies, spoilers, likes, author and team badges — nothing that looks like WordPress comments |
 | 👑 **PLUS access** | Grant a reader early access for 30 / 90 / 365 days or with no expiry; chapters marked PLUS open for them automatically |
+| 🗂️ **Bulk title management** | A bundled plugin: filter by owner, genre, status, cover or 18+, select with Shift — or take everything the filter found — and then publish, retag, reassign the owner or the team, set one cover on the batch, grant PLUS across a title, export CSV or delete. Every id is re-checked against `current_user_can()`, so a doctored form cannot touch a stranger’s title |
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 🚫 **No comments anywhere** | Shipped deliberately without discussions — front end, templates and admin section all clean |
 | 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
-| 🌐 **Translation ready** | 729 strings, Russian source + compiled English and Brazilian Portuguese `.mo`, plus a build script |
+| 🌐 **Translation ready** | 982 strings in the theme and 257 more across the three bundled plugins — Russian source, compiled English and Brazilian Portuguese `.mo`, plus a build script |
 
 ![Reader](screenshots/04-reader.jpg)
 
@@ -110,7 +125,7 @@ Every other answer is either a **$59–$99 ThemeForest theme** welded to a page 
 | | This repo | Paid marketplace themes | Novel SaaS platforms |
 |---|---|---|---|
 | Price | **Free, GPL** | $59–$99 + renewals | Revenue share / monthly |
-| Source you can read | **Yes, ~7k lines, commented API** | Obfuscated builder JSON | None |
+| Source you can read | **Yes, ~19k lines, commented API** | Obfuscated builder JSON | None |
 | Page builder required | **No** | Usually yes | n/a |
 | npm / composer / build | **None** | Often | n/a |
 | External runtime calls | **Zero** | CDN fonts, trackers | Everything |
@@ -129,14 +144,15 @@ Deliberately boring and dependency-light — you can read the whole thing in an 
 | PHP | **7.4+**, plain procedural WordPress API | No composer, no autoloader, no framework — drops into any host |
 | CSS framework | **Bootstrap 5.3.3**, bundled locally in `assets/vendor/` | Grid, navbar, offcanvas, modal, dropdown, tabs, forms, pagination — accessible and battle-tested |
 | Design layer | **Custom CSS with HSL design tokens** (`style.css`, `skin.css`, `pages.css`, `parts.css`) | Bootstrap is re-skinned through CSS variables; the light and dark ladders are built from measured contrast |
-| JS | **Vanilla ES5**, ~2.5k lines + Bootstrap bundle | No build step, no npm, no framework |
+| JS | **Vanilla ES5**, ~3.2k lines + Bootstrap bundle | No build step, no npm, no framework |
 | Data model | Two post types (`novel`, `chapter`), three taxonomies (`genre`, `novel_tag`, `novel_status`), post meta | Standard WordPress — your content stays portable |
 | Editor | Own `contenteditable` editor, ~600 lines | A chapter needs paste cleanup, scene breaks and focus — not a page builder |
 | Client storage | `localStorage` for library, history, reading settings, drafts | Readers keep their place without an account |
-| REST | One namespaced route (`/api/xin/v1/rate`) | Anonymous rating without a plugin |
+| REST | Three namespaced routes under `/api/xin/v1/` — `rate`, `like`, `skin` | Anonymous rating, discussion likes and the studio’s live preview, without a plugin |
 | i18n | Gettext `.po` / `.mo` + build script | No translation plugin required |
 | Icons | Inline SVG sprite in PHP | No icon font, no external request |
 | Fonts | System stack | Nothing loaded from Google |
+| Bundled plugins | **XI Studio**, **XI Novels Import**, **XI Novels Manager** — ~3.7k lines of PHP | Optional, every one of them: the theme runs alone, the plugins add the studio, bulk import and bulk management |
 | Dev sandbox | PHP built-in server + **SQLite** drop-in | Preview without installing MySQL |
 
 ## Install in two minutes
@@ -168,8 +184,9 @@ themes/xi-novels/      the theme — everything above lives here
   assets/              css (7 files), js (5 files), vendor/bootstrap
   languages/           en_US and pt_BR, .po + .mo
 demo/                  demo content: a plugin with two buttons, plus CLI scripts
-plugins/               xi-studio (theme studio), xi-novel-import, and notes
-                       on which third-party plugins the project uses and why
+plugins/               xi-studio (theme studio), xi-novel-import (bulk import),
+                       xi-novel-manager (bulk title management), and notes on
+                       which third-party plugins the project uses and why
 tools/                 dev-server router, bulk importer, translation builder,
                        i18n/ with one RU -> locale map per language
 docs/                  install, authoring, import, customizing, development
@@ -229,7 +246,7 @@ Every shot below is the theme itself, running with the demo content from this re
 
 ## Languages
 
-The interface ships in **Russian** (source strings), **English** (`languages/en_US.mo`) and **Brazilian Portuguese** (`languages/pt_BR.mo`) — 815 strings each, plus 36 more for the studio plugin. A visitor switches with the RU / EN / PT control in the header and the choice is remembered in a cookie; **Customize → Brand → Main language** decides what a first-time visitor sees.
+The interface ships in **Russian** (source strings), **English** (`languages/en_US.mo`) and **Brazilian Portuguese** (`languages/pt_BR.mo`) — 982 strings each, plus 257 more across the bundled plugins (studio 36, import 127, manager 94). A visitor switches with the RU / EN / PT control in the header and the choice is remembered in a cookie; **Customize → Brand → Main language** decides what a first-time visitor sees.
 
 Adding a fourth language is one file — a PHP map of Russian source string to translation:
 
@@ -248,6 +265,8 @@ Ideas that fit the “no dependencies” rule. Vote with 👍 in issues, or send
 ### Done
 
 - [x] **Reader Hub** — one page that shows the site from the inside: who talks, what they argue about, what people are reading right now. Styled as a terminal: grid and sweep on the canvas, cut corners, monospace readouts, segmented bars. Nothing new is collected about people except a 40-entry ring of recent reads
+- [x] **Rankings as a page of their own** — three boards, three time windows, a genre filter and a weighted score
+- [x] **Bulk title management** — filter, select with Shift and act on hundreds of titles at once, CSV out
 - [x] EPUB / FB2 export for a whole title
 - [x] Reading streaks and simple achievements
 - [x] Translator teams (several authors per project)
@@ -286,7 +305,7 @@ Chapters and titles use the classic editor by design (authors write long text). 
 Chapter lists are cached and sorted by numeric meta; sites with thousands of chapters per title are the design target.
 
 **Is there a demo?**
-Clone it and run the sandbox — it seeds a demo catalog in one command. Screenshots above come from that sandbox.
+Yes — [xi.community](https://xi.community) is a live site running this theme. You can also clone the repo and run the sandbox: it seeds a demo catalog in one command, and every screenshot above comes from it.
 
 ## Using it? A link back is nice
 
@@ -303,6 +322,8 @@ The theme ships a ready line: **Customize → footer → “Running on XI Novels
 ## Contributing
 
 Issues and pull requests are welcome. Two rules: **no build step** (the theme stays editable with a text editor) and **no external runtime dependencies**.
+
+Merged work is credited by name in [CHANGELOG.md](CHANGELOG.md) — the reader’s paragraph tools and the voice studio came in that way, from [@HeavenlyCatCodes](https://github.com/HeavenlyCatCodes).
 
 ## License
 
