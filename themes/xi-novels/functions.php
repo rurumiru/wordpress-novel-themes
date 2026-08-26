@@ -92,12 +92,19 @@ function xin_assets() {
 	wp_enqueue_style( 'xi-novels-parts', XIN_URI . '/assets/css/parts.css', array( 'xi-novels-pages' ), xin_asset_ver( '/assets/css/parts.css' ) );
 	wp_enqueue_style( 'xi-novels-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xi-novels-parts' ), xin_asset_ver( '/assets/css/widgets.css' ) );
 	wp_enqueue_style( 'xi-novels-landing', XIN_URI . '/assets/css/landing.css', array( 'xi-novels-widgets' ), xin_asset_ver( '/assets/css/landing.css' ) );
+	// Облик ветки: переставляет токены темы и правит те немногие узлы, где
+	// эталон отличается построением, а не краской. Подключается последним —
+	// значит, перекрывает всё, что накопилось выше.
+	wp_enqueue_style( 'xi-novels-look', XIN_URI . '/assets/css/look.css', array( 'xi-novels-landing' ), xin_asset_ver( '/assets/css/look.css' ) );
 
 	wp_enqueue_script( 'xi-novels-ui', XIN_URI . '/assets/js/ui.js', array(), xin_asset_ver( '/assets/js/ui.js' ), true );
 
 $custom = xin_customizer_css();
 	if ( $custom ) {
-		wp_add_inline_style( 'xi-novels-pages', $custom );
+		// К ПОСЛЕДНЕЙ таблице, а не к pages.css: настройки Студии темы обязаны
+		// стоять в конце каскада, иначе облик ветки перекрывал бы выбранный
+		// владельцем цвет, и «Студия» молча перестала бы работать.
+		wp_add_inline_style( 'xi-novels-look', $custom );
 	}
 
 	wp_enqueue_script( 'xi-novels', XIN_URI . '/assets/js/theme.js', array(), xin_asset_ver( '/assets/js/theme.js' ), true );
