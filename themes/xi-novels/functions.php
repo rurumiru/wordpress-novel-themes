@@ -80,15 +80,20 @@ function xin_asset_ver( $file ) {
 }
 
 function xin_assets() {
-	wp_enqueue_style( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.min.css', array(), '5.3.3' );
-	wp_enqueue_style( 'xi-novels', get_stylesheet_uri(), array( 'bootstrap' ), xin_asset_ver( '/style.css' ) );
+	// Раньше здесь первым шёл bootstrap.min.css. Из 2031 его класса разметка
+	// использовала 62, и 29 из них тема всё равно переопределяла сама; ради
+	// оставшихся 33 и четырёх поведений страница тащила 232 КБ стилей и 81 КБ
+	// скрипта. Их заменили base.css и ui.js — те же имена классов и те же
+	// data-bs-атрибуты, поэтому шаблоны не менялись.
+	wp_enqueue_style( 'xi-novels-base', XIN_URI . '/assets/css/base.css', array(), xin_asset_ver( '/assets/css/base.css' ) );
+	wp_enqueue_style( 'xi-novels', get_stylesheet_uri(), array( 'xi-novels-base' ), xin_asset_ver( '/style.css' ) );
 	wp_enqueue_style( 'xi-novels-skin', XIN_URI . '/assets/css/skin.css', array( 'xi-novels' ), xin_asset_ver( '/assets/css/skin.css' ) );
 	wp_enqueue_style( 'xi-novels-pages', XIN_URI . '/assets/css/pages.css', array( 'xi-novels-skin' ), xin_asset_ver( '/assets/css/pages.css' ) );
 	wp_enqueue_style( 'xi-novels-parts', XIN_URI . '/assets/css/parts.css', array( 'xi-novels-pages' ), xin_asset_ver( '/assets/css/parts.css' ) );
 	wp_enqueue_style( 'xi-novels-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xi-novels-parts' ), xin_asset_ver( '/assets/css/widgets.css' ) );
 	wp_enqueue_style( 'xi-novels-landing', XIN_URI . '/assets/css/landing.css', array( 'xi-novels-widgets' ), xin_asset_ver( '/assets/css/landing.css' ) );
 
-	wp_enqueue_script( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), '5.3.3', true );
+	wp_enqueue_script( 'xi-novels-ui', XIN_URI . '/assets/js/ui.js', array(), xin_asset_ver( '/assets/js/ui.js' ), true );
 
 $custom = xin_customizer_css();
 	if ( $custom ) {

@@ -1,0 +1,225 @@
+/*
+ * Основание вёрстки — то немногое, что тема брала у Bootstrap.
+ *
+ * ── ПОЧЕМУ ЭТОТ ФАЙЛ ЕСТЬ ───────────────────────────────────────────────────
+ * Из 2031 класса bootstrap.min.css разметка темы использовала 62, и 29 из них
+ * тема всё равно переопределяла своим CSS. За оставшиеся 33 класса и четыре
+ * поведения (модалка, панель сбоку, выпадающее меню, аккордеон) платили 232 КБ
+ * стилей и 81 КБ скрипта на КАЖДОЙ странице — 30.8 и 23.7 КБ в gzip.
+ *
+ * Здесь ровно эти 33 класса. Имена оставлены прежними намеренно: разметка
+ * шаблонов не тронута, `data-bs-*` продолжают работать (см. assets/js/ui.js),
+ * и переход не потребовал править ни одного шаблона.
+ *
+ * ── ПОРЯДОК ─────────────────────────────────────────────────────────────────
+ * Файл подключается ПЕРВЫМ, на месте bootstrap.min.css: собственные стили темы
+ * идут следом и по-прежнему перекрывают его — так же, как перекрывали фреймворк.
+ * Поэтому здесь только механика (что где лежит, что скрыто, что едет), а облик
+ * — цвета, радиусы, тени — живёт в skin.css и style.css.
+ */
+
+/* ── Раскладка ───────────────────────────────────────────────────────────── */
+
+.d-none  { display: none !important; }
+.d-flex  { display: flex !important; }
+
+.flex-wrap             { flex-wrap: wrap !important; }
+.justify-content-center { justify-content: center !important; }
+.align-items-center    { align-items: center !important; }
+.ms-auto               { margin-left: auto !important; }
+.w-auto                { width: auto !important; }
+
+/* Шаг отступов Bootstrap: 1 = .25rem, 2 = .5rem, 3 = 1rem, 5 = 3rem. */
+.gap-1 { gap: .25rem !important; }
+.mb-2  { margin-bottom: .5rem !important; }
+.mt-3  { margin-top: 1rem !important; }
+.mt-5  { margin-top: 3rem !important; }
+
+@media (min-width: 576px) {
+	.d-sm-inline-flex { display: inline-flex !important; }
+}
+
+@media (min-width: 992px) {
+	.d-lg-none { display: none !important; }
+	.d-lg-flex { display: flex !important; }
+}
+
+/* Список ссылок без маркеров — под .nav-link и .nav-pills из style.css. */
+.nav {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*
+ * Шапка. Ниже 992px горизонтальное меню не показывается вовсе: там его роль
+ * играет выезжающая панель, поэтому это не «схлопнутое» состояние, а просто
+ * скрытый блок.
+ */
+.navbar-collapse { display: none; }
+
+@media (min-width: 992px) {
+	.navbar-expand-lg .navbar-collapse {
+		display: flex;
+		flex-basis: auto;
+		align-items: center;
+	}
+}
+
+/* ── Появление ───────────────────────────────────────────────────────────── */
+
+.fade { transition: opacity .15s linear; }
+
+/* ── Выпадающее меню ─────────────────────────────────────────────────────── */
+
+.dropdown { position: relative; }
+
+.dropdown-menu {
+	position: absolute;
+	z-index: 1000;
+	top: 100%;
+	left: 0;
+	display: none;
+	min-width: 10rem;
+	margin: .25rem 0 0;
+	padding: .35rem 0;
+	list-style: none;
+}
+
+.dropdown-menu.show { display: block; }
+
+.dropdown-menu-end { right: 0; left: auto; }
+
+.dropdown-divider {
+	height: 0;
+	margin: .35rem 0;
+	overflow: hidden;
+	border-top: 1px solid currentColor;
+	opacity: .12;
+}
+
+/* ── Модальное окно ──────────────────────────────────────────────────────── */
+
+/*
+ * Затемнение рисует сам .modal, а не отдельный .modal-backdrop, который
+ * Bootstrap подставлял скриптом: лишний узел в DOM ради того же прямоугольника
+ * — и лишний источник рассинхрона, когда окно закрыли, а подложка осталась.
+ */
+.modal {
+	position: fixed;
+	z-index: 1055;
+	inset: 0;
+	display: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: rgba(16, 18, 32, .55);
+	opacity: 0;
+}
+
+.modal.show    { display: block; }
+.modal.is-open { opacity: 1; }
+
+.modal-dialog {
+	position: relative;
+	width: auto;
+	max-width: 500px;
+	margin: 1.75rem auto;
+	pointer-events: none;
+}
+
+.modal-dialog > * { pointer-events: auto; }
+
+.modal-lg { max-width: 800px; }
+
+.modal-dialog-centered {
+	display: flex;
+	align-items: center;
+	min-height: calc(100% - 3.5rem);
+}
+
+.modal-dialog-centered > .modal-content { width: 100%; }
+
+.modal-body { position: relative; }
+
+@media (max-width: 575.98px) {
+	.modal-dialog { margin: 1rem; }
+}
+
+/* ── Панель сбоку ────────────────────────────────────────────────────────── */
+
+.offcanvas {
+	position: fixed;
+	z-index: 1045;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	width: min(400px, 92vw);
+	max-width: 100%;
+	visibility: hidden;
+	transition: transform .3s ease-in-out, visibility .3s;
+}
+
+.offcanvas-end {
+	right: 0;
+	transform: translateX(100%);
+	border-left: 1px solid rgba(128, 128, 128, .25);
+}
+
+.offcanvas.show {
+	visibility: visible;
+	transform: none;
+}
+
+.offcanvas-body {
+	flex: 1 1 auto;
+	overflow-y: auto;
+}
+
+/* Подложка панели — отдельным узлом: она перекрывает страницу, но не саму панель. */
+.xin-backdrop {
+	position: fixed;
+	z-index: 1040;
+	inset: 0;
+	background: rgba(16, 18, 32, .55);
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+
+.xin-backdrop.is-open { opacity: 1; }
+
+/* Пока открыта панель или модалка, страница под ними не прокручивается. */
+.xin-locked { overflow: hidden; }
+
+/* ── Аккордеон ───────────────────────────────────────────────────────────── */
+
+.accordion-header { margin: 0; }
+
+.accordion-collapse { overflow: hidden; }
+
+.collapse:not(.show) { display: none; }
+
+/* Высоту на время анимации задаёт скрипт. */
+.collapsing {
+	display: block;
+	height: 0;
+	overflow: hidden;
+	transition: height .3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.fade,
+	.offcanvas,
+	.collapsing,
+	.xin-backdrop { transition: none; }
+}
+
+/* ── Мелочи форм ─────────────────────────────────────────────────────────── */
+
+.form-select-sm {
+	min-height: 32px;
+	padding: .2rem 1.6rem .2rem .5rem;
+	font-size: .85rem;
+}

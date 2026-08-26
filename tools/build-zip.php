@@ -42,7 +42,13 @@ if ( ! class_exists( 'ZipArchive' ) ) {
 	exit( 1 );
 }
 
-$skip = array( '.git', '.github', 'node_modules', '.DS_Store', 'Thumbs.db', 'desktop.ini' );
+/*
+ * bootstrap в списке не по ошибке: папка assets/vendor/bootstrap лежит под
+ * vendor/ в .gitignore, то есть в репозитории её нет, а на диске она остаётся
+ * с тех пор, когда тема грузила фреймворк. Без этой строки давно не нужные
+ * 313 КБ продолжали бы уезжать в каждую сборку темы.
+ */
+$skip = array( '.git', '.github', 'node_modules', 'bootstrap', '.DS_Store', 'Thumbs.db', 'desktop.ini' );
 
 $dir = dirname( $out );
 if ( $dir && ! is_dir( $dir ) ) {
@@ -74,7 +80,16 @@ foreach ( $files as $file ) {
 	}
 
 	foreach ( $skip as $unwanted ) {
-		if ( $relative === $unwanted || 0 === strpos( $relative, $unwanted . '/' ) || basename( $relative ) === $unwanted ) {
+		// Совпадение искали только в начале пути и по имени самого файла,
+		// поэтому вложенная папка отбрасывалась лишь как пустая запись, а её
+		// содержимое всё равно уезжало в архив: assets/vendor/bootstrap/*.min.js
+		// не начинается с 'bootstrap' и не называется так. Проверяем ещё и
+		// вхождение папки в середину пути.
+		if ( $relative === $unwanted
+			|| 0 === strpos( $relative, $unwanted . '/' )
+			|| false !== strpos( $relative, '/' . $unwanted . '/' )
+			|| basename( $relative ) === $unwanted
+		) {
 			continue 2;
 		}
 	}
