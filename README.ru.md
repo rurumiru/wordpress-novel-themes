@@ -14,11 +14,11 @@
 [![Живое демо](https://img.shields.io/badge/%D0%96%D0%B8%D0%B2%D0%BE%D0%B5_%D0%B4%D0%B5%D0%BC%D0%BE-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Установка](https://img.shields.io/badge/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%B4%D0%B2%D0%B5_%D0%BC%D0%B8%D0%BD%D1%83%D1%82%D1%8B-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Документация](https://img.shields.io/badge/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F-%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C-21759b?style=for-the-badge)](docs/)
-[![История версий](https://img.shields.io/badge/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9-%D0%B1%D0%B5%D1%82%D0%B0_0.7.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![История версий](https://img.shields.io/badge/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%B9-%D0%B1%D0%B5%D1%82%D0%B0_0.7.1-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Версия](https://img.shields.io/badge/%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F-%D0%B1%D0%B5%D1%82%D0%B0_0.7.0-f59e0b?style=flat-square)
+![Версия](https://img.shields.io/badge/%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F-%D0%B1%D0%B5%D1%82%D0%B0_0.7.1-f59e0b?style=flat-square)
 [![Лицензия](https://img.shields.io/badge/%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4_%E2%86%92_7.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@
 ![Главная](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Бета 0.7.0 — платформа работает целиком.** Её можно поставить сегодня и публиковать тайтлы и главы. Не финален **слой представления**: Bootstrap 5 — текущая база, а не конечная точка.
+> **Бета 0.7.1 — платформа работает целиком.** Её можно поставить сегодня и публиковать тайтлы и главы. Не финален **слой представления**: Bootstrap 5 — текущая база, а не конечная точка.
 
 > [!TIP]
 > **Живое демо — [xi.community](https://xi.community).** Настоящий сайт на этой теме: полистайте каталог, откройте тайтл, попробуйте читалку и её настройки.

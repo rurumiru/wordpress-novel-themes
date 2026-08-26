@@ -14,11 +14,11 @@ rankings, an author studio, a reader library and a reader hub.<br>
 [![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Install](https://img.shields.io/badge/Install-two_minutes-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Docs](https://img.shields.io/badge/Docs-read-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.7.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.7.1-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Version](https://img.shields.io/badge/version-beta%200.7.0-f59e0b?style=flat-square)
+![Version](https://img.shields.io/badge/version-beta%200.7.1-f59e0b?style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ rankings, an author studio, a reader library and a reader hub.<br>
 ![Home page](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.7.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+> **Beta 0.7.1 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
 
 > [!TIP]
 > **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
