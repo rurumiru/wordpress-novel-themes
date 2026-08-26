@@ -31,9 +31,9 @@
 		btn.addEventListener('click', function () {
 			var now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
 			document.documentElement.setAttribute('data-theme', now);
-			try { localStorage.setItem(LS_THEME, JSON.stringify(now)); } catch (e) {}
-
-try { localStorage.setItem(LS_THEME, now); } catch (e) {}
+			// Строкой, без JSON: ровно в этом виде значение читает скрипт в
+			// <head>, который ставит data-theme до первой отрисовки.
+			try { localStorage.setItem(LS_THEME, now); } catch (e) {}
 		});
 	}
 

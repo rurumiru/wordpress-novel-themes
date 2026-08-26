@@ -10,15 +10,24 @@ $xin_height = max( 200, min( 720, $xin_height ) );
 ?>
 <section class="xin-banner" data-xin-banner style="--banner-h:<?php echo (int) $xin_height; ?>px">
 	<div class="xin-banner__track" data-xin-banner-track>
-		<?php foreach ( $xin_banners as $xin_b ) : ?>
+		<?php foreach ( $xin_banners as $xin_i => $xin_b ) : ?>
+			<?php
+			/*
+			 * Первый слайд — то самое большое изображение вверху экрана, по
+			 * которому браузер считает LCP. С lazy он вставал в очередь за
+			 * остальной страницей; грузим его сразу и с высоким приоритетом,
+			 * а карусель дальше — обычным ленивым порядком.
+			 */
+			$xin_eager = 0 === $xin_i;
+			?>
 			<article class="xin-banner__slide is-<?php echo esc_attr( $xin_b['align'] ? $xin_b['align'] : 'left' ); ?>">
 				<?php if ( $xin_b['mobile'] ) : ?>
 					<picture>
 						<source media="(max-width: 640px)" srcset="<?php echo esc_url( $xin_b['mobile'] ); ?>">
-						<img src="<?php echo esc_url( $xin_b['image'] ); ?>" alt="" loading="lazy">
+						<img src="<?php echo esc_url( $xin_b['image'] ); ?>" alt="" width="1920" height="640" decoding="async" <?php echo $xin_eager ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 					</picture>
 				<?php else : ?>
-					<img src="<?php echo esc_url( $xin_b['image'] ); ?>" alt="" loading="lazy">
+					<img src="<?php echo esc_url( $xin_b['image'] ); ?>" alt="" width="1920" height="640" decoding="async" <?php echo $xin_eager ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 				<?php endif; ?>
 
 				<div class="xin-banner__body">

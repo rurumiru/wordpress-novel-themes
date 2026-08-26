@@ -23,14 +23,15 @@ while ( have_posts() ) :
 		<header class="xin-nv__hero">
 			<?php if ( $xin_bg || $xin_cover ) : ?>
 				<div class="xin-nv__backdrop" aria-hidden="true">
-					<img src="<?php echo esc_url( $xin_bg ? $xin_bg : $xin_cover ); ?>" alt="">
+					<img src="<?php echo esc_url( $xin_bg ? $xin_bg : $xin_cover ); ?>" alt="" width="1920" height="640" decoding="async" fetchpriority="low">
 				</div>
 			<?php endif; ?>
 
 			<div class="xin-wrap xin-nv__heroin">
 				<div class="xin-nv__cover">
 					<?php if ( $xin_cover ) : ?>
-						<img src="<?php echo esc_url( $xin_cover ); ?>" alt="<?php the_title_attribute(); ?>">
+						<?php /* Обложка почти всегда и есть LCP страницы тайтла: явные размеры против скачка вёрстки, высокий приоритет — против очереди за фоном и иконками. */ ?>
+						<img src="<?php echo esc_url( $xin_cover ); ?>" alt="<?php the_title_attribute(); ?>" width="520" height="780" decoding="async" fetchpriority="high">
 					<?php endif; ?>
 				</div>
 

@@ -5,6 +5,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- **Каталог перестал поднимать текст всех глав ради числа на карточке.** `xin_chapter_count()` считался как `count( xin_get_chapters() )`, а тот забирает записи целиком — с текстом. На странице каталога из двух десятков карточек это означало десятки тысяч полных записей глав за один показ; у тайтла на пятьсот глав только одна карточка вытаскивала из базы весь его текст. Появился `xin_chapter_ids()` — тот же порядок глав, но только ID, с выключенными `found_rows` и прогревом кэшей меты и терминов. Через него теперь считается число глав и ищется соседняя глава в читалке, а `xin_get_chapters()` остался там, где записи действительно нужны целиком: список глав, выгрузка книги, словарь.
+
+### Fixed
+
+- **Большая картинка вверху экрана грузилась последней.** Первый слайд баннера на главной и обложка на странице тайтла были помечены `loading="lazy"` — тем самым атрибутом, который отодвигает их в конец очереди, хотя именно по ним браузер считает LCP. Теперь первый слайд и обложка грузятся сразу и с высоким приоритетом, остальные слайды — по-прежнему лениво, а у всех этих картинок появились ширина и высота: место под них резервируется до загрузки, и вёрстка больше не прыгает.
+- **Выбранная тема писалась в хранилище дважды и в двух разных форматах.** Переключатель клал `"dark"` в кавычках, а следом `dark` без них; скрипт в `<head>`, который ставит схему до первой отрисовки, читает вторую запись, поэтому видимой поломки не было — но одна из двух записей всегда была мусором.
+
 ### Planned
 
 - **Framework bake-off.** Bootstrap 5 is the current base, not the decision. The presentation layer will be measured against a built Tailwind subset, UnoCSS, Bulma, Pico.css and a no-framework build that relies only on the theme's own token system. Judged on gzip weight, render-blocking bytes, LCP on a mid-range phone, layout shift on the catalog grid, and reading comfort across a long session. Numbers and the verdict will be published here.

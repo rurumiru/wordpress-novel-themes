@@ -165,14 +165,67 @@ function xin_get_chapters( $novel_id, $order = 'ASC', $limit = -1 ) {
 				'value' => (int) $novel_id,
 			),
 		),
+		// Пагинации у списка глав нет, а SQL_CALC_FOUND_ROWS стоит второго
+		// прохода по таблице. Термины главам не назначаются вовсе.
+		'no_found_rows'          => true,
+		'update_post_term_cache' => false,
 	) );
 
 	wp_cache_set( $key, $chapters, 'xi-novels', 5 * MINUTE_IN_SECONDS );
 	return $chapters;
 }
 
+/**
+ * Порядковый список ID глав тайтла.
+ *
+ * Отдельно от xin_get_chapters(), потому что тому нужны целые записи — вместе
+ * с текстом главы. Карточке в каталоге нужно ЧИСЛО глав, соседней главе — ID
+ * соседа; поднимать ради этого весь текст тайтла (сотни записей на каждую
+ * карточку страницы) — самое дорогое, что тема делала на обычном каталоге.
+ *
+ * @param int    $novel_id ID тайтла.
+ * @param string $order    ASC или DESC.
+ * @return int[]
+ */
+function xin_chapter_ids( $novel_id, $order = 'ASC' ) {
+	$novel_id = (int) $novel_id;
+	if ( ! $novel_id ) {
+		return array();
+	}
+
+	$order = 'DESC' === strtoupper( $order ) ? 'DESC' : 'ASC';
+	$key   = 'xin_chapter_ids_' . $novel_id . '_' . $order;
+	$hit   = wp_cache_get( $key, 'xi-novels' );
+	if ( false !== $hit ) {
+		return $hit;
+	}
+
+	$ids = get_posts( array(
+		'post_type'      => 'chapter',
+		'post_status'    => 'publish',
+		'posts_per_page' => -1,
+		'fields'         => 'ids',
+		'meta_key'       => '_xin_number',
+		'orderby'        => array( 'meta_value_num' => $order, 'date' => $order ),
+		'meta_query'     => array(
+			array(
+				'key'   => '_xin_novel',
+				'value' => $novel_id,
+			),
+		),
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+	) );
+
+	$ids = array_map( 'intval', (array) $ids );
+	wp_cache_set( $key, $ids, 'xi-novels', 5 * MINUTE_IN_SECONDS );
+
+	return $ids;
+}
+
 function xin_chapter_count( $novel_id ) {
-	return count( xin_get_chapters( $novel_id ) );
+	return count( xin_chapter_ids( $novel_id ) );
 }
 
 function xin_first_chapter( $novel_id ) {
@@ -190,14 +243,17 @@ function xin_adjacent_chapter( $chapter_id, $dir = 1 ) {
 	if ( ! $novel_id ) {
 		return null;
 	}
-	$chapters = xin_get_chapters( $novel_id, 'ASC' );
-	foreach ( $chapters as $i => $chapter ) {
-		if ( (int) $chapter->ID === (int) $chapter_id ) {
-			$target = $i + ( $dir > 0 ? 1 : -1 );
-			return isset( $chapters[ $target ] ) ? $chapters[ $target ] : null;
-		}
+	// По списку ID, а не по записям целиком: соседняя глава нужна одна, и
+	// поднимать ради неё текст всего тайтла на каждый показ главы незачем.
+	$ids = xin_chapter_ids( $novel_id, 'ASC' );
+	$at  = array_search( (int) $chapter_id, $ids, true );
+	if ( false === $at ) {
+		return null;
 	}
-	return null;
+
+	$target = $at + ( $dir > 0 ? 1 : -1 );
+
+	return isset( $ids[ $target ] ) ? get_post( $ids[ $target ] ) : null;
 }
 
 function xin_clear_chapter_cache( $post_id ) {
