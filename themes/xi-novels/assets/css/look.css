@@ -98,13 +98,6 @@ h1, h2, h3, h4, h5, h6 {
 	letter-spacing: -.005em;
 }
 
-/* Заголовок раздела в эталоне — не плашка, а строка с волосяной чертой. */
-.xin-sechead,
-.xin-nv__sechead {
-	border-bottom: 1px solid hsl(var(--border));
-	padding-bottom: .6rem;
-}
-
 /* Действие всегда таблеткой и капителью — так его видно среди антиквы. */
 .btn {
 	--bs-btn-border-radius: 999px;
@@ -128,6 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Служебные подписи — гротеском: цифры и метки в антикве читаются медленнее. */
 .xin-nv__facts,
+.xin-nv__numbers,
 .xin-nv__count,
 .xin-nv__date,
 .xin-badge,
@@ -138,8 +132,10 @@ h1, h2, h3, h4, h5, h6 {
 /* ══ 3. Шапка тайтла ═════════════════════════════════════════════════════ */
 
 /*
- * В эталоне обложка не лежит на затемнённой картине во всю ширину: под ней
- * ровная светлая полоса, и всё внимание достаётся названию и кнопкам.
+ * В эталоне у шапки нет ни размытой картины во всю ширину, ни узкой обложки
+ * сбоку от пустого места: ровная светлая полоса, крупная обложка и колонка
+ * названия рядом. Ширина обеих колонок держится в одной мере с текстом ниже,
+ * иначе страница разъезжается на широком экране.
  */
 .xin-nv__hero {
 	background: hsl(var(--bg));
@@ -149,72 +145,163 @@ h1, h2, h3, h4, h5, h6 {
 .xin-nv__backdrop { display: none; }
 
 .xin-nv__heroin {
-	gap: 2.5rem;
-	padding-block: 2.5rem 2rem;
+	max-width: 1000px;
+	margin-inline: auto;
+	align-items: start;
+	gap: 2.6rem;
+	padding-block: 2.4rem 2.2rem;
 }
 
-.xin-nv__cover img {
-	border: 1px solid hsl(var(--border));
+@media (min-width: 768px) {
+	.xin-nv__heroin { grid-template-columns: 232px minmax(0, 1fr); }
+	.xin-nv__cover { width: 232px; }
+}
+
+.xin-nv__cover {
 	border-radius: var(--radius-sm);
-	box-shadow: var(--shadow-2);
+	box-shadow: none;
 }
 
 .xin-nv__title {
-	font-size: clamp(1.9rem, 1.4rem + 2vw, 2.9rem);
+	font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.7rem);
 	line-height: 1.15;
-	margin-bottom: .8rem;
+	margin-bottom: .5rem;
 }
 
-.xin-nv__facts {
+.xin-nv__orig { color: hsl(var(--muted-fg)); margin-bottom: .6rem; }
+
+.xin-nv__by { font-size: 15px; margin-bottom: .7rem; }
+
+/* Строка цифр — как в эталоне: одна линия, разделители тонкой чертой. */
+.xin-nv__numbers {
 	display: flex;
 	flex-wrap: wrap;
-	gap: .35rem 1.6rem;
+	align-items: center;
+	gap: .5rem 1.1rem;
 	font-size: 13px;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-nv__by { font-size: 15px; }
+.xin-nv__numbers b { font-size: 15px; color: hsl(var(--fg)); }
+.xin-nv__numbers i { width: 1px; height: 12px; background: hsl(var(--border)); }
 
-.xin-nv__rate { align-items: baseline; gap: .6rem; }
+.xin-nv__chips { gap: .4rem; margin-bottom: .9rem; }
+
 .xin-nv__stars svg { color: hsl(var(--gold)); }
-.xin-nv__ratenum { font-size: 1.6rem; font-weight: 700; }
-
-.xin-nv__cta {
-	gap: .75rem;
-	margin-top: 1.6rem;
-}
-
-/* ══ 4. Вкладки «о книге» и «оглавление» ═════════════════════════════════ */
+.xin-nv__ratenum { font-size: 1.5rem; font-weight: 700; }
 
 /*
- * Эталон разделяет описание и список глав двумя крупными заголовками-вкладками
- * с синей чертой под выбранным. Здесь тот же приём применён к разделам, на
- * которые тайтл уже разбит: правка чисто оформительская, разметку не трогает.
+ * Кнопки в эталоне крупные и всего две-три: до них должно дотягиваться
+ * внимание, а не рулетка. Первая — сплошная, остальные светлые.
  */
-.xin-nv__sec > .xin-nv__sechead,
-.xin-nv__block > h2 {
-	font-size: 1.35rem;
-	position: relative;
-	border-bottom: 1px solid hsl(var(--border));
-	padding-bottom: .7rem;
+.xin-nv__cta {
+	gap: .6rem;
+	margin-top: 1.7rem;
 }
 
-.xin-nv__sec > .xin-nv__sechead::after,
-.xin-nv__block > h2::after {
+.xin-nv__cta .btn {
+	--bs-btn-padding-y: .8rem;
+	--bs-btn-padding-x: 1.7rem;
+	--bs-btn-font-size: 13px;
+}
+
+/* ══ 4. Колонка страницы ═════════════════════════════════════════════════ */
+
+/*
+ * Эталон не держит боковую панель: описание, оглавление и всё остальное идут
+ * одной колонкой по центру. Виджеты и справка о тайтле не пропадают — они
+ * уезжают под оглавление и оформляются такими же разделами.
+ */
+.xin-nv__grid {
+	max-width: 1000px;
+	margin-inline: auto;
+	gap: 2.2rem;
+	padding-top: 2rem;
+	padding-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+	.xin-nv__grid { grid-template-columns: minmax(0, 1fr); gap: 2.2rem; }
+}
+
+.xin-nv__aside .widget-title,
+.xin-nv__block > h2 {
+	font-family: var(--font);
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: hsl(var(--fg));
+	text-transform: none;
+	letter-spacing: -.005em;
+}
+
+.xin-nv__block + .xin-nv__block,
+.xin-nv__aside .widget { margin-top: 2rem; padding-top: 1.8rem; }
+
+/* ══ 5. Вкладки «о книге» и «оглавление» ═════════════════════════════════ */
+
+/*
+ * Две вкладки крупной антиквой, синяя черта под выбранной — самый заметный
+ * приём эталона. Разметку они не ломают: без скрипта обе панели просто видны
+ * одна под другой.
+ */
+.xin-nv__tabs {
+	display: flex;
+	align-items: stretch;
+	gap: 1.4rem;
+	margin-bottom: 1.6rem;
+	border-bottom: 1px solid hsl(var(--border));
+}
+
+.xin-nv__tab {
+	position: relative;
+	padding: 0 0 .75rem;
+	font-family: var(--font);
+	font-size: clamp(1.2rem, 1rem + .6vw, 1.5rem);
+	font-weight: 700;
+	line-height: 1.2;
+	color: hsl(var(--muted-fg) / .8);
+	background: none;
+	border: 0;
+	cursor: pointer;
+	transition: color .18s ease;
+}
+
+.xin-nv__tab:hover { color: hsl(var(--fg)); }
+
+.xin-nv__tab.is-active { color: hsl(var(--fg)); }
+
+.xin-nv__tab.is-active::after {
 	content: "";
 	position: absolute;
+	right: 0;
 	bottom: -1px;
 	left: 0;
-	width: 2.6rem;
 	height: 2px;
 	background: hsl(var(--primary));
 }
 
-/* ══ 5. Оглавление ═══════════════════════════════════════════════════════ */
+/* Волосяная черта между вкладками — вместо неё в эталоне стоит «|». */
+.xin-nv__tab + .xin-nv__tab {
+	padding-left: 1.4rem;
+	border-left: 1px solid hsl(var(--border));
+}
+
+/* Заголовок оглавления повторял бы вкладку слово в слово. */
+.xin-nv__sechead-hide { display: none; }
+
+.xin-nv__sechead { margin-bottom: 1rem; }
+.xin-nv__sechead h2 { font-size: 1.15rem; }
+
+.xin-nv__subhead {
+	margin: 2rem 0 .8rem;
+	font-size: 1.15rem;
+}
+
+/* ══ 6. Оглавление ═══════════════════════════════════════════════════════ */
 
 /*
  * Пятьсот глав в один столбец — это километр прокрутки. Эталон ставит их в две
- * колонки с чередующейся заливкой строк; на узком экране колонка снова одна.
+ * колонки; на узком экране колонка снова одна.
  */
 .xin-nv__chapters {
 	display: grid;
@@ -228,30 +315,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .xin-nv__chapters > li {
-	border-bottom: 1px solid hsl(var(--border));
 	margin: 0;
+	border-bottom: 1px solid hsl(var(--border));
 }
 
 .xin-nv__chapters > li > a {
 	display: flex;
 	align-items: baseline;
 	gap: .9rem;
-	padding: .85rem .6rem;
+	padding: .8rem .5rem;
 	transition: background-color .15s ease;
 }
 
 .xin-nv__chapters > li > a:hover { background: hsl(var(--muted)); }
 
 .xin-nv__num {
-	min-width: 2.5rem;
+	min-width: 2.4rem;
 	font-family: system-ui, "Segoe UI", Roboto, sans-serif;
 	font-size: 12.5px;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-nv__date { font-size: 12px; }
+.xin-nv__date { margin-left: auto; font-size: 12px; color: hsl(var(--muted-fg)); }
 
-/* ══ 6. Читалка ══════════════════════════════════════════════════════════ */
+/* ══ 7. Читалка ══════════════════════════════════════════════════════════ */
 
 /*
  * Полотно читалки НЕ трогаем: у неё свои «бумаги» (как сайт / белая / сепия /
@@ -264,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 .xin-rd__text { max-width: 40em; margin-inline: auto; }
 
-/* ══ 7. Карточки каталога ════════════════════════════════════════════════ */
+/* ══ 8. Карточки каталога ════════════════════════════════════════════════ */
 
 /*
  * Карточка уже собрана правильно; от эталона её отличают только повадки —

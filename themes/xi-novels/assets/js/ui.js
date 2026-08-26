@@ -266,6 +266,63 @@
 		closeDropdowns();
 	});
 
+	/* ── Вкладки страницы тайтла ─────────────────────────────────────────────
+	 * Описание и оглавление лежат в разметке рядом, поэтому без скрипта видны
+	 * оба — страница остаётся целой и для поисковика, и при выключенном JS.
+	 * Здесь только показ одной и скрытие другой.
+	 */
+	function tabs() {
+		var bar = $('[data-xin-tabs]');
+		if (!bar) return;
+
+		var buttons = $$('[data-xin-tab]', bar);
+		var panels = $$('[data-xin-panel]');
+		if (!buttons.length || !panels.length) return;
+
+		function open(name) {
+			buttons.forEach(function (btn) {
+				var on = btn.getAttribute('data-xin-tab') === name;
+				btn.classList.toggle('is-active', on);
+				btn.setAttribute('aria-selected', on ? 'true' : 'false');
+			});
+			panels.forEach(function (panel) {
+				panel.hidden = panel.getAttribute('data-xin-panel') !== name;
+			});
+		}
+
+		bar.addEventListener('click', function (event) {
+			var btn = event.target.closest ? event.target.closest('[data-xin-tab]') : null;
+			if (!btn) return;
+			open(btn.getAttribute('data-xin-tab'));
+		});
+
+		/*
+		 * Ссылка «Оглавление» из шапки и из читалки ведёт на #chapters. Если
+		 * панель с главами закрыта, якорь прокручивал бы к пустому месту —
+		 * поэтому по такой ссылке сразу открываем нужную вкладку.
+		 */
+		function fromHash() {
+			var id = (location.hash || '').replace('#', '');
+			if (!id) return;
+			var panel = document.getElementById(id);
+			if (panel && panel.hasAttribute('data-xin-panel')) {
+				open(panel.getAttribute('data-xin-panel'));
+				panel.scrollIntoView({ block: 'start' });
+			}
+		}
+
+		open('about');
+		fromHash();
+		window.addEventListener('hashchange', fromHash);
+
+		document.addEventListener('click', function (event) {
+			var link = event.target.closest ? event.target.closest('a[href*="#chapters"]') : null;
+			if (link) open('toc');
+		});
+	}
+
+	tabs();
+
 	/*
 	 * Ссылка внутри выехавшей панели ведёт на ту же страницу — панель должна
 	 * уйти сама, иначе якорь прокрутит текст под перекрытым экраном.

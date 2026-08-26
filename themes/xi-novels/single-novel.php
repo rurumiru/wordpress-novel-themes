@@ -118,9 +118,21 @@ while ( have_posts() ) :
 				do_action( 'xin_novel_after_hero', $xin_id );
 				?>
 
-				<section class="xin-nv__sec">
+				<?php
+				/*
+				 * Описание и оглавление — две вкладки, а не две секции подряд.
+				 * Без скрипта обе панели просто остаются на странице одна под
+				 * другой: разметка та же, что была, кнопки лишь прячут соседнюю.
+				 */
+				?>
+				<nav class="xin-nv__tabs" data-xin-tabs>
+					<button type="button" class="xin-nv__tab is-active" data-xin-tab="about" aria-selected="true"><?php esc_html_e( 'О книге', 'xi-novels' ); ?></button>
+					<button type="button" class="xin-nv__tab" data-xin-tab="toc" aria-selected="false"><?php esc_html_e( 'Оглавление', 'xi-novels' ); ?></button>
+				</nav>
+
+				<section class="xin-nv__sec" data-xin-panel="about">
 					<div class="xin-nv__sechead">
-						<h2><?php esc_html_e( 'Описание', 'xi-novels' ); ?></h2>
+						<h2><?php esc_html_e( 'Аннотация', 'xi-novels' ); ?></h2>
 					</div>
 
 					<div class="xin-synopsis xin-content is-collapsed" data-xin-synopsis>
@@ -135,6 +147,7 @@ while ( have_posts() ) :
 					><?php esc_html_e( 'Читать полностью', 'xi-novels' ); ?></button>
 
 					<?php if ( ! is_wp_error( $xin_tags ) && $xin_tags ) : ?>
+						<h3 class="xin-nv__subhead"><?php esc_html_e( 'Теги', 'xi-novels' ); ?></h3>
 						<div class="xin-nv__tags">
 							<?php foreach ( $xin_tags as $xin_tag ) : ?>
 								<a href="<?php echo esc_url( get_term_link( $xin_tag ) ); ?>"><?php echo esc_html( $xin_tag->name ); ?></a>
@@ -143,9 +156,9 @@ while ( have_posts() ) :
 					<?php endif; ?>
 				</section>
 
-				<section class="xin-nv__sec" id="chapters">
+				<section class="xin-nv__sec" id="chapters" data-xin-panel="toc">
 					<div class="xin-nv__sechead">
-						<h2><?php esc_html_e( 'Оглавление', 'xi-novels' ); ?></h2>
+						<h2 class="xin-nv__sechead-hide"><?php esc_html_e( 'Оглавление', 'xi-novels' ); ?></h2>
 						<span class="xin-nv__count">
 							<?php
 							printf(
