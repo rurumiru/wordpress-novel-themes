@@ -14,11 +14,11 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 [![Demo ao vivo](https://img.shields.io/badge/Demo_ao_vivo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Instalação](https://img.shields.io/badge/Instala%C3%A7%C3%A3o-dois_minutos-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Documentação](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-ler-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.5.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.6.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.5.0-f59e0b?style=flat-square)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.6.0-f59e0b?style=flat-square)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4_%E2%86%92_7.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 ![Página inicial](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.5.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
+> **Beta 0.6.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
 
 > [!TIP]
 > **Demo ao vivo — [xi.community](https://xi.community).** Um site de verdade rodando este tema: navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
@@ -141,6 +141,7 @@ As outras respostas são um **tema de marketplace de US$ 59–99** soldado a um 
 
 | | |
 |:--|:--|
+| **0.6.0** | **O download de livros fecha atrás de uma função.** O painel de controle define quem pode exportar EPUB e FB2: todos, qualquer pessoa conectada, quem tem PLUS, “PLUS ou funções selecionadas” ou somente as funções selecionadas — caixas sobre as funções do site, incluindo as criadas por plugins. O botão e o link direto fazem a mesma verificação |
 | **0.5.0** | **Espaço do leitor** em `/hub/` — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora. Seis contadores do site no cabeçalho, as duas métricas de uma vez no quadro de líderes, um cartão de perfil com a barra até o próximo nível. Desenhado como um terminal — grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas — e não coleta nada novo sobre ninguém além de um anel de 40 leituras recentes |
 | **0.4.0** | **Ferramentas de parágrafo e leitura em voz alta com vozes do aparelho.** Clique em um parágrafo: marque-o em uma de quatro cores, link direto para ele, cite-o na discussão, sugira uma correção com comparação ao vivo ou ouça o capítulo a partir dali. **Capítulos na fila dizem quando saem**, e a agenda de publicação passou a morar nas configurações do projeto, com o autor |
 | **0.3.3** | **Os rankings viraram uma página própria** em `/ranking/`: três quadros, três janelas de tempo, filtro por gênero e uma nota ponderada — um voto cinco estrelas não passa à frente de quatrocentos votos honestos. A **gestão em massa de obras** chegou como plugin |
@@ -167,7 +168,7 @@ Todas as versões, na íntegra: **[CHANGELOG.md](CHANGELOG.md)**.
 | 🏆 **Rankings** | Uma página própria em `/ranking/`: três quadros — nota, visualizações e número de capítulos —, três janelas de tempo e filtro por gênero. Os três primeiros sobem ao pódio, o resto vem em linhas com uma barra em relação ao líder |
 | 🛰️ **Espaço do leitor** | `/hub/` mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora, seis contadores e um quadro de líderes. No estilo terminal, e todo o movimento para sob `prefers-reduced-motion` |
 | 🌙 **Claro, escuro ou o do sistema** | Claro por padrão, escuro e “seguir o sistema” a um toque no cabeçalho — e sem estouro branco ao carregar |
-| 📥 **EPUB e FB2** | Qualquer obra baixa como um e-book de verdade — capa, sumário, capítulos. Capítulos trancados entram no arquivo apenas para quem pode lê-los |
+| 📥 **EPUB e FB2** | Qualquer obra baixa como um e-book de verdade — capa, sumário, capítulos. Capítulos trancados entram no arquivo apenas para quem pode lê-los. Quem pode baixar — todos, pessoas conectadas, quem tem PLUS ou funções selecionadas — é definido no painel de controle |
 | 🏅 **Sequências e conquistas** | Dias seguidos, capítulos lidos, dez conquistas discretas no perfil — sem pontos, sem placares |
 | 🔑 **Entrada no próprio site** | Entrar, cadastrar e recuperar a senha em uma página centralizada com o seu design — o leitor nunca vê `/wp-login.php` |
 | 🌍 **Interface RU / EN / PT-BR** | Troca de idioma no cabeçalho, lembrada em um cookie |

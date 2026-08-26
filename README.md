@@ -14,11 +14,11 @@ rankings, an author studio, a reader library and a reader hub.<br>
 [![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Install](https://img.shields.io/badge/Install-two_minutes-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Docs](https://img.shields.io/badge/Docs-read-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.5.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.6.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Version](https://img.shields.io/badge/version-beta%200.5.0-f59e0b?style=flat-square)
+![Version](https://img.shields.io/badge/version-beta%200.6.0-f59e0b?style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ rankings, an author studio, a reader library and a reader hub.<br>
 ![Home page](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.5.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+> **Beta 0.6.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
 
 > [!TIP]
 > **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
@@ -141,6 +141,7 @@ Every other answer is either a **$59–$99 marketplace theme** welded to a page 
 
 | | |
 |:--|:--|
+| **0.6.0** | **Book downloads close behind a role.** The control panel decides who may export EPUB and FB2: everyone, any signed-in reader, PLUS holders, “PLUS or selected roles”, or selected roles only — checkboxes over the site roles, plugin-made ones included. The button and the direct link ask the same check |
 | **0.5.0** | **Reader Hub** at `/hub/` — one page that shows the site from the inside: who talks, what they argue about, what is being read right now. Six site counters in the header, both metrics at once on the leaderboard, a profile card with a bar to the next level. Drawn as a terminal — grid and sweep on the canvas, cut corners, monospace readouts, segmented bars — and it collects nothing new about anyone beyond a 40-entry ring of recent reads |
 | **0.4.0** | **Paragraph tools and on-device text-to-speech.** Click a paragraph: bookmark it in one of four colours, link straight to it, quote it into the discussion, suggest an edit with a live diff, or have the chapter read aloud from that point. **Queued chapters say when they go out**, and the release schedule moved into the author’s own project settings |
 | **0.3.3** | **Rankings became a page of their own** at `/ranking/`: three boards, three time windows, a genre filter and a weighted score, so one five-star vote cannot outrun four hundred honest ones. **Bulk title management** arrived as a bundled plugin |
@@ -167,7 +168,7 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 | 🏆 **Rankings** | A page of their own at `/ranking/`: three boards — score, views, chapter count — three time windows and a genre filter. The top three stand on a podium, the rest run as rows with a bar against the leader |
 | 🛰️ **Reader Hub** | `/hub/` shows the site from the inside — talk, arguments, what is being read right now, six counters and a leaderboard. Styled as a terminal, and every animation stops under `prefers-reduced-motion` |
 | 🌙 **Light, dark, or system** | Light by default, dark and “follow the system” one switch away in the header — and no white flash on load |
-| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them |
+| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them. Who may download at all — everyone, signed-in readers, PLUS holders or selected roles — is set in the control panel |
 | 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
 | 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
 | 🌍 **RU / EN / PT-BR interface** | Language switch in the header, remembered in a cookie |
