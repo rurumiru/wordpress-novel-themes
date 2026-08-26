@@ -27,15 +27,15 @@
 
 :root {
 	/* Холодная бумага вместо тёплой: фон отступает, полотно выходит вперёд. */
-	--bg: 231 54% 97%;
-	--fg: 240 24% 19%;
+	--bg: 228 42% 97.5%;
+	--fg: 235 26% 18%;
 	--card: 0 0% 100%;
 	--popover: 0 0% 100%;
-	--muted: 231 40% 96%;
-	--muted-fg: 240 8% 46%;
-	--accent: 231 44% 94%;
-	--border: 240 23% 92%;
-	--input: 240 18% 86%;
+	--muted: 228 36% 96%;
+	--muted-fg: 232 11% 47%;
+	--accent: 228 44% 93.5%;
+	--border: 230 24% 90.5%;
+	--input: 230 20% 85%;
 
 	/* Одна краска на действия — ссылки, кнопки, активные вкладки. */
 	--primary: 227 77% 53%;
@@ -54,35 +54,46 @@
 	--font: "PT Serif", Georgia, "Times New Roman", serif;
 	--font-read: "PT Serif", Georgia, "Times New Roman", serif;
 
-	/* Углы почти прямые: скругления забирает на себя только «таблетка». */
-	--radius: .35rem;
-	--radius-sm: .25rem;
-	--radius-lg: .5rem;
+	/*
+	 * Углы у эталона почти прямые, но на тёмной теме это выглядит казённо:
+	 * оставляем заметное, хоть и небольшое, скругление. Таблетка остаётся за
+	 * кнопками, метками и тегами.
+	 */
+	--radius: .7rem;
+	--radius-sm: .45rem;
+	--radius-lg: 1rem;
 
-	/* Тени почти нет — границы держат волосяные линии. */
-	--shadow-1: 0 1px 2px hsl(240 24% 19% / .04);
-	--shadow-2: 0 2px 10px -4px hsl(240 24% 19% / .12);
-	--shadow-3: 0 12px 32px -12px hsl(240 24% 19% / .22);
+	/* Тень мягкая и почти невидимая — она отделяет полотно, а не рисует ящик. */
+	--shadow-1: 0 1px 2px hsl(235 26% 18% / .05);
+	--shadow-2: 0 4px 14px -6px hsl(235 26% 18% / .16);
+	--shadow-3: 0 18px 40px -18px hsl(235 26% 18% / .3);
 
 	--wrap: 1200px;
 	--header-h: 68px;
 }
 
+/*
+ * Тёмная тема — не чёрный лист. Ночью строгость эталона читается как пустота,
+ * поэтому фон уходит в синеву, полотна светлее фона на заметную ступень, а
+ * второстепенный текст поднят до по-настоящему читаемого.
+ */
 [data-theme="dark"] {
-	--bg: 240 22% 9%;
-	--fg: 240 20% 92%;
-	--card: 240 20% 12%;
-	--popover: 240 20% 13%;
-	--muted: 240 16% 16%;
-	--muted-fg: 240 10% 66%;
-	--accent: 240 16% 19%;
-	--border: 240 14% 22%;
-	--input: 240 14% 28%;
-	--primary: 227 90% 68%;
-	--primary-fg: 240 30% 10%;
-	--ring: 227 90% 68%;
-	--gold: 28 92% 62%;
-	--gold-fg: 240 24% 12%;
+	--bg: 231 26% 10%;
+	--fg: 228 26% 93%;
+	--card: 230 22% 14%;
+	--popover: 230 22% 16%;
+	--muted: 230 19% 18%;
+	--muted-fg: 230 15% 71%;
+	--accent: 230 19% 22%;
+	--border: 230 17% 25%;
+	--input: 230 16% 30%;
+	--primary: 228 95% 72%;
+	--primary-fg: 231 40% 12%;
+	--ring: 228 95% 72%;
+	--gold: 33 95% 62%;
+	--gold-fg: 231 30% 12%;
+	--shadow-2: 0 4px 16px -6px hsl(231 40% 4% / .6);
+	--shadow-3: 0 20px 44px -20px hsl(231 40% 4% / .75);
 }
 
 /* ══ 2. Общий тон ════════════════════════════════════════════════════════ */
@@ -382,3 +393,191 @@ h1, h2, h3, h4, h5, h6 {
 	background: hsl(var(--primary) / .12);
 	color: hsl(var(--primary));
 }
+
+/* ══ 9. Мягкость ═════════════════════════════════════════════════════════
+   Эталон строг, но он светлый: на белом волосяные линии и прямые углы читаются
+   как воздух. На тёмной теме та же строгость превращается в чёрный лист с
+   серыми полосками — не сдержанно, а пусто. Ниже то, что возвращает странице
+   мягкость, не ломая построения: поверхности вместо линий, чуть больше
+   скруглений, тёплая тень под обложкой и живые состояния при наведении.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Шапка ───────────────────────────────────────────────────────────────── */
+
+.navbar {
+	background: hsl(var(--card) / .82);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	border-bottom: 1px solid hsl(var(--border));
+}
+
+.navbar-brand { font-size: 20px; letter-spacing: -.02em; }
+
+.navbar-nav { gap: .15rem; }
+
+.navbar-nav .nav-link {
+	padding: .5rem .9rem;
+	font-family: var(--font);
+	font-size: 15px;
+	font-weight: 600;
+	border-radius: 999px;
+	color: hsl(var(--muted-fg));
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus-visible {
+	color: hsl(var(--fg));
+	background: hsl(var(--accent) / .7);
+}
+
+.navbar-nav .nav-item.current-menu-item > .nav-link,
+.navbar-nav .nav-link.is-current {
+	color: hsl(var(--primary));
+	background: hsl(var(--primary) / .12);
+}
+
+/* Правый угол шапки: поиск, язык, профиль — одной группой с воздухом. */
+.navbar .ms-auto { gap: .4rem; }
+
+/* ── Кнопки ──────────────────────────────────────────────────────────────── */
+
+/* Основное действие — мягкий градиент и тёплая тень вместо плоской заливки. */
+.btn-primary {
+	background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / .78));
+	box-shadow: 0 6px 16px -10px hsl(var(--primary) / .9);
+}
+
+.btn-primary:hover {
+	box-shadow: 0 10px 24px -10px hsl(var(--primary) / .95);
+	transform: translateY(-1px);
+}
+
+/* Второстепенные — на подложке, а не на пустоте: иначе они теряются. */
+.btn-outline,
+.btn-ghost {
+	--bs-btn-bg: hsl(var(--muted));
+	--bs-btn-border-color: hsl(var(--border));
+	--bs-btn-hover-bg: hsl(var(--accent));
+	--bs-btn-hover-border-color: hsl(var(--primary) / .35);
+}
+
+/* ── Шапка тайтла ────────────────────────────────────────────────────────── */
+
+.xin-nv__hero {
+	background: linear-gradient(180deg, hsl(var(--accent) / .55), hsl(var(--bg)) 72%);
+}
+
+.xin-nv__cover {
+	box-shadow: var(--shadow-3);
+	transition: transform .4s cubic-bezier(.22, .9, .3, 1);
+}
+
+.xin-nv__cover:hover { transform: translateY(-4px); }
+
+.xin-nv__stars svg { width: 20px; height: 20px; }
+
+.xin-nv__numbers b { font-size: 16px; }
+
+/* Метки статуса и жанров — мягкая заливка вместо рамки. */
+.xin-nv__chips .xin-badge {
+	padding: .3rem .7rem;
+	background: hsl(var(--muted));
+	border: 0;
+	color: hsl(var(--muted-fg));
+}
+
+.xin-nv__chips .xin-badge--primary {
+	background: hsl(var(--primary) / .14);
+	color: hsl(var(--primary));
+}
+
+/* ── Поверхности вместо линий ────────────────────────────────────────────── */
+
+/*
+ * «О тайтле», «Ваша оценка», команда и виджеты площадки были рядами текста
+ * между волосяными чертами — на тёмном это читается как пустая таблица.
+ * Каждый блок получает своё полотно.
+ */
+.xin-nv__block,
+.xin-nv__aside .widget {
+	padding: 1.4rem 1.5rem;
+	background: hsl(var(--card));
+	border: 1px solid hsl(var(--border));
+	border-radius: var(--radius);
+}
+
+.xin-nv__block + .xin-nv__block,
+.xin-nv__aside .widget {
+	margin-top: 1.2rem;
+	padding-top: 1.4rem;
+	border-top: 1px solid hsl(var(--border));
+}
+
+.xin-nv__block > h2,
+.xin-nv__aside .widget-title { margin-bottom: 1rem; }
+
+/* Пары «свойство — значение» разделяет пунктир, а не сплошная черта. */
+.xin-nv__facts > div {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: .55rem 0;
+	border-bottom: 1px dashed hsl(var(--border));
+}
+
+.xin-nv__facts > div:last-child { border-bottom: 0; }
+.xin-nv__facts dt { color: hsl(var(--muted-fg)); font-size: 13px; }
+.xin-nv__facts dd { margin: 0; text-align: right; font-weight: 600; }
+
+/* ── Теги ────────────────────────────────────────────────────────────────── */
+
+.xin-nv__tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+
+.xin-nv__tags a {
+	display: inline-flex;
+	align-items: center;
+	padding: .35rem .85rem;
+	font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+	font-size: 12.5px;
+	color: hsl(var(--primary));
+	background: hsl(var(--primary) / .1);
+	border: 0;
+	border-radius: 999px;
+	transition: background-color .18s ease, transform .18s ease;
+}
+
+.xin-nv__tags a:hover {
+	background: hsl(var(--primary) / .2);
+	transform: translateY(-1px);
+}
+
+/* ── Оглавление ──────────────────────────────────────────────────────────── */
+
+.xin-nv__chapters > li > a { border-radius: var(--radius-sm); }
+
+.xin-nv__chapters > li > a:hover {
+	background: hsl(var(--primary) / .07);
+	color: hsl(var(--primary));
+}
+
+/* Поиск по главам и переключатель порядка — на одной подложке с полем. */
+.xin-nv__tools input[type="search"],
+.xin-nv__sort {
+	background: hsl(var(--card));
+	border: 1px solid hsl(var(--border));
+	border-radius: 999px;
+	padding: .55rem 1rem;
+}
+
+/* ── Похожие ─────────────────────────────────────────────────────────────── */
+
+.xin-nv__related a,
+.xin-nv__member {
+	padding: .5rem;
+	border-radius: var(--radius-sm);
+	transition: background-color .18s ease;
+}
+
+.xin-nv__related a:hover,
+.xin-nv__member:hover { background: hsl(var(--muted)); }

@@ -44,6 +44,18 @@
 	.d-lg-flex { display: flex !important; }
 }
 
+/*
+ * Ширина обёртки. Тема задаёт `.container` только предел и поля, а ширину и
+ * центрирование давал фреймворк. Без них обёртка внутри шапки — а шапка у нас
+ * flex — сжималась по содержимому, и логотип, меню и правый угол сбивались в
+ * левый край экрана.
+ */
+.container,
+.container-xl {
+	width: 100%;
+	margin-inline: auto;
+}
+
 /* Список ссылок без маркеров — под .nav-link и .nav-pills из style.css. */
 .nav {
 	display: flex;
@@ -64,6 +76,8 @@
 	.navbar-expand-lg .navbar-collapse {
 		display: flex;
 		flex-basis: auto;
+		/* Меню забирает свободное место, поэтому правый угол шапки прижат к краю. */
+		flex-grow: 1;
 		align-items: center;
 	}
 }
