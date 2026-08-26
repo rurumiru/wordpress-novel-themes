@@ -1,7 +1,7 @@
 # English (US) translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.4.0-beta\n"
+"Project-Id-Version: XI Novels 0.5.0-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,6 +110,9 @@ msgstr "PLUS"
 msgid "Palatino"
 msgstr "Palatino"
 
+msgid "PLUS или выбранные роли"
+msgstr "PLUS or selected roles"
+
 msgid "Telegram-канал"
 msgstr "Telegram channel"
 
@@ -127,6 +130,9 @@ msgstr "XI Novels: brand & colors"
 
 msgid "XI Novels: главная"
 msgstr "XI Novels: home page"
+
+msgid "XI Novels: доступ к книгам"
+msgstr "XI Novels: book access"
 
 msgid "XI Novels: облик"
 msgstr "XI Novels: look"
@@ -364,6 +370,9 @@ msgstr "All updates"
 
 msgid "Все тайтлы"
 msgstr "All titles"
+
+msgid "Всем, включая гостей"
+msgstr "Everyone, guests included"
 
 msgid "Всё из бесплатного плана"
 msgstr "Everything in the free plan"
@@ -803,6 +812,9 @@ msgstr "This comment is awaiting moderation."
 msgid "Комментарий не найден."
 msgstr "Comment not found."
 
+msgid "Кому показывать кнопку «Скачать» и отдавать файл EPUB или FB2. Главы, закрытые для читателя, в файл не попадают ни при каком выборе."
+msgstr "Who sees the “Download” button and receives the EPUB or FB2 file. Chapters closed to a reader stay out of the file under any choice."
+
 msgid "Кому принадлежат права на текст?"
 msgstr "Who owns the rights to the text?"
 
@@ -847,6 +859,9 @@ msgstr "Any case"
 
 msgid "Любой статус"
 msgstr "Any status"
+
+msgid "Любому вошедшему"
+msgstr "Any signed-in reader"
 
 msgid "Материал 18+"
 msgstr "Adult content"
@@ -1721,6 +1736,9 @@ msgstr "Ranking"
 msgid "Рейтинг с вкладками"
 msgstr "Ranking with tabs"
 
+msgid "Роли со скачиванием"
+msgstr "Roles that may download"
+
 msgid "Роли, доступ PLUS, очередь на проверку и настройки площадки — здесь, без админки WordPress."
 msgstr "Roles, PLUS access, the review queue and site settings live here, with no WordPress admin involved."
 
@@ -1813,6 +1831,21 @@ msgstr "System"
 
 msgid "Скачать"
 msgstr "Download"
+
+msgid "Скачивание книг"
+msgstr "Book downloads"
+
+msgid "Скачивание книг входит в доступ PLUS."
+msgstr "Downloads come with PLUS access."
+
+msgid "Скачивание книг доступно не всем посетителям. Войдите в аккаунт."
+msgstr "Downloads are not open to every visitor. Sign in to your account."
+
+msgid "Скачивание книг открыто по доступу PLUS и отдельным ролям площадки."
+msgstr "Downloads are open with PLUS access and to certain roles on this site."
+
+msgid "Скачивание книг открыто только отдельным ролям площадки."
+msgstr "Downloads are open only to certain roles on this site."
 
 msgid "Сколько"
 msgstr "How many"
@@ -2039,11 +2072,20 @@ msgstr "The term on the left becomes the term on the right as you read."
 msgid "Тип абзаца"
 msgstr "Block type"
 
+msgid "То же самое есть в панели управления на сайте, во вкладке «Настройки»."
+msgstr "The same settings live in the on-site control panel, under “Settings”."
+
 msgid "То же самое живьём и с предпросмотром — в «Студии темы»."
 msgstr "The same thing live, with a preview, in the Theme studio."
 
 msgid "Товар WooCommerce"
 msgstr "WooCommerce product"
+
+msgid "Только выбранным ролям"
+msgstr "Selected roles only"
+
+msgid "Только с доступом PLUS"
+msgstr "PLUS access only"
 
 msgid "Только системные стеки — ничего не грузится со стороны."
 msgstr "System stacks only — nothing is loaded from outside."
@@ -2119,6 +2161,9 @@ msgstr "See how"
 
 msgid "Участник"
 msgstr "Contributor"
+
+msgid "Учитываются в двух последних режимах. Достаточно одной отмеченной роли; администратор скачивает всегда."
+msgstr "They apply to the last two modes. One checked role is enough; an administrator always downloads."
 
 msgid "Учётная запись есть, но прав на публикацию у неё пока нет. Их выдаёт администрация площадки — напишите, и кабинет откроется."
 msgstr "The account exists, but it has no publishing rights yet. The site team grants them: write to us and the studio opens."

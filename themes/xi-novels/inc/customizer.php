@@ -4,6 +4,105 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Режим доступа к выгрузке. Чужое значение не запирает скачивание: тема
+ * откатывается на «всем», как вела себя до появления настройки.
+ *
+ * @param string $value Что пришло из формы.
+ * @return string
+ */
+function xin_sanitize_download_audience( $value ) {
+	$value = sanitize_key( $value );
+
+	return isset( xin_download_audiences()[ $value ] ) ? $value : 'all';
+}
+
+/**
+ * Список ролей строкой слагов через запятую.
+ *
+ * @param string $value Что пришло из формы.
+ * @return string
+ */
+function xin_sanitize_download_roles( $value ) {
+	$out = array();
+
+	foreach ( preg_split( '/[,\s]+/', (string) $value ) as $role ) {
+		$role = sanitize_key( $role );
+		if ( $role && ! in_array( $role, $out, true ) ) {
+			$out[] = $role;
+		}
+	}
+
+	return implode( ',', $out );
+}
+
+/**
+ * Галочки ролей в кастомайзере.
+ *
+ * Своё поле, потому что штатные контролы умеют одно значение, а роли — это
+ * набор. Галочки складываются в скрытое поле той же строкой, что хранит панель
+ * управления: обе формы пишут один theme_mod и не расходятся.
+ */
+function xin_customize_roles_control() {
+	if ( class_exists( 'XIN_Customize_Roles_Control' ) || ! class_exists( 'WP_Customize_Control' ) ) {
+		return;
+	}
+
+	class XIN_Customize_Roles_Control extends WP_Customize_Control {
+
+		public $type = 'xin-roles';
+
+		public function render_content() {
+			$picked = array_filter( explode( ',', (string) $this->value() ) );
+			?>
+			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<?php if ( $this->description ) : ?>
+				<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+			<?php endif; ?>
+			<div class="xin-roles-control">
+				<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_attr( implode( ',', $picked ) ); ?>">
+				<?php foreach ( xin_download_role_choices() as $role => $name ) : ?>
+					<label style="display:block;margin:.35em 0">
+						<input type="checkbox" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, $picked, true ) ); ?>>
+						<?php echo esc_html( $name ); ?>
+					</label>
+				<?php endforeach; ?>
+			</div>
+			<?php
+		}
+	}
+}
+add_action( 'customize_register', 'xin_customize_roles_control', 5 );
+
+/**
+ * Собирает галочки ролей обратно в строку.
+ *
+ * Слушаем документ, а не отдельный контрол: так скрипт переживает и повторную
+ * отрисовку панели, и появление второго такого поля.
+ */
+function xin_customize_roles_script() {
+	?>
+	<script>
+	document.addEventListener( 'change', function ( event ) {
+		var box = event.target.closest ? event.target.closest( '.xin-roles-control' ) : null;
+		if ( ! box || 'checkbox' !== event.target.type ) {
+			return;
+		}
+
+		var picked = [];
+		box.querySelectorAll( 'input[type=checkbox]:checked' ).forEach( function ( input ) {
+			picked.push( input.value );
+		} );
+
+		var hidden = box.querySelector( 'input[type=hidden]' );
+		hidden.value = picked.join( ',' );
+		hidden.dispatchEvent( new Event( 'change', { bubbles: true } ) );
+	} );
+	</script>
+	<?php
+}
+add_action( 'customize_controls_print_footer_scripts', 'xin_customize_roles_script' );
+
 function xin_customize_register( $wp_customize ) {
 $wp_customize->add_section( 'xin_brand', array(
 		'title'    => __( 'XI Novels: бренд и цвета', 'xi-novels' ),
@@ -111,6 +210,34 @@ $wp_customize->add_section( 'xin_accounts', array(
 			'subscriber'  => __( 'Читатель', 'xi-novels' ),
 		),
 	) );
+
+$wp_customize->add_section( 'xin_access', array(
+		'title'       => __( 'XI Novels: доступ к книгам', 'xi-novels' ),
+		'description' => __( 'То же самое есть в панели управления на сайте, во вкладке «Настройки».', 'xi-novels' ),
+		'priority'    => 26,
+	) );
+
+	$wp_customize->add_setting( 'xin_download_audience', array(
+		'default'           => 'all',
+		'sanitize_callback' => 'xin_sanitize_download_audience',
+	) );
+	$wp_customize->add_control( 'xin_download_audience', array(
+		'label'       => __( 'Скачивание книг', 'xi-novels' ),
+		'description' => __( 'Кому показывать кнопку «Скачать» и отдавать файл EPUB или FB2. Главы, закрытые для читателя, в файл не попадают ни при каком выборе.', 'xi-novels' ),
+		'section'     => 'xin_access',
+		'type'        => 'select',
+		'choices'     => xin_download_audiences(),
+	) );
+
+	$wp_customize->add_setting( 'xin_download_roles', array(
+		'default'           => '',
+		'sanitize_callback' => 'xin_sanitize_download_roles',
+	) );
+	$wp_customize->add_control( new XIN_Customize_Roles_Control( $wp_customize, 'xin_download_roles', array(
+		'label'       => __( 'Роли со скачиванием', 'xi-novels' ),
+		'description' => __( 'Учитываются в двух последних режимах. Достаточно одной отмеченной роли; администратор скачивает всегда.', 'xi-novels' ),
+		'section'     => 'xin_access',
+	) ) );
 
 $wp_customize->add_section( 'xin_home', array(
 		'title'    => __( 'XI Novels: главная', 'xi-novels' ),

@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.4.0-beta\n"
+"Project-Id-Version: XI Novels 0.5.0-beta\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -86,6 +86,9 @@ msgstr "PLUS"
 msgid "Palatino"
 msgstr "Palatino"
 
+msgid "PLUS или выбранные роли"
+msgstr "PLUS ou funções selecionadas"
+
 msgid "Telegram-канал"
 msgstr "Canal no Telegram"
 
@@ -103,6 +106,9 @@ msgstr "XI Novels: marca e cores"
 
 msgid "XI Novels: главная"
 msgstr "XI Novels: página inicial"
+
+msgid "XI Novels: доступ к книгам"
+msgstr "XI Novels: acesso aos livros"
 
 msgid "XI Novels: облик"
 msgstr "XI Novels: aparência"
@@ -328,6 +334,9 @@ msgstr "Todas as atualizações"
 
 msgid "Все тайтлы"
 msgstr "Todas as obras"
+
+msgid "Всем, включая гостей"
+msgstr "Para todos, visitantes incluídos"
 
 msgid "Всё из бесплатного плана"
 msgstr "Tudo do plano grátis"
@@ -746,6 +755,9 @@ msgstr "Comentários sob os capítulos e as obras. Desligados por padrão."
 msgid "Комментарий не найден."
 msgstr "Comentário não encontrado."
 
+msgid "Кому показывать кнопку «Скачать» и отдавать файл EPUB или FB2. Главы, закрытые для читателя, в файл не попадают ни при каком выборе."
+msgstr "Quem vê o botão “Baixar” e recebe o arquivo EPUB ou FB2. Capítulos fechados para o leitor ficam fora do arquivo em qualquer opção."
+
 msgid "Кому принадлежат права на текст?"
 msgstr "De quem são os direitos do texto?"
 
@@ -790,6 +802,9 @@ msgstr "Ignorar maiúsculas"
 
 msgid "Любой статус"
 msgstr "Qualquer status"
+
+msgid "Любому вошедшему"
+msgstr "Para qualquer pessoa conectada"
 
 msgid "Материал 18+"
 msgstr "Conteúdo 18+"
@@ -1625,6 +1640,9 @@ msgstr "Ranking"
 msgid "Рейтинг с вкладками"
 msgstr "Ranking com abas"
 
+msgid "Роли со скачиванием"
+msgstr "Funções que podem baixar"
+
 msgid "Роли, доступ PLUS, очередь на проверку и настройки площадки — здесь, без админки WordPress."
 msgstr "Papéis, acesso PLUS, fila de revisão e configurações da plataforma ficam aqui, sem o admin do WordPress."
 
@@ -1714,6 +1732,21 @@ msgstr "Do sistema"
 
 msgid "Скачать"
 msgstr "Baixar"
+
+msgid "Скачивание книг"
+msgstr "Download de livros"
+
+msgid "Скачивание книг входит в доступ PLUS."
+msgstr "O download faz parte do acesso PLUS."
+
+msgid "Скачивание книг доступно не всем посетителям. Войдите в аккаунт."
+msgstr "O download não está aberto a todos os visitantes. Entre na sua conta."
+
+msgid "Скачивание книг открыто по доступу PLUS и отдельным ролям площадки."
+msgstr "O download está aberto com acesso PLUS e a algumas funções do site."
+
+msgid "Скачивание книг открыто только отдельным ролям площадки."
+msgstr "O download está aberto apenas a algumas funções do site."
 
 msgid "Сколько"
 msgstr "Quanto"
@@ -1940,11 +1973,20 @@ msgstr "O termo da esquerda vira o termo da direita durante a leitura."
 msgid "Тип абзаца"
 msgstr "Tipo de bloco"
 
+msgid "То же самое есть в панели управления на сайте, во вкладке «Настройки»."
+msgstr "Os mesmos ajustes ficam no painel de controle do site, na aba “Configurações”."
+
 msgid "То же самое живьём и с предпросмотром — в «Студии темы»."
 msgstr "O mesmo ao vivo, com prévia, no «Estúdio do tema»."
 
 msgid "Товар WooCommerce"
 msgstr "Produto do WooCommerce"
+
+msgid "Только выбранным ролям"
+msgstr "Somente para as funções selecionadas"
+
+msgid "Только с доступом PLUS"
+msgstr "Somente com acesso PLUS"
 
 msgid "Только системные стеки — ничего не грузится со стороны."
 msgstr "Apenas pilhas do sistema — nada é carregado de fora."
@@ -2020,6 +2062,9 @@ msgstr "Ver como"
 
 msgid "Участник"
 msgstr "Colaborador"
+
+msgid "Учитываются в двух последних режимах. Достаточно одной отмеченной роли; администратор скачивает всегда."
+msgstr "Valem para os dois últimos modos. Basta uma função marcada; o administrador sempre baixa."
 
 msgid "Учётная запись есть, но прав на публикацию у неё пока нет. Их выдаёт администрация площадки — напишите, и кабинет откроется."
 msgstr "A conta existe, mas ainda não tem permissão para publicar. Quem libera é a administração da plataforma — escreva para eles e o painel abre."

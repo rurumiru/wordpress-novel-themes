@@ -339,6 +339,30 @@ if ( xin_can_manage() ) {
 			</label>
 
 			<label class="xin-manage__field">
+				<span><?php esc_html_e( 'Скачивание книг', 'xi-novels' ); ?></span>
+				<select name="download_audience">
+					<?php foreach ( xin_download_audiences() as $xin_dl_key => $xin_dl_label ) : ?>
+						<option value="<?php echo esc_attr( $xin_dl_key ); ?>" <?php selected( xin_download_audience(), $xin_dl_key ); ?>><?php echo esc_html( $xin_dl_label ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</label>
+
+			<div class="xin-manage__field">
+				<span><?php esc_html_e( 'Роли со скачиванием', 'xi-novels' ); ?></span>
+				<div class="xin-manage__roles">
+					<?php $xin_dl_roles = xin_download_roles(); ?>
+					<?php foreach ( xin_download_role_choices() as $xin_role_key => $xin_role_name ) : ?>
+						<label>
+							<input type="checkbox" name="download_roles[]" value="<?php echo esc_attr( $xin_role_key ); ?>" <?php checked( in_array( $xin_role_key, $xin_dl_roles, true ) ); ?>>
+							<span><?php echo esc_html( $xin_role_name ); ?></span>
+							<i><?php echo esc_html( $xin_role_key ); ?></i>
+						</label>
+					<?php endforeach; ?>
+				</div>
+				<small><?php esc_html_e( 'Учитываются в двух последних режимах. Достаточно одной отмеченной роли; администратор скачивает всегда.', 'xi-novels' ); ?></small>
+			</div>
+
+			<label class="xin-manage__field">
 				<span><?php esc_html_e( 'Основной язык', 'xi-novels' ); ?></span>
 				<select name="default_lang">
 					<?php foreach ( xin_languages() as $xin_lang_key => $xin_lang_data ) : ?>

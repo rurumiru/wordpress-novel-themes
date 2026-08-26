@@ -85,15 +85,17 @@ while ( have_posts() ) :
 						<?php endif; ?>
 						<?php xin_fav_button( $xin_id, true ); ?>
 
-						<div class="xin-nv__dl">
-							<button type="button" class="btn btn-outline" data-xin-dl aria-expanded="false">
-								<?php xin_the_icon( 'download' ); ?><?php esc_html_e( 'Скачать', 'xi-novels' ); ?>
-							</button>
-							<div class="xin-nv__dlmenu" data-xin-dl-menu hidden>
-								<a href="<?php echo esc_url( xin_export_url( $xin_id, 'epub' ) ); ?>" rel="nofollow">EPUB<small><?php esc_html_e( 'для читалок и телефона', 'xi-novels' ); ?></small></a>
-								<a href="<?php echo esc_url( xin_export_url( $xin_id, 'fb2' ) ); ?>" rel="nofollow">FB2<small><?php esc_html_e( 'для классических программ', 'xi-novels' ); ?></small></a>
+						<?php if ( xin_can_download() ) : ?>
+							<div class="xin-nv__dl">
+								<button type="button" class="btn btn-outline" data-xin-dl aria-expanded="false">
+									<?php xin_the_icon( 'download' ); ?><?php esc_html_e( 'Скачать', 'xi-novels' ); ?>
+								</button>
+								<div class="xin-nv__dlmenu" data-xin-dl-menu hidden>
+									<a href="<?php echo esc_url( xin_export_url( $xin_id, 'epub' ) ); ?>" rel="nofollow">EPUB<small><?php esc_html_e( 'для читалок и телефона', 'xi-novels' ); ?></small></a>
+									<a href="<?php echo esc_url( xin_export_url( $xin_id, 'fb2' ) ); ?>" rel="nofollow">FB2<small><?php esc_html_e( 'для классических программ', 'xi-novels' ); ?></small></a>
+								</div>
 							</div>
-						</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

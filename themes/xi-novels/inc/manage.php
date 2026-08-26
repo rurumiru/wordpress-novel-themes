@@ -244,6 +244,19 @@ function xin_manage_do_settings( $back ) {
 		set_theme_mod( 'xin_new_user_role', $role );
 	}
 
+	$audience = isset( $_POST['download_audience'] ) ? sanitize_key( wp_unslash( $_POST['download_audience'] ) ) : 'all';
+	if ( isset( xin_download_audiences()[ $audience ] ) ) {
+		set_theme_mod( 'xin_download_audience', $audience );
+	}
+
+	// Роль, которой сейчас нет в списке (плагин с ролями выключили), в форму не
+	// попадает и потерялась бы на первом же сохранении — поэтому такие слаги
+	// переносим из старого значения как есть.
+	$picked = isset( $_POST['download_roles'] ) ? array_map( 'sanitize_key', (array) wp_unslash( $_POST['download_roles'] ) ) : array();
+	$known  = array_keys( xin_download_role_choices() );
+	$roles  = array_merge( array_intersect( $picked, $known ), array_diff( xin_download_roles(), $known ) );
+	set_theme_mod( 'xin_download_roles', implode( ',', array_unique( $roles ) ) );
+
 	$lang = isset( $_POST['default_lang'] ) ? sanitize_key( wp_unslash( $_POST['default_lang'] ) ) : 'ru';
 	if ( isset( xin_languages()[ $lang ] ) ) {
 		set_theme_mod( 'xin_default_lang', $lang );
