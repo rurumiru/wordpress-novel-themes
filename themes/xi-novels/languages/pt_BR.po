@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XI Novels project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels 0.5.0-beta\n"
+"Project-Id-Version: XI Novels 0.7.1-beta\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,6 +31,15 @@ msgstr "%d capítulos"
 
 msgid "%d главы прочитано"
 msgstr "%d capítulos lidos"
+
+msgid "%d оценка"
+msgstr "%d avaliação"
+
+msgid "%d оценки"
+msgstr "%d avaliações"
+
+msgid "%d оценок"
+msgstr "%d avaliações"
 
 msgid "%d сообщение"
 msgstr "%d mensagem"
@@ -170,6 +179,9 @@ msgstr "Já tem uma conta?"
 msgid "Акцентный цвет"
 msgstr "Cor de destaque"
 
+msgid "Аннотация"
+msgstr "Sinopse"
+
 msgid "Анонс"
 msgstr "Anúncio"
 
@@ -262,6 +274,9 @@ msgstr "Mover para rascunhos"
 
 msgid "В этом тайтле пока нет доступных глав."
 msgstr "Esta obra ainda não tem capítulos disponíveis."
+
+msgid "Вам также может понравиться"
+msgstr "Você também pode gostar"
 
 msgid "Ваша оценка"
 msgstr "Sua nota"
@@ -1085,6 +1100,9 @@ msgstr "O título é obrigatório."
 msgid "Нумерованный список"
 msgstr "Lista numerada"
 
+msgid "О книге"
+msgstr "Sobre"
+
 msgid "О тайтле"
 msgstr "Sobre a obra"
 
@@ -1108,6 +1126,9 @@ msgstr "Atualizado %s"
 
 msgid "Обновлён"
 msgstr "Atualizado"
+
+msgid "Обновлённое"
+msgstr "Atualizadas"
 
 msgid "Обсуждение"
 msgstr "Discussão"
@@ -1415,6 +1436,9 @@ msgstr "Gêneros populares"
 msgid "Порядок"
 msgstr "Ordem"
 
+msgid "Последнее обновление"
+msgstr "Última atualização"
+
 msgid "Последние главы"
 msgstr "Últimos capítulos"
 
@@ -1550,6 +1574,9 @@ msgstr "Cinquenta capítulos lidos"
 msgid "Прочитано сто глав"
 msgstr "Cem capítulos lidos"
 
+msgid "Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию."
+msgstr "Publique suas próprias obras e traduções, escreva capítulos num editor de verdade e reúna seu público."
+
 msgid "Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп."
 msgstr "Publique suas novels e traduções, cuide dos capítulos em um editor confortável, junte público. No seu formato, no seu ritmo."
 
@@ -1639,6 +1666,9 @@ msgstr "Ranking"
 
 msgid "Рейтинг с вкладками"
 msgstr "Ranking com abas"
+
+msgid "Рейтинги"
+msgstr "Rankings"
 
 msgid "Роли со скачиванием"
 msgstr "Funções que podem baixar"
@@ -1949,6 +1979,9 @@ msgstr "Essa página não existe"
 msgid "Тег"
 msgstr "Tag"
 
+msgid "Теги"
+msgstr "Tags"
+
 msgid "Теги тайтлов"
 msgstr "Tags das obras"
 
@@ -1984,6 +2017,9 @@ msgstr "Produto do WooCommerce"
 
 msgid "Только выбранным ролям"
 msgstr "Somente para as funções selecionadas"
+
+msgid "Только для подписки"
+msgstr "Somente para membros"
 
 msgid "Только с доступом PLUS"
 msgstr "Somente com acesso PLUS"
@@ -2155,6 +2191,9 @@ msgstr "Ler desde o começo"
 
 msgid "Читать статью"
 msgstr "Ler o artigo"
+
+msgid "Читают сейчас"
+msgstr "Lendo agora"
 
 msgid "Читают чаще всего"
 msgstr "Os mais lidos"

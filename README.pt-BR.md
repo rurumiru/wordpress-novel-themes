@@ -14,11 +14,11 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 [![Demo ao vivo](https://img.shields.io/badge/Demo_ao_vivo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Instalação](https://img.shields.io/badge/Instala%C3%A7%C3%A3o-dois_minutos-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Documentação](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-ler-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.7.1-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.7.2-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.7.1-f59e0b?style=flat-square)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.7.2-f59e0b?style=flat-square)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4_%E2%86%92_7.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 ![Página inicial](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.7.1 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
+> **Beta 0.7.2 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
 
 > [!TIP]
 > **Demo ao vivo — [xi.community](https://xi.community).** Um site de verdade rodando este tema: navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
