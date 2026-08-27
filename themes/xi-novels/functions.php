@@ -96,6 +96,10 @@ function xin_assets() {
 	// эталон отличается построением, а не краской. Подключается последним —
 	// значит, перекрывает всё, что накопилось выше.
 	wp_enqueue_style( 'xi-novels-look', XIN_URI . '/assets/css/look.css', array( 'xi-novels-landing' ), xin_asset_ver( '/assets/css/look.css' ) );
+	// Главная и страница тайтла переписаны со своей разметкой (`hm-`, `nv-`),
+	// поэтому их правила лежат отдельным файлом, а не переопределениями поверх
+	// старых селекторов.
+	wp_enqueue_style( 'xi-novels-screens', XIN_URI . '/assets/css/screens.css', array( 'xi-novels-look' ), xin_asset_ver( '/assets/css/screens.css' ) );
 
 	wp_enqueue_script( 'xi-novels-ui', XIN_URI . '/assets/js/ui.js', array(), xin_asset_ver( '/assets/js/ui.js' ), true );
 
@@ -104,7 +108,7 @@ $custom = xin_customizer_css();
 		// К ПОСЛЕДНЕЙ таблице, а не к pages.css: настройки Студии темы обязаны
 		// стоять в конце каскада, иначе облик ветки перекрывал бы выбранный
 		// владельцем цвет, и «Студия» молча перестала бы работать.
-		wp_add_inline_style( 'xi-novels-look', $custom );
+		wp_add_inline_style( 'xi-novels-screens', $custom );
 	}
 
 	wp_enqueue_script( 'xi-novels', XIN_URI . '/assets/js/theme.js', array(), xin_asset_ver( '/assets/js/theme.js' ), true );

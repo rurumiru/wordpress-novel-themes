@@ -2,31 +2,27 @@
  * Облик ветки presentation-layer — «библиотечная» подача вместо приборной панели.
  *
  * ── ОТКУДА ВЗЯТО ────────────────────────────────────────────────────────────
- * За основу взята подача книжной страницы webnovel: белые полотна на холодном
- * светлом фоне, антиквенная (с засечками) типографика и в интерфейсе, и в
- * тексте, одна синяя краска на все действия, оранжевая — только на оценку и
- * ранг, волосяные разделители вместо карточек с тенями, кнопки-таблетки.
+ * За основу взята книжная страница-эталон: белые полотна на холодном светлом
+ * фоне, антиква и в интерфейсе, и в тексте, одна синяя краска на все действия,
+ * оранжевая — только на оценку и ранг, кнопки-таблетки.
  *
  * Замеры эталона: полотно #ffffff (76% площади страницы), фон #f5f6fc (8%),
- * текст #25253d (7%), действие #2b54e4, звёзды #ff8d29, ранг #f95a35.
+ * текст #25253d (7%), действие #2b54e4, звёзды #ff8d29.
  *
- * ── КАК УСТРОЕНО ────────────────────────────────────────────────────────────
- * Файл подключается ПОСЛЕДНИМ и работает двумя способами.
+ * ── ЧТО ЗДЕСЬ, А ЧТО НЕТ ────────────────────────────────────────────────────
+ * Здесь только ОБЩЕЕ: токены, типографика, кнопки, шапка сайта, мера строки в
+ * читалке, карточка каталога. Главная и страница тайтла переписаны со своей
+ * разметкой, и всё, что относится к ним, живёт в screens.css — иначе правила
+ * снова превратились бы в спор селекторов.
  *
- * 1. Переставляет токены темы (`--bg`, `--fg`, `--primary`, радиусы, шрифты).
- *    Их читают все остальные стили, поэтому каталог, кабинет автора и панель
- *    управления меняют вид сами, без единой строчки под каждый экран.
- * 2. Правит НЕСКОЛЬКО узлов, где эталон отличается не краской, а построением:
- *    шапка тайтла, оглавление в две колонки, полотно читалки.
- *
- * Настройки Студии темы по-прежнему сильнее: их inline-CSS подключён к этому
- * файлу и идёт после него. Свои цвета площадки правка не отнимает.
+ * Токены важнее прочего: их читают ВСЕ остальные стили темы, поэтому каталог,
+ * кабинет автора и панель управления меняют вид сами, без строчки под каждый
+ * экран. Настройки Студии темы подключаются последними и по-прежнему сильнее.
  */
 
 /* ══ 1. Токены ═══════════════════════════════════════════════════════════ */
 
 :root {
-	/* Холодная бумага вместо тёплой: фон отступает, полотно выходит вперёд. */
 	--bg: 228 42% 97.5%;
 	--fg: 235 26% 18%;
 	--card: 0 0% 100%;
@@ -49,10 +45,11 @@
 	/*
 	 * Антиква и в интерфейсе тоже. Georgia стоит на всех системах и несёт
 	 * кириллицу; PT Serif впереди — если он установлен, буквы плотнее и ближе
-	 * к эталону. Гротеск остаётся запасным, а не основным.
+	 * к эталону. Гротеск остаётся для цифр и служебных подписей.
 	 */
 	--font: "PT Serif", Georgia, "Times New Roman", serif;
 	--font-read: "PT Serif", Georgia, "Times New Roman", serif;
+	--font-ui: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
 
 	/*
 	 * Углы у эталона почти прямые, но на тёмной теме это выглядит казённо:
@@ -109,337 +106,22 @@ h1, h2, h3, h4, h5, h6 {
 	letter-spacing: -.005em;
 }
 
+/* ══ 3. Кнопки ═══════════════════════════════════════════════════════════ */
+
 /* Действие всегда таблеткой и капителью — так его видно среди антиквы. */
 .btn {
 	--bs-btn-border-radius: 999px;
 	--bs-btn-padding-y: .62rem;
 	--bs-btn-padding-x: 1.4rem;
 	--bs-btn-font-size: 13px;
-	font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+	font-family: var(--font-ui);
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: .06em;
 }
 
 .btn-sm { --bs-btn-padding-y: .4rem; --bs-btn-padding-x: .9rem; --bs-btn-font-size: 11.5px; }
-.btn-lg { --bs-btn-padding-y: .78rem; --bs-btn-padding-x: 1.8rem; --bs-btn-font-size: 14px; }
-
-.btn-primary { box-shadow: none; }
-.btn-primary:hover { box-shadow: 0 6px 18px -8px hsl(var(--primary) / .8); }
-
-/* Иконочные кнопки таблетками не становятся: они круглые. */
-.btn-icon { --bs-btn-border-radius: 999px; text-transform: none; letter-spacing: 0; }
-
-/* Служебные подписи — гротеском: цифры и метки в антикве читаются медленнее. */
-.xin-nv__facts,
-.xin-nv__numbers,
-.xin-nv__count,
-.xin-nv__date,
-.xin-badge,
-.form-label,
-.form-text,
-.page-link { font-family: system-ui, "Segoe UI", Roboto, sans-serif; }
-
-/* ══ 3. Шапка тайтла ═════════════════════════════════════════════════════ */
-
-/*
- * В эталоне у шапки нет ни размытой картины во всю ширину, ни узкой обложки
- * сбоку от пустого места: ровная светлая полоса, крупная обложка и колонка
- * названия рядом. Ширина обеих колонок держится в одной мере с текстом ниже,
- * иначе страница разъезжается на широком экране.
- */
-.xin-nv__hero {
-	background: hsl(var(--bg));
-	border-bottom: 1px solid hsl(var(--border));
-}
-
-.xin-nv__backdrop { display: none; }
-
-.xin-nv__heroin {
-	max-width: 1000px;
-	margin-inline: auto;
-	align-items: start;
-	gap: 2.6rem;
-	padding-block: 2.4rem 2.2rem;
-}
-
-@media (min-width: 768px) {
-	.xin-nv__heroin { grid-template-columns: 232px minmax(0, 1fr); }
-	.xin-nv__cover { width: 232px; }
-}
-
-.xin-nv__cover {
-	border-radius: var(--radius-sm);
-	box-shadow: none;
-}
-
-.xin-nv__title {
-	font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.7rem);
-	line-height: 1.15;
-	margin-bottom: .5rem;
-}
-
-.xin-nv__orig { color: hsl(var(--muted-fg)); margin-bottom: .6rem; }
-
-.xin-nv__by { font-size: 15px; margin-bottom: .7rem; }
-
-/* Строка цифр — как в эталоне: одна линия, разделители тонкой чертой. */
-.xin-nv__numbers {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: .5rem 1.1rem;
-	font-size: 13px;
-	color: hsl(var(--muted-fg));
-}
-
-.xin-nv__numbers b { font-size: 15px; color: hsl(var(--fg)); }
-.xin-nv__numbers i { width: 1px; height: 12px; background: hsl(var(--border)); }
-
-.xin-nv__chips { gap: .4rem; margin-bottom: .9rem; }
-
-.xin-nv__stars svg { color: hsl(var(--gold)); }
-.xin-nv__ratenum { font-size: 1.5rem; font-weight: 700; }
-
-/*
- * Кнопки в эталоне крупные и всего две-три: до них должно дотягиваться
- * внимание, а не рулетка. Первая — сплошная, остальные светлые.
- */
-.xin-nv__cta {
-	gap: .6rem;
-	margin-top: 1.7rem;
-}
-
-.xin-nv__cta .btn {
-	--bs-btn-padding-y: .8rem;
-	--bs-btn-padding-x: 1.7rem;
-	--bs-btn-font-size: 13px;
-}
-
-/* ══ 4. Колонка страницы ═════════════════════════════════════════════════ */
-
-/*
- * Эталон не держит боковую панель: описание, оглавление и всё остальное идут
- * одной колонкой по центру. Виджеты и справка о тайтле не пропадают — они
- * уезжают под оглавление и оформляются такими же разделами.
- */
-.xin-nv__grid {
-	max-width: 1000px;
-	margin-inline: auto;
-	gap: 2.2rem;
-	padding-top: 2rem;
-	padding-bottom: 4rem;
-}
-
-@media (min-width: 1024px) {
-	.xin-nv__grid { grid-template-columns: minmax(0, 1fr); gap: 2.2rem; }
-}
-
-.xin-nv__aside .widget-title,
-.xin-nv__block > h2 {
-	font-family: var(--font);
-	font-size: 1.15rem;
-	font-weight: 700;
-	color: hsl(var(--fg));
-	text-transform: none;
-	letter-spacing: -.005em;
-}
-
-.xin-nv__block + .xin-nv__block,
-.xin-nv__aside .widget { margin-top: 2rem; padding-top: 1.8rem; }
-
-/* ══ 5. Вкладки «о книге» и «оглавление» ═════════════════════════════════ */
-
-/*
- * Две вкладки крупной антиквой, синяя черта под выбранной — самый заметный
- * приём эталона. Разметку они не ломают: без скрипта обе панели просто видны
- * одна под другой.
- */
-.xin-nv__tabs {
-	display: flex;
-	align-items: stretch;
-	gap: 1.4rem;
-	margin-bottom: 1.6rem;
-	border-bottom: 1px solid hsl(var(--border));
-}
-
-.xin-nv__tab {
-	position: relative;
-	padding: 0 0 .75rem;
-	font-family: var(--font);
-	font-size: clamp(1.2rem, 1rem + .6vw, 1.5rem);
-	font-weight: 700;
-	line-height: 1.2;
-	color: hsl(var(--muted-fg) / .8);
-	background: none;
-	border: 0;
-	cursor: pointer;
-	transition: color .18s ease;
-}
-
-.xin-nv__tab:hover { color: hsl(var(--fg)); }
-
-.xin-nv__tab.is-active { color: hsl(var(--fg)); }
-
-.xin-nv__tab.is-active::after {
-	content: "";
-	position: absolute;
-	right: 0;
-	bottom: -1px;
-	left: 0;
-	height: 2px;
-	background: hsl(var(--primary));
-}
-
-/* Волосяная черта между вкладками — вместо неё в эталоне стоит «|». */
-.xin-nv__tab + .xin-nv__tab {
-	padding-left: 1.4rem;
-	border-left: 1px solid hsl(var(--border));
-}
-
-/* Заголовок оглавления повторял бы вкладку слово в слово. */
-.xin-nv__sechead-hide { display: none; }
-
-.xin-nv__sechead { margin-bottom: 1rem; }
-.xin-nv__sechead h2 { font-size: 1.15rem; }
-
-.xin-nv__subhead {
-	margin: 2rem 0 .8rem;
-	font-size: 1.15rem;
-}
-
-/* ══ 6. Оглавление ═══════════════════════════════════════════════════════ */
-
-/*
- * Пятьсот глав в один столбец — это километр прокрутки. Эталон ставит их в две
- * колонки; на узком экране колонка снова одна.
- */
-.xin-nv__chapters {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 0;
-	border-top: 1px solid hsl(var(--border));
-}
-
-@media (min-width: 900px) {
-	.xin-nv__chapters { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; }
-}
-
-.xin-nv__chapters > li {
-	margin: 0;
-	border-bottom: 1px solid hsl(var(--border));
-}
-
-.xin-nv__chapters > li > a {
-	display: flex;
-	align-items: baseline;
-	gap: .9rem;
-	padding: .8rem .5rem;
-	transition: background-color .15s ease;
-}
-
-.xin-nv__chapters > li > a:hover { background: hsl(var(--muted)); }
-
-.xin-nv__num {
-	min-width: 2.4rem;
-	font-family: system-ui, "Segoe UI", Roboto, sans-serif;
-	font-size: 12.5px;
-	color: hsl(var(--muted-fg));
-}
-
-.xin-nv__date { margin-left: auto; font-size: 12px; color: hsl(var(--muted-fg)); }
-
-/* ══ 7. Читалка ══════════════════════════════════════════════════════════ */
-
-/*
- * Полотно читалки НЕ трогаем: у неё свои «бумаги» (как сайт / белая / сепия /
- * ночь), выбор которых читатель сохраняет сам, и подмена фона отсюда отняла бы
- * у него этот выбор. Белый лист на сером столе из эталона правильнее добавить
- * пятой бумагой — в reader.js и в список вариантов, — а не переопределением.
- *
- * Здесь только мера строки: у эталона колонка ~40em, наша была шире, и глаз
- * терял начало следующей строки на большом экране.
- */
-.xin-rd__text { max-width: 40em; margin-inline: auto; }
-
-/* ══ 8. Карточки каталога ════════════════════════════════════════════════ */
-
-/*
- * Карточка уже собрана правильно; от эталона её отличают только повадки —
- * подскок, тень и блик по обложке при наведении. В библиотечной подаче
- * достаточно того, что рамка обложки темнеет.
- */
-.xin-novel__cover { box-shadow: none; }
-
-.xin-novel:hover .xin-novel__cover {
-	transform: none;
-	box-shadow: var(--shadow-2);
-	border-color: hsl(var(--primary) / .4);
-}
-
-.xin-novel:hover .xin-novel__cover img { transform: none; }
-
-.xin-novel__cover::after { display: none; }
-
-/* Метка-таблетка с мягкой заливкой — как теги и ранг в эталоне. */
-.xin-badge {
-	border-radius: 999px;
-	font-size: 11px;
-	letter-spacing: .04em;
-	text-transform: uppercase;
-}
-
-.xin-badge--primary {
-	background: hsl(var(--primary) / .12);
-	color: hsl(var(--primary));
-}
-
-/* ══ 9. Мягкость ═════════════════════════════════════════════════════════
-   Эталон строг, но он светлый: на белом волосяные линии и прямые углы читаются
-   как воздух. На тёмной теме та же строгость превращается в чёрный лист с
-   серыми полосками — не сдержанно, а пусто. Ниже то, что возвращает странице
-   мягкость, не ломая построения: поверхности вместо линий, чуть больше
-   скруглений, тёплая тень под обложкой и живые состояния при наведении.
-   ══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Шапка ───────────────────────────────────────────────────────────────── */
-
-.navbar {
-	background: hsl(var(--card) / .82);
-	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
-	border-bottom: 1px solid hsl(var(--border));
-}
-
-.navbar-brand { font-size: 20px; letter-spacing: -.02em; }
-
-.navbar-nav { gap: .15rem; }
-
-.navbar-nav .nav-link {
-	padding: .5rem .9rem;
-	font-family: var(--font);
-	font-size: 15px;
-	font-weight: 600;
-	border-radius: 999px;
-	color: hsl(var(--muted-fg));
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus-visible {
-	color: hsl(var(--fg));
-	background: hsl(var(--accent) / .7);
-}
-
-.navbar-nav .nav-item.current-menu-item > .nav-link,
-.navbar-nav .nav-link.is-current {
-	color: hsl(var(--primary));
-	background: hsl(var(--primary) / .12);
-}
-
-/* Правый угол шапки: поиск, язык, профиль — одной группой с воздухом. */
-.navbar .ms-auto { gap: .4rem; }
-
-/* ── Кнопки ──────────────────────────────────────────────────────────────── */
+.btn-lg { --bs-btn-padding-y: .8rem; --bs-btn-padding-x: 1.8rem; --bs-btn-font-size: 13.5px; }
 
 /* Основное действие — мягкий градиент и тёплая тень вместо плоской заливки. */
 .btn-primary {
@@ -461,123 +143,89 @@ h1, h2, h3, h4, h5, h6 {
 	--bs-btn-hover-border-color: hsl(var(--primary) / .35);
 }
 
-/* ── Шапка тайтла ────────────────────────────────────────────────────────── */
+/* Иконочные кнопки таблетками не становятся: они круглые. */
+.btn-icon { --bs-btn-border-radius: 999px; text-transform: none; letter-spacing: 0; }
 
-.xin-nv__hero {
-	background: linear-gradient(180deg, hsl(var(--accent) / .55), hsl(var(--bg)) 72%);
+/* Служебные подписи — гротеском: цифры и метки в антикве читаются медленнее. */
+.form-label,
+.form-text,
+.page-link,
+.xin-badge { font-family: var(--font-ui); }
+
+/* ══ 4. Шапка сайта ══════════════════════════════════════════════════════ */
+
+.navbar {
+	background: hsl(var(--card) / .82);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	border-bottom: 1px solid hsl(var(--border));
 }
 
-.xin-nv__cover {
-	box-shadow: var(--shadow-3);
-	transition: transform .4s cubic-bezier(.22, .9, .3, 1);
-}
+.navbar-brand { font-size: 20px; letter-spacing: -.02em; }
 
-.xin-nv__cover:hover { transform: translateY(-4px); }
+.navbar-nav { gap: .15rem; }
 
-.xin-nv__stars svg { width: 20px; height: 20px; }
-
-.xin-nv__numbers b { font-size: 16px; }
-
-/* Метки статуса и жанров — мягкая заливка вместо рамки. */
-.xin-nv__chips .xin-badge {
-	padding: .3rem .7rem;
-	background: hsl(var(--muted));
-	border: 0;
+.navbar-nav .nav-link {
+	padding: .5rem .9rem;
+	font-family: var(--font);
+	font-size: 15px;
+	font-weight: 600;
 	color: hsl(var(--muted-fg));
+	border-radius: 999px;
 }
 
-.xin-nv__chips .xin-badge--primary {
-	background: hsl(var(--primary) / .14);
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus-visible {
+	color: hsl(var(--fg));
+	background: hsl(var(--accent) / .7);
+}
+
+.navbar-nav .nav-item.current-menu-item > .nav-link,
+.navbar-nav .nav-link.is-current {
 	color: hsl(var(--primary));
+	background: hsl(var(--primary) / .12);
 }
 
-/* ── Поверхности вместо линий ────────────────────────────────────────────── */
+/* Правый угол шапки: поиск, язык, профиль — одной группой с воздухом. */
+.navbar .ms-auto { gap: .4rem; }
+
+/* ══ 5. Читалка ══════════════════════════════════════════════════════════ */
 
 /*
- * «О тайтле», «Ваша оценка», команда и виджеты площадки были рядами текста
- * между волосяными чертами — на тёмном это читается как пустая таблица.
- * Каждый блок получает своё полотно.
+ * Полотно читалки НЕ трогаем: у неё свои «бумаги» (как сайт / белая / сепия /
+ * ночь), выбор которых читатель сохраняет сам, и подмена фона отсюда отняла бы
+ * у него этот выбор. Здесь только мера строки: у эталона колонка ~40em, наша
+ * была шире, и глаз терял начало следующей строки на большом экране.
  */
-.xin-nv__block,
-.xin-nv__aside .widget {
-	padding: 1.4rem 1.5rem;
-	background: hsl(var(--card));
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius);
+.xin-rd__text { max-width: 40em; margin-inline: auto; }
+
+/* ══ 6. Карточка каталога ════════════════════════════════════════════════ */
+
+/*
+ * Карточка собрана правильно; от эталона её отличали повадки — подскок, тень и
+ * блик по обложке при наведении. В библиотечной подаче хватает того, что рамка
+ * обложки темнеет.
+ */
+.xin-novel__cover { box-shadow: none; }
+
+.xin-novel:hover .xin-novel__cover {
+	transform: none;
+	box-shadow: var(--shadow-2);
+	border-color: hsl(var(--primary) / .4);
 }
 
-.xin-nv__block + .xin-nv__block,
-.xin-nv__aside .widget {
-	margin-top: 1.2rem;
-	padding-top: 1.4rem;
-	border-top: 1px solid hsl(var(--border));
-}
+.xin-novel:hover .xin-novel__cover img { transform: none; }
+.xin-novel__cover::after { display: none; }
 
-.xin-nv__block > h2,
-.xin-nv__aside .widget-title { margin-bottom: 1rem; }
-
-/* Пары «свойство — значение» разделяет пунктир, а не сплошная черта. */
-.xin-nv__facts > div {
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
-	gap: 1.5rem;
-	padding: .55rem 0;
-	border-bottom: 1px dashed hsl(var(--border));
-}
-
-.xin-nv__facts > div:last-child { border-bottom: 0; }
-.xin-nv__facts dt { color: hsl(var(--muted-fg)); font-size: 13px; }
-.xin-nv__facts dd { margin: 0; text-align: right; font-weight: 600; }
-
-/* ── Теги ────────────────────────────────────────────────────────────────── */
-
-.xin-nv__tags { display: flex; flex-wrap: wrap; gap: .45rem; }
-
-.xin-nv__tags a {
-	display: inline-flex;
-	align-items: center;
-	padding: .35rem .85rem;
-	font-family: system-ui, "Segoe UI", Roboto, sans-serif;
-	font-size: 12.5px;
-	color: hsl(var(--primary));
-	background: hsl(var(--primary) / .1);
-	border: 0;
+/* Метка-таблетка с мягкой заливкой — как теги и ранг в эталоне. */
+.xin-badge {
 	border-radius: 999px;
-	transition: background-color .18s ease, transform .18s ease;
+	font-size: 11px;
+	letter-spacing: .04em;
+	text-transform: uppercase;
 }
 
-.xin-nv__tags a:hover {
-	background: hsl(var(--primary) / .2);
-	transform: translateY(-1px);
-}
-
-/* ── Оглавление ──────────────────────────────────────────────────────────── */
-
-.xin-nv__chapters > li > a { border-radius: var(--radius-sm); }
-
-.xin-nv__chapters > li > a:hover {
-	background: hsl(var(--primary) / .07);
+.xin-badge--primary {
 	color: hsl(var(--primary));
+	background: hsl(var(--primary) / .12);
 }
-
-/* Поиск по главам и переключатель порядка — на одной подложке с полем. */
-.xin-nv__tools input[type="search"],
-.xin-nv__sort {
-	background: hsl(var(--card));
-	border: 1px solid hsl(var(--border));
-	border-radius: 999px;
-	padding: .55rem 1rem;
-}
-
-/* ── Похожие ─────────────────────────────────────────────────────────────── */
-
-.xin-nv__related a,
-.xin-nv__member {
-	padding: .5rem;
-	border-radius: var(--radius-sm);
-	transition: background-color .18s ease;
-}
-
-.xin-nv__related a:hover,
-.xin-nv__member:hover { background: hsl(var(--muted)); }
