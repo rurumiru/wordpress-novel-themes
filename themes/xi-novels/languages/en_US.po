@@ -2999,3 +2999,76 @@ msgstr "points to level %s"
 msgid "Цифры обновляются раз в пять минут."
 msgstr "The numbers refresh every five minutes."
 
+
+
+msgid "Браузерные уведомления о бесплатных главах"
+msgstr "Get browser alerts for free chapters"
+
+msgid "Отключить уведомления о главах"
+msgstr "Stop free chapter push alerts"
+
+msgid "Уведомления вкл."
+msgstr "Alerts on"
+
+msgid "Уведомлять"
+msgstr "Notify"
+
+msgid "Нужны HTTPS и современный браузер"
+msgstr "Push needs HTTPS + a modern browser"
+
+msgid "Заблокировано в браузере"
+msgstr "Blocked in browser settings"
+
+msgid "Не получилось обновить уведомления. Попробуйте ещё раз."
+msgstr "Could not update notifications. Try again."
+
+msgid "Включаю…"
+msgstr "Enabling…"
+
+msgid "Выключаю…"
+msgstr "Disabling…"
+
+msgid "Слишком много запросов. Подождите и попробуйте снова."
+msgstr "Too many notification requests. Please wait and try again."
+
+msgid "Неверные данные подписки."
+msgstr "Invalid subscription data."
+
+msgid "Не получилось обновить подписку."
+msgstr "Could not update subscription."
+
+msgid "Не получилось сохранить подписку."
+msgstr "Could not save subscription."
+
+msgid "Неверный endpoint."
+msgstr "Invalid endpoint."
+
+msgid "Неверный тайтл."
+msgstr "Invalid novel."
+
+msgid "Сессия истекла — повторяю…"
+msgstr "Session expired — retrying…"
+
+msgid "Доступна 1 новая глава"
+msgstr "1 new chapter available"
+
+msgid "Доступно %d новых глав"
+msgstr "%d new chapters available"
+
+msgid "%1$s — %2$s"
+msgstr "%1$s — %2$s"
+
+msgid "%s — вышли бесплатные главы"
+msgstr "%s — free chapters are live"
+
+msgid "Вышли бесплатные главы"
+msgstr "Free chapters are live"
+
+msgid "Уведомления о главах"
+msgstr "Chapter notifications"
+
+msgid "Браузерные уведомления, когда выходят бесплатные главы"
+msgstr "Get browser alerts when free chapters release"
+
+msgid "Опубликовано %d новых глав"
+msgstr "%d new chapters posted"

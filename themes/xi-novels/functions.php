@@ -31,6 +31,7 @@ require_once XIN_DIR . '/inc/user-fields.php';
 require_once XIN_DIR . '/inc/i18n.php';
 require_once XIN_DIR . '/inc/nav-walker.php';
 require_once XIN_DIR . '/inc/cleanup.php';
+require_once XIN_DIR . '/inc/push.php';
 
 function xin_setup() {
 	load_theme_textdomain( 'xi-novels', XIN_DIR . '/languages' );

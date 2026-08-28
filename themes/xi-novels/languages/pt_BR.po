@@ -2891,3 +2891,76 @@ msgstr "pontos até o nível %s"
 msgid "Цифры обновляются раз в пять минут."
 msgstr "Os números são atualizados a cada cinco minutos."
 
+
+
+msgid "Браузерные уведомления о бесплатных главах"
+msgstr "Alertas no navegador para capítulos gratuitos"
+
+msgid "Отключить уведомления о главах"
+msgstr "Parar alertas de capítulos gratuitos"
+
+msgid "Уведомления вкл."
+msgstr "Alertas ligados"
+
+msgid "Уведомлять"
+msgstr "Notificar"
+
+msgid "Нужны HTTPS и современный браузер"
+msgstr "Precisa de HTTPS e um navegador moderno"
+
+msgid "Заблокировано в браузере"
+msgstr "Bloqueado nas configurações do navegador"
+
+msgid "Не получилось обновить уведомления. Попробуйте ещё раз."
+msgstr "Não foi possível atualizar as notificações. Tente de novo."
+
+msgid "Включаю…"
+msgstr "Ativando…"
+
+msgid "Выключаю…"
+msgstr "Desativando…"
+
+msgid "Слишком много запросов. Подождите и попробуйте снова."
+msgstr "Pedidos demais. Espere e tente de novo."
+
+msgid "Неверные данные подписки."
+msgstr "Dados de inscrição inválidos."
+
+msgid "Не получилось обновить подписку."
+msgstr "Não foi possível atualizar a inscrição."
+
+msgid "Не получилось сохранить подписку."
+msgstr "Não foi possível salvar a inscrição."
+
+msgid "Неверный endpoint."
+msgstr "Endpoint inválido."
+
+msgid "Неверный тайтл."
+msgstr "Título inválido."
+
+msgid "Сессия истекла — повторяю…"
+msgstr "Sessão expirada — tentando de novo…"
+
+msgid "Доступна 1 новая глава"
+msgstr "1 capítulo novo disponível"
+
+msgid "Доступно %d новых глав"
+msgstr "%d capítulos novos disponíveis"
+
+msgid "%1$s — %2$s"
+msgstr "%1$s — %2$s"
+
+msgid "%s — вышли бесплатные главы"
+msgstr "%s — capítulos gratuitos no ar"
+
+msgid "Вышли бесплатные главы"
+msgstr "Capítulos gratuitos no ar"
+
+msgid "Уведомления о главах"
+msgstr "Notificações de capítulos"
+
+msgid "Браузерные уведомления, когда выходят бесплатные главы"
+msgstr "Alertas no navegador quando saírem capítulos gratuitos"
+
+msgid "Опубликовано %d новых глав"
+msgstr "%d novos capítulos publicados"
