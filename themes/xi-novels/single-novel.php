@@ -85,6 +85,7 @@ while ( have_posts() ) :
 							</a>
 						<?php endif; ?>
 						<?php xin_fav_button( $xin_id, true ); ?>
+						<?php xin_push_render_bell_button( $xin_id ); ?>
 
 						<?php if ( xin_can_download() ) : ?>
 							<div class="xin-nv__dl">
