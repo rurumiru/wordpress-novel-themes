@@ -2999,3 +2999,219 @@ msgstr "points to level %s"
 msgid "Цифры обновляются раз в пять минут."
 msgstr "The numbers refresh every five minutes."
 
+msgid "%1$s — %2$s"
+msgstr "%1$s — %2$s"
+
+msgid "%d страниц"
+msgstr "%d pages"
+
+msgid "%d страница"
+msgstr "%d page"
+
+msgid "%d страницы"
+msgstr "%d pages"
+
+msgid "%s — вышли бесплатные главы"
+msgstr "%s — free chapters are out"
+
+msgid "Без зазора"
+msgstr "No gap"
+
+msgid "Браузерные уведомления, когда выходят бесплатные главы"
+msgstr "Browser alerts when free chapters come out"
+
+msgid "В главе нет страниц"
+msgstr "This chapter has no pages"
+
+msgid "В каталоге пока пусто"
+msgstr "The catalogue is empty for now"
+
+msgid "В раздел новелл"
+msgstr "Go to novels"
+
+msgid "В разделе пока ни одного тайтла. Отметьте тайтл форматом «Комикс» — и он окажется здесь."
+msgstr "No titles in this section yet. Mark a title as a comic and it lands here."
+
+msgid "Включаю…"
+msgstr "Turning on…"
+
+msgid "Во всю"
+msgstr "Full width"
+
+msgid "Выключаю…"
+msgstr "Turning off…"
+
+msgid "Вышли бесплатные главы"
+msgstr "Free chapters are out"
+
+msgid "Глав пока нет"
+msgstr "No chapters yet"
+
+msgid "Глава пока закрыта"
+msgstr "This chapter is still locked"
+
+msgid "Доступна 1 новая глава"
+msgstr "1 new chapter is available"
+
+msgid "Заблокировано в браузере"
+msgstr "Blocked in the browser"
+
+msgid "Загрузите страницы главы — и они появятся здесь."
+msgstr "Upload the chapter pages and they show up here."
+
+msgid "Зазор между страницами"
+msgstr "Gap between pages"
+
+msgid "Как читается"
+msgstr "Reading direction"
+
+msgid "Каталог комиксов"
+msgstr "Comics catalogue"
+
+msgid "Комикс уходит в раздел /comics/ и открывается читалкой страниц, а не текста."
+msgstr "A comic moves to the /comics/ section and opens in the page reader, not the text one."
+
+msgid "Комиксы"
+msgstr "Comics"
+
+msgid "Комиксы скоро появятся"
+msgstr "Comics are on their way"
+
+msgid "Крупный"
+msgstr "Large"
+
+msgid "Лентой"
+msgstr "Strip"
+
+msgid "Лентой вниз (вебтун)"
+msgstr "Vertical strip (webtoon)"
+
+msgid "Манхва, маньхуа, манга и веб-комиксы — весь раздел целиком."
+msgstr "Manhwa, manhua, manga and web comics — the whole section."
+
+msgid "Не получилось обновить подписку."
+msgstr "Could not update the subscription."
+
+msgid "Не получилось обновить уведомления. Попробуйте ещё раз."
+msgstr "Could not update notifications. Try again."
+
+msgid "Не получилось сохранить подписку."
+msgstr "Could not save the subscription."
+
+msgid "Небольшой"
+msgstr "Small"
+
+msgid "Неверные данные подписки."
+msgstr "Invalid subscription data."
+
+msgid "Неверный endpoint."
+msgstr "Invalid endpoint."
+
+msgid "Неверный тайтл."
+msgstr "Invalid title."
+
+msgid "Недавно добавленные"
+msgstr "Recently added"
+
+msgid "Ни один тайтл ещё не отмечен форматом «Комикс»."
+msgstr "No title is marked as a comic yet."
+
+msgid "Новые главы"
+msgstr "New chapters"
+
+msgid "Нужны HTTPS и современный браузер"
+msgstr "HTTPS and a modern browser are required"
+
+msgid "Обычно"
+msgstr "Normal"
+
+msgid "Опубликовано %d новых глав"
+msgstr "%d new chapters published"
+
+msgid "Популярные комиксы"
+msgstr "Popular comics"
+
+msgid "Постранично"
+msgstr "Page by page"
+
+msgid "Постранично листается стрелками и кликом по краям кадра."
+msgstr "Page mode turns with the arrow keys and with a click near the frame edge."
+
+msgid "Постранично, слева направо"
+msgstr "Page by page, left to right"
+
+msgid "Постранично, справа налево"
+msgstr "Page by page, right to left"
+
+msgid "Постранично, справа налево (манга)"
+msgstr "Page by page, right to left (manga)"
+
+msgid "Раздел"
+msgstr "Section"
+
+msgid "Ранний доступ открывается подписчикам PLUS. Так команда перевода получает поддержку раньше остальных."
+msgstr "Early access opens for PLUS subscribers. That is how the translation team gets supported first."
+
+msgid "Режим"
+msgstr "Mode"
+
+msgid "Сессия истекла — повторяю…"
+msgstr "The session expired — retrying…"
+
+msgid "Слишком много запросов. Подождите и попробуйте снова."
+msgstr "Too many requests. Wait a moment and try again."
+
+msgid "Страница %d"
+msgstr "Page %d"
+
+msgid "Только что обновились"
+msgstr "Just updated"
+
+msgid "Уведомления вкл."
+msgstr "Alerts on"
+
+msgid "Уведомления о главах"
+msgstr "Chapter alerts"
+
+msgid "Уведомлять"
+msgstr "Notify me"
+
+msgid "Узко"
+msgstr "Narrow"
+
+msgid "Учитывается только у комиксов."
+msgstr "Only applies to comics."
+
+msgid "Формат"
+msgstr "Format"
+
+msgid "Хлебные крошки"
+msgstr "Breadcrumbs"
+
+msgid "Читается %s"
+msgstr "Read %s"
+
+msgid "Ширина кадра"
+msgstr "Frame width"
+
+msgid "Широко"
+msgstr "Wide"
+
+msgid "лентой вниз"
+msgstr "as a vertical strip"
+
+msgid "новинки"
+msgstr "new arrivals"
+
+msgid "постранично, слева направо"
+msgstr "page by page, left to right"
+
+msgid "постранично, справа налево"
+msgstr "page by page, right to left"
+
+msgid "свежее"
+msgstr "fresh"
+
+msgid "читают сейчас"
+msgstr "reading now"
+

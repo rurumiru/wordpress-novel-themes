@@ -389,3 +389,138 @@ msgstr "Waiting in the queue: %s"
 msgid "ближайшая «%1$s» выйдет %2$s"
 msgstr "the next one, “%1$s”, comes out %2$s"
 
+msgid "%1$s не удалась. Код %2$d. %3$s"
+msgstr "%1$s failed. Code %2$d. %3$s"
+
+msgid "«Догрузить существующие» отправляет по двадцать страниц за нажатие, чтобы не упереться в лимит времени."
+msgstr "“Upload the rest” sends twenty pages per click so it does not run into the time limit."
+
+msgid "Адрес хранилища"
+msgstr "Storage endpoint"
+
+msgid "Бакет"
+msgstr "Bucket"
+
+msgid "Бакет в пути адреса, а не в поддомене"
+msgstr "Bucket in the path, not in a subdomain"
+
+msgid "Без этого браузер получит от хранилища 403: запрос картинки со страницы не подписан. Если провайдер отключил ACL на бакете (так делают Cloudflare R2 и новые бакеты Amazon), снимите флаг и откройте доступ политикой бакета."
+msgstr "Without it the browser gets a 403 from the storage: an image request from the page is not signed. If your provider has ACLs switched off on the bucket — Cloudflare R2 and new Amazon buckets do — clear this box and open access with a bucket policy instead."
+
+msgid "Выгружено страниц: %1$d. Не удалось: %2$d."
+msgstr "Pages uploaded: %1$d. Failed: %2$d."
+
+msgid "Выгрузка"
+msgstr "Upload"
+
+msgid "Выгрузка в хранилище выключена."
+msgstr "Uploading to the storage is off."
+
+msgid "Выгрузка выключена: включите её и сохраните настройки."
+msgstr "Uploading is off: switch it on and save the settings."
+
+msgid "Глава комикса — это десятки картинок. В хранилище они лежат дешевле и раздаются с его домена или с CDN, а не с диска сайта. Подходит любое S3-совместимое: Amazon S3, Yandex Object Storage, Cloudflare R2, MinIO, Selectel."
+msgstr "A comic chapter is dozens of images. In object storage they cost less to keep and are served from its own domain or a CDN instead of the site disk. Any S3-compatible storage will do: Amazon S3, Yandex Object Storage, Cloudflare R2, MinIO, Selectel."
+
+msgid "Для Amazon S3 — адрес вида https://s3.eu-central-1.amazonaws.com"
+msgstr "For Amazon S3 — an address like https://s3.eu-central-1.amazonaws.com"
+
+msgid "Догрузить существующие"
+msgstr "Upload the rest"
+
+msgid "Домен CDN перед бакетом. Пусто — страницы отдаются прямо с адреса хранилища."
+msgstr "A CDN domain in front of the bucket. Leave it empty and pages are served straight from the storage address."
+
+msgid "Загрузка"
+msgstr "Upload"
+
+msgid "Ключ доступа"
+msgstr "Access key"
+
+msgid "Ключ или секрет заданы константами в wp-config.php — они сильнее полей формы. Это правильный способ: в базе доступа тогда не остаётся."
+msgstr "The key or the secret comes from constants in wp-config.php — they win over the form fields. That is the right way: no access is left in the database."
+
+msgid "Настройки хранилища сохранены."
+msgstr "Storage settings saved."
+
+msgid "Не удалось прочитать файл."
+msgstr "Could not read the file."
+
+msgid "Нужно для MinIO и большинства своих хранилищ. Amazon S3 работает и так, и так."
+msgstr "Needed for MinIO and most self-hosted storage. Amazon S3 works either way."
+
+msgid "Оставлять копию на диске сайта"
+msgstr "Keep a copy on the site disk"
+
+msgid "Отправлять страницы комиксов в хранилище"
+msgstr "Send comic pages to the storage"
+
+msgid "Папка в бакете"
+msgstr "Folder in the bucket"
+
+msgid "Помечать страницы общедоступными при загрузке"
+msgstr "Mark pages public on upload"
+
+msgid "Пробная запись"
+msgstr "Test write"
+
+msgid "Пробное чтение"
+msgstr "Test read"
+
+msgid "Проверить связь"
+msgstr "Test the connection"
+
+msgid "Публичный адрес"
+msgstr "Public address"
+
+msgid "Пустое поле не стирает сохранённый секрет. Надёжнее задать XNI_S3_KEY и XNI_S3_SECRET в wp-config.php."
+msgstr "An empty field does not wipe the saved secret. Setting XNI_S3_KEY and XNI_S3_SECRET in wp-config.php is safer."
+
+msgid "Регион"
+msgstr "Region"
+
+msgid "Связь есть: пробная запись, чтение и удаление прошли."
+msgstr "Connected: the test write, read and delete all went through."
+
+msgid "Секретный ключ"
+msgstr "Secret key"
+
+msgid "Снимите — освободится место, но единственная копия страницы будет в хранилище. Локальный файл удаляется только после успешной выгрузки."
+msgstr "Clear it and disk space is freed, but the only copy of a page will live in the storage. The local file is deleted only after a successful upload."
+
+msgid "Сохранить хранилище"
+msgstr "Save storage settings"
+
+msgid "Страниц в хранилище: %1$d. Глав комиксов на сайте: %2$d."
+msgstr "Pages in storage: %1$d. Comic chapters on the site: %2$d."
+
+msgid "Страница уходит сразу после того, как её привязали к главе. Текстовые главы и остальная медиатека не затрагиваются."
+msgstr "A page goes up as soon as it is attached to a chapter. Text chapters and the rest of the media library are left alone."
+
+msgid "Удаление"
+msgstr "Deletion"
+
+msgid "Участвует в подписи: неверный регион даёт отказ SignatureDoesNotMatch. У MinIO обычно us-east-1."
+msgstr "It goes into the signature: a wrong region gets you a SignatureDoesNotMatch refusal. MinIO usually uses us-east-1."
+
+msgid "Файл на %1$s не влезает в предел %2$s: отправка идёт через память."
+msgstr "A %1$s file does not fit the %2$s limit: the upload goes through memory."
+
+msgid "Файл не читается."
+msgstr "The file cannot be read."
+
+msgid "Файла вложения нет на диске."
+msgstr "The attachment file is not on the disk."
+
+msgid "Хранилище S3 для страниц комиксов"
+msgstr "S3 storage for comic pages"
+
+msgid "Хранилище не настроено: нужны адрес, бакет, ключ и секрет."
+msgstr "The storage is not configured: it needs an address, a bucket, a key and a secret."
+
+msgid "Хранилище не объяснило причину."
+msgstr "The storage did not explain why."
+
+msgid "сохранён — оставьте пустым"
+msgstr "saved — leave it empty"
+

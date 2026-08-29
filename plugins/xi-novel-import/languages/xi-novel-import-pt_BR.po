@@ -389,3 +389,138 @@ msgstr "Esperando na fila: %s"
 msgid "ближайшая «%1$s» выйдет %2$s"
 msgstr "o próximo, “%1$s”, sai em %2$s"
 
+msgid "%1$s не удалась. Код %2$d. %3$s"
+msgstr "%1$s falhou. Código %2$d. %3$s"
+
+msgid "«Догрузить существующие» отправляет по двадцать страниц за нажатие, чтобы не упереться в лимит времени."
+msgstr "“Enviar os restantes” manda vinte páginas por clique para não estourar o limite de tempo."
+
+msgid "Адрес хранилища"
+msgstr "Endereço do armazenamento"
+
+msgid "Бакет"
+msgstr "Bucket"
+
+msgid "Бакет в пути адреса, а не в поддомене"
+msgstr "Bucket no caminho, não em um subdomínio"
+
+msgid "Без этого браузер получит от хранилища 403: запрос картинки со страницы не подписан. Если провайдер отключил ACL на бакете (так делают Cloudflare R2 и новые бакеты Amazon), снимите флаг и откройте доступ политикой бакета."
+msgstr "Sem isso o navegador recebe um 403 do armazenamento: a requisição da imagem feita pela página não é assinada. Se o provedor desativou as ACLs no bucket — como fazem o Cloudflare R2 e os novos buckets da Amazon —, desmarque esta opção e libere o acesso por política de bucket."
+
+msgid "Выгружено страниц: %1$d. Не удалось: %2$d."
+msgstr "Páginas enviadas: %1$d. Falharam: %2$d."
+
+msgid "Выгрузка"
+msgstr "Envio"
+
+msgid "Выгрузка в хранилище выключена."
+msgstr "O envio para o armazenamento está desligado."
+
+msgid "Выгрузка выключена: включите её и сохраните настройки."
+msgstr "O envio está desligado: ative-o e salve as configurações."
+
+msgid "Глава комикса — это десятки картинок. В хранилище они лежат дешевле и раздаются с его домена или с CDN, а не с диска сайта. Подходит любое S3-совместимое: Amazon S3, Yandex Object Storage, Cloudflare R2, MinIO, Selectel."
+msgstr "Um capítulo de quadrinho são dezenas de imagens. No armazenamento de objetos elas custam menos e são servidas pelo domínio dele ou por uma CDN, e não pelo disco do site. Serve qualquer armazenamento compatível com S3: Amazon S3, Yandex Object Storage, Cloudflare R2, MinIO, Selectel."
+
+msgid "Для Amazon S3 — адрес вида https://s3.eu-central-1.amazonaws.com"
+msgstr "Para o Amazon S3 — um endereço como https://s3.eu-central-1.amazonaws.com"
+
+msgid "Догрузить существующие"
+msgstr "Enviar os restantes"
+
+msgid "Домен CDN перед бакетом. Пусто — страницы отдаются прямо с адреса хранилища."
+msgstr "Um domínio de CDN na frente do bucket. Em branco, as páginas vêm direto do endereço do armazenamento."
+
+msgid "Загрузка"
+msgstr "Envio"
+
+msgid "Ключ доступа"
+msgstr "Chave de acesso"
+
+msgid "Ключ или секрет заданы константами в wp-config.php — они сильнее полей формы. Это правильный способ: в базе доступа тогда не остаётся."
+msgstr "A chave ou o segredo vêm de constantes no wp-config.php — elas têm prioridade sobre os campos do formulário. Esse é o caminho certo: nenhum acesso fica no banco de dados."
+
+msgid "Настройки хранилища сохранены."
+msgstr "Configurações do armazenamento salvas."
+
+msgid "Не удалось прочитать файл."
+msgstr "Não foi possível ler o arquivo."
+
+msgid "Нужно для MinIO и большинства своих хранилищ. Amazon S3 работает и так, и так."
+msgstr "Necessário para o MinIO e para a maioria dos armazenamentos próprios. O Amazon S3 funciona das duas formas."
+
+msgid "Оставлять копию на диске сайта"
+msgstr "Manter uma cópia no disco do site"
+
+msgid "Отправлять страницы комиксов в хранилище"
+msgstr "Enviar páginas de quadrinhos para o armazenamento"
+
+msgid "Папка в бакете"
+msgstr "Pasta no bucket"
+
+msgid "Помечать страницы общедоступными при загрузке"
+msgstr "Marcar as páginas como públicas ao enviar"
+
+msgid "Пробная запись"
+msgstr "Gravação de teste"
+
+msgid "Пробное чтение"
+msgstr "Leitura de teste"
+
+msgid "Проверить связь"
+msgstr "Testar a conexão"
+
+msgid "Публичный адрес"
+msgstr "Endereço público"
+
+msgid "Пустое поле не стирает сохранённый секрет. Надёжнее задать XNI_S3_KEY и XNI_S3_SECRET в wp-config.php."
+msgstr "Um campo vazio não apaga o segredo salvo. Definir XNI_S3_KEY e XNI_S3_SECRET no wp-config.php é mais seguro."
+
+msgid "Регион"
+msgstr "Região"
+
+msgid "Связь есть: пробная запись, чтение и удаление прошли."
+msgstr "Conectado: a gravação, a leitura e a exclusão de teste funcionaram."
+
+msgid "Секретный ключ"
+msgstr "Chave secreta"
+
+msgid "Снимите — освободится место, но единственная копия страницы будет в хранилище. Локальный файл удаляется только после успешной выгрузки."
+msgstr "Desmarque e o espaço em disco é liberado, mas a única cópia da página ficará no armazenamento. O arquivo local só é apagado após um envio bem-sucedido."
+
+msgid "Сохранить хранилище"
+msgstr "Salvar armazenamento"
+
+msgid "Страниц в хранилище: %1$d. Глав комиксов на сайте: %2$d."
+msgstr "Páginas no armazenamento: %1$d. Capítulos de quadrinhos no site: %2$d."
+
+msgid "Страница уходит сразу после того, как её привязали к главе. Текстовые главы и остальная медиатека не затрагиваются."
+msgstr "A página sobe assim que é vinculada a um capítulo. Capítulos de texto e o resto da biblioteca de mídia não são afetados."
+
+msgid "Удаление"
+msgstr "Exclusão"
+
+msgid "Участвует в подписи: неверный регион даёт отказ SignatureDoesNotMatch. У MinIO обычно us-east-1."
+msgstr "Entra na assinatura: uma região errada gera a recusa SignatureDoesNotMatch. O MinIO costuma usar us-east-1."
+
+msgid "Файл на %1$s не влезает в предел %2$s: отправка идёт через память."
+msgstr "Um arquivo de %1$s não cabe no limite de %2$s: o envio passa pela memória."
+
+msgid "Файл не читается."
+msgstr "O arquivo não pode ser lido."
+
+msgid "Файла вложения нет на диске."
+msgstr "O arquivo do anexo não está no disco."
+
+msgid "Хранилище S3 для страниц комиксов"
+msgstr "Armazenamento S3 para páginas de quadrinhos"
+
+msgid "Хранилище не настроено: нужны адрес, бакет, ключ и секрет."
+msgstr "O armazenamento não está configurado: faltam endereço, bucket, chave e segredo."
+
+msgid "Хранилище не объяснило причину."
+msgstr "O armazenamento não explicou o motivo."
+
+msgid "сохранён — оставьте пустым"
+msgstr "salvo — deixe em branco"
+
