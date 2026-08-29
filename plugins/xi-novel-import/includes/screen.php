@@ -409,6 +409,8 @@ function xni_screen() {
 			</div>
 		</div>
 
+		<?php xni_s3_screen_section(); ?>
+
 		<div class="xni-progress" id="xni-progress" <?php echo $job && empty( $job['done'] ) ? '' : 'hidden'; ?>>
 			<h2><?php esc_html_e( 'Обработка', 'xi-novel-import' ); ?></h2>
 			<div class="xni-bar"><i></i></div>

@@ -27,7 +27,9 @@ require_once XNI_DIR . 'includes/importer.php';
 require_once XNI_DIR . 'includes/schedule.php';
 require_once XNI_DIR . 'includes/batch.php';
 require_once XNI_DIR . 'includes/fix.php';
+require_once XNI_DIR . 'includes/storage.php';
 require_once XNI_DIR . 'includes/screen.php';
+require_once XNI_DIR . 'includes/storage-screen.php';
 require_once XNI_DIR . 'includes/countdown.php';
 require_once XNI_DIR . 'includes/studio.php';
 
@@ -130,6 +132,7 @@ function xni_assets( $hook ) {
 
 	wp_enqueue_style( 'xni', XNI_URL . 'assets/import.css', array(), XNI_VERSION );
 	wp_enqueue_script( 'xni', XNI_URL . 'assets/import.js', array(), XNI_VERSION, true );
+	wp_enqueue_script( 'xni-storage', XNI_URL . 'assets/storage.js', array( 'xni' ), XNI_VERSION, true );
 
 	wp_localize_script( 'xni', 'XNI', array(
 		'ajax'       => admin_url( 'admin-ajax.php' ),
