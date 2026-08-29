@@ -3,7 +3,7 @@
  * Plugin Name: XIN-Com — управление тайтлами
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
  * Description: Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires PHP: 7.4
  * Author: XI Community
  * Author URI: https://xi.community/
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XNM_VERSION', '1.1.0' );
+define( 'XNM_VERSION', '1.1.1' );
 define( 'XNM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'XNM_URL', plugin_dir_url( __FILE__ ) );
 
