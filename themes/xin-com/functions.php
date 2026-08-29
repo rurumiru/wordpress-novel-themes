@@ -9,6 +9,7 @@ define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
 require_once XIN_DIR . '/inc/cpt.php';
+require_once XIN_DIR . '/inc/format.php';
 require_once XIN_DIR . '/inc/permalinks.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
 require_once XIN_DIR . '/inc/icons.php';
@@ -88,6 +89,7 @@ function xin_assets() {
 	wp_enqueue_style( 'xin-com-parts', XIN_URI . '/assets/css/parts.css', array( 'xin-com-pages' ), xin_asset_ver( '/assets/css/parts.css' ) );
 	wp_enqueue_style( 'xin-com-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xin-com-parts' ), xin_asset_ver( '/assets/css/widgets.css' ) );
 	wp_enqueue_style( 'xin-com-landing', XIN_URI . '/assets/css/landing.css', array( 'xin-com-widgets' ), xin_asset_ver( '/assets/css/landing.css' ) );
+	wp_enqueue_style( 'xin-com-comics', XIN_URI . '/assets/css/comics.css', array( 'xin-com-landing' ), xin_asset_ver( '/assets/css/comics.css' ) );
 
 	wp_enqueue_script( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), '5.3.3', true );
 
@@ -134,7 +136,14 @@ $custom = xin_customizer_css();
 
 	wp_register_script( 'xin-com-replace', XIN_URI . '/assets/js/replace.js', array(), xin_asset_ver( '/assets/js/replace.js' ), true );
 
-	if ( is_singular( 'chapter' ) ) {
+	/*
+	 * Глава комикса получает свою читалку и не получает текстовую: словарь,
+	 * озвучка и абзацные инструменты работают по тексту, которого здесь нет, а
+	 * reader.js на пустом месте только считал бы прокрутку впустую.
+	 */
+	if ( is_singular( 'chapter' ) && 'comic' === xin_chapter_format( get_queried_object_id() ) ) {
+		wp_enqueue_script( 'xin-com-comic-reader', XIN_URI . '/assets/js/comic-reader.js', array(), xin_asset_ver( '/assets/js/comic-reader.js' ), true );
+	} elseif ( is_singular( 'chapter' ) ) {
 		wp_enqueue_script( 'xin-com-reader', XIN_URI . '/assets/js/reader.js', array( 'xin-com' ), xin_asset_ver( '/assets/js/reader.js' ), true );
 
 		wp_enqueue_script( 'xin-com-glossary', XIN_URI . '/assets/js/glossary.js', array( 'xin-com-reader', 'xin-com-replace' ), xin_asset_ver( '/assets/js/glossary.js' ), true );

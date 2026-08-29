@@ -21,6 +21,8 @@
 			<?php xin_brand(); ?>
 		</a>
 
+		<?php xin_section_switch(); ?>
+
 		<nav class="collapse navbar-collapse d-none d-lg-flex" aria-label="<?php esc_attr_e( 'Основная навигация', 'xin-com' ); ?>">
 			<?php
 			if ( has_nav_menu( 'primary' ) ) {

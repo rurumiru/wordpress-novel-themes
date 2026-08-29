@@ -207,6 +207,67 @@ function xin_novel_card( $novel_id, $args = array() ) {
 	<?php
 }
 
+/**
+ * Карточка комикса: постер и ничего лишнего.
+ *
+ * Отдельный рендер, а не флаг у `xin_novel_card()`. У новеллы карточка
+ * продаёт текстом — автор, оценка, число глав; у комикса продаёт сама
+ * обложка, поэтому здесь всё, кроме постера, уходит на него самого и
+ * появляется по наведению.
+ *
+ * @param int   $novel_id Тайтл.
+ * @param array $args     Аргументы отрисовки.
+ * @return void
+ */
+function xin_comic_card( $novel_id, $args = array() ) {
+	$args = wp_parse_args( $args, array(
+		'rank'  => 0,
+		'class' => '',
+	) );
+
+	$cover  = xin_cover_url( $novel_id );
+	$adult  = (bool) get_post_meta( $novel_id, '_xin_adult', true );
+	$title  = get_the_title( $novel_id );
+	$count  = xin_chapter_count( $novel_id );
+	$status = xin_novel_status( $novel_id );
+	$rating = xin_rating( $novel_id );
+	?>
+	<article class="xin-cm-card <?php echo esc_attr( $args['class'] ); ?><?php echo $adult ? ' xin-cm-card--blur' : ''; ?>">
+		<a class="xin-cm-card__poster<?php echo $cover ? '' : ' xin-cm-card__poster--empty'; ?>" href="<?php echo esc_url( get_permalink( $novel_id ) ); ?>">
+			<?php if ( $cover ) : ?>
+				<img src="<?php echo esc_url( $cover ); ?>" alt="<?php echo esc_attr( $title ); ?>" width="320" height="480" loading="lazy">
+			<?php else : ?>
+				<?php xin_the_icon( 'layers' ); ?>
+			<?php endif; ?>
+
+			<span class="xin-cm-card__badges">
+				<?php if ( $adult ) : ?>
+					<span class="xin-badge xin-badge--adult">18+</span>
+				<?php endif; ?>
+				<?php if ( $status && 'completed' === $status->slug ) : ?>
+					<span class="xin-badge xin-badge--primary"><?php echo esc_html( $status->name ); ?></span>
+				<?php endif; ?>
+			</span>
+
+			<?php if ( $args['rank'] ) : ?>
+				<span class="xin-cm-card__rank<?php echo $args['rank'] <= 3 ? ' is-top' : ''; ?>"><?php echo (int) $args['rank']; ?></span>
+			<?php endif; ?>
+
+			<span class="xin-cm-card__over">
+				<?php if ( $count ) : ?>
+					<span><?php xin_the_icon( 'layers' ); ?><?php echo (int) $count; ?></span>
+				<?php endif; ?>
+				<?php if ( $rating['count'] ) : ?>
+					<span><?php xin_the_icon( 'star', '', true ); ?><?php echo esc_html( number_format( $rating['value'], 1, ',', '' ) ); ?></span>
+				<?php endif; ?>
+			</span>
+		</a>
+
+		<h3 class="xin-cm-card__title"><a href="<?php echo esc_url( get_permalink( $novel_id ) ); ?>"><?php echo esc_html( $title ); ?></a></h3>
+	</article>
+	<?php
+}
+
 function xin_fav_button( $novel_id, $inline = false ) {
 	$data = array(
 		'id'    => (int) $novel_id,
@@ -448,7 +509,18 @@ function xin_stars( $value, $max = 5 ) {
 	return $out . '</span>';
 }
 
-function xin_get_novels( $type = 'latest', $limit = 12 ) {
+/**
+ * Тайтлы для полок и рейтингов.
+ *
+ * Формат обязателен и по умолчанию текстовый: если про раздел где-то забыли,
+ * забывчивость показывает новеллы, а не подмешивает комиксы в чужую полку.
+ *
+ * @param string $type   Тип выборки.
+ * @param int    $limit  Сколько вернуть.
+ * @param string $format `text`, `comic` или `any`.
+ * @return int[]
+ */
+function xin_get_novels( $type = 'latest', $limit = 12, $format = 'text' ) {
 	$args = array(
 		'post_type'              => 'novel',
 		'post_status'            => 'publish',
@@ -458,6 +530,8 @@ function xin_get_novels( $type = 'latest', $limit = 12 ) {
 		'update_post_term_cache' => false,
 		'ignore_sticky_posts'    => true,
 	);
+
+	$args['meta_query'] = xin_format_meta_clause( $format ); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 
 	switch ( $type ) {
 		case 'popular':
@@ -475,11 +549,9 @@ function xin_get_novels( $type = 'latest', $limit = 12 ) {
 			$args['order']   = 'DESC';
 			break;
 		case 'featured':
-			$args['meta_query'] = array(
-				array(
-					'key'   => '_xin_featured',
-					'value' => '1',
-				),
+			$args['meta_query'][] = array(
+				'key'   => '_xin_featured',
+				'value' => '1',
 			);
 			$args['orderby'] = 'date';
 			break;
@@ -492,7 +564,14 @@ function xin_get_novels( $type = 'latest', $limit = 12 ) {
 	return $q->posts;
 }
 
-function xin_get_latest_chapters( $limit = 12 ) {
+/**
+ * Свежие главы раздела.
+ *
+ * @param int    $limit  Сколько вернуть.
+ * @param string $format `text`, `comic` или `any`.
+ * @return int[]
+ */
+function xin_get_latest_chapters( $limit = 12, $format = 'text' ) {
 	$q = new WP_Query( array(
 		'post_type'      => 'chapter',
 		'post_status'    => 'publish',
@@ -501,6 +580,7 @@ function xin_get_latest_chapters( $limit = 12 ) {
 		'no_found_rows'  => true,
 		'orderby'        => 'date',
 		'order'          => 'DESC',
+		'meta_query'     => xin_format_meta_clause( $format ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 	) );
 	return $q->posts;
 }

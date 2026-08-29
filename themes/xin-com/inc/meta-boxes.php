@@ -22,6 +22,8 @@ function xin_novel_box( $post ) {
 	$rating   = get_post_meta( $post->ID, '_xin_rating', true );
 	$rcount   = (int) get_post_meta( $post->ID, '_xin_rating_count', true );
 	$views    = (int) get_post_meta( $post->ID, '_xin_views', true );
+	$format   = xin_novel_format( $post->ID );
+	$dir      = xin_comic_direction( $post->ID );
 	$adult    = (bool) get_post_meta( $post->ID, '_xin_adult', true );
 	$featured = (bool) get_post_meta( $post->ID, '_xin_featured', true );
 	?>
@@ -33,6 +35,24 @@ function xin_novel_box( $post ) {
 		.xin-fields .description { margin-top: 3px; }
 	</style>
 	<div class="xin-fields">
+		<p>
+			<label for="xin_format"><?php esc_html_e( 'Формат', 'xin-com' ); ?></label>
+			<select id="xin_format" name="xin_format">
+				<?php foreach ( xin_formats() as $xin_key => $xin_format ) : ?>
+					<option value="<?php echo esc_attr( $xin_key ); ?>" <?php selected( $format, $xin_key ); ?>><?php echo esc_html( $xin_format['label'] ); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<span class="description"><?php esc_html_e( 'Комикс уходит в раздел /comics/ и открывается читалкой страниц, а не текста.', 'xin-com' ); ?></span>
+		</p>
+		<p>
+			<label for="xin_direction"><?php esc_html_e( 'Как читается', 'xin-com' ); ?></label>
+			<select id="xin_direction" name="xin_direction">
+				<option value="strip" <?php selected( $dir, 'strip' ); ?>><?php esc_html_e( 'Лентой вниз (вебтун)', 'xin-com' ); ?></option>
+				<option value="ltr" <?php selected( $dir, 'ltr' ); ?>><?php esc_html_e( 'Постранично, слева направо', 'xin-com' ); ?></option>
+				<option value="rtl" <?php selected( $dir, 'rtl' ); ?>><?php esc_html_e( 'Постранично, справа налево (манга)', 'xin-com' ); ?></option>
+			</select>
+			<span class="description"><?php esc_html_e( 'Учитывается только у комиксов.', 'xin-com' ); ?></span>
+		</p>
 		<p>
 			<label for="xin_author_name"><?php esc_html_e( 'Автор оригинала', 'xin-com' ); ?></label>
 			<input type="text" id="xin_author_name" name="xin_author_name" value="<?php echo esc_attr( $author ); ?>" placeholder="<?php esc_attr_e( 'Имя автора', 'xin-com' ); ?>">
@@ -208,6 +228,13 @@ function xin_save_meta( $post_id ) {
 		if ( $rating > 0 && ! get_post_meta( $post_id, '_xin_rating_count', true ) ) {
 			update_post_meta( $post_id, '_xin_rating_count', 1 );
 		}
+	}
+	if ( isset( $_POST['xin_format'] ) ) {
+		update_post_meta( $post_id, '_xin_format', xin_format_key( sanitize_key( wp_unslash( $_POST['xin_format'] ) ) ) );
+	}
+	if ( isset( $_POST['xin_direction'] ) ) {
+		$direction = sanitize_key( wp_unslash( $_POST['xin_direction'] ) );
+		update_post_meta( $post_id, '_xin_direction', in_array( $direction, array( 'strip', 'ltr', 'rtl' ), true ) ? $direction : 'strip' );
 	}
 	if ( isset( $_POST['xin_background'] ) ) {
 		update_post_meta( $post_id, '_xin_background', absint( $_POST['xin_background'] ) );
