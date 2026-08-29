@@ -95,7 +95,7 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 .btn-sm { --bs-btn-padding-y: .32rem; --bs-btn-padding-x: .7rem; --bs-btn-font-size: 12.5px; --bs-btn-border-radius: 8px; }
 .btn-icon {
 	--bs-btn-padding-y: 0; --bs-btn-padding-x: 0;
-	width: 36px; height: 36px; border-radius: 9px;
+	width: auto; height: auto; border-radius: 9px;
 	--bs-btn-bg: transparent; --bs-btn-color: hsl(var(--muted-fg));
 	--bs-btn-hover-bg: hsl(var(--accent)); --bs-btn-hover-color: hsl(var(--fg));
 }
