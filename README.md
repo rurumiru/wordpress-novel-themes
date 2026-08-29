@@ -14,11 +14,11 @@ rankings, an author studio, a reader library and a reader hub.<br>
 [![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Install](https://img.shields.io/badge/Install-two_minutes-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Docs](https://img.shields.io/badge/Docs-read-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.6.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.8.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Version](https://img.shields.io/badge/version-beta%200.6.0-f59e0b?style=flat-square)
+![Version](https://img.shields.io/badge/version-beta%200.8.0-f59e0b?style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ rankings, an author studio, a reader library and a reader hub.<br>
 ![Home page](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.6.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+> **Beta 0.8.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
 
 > [!TIP]
 > **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
@@ -141,6 +141,7 @@ Every other answer is either a **$59–$99 marketplace theme** welded to a page 
 
 | | |
 |:--|:--|
+| **0.8.0** | **The theme is now XIN-Com, and it has a comics section.** Novels and comics are two sections with a switcher in the header, a home page each, their own catalogue and a page reader for comics — vertical strip or page by page, right to left for manga. Comic pages can be offloaded to S3-compatible storage, with a choice of delivery mirror in the reader. The studio sets WordPress up for the theme: permalinks, service pages, front page and menu |
 | **0.6.0** | **Book downloads close behind a role.** The control panel decides who may export EPUB and FB2: everyone, any signed-in reader, PLUS holders, “PLUS or selected roles”, or selected roles only — checkboxes over the site roles, plugin-made ones included. The button and the direct link ask the same check |
 | **0.5.0** | **Reader Hub** at `/hub/` — one page that shows the site from the inside: who talks, what they argue about, what is being read right now. Six site counters in the header, both metrics at once on the leaderboard, a profile card with a bar to the next level. Drawn as a terminal — grid and sweep on the canvas, cut corners, monospace readouts, segmented bars — and it collects nothing new about anyone beyond a 40-entry ring of recent reads |
 | **0.4.0** | **Paragraph tools and on-device text-to-speech.** Click a paragraph: bookmark it in one of four colours, link straight to it, quote it into the discussion, suggest an edit with a live diff, or have the chapter read aloud from that point. **Queued chapters say when they go out**, and the release schedule moved into the author’s own project settings |

@@ -14,11 +14,11 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 [![Demo ao vivo](https://img.shields.io/badge/Demo_ao_vivo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Instalação](https://img.shields.io/badge/Instala%C3%A7%C3%A3o-dois_minutos-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Documentação](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-ler-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.6.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.8.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.6.0-f59e0b?style=flat-square)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.8.0-f59e0b?style=flat-square)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4_%E2%86%92_7.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +39,7 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 ![Página inicial](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.6.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
+> **Beta 0.8.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
 
 > [!TIP]
 > **Demo ao vivo — [xi.community](https://xi.community).** Um site de verdade rodando este tema: navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
@@ -141,6 +141,7 @@ As outras respostas são um **tema de marketplace de US$ 59–99** soldado a um 
 
 | | |
 |:--|:--|
+| **0.8.0** | **O tema agora é XIN-Com e ganhou uma seção de quadrinhos.** Novels e quadrinhos são duas seções com um seletor no cabeçalho, cada uma com sua página inicial e seu catálogo, e os quadrinhos ainda com um leitor de páginas: em tira vertical ou página a página, da direita para a esquerda no mangá. As páginas dos quadrinhos podem ir para armazenamento compatível com S3, e o leitor escolhe o espelho de entrega. O estúdio configura o WordPress para o tema: links, páginas de serviço, página inicial e menu |
 | **0.6.0** | **O download de livros fecha atrás de uma função.** O painel de controle define quem pode exportar EPUB e FB2: todos, qualquer pessoa conectada, quem tem PLUS, “PLUS ou funções selecionadas” ou somente as funções selecionadas — caixas sobre as funções do site, incluindo as criadas por plugins. O botão e o link direto fazem a mesma verificação |
 | **0.5.0** | **Espaço do leitor** em `/hub/` — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora. Seis contadores do site no cabeçalho, as duas métricas de uma vez no quadro de líderes, um cartão de perfil com a barra até o próximo nível. Desenhado como um terminal — grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas — e não coleta nada novo sobre ninguém além de um anel de 40 leituras recentes |
 | **0.4.0** | **Ferramentas de parágrafo e leitura em voz alta com vozes do aparelho.** Clique em um parágrafo: marque-o em uma de quatro cores, link direto para ele, cite-o na discussão, sugira uma correção com comparação ao vivo ou ouça o capítulo a partir dali. **Capítulos na fila dizem quando saem**, e a agenda de publicação passou a morar nas configurações do projeto, com o autor |
