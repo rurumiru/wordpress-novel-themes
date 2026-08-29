@@ -1,6 +1,6 @@
 <?php
 /**
- * RU -> EN strings for the XI Novels theme.
+ * RU -> EN strings for the XIN-Com theme.
  *
  * Loaded by tools/build-translations.php. One entry per Russian source string.
  */
@@ -44,12 +44,12 @@ return array(
 	'Telegram-канал' => 'Telegram channel',
 	'Telegram: канал' => 'Telegram: channel',
 	'Telegram: чат сообщества' => 'Telegram: community chat',
-	'XI Novels: аккаунты' => 'XI Novels: accounts',
-	'XI Novels: бренд и цвета' => 'XI Novels: brand & colors',
-	'XI Novels: главная' => 'XI Novels: home page',
-	'XI Novels: доступ к книгам' => 'XI Novels: book access',
-	'XI Novels: облик' => 'XI Novels: look',
-	'XI Novels: подвал и соцсети' => 'XI Novels: footer & social',
+	'XIN-Com: аккаунты' => 'XIN-Com: accounts',
+	'XIN-Com: бренд и цвета' => 'XIN-Com: brand & colors',
+	'XIN-Com: главная' => 'XIN-Com: home page',
+	'XIN-Com: доступ к книгам' => 'XIN-Com: book access',
+	'XIN-Com: облик' => 'XIN-Com: look',
+	'XIN-Com: подвал и соцсети' => 'XIN-Com: footer & social',
 	'XI: подборка новелл' => 'XI: novel picks',
 	'XI: последние главы' => 'XI: latest chapters',
 	'name@example.com' => 'name@example.com',
@@ -557,7 +557,7 @@ return array(
 	'Пусто — название сайта и год.' => 'Leave empty for the site name and year.',
 	'Пусто — фирменный кримсон.' => 'Leave empty for the signature crimson.',
 	'Пусто — фирменный тёмно-серый.' => 'Empty means the house graphite.',
-	'Работает на теме XI Novels' => 'Running on the XI Novels theme',
+	'Работает на теме XIN-Com' => 'Running on the XIN-Com theme',
 	'Раздел для модераторов и администрации площадки.' => 'This section is for moderators and the site team.',
 	'Разделы панели' => 'Panel sections',
 	'Разделы справки' => 'Help sections',
@@ -671,7 +671,7 @@ return array(
 	'Стать автором' => 'Become an author',
 	'Статьи' => 'Articles',
 	'Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны.' => 'A title page with cover, contents, rating and similar works — no layout work on your side.',
-	'Строка «Работает на XI Novels»' => 'The “Running on XI Novels” line',
+	'Строка «Работает на XIN-Com»' => 'The “Running on XIN-Com” line',
 	'Строка копирайта' => 'Copyright line',
 	'Схема по умолчанию' => 'Default color scheme',
 	'Счётчик растёт сам; поле — для переноса статистики.' => 'The counter grows on its own; this field is for migrating stats.',

@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo content for the XI Novels theme.
+ * Demo content for the XIN-Com theme.
  *
  * Every line here is original filler written for this package: no third-party
  * text, no third-party images. Covers are drawn at import time, so nothing but

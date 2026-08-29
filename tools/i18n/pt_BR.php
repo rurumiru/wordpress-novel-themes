@@ -1,6 +1,6 @@
 <?php
 /**
- * RU -> PT-BR strings for the XI Novels theme.
+ * RU -> PT-BR strings for the XIN-Com theme.
  *
  * Loaded by tools/build-translations.php. One entry per Russian source string.
  */
@@ -36,12 +36,12 @@ return array(
 	'Telegram-канал' => 'Canal no Telegram',
 	'Telegram: канал' => 'Telegram: canal',
 	'Telegram: чат сообщества' => 'Telegram: chat da comunidade',
-	'XI Novels: аккаунты' => 'XI Novels: contas',
-	'XI Novels: бренд и цвета' => 'XI Novels: marca e cores',
-	'XI Novels: главная' => 'XI Novels: página inicial',
-	'XI Novels: доступ к книгам' => 'XI Novels: acesso aos livros',
-	'XI Novels: облик' => 'XI Novels: aparência',
-	'XI Novels: подвал и соцсети' => 'XI Novels: rodapé e redes sociais',
+	'XIN-Com: аккаунты' => 'XIN-Com: contas',
+	'XIN-Com: бренд и цвета' => 'XIN-Com: marca e cores',
+	'XIN-Com: главная' => 'XIN-Com: página inicial',
+	'XIN-Com: доступ к книгам' => 'XIN-Com: acesso aos livros',
+	'XIN-Com: облик' => 'XIN-Com: aparência',
+	'XIN-Com: подвал и соцсети' => 'XIN-Com: rodapé e redes sociais',
 	'XI: подборка новелл' => 'XI: seleção de novels',
 	'XI: последние главы' => 'XI: últimos capítulos',
 	'~%d мин чтения' => '~%d min de leitura',
@@ -525,7 +525,7 @@ return array(
 	'Пустая правая часть убирает термин из текста. Строка, начатая с #, — комментарий.' => 'Um lado direito vazio remove o termo. Uma linha começada com # é um comentário.',
 	'Пусто — название сайта и год.' => 'Vazio usa o nome do site e o ano.',
 	'Пусто — фирменный тёмно-серый.' => 'Vazio usa o cinza-escuro da marca.',
-	'Работает на теме XI Novels' => 'Feito com o tema XI Novels',
+	'Работает на теме XIN-Com' => 'Feito com o tema XIN-Com',
 	'Раздел для модераторов и администрации площадки.' => 'Área para moderadores e administração da plataforma.',
 	'Разделы панели' => 'Seções do painel',
 	'Разделы справки' => 'Seções da ajuda',
@@ -638,7 +638,7 @@ return array(
 	'Стать автором' => 'Virar autor',
 	'Статьи' => 'Artigos',
 	'Страница тайтла с обложкой, оглавлением, оценкой и похожими работами — без вёрстки с вашей стороны.' => 'A página da obra com capa, índice, nota e trabalhos parecidos — sem você mexer em layout.',
-	'Строка «Работает на XI Novels»' => 'Linha «Feito com XI Novels»',
+	'Строка «Работает на XIN-Com»' => 'Linha «Feito com XIN-Com»',
 	'Строка копирайта' => 'Linha de copyright',
 	'Схема по умолчанию' => 'Esquema padrão',
 	'Счётчик растёт сам; поле — для переноса статистики.' => 'O contador sobe sozinho; o campo serve para migrar estatísticas.',

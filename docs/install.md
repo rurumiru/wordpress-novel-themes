@@ -17,12 +17,12 @@ No composer, no node, no cron jobs, no external services.
 
 ```bash
 git clone https://github.com/rurumiru/wordpress-novel-themes.git
-cp -r wordpress-novel-themes/themes/xi-novels /path/to/wordpress/wp-content/themes/
+cp -r wordpress-novel-themes/themes/xin-com /path/to/wordpress/wp-content/themes/
 ```
 
-**As a zip** — download the repository, zip `themes/xi-novels`, then upload it under *Appearance → Themes → Add New → Upload Theme*.
+**As a zip** — download the repository, zip `themes/xin-com`, then upload it under *Appearance → Themes → Add New → Upload Theme*.
 
-Activate under **Appearance → Themes → XI Novels**.
+Activate under **Appearance → Themes → XIN-Com**.
 
 ## 2. What activation does
 
@@ -67,7 +67,7 @@ cp wordpress/wp-content/plugins/sqlite-database-integration/db.copy wordpress/wp
 # and {SQLITE_PLUGIN} with sqlite-database-integration/load.php
 
 # 3. the theme
-cp -r themes/xi-novels wordpress/wp-content/themes/
+cp -r themes/xin-com wordpress/wp-content/themes/
 
 # 4. wp-config.php with any DB_* values (SQLite ignores them) and
 #    define( 'WP_HOME', 'http://localhost:8080' );
@@ -109,7 +109,7 @@ Open `http://localhost:8080`, finish the five-minute install, activate the theme
 
 The theme updated but the page did not change — that is almost always a cache, not the installation.
 
-1. **Check that the new version is really on the server.** Open `https://your-site/wp-content/themes/xi-novels/style.css`; the version sits in the file header.
+1. **Check that the new version is really on the server.** Open `https://your-site/wp-content/themes/xin-com/style.css`; the version sits in the file header.
 2. **Reload without the cache**: `Ctrl` + `F5` (`Cmd` + `Option` + `R` in Safari).
 3. **Purge the site cache.** LiteSpeed Cache: *LiteSpeed Cache → Dashboard → Purge All*. WP Rocket: *Settings → Clear cache*. W3 Total Cache: *Performance → Purge All Caches*. With Cloudflare in front, also *Caching → Purge Everything*.
 4. **The host has its own cache.** Control panels built on LiteSpeed keep a server-side copy that outlives the browser one; purge it from the panel.

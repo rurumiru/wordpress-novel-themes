@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: XI Novels — управление тайтлами
+ * Plugin Name: XIN-Com — управление тайтлами
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
- * Description: Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels.
+ * Description: Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com.
  * Version: 1.1.0
  * Requires PHP: 7.4
  * Author: XI Community

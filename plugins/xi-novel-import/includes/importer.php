@@ -64,7 +64,7 @@ function xni_import( $chapters, $args ) {
 	) );
 
 	if ( ! xni_theme_ready() ) {
-		return new WP_Error( 'xni_theme', __( 'Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует.', 'xi-novel-import' ) );
+		return new WP_Error( 'xni_theme', __( 'Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует.', 'xi-novel-import' ) );
 	}
 
 	$novel_id = (int) $args['novel_id'];

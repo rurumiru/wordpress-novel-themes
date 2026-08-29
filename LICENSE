@@ -20,7 +20,7 @@ Full text: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 ADDITIONAL PERMISSION FOR THE DESIGN LAYER
 ------------------------------------------
 
-The files under themes/xi-novels/assets/css/ and themes/xi-novels/assets/js/
+The files under themes/xin-com/assets/css/ and themes/xin-com/assets/js/
 are original work of this project and are not derived from WordPress. At your
 option, you may use, copy, modify and distribute those files under the terms of
 the MIT License instead of the GNU GPL:
@@ -47,7 +47,7 @@ the MIT License instead of the GNU GPL:
 BUNDLED THIRD-PARTY SOFTWARE
 ----------------------------
 
-Bootstrap 5.3.3 — themes/xi-novels/assets/vendor/bootstrap/
+Bootstrap 5.3.3 — themes/xin-com/assets/vendor/bootstrap/
 Copyright (c) 2011-2024 The Bootstrap Authors
 Licensed under the MIT License: https://github.com/twbs/bootstrap/blob/main/LICENSE
 

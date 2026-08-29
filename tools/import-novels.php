@@ -116,7 +116,7 @@ require_once ABSPATH . 'wp-admin/includes/media.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
 
 if ( ! post_type_exists( 'novel' ) ) {
-	fwrite( STDERR, "The XI Novels theme is not active: post type `novel` is missing.\n" );
+	fwrite( STDERR, "The XIN-Com theme is not active: post type `novel` is missing.\n" );
 	exit( 1 );
 }
 

@@ -7,7 +7,7 @@
 
 return array(
 	// Plugin header.
-	'XI Novels — импорт глав' => 'XI Novels — chapter import',
+	'XIN-Com — импорт глав' => 'XIN-Com — chapter import',
 	'Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска.' => 'Bulk chapter import from .docx, .txt, .md, .html, ZIP archives and Google Docs — in batches, without loading the server. Text replacement in existing chapters, a release queue on a schedule, automatic unlocking of paid chapters and a countdown to the next release.',
 
 	// Screen.
@@ -58,7 +58,7 @@ return array(
 	'Ближайшая публикация: «%1$s» — %2$s' => 'Next release: “%1$s” — %2$s',
 	'Тик очереди: ближайший в %s. Раз в минуту — при условии, что wp-cron.php дёргает системный cron.' => 'Queue tick: next at %s. Once a minute, provided a system cron calls wp-cron.php.',
 	'Тик очереди не запланирован — перезайдите на страницу.' => 'The queue tick is not scheduled — reload the page.',
-	'Каждую минуту (XI Novels)' => 'Every minute (XI Novels)',
+	'Каждую минуту (XIN-Com)' => 'Every minute (XIN-Com)',
 	'Пн' => 'Mon',
 	'Вт' => 'Tue',
 	'Ср' => 'Wed',
@@ -107,7 +107,7 @@ return array(
 	'На сервере нет расширения ZipArchive.' => 'The server has no ZipArchive extension.',
 	'Нечего импортировать: файлы не выбраны или не разобрались.' => 'Nothing to import: no files were chosen, or none could be read.',
 	'Сначала заведите хотя бы один проект в разделе «Новеллы».' => 'Create at least one project under Novels first.',
-	'Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует.' => 'The XI Novels theme is not active: the Novel and Chapter post types do not exist.',
+	'Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует.' => 'The XIN-Com theme is not active: the Novel and Chapter post types do not exist.',
 	'Формат .%s не поддерживается.' => 'The .%s format is not supported.',
 	'Файл «%s» не загрузился: сервер отверг отправку.' => 'The file “%s” did not upload: the server rejected it.',
 	'Файл «%s» пустой.' => 'The file “%s” is empty.',

@@ -1,15 +1,15 @@
-# Brazilian Portuguese translation for the XI Novels project.
+# Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels — chapter import 0.5.0-beta\n"
+"Project-Id-Version: XIN-Com — chapter import 0.6.0-beta\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "XI Novels — импорт глав"
-msgstr "XI Novels — importação de capítulos"
+msgid "XIN-Com — импорт глав"
+msgstr "XIN-Com — importação de capítulos"
 
 msgid "Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска."
 msgstr "Importação em massa de capítulos a partir de .docx, .txt, .md, .html, arquivos ZIP e Google Docs — em lotes, sem sobrecarregar o servidor. Substituição de texto em capítulos existentes, fila de publicação por agenda, desbloqueio automático de capítulos pagos e contagem regressiva até o próximo lançamento."
@@ -143,8 +143,8 @@ msgstr "Tique da fila: o próximo às %s. Uma vez por minuto, desde que um cron 
 msgid "Тик очереди не запланирован — перезайдите на страницу."
 msgstr "O tique da fila não está agendado — recarregue a página."
 
-msgid "Каждую минуту (XI Novels)"
-msgstr "A cada minuto (XI Novels)"
+msgid "Каждую минуту (XIN-Com)"
+msgstr "A cada minuto (XIN-Com)"
 
 msgid "Пн"
 msgstr "Seg"
@@ -272,8 +272,8 @@ msgstr "Nada a importar: nenhum arquivo foi escolhido, ou nenhum pôde ser lido.
 msgid "Сначала заведите хотя бы один проект в разделе «Новеллы»."
 msgstr "Crie ao menos um projeto em Novels primeiro."
 
-msgid "Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует."
-msgstr "O tema XI Novels não está ativo: os tipos de post Novel e Chapter não existem."
+msgid "Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует."
+msgstr "O tema XIN-Com não está ativo: os tipos de post Novel e Chapter não existem."
 
 msgid "Формат .%s не поддерживается."
 msgstr "O formato .%s não é suportado."

@@ -324,10 +324,10 @@ Todas as versões, na íntegra: **[CHANGELOG.md](CHANGELOG.md)**.
 
 ```bash
 git clone https://github.com/rurumiru/wordpress-novel-themes.git
-cp -r wordpress-novel-themes/themes/xi-novels /caminho/para/wordpress/wp-content/themes/
+cp -r wordpress-novel-themes/themes/xin-com /caminho/para/wordpress/wp-content/themes/
 ```
 
-1. **Aparência → Temas → XI Novels → Ativar.** Na ativação o tema cria as páginas “Painel do autor” e “Minha biblioteca” e cadastra os status de lançamento (Em andamento / Concluído / Congelado / Anunciado).
+1. **Aparência → Temas → XIN-Com → Ativar.** Na ativação o tema cria as páginas “Painel do autor” e “Minha biblioteca” e cadastra os status de lançamento (Em andamento / Concluído / Congelado / Anunciado).
 2. **Configurações → Links permanentes → *Nome do post*.**
 3. **Novels → Adicionar** — a primeira obra.
 4. Opcional: ative os plugins de `plugins/` — o estúdio do tema, a importação em massa, a gestão de obras em massa.
@@ -398,14 +398,14 @@ De propósito sem graça e com poucas dependências — dá para ler o conjunto 
 | i18n | Gettext `.po` / `.mo` + script de build | Nenhum plugin de tradução necessário |
 | Ícones | Sprite SVG inline em PHP | Sem fonte de ícones, sem requisição externa |
 | Fontes | Pilha do sistema | Nada carregado do Google |
-| Plugins que vêm junto | **XI Studio**, **XI Novels Import**, **XI Novels Manager** — ~3,7 mil linhas de PHP | Todos opcionais: o tema roda sozinho, e os plugins acrescentam o estúdio, a importação em massa e a gestão em massa |
+| Plugins que vêm junto | **XI Studio**, **XIN-Com Import**, **XIN-Com Manager** — ~3,7 mil linhas de PHP | Todos opcionais: o tema roda sozinho, e os plugins acrescentam o estúdio, a importação em massa e a gestão em massa |
 | Ambiente de desenvolvimento | Servidor embutido do PHP + drop-in **SQLite** | Prévia sem instalar MySQL |
 
 <details>
 <summary><b>Estrutura do repositório</b></summary>
 
 ```
-themes/xi-novels/      o tema — tudo que foi descrito acima vive aqui
+themes/xin-com/      o tema — tudo que foi descrito acima vive aqui
   inc/                 tipos de post, metaboxes, template tags, customizer,
                        widgets, painel do autor, i18n, nav walkers, limpeza
   template-parts/      seções da página inicial, catálogo, telas do painel
@@ -523,10 +523,10 @@ Sim — <a href="https://xi.community">xi.community</a> é um site de verdade ro
 
 A licença não pede nada além da GPL: use o tema comercialmente, bifurque, mude a marca, venda serviços em cima dele. Mas se o seu site roda com ele e você menciona isso em algum lugar — no rodapé, em uma página sobre, em um post — isso ajuda de verdade o projeto a seguir vivo.
 
-O tema traz uma linha pronta: **Customizer → rodapé → “Feito com XI Novels”**, desligada por padrão. Ou cole a sua:
+O tema traz uma linha pronta: **Customizer → rodapé → “Feito com XIN-Com”**, desligada por padrão. Ou cole a sua:
 
 ```html
-<a href="https://github.com/rurumiru/wordpress-novel-themes">Feito com o tema XI Novels</a>
+<a href="https://github.com/rurumiru/wordpress-novel-themes">Feito com o tema XIN-Com</a>
 ```
 
 **Quer apoiar o trabalho?** Apareça no Telegram — [📢 canal](https://t.me/licht_re) e [💬 chat da comunidade](https://t.me/xicommunity). Relatos de bug, capturas do seu site, ideias de recursos e um simples obrigado são todos bem-vindos; cada versão é discutida lá primeiro.

@@ -1,15 +1,15 @@
-# Brazilian Portuguese translation for the XI Novels project.
+# Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Studio 0.5.0-beta\n"
+"Project-Id-Version: XI Studio 0.6.0-beta\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "XI Novels — облик сайта целиком"
-msgstr "XI Novels — a aparência do site inteiro"
+msgid "XIN-Com — облик сайта целиком"
+msgstr "XIN-Com — a aparência do site inteiro"
 
 msgid "Вернуть все значения по умолчанию?"
 msgstr "Voltar todos os valores ao padrão?"
@@ -89,8 +89,8 @@ msgstr "Salvar"
 msgid "Страница"
 msgstr "Página"
 
-msgid "Студия настраивает тему XI Novels — включите её в «Внешний вид → Темы», и экран заработает."
-msgstr "O estúdio configura o tema XI Novels — ative-o em «Aparência → Temas» e esta tela ganha vida."
+msgid "Студия настраивает тему XIN-Com — включите её в «Внешний вид → Темы», и экран заработает."
+msgstr "O estúdio configura o tema XIN-Com — ative-o em «Aparência → Temas» e esta tela ganha vida."
 
 msgid "Студия темы"
 msgstr "Estúdio do tema"

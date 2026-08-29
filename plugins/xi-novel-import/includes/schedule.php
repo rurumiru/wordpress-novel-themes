@@ -189,7 +189,7 @@ function xni_next_release( $novel_id ) {
 function xni_cron_schedules( $schedules ) {
 	$schedules['xni_minute'] = array(
 		'interval' => MINUTE_IN_SECONDS,
-		'display'  => __( 'Каждую минуту (XI Novels)', 'xi-novel-import' ),
+		'display'  => __( 'Каждую минуту (XIN-Com)', 'xi-novel-import' ),
 	);
 	return $schedules;
 }

@@ -2,7 +2,7 @@
 /**
  * Packs a folder into a distributable zip.
  *
- *   php tools/build-zip.php --src=themes/xi-novels --out=dist/xi-novels.zip
+ *   php tools/build-zip.php --src=themes/xin-com --out=dist/xin-com.zip
  *   php tools/build-zip.php --src=demo --out=dist/demo.zip --root=demo
  *
  * Options:
@@ -24,7 +24,7 @@ if ( 'cli' !== php_sapi_name() ) {
 $opts = getopt( '', array( 'src:', 'out:', 'root::' ) );
 
 if ( empty( $opts['src'] ) || empty( $opts['out'] ) ) {
-	fwrite( STDERR, "Usage: php tools/build-zip.php --src=themes/xi-novels --out=dist/theme.zip\n" );
+	fwrite( STDERR, "Usage: php tools/build-zip.php --src=themes/xin-com --out=dist/theme.zip\n" );
 	exit( 1 );
 }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: XI Novels — демо-контент
+ * Plugin Name: XIN-Com — демо-контент
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
  * Description: Наполняет сайт демонстрационным каталогом: 12 тайтлов, 48 глав, жанры, теги, записи блога и баннеры. Обложки рисуются на месте. Удаляется одной кнопкой.
  * Version: 1.0.0
@@ -39,7 +39,7 @@ function xin_demo_screen() {
 	$notice    = isset( $_GET['xin-demo'] ) ? sanitize_key( wp_unslash( $_GET['xin-demo'] ) ) : '';
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Демо-контент XI Novels', 'xi-demo' ); ?></h1>
+		<h1><?php esc_html_e( 'Демо-контент XIN-Com', 'xi-demo' ); ?></h1>
 
 		<?php if ( 'installed' === $notice ) : ?>
 			<div class="notice notice-success"><p>
@@ -67,7 +67,7 @@ function xin_demo_screen() {
 
 		<?php if ( ! $ready ) : ?>
 			<div class="notice notice-warning"><p>
-				<?php esc_html_e( 'Сначала активируйте тему XI Novels: демо создаёт новеллы и главы, а этих типов записей сейчас нет.', 'xi-demo' ); ?>
+				<?php esc_html_e( 'Сначала активируйте тему XIN-Com: демо создаёт новеллы и главы, а этих типов записей сейчас нет.', 'xi-demo' ); ?>
 			</p></div>
 		<?php endif; ?>
 

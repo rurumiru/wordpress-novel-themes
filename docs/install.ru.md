@@ -17,12 +17,12 @@
 
 ```bash
 git clone https://github.com/rurumiru/wordpress-novel-themes.git
-cp -r wordpress-novel-themes/themes/xi-novels /путь/к/wordpress/wp-content/themes/
+cp -r wordpress-novel-themes/themes/xin-com /путь/к/wordpress/wp-content/themes/
 ```
 
-**Архивом** — скачайте репозиторий, упакуйте папку `themes/xi-novels` в zip и загрузите через *Внешний вид → Темы → Добавить новую → Загрузить тему*.
+**Архивом** — скачайте репозиторий, упакуйте папку `themes/xin-com` в zip и загрузите через *Внешний вид → Темы → Добавить новую → Загрузить тему*.
 
-Активируйте в **Внешний вид → Темы → XI Novels**.
+Активируйте в **Внешний вид → Темы → XIN-Com**.
 
 ## 2. Что делает активация
 
@@ -67,7 +67,7 @@ cp wordpress/wp-content/plugins/sqlite-database-integration/db.copy wordpress/wp
 # и {SQLITE_PLUGIN} на sqlite-database-integration/load.php
 
 # 3. тема
-cp -r themes/xi-novels wordpress/wp-content/themes/
+cp -r themes/xin-com wordpress/wp-content/themes/
 
 # 4. wp-config.php с любыми DB_* (SQLite их игнорирует) и
 #    define( 'WP_HOME', 'http://localhost:8080' );
@@ -107,19 +107,19 @@ php -S localhost:8080 -t wordpress tools/dev-router.php
 cd /www/wwwroot/example.com/wp-content/themes
 
 # кто владеет файлами
-ls -la xi-novels | head
+ls -la xin-com | head
 
 # отдать их пользователю, под которым работает PHP
-chown -R www:www xi-novels
+chown -R www:www xin-com
 
 # нормальные права: папки 755, файлы 644
-find xi-novels -type d -exec chmod 755 {} \;
-find xi-novels -type f -exec chmod 644 {} \;
+find xin-com -type d -exec chmod 755 {} \;
+find xin-com -type f -exec chmod 644 {} \;
 ```
 
 После этого повторите загрузку архива через админку — обновление пройдёт.
 
-**Как чинить без SSH:** в файловом менеджере панели выделите папку `wp-content/themes/xi-novels`, задайте владельца `www` и права 755/644 с галочкой «применить рекурсивно». В крайнем случае просто удалите папку темы целиком и поставьте архив заново — контент, настройки и меню лежат в базе данных, а не в теме, поэтому ничего не потеряется.
+**Как чинить без SSH:** в файловом менеджере панели выделите папку `wp-content/themes/xin-com`, задайте владельца `www` и права 755/644 с галочкой «применить рекурсивно». В крайнем случае просто удалите папку темы целиком и поставьте архив заново — контент, настройки и меню лежат в базе данных, а не в теме, поэтому ничего не потеряется.
 
 **Как избежать этого впредь:** не заливайте тему по SFTP под `root`. Либо ставьте только через админку, либо после каждой ручной заливки выполняйте `chown -R www:www` на папку темы.
 
@@ -137,7 +137,7 @@ find xi-novels -type f -exec chmod 644 {} \;
 
 Тема обновилась, а страница осталась прежней — почти всегда это кэш, а не установка.
 
-1. **Проверьте, что новая версия действительно на сервере.** Откройте `https://ваш-сайт/wp-content/themes/xi-novels/style.css` — в шапке файла указана версия.
+1. **Проверьте, что новая версия действительно на сервере.** Откройте `https://ваш-сайт/wp-content/themes/xin-com/style.css` — в шапке файла указана версия.
 2. **Обновите страницу без кэша**: `Ctrl` + `F5` (в Safari — `Cmd` + `Option` + `R`).
 3. **Сбросьте кэш сайта.** LiteSpeed Cache: *LiteSpeed Cache → Панель → Очистить всё*. WP Rocket: *Настройки → Очистить кэш*. W3 Total Cache: *Performance → Purge All Caches*. Если стоит Cloudflare — там же *Caching → Purge Everything*.
 4. **Кэш на стороне хостинга.** В ISPmanager, cPanel и панелях с LiteSpeed есть отдельная кнопка сброса; серверный кэш живёт дольше браузерного.

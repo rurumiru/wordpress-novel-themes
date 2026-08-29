@@ -186,7 +186,7 @@ function xni_screen() {
 
 	if ( ! xni_theme_ready() ) {
 		echo '<div class="wrap"><h1>' . esc_html__( 'Импорт глав', 'xi-novel-import' ) . '</h1>';
-		echo '<div class="notice notice-error"><p>' . esc_html__( 'Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует.', 'xi-novel-import' ) . '</p></div></div>';
+		echo '<div class="notice notice-error"><p>' . esc_html__( 'Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует.', 'xi-novel-import' ) . '</p></div></div>';
 		return;
 	}
 

@@ -1,15 +1,15 @@
-# English (US) translation for the XI Novels project.
+# English (US) translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels — chapter import 0.5.0-beta\n"
+"Project-Id-Version: XIN-Com — chapter import 0.6.0-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "XI Novels — импорт глав"
-msgstr "XI Novels — chapter import"
+msgid "XIN-Com — импорт глав"
+msgstr "XIN-Com — chapter import"
 
 msgid "Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска."
 msgstr "Bulk chapter import from .docx, .txt, .md, .html, ZIP archives and Google Docs — in batches, without loading the server. Text replacement in existing chapters, a release queue on a schedule, automatic unlocking of paid chapters and a countdown to the next release."
@@ -143,8 +143,8 @@ msgstr "Queue tick: next at %s. Once a minute, provided a system cron calls wp-c
 msgid "Тик очереди не запланирован — перезайдите на страницу."
 msgstr "The queue tick is not scheduled — reload the page."
 
-msgid "Каждую минуту (XI Novels)"
-msgstr "Every minute (XI Novels)"
+msgid "Каждую минуту (XIN-Com)"
+msgstr "Every minute (XIN-Com)"
 
 msgid "Пн"
 msgstr "Mon"
@@ -272,8 +272,8 @@ msgstr "Nothing to import: no files were chosen, or none could be read."
 msgid "Сначала заведите хотя бы один проект в разделе «Новеллы»."
 msgstr "Create at least one project under Novels first."
 
-msgid "Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует."
-msgstr "The XI Novels theme is not active: the Novel and Chapter post types do not exist."
+msgid "Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует."
+msgstr "The XIN-Com theme is not active: the Novel and Chapter post types do not exist."
 
 msgid "Формат .%s не поддерживается."
 msgstr "The .%s format is not supported."

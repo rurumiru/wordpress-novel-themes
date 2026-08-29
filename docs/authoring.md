@@ -16,7 +16,7 @@ Give a new translator the *Author* role under **Users → Add new**.
 
 Readers sign in on the site itself: `/account/`, a page the theme creates on activation and rebuilds if it goes missing. One page holds three states — sign in, sign up and password recovery — and `/wp-login.php` is no longer linked anywhere on the front end, though it keeps working for administrators.
 
-Two settings live in **Appearance → Customize → XI Novels: accounts**:
+Two settings live in **Appearance → Customize → XIN-Com: accounts**:
 
 | Setting | Meaning |
 |---|---|

@@ -13,7 +13,7 @@ function xin_demo_data() {
 	return require __DIR__ . '/content.php';
 }
 
-/** True when the XI Novels theme (or anything providing its types) is active. */
+/** True when the XIN-Com theme (or anything providing its types) is active. */
 function xin_demo_ready() {
 	return post_type_exists( 'novel' ) && post_type_exists( 'chapter' );
 }
@@ -150,7 +150,7 @@ function xin_demo_attach( $file, $title, $parent ) {
  */
 function xin_demo_install( $args = array() ) {
 	if ( ! xin_demo_ready() ) {
-		return new WP_Error( 'xin_demo_theme', __( 'Тема XI Novels не активна: типы записей «Новеллы» и «Главы» не зарегистрированы.', 'xi-demo' ) );
+		return new WP_Error( 'xin_demo_theme', __( 'Тема XIN-Com не активна: типы записей «Новеллы» и «Главы» не зарегистрированы.', 'xi-demo' ) );
 	}
 
 	$args = wp_parse_args( $args, array(

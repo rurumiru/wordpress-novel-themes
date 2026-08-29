@@ -3,7 +3,7 @@
 ## File map
 
 ```
-themes/xi-novels/
+themes/xin-com/
 ├── style.css                  theme header + design tokens + base + components
 ├── functions.php              setup, assets, sidebars, views, REST, query tweaks
 ├── header.php  footer.php     navbar, offcanvas, search modal, footer, bottom nav
@@ -113,7 +113,7 @@ The visitor-facing switch lives in `inc/i18n.php`: `?lang=en` sets a cookie and 
 
 ## Coding style
 
-* WordPress coding standards: tabs, Yoda conditions, `esc_*` on output, prefixed functions (`xin_`), text domain `xi-novels`.
+* WordPress coding standards: tabs, Yoda conditions, `esc_*` on output, prefixed functions (`xin_`), text domain `xin-com`.
 * No build step. If a change would require npm, it does not belong here.
 * No external runtime requests. Everything ships in the repository.
 * Template parts receive data through `get_template_part( $slug, $name, $args )`.

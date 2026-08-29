@@ -11,13 +11,13 @@
  */
 
 $root  = dirname( __DIR__ );
-$theme = $root . '/themes/xi-novels';
+$theme = $root . '/themes/xin-com';
 
 /* Что переводим: тема и плагины, у каждого свой текстовый домен. */
 $targets = array(
 	array(
-		'domain' => 'xi-novels',
-		'name'   => 'XI Novels',
+		'domain' => 'xin-com',
+		'name'   => 'XIN-Com',
 		'src'    => $theme,
 		'maps'   => __DIR__ . '/i18n',
 		'out'    => $theme . '/languages',
@@ -33,7 +33,7 @@ $targets = array(
 	),
 	array(
 		'domain' => 'xi-novel-import',
-		'name'   => 'XI Novels — chapter import',
+		'name'   => 'XIN-Com — chapter import',
 		'src'    => $root . '/plugins/xi-novel-import',
 		'maps'   => __DIR__ . '/i18n/xi-novel-import',
 		'out'    => $root . '/plugins/xi-novel-import/languages',
@@ -41,7 +41,7 @@ $targets = array(
 	),
 	array(
 		'domain' => 'xi-novel-manager',
-		'name'   => 'XI Novels — bulk management',
+		'name'   => 'XIN-Com — bulk management',
 		'src'    => $root . '/plugins/xi-novel-manager',
 		'maps'   => __DIR__ . '/i18n/xi-novel-manager',
 		'out'    => $root . '/plugins/xi-novel-manager/languages',
@@ -105,7 +105,7 @@ $esc = static function ( $s ) {
 };
 
 $write_po = static function ( $file, $name, $header, $map ) use ( $esc ) {
-	$po = '# ' . $name . " translation for the XI Novels project.\n"
+	$po = '# ' . $name . " translation for the XIN-Com project.\n"
 		. "msgid \"\"\nmsgstr \"\"\n";
 
 	foreach ( explode( '\\n', $header ) as $line ) {

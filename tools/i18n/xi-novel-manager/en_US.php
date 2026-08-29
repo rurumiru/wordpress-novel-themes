@@ -7,8 +7,8 @@
 
 return array(
 	// Plugin header.
-	'XI Novels — управление тайтлами' => 'XI Novels — bulk title management',
-	'Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels.' => 'Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XI Novels theme.',
+	'XIN-Com — управление тайтлами' => 'XIN-Com — bulk title management',
+	'Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com.' => 'Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XIN-Com theme.',
 
 	// Screen.
 	'Массовое управление' => 'Bulk management',
@@ -111,6 +111,6 @@ return array(
 	'Удалить выбранные тайтлы навсегда? Вместе с ними удалятся их главы. Это действие необратимо.' => 'Delete the selected titles permanently? Their chapters go with them. This cannot be undone.',
 	'Недостаточно прав.' => 'Not enough permissions.',
 	'Недостаточно прав на удаление.' => 'Not enough permissions to delete.',
-	'Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем.' => 'The Novel post type is not registered. Enable the XI Novels theme — there is nothing to manage.',
+	'Тип записи «Новелла» не зарегистрирован. Включите тему XIN-Com — управлять нечем.' => 'The Novel post type is not registered. Enable the XIN-Com theme — there is nothing to manage.',
 	'Пересобрать адреса глав' => 'Rebuild chapter URLs',
 );

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       XI Studio — студия темы
  * Plugin URI:        https://github.com/rurumiru/wordpress-novel-themes
- * Description:       Экран настройки облика темы XI Novels: цвет, форма, шрифты и читалка — с живым предпросмотром сайта, готовыми наборами и переносом настроек файлом.
+ * Description:       Экран настройки облика темы XIN-Com: цвет, форма, шрифты и читалка — с живым предпросмотром сайта, готовыми наборами и переносом настроек файлом.
  * Version:           0.3.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
@@ -167,7 +167,7 @@ function xis_render() {
 	if ( ! xis_theme_ready() ) {
 		echo '<div class="wrap"><h1>' . esc_html__( 'Студия темы', 'xi-studio' ) . '</h1>';
 		echo '<div class="notice notice-warning"><p>'
-			. esc_html__( 'Студия настраивает тему XI Novels — включите её в «Внешний вид → Темы», и экран заработает.', 'xi-studio' )
+			. esc_html__( 'Студия настраивает тему XIN-Com — включите её в «Внешний вид → Темы», и экран заработает.', 'xi-studio' )
 			. '</p></div></div>';
 		return;
 	}

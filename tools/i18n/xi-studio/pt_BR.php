@@ -6,7 +6,7 @@
  */
 
 return array(
-	'XI Novels — облик сайта целиком' => 'XI Novels — a aparência do site inteiro',
+	'XIN-Com — облик сайта целиком' => 'XIN-Com — a aparência do site inteiro',
 	'Вернуть все значения по умолчанию?' => 'Voltar todos os valores ao padrão?',
 	'Вернуть цвет темы' => 'Voltar à cor do tema',
 	'Всё сохранено' => 'Tudo salvo',
@@ -33,7 +33,7 @@ return array(
 	'Сохранено' => 'Salvo',
 	'Сохранить' => 'Salvar',
 	'Страница' => 'Página',
-	'Студия настраивает тему XI Novels — включите её в «Внешний вид → Темы», и экран заработает.' => 'O estúdio configura o tema XI Novels — ative-o em «Aparência → Temas» e esta tela ganha vida.',
+	'Студия настраивает тему XIN-Com — включите её в «Внешний вид → Темы», и экран заработает.' => 'O estúdio configura o tema XIN-Com — ative-o em «Aparência → Temas» e esta tela ganha vida.',
 	'Студия темы' => 'Estúdio do tema',
 	'Схема' => 'Esquema',
 	'Тайтл' => 'Obra',

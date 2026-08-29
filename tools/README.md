@@ -7,7 +7,7 @@ Four small scripts. None of them is required to run the theme.
 Packs a folder into a distributable zip with forward-slash entry paths and a single root folder — the shape WordPress expects when installing a theme.
 
 ```bash
-php tools/build-zip.php --src=themes/xi-novels --out=dist/xi-novels.zip
+php tools/build-zip.php --src=themes/xin-com --out=dist/xin-com.zip
 php tools/build-zip.php --src=demo --out=dist/demo.zip --root=demo
 ```
 
@@ -51,7 +51,7 @@ What it does:
 1. extracts every translatable string from the theme;
 2. loads one map per locale from `tools/i18n/` — `en_US.php`, `pt_BR.php`, … — each a plain `return array( russian => translation )`;
 3. reports what a map is missing and what it still carries but the theme no longer uses;
-4. writes `themes/xi-novels/languages/<locale>.po` and a binary `<locale>.mo` for every map it found.
+4. writes `themes/xin-com/languages/<locale>.po` and a binary `<locale>.mo` for every map it found.
 
 To add a locale, copy a map, translate the values, and name the file after the locale:
 
@@ -60,4 +60,4 @@ cp tools/i18n/en_US.php tools/i18n/de_DE.php
 php tools/build-translations.php
 ```
 
-A missing string is reported and the script exits non-zero, so it doubles as a CI check. Add the locale to `xin_languages()` in `themes/xi-novels/inc/i18n.php` to put it in the header switch, and to `$plurals` / `$names` in the script for the `.po` header.
+A missing string is reported and the script exits non-zero, so it doubles as a CI check. Add the locale to `xin_languages()` in `themes/xin-com/inc/i18n.php` to put it in the header switch, and to `$plurals` / `$names` in the script for the `.po` header.

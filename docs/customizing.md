@@ -2,7 +2,7 @@
 
 ## Design tokens
 
-Every color, radius and shadow comes from CSS custom properties declared at the top of `themes/xi-novels/style.css`. Colors are stored as bare HSL components so any of them can be used with transparency (`hsl(var(--primary) / .12)`).
+Every color, radius and shadow comes from CSS custom properties declared at the top of `themes/xin-com/style.css`. Colors are stored as bare HSL components so any of them can be used with transparency (`hsl(var(--primary) / .12)`).
 
 ```css
 :root {
@@ -64,17 +64,17 @@ Three widget areas: **Blog sidebar**, **Title sidebar**, **Footer**. Two theme w
 ## Child theme
 
 ```php
-// wp-content/themes/xi-novels-child/style.css
+// wp-content/themes/xin-com-child/style.css
 /*
-Theme Name: XI Novels Child
-Template: xi-novels
+Theme Name: XIN-Com Child
+Template: xin-com
 */
 ```
 
 ```php
-// wp-content/themes/xi-novels-child/functions.php
+// wp-content/themes/xin-com-child/functions.php
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'xi-child', get_stylesheet_uri(), array( 'xi-novels-parts' ), '1.0' );
+	wp_enqueue_style( 'xi-child', get_stylesheet_uri(), array( 'xin-com-parts' ), '1.0' );
 }, 20 );
 ```
 

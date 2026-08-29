@@ -23,7 +23,7 @@ $xis_pages   = xis_preview_pages();
 			<span class="xis__logo" aria-hidden="true"></span>
 			<span>
 				<b><?php esc_html_e( 'Студия темы', 'xi-studio' ); ?></b>
-				<small><?php esc_html_e( 'XI Novels — облик сайта целиком', 'xi-studio' ); ?></small>
+				<small><?php esc_html_e( 'XIN-Com — облик сайта целиком', 'xi-studio' ); ?></small>
 			</span>
 		</div>
 

@@ -324,10 +324,10 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 
 ```bash
 git clone https://github.com/rurumiru/wordpress-novel-themes.git
-cp -r wordpress-novel-themes/themes/xi-novels /path/to/wordpress/wp-content/themes/
+cp -r wordpress-novel-themes/themes/xin-com /path/to/wordpress/wp-content/themes/
 ```
 
-1. **Appearance → Themes → XI Novels → Activate.** On activation the theme creates the “Author studio” and “My library” pages and seeds release statuses (Ongoing / Completed / On hiatus / Announced).
+1. **Appearance → Themes → XIN-Com → Activate.** On activation the theme creates the “Author studio” and “My library” pages and seeds release statuses (Ongoing / Completed / On hiatus / Announced).
 2. **Settings → Permalinks → Post name.**
 3. **Novels → Add new** — your first title.
 4. Optional: switch on the bundled plugins in `plugins/` — the theme studio, bulk import, bulk title management.
@@ -398,14 +398,14 @@ Deliberately boring and dependency-light — you can read the whole thing in an 
 | i18n | Gettext `.po` / `.mo` + build script | No translation plugin required |
 | Icons | Inline SVG sprite in PHP | No icon font, no external request |
 | Fonts | System stack | Nothing loaded from Google |
-| Bundled plugins | **XI Studio**, **XI Novels Import**, **XI Novels Manager** — ~3.7k lines of PHP | Optional, every one of them: the theme runs alone, the plugins add the studio, bulk import and bulk management |
+| Bundled plugins | **XI Studio**, **XIN-Com Import**, **XIN-Com Manager** — ~3.7k lines of PHP | Optional, every one of them: the theme runs alone, the plugins add the studio, bulk import and bulk management |
 | Dev sandbox | PHP built-in server + **SQLite** drop-in | Preview without installing MySQL |
 
 <details>
 <summary><b>Repository layout</b></summary>
 
 ```
-themes/xi-novels/      the theme — everything above lives here
+themes/xin-com/      the theme — everything above lives here
   inc/                 post types, meta boxes, template tags, customizer,
                        widgets, author studio, i18n, nav walkers, cleanup
   template-parts/      home sections, catalog, studio screens
@@ -525,10 +525,10 @@ Yes — <a href="https://xi.community">xi.community</a> is a live site running t
 
 The licence asks for nothing beyond the GPL: use the theme commercially, fork it, rebrand it, sell services around it. But if your site runs on it and you mention that somewhere — in the footer, in an about page, in a post — it genuinely helps the project stay alive.
 
-The theme ships a ready line: **Customize → footer → “Running on XI Novels”**, off by default. Or paste your own:
+The theme ships a ready line: **Customize → footer → “Running on XIN-Com”**, off by default. Or paste your own:
 
 ```html
-<a href="https://github.com/rurumiru/wordpress-novel-themes">Running on the XI Novels theme</a>
+<a href="https://github.com/rurumiru/wordpress-novel-themes">Running on the XIN-Com theme</a>
 ```
 
 **Want to support the work?** Come to Telegram — [📢 channel](https://t.me/licht_re) and [💬 community chat](https://t.me/xicommunity). Bug reports, screenshots of your site, feature ideas and plain thanks are all welcome; every version is discussed there first.

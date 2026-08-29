@@ -16,7 +16,7 @@ function xnm_render_screen() {
 
 	if ( xnm_theme_missing() ) {
 		echo '<div class="wrap"><h1>' . esc_html__( 'Массовое управление', 'xi-novel-manager' ) . '</h1>';
-		echo '<div class="notice notice-error"><p>' . esc_html__( 'Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем.', 'xi-novel-manager' ) . '</p></div></div>';
+		echo '<div class="notice notice-error"><p>' . esc_html__( 'Тип записи «Новелла» не зарегистрирован. Включите тему XIN-Com — управлять нечем.', 'xi-novel-manager' ) . '</p></div></div>';
 		return;
 	}
 

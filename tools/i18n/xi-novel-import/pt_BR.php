@@ -7,7 +7,7 @@
 
 return array(
 	// Plugin header.
-	'XI Novels — импорт глав' => 'XI Novels — importação de capítulos',
+	'XIN-Com — импорт глав' => 'XIN-Com — importação de capítulos',
 	'Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска.' => 'Importação em massa de capítulos a partir de .docx, .txt, .md, .html, arquivos ZIP e Google Docs — em lotes, sem sobrecarregar o servidor. Substituição de texto em capítulos existentes, fila de publicação por agenda, desbloqueio automático de capítulos pagos e contagem regressiva até o próximo lançamento.',
 
 	// Screen.
@@ -58,7 +58,7 @@ return array(
 	'Ближайшая публикация: «%1$s» — %2$s' => 'Próximo lançamento: “%1$s” — %2$s',
 	'Тик очереди: ближайший в %s. Раз в минуту — при условии, что wp-cron.php дёргает системный cron.' => 'Tique da fila: o próximo às %s. Uma vez por minuto, desde que um cron do sistema chame o wp-cron.php.',
 	'Тик очереди не запланирован — перезайдите на страницу.' => 'O tique da fila não está agendado — recarregue a página.',
-	'Каждую минуту (XI Novels)' => 'A cada minuto (XI Novels)',
+	'Каждую минуту (XIN-Com)' => 'A cada minuto (XIN-Com)',
 	'Пн' => 'Seg',
 	'Вт' => 'Ter',
 	'Ср' => 'Qua',
@@ -107,7 +107,7 @@ return array(
 	'На сервере нет расширения ZipArchive.' => 'O servidor não tem a extensão ZipArchive.',
 	'Нечего импортировать: файлы не выбраны или не разобрались.' => 'Nada a importar: nenhum arquivo foi escolhido, ou nenhum pôde ser lido.',
 	'Сначала заведите хотя бы один проект в разделе «Новеллы».' => 'Crie ao menos um projeto em Novels primeiro.',
-	'Тема XI Novels не активна: типов записей «Новеллы» и «Главы» не существует.' => 'O tema XI Novels não está ativo: os tipos de post Novel e Chapter não existem.',
+	'Тема XIN-Com не активна: типов записей «Новеллы» и «Главы» не существует.' => 'O tema XIN-Com não está ativo: os tipos de post Novel e Chapter não existem.',
 	'Формат .%s не поддерживается.' => 'O formato .%s não é suportado.',
 	'Файл «%s» не загрузился: сервер отверг отправку.' => 'O arquivo “%s” não subiu: o servidor recusou o envio.',
 	'Файл «%s» пустой.' => 'O arquivo “%s” está vazio.',

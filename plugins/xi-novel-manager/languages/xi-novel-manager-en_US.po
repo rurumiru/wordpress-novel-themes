@@ -1,18 +1,18 @@
-# English (US) translation for the XI Novels project.
+# English (US) translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Novels — bulk management 0.5.0-beta\n"
+"Project-Id-Version: XIN-Com — bulk management 0.6.0-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "XI Novels — управление тайтлами"
-msgstr "XI Novels — bulk title management"
+msgid "XIN-Com — управление тайтлами"
+msgstr "XIN-Com — bulk title management"
 
-msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XI Novels."
-msgstr "Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XI Novels theme."
+msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com."
+msgstr "Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XIN-Com theme."
 
 msgid "Массовое управление"
 msgstr "Bulk management"
@@ -284,8 +284,8 @@ msgstr "Not enough permissions."
 msgid "Недостаточно прав на удаление."
 msgstr "Not enough permissions to delete."
 
-msgid "Тип записи «Новелла» не зарегистрирован. Включите тему XI Novels — управлять нечем."
-msgstr "The Novel post type is not registered. Enable the XI Novels theme — there is nothing to manage."
+msgid "Тип записи «Новелла» не зарегистрирован. Включите тему XIN-Com — управлять нечем."
+msgstr "The Novel post type is not registered. Enable the XIN-Com theme — there is nothing to manage."
 
 msgid "Пересобрать адреса глав"
 msgstr "Rebuild chapter URLs"
