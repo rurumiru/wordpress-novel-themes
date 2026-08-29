@@ -35,6 +35,7 @@ function xin_novel_box( $post ) {
 		.xin-fields .description { margin-top: 3px; }
 	</style>
 	<div class="xin-fields">
+		<?php if ( xin_comics_enabled() ) : ?>
 		<p>
 			<label for="xin_format"><?php esc_html_e( 'Формат', 'xin-com' ); ?></label>
 			<select id="xin_format" name="xin_format">
@@ -53,6 +54,7 @@ function xin_novel_box( $post ) {
 			</select>
 			<span class="description"><?php esc_html_e( 'Учитывается только у комиксов.', 'xin-com' ); ?></span>
 		</p>
+		<?php endif; ?>
 		<p>
 			<label for="xin_author_name"><?php esc_html_e( 'Автор оригинала', 'xin-com' ); ?></label>
 			<input type="text" id="xin_author_name" name="xin_author_name" value="<?php echo esc_attr( $author ); ?>" placeholder="<?php esc_attr_e( 'Имя автора', 'xin-com' ); ?>">

@@ -191,4 +191,6 @@ return array(
 	'Хранилище не настроено: нужны адрес, бакет, ключ и секрет.' => 'The storage is not configured: it needs an address, a bucket, a key and a secret.',
 	'Хранилище не объяснило причину.' => 'The storage did not explain why.',
 	'сохранён — оставьте пустым' => 'saved — leave it empty',
+	'Зеркала раздачи' => 'Delivery mirrors',
+	'По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком.' => 'One per line, “Name|address”. The reader gets a choice of server to load pages from: the storage can be slow or unreachable from someone\'s network, and the reader switches over without waiting for anyone. A mirror is only offered for chapters that are fully uploaded.',
 );

@@ -191,4 +191,6 @@ return array(
 	'Хранилище не настроено: нужны адрес, бакет, ключ и секрет.' => 'O armazenamento não está configurado: faltam endereço, bucket, chave e segredo.',
 	'Хранилище не объяснило причину.' => 'O armazenamento não explicou o motivo.',
 	'сохранён — оставьте пустым' => 'salvo — deixe em branco',
+	'Зеркала раздачи' => 'Espelhos de entrega',
+	'По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком.' => 'Um por linha, “Nome|endereço”. O leitor ganha a escolha do servidor de onde carregar as páginas: o armazenamento pode estar lento ou inacessível a partir da rede de alguém, e o leitor troca por conta própria. Um espelho só é oferecido para capítulos totalmente enviados.',
 );

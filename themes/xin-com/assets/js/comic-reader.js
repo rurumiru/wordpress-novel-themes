@@ -26,6 +26,19 @@
 
 	var SETTINGS_KEY = 'xin-comic';
 	var POSITION_KEY = 'xin-comic-at-' + root.getAttribute( 'data-chapter-id' );
+	var SOURCE_KEY   = 'xin-comic-source';
+
+	var sourcesNode = root.querySelector( '[data-xin-cr-sources]' );
+	var sources     = {};
+
+	try {
+		sources = sourcesNode ? JSON.parse( sourcesNode.textContent ) : {};
+	} catch ( e ) {
+		sources = {};
+	}
+
+	var sourceIds = Object.keys( sources );
+	var source    = sourceIds.length ? sourceIds[ 0 ] : '';
 
 	var settings = {
 		width: 'normal',
@@ -52,6 +65,34 @@
 		}
 	}
 
+	/*
+	 * Смена сервера переставляет адреса на месте. Ленивость с уже показанных
+	 * кадров снимается: браузер не станет догружать невидимую картинку, а после
+	 * переключения читатель смотрит именно на неё.
+	 */
+	function applySource( id ) {
+		var urls = sources[ id ];
+
+		if ( ! urls ) {
+			return;
+		}
+
+		source = id;
+		write( SOURCE_KEY, id );
+
+		for ( var i = 0; i < pages.length; i++ ) {
+			var img = pages[ i ].querySelector( 'img' );
+
+			if ( ! img || ! urls[ i ] || img.getAttribute( 'src' ) === urls[ i ] ) {
+				continue;
+			}
+
+			img.setAttribute( 'src', urls[ i ] );
+		}
+
+		mark( '[data-xin-cr-source]', 'xinCrSource', id );
+	}
+
 	function apply() {
 		root.setAttribute( 'data-width', settings.width );
 		root.setAttribute( 'data-gap', settings.gap );
@@ -60,6 +101,7 @@
 		mark( '[data-xin-cr-width]', 'xinCrWidth', settings.width );
 		mark( '[data-xin-cr-gap]', 'xinCrGap', settings.gap );
 		mark( '[data-xin-cr-mode]', 'xinCrMode', settings.mode );
+		mark( '[data-xin-cr-source]', 'xinCrSource', source );
 
 		if ( paged() ) {
 			show( current );
@@ -167,6 +209,13 @@
 				return;
 			}
 
+			var server = event.target.closest( '[data-xin-cr-source]' );
+
+			if ( server ) {
+				applySource( server.dataset.xinCrSource );
+				return;
+			}
+
 			if ( event.target.closest( '[data-xin-cr-toggle="settings"]' ) ) {
 				if ( panel ) {
 					panel.hidden = ! panel.hidden;
@@ -229,7 +278,20 @@
 			settings.mode = saved.mode || settings.mode;
 		}
 
+		/*
+		 * Выбранный сервер запоминается на весь сайт, а не на главу: читатель
+		 * переключается потому, что один из них медленный у него в сети, и
+		 * заново выбирать на каждой главе бессмысленно. Сохранённого сервера
+		 * может не быть у этой главы — тогда остаётся первый.
+		 */
+		var saved_source = read( SOURCE_KEY, '' );
+
+		if ( saved_source && sources[ saved_source ] ) {
+			source = saved_source;
+		}
+
 		apply();
+		applySource( source );
 
 		var at = read( POSITION_KEY, 1 );
 

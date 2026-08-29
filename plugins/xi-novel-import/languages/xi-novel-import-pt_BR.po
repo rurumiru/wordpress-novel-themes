@@ -524,3 +524,9 @@ msgstr "O armazenamento não explicou o motivo."
 msgid "сохранён — оставьте пустым"
 msgstr "salvo — deixe em branco"
 
+msgid "Зеркала раздачи"
+msgstr "Espelhos de entrega"
+
+msgid "По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком."
+msgstr "Um por linha, “Nome|endereço”. O leitor ganha a escolha do servidor de onde carregar as páginas: o armazenamento pode estar lento ou inacessível a partir da rede de alguém, e o leitor troca por conta própria. Um espelho só é oferecido para capítulos totalmente enviados."
+

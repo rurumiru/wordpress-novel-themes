@@ -10,6 +10,7 @@ define( 'XIN_URI', get_template_directory_uri() );
 
 require_once XIN_DIR . '/inc/cpt.php';
 require_once XIN_DIR . '/inc/format.php';
+require_once XIN_DIR . '/inc/comics.php';
 require_once XIN_DIR . '/inc/permalinks.php';
 require_once XIN_DIR . '/inc/meta-boxes.php';
 require_once XIN_DIR . '/inc/icons.php';
@@ -89,7 +90,11 @@ function xin_assets() {
 	wp_enqueue_style( 'xin-com-parts', XIN_URI . '/assets/css/parts.css', array( 'xin-com-pages' ), xin_asset_ver( '/assets/css/parts.css' ) );
 	wp_enqueue_style( 'xin-com-widgets', XIN_URI . '/assets/css/widgets.css', array( 'xin-com-parts' ), xin_asset_ver( '/assets/css/widgets.css' ) );
 	wp_enqueue_style( 'xin-com-landing', XIN_URI . '/assets/css/landing.css', array( 'xin-com-widgets' ), xin_asset_ver( '/assets/css/landing.css' ) );
-	wp_enqueue_style( 'xin-com-comics', XIN_URI . '/assets/css/comics.css', array( 'xin-com-landing' ), xin_asset_ver( '/assets/css/comics.css' ) );
+
+	if ( xin_comics_enabled() ) {
+		wp_enqueue_style( 'xin-com-comics', XIN_URI . '/assets/css/comics.css', array( 'xin-com-landing' ), xin_asset_ver( '/assets/css/comics.css' ) );
+	}
+
 
 	wp_enqueue_script( 'bootstrap', XIN_URI . '/assets/vendor/bootstrap/bootstrap.bundle.min.js', array(), '5.3.3', true );
 

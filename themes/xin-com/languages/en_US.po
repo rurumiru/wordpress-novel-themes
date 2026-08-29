@@ -3215,3 +3215,120 @@ msgstr "fresh"
 msgid "читают сейчас"
 msgstr "reading now"
 
+msgid "XIN-Com: разделы"
+msgstr "XIN-Com: sections"
+
+msgid "В этот день ничего не выходило: %s свободен."
+msgstr "Nothing came out that day: %s is clear."
+
+msgid "Воскресенье"
+msgstr "Sunday"
+
+msgid "Вс"
+msgstr "Sun"
+
+msgid "Вт"
+msgstr "Tue"
+
+msgid "Вторник"
+msgstr "Tuesday"
+
+msgid "Глав пока нет."
+msgstr "No chapters yet."
+
+msgid "День берётся из дат последних глав, поэтому расписание не расходится с выходами."
+msgstr "The day comes from the dates of the latest chapters, so the schedule cannot drift away from the actual releases."
+
+msgid "Если страницы грузятся долго или не открываются вовсе, переключитесь на другой сервер: кадры те же, отдаёт их другой домен."
+msgstr "If pages load slowly or do not open at all, switch to another server: the same frames, served from a different domain."
+
+msgid "Жанры раздела"
+msgstr "Genres in this section"
+
+msgid "Зеркала раздачи"
+msgstr "Delivery mirrors"
+
+msgid "Когда что выходит"
+msgstr "What comes out when"
+
+msgid "Модуль выключен по умолчанию. Включите — и в шапке появится переключатель разделов, а сайт получит адреса /comics/ с собственной главной, каталогом и читалкой страниц. У тайтла появится поле «Формат». Выключение ничего не удаляет: тайтлы-комиксы просто перестают быть видимыми, в каталог новелл они не попадают."
+msgstr "The module is off by default. Switch it on and the header gets a section switcher, while the site gets /comics/ addresses with their own home page, catalogue and page reader. Titles get a “Format” field. Switching it off deletes nothing: comic titles simply stop being visible, and they never land in the novels catalogue."
+
+msgid "Найти главу"
+msgstr "Find a chapter"
+
+msgid "Ни одна глава не подошла под запрос."
+msgstr "No chapter matched the search."
+
+msgid "Описание пока не заполнено."
+msgstr "There is no description yet."
+
+msgid "Основной"
+msgstr "Main"
+
+msgid "Пн"
+msgstr "Mon"
+
+msgid "По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком."
+msgstr "One per line, “Name|address”. The reader gets a choice of server to load pages from: the storage can be slow or unreachable from someone's network, and the reader switches over without waiting for anyone. A mirror is only offered for chapters that are fully uploaded."
+
+msgid "Понедельник"
+msgstr "Monday"
+
+msgid "Пт"
+msgstr "Fri"
+
+msgid "Пятница"
+msgstr "Friday"
+
+msgid "Раздел комиксов"
+msgstr "Comics section"
+
+msgid "Сб"
+msgstr "Sat"
+
+msgid "Свежие главы"
+msgstr "Fresh chapters"
+
+msgid "Сервер картинок"
+msgstr "Image server"
+
+msgid "Смотрите также"
+msgstr "See also"
+
+msgid "Ср"
+msgstr "Wed"
+
+msgid "Среда"
+msgstr "Wednesday"
+
+msgid "Суббота"
+msgstr "Saturday"
+
+msgid "Топ раздела"
+msgstr "Top of the section"
+
+msgid "Четверг"
+msgstr "Thursday"
+
+msgid "Читать с первой"
+msgstr "Start from chapter one"
+
+msgid "Чт"
+msgstr "Thu"
+
+msgid "Чтение"
+msgstr "Reading"
+
+msgid "выбор редакции"
+msgstr "editor's pick"
+
+msgid "неделя"
+msgstr "the week"
+
+msgid "по вкусу"
+msgstr "by taste"
+
+msgid "страниц"
+msgstr "pages"
+

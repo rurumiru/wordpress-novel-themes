@@ -21,6 +21,8 @@ while ( have_posts() ) :
 	$xin_locked   = (bool) get_post_meta( $xin_id, '_xin_locked', true );
 	$xin_label    = xin_chapter_label( $xin_id );
 	$xin_pages    = xin_comic_pages( $xin_id );
+	$xin_sources  = xin_comic_page_sources( $xin_id );
+	$xin_urls     = $xin_sources ? $xin_sources[0]['urls'] : array();
 	$xin_dir      = $xin_novel_id ? xin_comic_direction( $xin_novel_id ) : 'strip';
 	$xin_open     = xin_can_read_chapter( $xin_id );
 	?>
@@ -94,6 +96,18 @@ while ( have_posts() ) :
 			</div>
 		</div>
 
+		<?php if ( count( $xin_sources ) > 1 ) : ?>
+			<div class="xin-cr__group">
+				<span class="xin-cr__group-label"><?php esc_html_e( 'Сервер картинок', 'xin-com' ); ?></span>
+				<div class="xin-cr__choices" role="group">
+					<?php foreach ( $xin_sources as $xin_source ) : ?>
+						<button type="button" data-xin-cr-source="<?php echo esc_attr( $xin_source['id'] ); ?>"><?php echo esc_html( $xin_source['label'] ); ?></button>
+					<?php endforeach; ?>
+				</div>
+				<p class="xin-cr__hint"><?php esc_html_e( 'Если страницы грузятся долго или не открываются вовсе, переключитесь на другой сервер: кадры те же, отдаёт их другой домен.', 'xin-com' ); ?></p>
+			</div>
+		<?php endif; ?>
+
 		<div class="xin-cr__group">
 			<span class="xin-cr__group-label"><?php esc_html_e( 'Режим', 'xin-com' ); ?></span>
 			<div class="xin-cr__choices" role="group">
@@ -131,10 +145,25 @@ while ( have_posts() ) :
 		<?php else : ?>
 			<?php xin_track_reading( $xin_id ); ?>
 
+			<?php
+			/*
+			 * Карта «источник → адреса» уезжает в браузер целиком: переключение
+			 * сервера должно менять кадры на месте, без перезагрузки страницы и
+			 * без похода на сервер за теми же самыми ссылками.
+			 */
+			$xin_map = array();
+			foreach ( $xin_sources as $xin_source ) {
+				$xin_map[ $xin_source['id'] ] = $xin_source['urls'];
+			}
+			?>
+			<script type="application/json" data-xin-cr-sources>
+				<?php echo wp_json_encode( $xin_map, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>
+			</script>
+
 			<div class="xin-cr__pages" data-xin-cr-pages>
 				<?php foreach ( $xin_pages as $xin_i => $xin_page_id ) : ?>
 					<?php
-					$xin_src = wp_get_attachment_image_url( $xin_page_id, 'full' );
+					$xin_src = isset( $xin_urls[ $xin_i ] ) ? $xin_urls[ $xin_i ] : '';
 
 					if ( ! $xin_src ) {
 						continue;

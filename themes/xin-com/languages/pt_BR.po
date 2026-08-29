@@ -3107,3 +3107,120 @@ msgstr "recentes"
 msgid "читают сейчас"
 msgstr "lendo agora"
 
+msgid "XIN-Com: разделы"
+msgstr "XIN-Com: seções"
+
+msgid "В этот день ничего не выходило: %s свободен."
+msgstr "Nada saiu nesse dia: %s está livre."
+
+msgid "Воскресенье"
+msgstr "Domingo"
+
+msgid "Вс"
+msgstr "Dom"
+
+msgid "Вт"
+msgstr "Ter"
+
+msgid "Вторник"
+msgstr "Terça-feira"
+
+msgid "Глав пока нет."
+msgstr "Ainda não há capítulos."
+
+msgid "День берётся из дат последних глав, поэтому расписание не расходится с выходами."
+msgstr "O dia vem das datas dos últimos capítulos, então a programação não se descola dos lançamentos reais."
+
+msgid "Если страницы грузятся долго или не открываются вовсе, переключитесь на другой сервер: кадры те же, отдаёт их другой домен."
+msgstr "Se as páginas demoram ou não abrem, mude de servidor: são os mesmos quadros, servidos por outro domínio."
+
+msgid "Жанры раздела"
+msgstr "Gêneros desta seção"
+
+msgid "Зеркала раздачи"
+msgstr "Espelhos de entrega"
+
+msgid "Когда что выходит"
+msgstr "O que sai e quando"
+
+msgid "Модуль выключен по умолчанию. Включите — и в шапке появится переключатель разделов, а сайт получит адреса /comics/ с собственной главной, каталогом и читалкой страниц. У тайтла появится поле «Формат». Выключение ничего не удаляет: тайтлы-комиксы просто перестают быть видимыми, в каталог новелл они не попадают."
+msgstr "O módulo vem desligado. Ative-o e o cabeçalho ganha um seletor de seções, enquanto o site ganha os endereços /comics/ com página inicial, catálogo e leitor de páginas próprios. Os títulos ganham o campo “Formato”. Desligar não apaga nada: os títulos de quadrinhos apenas deixam de aparecer, e nunca vão parar no catálogo de novels."
+
+msgid "Найти главу"
+msgstr "Encontrar um capítulo"
+
+msgid "Ни одна глава не подошла под запрос."
+msgstr "Nenhum capítulo corresponde à busca."
+
+msgid "Описание пока не заполнено."
+msgstr "Ainda não há descrição."
+
+msgid "Основной"
+msgstr "Principal"
+
+msgid "Пн"
+msgstr "Seg"
+
+msgid "По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком."
+msgstr "Um por linha, “Nome|endereço”. O leitor ganha a escolha do servidor de onde carregar as páginas: o armazenamento pode estar lento ou inacessível a partir da rede de alguém, e o leitor troca por conta própria. Um espelho só é oferecido para capítulos totalmente enviados."
+
+msgid "Понедельник"
+msgstr "Segunda-feira"
+
+msgid "Пт"
+msgstr "Sex"
+
+msgid "Пятница"
+msgstr "Sexta-feira"
+
+msgid "Раздел комиксов"
+msgstr "Seção de quadrinhos"
+
+msgid "Сб"
+msgstr "Sáb"
+
+msgid "Свежие главы"
+msgstr "Capítulos recentes"
+
+msgid "Сервер картинок"
+msgstr "Servidor de imagens"
+
+msgid "Смотрите также"
+msgstr "Veja também"
+
+msgid "Ср"
+msgstr "Qua"
+
+msgid "Среда"
+msgstr "Quarta-feira"
+
+msgid "Суббота"
+msgstr "Sábado"
+
+msgid "Топ раздела"
+msgstr "Top da seção"
+
+msgid "Четверг"
+msgstr "Quinta-feira"
+
+msgid "Читать с первой"
+msgstr "Começar pelo primeiro"
+
+msgid "Чт"
+msgstr "Qui"
+
+msgid "Чтение"
+msgstr "Leitura"
+
+msgid "выбор редакции"
+msgstr "escolha da redação"
+
+msgid "неделя"
+msgstr "a semana"
+
+msgid "по вкусу"
+msgstr "por gosto"
+
+msgid "страниц"
+msgstr "páginas"
+

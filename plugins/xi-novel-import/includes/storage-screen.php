@@ -43,6 +43,7 @@ function xni_s3_save_post() {
 		'path_style' => empty( $_POST['path_style'] ) ? 0 : 1,
 		'keep_local' => empty( $_POST['keep_local'] ) ? 0 : 1,
 		'public_acl' => empty( $_POST['public_acl'] ) ? 0 : 1,
+		'mirrors'    => isset( $_POST['mirrors'] ) ? sanitize_textarea_field( wp_unslash( $_POST['mirrors'] ) ) : '',
 	);
 
 	update_option( XNI_S3_OPTION, $settings );
@@ -240,6 +241,13 @@ function xni_s3_screen_section() {
 					<td>
 						<input type="url" id="xni-s3-base" name="base_url" value="<?php echo esc_attr( $s['base_url'] ); ?>" class="regular-text" placeholder="https://cdn.example.com">
 						<p class="description"><?php esc_html_e( 'Домен CDN перед бакетом. Пусто — страницы отдаются прямо с адреса хранилища.', 'xi-novel-import' ); ?></p>
+					</td>
+				</tr>
+				<tr>
+					<th><label for="xni-s3-mirrors"><?php esc_html_e( 'Зеркала раздачи', 'xi-novel-import' ); ?></label></th>
+					<td>
+						<textarea id="xni-s3-mirrors" name="mirrors" rows="3" class="large-text code" placeholder="Сервер 1|https://cdn1.example.com&#10;Сервер 2|https://cdn2.example.com"><?php echo esc_textarea( $s['mirrors'] ); ?></textarea>
+						<p class="description"><?php esc_html_e( 'По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком.', 'xi-novel-import' ); ?></p>
 					</td>
 				</tr>
 				<tr>

@@ -59,6 +59,7 @@ function xni_s3_settings() {
 		'path_style' => 1,
 		'keep_local' => 1,
 		'public_acl' => 1,
+		'mirrors'    => '',
 	) );
 
 	if ( defined( 'XNI_S3_KEY' ) ) {
@@ -358,6 +359,105 @@ function xni_s3_check( $response, $what ) {
 function xni_s3_delete( $key ) {
 	return xni_s3_check( xni_s3_request( 'DELETE', $key ), __( 'Удаление', 'xi-novel-import' ) );
 }
+
+/**
+ * Зеркала раздачи: те же объекты, другой домен.
+ *
+ * Хранится строкой — по одному зеркалу в строке, «Название|адрес». Репитер в
+ * настройках дал бы то же самое ценой отдельного контрола и его состояния, а
+ * зеркал у площадки бывает два-три, и правят их раз в год.
+ *
+ * @return array<int, array{label: string, base: string}>
+ */
+function xni_s3_mirrors() {
+	$s   = xni_s3_settings();
+	$out = array();
+
+	foreach ( preg_split( '~\r\n|\r|\n~', (string) $s['mirrors'] ) as $line ) {
+		$line = trim( $line );
+
+		if ( '' === $line ) {
+			continue;
+		}
+
+		$parts = array_map( 'trim', explode( '|', $line, 2 ) );
+		$base  = isset( $parts[1] ) ? $parts[1] : $parts[0];
+		$label = isset( $parts[1] ) ? $parts[0] : wp_parse_url( $base, PHP_URL_HOST );
+
+		/*
+		 * Проверяем схему и хост, а не `wp_http_validate_url()`: та резолвит имя
+		 * и отбраковывает всё, что не разрешается с сервера, — защита от запросов
+		 * во внутреннюю сеть. Но по этому адресу ходит браузер читателя, а не
+		 * сервер, и домен CDN с площадки может не резолвиться вовсе. Такая
+		 * проверка молча выбрасывала бы рабочие зеркала.
+		 */
+		$scheme = wp_parse_url( $base, PHP_URL_SCHEME );
+		$host   = wp_parse_url( $base, PHP_URL_HOST );
+
+		if ( ! $host || ! in_array( $scheme, array( 'http', 'https' ), true ) ) {
+			continue;
+		}
+
+		$out[] = array(
+			'label' => (string) $label,
+			'base'  => rtrim( $base, '/' ),
+		);
+	}
+
+	return $out;
+}
+
+/**
+ * Добавляет зеркала в список источников читалки.
+ *
+ * Зеркало предлагается только тогда, когда все страницы главы действительно
+ * лежат в хранилище: у главы, выгруженной наполовину, переключение показало бы
+ * дыру вместо кадра.
+ *
+ * @param array $sources    Источники от темы.
+ * @param int   $chapter_id Глава.
+ * @return array
+ */
+function xni_s3_page_sources( $sources, $chapter_id ) {
+	$mirrors = xni_s3_mirrors();
+
+	if ( ! $mirrors || ! function_exists( 'xin_comic_pages' ) ) {
+		return $sources;
+	}
+
+	$keys = array();
+
+	foreach ( xin_comic_pages( $chapter_id ) as $page_id ) {
+		$key = get_post_meta( $page_id, '_xni_s3_key', true );
+
+		if ( ! $key ) {
+			return $sources;
+		}
+
+		$keys[] = $key;
+	}
+
+	if ( ! $keys ) {
+		return $sources;
+	}
+
+	foreach ( $mirrors as $i => $mirror ) {
+		$urls = array();
+
+		foreach ( $keys as $key ) {
+			$urls[] = $mirror['base'] . '/' . $key;
+		}
+
+		$sources[] = array(
+			'id'    => 'mirror-' . $i,
+			'label' => $mirror['label'],
+			'urls'  => $urls,
+		);
+	}
+
+	return $sources;
+}
+add_filter( 'xin_comic_page_sources', 'xni_s3_page_sources', 10, 2 );
 
 /* -------------------------------------------------------------------------
  * Выгрузка вложений

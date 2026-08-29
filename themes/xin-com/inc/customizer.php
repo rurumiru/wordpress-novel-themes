@@ -168,7 +168,23 @@ $wp_customize->add_section( 'xin_brand', array(
 		$wp_customize->add_control( $xin_key, $xin_args );
 	}
 
-$wp_customize->add_section( 'xin_accounts', array(
+$wp_customize->add_section( 'xin_sections', array(
+		'title'    => __( 'XIN-Com: разделы', 'xin-com' ),
+		'priority' => 25,
+	) );
+
+	$wp_customize->add_setting( 'xin_comics', array(
+		'default'           => false,
+		'sanitize_callback' => 'wp_validate_boolean',
+	) );
+	$wp_customize->add_control( 'xin_comics', array(
+		'label'       => __( 'Раздел комиксов', 'xin-com' ),
+		'description' => __( 'Модуль выключен по умолчанию. Включите — и в шапке появится переключатель разделов, а сайт получит адреса /comics/ с собственной главной, каталогом и читалкой страниц. У тайтла появится поле «Формат». Выключение ничего не удаляет: тайтлы-комиксы просто перестают быть видимыми, в каталог новелл они не попадают.', 'xin-com' ),
+		'section'     => 'xin_sections',
+		'type'        => 'checkbox',
+	) );
+
+	$wp_customize->add_section( 'xin_accounts', array(
 		'title'    => __( 'XIN-Com: аккаунты', 'xin-com' ),
 		'priority' => 26,
 	) );

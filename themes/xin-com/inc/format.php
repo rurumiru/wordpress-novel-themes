@@ -27,6 +27,21 @@ const XIN_COMICS_BASE = 'comics';
 const XIN_COMICS_CATALOG = 'catalog';
 
 /**
+ * Включён ли модуль комиксов.
+ *
+ * По умолчанию выключен: раздел добавляет к сайту новые адреса и пункт в шапке,
+ * и площадке, которая издаёт только текст, всё это не нужно. Выключатель не
+ * трогает фильтр разделов в `pre_get_posts` — тайтлы, отмеченные комиксами,
+ * остаются вне списков новелл в любом случае, иначе выключение модуля вываливало
+ * бы их в общий каталог.
+ *
+ * @return bool
+ */
+function xin_comics_enabled() {
+	return (bool) get_theme_mod( 'xin_comics', false );
+}
+
+/**
  * Разделы площадки.
  *
  * @return array<string, array{label: string, catalog: string, icon: string}>
@@ -268,6 +283,10 @@ add_filter( 'query_vars', 'xin_format_query_vars' );
  * @return void
  */
 function xin_comics_rewrite() {
+	if ( ! xin_comics_enabled() ) {
+		return;
+	}
+
 	$base = XIN_COMICS_BASE;
 
 	add_rewrite_rule(
@@ -337,6 +356,10 @@ add_filter( 'wp_unique_post_slug', 'xin_guard_comic_slug', 10, 4 );
  * @return string
  */
 function xin_comic_permalink( $url, $post ) {
+	if ( ! xin_comics_enabled() ) {
+		return $url;
+	}
+
 	if ( ! $post instanceof WP_Post || 'novel' !== $post->post_type || ! xin_is_comic( $post->ID ) ) {
 		return $url;
 	}
@@ -357,6 +380,10 @@ add_filter( 'post_type_link', 'xin_comic_permalink', 10, 2 );
  * @return string
  */
 function xin_comic_chapter_permalink( $url, $post ) {
+	if ( ! xin_comics_enabled() ) {
+		return $url;
+	}
+
 	if ( ! $post instanceof WP_Post || 'chapter' !== $post->post_type ) {
 		return $url;
 	}
@@ -393,6 +420,10 @@ add_filter( 'post_type_link', 'xin_comic_chapter_permalink', 20, 2 );
  * @return string
  */
 function xin_format_template( $template ) {
+	if ( ! xin_comics_enabled() ) {
+		return $template;
+	}
+
 	if ( 'home' === get_query_var( 'xin_view' ) && xin_in_comics() ) {
 		$found = locate_template( 'comics-home.php' );
 
@@ -481,6 +512,59 @@ function xin_comic_direction( $novel_id ) {
 	return in_array( $value, array( 'strip', 'ltr', 'rtl' ), true ) ? $value : 'strip';
 }
 
+/**
+ * Откуда читалке брать страницы главы.
+ *
+ * Возвращает список источников: у каждого имя и готовые адреса всех страниц по
+ * порядку. Первый источник — тот, что тема отдаёт сама; остальные добавляет
+ * тот, кто умеет их раздавать. Плагин хранилища подключается сюда фильтром, и
+ * тема продолжает работать, когда его нет.
+ *
+ * Зачем вообще выбор: хранилище может тормозить или быть недоступно из чьей-то
+ * сети, и читателю нужен способ переключиться самому, не дожидаясь, пока это
+ * заметят на стороне сайта.
+ *
+ * @param int $chapter_id Глава.
+ * @return array<int, array{id: string, label: string, urls: string[]}>
+ */
+function xin_comic_page_sources( $chapter_id ) {
+	$urls = array();
+
+	foreach ( xin_comic_pages( $chapter_id ) as $page_id ) {
+		$url = wp_get_attachment_image_url( $page_id, 'full' );
+
+		if ( $url ) {
+			$urls[] = $url;
+		}
+	}
+
+	$sources = array();
+
+	if ( $urls ) {
+		$sources[] = array(
+			'id'    => 'default',
+			'label' => __( 'Основной', 'xin-com' ),
+			'urls'  => $urls,
+		);
+	}
+
+	$sources = (array) apply_filters( 'xin_comic_page_sources', $sources, $chapter_id );
+
+	/*
+	 * Источник без полного набора страниц хуже, чем его отсутствие: читатель
+	 * переключится и получит дыру в середине главы. Такие отсеиваются здесь, а
+	 * не в читалке, чтобы неполный список даже не доехал до браузера.
+	 */
+	$expected = count( $urls );
+
+	return array_values( array_filter(
+		$sources,
+		static function ( $source ) use ( $expected ) {
+			return isset( $source['urls'] ) && count( $source['urls'] ) === $expected;
+		}
+	) );
+}
+
 /* -------------------------------------------------------------------------
  * Зеркало формата на главах
  * ---------------------------------------------------------------------- */
@@ -526,6 +610,39 @@ function xin_sync_novel_chapters_format( $novel_id ) {
 add_action( 'save_post_novel', 'xin_sync_novel_chapters_format', 20 );
 
 /**
+ * Включили или выключили модуль — перестраиваем правила адресов.
+ *
+ * Без этого /comics/ либо ещё не существует, либо продолжает отвечать после
+ * выключения: правила перезаписи живут в опции и сами не пересобираются.
+ *
+ * Проверка висит на `init` после регистрации правил, а не на сохранении
+ * настроек. В запросе, где настройку сохраняют, `init` уже отработал со старым
+ * значением — пересобирать в нём попросту нечего. Здесь же первый запрос с
+ * новым значением сначала регистрирует правила, а потом их сбрасывает.
+ *
+ * @return void
+ */
+function xin_comics_flush_on_toggle() {
+	$stored = get_option( 'xin_comics_rules', null );
+	$now    = xin_comics_enabled();
+
+	/*
+	 * `null` значит «состояние ещё не записывали»: так выглядит и свежая
+	 * установка, и сайт, который обновился до версии с выключателем уже имея
+	 * правила /comics/ в базе. Во втором случае сравнение «было false, стало
+	 * false» пропустило бы сброс, и раздел продолжал бы отвечать после
+	 * выключения. Поэтому первый проход сбрасывает правила всегда.
+	 */
+	if ( null !== $stored && (bool) $stored === $now ) {
+		return;
+	}
+
+	update_option( 'xin_comics_rules', $now ? 1 : 0 );
+	flush_rewrite_rules( false );
+}
+add_action( 'init', 'xin_comics_flush_on_toggle', 30 );
+
+/**
  * Переключатель разделов в шапке.
  *
  * Ведёт на главную раздела, а не на каталог: переключение разделов — это смена
@@ -534,6 +651,10 @@ add_action( 'save_post_novel', 'xin_sync_novel_chapters_format', 20 );
  * @return void
  */
 function xin_section_switch() {
+	if ( ! xin_comics_enabled() ) {
+		return;
+	}
+
 	$current = xin_current_section();
 	?>
 	<div class="xin-sections" role="group" aria-label="<?php esc_attr_e( 'Раздел', 'xin-com' ); ?>">
