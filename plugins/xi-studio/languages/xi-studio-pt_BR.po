@@ -116,3 +116,153 @@ msgstr "Largura da tela"
 msgid "по умолчанию"
 msgstr "padrão"
 
+msgid "XI Studio настроила сайт под тему:"
+msgstr "O XI Studio configurou o site para o tema:"
+
+msgid "Без назначенного меню тема рисует запасной набор ссылок. Он рабочий, но им нельзя управлять: ни порядок поменять, ни свой пункт добавить."
+msgstr "Sem um menu atribuído, o tema desenha um conjunto de links reserva. Funciona, mas não há o que gerenciar: não dá para reordenar nem adicionar um item próprio."
+
+msgid "Блог"
+msgstr "Blog"
+
+msgid "Блог: «%s»"
+msgstr "Blog: “%s”"
+
+msgid "Будет исправлено"
+msgstr "Será corrigido"
+
+msgid "В порядке"
+msgstr "Tudo certo"
+
+msgid "Все страницы на месте."
+msgstr "Todas as páginas estão no lugar."
+
+msgid "Всё настроено"
+msgstr "Tudo configurado"
+
+msgid "Выберите пояс сами в «Настройки → Общие»: подставить его за вас — значит угадывать."
+msgstr "Escolha o fuso você mesmo em Configurações → Geral: preenchê-lo por você seria adivinhar."
+
+msgid "Главная и блог"
+msgstr "Página inicial e blog"
+
+msgid "Главная и блог назначены."
+msgstr "A página inicial e o blog foram definidos."
+
+msgid "Главное меню"
+msgstr "Menu principal"
+
+msgid "Заведу страницы «Главная» и «Блог» и назначу их в настройках чтения."
+msgstr "Vou criar as páginas “Início” e “Blog” e defini-las nas configurações de leitura."
+
+msgid "Кабинет автора, библиотека, рейтинг, уголок читателя, PLUS и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404."
+msgstr "O estúdio do autor, a biblioteca, o ranking, o cantinho do leitor, o PLUS e as demais telas do tema são páginas do WordPress com modelos atribuídos. Enquanto a página não existir, o link para ela leva a um 404."
+
+msgid "Меню назначено, пунктов добавлено: %d"
+msgstr "Menu atribuído, itens adicionados: %d"
+
+msgid "Меню назначено."
+msgstr "O menu está atribuído."
+
+msgid "Менять было нечего — всё уже настроено."
+msgstr "Não havia o que mudar — já está tudo configurado."
+
+msgid "Место «Главное меню» пустует, показывается запасной набор ссылок."
+msgstr "A localização “Menu principal” está vazia, um conjunto reserva de links é exibido."
+
+msgid "На главной лента записей, отдельной страницы блога нет."
+msgstr "A página inicial mostra o feed de posts, e o blog não tem página própria."
+
+msgid "Настроить (%d)"
+msgstr "Configurar (%d)"
+
+msgid "Настройка сайта"
+msgstr "Configuração do site"
+
+msgid "Настройка сайта под тему"
+msgstr "Configurando o site para o tema"
+
+msgid "Не получилось:"
+msgstr "Não deu certo:"
+
+msgid "Не хватает: %s"
+msgstr "Faltando: %s"
+
+msgid "Обновления"
+msgstr "Atualizações"
+
+msgid "От него зависят «сегодня» и «вчера» в ленте обновлений, «9 часов назад» у глав и день недели в расписании комиксов. При нулевом смещении всё это считается по Гринвичу и расходится с тем, что видит читатель."
+msgstr "“Hoje” e “ontem” no feed de atualizações, “há 9 horas” nos capítulos e o dia da semana na programação dos quadrinhos dependem dele. Com deslocamento zero, tudo isso é contado pelo horário de Greenwich e se descola do que o leitor vê."
+
+msgid "Пока WordPress показывает на главной ленту записей, у блога нет собственной страницы — и ссылка «Блог» не появляется ни в шапке, ни в подвале: тема выводит её только тогда, когда страница блога задана."
+msgstr "Enquanto o WordPress mostra o feed de posts na página inicial, o blog não tem página própria — e o link “Blog” não aparece nem no cabeçalho nem no rodapé: o tema só o exibe quando há uma página de blog definida."
+
+msgid "Поставлю /%postname%/ и пересоберу правила адресов."
+msgstr "Vou definir /%postname%/ e reconstruir as regras de URL."
+
+msgid "Постоянные ссылки"
+msgstr "Links permanentes"
+
+msgid "Рейтинг"
+msgstr "Ranking"
+
+msgid "Решать вам"
+msgstr "Você decide"
+
+msgid "Сделано:"
+msgstr "Feito:"
+
+msgid "Сейчас: %s"
+msgstr "Agora: %s"
+
+msgid "Сейчас: простые ссылки вида ?p=123"
+msgstr "Agora: links simples como ?p=123"
+
+msgid "Служебные страницы"
+msgstr "Páginas de serviço"
+
+msgid "Соберу меню из каталога, обновлений, рейтинга и уголка читателя и поставлю его на место главного."
+msgstr "Vou montar um menu com o catálogo, as atualizações, o ranking e o cantinho do leitor, e colocá-lo no lugar do menu principal."
+
+msgid "Создам недостающие страницы и назначу им шаблоны темы."
+msgstr "Vou criar as páginas que faltam e atribuir a elas os modelos do tema."
+
+msgid "Создано страниц: %d"
+msgstr "Páginas criadas: %d"
+
+msgid "Состояние и зачем это нужно"
+msgstr "Situação e por que isso importa"
+
+msgid "Стоит UTC. Если площадка не в Лондоне, даты будут врать."
+msgstr "Está em UTC. A não ser que o site fique em Londres, as datas vão mentir."
+
+msgid "Структура ссылок: /%postname%/"
+msgstr "Estrutura de links: /%postname%/"
+
+msgid "Тема XIN-Com не активна. Часть проверок ничего не значит без неё."
+msgstr "O tema XIN-Com não está ativo. Algumas destas verificações não significam nada sem ele."
+
+msgid "Тема ждёт от установки нескольких вещей, которых в свежем WordPress нет. Без них она не ломается с грохотом — она тихо работает хуже, и замечают это недели спустя. Здесь видно, что не так и что будет сделано."
+msgstr "O tema espera algumas coisas que um WordPress recém-instalado não tem. Sem elas ele não quebra com estardalhaço — ele funciona pior em silêncio, e isso só é percebido semanas depois. Aqui dá para ver o que está errado e o que será feito."
+
+msgid "Тема не активна: создавать страницы нечем."
+msgstr "O tema não está ativo: não há com o que criar as páginas."
+
+msgid "Тема строит адреса тайтлов и глав сама: /novels/тайтл/ и /comics/тайтл/глава/. При ссылках «по умолчанию» переписывание адресов в WordPress выключено целиком, и всё это превращается в ?p=123."
+msgstr "O tema monta os endereços de títulos e capítulos por conta própria: /novels/titulo/ e /comics/titulo/capitulo/. Com links simples, a reescrita de URLs do WordPress fica totalmente desligada, e tudo isso vira ?p=123."
+
+msgid "Уголок читателя"
+msgstr "Cantinho do leitor"
+
+msgid "Уже сделанный выбор не переписывается."
+msgstr "Uma escolha já feita nunca é sobrescrita."
+
+msgid "Часовой пояс"
+msgstr "Fuso horário"
+
+msgid "Чинится только то, что стоит по умолчанию и мешает теме: если структура ссылок выбрана, пусть даже неудачно, — это ваше решение, и трогать его молча плагин не станет."
+msgstr "Só é corrigido o que está no padrão e atrapalha o tema: se uma estrutura de links foi escolhida, por pior que seja, essa é a sua decisão, e o plugin não vai mexer nela em silêncio."
+
+msgid "Что проверяем"
+msgstr "O que é verificado"
+

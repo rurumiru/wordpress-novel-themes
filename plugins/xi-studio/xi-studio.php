@@ -25,6 +25,9 @@ define( 'XIS_FILE', __FILE__ );
 define( 'XIS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'XIS_URI', plugin_dir_url( __FILE__ ) );
 
+require_once XIS_DIR . 'includes/setup.php';
+require_once XIS_DIR . 'includes/setup-screen.php';
+
 /**
  * Тема на месте? Без неё крутить нечего.
  *
@@ -59,6 +62,15 @@ function xis_menu() {
 		'xis_render',
 		'dashicons-art',
 		59
+	);
+
+	add_submenu_page(
+		'xi-studio',
+		__( 'Настройка сайта', 'xi-studio' ),
+		__( 'Настройка сайта', 'xi-studio' ),
+		'manage_options',
+		'xi-studio-setup',
+		'xis_setup_render'
 	);
 }
 add_action( 'admin_menu', 'xis_menu' );
