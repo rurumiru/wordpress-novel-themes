@@ -3,8 +3,8 @@ Theme Name: XIN-Com
 Theme URI: https://xi.community/
 Author: XI Community
 Author URI: https://xi.community/
-Description: Классическая тема-платформа для новелл и ранобэ: каталог тайтлов, главы с читалкой, рейтинги, панель управления на сайте, выгрузка в EPUB и FB2. Белая и тёмно-серая гамма, светлая схема по умолчанию.
-Version: 0.8.0
+Description: Классическая тема-платформа для новелл и ранобэ: каталог тайтлов, главы с читалкой, рейтинги, панель управления на сайте, выгрузка в EPUB и FB2. Книжная гамма: тёплая бумага, чернильный текст, штемпельный акцент.
+Version: 0.9.0-beta
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -15,65 +15,96 @@ Text Domain: xin-com
 Tags: blog, custom-menu, custom-logo, featured-images, translation-ready, two-columns, right-sidebar, full-width-template, custom-colors, editor-style
 */
 
+/* ==========================================================================
+   Токены
+   Тёплая бумага, чернила, один штемпельный акцент. Имена совпадают с тем, что
+   собирает inc/skin.php, — кастомайзер подменяет значения, не названия.
+   ========================================================================== */
+
 :root {
-	--bg: 220 20% 98.5%;
-	--fg: 220 15% 12%;
-	--card: 0 0% 100%;
-	--popover: 0 0% 100%;
-	--muted: 220 14% 95.5%;
-	--muted-fg: 220 9% 44%;
-	--accent: 220 14% 92.5%;
-	--border: 220 13% 89%;
-	--input: 220 13% 85%;
-	--primary: 220 14% 21%;
-	--primary-fg: 0 0% 100%;
-	--gold: 220 11% 38%;
-	--gold-fg: 0 0% 100%;
-	--ring: 220 14% 30%;
+	--bg: 36 33% 97%;
+	--fg: 28 14% 13%;
+	--card: 40 40% 99.5%;
+	--popover: 40 40% 99.5%;
+	--muted: 36 20% 93.5%;
+	--muted-fg: 30 8% 42%;
+	--accent: 36 22% 90%;
+	--border: 34 16% 86.5%;
+	--input: 34 16% 79%;
+	--primary: 10 66% 43%;
+	--primary-fg: 40 40% 99%;
+	--gold: 36 55% 42%;
+	--gold-fg: 40 40% 99%;
+	--ring: 10 66% 43%;
 
-	--radius: 0.75rem;
-	--radius-sm: 0.5rem;
-	--radius-lg: 1rem;
+	--radius: 8px;
+	--radius-sm: 5px;
+	--radius-lg: 12px;
+	--radius-art: 3px;
 	--wrap: 1160px;
-	--header-h: 60px;
+	--header-h: 62px;
+	--rule: 1px solid hsl(var(--border));
 
-	--shadow-1: 0 1px 2px hsl(220 15% 12% / .05), 0 1px 3px hsl(220 15% 12% / .06);
-	--shadow-2: 0 4px 12px hsl(220 15% 12% / .07), 0 2px 4px hsl(220 15% 12% / .05);
-	--shadow-3: 0 12px 30px hsl(220 15% 12% / .10), 0 4px 8px hsl(220 15% 12% / .05);
+	--shadow-1: 0 1px 2px hsl(28 20% 10% / .05);
+	--shadow-2: 0 6px 20px hsl(28 20% 10% / .09), 0 2px 6px hsl(28 20% 10% / .05);
+	--shadow-3: 0 20px 48px hsl(28 20% 10% / .16), 0 6px 14px hsl(28 20% 10% / .07);
 
-	--font: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-	--font-read: "Georgia", "Times New Roman", "Noto Serif", serif;
+	/*
+	 * Шрифты подобраны из того, что уже стоит в системе, — тема не грузит
+	 * ничего со стороны. Inter из интерфейса убран намеренно: это шрифт по
+	 * умолчанию у половины сгенерированных макетов, и страница с ним читается
+	 * как заготовка. Вместо него гуманистическая Candara (на macOS — Avenir
+	 * Next): у неё старостильные цифры, и метастрока «4,8 · 203,4K · 10 глав»
+	 * выглядит набранной, а не выведенной интерфейсом. Corbel из этого же
+	 * семейства пробовался первым и отпал: у него слишком узкий пробел —
+	 * в русской строке «Лю Чэньсин» слова слипаются в одно.
+	 *
+	 * Заголовки — Sitka Banner: это оптический размер для крупного кегля из
+	 * семейства Мэтью Картера, с настоящей кириллицей и высоким контрастом.
+	 * Текст главы — Sitka Text, тот же рисунок в размере для чтения.
+	 */
+	--font: Candara, "Avenir Next", "Segoe UI Variable Text", "Helvetica Neue", system-ui, -apple-system, "Noto Sans", Arial, sans-serif;
+	--font-display: "Sitka Banner", "Hoefler Text", "Iowan Old Style", Charter, Constantia, "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif;
+	--font-read: "Sitka Text", Charter, "Iowan Old Style", Constantia, Georgia, "Noto Serif", serif;
 	--font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Consolas, monospace;
 
 	color-scheme: light;
 }
 
+/*
+ * Тёмная схема — не инверсия светлой, а другой материал: тёплый уголь вместо
+ * бумаги. Акцент светлеет, иначе киноварь на угле проваливается.
+ */
 [data-theme="dark"] {
-	--bg: 220 14% 7%;
-	--fg: 220 14% 91%;
-	--card: 220 13% 11%;
-	--popover: 220 13% 14%;
-	--muted: 220 12% 16%;
-	--muted-fg: 220 10% 64%;
-	--accent: 220 12% 20%;
-	--border: 220 11% 24%;
-	--input: 220 11% 28%;
-	--primary: 220 16% 86%;
-	--primary-fg: 220 15% 11%;
-	--gold: 220 12% 68%;
-	--gold-fg: 220 15% 10%;
-	--ring: 220 14% 72%;
+	--bg: 30 10% 8%;
+	--fg: 36 16% 89%;
+	--card: 30 9% 11.5%;
+	--popover: 30 9% 14%;
+	--muted: 30 8% 16%;
+	--muted-fg: 33 9% 62%;
+	--accent: 30 8% 21%;
+	--border: 30 7% 22.5%;
+	--input: 30 7% 28%;
+	--primary: 12 72% 56%;
+	--primary-fg: 30 12% 9%;
+	--gold: 38 58% 58%;
+	--gold-fg: 30 12% 9%;
+	--ring: 12 72% 56%;
 
-	--shadow-1: 0 1px 2px hsl(220 20% 2% / .5);
-	--shadow-2: 0 6px 18px hsl(220 20% 2% / .55);
-	--shadow-3: 0 18px 44px hsl(220 20% 2% / .6);
+	--shadow-1: 0 1px 2px hsl(0 0% 0% / .5);
+	--shadow-2: 0 6px 20px hsl(0 0% 0% / .55);
+	--shadow-3: 0 20px 48px hsl(0 0% 0% / .62);
 
 	color-scheme: dark;
 }
 
+/* ==========================================================================
+   База
+   ========================================================================== */
+
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
 	*, *::before, *::after {
@@ -83,56 +114,68 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 	}
 }
 
-html { max-width: 100%; }
-
 body {
 	margin: 0;
 	max-width: 100%;
 	background: hsl(var(--bg));
 	color: hsl(var(--fg));
 	font-family: var(--font);
-	font-size: 15px;
-	line-height: 1.6;
+	font-size: 15.5px;
+	line-height: 1.62;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden;
 }
 body.xin-no-scroll { overflow: hidden; }
 
-h1, h2, h3, h4, h5, h6 { margin: 0 0 .5em; line-height: 1.2; font-weight: 700; letter-spacing: -.01em; }
-h1 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.25rem); }
-h2 { font-size: clamp(1.25rem, 1.05rem + .8vw, 1.55rem); }
-h3 { font-size: 1.125rem; }
+/*
+ * Антиква — только имена произведений и заголовки. Интерфейс остаётся
+ * гротеском: кнопка или поле с засечками читается как опечатка.
+ */
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 .45em;
+	font-family: var(--font-display);
+	font-weight: 600;
+	line-height: 1.16;
+	letter-spacing: -.018em;
+}
+h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.25rem); line-height: 1.06; letter-spacing: -.022em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1.1vw, 1.95rem); }
+h3 { font-size: 1.15rem; line-height: 1.25; letter-spacing: -.01em; }
+h4 { font-size: 1rem; }
 p { margin: 0 0 1em; }
-a { color: inherit; text-decoration: none; transition: color .18s ease; }
+a { color: inherit; text-decoration: none; transition: color .16s ease; }
 a:hover { color: hsl(var(--primary)); }
 img, svg, video, iframe { max-width: 100%; height: auto; display: block; }
 figure { margin: 0 0 1.5em; }
-hr { border: 0; border-top: 1px solid hsl(var(--border)); margin: 2rem 0; }
-small { font-size: 12px; }
+hr { border: 0; border-top: var(--rule); margin: 2rem 0; }
+small { font-size: 13px; }
 code, kbd, pre { font-family: var(--font-mono); font-size: .9em; }
 pre {
 	background: hsl(var(--muted));
 	padding: 1rem 1.125rem;
 	border-radius: var(--radius-sm);
 	overflow-x: auto;
-	border: 1px solid hsl(var(--border));
+	border: var(--rule);
 }
+
+/* Цитата книжная: линейка тонкая, текст не курсивный — курсив на кириллице
+   в длинном абзаце читается хуже, чем просто отступ и другой цвет. */
 blockquote {
-	margin: 1.5rem 0;
-	padding: .25rem 0 .25rem 1.125rem;
-	border-left: 3px solid hsl(var(--primary));
+	margin: 1.75rem 0;
+	padding: .1rem 0 .1rem 1.35rem;
+	border-left: 2px solid hsl(var(--primary) / .5);
 	color: hsl(var(--muted-fg));
-	font-style: italic;
 }
+
 table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 14px; }
-th, td { padding: .625rem .75rem; border-bottom: 1px solid hsl(var(--border)); text-align: left; }
-th { font-weight: 600; background: hsl(var(--muted)); }
+th, td { padding: .7rem .8rem; border-bottom: var(--rule); text-align: left; }
+th { font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: hsl(var(--muted-fg)); background: none; }
 
 .xin-icon { width: 16px; height: 16px; flex: none; }
 
-::selection { background: hsl(var(--primary) / .25); }
-:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; border-radius: 4px; }
+::selection { background: hsl(var(--primary) / .18); }
+:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; border-radius: 3px; }
 
 .screen-reader-text {
 	position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -144,595 +187,956 @@ th { font-weight: 600; background: hsl(var(--muted)); }
 	background: hsl(var(--card)); color: hsl(var(--fg)); box-shadow: var(--shadow-3);
 }
 
-.xin-wrap { width: 100%; max-width: min(var(--wrap), 100%); margin-inline: auto; padding-inline: 16px; }
-.xin-wrap--narrow { max-width: 820px; }
-.xin-wrap--mid { max-width: 1040px; }
-.xin-section { padding-top: 28px; }
-@media (min-width: 640px) { .xin-section { padding-top: 40px; } }
-.xin-site-main { display: block; min-height: 50vh; padding-bottom: 64px; }
+/* ==========================================================================
+   Раскладка
+   ========================================================================== */
 
-.xin-layout { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.xin-wrap { width: 100%; max-width: min(var(--wrap), 100%); margin-inline: auto; padding-inline: 20px; }
+.xin-wrap--narrow { max-width: 780px; }
+.xin-wrap--mid { max-width: 1000px; }
+
+.xin-section { padding-top: 44px; }
+@media (min-width: 640px) { .xin-section { padding-top: 64px; } }
+
+.xin-site-main { display: block; min-height: 50vh; padding-bottom: 88px; }
+
+.xin-layout { display: grid; gap: 40px; grid-template-columns: minmax(0, 1fr); align-items: start; }
 @media (min-width: 1024px) {
-	.xin-layout--sidebar { grid-template-columns: minmax(0, 1fr) 320px; }
+	.xin-layout--sidebar { grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; }
 }
+
+.xin-grid { display: grid; gap: 26px 22px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.xin-grid--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+.xin-grid--3 { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+.xin-grid--4 { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 22px; }
+.xin-grid--6 { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 30px 22px; }
+.xin-grid--start { align-items: start; }
+
+/* Горизонтальная лента: прокрутка с прилипанием, без видимой полосы. */
+.xin-rail {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 158px;
+	gap: 22px;
+	overflow-x: auto;
+	scroll-snap-type: x proximity;
+	padding-bottom: 6px;
+	scrollbar-width: thin;
+	scrollbar-color: hsl(var(--border)) transparent;
+}
+.xin-rail > * { scroll-snap-align: start; }
+.xin-rail::-webkit-scrollbar { height: 6px; }
+.xin-rail::-webkit-scrollbar-track { background: transparent; }
+.xin-rail::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
+@media (min-width: 768px) { .xin-rail { grid-auto-columns: 172px; } }
+
+/* ==========================================================================
+   Заголовок секции
+   ========================================================================== */
+
+.xin-head {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 24px;
+	flex-wrap: wrap;
+	padding-bottom: 14px;
+	margin-bottom: 24px;
+	border-bottom: var(--rule);
+}
+.xin-head > div:first-child { min-width: 0; }
+.xin-head h2 { margin: 0; }
+/* Страховка: иконку у заголовка убрали из шаблонов, но тема живёт в чужих
+   руках — если её вернут вручную, секция не должна снова стать «блоком». */
+.xin-head h2 > svg { display: none; }
+
+.xin-head__eyebrow {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .17em;
+	text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+	margin-bottom: 9px;
+}
+.xin-head__sub {
+	margin: 7px 0 0;
+	font-size: 13.5px;
+	color: hsl(var(--muted-fg));
+	max-width: 62ch;
+}
+.xin-head__more {
+	display: inline-flex;
+	align-items: center;
+	gap: .35rem;
+	font-size: 13px;
+	font-weight: 500;
+	color: hsl(var(--muted-fg));
+	white-space: nowrap;
+	padding-bottom: 3px;
+}
+.xin-head__more:hover { color: hsl(var(--primary)); }
+.xin-head__more svg { width: 14px; height: 14px; transition: transform .16s ease; }
+.xin-head__more:hover svg { transform: translateX(2px); }
+
+/* Заголовок страницы: тот же приём, но крупнее и с воздухом сверху. */
+.xin-pagehead { padding: 40px 0 26px; border-bottom: var(--rule); margin-bottom: 32px; }
+.xin-pagehead h1 { margin: 0; }
+.xin-pagehead__sub { margin: 12px 0 0; color: hsl(var(--muted-fg)); font-size: 15px; max-width: 66ch; }
+.xin-pagehead__eyebrow {
+	font-size: 11px; font-weight: 600; letter-spacing: .17em;
+	text-transform: uppercase; color: hsl(var(--muted-fg)); margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   Кнопки
+   ========================================================================== */
 
 .xin-btn {
 	display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-	padding: .625rem 1.125rem; border-radius: 999px; border: 1px solid transparent;
-	font-size: 14px; font-weight: 600; line-height: 1.2; cursor: pointer;
+	padding: .58rem 1.05rem; border-radius: var(--radius-sm);
+	border: 1px solid transparent;
+	font-family: var(--font);
+	font-size: 14px; font-weight: 550; line-height: 1.25; cursor: pointer;
+	white-space: nowrap;
 	background: hsl(var(--muted)); color: hsl(var(--fg));
-	transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+	transition: background-color .16s ease, color .16s ease, border-color .16s ease;
 }
 .xin-btn:hover { background: hsl(var(--accent)); color: hsl(var(--fg)); }
-.xin-btn:active { transform: scale(.98); }
+.xin-btn:active { transform: none; }
 .xin-btn svg { width: 16px; height: 16px; flex: none; }
 
-.xin-btn--primary { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); box-shadow: 0 6px 18px hsl(var(--primary) / .25); }
-.xin-btn--primary:hover { background: hsl(var(--primary) / .88); color: hsl(var(--primary-fg)); }
+.xin-btn--primary { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); }
+.xin-btn--primary:hover { background: hsl(var(--primary) / .87); color: hsl(var(--primary-fg)); }
 .xin-btn--gold { background: hsl(var(--gold)); color: hsl(var(--gold-fg)); }
-.xin-btn--gold:hover { background: hsl(var(--gold) / .85); color: hsl(var(--gold-fg)); }
-.xin-btn--outline { background: transparent; border-color: hsl(var(--border)); }
-.xin-btn--outline:hover { background: hsl(var(--accent)); }
+.xin-btn--gold:hover { background: hsl(var(--gold) / .87); color: hsl(var(--gold-fg)); }
+.xin-btn--outline { background: transparent; border-color: hsl(var(--input)); }
+.xin-btn--outline:hover { background: hsl(var(--muted)); border-color: hsl(var(--input)); }
 .xin-btn--ghost { background: transparent; }
-.xin-btn--ghost:hover { background: hsl(var(--accent)); }
-.xin-btn--lg { padding: .875rem 1.75rem; font-size: 16px; }
-.xin-btn--sm { padding: .375rem .75rem; font-size: 12.5px; }
+.xin-btn--ghost:hover { background: hsl(var(--muted)); }
+.xin-btn--sm { padding: .4rem .75rem; font-size: 13px; }
+.xin-btn--lg { padding: .78rem 1.5rem; font-size: 15px; }
 .xin-btn--block { width: 100%; }
-.xin-btn--icon { padding: .5rem; width: 38px; height: 38px; border-radius: 50%; }
+.xin-btn--icon { width: 36px; height: 36px; padding: 0; background: transparent; }
+.xin-btn--icon:hover { background: hsl(var(--muted)); }
+
+.xin-iconbtn {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 36px; height: 36px; padding: 0; border: 0; cursor: pointer;
+	background: transparent; color: hsl(var(--fg));
+	border-radius: var(--radius-sm);
+	transition: background-color .16s ease;
+}
+.xin-iconbtn:hover { background: hsl(var(--muted)); }
+.xin-iconbtn svg { width: 18px; height: 18px; }
+.xin-iconbtn--menu { margin-left: 2px; }
+
+/* ==========================================================================
+   Бейджи, чипы, аватары
+   ========================================================================== */
 
 .xin-badge {
-	display: inline-flex; align-items: center; gap: .3rem;
-	padding: .15rem .5rem; border-radius: 999px;
-	font-size: 11px; font-weight: 700; line-height: 1.5; white-space: nowrap;
+	display: inline-flex; align-items: center; gap: .3em;
+	padding: .22em .6em;
+	border-radius: 999px;
+	font-size: 11.5px; font-weight: 600; line-height: 1.5;
+	letter-spacing: .01em;
 	background: hsl(var(--muted)); color: hsl(var(--muted-fg));
-	border: 1px solid transparent;
+	white-space: nowrap;
 }
-.xin-badge svg { width: 11px; height: 11px; }
-.xin-badge--primary { background: hsl(var(--primary) / .12); color: hsl(var(--primary)); border-color: hsl(var(--primary) / .25); }
-.xin-badge--gold { background: hsl(var(--gold) / .14); color: hsl(var(--gold)); border-color: hsl(var(--gold) / .3); }
-.xin-badge--adult { background: hsl(0 72% 51% / .15); color: hsl(0 72% 55%); border-color: hsl(0 72% 51% / .3); }
-.xin-badge--solid { background: hsl(var(--fg) / .82); color: hsl(var(--bg)); }
-
-.xin-card {
-	background: hsl(var(--card));
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius);
-	box-shadow: var(--shadow-1);
-	overflow: hidden;
+.xin-badge svg { width: 12px; height: 12px; }
+.xin-badge--primary { background: hsl(var(--primary) / .11); color: hsl(var(--primary)); }
+.xin-badge--gold { background: hsl(var(--gold) / .14); color: hsl(var(--gold)); }
+.xin-badge--solid { background: hsl(var(--fg)); color: hsl(var(--bg)); }
+.xin-badge--adult { background: hsl(0 58% 46%); color: #fff; }
+/* «Новая глава»: не заливка, а точка перед подписью — отметка, а не ярлык. */
+.xin-badge--fresh { background: hsl(28 20% 8% / .72); color: hsl(40 30% 97%); }
+.xin-badge--fresh::before {
+	content: ""; width: 5px; height: 5px; border-radius: 999px;
+	background: hsl(var(--primary)); flex: none;
 }
-.xin-glass {
-	background: hsl(var(--card) / .72);
-	backdrop-filter: blur(14px) saturate(140%);
-	-webkit-backdrop-filter: blur(14px) saturate(140%);
-	border: 1px solid hsl(var(--border) / .8);
-	border-radius: var(--radius-lg);
-}
-
-.xin-reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s cubic-bezier(.22,.9,.3,1); }
-.xin-reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .xin-reveal { opacity: 1; transform: none; } }
-
-.xin-header {
-	position: sticky; top: 0; z-index: 90;
-	background: hsl(var(--bg) / .82);
-	backdrop-filter: blur(16px) saturate(150%);
-	-webkit-backdrop-filter: blur(16px) saturate(150%);
-	border-bottom: 1px solid hsl(var(--border) / .7);
-	transition: box-shadow .2s ease, background-color .2s ease;
-}
-.xin-header.is-stuck { box-shadow: var(--shadow-2); }
-.xin-header__bar { display: flex; align-items: center; gap: 14px; height: var(--header-h); }
-.xin-header__brand { display: flex; align-items: center; gap: .625rem; font-weight: 800; font-size: 19px; letter-spacing: -.02em; flex: none; }
-.xin-header__brand img { max-height: 34px; width: auto; }
-.xin-header__mark {
-	display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px;
-	background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / .55));
-	color: hsl(var(--primary-fg)); font-size: 15px; font-weight: 900;
-	box-shadow: 0 4px 14px hsl(var(--primary) / .35);
-}
-.xin-header__brand b { color: hsl(var(--primary)); }
-
-.xin-nav { display: none; }
-@media (min-width: 1024px) { .xin-nav { display: block; margin-inline-start: 6px; } }
-.xin-nav ul { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0; }
-.xin-nav li { position: relative; }
-.xin-nav a {
-	display: flex; align-items: center; gap: .3rem;
-	padding: .5rem .75rem; border-radius: 999px;
-	font-size: 14px; font-weight: 600; color: hsl(var(--muted-fg)); white-space: nowrap;
-	transition: background-color .18s ease, color .18s ease;
-}
-.xin-nav a:hover, .xin-nav .current-menu-item > a, .xin-nav .current_page_item > a,
-.xin-nav .current-menu-parent > a, .xin-nav .current-menu-ancestor > a {
-	background: hsl(var(--accent)); color: hsl(var(--fg));
-}
-.xin-nav .sub-menu {
-	position: absolute; top: calc(100% + 8px); left: 0; z-index: 20;
-	display: block; min-width: 210px; padding: 6px; margin: 0;
-	background: hsl(var(--popover)); border: 1px solid hsl(var(--border));
-	border-radius: var(--radius); box-shadow: var(--shadow-3);
-	opacity: 0; visibility: hidden; transform: translateY(-6px);
-	transition: opacity .18s ease, transform .18s ease, visibility .18s;
-}
-.xin-nav li:hover > .sub-menu, .xin-nav li:focus-within > .sub-menu { opacity: 1; visibility: visible; transform: none; }
-.xin-nav .sub-menu li { width: 100%; }
-.xin-nav .sub-menu a { border-radius: var(--radius-sm); width: 100%; }
-.xin-nav .menu-item-has-children > a::after {
-	content: ""; width: 6px; height: 6px; margin-left: 2px;
-	border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor;
-	transform: rotate(45deg) translateY(-2px);
-}
-
-.xin-header__actions { display: flex; align-items: center; gap: 6px; margin-inline-start: auto; }
-.xin-iconbtn {
-	display: grid; place-items: center; width: 38px; height: 38px;
-	border: 0; border-radius: 999px; background: transparent; color: hsl(var(--muted-fg));
-	cursor: pointer; transition: background-color .18s ease, color .18s ease;
-}
-.xin-iconbtn:hover { background: hsl(var(--accent)); color: hsl(var(--fg)); }
-.xin-iconbtn svg { width: 19px; height: 19px; }
-.xin-iconbtn--menu { display: grid; }
-@media (min-width: 1024px) { .xin-iconbtn--menu { display: none; } }
-.xin-header__cta { display: none; }
-@media (min-width: 640px) { .xin-header__cta { display: inline-flex; } }
-
-[data-theme="dark"] .xin-theme-toggle .xin-i-sun { display: block; }
-[data-theme="dark"] .xin-theme-toggle .xin-i-moon { display: none; }
-.xin-theme-toggle .xin-i-sun { display: none; }
-.xin-theme-toggle .xin-i-moon { display: block; }
-
-.xin-search-overlay {
-	position: fixed; inset: 0; z-index: 200;
-	display: grid; place-items: start center; padding: 12vh 16px 16px;
-	background: hsl(var(--bg) / .86);
-	backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-	opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s;
-}
-.xin-search-overlay.is-open { opacity: 1; visibility: visible; }
-.xin-search-overlay__inner { width: min(680px, 100%); }
-.xin-search-overlay h2 { font-size: 15px; color: hsl(var(--muted-fg)); font-weight: 600; }
-
-.xin-searchform { display: flex; gap: 8px; }
-.xin-searchform input[type="search"], .xin-searchform input[type="text"] {
-	flex: 1; min-width: 0;
-	padding: .75rem 1.125rem; font-size: 15px; font-family: inherit;
-	color: hsl(var(--fg)); background: hsl(var(--card));
-	border: 1px solid hsl(var(--input)); border-radius: 999px;
-}
-.xin-searchform input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .18); }
-
-.xin-drawer {
-	position: fixed; inset: 0 0 0 auto; z-index: 210;
-	width: min(340px, 88vw); padding: 18px;
-	background: hsl(var(--card)); border-left: 1px solid hsl(var(--border));
-	box-shadow: var(--shadow-3);
-	transform: translateX(100%); transition: transform .28s cubic-bezier(.22,.9,.3,1);
-	overflow-y: auto;
-}
-.xin-drawer.is-open { transform: none; }
-.xin-drawer__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.xin-drawer ul { list-style: none; margin: 0; padding: 0; }
-.xin-drawer > ul > li + li { margin-top: 2px; }
-.xin-drawer a { display: block; padding: .625rem .75rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 15px; }
-.xin-drawer a:hover { background: hsl(var(--accent)); }
-.xin-drawer .sub-menu { margin-left: 12px; padding-left: 8px; border-left: 1px solid hsl(var(--border)); }
-.xin-drawer .sub-menu a { font-weight: 500; font-size: 14px; color: hsl(var(--muted-fg)); }
-.xin-scrim {
-	position: fixed; inset: 0; z-index: 205; background: hsl(228 20% 3% / .55);
-	opacity: 0; visibility: hidden; transition: opacity .22s ease, visibility .22s;
-}
-.xin-scrim.is-open { opacity: 1; visibility: visible; }
-
-.xin-bottomnav {
-	position: fixed; inset: auto 0 0 0; z-index: 80;
-	display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
-	padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
-	background: hsl(var(--card) / .94);
-	backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-	border-top: 1px solid hsl(var(--border));
-}
-.xin-bottomnav a { display: grid; justify-items: center; gap: 3px; padding: 6px 2px; font-size: 10.5px; font-weight: 600; color: hsl(var(--muted-fg)); min-width: 0; }
-.xin-bottomnav span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.xin-bottomnav a.is-active, .xin-bottomnav a:hover { color: hsl(var(--primary)); }
-.xin-bottomnav svg { width: 20px; height: 20px; }
-@media (min-width: 768px) { .xin-bottomnav { display: none; } }
-@media (max-width: 767px) { body { padding-bottom: 62px; } }
-
-.xin-banner {
-	position: relative; overflow: hidden; background: hsl(var(--muted));
-	max-width: min(var(--wrap), calc(100% - 32px)); margin: 18px auto 0;
-	border: 1px solid hsl(var(--border)); border-radius: var(--radius-lg);
-	box-shadow: var(--shadow-2);
-}
-.xin-banner__track { display: flex; transition: transform .55s cubic-bezier(.22,.9,.3,1); }
-.xin-banner__slide { position: relative; flex: 0 0 100%; width: 100%; min-width: 100%; max-width: 100%; min-height: 260px; }
-@media (min-width: 768px) { .xin-banner__slide { min-height: 360px; } }
-.xin-banner__slide img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
-.xin-banner__slide::after {
-	content: ""; position: absolute; inset: 0; z-index: 1;
-	background: linear-gradient(to top, hsl(220 18% 4% / .94), hsl(220 18% 4% / .45) 48%, hsl(220 18% 4% / .12) 82%);
-}
-.xin-banner__body {
-	position: relative; z-index: 2; display: grid; align-content: end; min-height: inherit;
-	padding: 26px 24px; color: #fff;
-}
-@media (min-width: 768px) { .xin-banner__body { padding: 32px 34px; } }
-.xin-banner__body h2 { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.5rem); margin-bottom: .35rem; color: #fff; --bs-heading-color: #fff; text-shadow: 0 2px 12px hsl(0 0% 0% / .5); }
-.xin-banner__body p { max-width: 620px; color: hsl(0 0% 100% / .85); margin-bottom: 1rem; }
-.xin-banner__body .xin-badge { background: hsl(0 0% 100% / .18); color: #fff; border-color: hsl(0 0% 100% / .28); }
-.xin-banner__actions .btn-primary {
-	--bs-btn-bg: #fff; --bs-btn-color: hsl(220 15% 12%);
-	--bs-btn-hover-bg: hsl(0 0% 100% / .88); --bs-btn-hover-color: hsl(220 15% 12%);
-	--bs-btn-active-bg: hsl(0 0% 100% / .82); --bs-btn-active-color: hsl(220 15% 12%);
-	box-shadow: 0 6px 18px hsl(220 20% 2% / .35);
-}
-.xin-banner__dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 7px; z-index: 3; }
-.xin-banner__dots button {
-	width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px;
-	background: hsl(0 0% 100% / .45); cursor: pointer; transition: width .25s ease, background-color .25s ease;
-}
-.xin-banner__dots button.is-active { width: 26px; background: #fff; }
-.xin-banner__arrow {
-	position: absolute; top: 50%; z-index: 3; transform: translateY(-50%);
-	display: grid; place-items: center; width: 40px; height: 40px;
-	border: 0; border-radius: 999px; cursor: pointer;
-	background: hsl(0 0% 0% / .35); color: #fff; backdrop-filter: blur(6px);
-	opacity: 0; transition: opacity .2s ease, background-color .2s ease;
-}
-.xin-banner:hover .xin-banner__arrow { opacity: 1; }
-.xin-banner__arrow:hover { background: hsl(0 0% 0% / .6); }
-.xin-banner__arrow--prev { left: 12px; }
-.xin-banner__arrow--next { right: 12px; }
-
-.xin-services { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding-top: 16px; max-width: 100%; }
-@media (min-width: 640px) { .xin-services { display: flex; } }
-.xin-services a {
-	display: grid; justify-items: center; gap: 6px; flex: 1; min-width: 0; overflow-wrap: anywhere;
-	padding: 12px 4px; border-radius: var(--radius); text-align: center;
-	font-size: 11px; font-weight: 700; color: hsl(var(--fg));
-	transition: background-color .18s ease, color .18s ease;
-}
-@media (min-width: 640px) { .xin-services a { font-size: 12.5px; } }
-.xin-services a:hover { background: hsl(var(--accent)); color: hsl(var(--primary)); }
-.xin-services svg { width: 22px; height: 22px; color: hsl(var(--primary)); transition: transform .2s ease; }
-.xin-services a:hover svg { transform: translateY(-2px); }
-.xin-services a.is-gold svg { color: hsl(var(--gold)); }
-.xin-services a.is-gold:hover { background: hsl(var(--gold) / .1); color: hsl(var(--gold)); }
-
-.xin-hero { position: relative; overflow: hidden; }
-.xin-hero__grid {
-	display: grid; gap: 24px; align-items: center;
-	padding: 22px 16px 34px; max-width: var(--wrap); margin-inline: auto;
-}
-@media (min-width: 1024px) {
-	.xin-hero__grid { grid-template-columns: minmax(0, 1fr) 430px; gap: 48px; padding: 48px 16px 64px; }
-}
-.xin-hero__text { order: 2; text-align: center; }
-@media (min-width: 1024px) { .xin-hero__text { order: 1; text-align: left; } }
-.xin-hero__eyebrow {
-	display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 12px;
-	padding: .25rem .75rem .25rem .5rem; border-radius: 999px;
-	background: hsl(var(--primary) / .1); border: 1px solid hsl(var(--primary) / .25);
-	color: hsl(var(--primary)); font-size: 11.5px; font-weight: 800;
-	text-transform: uppercase; letter-spacing: .08em;
-}
-.xin-hero__pulse { position: relative; display: grid; place-items: center; width: 16px; height: 16px; }
-.xin-hero__pulse::before {
-	content: ""; position: absolute; width: 7px; height: 7px; border-radius: 999px;
-	background: hsl(var(--primary)); animation: xin-ping 1.8s cubic-bezier(0,0,.2,1) infinite;
-}
-@keyframes xin-ping { 75%, 100% { transform: scale(2.4); opacity: 0; } }
-.xin-hero__title { font-size: clamp(1.6rem, 1.1rem + 2.6vw, 3rem); line-height: 1.12; margin-bottom: .35rem; }
-.xin-hero__author { color: hsl(var(--muted-fg)); font-size: 14px; margin-bottom: .75rem; }
-.xin-hero__desc { color: hsl(var(--fg) / .8); max-width: 620px; margin-inline: auto; }
-@media (min-width: 1024px) { .xin-hero__desc { margin-inline: 0; } }
-.xin-hero__meta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin: 14px 0 18px; color: hsl(var(--muted-fg)); font-size: 13px; }
-@media (min-width: 1024px) { .xin-hero__meta { justify-content: flex-start; } }
-.xin-hero__meta span { display: inline-flex; align-items: center; gap: .3rem; }
-.xin-hero__meta svg { width: 15px; height: 15px; }
-.xin-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-@media (min-width: 1024px) { .xin-hero__actions { justify-content: flex-start; } }
-.xin-hero__tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 14px; }
-@media (min-width: 1024px) { .xin-hero__tags { justify-content: flex-start; } }
-
-.xin-hero__deck { order: 1; position: relative; display: grid; place-items: center; min-height: 290px; }
-@media (min-width: 1024px) { .xin-hero__deck { order: 2; min-height: 400px; } }
-.xin-hero__card {
-	position: absolute; width: 190px; aspect-ratio: 2/3; border-radius: var(--radius);
-	overflow: hidden; box-shadow: var(--shadow-3); border: 1px solid hsl(var(--border));
-	transition: transform .55s cubic-bezier(.22,.9,.3,1), opacity .45s ease, filter .45s ease;
-	cursor: pointer; background: hsl(var(--muted));
-}
-@media (min-width: 640px) { .xin-hero__card { width: 240px; } }
-.xin-hero__card img { width: 100%; height: 100%; object-fit: cover; }
-.xin-hero__card[data-pos="0"] { transform: translateX(0) scale(1); z-index: 4; opacity: 1; }
-.xin-hero__card[data-pos="1"] { transform: translateX(58%) scale(.82) rotate(5deg); z-index: 3; opacity: .6; filter: blur(1px); }
-.xin-hero__card[data-pos="-1"] { transform: translateX(-58%) scale(.82) rotate(-5deg); z-index: 3; opacity: .6; filter: blur(1px); }
-.xin-hero__card[data-pos="hidden"] { transform: scale(.7); opacity: 0; z-index: 1; pointer-events: none; }
-.xin-hero__glow {
-	position: absolute; width: 340px; height: 340px; border-radius: 999px; z-index: 0;
-	background: radial-gradient(circle, hsl(var(--primary) / .28), transparent 68%);
-	filter: blur(28px);
-}
-
-.xin-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 8px; padding: 22px 20px; margin-top: 8px; }
-@media (min-width: 640px) { .xin-stats { grid-template-columns: repeat(4, 1fr); padding: 24px 32px; } }
-.xin-stats__item { text-align: center; }
-.xin-stats__num { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: 900; letter-spacing: -.02em; }
-.xin-stats__label { margin-top: 2px; font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: hsl(var(--muted-fg)); }
-
-.xin-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 6px 16px; margin-bottom: 16px; }
-.xin-head__eyebrow {
-	display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 6px;
-	font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .18em; color: hsl(var(--primary));
-}
-.xin-head__eyebrow::before { content: ""; width: 4px; height: 4px; border-radius: 999px; background: currentColor; }
-.xin-head h2 { display: flex; align-items: center; gap: .6rem; font-size: clamp(1.35rem, 1.1rem + .8vw, 1.75rem); margin: 0; }
-.xin-head h2 svg { width: 24px; height: 24px; color: hsl(var(--primary)); flex: none; }
-.xin-head__sub { margin: 4px 0 0; font-size: 13.5px; color: hsl(var(--muted-fg)); }
-.xin-head__more {
-	display: inline-flex; align-items: center; gap: .25rem; flex: none;
-	padding: .3rem .6rem; margin-right: -.6rem; border-radius: 999px;
-	font-size: 13.5px; font-weight: 600; color: hsl(var(--muted-fg));
-	transition: background-color .18s ease, color .18s ease;
-}
-.xin-head__more:hover, .xin-head__more:focus-visible { background: hsl(var(--accent)); color: hsl(var(--fg)); }
-.xin-head__more svg { width: 15px; height: 15px; transition: transform .18s ease; }
-.xin-head__more:hover svg { transform: translateX(2px); }
-
-.xin-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (min-width: 640px) { .xin-grid { gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .xin-grid--6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .xin-grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .xin-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .xin-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.xin-grid--2 { grid-template-columns: minmax(0, 1fr); }
-.xin-grid--start { align-items: start; }
-@media (min-width: 768px) { .xin-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-
-.xin-rail { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; }
-.xin-rail > * { flex: 0 0 152px; scroll-snap-align: start; }
-@media (min-width: 640px) { .xin-rail > * { flex-basis: 180px; } }
-.xin-rail::-webkit-scrollbar { height: 6px; }
-.xin-rail::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
-
-.xin-novel { position: relative; display: block; }
-.xin-novel__cover {
-	position: relative; display: block; aspect-ratio: 2/3; overflow: hidden;
-	border-radius: var(--radius); background: hsl(var(--muted));
-	border: 1px solid hsl(var(--border)); box-shadow: var(--shadow-1);
-	transition: transform .3s cubic-bezier(.22,.9,.3,1), box-shadow .3s ease, border-color .3s ease;
-}
-.xin-novel:hover .xin-novel__cover { transform: translateY(-4px); box-shadow: var(--shadow-3); border-color: hsl(var(--primary) / .45); }
-.xin-novel__cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.xin-novel:hover .xin-novel__cover img { transform: scale(1.06); }
-.xin-novel__cover--empty { display: grid; place-items: center; background: linear-gradient(135deg, hsl(var(--primary) / .16), hsl(var(--muted))); }
-.xin-novel__cover--empty svg { width: 34px; height: 34px; color: hsl(var(--primary) / .55); }
-.xin-novel__cover::after {
-	content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-	background: linear-gradient(105deg, transparent 40%, hsl(0 0% 100% / .22) 50%, transparent 60%);
-	transform: translateX(-120%); transition: transform .75s ease;
-}
-.xin-novel:hover .xin-novel__cover::after { transform: translateX(120%); }
-.xin-novel__badges { position: absolute; top: 6px; left: 6px; z-index: 3; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
-/* These sit on an arbitrary cover image. The translucent tints the badges use
-   elsewhere borrowed the artwork's colour and the label disappeared into it, so
-   over a cover they are opaque and carry their own background. */
-.xin-novel__badges .xin-badge {
-	border-color: transparent; color: #fff;
-	background: hsl(228 20% 4% / .74);
-	backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-	box-shadow: 0 1px 3px hsl(228 20% 4% / .35);
-}
-.xin-novel__badges .xin-badge--primary { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); }
-.xin-novel__badges .xin-badge--gold { background: hsl(var(--gold)); color: hsl(var(--gold-fg)); }
-.xin-novel__badges .xin-badge--adult { background: hsl(0 72% 46%); color: #fff; }
-.xin-novel__rank {
-	position: absolute; bottom: 0; left: 0; z-index: 3;
-	padding: 2px 10px 3px 8px; border-radius: 0 10px 0 var(--radius);
-	background: hsl(var(--primary)); color: hsl(var(--primary-fg));
-	font-size: 14px; font-weight: 900; font-variant-numeric: tabular-nums;
-}
-.xin-novel__rank--gold { background: hsl(var(--gold)); color: hsl(var(--gold-fg)); }
-.xin-novel__chip {
-	position: absolute; right: 6px; bottom: 6px; z-index: 3;
-	padding: 1px 7px; border-radius: 999px; font-size: 10.5px; font-weight: 700;
-	background: hsl(228 20% 4% / .72); color: #fff; backdrop-filter: blur(4px);
-	display: inline-flex; align-items: center; gap: 3px;
-}
-.xin-novel__chip svg { width: 11px; height: 11px; }
-.xin-novel__body { padding: 8px 2px 0; }
-.xin-novel__title {
-	margin: 0 0 3px; font-size: 13.5px; font-weight: 700; line-height: 1.3;
-	display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-	transition: color .18s ease;
-}
-@media (min-width: 640px) { .xin-novel__title { font-size: 14.5px; } }
-.xin-novel:hover .xin-novel__title { color: hsl(var(--primary)); }
-.xin-novel__author { font-size: 11.5px; color: hsl(var(--muted-fg)); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.xin-novel__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 4px; font-size: 11px; color: hsl(var(--muted-fg)); }
-.xin-novel__meta span { display: inline-flex; align-items: center; gap: 3px; }
-.xin-novel__meta svg { width: 12px; height: 12px; }
-.xin-novel__meta .is-rating { color: hsl(var(--gold)); font-weight: 700; }
-.xin-novel--blur .xin-novel__cover img { filter: blur(12px) saturate(.6); }
-.xin-novel--blur .xin-novel__cover:hover img { filter: blur(6px); }
-
-.xin-fav {
-	position: absolute; top: 6px; right: 6px; z-index: 4;
-	display: grid; place-items: center; width: 28px; height: 28px;
-	border: 0; border-radius: 999px; cursor: pointer;
-	background: hsl(228 20% 4% / .55); color: #fff; backdrop-filter: blur(4px);
-	opacity: 0; transform: scale(.85); transition: opacity .2s ease, transform .2s ease, background-color .2s ease, color .2s ease;
-}
-.xin-novel:hover .xin-fav, .xin-fav.is-active, .xin-fav:focus-visible { opacity: 1; transform: none; }
-.xin-fav svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
-.xin-fav.is-active { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); }
-.xin-fav.is-active svg { fill: currentColor; }
-.xin-fav--inline {
-	position: static; opacity: 1; transform: none;
-	width: auto; height: auto; gap: .5rem; padding: .875rem 1.5rem;
-	display: inline-flex; align-items: center; font-size: 16px; font-weight: 600;
-	background: transparent; color: hsl(var(--fg)); border: 1px solid hsl(var(--border));
-	backdrop-filter: none;
-}
-.xin-fav--inline:hover { background: hsl(var(--accent)); }
-.xin-fav--inline svg { width: 18px; height: 18px; }
-@media (hover: none) { .xin-fav { opacity: 1; transform: none; } }
-
-.xin-showcase { position: relative; display: block; aspect-ratio: 2/3; border-radius: var(--radius); overflow: hidden; background: hsl(var(--muted)); box-shadow: var(--shadow-1); border: 1px solid hsl(var(--border)); transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-.xin-showcase:hover { transform: translateY(-4px); box-shadow: var(--shadow-3); border-color: hsl(var(--primary) / .4); }
-.xin-showcase img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.xin-showcase:hover img { transform: scale(1.06); }
-.xin-showcase::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, hsl(228 20% 3% / .95), hsl(228 20% 3% / .35) 45%, transparent 72%); }
-.xin-showcase__body { position: absolute; inset: auto 0 0 0; z-index: 2; padding: 10px; color: #fff; }
-.xin-showcase__body h3 { font-size: 13px; margin: 0 0 4px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 3px hsl(0 0% 0% / .8); }
-.xin-showcase__body .xin-novel__meta { color: hsl(0 0% 100% / .82); margin: 0; }
-
-.xin-tabs { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); }
-.xin-tabs button {
-	padding: .375rem .875rem; border: 0; border-radius: 999px; cursor: pointer;
-	background: transparent; color: hsl(var(--muted-fg));
-	font-family: inherit; font-size: 13px; font-weight: 700;
-	transition: background-color .18s ease, color .18s ease;
-}
-.xin-tabs button.is-active { background: hsl(var(--card)); color: hsl(var(--fg)); box-shadow: var(--shadow-1); }
-.xin-tabpanel[hidden] { display: none; }
-
-.xin-ranklist { display: grid; gap: 4px; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 768px) { .xin-ranklist { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 24px; } }
-.xin-rankrow {
-	display: flex; align-items: center; gap: 12px; padding: 8px 10px;
-	border-radius: var(--radius-sm); transition: background-color .18s ease;
-}
-.xin-rankrow:hover { background: hsl(var(--accent)); }
-.xin-rankrow__num { width: 26px; flex: none; text-align: center; font-size: 17px; font-weight: 900; font-variant-numeric: tabular-nums; color: hsl(var(--muted-fg)); }
-.xin-rankrow:nth-child(-n+3) .xin-rankrow__num { color: hsl(var(--primary)); }
-.xin-rankrow__cover { flex: none; width: 42px; aspect-ratio: 2/3; border-radius: 6px; overflow: hidden; background: hsl(var(--muted)); }
-.xin-rankrow__cover img { width: 100%; height: 100%; object-fit: cover; }
-.xin-rankrow__body { min-width: 0; flex: 1; }
-.xin-rankrow__title { display: block; font-size: 14px; font-weight: 600; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.xin-rankrow:hover .xin-rankrow__title { color: hsl(var(--primary)); }
-.xin-rankrow__meta { font-size: 11.5px; color: hsl(var(--muted-fg)); display: flex; gap: 10px; margin-top: 1px; }
-.xin-rankrow__meta span { display: inline-flex; align-items: center; gap: 3px; }
-.xin-rankrow__meta svg { width: 12px; height: 12px; }
-
-.xin-trending { position: relative; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid hsl(var(--border)); background: hsl(var(--card)); }
-.xin-trending__bg { position: absolute; inset: 0; opacity: .3; }
-.xin-trending__bg img { width: 100%; height: 100%; object-fit: cover; filter: blur(2px); }
-.xin-trending__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, hsl(var(--card)) 12%, hsl(var(--card) / .72) 55%, hsl(var(--card) / .35)); }
-.xin-trending__body { position: relative; z-index: 2; display: grid; gap: 18px; padding: 20px; }
-@media (min-width: 768px) { .xin-trending__body { grid-template-columns: 148px minmax(0, 1fr); padding: 24px; } }
-.xin-trending__cover { width: 120px; aspect-ratio: 2/3; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-2); }
-@media (min-width: 768px) { .xin-trending__cover { width: 100%; } }
-.xin-trending__cover img { width: 100%; height: 100%; object-fit: cover; }
-.xin-trending h3 { font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); margin-bottom: .25rem; }
-.xin-trending p { color: hsl(var(--muted-fg)); font-size: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+[data-theme="dark"] .xin-badge--fresh::before { background: hsl(12 78% 62%); }
+[data-theme="dark"] .xin-badge--primary { background: hsl(var(--primary) / .18); }
+[data-theme="dark"] .xin-badge--gold { background: hsl(var(--gold) / .18); }
 
 .xin-genres { display: flex; flex-wrap: wrap; gap: 8px; }
 .xin-genre-chip {
-	display: inline-flex; align-items: center; gap: .35rem;
-	padding: .45rem .9rem; border-radius: 999px; font-size: 13px; font-weight: 600;
-	background: hsl(var(--card)); border: 1px solid hsl(var(--border)); color: hsl(var(--fg));
-	transition: all .18s ease;
+	display: inline-flex; align-items: center; gap: .45em;
+	padding: .42em .95em;
+	border: var(--rule); border-radius: 999px;
+	font-size: 13px; font-weight: 500;
+	color: hsl(var(--fg));
+	transition: border-color .16s ease, color .16s ease, background-color .16s ease;
 }
-.xin-genre-chip:hover, .xin-genre-chip.is-active {
-	background: hsl(var(--primary) / .1); border-color: hsl(var(--primary) / .45); color: hsl(var(--primary));
-	transform: translateY(-1px);
+.xin-genre-chip b { font-weight: 500; font-size: 11.5px; color: hsl(var(--muted-fg)); }
+.xin-genre-chip:hover,
+.xin-genre-chip.is-active {
+	border-color: hsl(var(--fg) / .55);
+	color: hsl(var(--fg));
+	background: hsl(var(--muted) / .6);
 }
-.xin-genre-chip b { font-weight: 700; font-size: 11px; color: hsl(var(--muted-fg)); }
+.xin-genre-chip.is-active { border-color: hsl(var(--fg)); font-weight: 600; }
+.xin-genre-chip:hover b, .xin-genre-chip.is-active b { color: inherit; }
 
-.xin-collection { display: block; position: relative; height: 100%; padding: 16px; border-radius: var(--radius); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); transition: all .25s ease; overflow: hidden; }
-.xin-collection:hover { transform: translateY(-3px); border-color: hsl(var(--primary) / .4); box-shadow: var(--shadow-2); }
-.xin-collection__stack { display: flex; margin-bottom: 12px; }
-.xin-collection__stack span { width: 54px; aspect-ratio: 2/3; border-radius: 8px; overflow: hidden; border: 2px solid hsl(var(--card)); background: hsl(var(--muted)); box-shadow: var(--shadow-1); }
-.xin-collection__stack span + span { margin-left: -18px; }
-.xin-collection__stack img { width: 100%; height: 100%; object-fit: cover; }
-.xin-collection h3 { font-size: 15px; margin-bottom: 2px; }
-.xin-collection p { font-size: 12.5px; color: hsl(var(--muted-fg)); margin: 0; }
+.xin-avatar { border-radius: 999px; object-fit: cover; flex: none; }
 
-.xin-chapcard { display: flex; gap: 10px; padding: 10px; border-radius: var(--radius); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; height: 100%; }
-.xin-chapcard:hover { border-color: hsl(var(--primary) / .4); transform: translateY(-2px); box-shadow: var(--shadow-2); }
-.xin-chapcard__cover { flex: none; width: 46px; aspect-ratio: 2/3; border-radius: 8px; overflow: hidden; background: hsl(var(--muted)); }
-.xin-chapcard__cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.xin-chapcard:hover .xin-chapcard__cover img { transform: scale(1.06); }
-.xin-chapcard__body { min-width: 0; flex: 1; }
-.xin-chapcard__novel { display: block; font-size: 11.5px; color: hsl(var(--muted-fg)); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.xin-chapcard__title { font-size: 13.5px; font-weight: 600; margin: 2px 0 0; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.xin-chapcard:hover .xin-chapcard__title { color: hsl(var(--primary)); }
-.xin-chapcard__num { font-family: var(--font-mono); font-size: 12px; color: hsl(var(--muted-fg)); margin-right: 4px; }
-.xin-chapcard__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; font-size: 10.5px; color: hsl(var(--muted-fg)); }
+/* ==========================================================================
+   Карточка произведения
+   ========================================================================== */
 
-/* Top authors beside the news feed. Two equal halves stretched to the taller
-   panel, so a site with a couple of authors got a short card and then half a
-   screen of nothing beside a long list of posts. The authors take a column
-   sized to what they need and the feed takes the rest, and each panel keeps
-   its own height. */
-.xin-community { display: grid; gap: 22px; align-items: start; }
-@media (min-width: 900px) { .xin-community { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); } }
-.xin-community__authors { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+.xin-novel { position: relative; min-width: 0; }
 
-.xin-author-card { display: grid; justify-items: center; gap: 4px; position: relative; padding: 12px 8px; border-radius: var(--radius); background: hsl(var(--muted) / .5); text-align: center; transition: background-color .2s ease; }
-.xin-author-card:hover { background: hsl(var(--accent)); }
-.xin-author-card img, .xin-author-card .xin-avatar { width: 56px; height: 56px; border-radius: 999px; object-fit: cover; }
-.xin-avatar { display: grid; place-items: center; background: linear-gradient(135deg, hsl(var(--primary) / .3), hsl(var(--primary) / .12)); font-weight: 800; font-size: 19px; color: hsl(var(--primary)); }
-.xin-author-card__name { font-size: 13.5px; font-weight: 600; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.xin-author-card__count { font-size: 10.5px; color: hsl(var(--muted-fg)); }
-.xin-author-card__rank { position: absolute; top: 6px; left: 6px; }
+.xin-novel__cover {
+	position: relative;
+	display: block;
+	aspect-ratio: 2 / 3;
+	border-radius: var(--radius-art);
+	overflow: hidden;
+	background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
+	transition: transform .2s ease, box-shadow .2s ease;
+}
+.xin-novel__cover img { width: 100%; height: 100%; object-fit: cover; }
+.xin-novel__cover--empty { display: grid; place-items: center; color: hsl(var(--muted-fg) / .5); }
+.xin-novel__cover--empty svg { width: 30px; height: 30px; }
+.xin-novel:hover .xin-novel__cover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px hsl(var(--fg) / .2); }
 
-.xin-cta { position: relative; display: block; height: 100%; padding: 24px; border-radius: var(--radius-lg); overflow: hidden; background: hsl(var(--primary) / .07); border: 1px solid hsl(var(--primary) / .12); transition: transform .3s ease, background-color .3s ease, box-shadow .3s ease; }
-@media (min-width: 640px) { .xin-cta { padding: 32px; } }
-.xin-cta:hover { transform: translateY(-4px); background: hsl(var(--primary) / .12); box-shadow: var(--shadow-2); }
-.xin-cta::before { content: ""; position: absolute; top: -32px; right: -32px; width: 160px; height: 160px; border-radius: 999px; background: hsl(var(--primary) / .25); filter: blur(38px); }
-.xin-cta > * { position: relative; }
-.xin-cta__icon { color: hsl(var(--primary)); margin-bottom: 10px; }
-.xin-cta__icon svg { width: 32px; height: 32px; }
-.xin-cta h3 { font-size: clamp(1.125rem, 1rem + .6vw, 1.5rem); }
-.xin-cta p { color: hsl(var(--muted-fg)); font-size: 14px; margin-bottom: 14px; }
-.xin-cta__more { display: inline-flex; align-items: center; gap: .3rem; font-size: 14px; font-weight: 700; color: hsl(var(--primary)); }
-.xin-cta__more svg { width: 16px; height: 16px; transition: transform .2s ease; }
+.xin-novel__badges {
+	position: absolute; inset: 7px auto auto 7px;
+	display: flex; flex-direction: column; align-items: flex-start; gap: 5px;
+	pointer-events: none;
+}
+.xin-novel__badges .xin-badge { background: hsl(28 20% 8% / .72); color: hsl(40 30% 97%); backdrop-filter: blur(4px); }
+.xin-novel__badges .xin-badge--adult { background: hsl(0 58% 46%); }
+
+/* Номер в рейтинге: крупная антиква в углу обложки, без плашки. */
+.xin-novel__rank {
+	position: absolute; inset: auto auto 4px 8px;
+	font-family: var(--font-display); font-size: 30px; font-weight: 600; line-height: 1;
+	color: hsl(40 30% 97%);
+	text-shadow: 0 1px 12px hsl(28 20% 8% / .8);
+	pointer-events: none;
+}
+.xin-novel__rank--gold { color: hsl(var(--gold)); }
+
+/* Чип с числом глав убран из разметки карточки — метастрока говорит то же
+   самое и не портит обложку. Правило оставлено на случай чужой вёрстки. */
+.xin-novel__chip { display: none; }
+
+/*
+ * Начатый тайтл: полоса прочитанного по нижнему краю обложки. Её рисует
+ * theme.js по той же истории чтения, что и блок «Продолжить чтение», —
+ * поэтому у гостя, который ничего не читал, её просто нет.
+ */
+.xin-novel__progress {
+	position: absolute; inset: auto 0 0 0; z-index: 1;
+	height: 3px; background: hsl(28 20% 8% / .35);
+}
+.xin-novel__progress i { display: block; height: 100%; background: hsl(var(--primary)); }
+
+.xin-novel__body { padding-top: 11px; }
+.xin-novel__title {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 15px; font-weight: 600; line-height: 1.28; letter-spacing: -.008em;
+	display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.xin-novel__author {
+	margin-top: 4px;
+	font-size: 12.5px;
+	color: hsl(var(--muted-fg));
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Метастрока: точки-разделители рисует CSS, поэтому шаблону не нужно
+   решать, где ставить «·», когда часть значений пустая. */
+/* Метастрока обязана быть однострочной: на карточке шириной 150px вторая
+   строка оставляла висеть один пункт с разделителем впереди. */
+.xin-novel__meta {
+	display: flex; align-items: center;
+	margin-top: 7px;
+	font-size: 12.5px; font-weight: 500;
+	color: hsl(var(--muted-fg));
+	white-space: nowrap; overflow: hidden;
+}
+.xin-novel__meta > * { display: inline-flex; align-items: center; gap: .3em; }
+.xin-novel__meta > * + *::before {
+	content: "·";
+	margin: 0 .5em;
+	color: hsl(var(--border));
+	font-weight: 400;
+}
+.xin-novel__meta svg { width: 13px; height: 13px; opacity: .75; }
+.xin-novel__meta .is-rating { color: hsl(var(--fg)); }
+.xin-novel__meta .is-rating svg { color: hsl(var(--gold)); opacity: 1; }
+
+.xin-novel--blur .xin-novel__cover img { filter: blur(14px); transform: scale(1.1); }
+.xin-novel--blur:hover .xin-novel__cover img { filter: blur(0); transform: none; }
+
+/* Закладка: появляется по наведению, на тач-устройствах видна всегда. */
+.xin-fav {
+	position: absolute; top: 7px; right: 7px; z-index: 2;
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 30px; height: 30px; padding: 0; cursor: pointer;
+	border: 0; border-radius: var(--radius-sm);
+	background: hsl(28 20% 8% / .6); color: hsl(40 30% 97%);
+	backdrop-filter: blur(4px);
+	opacity: 0; transform: translateY(-3px);
+	transition: opacity .16s ease, transform .16s ease, background-color .16s ease;
+}
+.xin-novel:hover .xin-fav, .xin-fav:focus-visible, .xin-fav.is-active { opacity: 1; transform: none; }
+.xin-fav:hover { background: hsl(28 20% 8% / .85); }
+.xin-fav.is-active { color: hsl(var(--gold)); }
+.xin-fav svg { width: 16px; height: 16px; }
+.xin-fav.is-active svg { fill: currentColor; }
+@media (hover: none) { .xin-fav { opacity: 1; transform: none; } }
+
+.xin-fav--inline {
+	position: static; width: auto; height: auto; opacity: 1; transform: none;
+	gap: .5rem; padding: .58rem 1.05rem;
+	background: transparent; color: hsl(var(--fg));
+	border: 1px solid hsl(var(--input));
+	font-size: 14px; font-weight: 550;
+	backdrop-filter: none;
+}
+.xin-fav--inline:hover { background: hsl(var(--muted)); }
+.xin-fav--inline.is-active { color: hsl(var(--gold)); border-color: hsl(var(--gold) / .5); }
+
+/* ==========================================================================
+   Витрина
+   ========================================================================== */
+
+.xin-hero {
+	position: relative;
+	padding: 56px 0 60px;
+	border-bottom: var(--rule);
+	overflow: hidden;
+}
+.xin-hero__grid {
+	width: 100%; max-width: min(var(--wrap), 100%); margin-inline: auto; padding-inline: 20px;
+	display: grid; gap: 40px; align-items: center;
+	grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 900px) {
+	.xin-hero { padding: 76px 0 84px; }
+	.xin-hero__grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; }
+}
+
+.xin-hero__text { min-width: 0; }
+.xin-hero__slide { min-width: 0; }
+.xin-hero__eyebrow {
+	display: inline-flex; align-items: center; gap: .55em;
+	font-size: 11px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(var(--primary));
+	margin-bottom: 20px;
+}
+/* «Пульс» у надзаголовка убран: мигающая иконка — украшение ради украшения. */
+.xin-hero__pulse { display: none; }
+
+.xin-hero__title { margin: 0; }
+.xin-hero__author { margin: 14px 0 0; font-size: 14.5px; color: hsl(var(--muted-fg)); }
+.xin-hero__tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.xin-hero__desc {
+	margin: 18px 0 0;
+	font-size: 16px; line-height: 1.62;
+	color: hsl(var(--muted-fg));
+	max-width: 52ch;
+}
+.xin-hero__meta {
+	display: flex; flex-wrap: wrap; align-items: center;
+	margin-top: 20px;
+	font-size: 13px; font-weight: 500;
+	color: hsl(var(--muted-fg));
+}
+.xin-hero__meta > * { display: inline-flex; align-items: center; gap: .35em; }
+.xin-hero__meta > * + *::before { content: "·"; margin: 0 .6em; color: hsl(var(--border)); font-weight: 400; }
+.xin-hero__meta svg { width: 14px; height: 14px; opacity: .8; }
+.xin-hero__meta .xin-gold svg { opacity: 1; }
+.xin-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+/* Колода обложек: центральная прямо, соседние отклонены и приглушены —
+   этого хватает, чтобы прочиталась «стопка книг», без свечений под ней. */
+.xin-hero__deck {
+	position: relative;
+	display: grid; place-items: center;
+	min-height: 400px;
+}
+.xin-hero__glow { display: none; }
+.xin-hero__card {
+	position: absolute;
+	width: 224px; aspect-ratio: 2 / 3;
+	padding: 0; border: 0; cursor: pointer;
+	background: hsl(var(--muted));
+	border-radius: var(--radius-art);
+	overflow: hidden;
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .12), var(--shadow-2);
+	transition: transform .45s cubic-bezier(.22,.61,.36,1), opacity .45s ease, filter .45s ease;
+}
+.xin-hero__card img { width: 100%; height: 100%; object-fit: cover; }
+/* Значения позиций задаёт theme.js: -1 слева, 0 в центре, 1 справа,
+   остальные — hidden. */
+.xin-hero__card[data-pos="0"] { transform: none; opacity: 1; z-index: 3; }
+.xin-hero__card[data-pos="1"] { transform: translateX(36%) rotate(5deg) scale(.9); opacity: .5; filter: saturate(.55); z-index: 2; }
+.xin-hero__card[data-pos="-1"] { transform: translateX(-36%) rotate(-5deg) scale(.9); opacity: .5; filter: saturate(.55); z-index: 1; }
+.xin-hero__card[data-pos="hidden"] { transform: scale(.82); opacity: 0; pointer-events: none; z-index: 0; }
+.xin-hero__card[data-pos="1"]:hover, .xin-hero__card[data-pos="-1"]:hover { opacity: .82; filter: none; }
+@media (min-width: 900px) { .xin-hero__card { width: 268px; } }
+@media (min-width: 1100px) { .xin-hero__card { width: 300px; } }
+
+/* Аврора обезврежена: подложка-градиент под витриной была самой заметной
+   деталью прежней главной и при этом ничего не сообщала. */
+.xin-aurora { background: none; }
+.xin-aurora::before, .xin-aurora::after { display: none; }
+
+/* ==========================================================================
+   Афиша (слайдер баннеров)
+   ========================================================================== */
+
+.xin-banner {
+	position: relative;
+	/* Та же колонка, что у .xin-wrap: её ширина за вычетом собственных полей. */
+	width: min(var(--wrap) - 40px, 100% - 40px);
+	margin: 28px auto 0;
+	border: var(--rule);
+	border-radius: var(--radius);
+	overflow: hidden;
+	background: hsl(var(--muted));
+}
+.xin-banner__track { display: flex; }
+.xin-banner__slide {
+	position: relative; flex: 0 0 100%;
+	min-height: min(var(--banner-h, 360px), 62vh);
+	display: grid; align-items: end;
+}
+/* Выравнивание задаёт редактор баннера; текстовый блок прижимается к своей
+   стороне, а не растягивается на всю ширину слайда. */
+.xin-banner__slide.is-center { justify-items: center; text-align: center; }
+.xin-banner__slide.is-right { justify-items: end; text-align: right; }
+.xin-banner__slide.is-center .xin-banner__actions { justify-content: center; }
+.xin-banner__slide.is-right .xin-banner__actions { justify-content: flex-end; }
+.xin-banner__slide > img,
+.xin-banner__slide > picture { position: absolute; inset: 0; width: 100%; height: 100%; }
+.xin-banner__slide > img, .xin-banner__slide picture img { width: 100%; height: 100%; object-fit: cover; }
+/*
+ * Затемнение лежит на всём слайде, а не на текстовом блоке: у блока своя
+ * ширина, и его градиент обрывался вертикальной линией посреди картинки.
+ */
+.xin-banner__slide::after {
+	content: ""; position: absolute; inset: 0; z-index: 1;
+	background: linear-gradient(to top, hsl(28 22% 6% / .82) 8%, hsl(28 22% 6% / .34) 52%, hsl(28 22% 6% / .12));
+}
+.xin-banner__slide.is-left::after {
+	background:
+		linear-gradient(to top, hsl(28 22% 6% / .72) 6%, transparent 60%),
+		linear-gradient(to right, hsl(28 22% 6% / .78), hsl(28 22% 6% / .34) 48%, hsl(28 22% 6% / .1) 78%);
+}
+.xin-banner__slide.is-right::after {
+	background:
+		linear-gradient(to top, hsl(28 22% 6% / .72) 6%, transparent 60%),
+		linear-gradient(to left, hsl(28 22% 6% / .78), hsl(28 22% 6% / .34) 48%, hsl(28 22% 6% / .1) 78%);
+}
+.xin-banner__body {
+	position: relative; z-index: 2;
+	padding: 36px 36px 32px;
+	max-width: 620px;
+	color: hsl(40 30% 97%);
+}
+.xin-banner__eyebrow {
+	margin: 0 0 8px;
+	font-family: var(--font);
+	font-size: 11px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(40 25% 82%);
+}
+.xin-banner__body .xin-badge { margin-bottom: 12px; background: hsl(40 30% 97% / .16); color: hsl(40 30% 97%); }
+.xin-banner__body h2, .xin-banner__body h3 { color: inherit; margin: 0 0 10px; }
+.xin-banner__body p { margin: 0; font-size: 14.5px; color: hsl(40 22% 88%); }
+.xin-banner__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.xin-banner__arrow {
+	position: absolute; top: 50%; z-index: 3;
+	display: grid; place-items: center;
+	width: 38px; height: 38px; margin-top: -19px;
+	border: 0; border-radius: 999px; cursor: pointer;
+	background: hsl(28 22% 6% / .5); color: hsl(40 30% 97%);
+	opacity: 0; transition: opacity .16s ease, background-color .16s ease;
+}
+.xin-banner:hover .xin-banner__arrow { opacity: 1; }
+.xin-banner__arrow:hover { background: hsl(28 22% 6% / .78); }
+.xin-banner__arrow--prev { left: 14px; }
+.xin-banner__arrow--next { right: 14px; }
+.xin-banner__dots {
+	position: absolute; z-index: 3; right: 20px; bottom: 18px;
+	display: flex; gap: 6px;
+}
+.xin-banner__dots button {
+	width: 22px; height: 3px; padding: 0; border: 0; cursor: pointer;
+	background: hsl(40 30% 97% / .35);
+	transition: background-color .16s ease;
+}
+.xin-banner__dots button.is-active { background: hsl(40 30% 97%); }
+@media (max-width: 640px) { .xin-banner__body { padding: 26px 20px 22px; } }
+
+/* ==========================================================================
+   Полоса быстрых ссылок и счётчики
+   Оба модуля по умолчанию выключены в кастомайзере. Если их включат — они
+   должны выглядеть как типографская строка, а не как плитка иконок.
+   ========================================================================== */
+
+.xin-services {
+	display: flex; flex-wrap: wrap; align-items: center;
+	gap: 0 26px;
+	padding: 16px 0;
+	border-bottom: var(--rule);
+	font-size: 13px;
+}
+.xin-services a {
+	display: inline-flex; align-items: center;
+	padding: 4px 0;
+	color: hsl(var(--muted-fg));
+	font-weight: 500;
+	transition: color .16s ease;
+}
+.xin-services a:hover { color: hsl(var(--fg)); }
+.xin-services a.is-gold { color: hsl(var(--gold)); }
+.xin-services a svg { display: none; }
+
+.xin-stats {
+	display: flex; flex-wrap: wrap; align-items: baseline;
+	gap: 0;
+	margin: 0;
+	padding: 18px 0;
+	border-bottom: var(--rule);
+	font-size: 13px;
+	color: hsl(var(--muted-fg));
+}
+.xin-stats__item { display: inline-flex; align-items: baseline; gap: .4em; }
+.xin-stats__item + .xin-stats__item::before { content: "·"; margin: 0 .75em; color: hsl(var(--border)); }
+.xin-stats__num { display: inline; margin: 0; font-family: var(--font-display); font-size: 17px; font-weight: 600; color: hsl(var(--fg)); font-variant-numeric: lining-nums tabular-nums; }
+.xin-stats__label { display: inline; margin: 0; }
+
+/* ==========================================================================
+   Списки: рейтинг, главы, статьи
+   ========================================================================== */
+
+.xin-ranklist { display: flex; flex-direction: column; }
+.xin-rankrow {
+	display: grid;
+	grid-template-columns: 34px 40px minmax(0, 1fr);
+	align-items: center;
+	gap: 16px;
+	padding: 12px 0;
+	border-bottom: var(--rule);
+	transition: background-color .16s ease;
+}
+.xin-rankrow:first-child { border-top: var(--rule); }
+.xin-rankrow:hover { background: hsl(var(--muted) / .55); }
+.xin-rankrow__num {
+	font-family: var(--font-display); font-size: 19px; font-weight: 600;
+	color: hsl(var(--muted-fg)); text-align: center;
+	/* В колонке номеров цифры обязаны стоять друг под другом, поэтому здесь
+	   старостильные фигуры выключены, а в метастроках оставлены. */
+	font-variant-numeric: lining-nums tabular-nums;
+}
+.xin-rankrow:nth-child(-n+3) .xin-rankrow__num { color: hsl(var(--primary)); }
+.xin-rankrow__cover {
+	display: block; aspect-ratio: 2 / 3; border-radius: var(--radius-art);
+	overflow: hidden; background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .08);
+}
+.xin-rankrow__cover img { width: 100%; height: 100%; object-fit: cover; }
+.xin-rankrow__body { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; min-width: 0; }
+.xin-rankrow__title {
+	font-family: var(--font-display); font-size: 15.5px; font-weight: 600;
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
+}
+.xin-rankrow__meta {
+	display: flex; align-items: center;
+	font-size: 12.5px; font-weight: 500; color: hsl(var(--muted-fg));
+	white-space: nowrap;
+}
+.xin-rankrow__meta > span { display: inline-flex; align-items: center; gap: .3em; }
+.xin-rankrow__meta > span + span::before { content: "·"; margin: 0 .5em; color: hsl(var(--border)); font-weight: 400; }
+.xin-rankrow__meta svg { width: 13px; height: 13px; opacity: .75; }
+.xin-rankrow__meta .xin-gold svg { opacity: 1; }
+
+/* Карточка главы — строка ленты обновлений. */
+.xin-chapcard {
+	display: grid; grid-template-columns: 44px minmax(0, 1fr);
+	gap: 14px; align-items: center;
+	padding: 13px 0;
+	border-bottom: var(--rule);
+	transition: background-color .16s ease;
+}
+.xin-chapcard:hover { background: hsl(var(--muted) / .55); }
+.xin-chapcard__cover {
+	display: block; aspect-ratio: 2 / 3; border-radius: var(--radius-art);
+	overflow: hidden; background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .08);
+}
+.xin-chapcard__cover img { width: 100%; height: 100%; object-fit: cover; }
+.xin-chapcard__body { display: block; min-width: 0; }
+.xin-chapcard__novel {
+	display: block; font-size: 11.5px; font-weight: 600;
+	letter-spacing: .06em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.xin-chapcard__title {
+	display: block; margin-top: 3px;
+	font-family: var(--font-display); font-size: 15px; font-weight: 600; line-height: 1.3;
+	white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.xin-chapcard__num { color: hsl(var(--muted-fg)); font-weight: 600; margin-right: .4em; }
+.xin-chapcard__foot {
+	display: flex; align-items: center; gap: 10px;
+	margin-top: 5px; font-size: 12.5px; color: hsl(var(--muted-fg));
+}
+
+/* Карточка статьи блога. */
+.xin-post-card { display: flex; flex-direction: column; min-width: 0; }
+.xin-post-card__media {
+	position: relative; display: block; aspect-ratio: 16 / 9;
+	border-radius: var(--radius-art); overflow: hidden;
+	background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .08);
+}
+.xin-post-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.xin-post-card__media--empty { display: grid; place-items: center; color: hsl(var(--muted-fg) / .5); }
+.xin-post-card__media--empty svg { width: 28px; height: 28px; }
+.xin-post-card__cat { position: absolute; top: 10px; left: 10px; background: hsl(28 20% 8% / .72); color: hsl(40 30% 97%); }
+.xin-post-card__body { padding-top: 14px; }
+.xin-post-card__title { margin: 0; font-size: 1.1rem; line-height: 1.3; }
+.xin-post-card__excerpt {
+	margin: 8px 0 0; font-size: 13.5px; color: hsl(var(--muted-fg));
+	display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.xin-post-card__foot {
+	display: flex; align-items: center; gap: 8px;
+	margin-top: 14px; font-size: 12.5px; color: hsl(var(--muted-fg));
+}
+.xin-post-card__foot img { border-radius: 999px; width: 22px; height: 22px; }
+.xin-post-card__foot .sep { color: hsl(var(--border)); }
+
+/* ==========================================================================
+   Витринные блоки
+   ========================================================================== */
+
+/* Широкая плашка с фоном произведения. */
+.xin-showcase {
+	position: relative; display: block;
+	aspect-ratio: 16 / 10;
+	border-radius: var(--radius); overflow: hidden;
+	background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .08);
+}
+.xin-showcase img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+.xin-showcase:hover img { transform: scale(1.03); }
+.xin-showcase__body {
+	position: absolute; inset: auto 0 0 0;
+	padding: 40px 18px 16px;
+	color: hsl(40 30% 97%);
+	background: linear-gradient(to top, hsl(28 22% 6% / .9) 20%, transparent);
+}
+.xin-showcase__body h3 {
+	margin: 0; font-size: 1rem; line-height: 1.3;
+	display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.xin-showcase__body .xin-novel__meta { color: hsl(40 22% 85%); margin-top: 6px; }
+.xin-showcase__body .xin-novel__meta > * + *::before { color: hsl(40 22% 85% / .4); }
+
+/* Крупная карточка «в тренде»: обложка слева, текст справа, фон-подложка
+   приглушён до фактуры и не спорит с текстом. */
+.xin-trending {
+	position: relative;
+	border: var(--rule); border-radius: var(--radius);
+	overflow: hidden;
+	background: hsl(var(--card));
+}
+/*
+ * Подложка из арта тайтла убрана. Обложки здесь тёмные, и десять процентов
+ * тёмной картинки поверх тёплой бумаги дают ровный серый налёт: карточка
+ * начинает выглядеть сделанной из другого материала, чем всё вокруг. Цвет в
+ * этом блоке несёт сама обложка слева, и этого достаточно.
+ */
+.xin-trending__bg { display: none; }
+.xin-trending__body {
+	position: relative; z-index: 1;
+	display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 18px;
+	padding: 20px;
+}
+.xin-trending__cover {
+	display: block; aspect-ratio: 2 / 3; border-radius: var(--radius-art);
+	overflow: hidden; background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .1);
+}
+.xin-trending__cover img { width: 100%; height: 100%; object-fit: cover; }
+.xin-trending h3 { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.3; }
+.xin-trending p {
+	margin: 0; font-size: 13.5px; color: hsl(var(--muted-fg));
+	display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Призыв: рамка, антиква, стрелка. Без иконки в кружке и без градиента. */
+.xin-cta {
+	display: block; height: 100%;
+	padding: 30px;
+	border: var(--rule); border-radius: var(--radius);
+	background: hsl(var(--card));
+	transition: border-color .16s ease;
+}
+.xin-cta:hover { border-color: hsl(var(--fg) / .45); color: inherit; }
+.xin-cta__icon { display: none; }
+.xin-cta h3 { margin: 0 0 10px; font-size: 1.35rem; }
+.xin-cta p { margin: 0; font-size: 14px; color: hsl(var(--muted-fg)); max-width: 46ch; }
+.xin-cta__more {
+	display: inline-flex; align-items: center; gap: .4rem;
+	margin-top: 20px;
+	font-size: 13px; font-weight: 600;
+	color: hsl(var(--primary));
+}
+.xin-cta__more svg { width: 14px; height: 14px; transition: transform .16s ease; }
 .xin-cta:hover .xin-cta__more svg { transform: translateX(3px); }
-.xin-cta--gold { background: hsl(var(--gold) / .1); border-color: hsl(var(--gold) / .16); }
-.xin-cta--gold:hover { background: hsl(var(--gold) / .16); }
-.xin-cta--gold::before { background: hsl(var(--gold) / .25); }
-.xin-cta--gold .xin-cta__icon, .xin-cta--gold .xin-cta__more { color: hsl(var(--gold)); }
+.xin-cta--gold .xin-cta__more { color: hsl(var(--gold)); }
+/* «Наугад» — единственная плитка, которая ведёт неизвестно куда, поэтому у
+   неё рамка пунктиром: обещание сюрприза, а не ещё один раздел. */
+.xin-cta--dice { border-style: dashed; }
+.xin-cta--dice:hover { border-style: solid; border-color: hsl(var(--primary) / .6); }
 
-.xin-footer { margin-top: 56px; border-top: 1px solid hsl(var(--border)); background: hsl(var(--card) / .5); }
-.xin-footer__top { display: grid; gap: 28px; padding: 40px 0 32px; }
-@media (min-width: 768px) { .xin-footer__top { grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; } }
-.xin-footer__about p { font-size: 13.5px; color: hsl(var(--muted-fg)); max-width: 34ch; }
-.xin-footer h4 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: hsl(var(--muted-fg)); margin-bottom: 12px; }
-.xin-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.xin-footer li a { font-size: 13.5px; color: hsl(var(--fg) / .82); }
-.xin-footer li a:hover { color: hsl(var(--primary)); }
-.xin-footer__social { display: flex; gap: 8px; margin-top: 14px; }
-.xin-footer__social a { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; background: hsl(var(--muted)); color: hsl(var(--muted-fg)); transition: all .18s ease; }
-.xin-footer__social a:hover { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); transform: translateY(-2px); }
-.xin-footer__social svg { width: 17px; height: 17px; }
-.xin-footer__bottom { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 16px 0 24px; border-top: 1px solid hsl(var(--border)); font-size: 12.5px; color: hsl(var(--muted-fg)); }
+/* Стопка обложек для подборки. */
+.xin-collection { display: block; }
+.xin-collection__stack { display: flex; }
+.xin-collection__stack img {
+	width: 58px; aspect-ratio: 2 / 3; object-fit: cover;
+	border-radius: var(--radius-art);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .1), -6px 0 12px hsl(28 20% 10% / .1);
+}
+.xin-collection__stack img + img { margin-left: -22px; }
+
+/* Сообщество и карточки авторов. */
+.xin-community { padding-top: 44px; }
+.xin-community__authors { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.xin-author-card { text-align: center; }
+.xin-author-card .xin-avatar { width: 64px; height: 64px; margin: 0 auto 12px; }
+.xin-author-card__name { font-family: var(--font-display); font-size: 14.5px; font-weight: 600; }
+.xin-author-card__count { margin-top: 3px; font-size: 12.5px; color: hsl(var(--muted-fg)); }
+.xin-author-card__rank {
+	display: inline-block; margin-bottom: 8px;
+	font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
+
+/* ==========================================================================
+   Шапка
+   ========================================================================== */
+
+#xin-header,
+.xin-header {
+	position: sticky; top: 0; z-index: 1030;
+	min-height: var(--header-h);
+	padding: 0;
+	background: hsl(var(--bg) / .88);
+	backdrop-filter: saturate(1.4) blur(10px);
+	border-bottom: var(--rule);
+}
+.xin-header__bar { display: flex; align-items: center; gap: 12px; min-height: var(--header-h); }
+.xin-header__brand, .navbar-brand {
+	font-family: var(--font-display);
+	font-size: 19px; font-weight: 600; letter-spacing: -.02em;
+	color: hsl(var(--fg));
+	white-space: nowrap;
+}
+.navbar-brand:hover { color: hsl(var(--fg)); }
+.xin-header__mark { display: inline-flex; align-items: center; gap: 8px; }
+.xin-header__actions { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.xin-header__cta { margin-left: 4px; }
+
+.xin-nav { display: flex; align-items: center; gap: 4px; }
+.xin-theme-toggle .xin-i-moon { display: none; }
+[data-theme="dark"] .xin-theme-toggle .xin-i-sun { display: none; }
+[data-theme="dark"] .xin-theme-toggle .xin-i-moon { display: block; }
+
+/* ==========================================================================
+   Поиск
+   ========================================================================== */
+
+.xin-searchform { position: relative; display: flex; align-items: center; }
+.xin-searchform input[type="search"], .xin-searchform input[type="text"] {
+	width: 100%;
+	padding: .7rem 2.6rem .7rem .95rem;
+	border: 1px solid hsl(var(--input)); border-radius: var(--radius-sm);
+	background: hsl(var(--card)); color: hsl(var(--fg));
+	font-family: var(--font); font-size: 15px;
+}
+.xin-searchform input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .13); }
+.xin-searchform button {
+	position: absolute; right: 6px;
+	display: grid; place-items: center;
+	width: 32px; height: 32px; padding: 0; border: 0; cursor: pointer;
+	background: transparent; color: hsl(var(--muted-fg)); border-radius: var(--radius-sm);
+}
+.xin-searchform button:hover { color: hsl(var(--fg)); background: hsl(var(--muted)); }
+
+.xin-search-overlay {
+	position: fixed; inset: 0; z-index: 1080;
+	display: grid; align-items: start; justify-items: center;
+	padding: 12vh 20px 20px;
+	background: hsl(var(--bg) / .96);
+	backdrop-filter: blur(6px);
+}
+.xin-search-overlay__inner { width: 100%; max-width: 620px; }
+
+.xin-scrim { position: fixed; inset: 0; z-index: 1040; background: hsl(28 20% 6% / .5); }
+
+/* ==========================================================================
+   Подвал и нижняя навигация
+   ========================================================================== */
+
+.xin-footer { margin-top: 88px; border-top: var(--rule); }
+.xin-footer__top {
+	display: grid; gap: 36px;
+	grid-template-columns: minmax(0, 1fr);
+	padding: 52px 0 40px;
+}
+@media (min-width: 768px) { .xin-footer__top { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; } }
+.xin-footer__about p { margin: 0; font-size: 13.5px; color: hsl(var(--muted-fg)); max-width: 42ch; }
+.xin-footer__brand { display: inline-block; }
+.xin-footer h4 {
+	margin: 0 0 14px;
+	font-family: var(--font);
+	font-size: 11px; font-weight: 600; letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
+.xin-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.xin-footer ul a { font-size: 13.5px; color: hsl(var(--fg)); }
+.xin-footer ul a:hover { color: hsl(var(--primary)); }
+.xin-footer__social { display: flex; gap: 6px; margin-top: 18px; }
+.xin-footer__social a {
+	display: grid; place-items: center;
+	width: 34px; height: 34px;
+	border: var(--rule); border-radius: var(--radius-sm);
+	color: hsl(var(--muted-fg));
+	transition: color .16s ease, border-color .16s ease;
+}
+.xin-footer__social a:hover { color: hsl(var(--fg)); border-color: hsl(var(--fg) / .4); }
+.xin-footer__social svg { width: 16px; height: 16px; }
+.xin-footer__bottom {
+	display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+	padding: 20px 0 28px;
+	border-top: var(--rule);
+	font-size: 12.5px; color: hsl(var(--muted-fg));
+}
+.xin-footer__bottom ul { list-style: none; display: flex; flex-wrap: wrap; gap: 18px; margin: 0; padding: 0; }
+.xin-footer__credit { padding-bottom: 24px; text-align: center; font-size: 12px; color: hsl(var(--muted-fg)); }
+
+.xin-bottomnav {
+	position: fixed; inset: auto 0 0 0; z-index: 1035;
+	display: none;
+	background: hsl(var(--bg) / .95);
+	backdrop-filter: blur(10px);
+	border-top: var(--rule);
+	padding-bottom: env(safe-area-inset-bottom);
+}
+.xin-bottomnav a {
+	flex: 1; display: grid; justify-items: center; gap: 4px;
+	padding: 9px 4px 8px;
+	font-size: 10.5px; font-weight: 500;
+	color: hsl(var(--muted-fg));
+}
+.xin-bottomnav a.is-active { color: hsl(var(--primary)); }
+.xin-bottomnav svg { width: 20px; height: 20px; }
+@media (max-width: 767.98px) {
+	.xin-bottomnav { display: flex; }
+	.xin-site-main { padding-bottom: 84px; }
+}
 
 .xin-totop {
-	position: fixed; right: 16px; bottom: 74px; z-index: 70;
-	display: grid; place-items: center; width: 42px; height: 42px;
-	border: 1px solid hsl(var(--border)); border-radius: 999px; cursor: pointer;
-	background: hsl(var(--card)); color: hsl(var(--fg)); box-shadow: var(--shadow-2);
+	position: fixed; right: 20px; bottom: 20px; z-index: 1020;
+	display: grid; place-items: center;
+	width: 40px; height: 40px; padding: 0; cursor: pointer;
+	border: var(--rule); border-radius: var(--radius-sm);
+	background: hsl(var(--card)); color: hsl(var(--fg));
+	box-shadow: var(--shadow-2);
 	opacity: 0; visibility: hidden; transform: translateY(8px);
-	transition: opacity .22s ease, transform .22s ease, visibility .22s;
+	transition: opacity .2s ease, transform .2s ease, visibility .2s;
 }
-@media (min-width: 768px) { .xin-totop { bottom: 24px; } }
 .xin-totop.is-visible { opacity: 1; visibility: visible; transform: none; }
-.xin-totop:hover { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); border-color: transparent; }
+.xin-totop svg { width: 18px; height: 18px; }
+@media (max-width: 767.98px) { .xin-totop { bottom: 76px; } }
+
+/* ==========================================================================
+   Вспомогательное
+   ========================================================================== */
+
+.xin-card {
+	background: hsl(var(--card));
+	border: var(--rule);
+	border-radius: var(--radius);
+	padding: 24px;
+}
+/* Прежде это была «стеклянная» плашка с размытием — теперь просто лист. */
+.xin-glass { background: hsl(var(--card)); border: var(--rule); border-radius: var(--radius); backdrop-filter: none; }
+
+.xin-panel { background: hsl(var(--card)); border: var(--rule); border-radius: var(--radius); }
+.xin-panel__head { padding: 18px 22px; border-bottom: var(--rule); }
+.xin-panel__head h2, .xin-panel__head h3 { margin: 0; }
+
+.xin-divider { height: 1px; background: hsl(var(--border)); border: 0; margin: 28px 0; }
+
+.xin-empty {
+	display: grid; justify-items: center; gap: 8px;
+	padding: 64px 20px; text-align: center;
+	color: hsl(var(--muted-fg));
+}
+.xin-empty > svg { width: 34px; height: 34px; opacity: .4; margin-bottom: 6px; }
+.xin-empty h1, .xin-empty h2, .xin-empty h3 { color: hsl(var(--fg)); margin: 0; }
+.xin-empty p { margin: 0; font-size: 14px; }
+
+.xin-tabs {
+	display: flex; gap: 26px;
+	border-bottom: var(--rule);
+	margin-bottom: 26px;
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+.xin-tabs::-webkit-scrollbar { display: none; }
+.xin-tabs button, .xin-tabs a {
+	position: relative;
+	padding: 0 0 12px;
+	border: 0; background: none; cursor: pointer;
+	font-family: var(--font); font-size: 14px; font-weight: 550;
+	color: hsl(var(--muted-fg));
+	white-space: nowrap;
+	transition: color .16s ease;
+}
+.xin-tabs button:hover, .xin-tabs a:hover { color: hsl(var(--fg)); }
+.xin-tabs .is-active, .xin-tabs [aria-selected="true"] { color: hsl(var(--fg)); }
+.xin-tabs .is-active::after, .xin-tabs [aria-selected="true"]::after {
+	content: ""; position: absolute; inset: auto 0 -1px 0; height: 2px;
+	background: hsl(var(--fg));
+}
+.xin-tabpanel[hidden] { display: none; }
+
+.xin-drawer {
+	position: fixed; inset: 0 0 0 auto; z-index: 1045;
+	width: min(380px, 92vw);
+	background: hsl(var(--bg));
+	border-left: var(--rule);
+	box-shadow: var(--shadow-3);
+	display: flex; flex-direction: column;
+}
+.xin-drawer__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: var(--rule); }
 
 .xin-muted { color: hsl(var(--muted-fg)); }
 .xin-gold { color: hsl(var(--gold)); }
 .xin-primary { color: hsl(var(--primary)); }
 .xin-center { text-align: center; }
+.xin-flex { display: flex; align-items: center; gap: 8px; }
+.xin-flex-wrap { flex-wrap: wrap; }
 .xin-mt-0 { margin-top: 0; }
 .xin-mt-1 { margin-top: 8px; }
 .xin-mt-2 { margin-top: 16px; }
 .xin-mt-3 { margin-top: 24px; }
 .xin-mb-2 { margin-bottom: 16px; }
-.xin-flex { display: flex; align-items: center; gap: 8px; }
-.xin-flex-wrap { flex-wrap: wrap; }
-.xin-empty { padding: 56px 16px; text-align: center; color: hsl(var(--muted-fg)); }
-.xin-empty svg { width: 44px; height: 44px; margin-bottom: 12px; color: hsl(var(--primary) / .5); }
-.xin-divider { height: 1px; background: hsl(var(--border)); margin: 32px 0; }
+
+/* Появление при прокрутке: сдвиг на 8px, без масштабирования. */
+.xin-reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+.xin-reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .xin-reveal { opacity: 1; transform: none; } }

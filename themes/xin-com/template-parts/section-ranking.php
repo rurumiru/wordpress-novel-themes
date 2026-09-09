@@ -32,7 +32,6 @@ $xin_buttons .= '</div>';
 		'eyebrow'  => __( 'рейтинг', 'xin-com' ),
 		'title'    => __( 'Что читают сейчас', 'xin-com' ),
 		'subtitle' => __( 'Десятка лидеров площадки', 'xin-com' ),
-		'icon'     => 'trophy',
 		'after'    => $xin_buttons,
 	) );
 	?>

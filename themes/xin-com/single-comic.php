@@ -25,9 +25,14 @@ while ( have_posts() ) :
 	$xin_art      = $xin_bg ? $xin_bg : $xin_cover;
 	$xin_rating   = xin_rating( $xin_id );
 	$xin_status   = xin_novel_status( $xin_id );
-	$xin_chapters = xin_get_chapters( $xin_id, 'ASC' );
-	$xin_first    = $xin_chapters ? $xin_chapters[0] : null;
-	$xin_last     = $xin_chapters ? end( $xin_chapters ) : null;
+	$xin_toc      = xin_chapter_page( $xin_id, 'ASC', xin_chapter_page_number() );
+	$xin_chapters = $xin_toc['posts'];
+	/*
+	 * Первая и последняя главы — из полного порядка, а не из показанной
+	 * страницы: иначе на длинном тайтле «последняя» вела бы в конец страницы.
+	 */
+	$xin_first    = xin_first_chapter( $xin_id );
+	$xin_last     = xin_last_chapter( $xin_id );
 	$xin_genres   = get_the_terms( $xin_id, 'genre' );
 	$xin_tags     = get_the_terms( $xin_id, 'novel_tag' );
 	$xin_adult    = (bool) get_post_meta( $xin_id, '_xin_adult', true );
@@ -40,6 +45,11 @@ while ( have_posts() ) :
 		'rtl'   => __( 'постранично, справа налево', 'xin-com' ),
 	);
 
+	/*
+	 * Число страниц считается по показанным главам: обходить ради него все
+	 * главы тайтла — та же ловушка, из-за которой страница и не открывалась
+	 * у больших переводов.
+	 */
 	$xin_pages = 0;
 	foreach ( $xin_chapters as $xin_chapter ) {
 		$xin_pages += xin_comic_page_count( $xin_chapter->ID );
@@ -96,7 +106,7 @@ while ( have_posts() ) :
 						<?php endif; ?>
 						<div>
 							<dt><?php esc_html_e( 'глав', 'xin-com' ); ?></dt>
-							<dd><?php echo (int) count( $xin_chapters ); ?></dd>
+							<dd><?php echo (int) $xin_toc['total']; ?></dd>
 						</div>
 						<div>
 							<dt><?php esc_html_e( 'страниц', 'xin-com' ); ?></dt>
@@ -141,7 +151,7 @@ while ( have_posts() ) :
 			<div class="xin-ct__tabs" role="tablist">
 				<button type="button" class="xin-ct__tab active" role="tab" aria-selected="true" data-xin-tab="about"><?php esc_html_e( 'О тайтле', 'xin-com' ); ?></button>
 				<button type="button" class="xin-ct__tab" role="tab" aria-selected="false" data-xin-tab="chapters">
-					<?php esc_html_e( 'Главы', 'xin-com' ); ?><b><?php echo (int) count( $xin_chapters ); ?></b>
+					<?php esc_html_e( 'Главы', 'xin-com' ); ?><b><?php echo (int) $xin_toc['total']; ?></b>
 				</button>
 				<?php if ( $xin_related ) : ?>
 					<button type="button" class="xin-ct__tab" role="tab" aria-selected="false" data-xin-tab="related"><?php esc_html_e( 'Похожее', 'xin-com' ); ?></button>
@@ -226,7 +236,7 @@ while ( have_posts() ) :
 									</span>
 
 									<?php if ( $xin_locked ) : ?>
-										<span class="xin-ct__lock" title="<?php esc_attr_e( 'Ранний доступ PLUS', 'xin-com' ); ?>"><?php xin_the_icon( 'lock' ); ?></span>
+										<span class="xin-ct__lock" title="<?php esc_attr_e( 'Ранний доступ', 'xin-com' ); ?>"><?php xin_the_icon( 'lock' ); ?></span>
 									<?php endif; ?>
 								</a>
 							</li>
@@ -234,6 +244,27 @@ while ( have_posts() ) :
 					</ol>
 
 					<p class="xin-ct__none" data-xin-chapter-empty hidden><?php esc_html_e( 'Ни одна глава не подошла под запрос.', 'xin-com' ); ?></p>
+
+					<?php if ( $xin_toc['pages'] > 1 ) : ?>
+						<nav class="xin-nv__pager" aria-label="<?php esc_attr_e( 'Страницы списка глав', 'xin-com' ); ?>">
+							<?php if ( $xin_toc['page'] > 1 ) : ?>
+								<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_chapter_page_url( $xin_id, $xin_toc['page'] - 1 ) ); ?>"><?php xin_the_icon( 'chevron-left' ); ?><?php esc_html_e( 'Раньше', 'xin-com' ); ?></a>
+							<?php endif; ?>
+							<span class="xin-nv__pagenum">
+								<?php
+								printf(
+									/* translators: 1: current page, 2: total pages. */
+									esc_html__( 'Страница %1$d из %2$d', 'xin-com' ),
+									(int) $xin_toc['page'],
+									(int) $xin_toc['pages']
+								);
+								?>
+							</span>
+							<?php if ( $xin_toc['page'] < $xin_toc['pages'] ) : ?>
+								<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_chapter_page_url( $xin_id, $xin_toc['page'] + 1 ) ); ?>"><?php esc_html_e( 'Дальше', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></a>
+							<?php endif; ?>
+						</nav>
+					<?php endif; ?>
 				<?php else : ?>
 					<p class="xin-muted"><?php esc_html_e( 'Глав пока нет.', 'xin-com' ); ?></p>
 				<?php endif; ?>

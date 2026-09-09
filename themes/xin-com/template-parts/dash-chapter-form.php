@@ -56,7 +56,7 @@ $xin_number = $xin_id ? xin_chapter_label( $xin_id ) : ( $xin_last ? (float) xin
 			<div class="xin-checks">
 				<label class="xin-check">
 					<input class="form-check-input" type="checkbox" name="locked" value="1" <?php checked( $xin_id && get_post_meta( $xin_id, '_xin_locked', true ) ); ?>>
-					<?php xin_the_icon( 'lock' ); ?><?php esc_html_e( 'Ранний доступ (PLUS)', 'xin-com' ); ?>
+					<?php xin_the_icon( 'lock' ); ?><?php esc_html_e( 'Ранний доступ', 'xin-com' ); ?>
 				</label>
 			</div>
 		</div>

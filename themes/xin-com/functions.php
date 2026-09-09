@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XIN_VERSION', '0.8.0-beta' );
+define( 'XIN_VERSION', '0.9.0-beta' );
 define( 'XIN_DIR', get_template_directory() );
 define( 'XIN_URI', get_template_directory_uri() );
 
@@ -108,12 +108,32 @@ $custom = xin_customizer_css();
 		'restUrl'      => esc_url_raw( rest_url( 'xin/v1/' ) ),
 		'nonce'        => wp_create_nonce( 'wp_rest' ),
 		'homeUrl'      => home_url( '/' ),
+		'randomUrl'    => xin_random_novel_url(),
 		'defaultTheme' => get_theme_mod( 'xin_default_scheme', 'light' ),
 		'loggedIn'     => is_user_logged_in(),
 		'loginUrl'     => wp_login_url(),
 		'read'         => xin_skin_reader_defaults(),
+		'endless'      => (bool) apply_filters( 'xin_endless_reading', true ),
 		'i18n'         => array(
 			'added'   => __( 'В библиотеке', 'xin-com' ),
+			'youStopped' => __( 'Вы остановились здесь', 'xin-com' ),
+			'readHere'   => __( 'вы читали', 'xin-com' ),
+			'continueAt' => __( 'Продолжить', 'xin-com' ),
+			/* translators: %d: how many chapters the button loads. */
+			'showMore'   => __( 'Показать ещё %d', 'xin-com' ),
+			'chapterPage' => __( 'страница главы', 'xin-com' ),
+			'loadingNext' => __( 'Загружаю следующую главу…', 'xin-com' ),
+			/* translators: %s: chapter number. */
+			'chapterNo'   => __( 'Глава %s', 'xin-com' ),
+			'lockedAhead' => __( 'Следующая глава пока в раннем доступе — дальше поток не идёт.', 'xin-com' ),
+			'openChapter' => __( 'Открыть главу', 'xin-com' ),
+			'skipLocked'  => __( 'Пропустить и читать дальше', 'xin-com' ),
+			'bookEnd'     => __( 'Это последняя выложенная глава', 'xin-com' ),
+			'bookEndNote' => __( 'Дальше — ждать выхода следующей.', 'xin-com' ),
+			'discussChapter' => __( 'Обсудить главу', 'xin-com' ),
+			'toNovel'     => __( 'К странице тайтла', 'xin-com' ),
+			/* translators: %d: minutes left in the chapter. */
+			'leftMin'    => __( 'осталось ~%d мин', 'xin-com' ),
 			'add'     => __( 'В библиотеку', 'xin-com' ),
 			'empty'   => __( 'Здесь пока пусто', 'xin-com' ),
 			'nothing' => __( 'Ничего не найдено', 'xin-com' ),
@@ -338,11 +358,18 @@ function xin_get_views( $post_id ) {
 	return (int) get_post_meta( $post_id, '_xin_views', true );
 }
 
-function xin_count_view() {
-	if ( ! is_singular( array( 'novel', 'chapter', 'post' ) ) || is_preview() ) {
-		return;
-	}
-	$post_id = get_queried_object_id();
+/**
+ * Засчитывает просмотр записи, один раз в час на браузер.
+ *
+ * Вынесено из обработчика страницы: главу теперь можно получить и через REST
+ * (бесконечная прокрутка в читалке), а просмотр у неё должен считаться так же,
+ * как при обычном открытии.
+ *
+ * @param int $post_id Запись.
+ * @return void
+ */
+function xin_bump_view( $post_id ) {
+	$post_id = (int) $post_id;
 	if ( ! $post_id ) {
 		return;
 	}
@@ -354,7 +381,7 @@ function xin_count_view() {
 
 	update_post_meta( $post_id, '_xin_views', xin_get_views( $post_id ) + 1 );
 
-if ( 'chapter' === get_post_type( $post_id ) ) {
+	if ( 'chapter' === get_post_type( $post_id ) ) {
 		$novel_id = xin_chapter_novel_id( $post_id );
 		if ( $novel_id ) {
 			update_post_meta( $novel_id, '_xin_views', xin_get_views( $novel_id ) + 1 );
@@ -364,6 +391,14 @@ if ( 'chapter' === get_post_type( $post_id ) ) {
 	if ( ! headers_sent() ) {
 		setcookie( $cookie, '1', time() + HOUR_IN_SECONDS, COOKIEPATH ? COOKIEPATH : '/', COOKIE_DOMAIN );
 	}
+}
+
+function xin_count_view() {
+	if ( ! is_singular( array( 'novel', 'chapter', 'post' ) ) || is_preview() ) {
+		return;
+	}
+
+	xin_bump_view( get_queried_object_id() );
 }
 add_action( 'template_redirect', 'xin_count_view' );
 
@@ -377,8 +412,114 @@ function xin_register_rest() {
 		),
 		'callback'            => 'xin_rest_rate',
 	) );
+
+	/*
+	 * Следующая глава для бесконечной прокрутки. Отдаём только текст и то, что
+	 * нужно шапке, — тянуть ради этого целую страницу (десятки килобайт
+	 * разметки, скрипты, стили) на каждую главу было бы расточительно.
+	 */
+	register_rest_route( 'xin/v1', '/chapter/(?P<id>\d+)', array(
+		'methods'             => 'GET',
+		'permission_callback' => '__return_true',
+		'args'                => array(
+			'id' => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+		),
+		'callback'            => 'xin_rest_chapter',
+	) );
+
+	/*
+	 * Следующая порция оглавления. Кнопка «Показать ещё» дописывает строки в
+	 * тот же список — страница не перезагружается, а в память браузера
+	 * приезжает ровно одна порция, а не вся книга.
+	 */
+	register_rest_route( 'xin/v1', '/chapters', array(
+		'methods'             => 'GET',
+		'permission_callback' => '__return_true',
+		'args'                => array(
+			'novel' => array( 'required' => true, 'sanitize_callback' => 'absint' ),
+			'page'  => array( 'sanitize_callback' => 'absint' ),
+			'order' => array( 'sanitize_callback' => 'sanitize_key' ),
+		),
+		'callback'            => 'xin_rest_chapters',
+	) );
 }
 add_action( 'rest_api_init', 'xin_register_rest' );
+
+/**
+ * Порция оглавления: готовые строки списка и сколько осталось.
+ *
+ * @param WP_REST_Request $request Запрос.
+ * @return array|WP_Error
+ */
+function xin_rest_chapters( WP_REST_Request $request ) {
+	$novel_id = (int) $request['novel'];
+	$page     = max( 1, (int) $request['page'] );
+	$order    = 'desc' === $request['order'] ? 'DESC' : 'ASC';
+
+	if ( ! $novel_id || 'novel' !== get_post_type( $novel_id ) ) {
+		return new WP_Error( 'xin_no_novel', __( 'Тайтла не нашлось.', 'xin-com' ), array( 'status' => 404 ) );
+	}
+
+	$toc = xin_chapter_page( $novel_id, $order, $page );
+
+	ob_start();
+	foreach ( $toc['posts'] as $chapter ) {
+		xin_chapter_row( $chapter );
+	}
+	$rows = ob_get_clean();
+
+	return array(
+		'rows'  => $rows,
+		'page'  => (int) $toc['page'],
+		'pages' => (int) $toc['pages'],
+		'shown' => (int) ( ( $toc['page'] - 1 ) * $toc['per_page'] + count( $toc['posts'] ) ),
+		'total' => (int) $toc['total'],
+	);
+}
+
+/**
+ * Глава для читалки: текст, заголовок и указатель на следующую.
+ *
+ * @param WP_REST_Request $request Запрос.
+ * @return array|WP_Error
+ */
+function xin_rest_chapter( WP_REST_Request $request ) {
+	$id   = (int) $request['id'];
+	$post = $id ? get_post( $id ) : null;
+
+	if ( ! $post || 'chapter' !== $post->post_type || 'publish' !== $post->post_status ) {
+		return new WP_Error( 'xin_no_chapter', __( 'Главы не нашлось.', 'xin-com' ), array( 'status' => 404 ) );
+	}
+
+	$next   = xin_adjacent_chapter( $id, 1 );
+	$locked = ! xin_can_read_chapter( $id );
+
+	$out = array(
+		'id'     => $id,
+		'title'  => get_the_title( $id ),
+		'label'  => xin_chapter_label( $id ),
+		'url'    => get_permalink( $id ),
+		'next'   => $next ? (int) $next->ID : 0,
+		'locked' => $locked,
+		'html'   => '',
+	);
+
+	if ( $locked ) {
+		return $out;
+	}
+
+	global $wp_query;
+	$wp_query->is_singular = true;
+
+	setup_postdata( $post );
+	$out['html'] = apply_filters( 'the_content', $post->post_content );
+	wp_reset_postdata();
+
+	xin_bump_view( $id );
+	xin_track_reading( $id );
+
+	return $out;
+}
 
 function xin_rest_rate( WP_REST_Request $request ) {
 	$id    = (int) $request['id'];

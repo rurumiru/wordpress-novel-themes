@@ -23,7 +23,6 @@ $xin_links = array(
 	array( 'icon' => 'compass', 'label' => __( 'Каталог', 'xin-com' ), 'href' => get_post_type_archive_link( 'novel' ) ),
 	array( 'icon' => 'clock', 'label' => __( 'Обновления', 'xin-com' ), 'href' => get_post_type_archive_link( 'chapter' ) ),
 	array( 'icon' => 'pen', 'label' => __( 'Стать автором', 'xin-com' ), 'href' => xin_page_url( 'become-author' ) ),
-	array( 'icon' => 'crown', 'label' => 'PLUS', 'href' => xin_page_url( 'plus' ) ),
 );
 
 while ( have_posts() ) :

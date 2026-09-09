@@ -7,14 +7,26 @@ if ( ! $xin_novel_id || ! xin_owns( $xin_novel_id ) ) {
 	return;
 }
 
-$xin_chapters = get_posts( array(
+/*
+ * Список глав в кабинете автора теперь постраничный. Прежде он поднимал все
+ * главы проекта разом — вместе с текстом каждой, — и у большого перевода
+ * экран студии переставал открываться.
+ */
+$xin_ch_page  = isset( $_GET['ch'] ) ? max( 1, absint( $_GET['ch'] ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$xin_ch_per   = xin_chapters_per_page();
+$xin_ch_query = new WP_Query( array(
 	'post_type'      => 'chapter',
-	'posts_per_page' => -1,
+	'posts_per_page' => $xin_ch_per,
+	'paged'          => $xin_ch_page,
 	'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
-	'meta_key'       => '_xin_number',
+	'meta_key'       => '_xin_number', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 	'orderby'        => array( 'meta_value_num' => 'ASC', 'date' => 'ASC' ),
-	'meta_query'     => array( array( 'key' => '_xin_novel', 'value' => $xin_novel_id ) ),
+	'meta_query'     => array( array( 'key' => '_xin_novel', 'value' => $xin_novel_id ) ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+	'update_post_term_cache' => false,
 ) );
+
+$xin_chapters = $xin_ch_query->posts;
+$xin_ch_pages = (int) $xin_ch_query->max_num_pages;
 ?>
 
 <div class="xin-panel">
@@ -68,5 +80,26 @@ $xin_chapters = get_posts( array(
 				<?php endforeach; ?>
 			</tbody>
 		</table>
+
+		<?php if ( $xin_ch_pages > 1 ) : ?>
+			<nav class="xin-nv__pager" aria-label="<?php esc_attr_e( 'Страницы списка глав', 'xin-com' ); ?>">
+				<?php if ( $xin_ch_page > 1 ) : ?>
+					<a class="btn btn-outline btn-sm" href="<?php echo esc_url( add_query_arg( 'ch', $xin_ch_page - 1, xin_dashboard_url( array( 'view' => 'chapters', 'id' => $xin_novel_id ) ) ) ); ?>"><?php xin_the_icon( 'chevron-left' ); ?><?php esc_html_e( 'Раньше', 'xin-com' ); ?></a>
+				<?php endif; ?>
+				<span class="xin-nv__pagenum">
+					<?php
+					printf(
+						/* translators: 1: current page, 2: total pages. */
+						esc_html__( 'Страница %1$d из %2$d', 'xin-com' ),
+						(int) $xin_ch_page,
+						(int) $xin_ch_pages
+					);
+					?>
+				</span>
+				<?php if ( $xin_ch_page < $xin_ch_pages ) : ?>
+					<a class="btn btn-outline btn-sm" href="<?php echo esc_url( add_query_arg( 'ch', $xin_ch_page + 1, xin_dashboard_url( array( 'view' => 'chapters', 'id' => $xin_novel_id ) ) ) ); ?>"><?php esc_html_e( 'Дальше', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></a>
+				<?php endif; ?>
+			</nav>
+		<?php endif; ?>
 	<?php endif; ?>
 </div>

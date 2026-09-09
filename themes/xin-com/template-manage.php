@@ -48,7 +48,7 @@ if ( xin_can_manage() ) {
 
 	<header class="xin-pagehead">
 		<h1><?php esc_html_e( 'Панель управления', 'xin-com' ); ?></h1>
-		<p class="xin-pagehead__sub"><?php esc_html_e( 'Роли, доступ PLUS, очередь на проверку и настройки площадки — здесь, без админки WordPress.', 'xin-com' ); ?></p>
+		<p class="xin-pagehead__sub"><?php esc_html_e( 'Роли, очередь на проверку и настройки площадки — здесь, без админки WordPress.', 'xin-com' ); ?></p>
 	</header>
 
 	<nav class="xin-manage__tabs" aria-label="<?php esc_attr_e( 'Разделы панели', 'xin-com' ); ?>">
@@ -72,10 +72,6 @@ if ( xin_can_manage() ) {
 				<b><?php echo esc_html( number_format_i18n( $xin_stats['users'] ) ); ?></b>
 			</div>
 			<div class="xin-manage__card">
-				<span><?php esc_html_e( 'С доступом PLUS', 'xin-com' ); ?></span>
-				<b><?php echo esc_html( number_format_i18n( $xin_stats['plus'] ) ); ?></b>
-			</div>
-			<div class="xin-manage__card">
 				<span><?php esc_html_e( 'Тайтлов', 'xin-com' ); ?></span>
 				<b><?php echo esc_html( number_format_i18n( $xin_stats['novels'] ) ); ?></b>
 			</div>
@@ -91,7 +87,7 @@ if ( xin_can_manage() ) {
 
 		<div class="xin-manage__links">
 			<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_manage_url( array( 'tab' => 'moderation' ) ) ); ?>"><?php xin_the_icon( 'check' ); ?><?php esc_html_e( 'Очередь на проверку', 'xin-com' ); ?></a>
-			<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_manage_url( array( 'tab' => 'users' ) ) ); ?>"><?php xin_the_icon( 'users' ); ?><?php esc_html_e( 'Пользователи и PLUS', 'xin-com' ); ?></a>
+			<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_manage_url( array( 'tab' => 'users' ) ) ); ?>"><?php xin_the_icon( 'users' ); ?><?php esc_html_e( 'Пользователи и роли', 'xin-com' ); ?></a>
 			<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_dashboard_url() ); ?>"><?php xin_the_icon( 'pen' ); ?><?php esc_html_e( 'Кабинет автора', 'xin-com' ); ?></a>
 			<a class="btn btn-outline btn-sm" href="<?php echo esc_url( get_post_type_archive_link( 'novel' ) ); ?>"><?php xin_the_icon( 'book' ); ?><?php esc_html_e( 'Каталог', 'xin-com' ); ?></a>
 		</div>
@@ -127,7 +123,6 @@ if ( xin_can_manage() ) {
 
 		<div class="xin-manage__table">
 			<?php foreach ( $xin_users as $xin_user ) : ?>
-				<?php $xin_plus = xin_plus_label( $xin_user->ID ); ?>
 				<div class="xin-manage__row">
 					<div class="xin-manage__who">
 						<?php echo get_avatar( $xin_user->ID, 40 ); ?>
@@ -139,9 +134,6 @@ if ( xin_can_manage() ) {
 
 					<div class="xin-manage__state">
 						<span class="xin-badge"><?php echo esc_html( xin_role_label( $xin_user ) ); ?></span>
-						<?php if ( $xin_plus ) : ?>
-							<span class="xin-badge xin-badge--gold"><?php echo esc_html( 'PLUS ' . $xin_plus ); ?></span>
-						<?php endif; ?>
 					</div>
 
 					<div class="xin-manage__act">
@@ -160,20 +152,6 @@ if ( xin_can_manage() ) {
 							</form>
 						<?php endif; ?>
 
-						<form method="post" action="<?php echo esc_url( xin_manage_url() ); ?>">
-							<?php wp_nonce_field( 'xin_manage_plus' ); ?>
-							<input type="hidden" name="xin_manage" value="plus">
-							<input type="hidden" name="tab" value="users">
-							<input type="hidden" name="user_id" value="<?php echo esc_attr( $xin_user->ID ); ?>">
-							<select name="days" aria-label="<?php esc_attr_e( 'Доступ PLUS', 'xin-com' ); ?>">
-								<option value="30"><?php esc_html_e( '+30 дней', 'xin-com' ); ?></option>
-								<option value="90"><?php esc_html_e( '+90 дней', 'xin-com' ); ?></option>
-								<option value="365"><?php esc_html_e( '+год', 'xin-com' ); ?></option>
-								<option value="-1"><?php esc_html_e( 'Бессрочно', 'xin-com' ); ?></option>
-								<option value="0"><?php esc_html_e( 'Снять', 'xin-com' ); ?></option>
-							</select>
-							<button class="btn btn-outline btn-sm" type="submit"><?php esc_html_e( 'Применить', 'xin-com' ); ?></button>
-						</form>
 					</div>
 				</div>
 			<?php endforeach; ?>

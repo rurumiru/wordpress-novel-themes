@@ -309,7 +309,7 @@ function xni_screen() {
 							<p class="description">
 								<?php esc_html_e( '0 — глава бесплатная. Больше нуля — глава выходит под ранним доступом, цена сохраняется, и при включённом WooCommerce под неё создаётся товар.', 'xi-novel-import' ); ?>
 								<?php if ( ! class_exists( 'WooCommerce' ) ) : ?>
-									<br><em><?php esc_html_e( 'WooCommerce сейчас выключен — цена сохранится, но купить главу отдельно будет нельзя, доступ пойдёт по PLUS.', 'xi-novel-import' ); ?></em>
+									<br><em><?php esc_html_e( 'WooCommerce сейчас выключен — цена сохранится, но купить главу отдельно будет нельзя: глава останется у команды проекта.', 'xi-novel-import' ); ?></em>
 								<?php endif; ?>
 							</p>
 						</td>
@@ -386,7 +386,7 @@ function xni_screen() {
 					</p>
 
 					<p><label><input type="checkbox" name="free" value="1" <?php checked( $sched['free'] ); ?>> <?php esc_html_e( 'Из очереди главы выходят сразу бесплатными', 'xi-novel-import' ); ?></label><br>
-						<span class="description"><?php esc_html_e( 'Если снять — глава выйдет под ранним доступом PLUS.', 'xi-novel-import' ); ?></span></p>
+						<span class="description"><?php esc_html_e( 'Если снять — глава выйдет под ранним доступом.', 'xi-novel-import' ); ?></span></p>
 
 					<p><button type="submit" class="button button-primary"><?php esc_html_e( 'Сохранить расписание', 'xi-novel-import' ); ?></button></p>
 				</form>

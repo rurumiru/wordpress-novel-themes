@@ -1,45 +1,55 @@
+/*
+ * Bootstrap, переодетый в тему.
+ *
+ * Здесь не появляется ни одного собственного цвета или размера — только
+ * переменные из style.css. Задача файла ровно одна: чтобы компоненты
+ * бутстрапа (шапка, дропдаун, модалка, формы, пагинация) выглядели частью
+ * книжной вёрстки, а не заготовкой из фреймворка.
+ */
+
 :root {
 	--bs-body-bg: hsl(var(--bg));
 	--bs-body-color: hsl(var(--fg));
 	--bs-body-font-family: var(--font);
-	--bs-body-font-size: 15px;
-	--bs-body-line-height: 1.6;
+	--bs-body-font-size: 15.5px;
+	--bs-body-line-height: 1.62;
 	--bs-emphasis-color: hsl(var(--fg));
 	--bs-secondary-color: hsl(var(--muted-fg));
 	--bs-secondary-bg: hsl(var(--muted));
 	--bs-tertiary-bg: hsl(var(--accent));
 	--bs-border-color: hsl(var(--border));
-	--bs-border-color-translucent: hsl(var(--border) / .7);
+	--bs-border-color-translucent: hsl(var(--border));
 	--bs-border-radius: var(--radius-sm);
 	--bs-border-radius-lg: var(--radius);
 	--bs-border-radius-xl: var(--radius-lg);
 	--bs-border-radius-pill: 999px;
 	--bs-primary: hsl(var(--primary));
-	--bs-primary-rgb: 225, 23, 63;
 	--bs-link-color: hsl(var(--primary));
 	--bs-link-hover-color: hsl(var(--primary) / .8);
 	--bs-heading-color: hsl(var(--fg));
-	--bs-focus-ring-color: hsl(var(--ring) / .25);
+	--bs-focus-ring-color: hsl(var(--ring) / .2);
 	--bs-focus-ring-width: 3px;
 	--bs-code-color: hsl(var(--primary));
-	--bs-highlight-bg: hsl(var(--gold) / .25);
+	--bs-highlight-bg: hsl(var(--gold) / .22);
+	--bs-font-sans-serif: var(--font);
 }
 
-/* Nothing on a page is allowed to widen the document: a stray decoration or an
-   untruncated title used to add a sideways scroll, and every fixed thing on
-   top of it — header, search dialog, off-canvas menu — drifted with it.
-   `clip` rather than `hidden` so sticky positioning keeps working. */
+/* Ничему на странице не позволено расширять документ: случайное украшение
+   или необрезанный заголовок добавляли горизонтальную прокрутку, и всё
+   закреплённое сверху — шапка, поиск, меню — уезжало вместе с ней.
+   `clip`, а не `hidden`, иначе перестаёт работать sticky. */
 html { overflow-x: clip; }
-
 body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 
+/* ---------- Кнопки ---------- */
+
 .btn {
-	--bs-btn-padding-y: .5rem;
-	--bs-btn-padding-x: .95rem;
+	--bs-btn-padding-y: .58rem;
+	--bs-btn-padding-x: 1.05rem;
 	--bs-btn-border-width: 1px;
-	--bs-btn-font-size: 13.5px;
-	--bs-btn-font-weight: 600;
-	--bs-btn-border-radius: 9px;
+	--bs-btn-font-size: 14px;
+	--bs-btn-font-weight: 550;
+	--bs-btn-border-radius: var(--radius-sm);
 	--bs-btn-bg: hsl(var(--muted));
 	--bs-btn-color: hsl(var(--fg));
 	--bs-btn-border-color: transparent;
@@ -48,59 +58,64 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 	--bs-btn-hover-border-color: transparent;
 	--bs-btn-active-bg: hsl(var(--accent));
 	--bs-btn-active-border-color: transparent;
-	--bs-btn-focus-shadow-rgb: 52, 57, 66;
+	--bs-btn-font-family: var(--font);
 	display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-	line-height: 1.2; transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+	line-height: 1.25;
+	/* Подпись кнопки не переносится: в шапке перевод длиннее русского оригинала
+	   ломал кнопку на две строки и вместе с ней всю высоту шапки. */
+	white-space: nowrap;
+	transition: background-color .16s ease, color .16s ease, border-color .16s ease;
 }
-.btn:active { transform: translateY(1px); }
-.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px hsl(var(--ring) / .35); }
-.btn:disabled, .btn.disabled { opacity: .5; box-shadow: none; pointer-events: none; }
+/* Кнопка больше не «проваливается» под курсором: сдвиг на пиксель при нажатии
+   на плотной сетке карточек читался как дрожание страницы. */
+.btn:active { transform: none; }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px hsl(var(--ring) / .28); }
+.btn:disabled, .btn.disabled { opacity: .45; box-shadow: none; pointer-events: none; }
 .btn-block { width: 100%; }
 .btn svg { width: 16px; height: 16px; flex: none; }
 
 .btn-primary {
 	--bs-btn-bg: hsl(var(--primary));
 	--bs-btn-color: hsl(var(--primary-fg));
-	--bs-btn-hover-bg: hsl(var(--primary) / .86);
+	--bs-btn-hover-bg: hsl(var(--primary) / .87);
 	--bs-btn-hover-color: hsl(var(--primary-fg));
-	--bs-btn-active-bg: hsl(var(--primary) / .9);
+	--bs-btn-active-bg: hsl(var(--primary) / .92);
 	--bs-btn-active-color: hsl(var(--primary-fg));
-	--bs-btn-disabled-bg: hsl(var(--primary) / .5);
+	--bs-btn-disabled-bg: hsl(var(--primary) / .45);
 	--bs-btn-disabled-border-color: transparent;
-	box-shadow: 0 1px 2px hsl(var(--primary) / .22);
 }
-.btn-primary:hover { box-shadow: 0 4px 12px -4px hsl(var(--primary) / .5); }
-.btn-primary:active { box-shadow: none; }
 .btn-gold {
 	--bs-btn-bg: hsl(var(--gold));
 	--bs-btn-color: hsl(var(--gold-fg));
-	--bs-btn-hover-bg: hsl(var(--gold) / .85);
+	--bs-btn-hover-bg: hsl(var(--gold) / .87);
 	--bs-btn-hover-color: hsl(var(--gold-fg));
 }
 .btn-outline {
-	--bs-btn-bg: hsl(var(--card) / .5);
-	--bs-btn-border-color: hsl(var(--border));
+	--bs-btn-bg: transparent;
+	--bs-btn-border-color: hsl(var(--input));
 	--bs-btn-color: hsl(var(--fg));
-	--bs-btn-hover-bg: hsl(var(--accent));
-	--bs-btn-hover-border-color: hsl(var(--border));
+	--bs-btn-hover-bg: hsl(var(--muted));
+	--bs-btn-hover-border-color: hsl(var(--input));
 	--bs-btn-hover-color: hsl(var(--fg));
 }
 .btn-ghost {
 	--bs-btn-bg: transparent;
 	--bs-btn-color: hsl(var(--muted-fg));
-	--bs-btn-hover-bg: hsl(var(--accent));
+	--bs-btn-hover-bg: hsl(var(--muted));
 	--bs-btn-hover-color: hsl(var(--fg));
 }
-.btn-lg { --bs-btn-padding-y: .62rem; --bs-btn-padding-x: 1.2rem; --bs-btn-font-size: 14.5px; --bs-btn-border-radius: 10px; }
-.btn-sm { --bs-btn-padding-y: .32rem; --bs-btn-padding-x: .7rem; --bs-btn-font-size: 12.5px; --bs-btn-border-radius: 8px; }
+.btn-lg { --bs-btn-padding-y: .78rem; --bs-btn-padding-x: 1.5rem; --bs-btn-font-size: 15px; }
+.btn-sm { --bs-btn-padding-y: .4rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 13px; }
 .btn-icon {
 	--bs-btn-padding-y: 0; --bs-btn-padding-x: 0;
-	width: auto; height: auto; border-radius: 9px;
+	width: 36px; height: 36px;
 	--bs-btn-bg: transparent; --bs-btn-color: hsl(var(--muted-fg));
-	--bs-btn-hover-bg: hsl(var(--accent)); --bs-btn-hover-color: hsl(var(--fg));
+	--bs-btn-hover-bg: hsl(var(--muted)); --bs-btn-hover-color: hsl(var(--fg));
 }
 .btn-icon svg { width: 18px; height: 18px; }
-.btn-icon.is-active { --bs-btn-bg: hsl(var(--primary) / .14); --bs-btn-color: hsl(var(--primary)); }
+.btn-icon.is-active { --bs-btn-bg: hsl(var(--primary) / .12); --bs-btn-color: hsl(var(--primary)); }
+
+/* ---------- Шапка ---------- */
 
 .navbar {
 	--bs-navbar-padding-y: 0;
@@ -112,147 +127,185 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 	--bs-navbar-toggler-border-color: transparent;
 	--bs-navbar-toggler-focus-width: 0;
 	position: sticky; top: 0; z-index: 1030;
-	background: hsl(var(--bg) / .82);
-	backdrop-filter: blur(16px) saturate(150%);
-	-webkit-backdrop-filter: blur(16px) saturate(150%);
-	border-bottom: 1px solid hsl(var(--border) / .7);
-	transition: box-shadow .2s ease;
+	background: hsl(var(--bg) / .88);
+	backdrop-filter: blur(10px) saturate(140%);
+	-webkit-backdrop-filter: blur(10px) saturate(140%);
+	border-bottom: var(--rule);
 }
-.navbar.is-stuck { box-shadow: var(--shadow-2); }
-.navbar > .container, .navbar > .container-xl { min-height: var(--header-h); gap: 10px; }
-.navbar-brand { display: flex; align-items: center; gap: .625rem; font-weight: 800; font-size: 19px; letter-spacing: -.02em; padding: 0; }
-.navbar-brand img { max-height: 34px; width: auto; }
-.navbar-nav { --bs-nav-link-padding-y: .5rem; --bs-nav-link-padding-x: .75rem; gap: 2px; }
+.navbar.is-stuck { border-bottom-color: hsl(var(--fg) / .16); }
+/* Бутстрап переносит содержимое шапки на вторую строку до брейкпоинта lg.
+   Меню на узких экранах и так спрятано в оффканвас, переносить нечего —
+   а перенос ломал шапку на две строки с иконками, висящими справа. */
+.navbar > .container, .navbar > .container-xl { min-height: var(--header-h); gap: 14px; flex-wrap: nowrap; }
+/* Название сайта не сжимается: оно короткое и служит опорой всей шапки.
+   Урезать его разрешено только на узких экранах, где места правда нет. */
+.navbar .navbar-brand { flex: 0 0 auto; white-space: nowrap; }
+@media (max-width: 575.98px) {
+	.navbar .navbar-brand { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+}
+.navbar-brand {
+	display: flex; align-items: center; gap: .55rem; padding: 0;
+	font-family: var(--font-display);
+	font-weight: 600; font-size: 19px; letter-spacing: -.02em;
+}
+.navbar-brand img { max-height: 32px; width: auto; }
+
+.navbar-nav { --bs-nav-link-padding-y: .5rem; --bs-nav-link-padding-x: 0; gap: 22px; }
+/*
+ * Пункт меню — это текст, а не плашка. Прежде и наведение, и «вы здесь»
+ * рисовали серую пилюлю, поэтому случайно задетая мышью ссылка выглядела
+ * как открытый раздел. Теперь наведение только меняет цвет, а текущий
+ * раздел получает чернильную черту под текстом.
+ */
 .navbar-nav .nav-link {
-	border-radius: 999px; font-size: 14px; font-weight: 600; white-space: nowrap;
+	position: relative;
 	display: flex; align-items: center; gap: .3rem;
+	border-radius: 0;
+	font-size: 14px; font-weight: 500; white-space: nowrap;
+	color: hsl(var(--muted-fg));
 }
-/* Hover and "you are here" used to paint the same flat grey pill, so a link the
-   pointer happened to rest on read as the current section. Hover stays neutral;
-   the current section is the only one that takes the accent colour. */
 .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus-visible {
-	background: hsl(var(--accent)); color: hsl(var(--fg));
+	background: none; color: hsl(var(--fg));
 }
 .navbar-nav .nav-item.current-menu-item > .nav-link,
 .navbar-nav .nav-item.current-menu-parent > .nav-link,
 .navbar-nav .nav-item.current-menu-ancestor > .nav-link,
 .navbar-nav .nav-item.current_page_item > .nav-link,
 .navbar-nav .nav-link.is-current {
-	background: hsl(var(--primary) / .12); color: hsl(var(--primary)); font-weight: 700;
+	background: none; color: hsl(var(--fg)); font-weight: 600;
 }
-.navbar-nav .nav-item.current-menu-item > .nav-link:hover,
-.navbar-nav .nav-link.is-current:hover {
-	background: hsl(var(--primary) / .18); color: hsl(var(--primary));
+.navbar-nav .nav-item.current-menu-item > .nav-link::after,
+.navbar-nav .nav-item.current-menu-parent > .nav-link::after,
+.navbar-nav .nav-item.current-menu-ancestor > .nav-link::after,
+.navbar-nav .nav-item.current_page_item > .nav-link::after,
+.navbar-nav .nav-link.is-current::after {
+	content: ""; position: absolute; left: 0; right: 0; bottom: 2px;
+	height: 2px; background: hsl(var(--fg));
 }
 .navbar-toggler { padding: .35rem .5rem; color: hsl(var(--muted-fg)); }
 .navbar-toggler:hover { color: hsl(var(--fg)); }
+
+/* ---------- Всплывающее ---------- */
 
 .dropdown-menu {
 	--bs-dropdown-bg: hsl(var(--popover));
 	--bs-dropdown-border-color: hsl(var(--border));
 	--bs-dropdown-border-radius: var(--radius);
 	--bs-dropdown-link-color: hsl(var(--fg));
-	--bs-dropdown-link-hover-bg: hsl(var(--accent));
+	--bs-dropdown-link-hover-bg: hsl(var(--muted));
 	--bs-dropdown-link-hover-color: hsl(var(--fg));
-	--bs-dropdown-link-active-bg: hsl(var(--primary) / .12);
+	--bs-dropdown-link-active-bg: hsl(var(--primary) / .1);
 	--bs-dropdown-link-active-color: hsl(var(--primary));
-	--bs-dropdown-padding-x: 6px;
-	--bs-dropdown-padding-y: 6px;
+	--bs-dropdown-padding-x: 5px;
+	--bs-dropdown-padding-y: 5px;
 	--bs-dropdown-item-padding-y: .5rem;
-	--bs-dropdown-item-padding-x: .75rem;
+	--bs-dropdown-item-padding-x: .7rem;
 	--bs-dropdown-font-size: 14px;
 	box-shadow: var(--shadow-3);
-	min-width: 210px;
+	min-width: 214px;
 }
 .dropdown-item { border-radius: var(--radius-sm); font-weight: 500; }
+.dropdown-divider { border-color: hsl(var(--border)); }
 
 .offcanvas, .modal-content {
-	/* Bootstrap ships a flat 400px panel, which is wider than a phone: the menu
-	   opened larger than the screen and hung off the side. */
+	/* У бутстрапа панель фиксированные 400px — на телефоне она шире экрана
+	   и меню открывалось за краем. */
 	--bs-offcanvas-width: min(400px, 86vw);
-	--bs-offcanvas-bg: hsl(var(--card));
+	--bs-offcanvas-bg: hsl(var(--bg));
 	--bs-offcanvas-color: hsl(var(--fg));
 	--bs-offcanvas-border-color: hsl(var(--border));
-	--bs-modal-bg: hsl(var(--card));
+	--bs-modal-bg: hsl(var(--bg));
 	--bs-modal-color: hsl(var(--fg));
 	--bs-modal-border-color: hsl(var(--border));
 	--bs-modal-border-radius: var(--radius-lg);
 	--bs-modal-header-border-color: hsl(var(--border));
 	--bs-modal-footer-border-color: hsl(var(--border));
 }
-.offcanvas-header, .modal-header { border-bottom: 1px solid hsl(var(--border)); }
-.offcanvas-title, .modal-title { font-size: 16px; font-weight: 800; }
+.offcanvas-header, .modal-header { border-bottom: var(--rule); padding: 18px 20px; }
+.modal-body { padding: 20px; }
+.offcanvas-title, .modal-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; }
 .btn-close {
 	--bs-btn-close-color: hsl(var(--fg));
-	filter: none; opacity: .6;
+	filter: none; opacity: .5;
 	background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center/1em auto no-repeat;
 }
 .btn-close:hover { opacity: 1; }
-.modal-backdrop { --bs-backdrop-bg: hsl(228 20% 3%); --bs-backdrop-opacity: .6; }
-.offcanvas-backdrop { --bs-backdrop-bg: hsl(228 20% 3%); --bs-backdrop-opacity: .55; }
+.modal-backdrop { --bs-backdrop-bg: hsl(28 22% 6%); --bs-backdrop-opacity: .5; }
+.offcanvas-backdrop { --bs-backdrop-bg: hsl(28 22% 6%); --bs-backdrop-opacity: .45; }
 
 .xin-menu-list { list-style: none; margin: 0; padding: 0; }
-.xin-menu-list li + li { margin-top: 2px; }
-.xin-menu-list a { display: block; padding: .625rem .75rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 15px; }
-.xin-menu-list a:hover { background: hsl(var(--accent)); }
-.xin-menu-list .sub-menu { list-style: none; margin: 4px 0 0 10px; padding-left: 10px; border-left: 1px solid hsl(var(--border)); }
-.xin-menu-list .sub-menu a { font-weight: 500; font-size: 14px; color: hsl(var(--muted-fg)); }
+.xin-menu-list li + li { border-top: var(--rule); }
+.xin-menu-list a {
+	display: block; padding: .8rem 0;
+	font-family: var(--font-display); font-weight: 600; font-size: 16px;
+}
+.xin-menu-list a:hover { color: hsl(var(--primary)); }
+.xin-menu-list .sub-menu { list-style: none; margin: 0 0 .6rem; padding-left: 14px; border-left: var(--rule); }
+.xin-menu-list .sub-menu li + li { border-top: 0; }
+.xin-menu-list .sub-menu a { font-family: var(--font); font-weight: 500; font-size: 14px; color: hsl(var(--muted-fg)); padding: .38rem 0; }
+
+/* ---------- Формы ---------- */
 
 .form-control, .form-select {
-	--bs-body-bg: hsl(var(--bg));
-	background-color: hsl(var(--bg));
+	--bs-body-bg: hsl(var(--card));
+	background-color: hsl(var(--card));
 	border-color: hsl(var(--input));
 	color: hsl(var(--fg));
-	padding: .7rem .95rem;
+	padding: .68rem .9rem;
 	font-size: 14.5px;
 	border-radius: var(--radius-sm);
 }
 .form-control:focus, .form-select:focus {
-	background-color: hsl(var(--bg));
+	background-color: hsl(var(--card));
 	color: hsl(var(--fg));
 	border-color: hsl(var(--ring));
-	box-shadow: 0 0 0 3px hsl(var(--ring) / .18);
+	box-shadow: 0 0 0 3px hsl(var(--ring) / .15);
 }
-.form-control::placeholder { color: hsl(var(--muted-fg) / .8); }
+.form-control::placeholder { color: hsl(var(--muted-fg) / .75); }
 .form-select {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 	background-size: 14px 14px;
 }
-.form-control-pill, .form-select-pill { border-radius: 999px; padding-inline: 1.125rem; }
-.form-label { font-size: 12.5px; font-weight: 700; margin-bottom: 6px; color: hsl(var(--muted-fg)); text-transform: uppercase; letter-spacing: .06em; }
-.form-text { font-size: 12px; color: hsl(var(--muted-fg)); }
-.form-check-input { background-color: hsl(var(--bg)); border-color: hsl(var(--input)); }
+.form-control-pill, .form-select-pill { border-radius: var(--radius-sm); padding-inline: .9rem; }
+.form-label {
+	font-size: 11px; font-weight: 600; margin-bottom: 7px;
+	color: hsl(var(--muted-fg)); text-transform: uppercase; letter-spacing: .14em;
+}
+.form-text { font-size: 12.5px; color: hsl(var(--muted-fg)); }
+.form-check-input { background-color: hsl(var(--card)); border-color: hsl(var(--input)); }
 .form-check-input:checked { background-color: hsl(var(--primary)); border-color: hsl(var(--primary)); }
-.form-check-input:focus { border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .18); }
+.form-check-input:focus { border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .15); }
 .input-group-text { background: hsl(var(--muted)); border-color: hsl(var(--input)); color: hsl(var(--muted-fg)); }
 
+/* Сегментный переключатель: прямоугольный, с волосяной рамкой. */
 .nav-pills {
-	--bs-nav-pills-border-radius: 999px;
+	--bs-nav-pills-border-radius: var(--radius-sm);
 	--bs-nav-link-color: hsl(var(--muted-fg));
 	--bs-nav-link-hover-color: hsl(var(--fg));
 	--bs-nav-pills-link-active-bg: hsl(var(--card));
 	--bs-nav-pills-link-active-color: hsl(var(--fg));
-	gap: 2px; padding: 3px; border-radius: 999px;
-	background: hsl(var(--muted)); border: 1px solid hsl(var(--border));
+	gap: 2px; padding: 3px; border-radius: var(--radius);
+	background: hsl(var(--muted)); border: var(--rule);
 	display: inline-flex; flex-wrap: wrap;
 }
-.nav-pills .nav-link { padding: .4rem .95rem; font-size: 13px; font-weight: 700; }
+.nav-pills .nav-link { padding: .38rem .85rem; font-size: 13px; font-weight: 550; }
 .nav-pills .nav-link.active { box-shadow: var(--shadow-1); }
 
 .pagination {
-	--bs-pagination-bg: hsl(var(--card));
+	--bs-pagination-bg: transparent;
 	--bs-pagination-color: hsl(var(--fg));
 	--bs-pagination-border-color: hsl(var(--border));
-	--bs-pagination-hover-bg: hsl(var(--accent));
-	--bs-pagination-hover-color: hsl(var(--primary));
-	--bs-pagination-hover-border-color: hsl(var(--primary) / .4);
-	--bs-pagination-active-bg: hsl(var(--primary));
+	--bs-pagination-hover-bg: hsl(var(--muted));
+	--bs-pagination-hover-color: hsl(var(--fg));
+	--bs-pagination-hover-border-color: hsl(var(--border));
+	--bs-pagination-active-bg: hsl(var(--fg));
 	--bs-pagination-active-border-color: transparent;
-	--bs-pagination-active-color: hsl(var(--primary-fg));
-	--bs-pagination-focus-bg: hsl(var(--accent));
+	--bs-pagination-active-color: hsl(var(--bg));
+	--bs-pagination-focus-bg: hsl(var(--muted));
 	--bs-pagination-disabled-bg: transparent;
 	--bs-pagination-disabled-color: hsl(var(--muted-fg));
-	--bs-pagination-border-radius: 999px;
+	--bs-pagination-border-radius: var(--radius-sm);
+	--bs-pagination-font-size: 14px;
 	gap: 6px;
 }
 
@@ -262,15 +315,20 @@ body { background: hsl(var(--bg)); color: hsl(var(--fg)); overflow-x: clip; }
 	--bs-card-border-radius: var(--radius);
 	--bs-card-color: hsl(var(--fg));
 	--bs-card-cap-bg: transparent;
-	box-shadow: var(--shadow-1);
+	box-shadow: none;
 }
 
-.alert { --bs-alert-border-radius: var(--radius-sm); border-width: 1px; }
-.alert-success { --bs-alert-bg: hsl(150 60% 40% / .12); --bs-alert-border-color: hsl(150 60% 40% / .3); --bs-alert-color: hsl(150 55% 45%); }
-.alert-danger { --bs-alert-bg: hsl(0 72% 51% / .12); --bs-alert-border-color: hsl(0 72% 51% / .3); --bs-alert-color: hsl(0 72% 60%); }
-.badge { font-weight: 700; }
+.alert { --bs-alert-border-radius: var(--radius-sm); border-width: 1px; font-size: 14px; }
+.alert-success { --bs-alert-bg: hsl(150 45% 38% / .1); --bs-alert-border-color: hsl(150 45% 38% / .28); --bs-alert-color: hsl(150 45% 32%); }
+.alert-danger { --bs-alert-bg: hsl(0 65% 48% / .1); --bs-alert-border-color: hsl(0 65% 48% / .28); --bs-alert-color: hsl(0 62% 44%); }
+[data-theme="dark"] .alert-success { --bs-alert-color: hsl(150 45% 62%); }
+[data-theme="dark"] .alert-danger { --bs-alert-color: hsl(0 70% 68%); }
+
+.badge { font-weight: 600; }
 .tooltip { --bs-tooltip-bg: hsl(var(--popover)); --bs-tooltip-color: hsl(var(--fg)); --bs-tooltip-opacity: 1; --bs-tooltip-border-radius: var(--radius-sm); }
-.tooltip-inner { border: 1px solid hsl(var(--border)); box-shadow: var(--shadow-2); font-size: 12.5px; }
+.tooltip-inner { border: var(--rule); box-shadow: var(--shadow-2); font-size: 12.5px; }
 hr { --bs-border-color: hsl(var(--border)); opacity: 1; }
-.container, .container-xl { max-width: calc(var(--wrap) + 32px); padding-inline: 16px; }
-::selection { background: hsl(var(--primary) / .25); }
+/* Контейнер бутстрапа обязан совпадать с .xin-wrap до пикселя, иначе шапка
+   стоит на своей сетке, а страница под ней — на своей. */
+.container, .container-xl { width: 100%; max-width: min(var(--wrap), 100%); padding-inline: 20px; margin-inline: auto; }
+::selection { background: hsl(var(--primary) / .18); }

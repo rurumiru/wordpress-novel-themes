@@ -66,7 +66,7 @@ function xis_setup_steps() {
 
 		'pages' => array(
 			'title' => __( 'Служебные страницы', 'xi-studio' ),
-			'why'   => __( 'Кабинет автора, библиотека, рейтинг, уголок читателя, PLUS и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404.', 'xi-studio' ),
+			'why'   => __( 'Кабинет автора, библиотека, рейтинг, уголок читателя и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404.', 'xi-studio' ),
 			'check' => static function () {
 				$missing = xis_setup_missing_pages();
 
@@ -177,7 +177,7 @@ function xis_setup_steps() {
  * @return string[] Слаги.
  */
 function xis_setup_missing_pages() {
-	$slugs = array( 'account', 'dashboard', 'manage', 'library', 'ranking', 'hub', 'become-author', 'plus', 'help', 'rules', 'contacts' );
+	$slugs = array( 'account', 'dashboard', 'manage', 'library', 'ranking', 'hub', 'become-author', 'help', 'rules', 'contacts' );
 
 	return array_values( array_filter(
 		$slugs,

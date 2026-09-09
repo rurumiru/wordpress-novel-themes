@@ -1,71 +1,210 @@
-.xin-lp__hero { position: relative; padding: 46px 0 40px; text-align: center; }
-@media (min-width: 768px) { .xin-lp__hero { padding: 72px 0 56px; } }
-.xin-lp__hero h1 { font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem); margin: 10px 0 12px; }
-.xin-lp__lead { max-width: 62ch; margin: 0 auto; font-size: clamp(1rem, .95rem + .4vw, 1.25rem); color: hsl(var(--muted-fg)); }
-.xin-lp__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 26px; }
-.xin-lp__numbers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; max-width: 720px; margin: 36px auto 0; padding: 20px 16px; border-radius: var(--radius-lg); background: hsl(var(--card) / .6); border: 1px solid hsl(var(--border)); }
-.xin-lp__numbers dt { font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem); font-weight: 900; letter-spacing: -.02em; }
-.xin-lp__numbers dd { margin: 2px 0 0; font-size: 11.5px; text-transform: uppercase; letter-spacing: .1em; color: hsl(var(--muted-fg)); }
-.xin-lp__hero--gold .xin-lp__cta .btn-gold { box-shadow: 0 8px 22px hsl(var(--gold) / .28); }
+/* ==========================================================================
+   XIN-Com · landing.css
+   Посадочные страницы: «Стать автором», PLUS, справка. Плюс добивки к
+   профилю автора, начатому в parts.css.
+
+   Страницы-обещания легче всего скатываются в набор плиток с иконками в
+   цветных квадратах. Здесь их держат те же средства, что и витрину:
+   волосяные линии, антиква в заголовках, воздух вместо теней.
+   ========================================================================== */
+
+/* ==========================================================================
+   Шапка посадочной
+   ========================================================================== */
+
+.xin-lp__hero {
+	position: relative;
+	padding: 46px 0 40px;
+	text-align: center;
+	border-bottom: var(--rule);
+}
+@media (min-width: 768px) { .xin-lp__hero { padding: 76px 0 60px; } }
+
+.xin-lp__hero h1 { margin: 10px 0 14px; font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem); }
+.xin-lp__lead {
+	max-width: 60ch; margin: 0 auto;
+	font-size: clamp(1rem, .95rem + .35vw, 1.2rem);
+	line-height: 1.6;
+	color: hsl(var(--muted-fg));
+}
+.xin-lp__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 28px; }
+/* Латунная кнопка отличается заливкой, а не сиянием под ней. */
+.xin-lp__hero--gold .xin-lp__cta .btn-gold { box-shadow: none; }
+
 .xin-eyebrow--gold { color: hsl(var(--gold)); }
 
-.xin-steps { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); counter-reset: xin-step; }
+/*
+ * Счётчики. Раньше — плашка со скруглением и цифрами в 900-м весе; теперь
+ * типографская строка: числа антиквой, колонки разделены волосяными линиями,
+ * сверху и снизу линейки. Тот же приём, что у .xin-stats в ядре.
+ */
+.xin-lp__numbers {
+	display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0;
+	max-width: 680px; margin: 40px auto 0;
+	padding: 20px 0;
+	border-top: var(--rule); border-bottom: var(--rule);
+	border-radius: 0;
+	background: none;
+}
+.xin-lp__numbers > div + div { border-left: var(--rule); }
+.xin-lp__numbers dt {
+	font-family: var(--font-display);
+	font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+	font-weight: 600; line-height: 1.1; letter-spacing: -.02em;
+	font-variant-numeric: tabular-nums;
+}
+.xin-lp__numbers dd {
+	margin: 5px 0 0;
+	font-size: 11px; font-weight: 600;
+	letter-spacing: .12em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
+
+/* Четыре колонки перечислений живут только на посадочных, поэтому сетка
+   объявлена здесь, а не в ядре. */
+.xin-lp .xin-grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px 22px; }
+
+/* ==========================================================================
+   Шаги
+   Нумерованный ряд, а не четыре карточки: над каждым шагом линейка, номер
+   антиквой, дальше заголовок и абзац. Приподниматься при наведении нечему —
+   это текст, а не кнопка.
+   ========================================================================== */
+
+.xin-steps {
+	display: grid; gap: 26px 22px;
+	grid-template-columns: minmax(0, 1fr);
+	counter-reset: xin-step;
+}
 @media (min-width: 700px) { .xin-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1100px) { .xin-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.xin-step { position: relative; padding: 22px 20px; border-radius: var(--radius-lg); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); transition: transform .25s ease, border-color .25s ease; }
-.xin-step:hover { transform: translateY(-3px); border-color: hsl(var(--primary) / .4); }
-.xin-step__num { position: absolute; top: 16px; right: 18px; font-size: 30px; font-weight: 900; line-height: 1; color: hsl(var(--primary) / .18); }
-.xin-step__icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 12px; border-radius: 12px; background: hsl(var(--primary) / .12); color: hsl(var(--primary)); }
-.xin-step__icon svg { width: 20px; height: 20px; }
-.xin-step h3 { font-size: 16px; margin-bottom: 6px; }
+
+.xin-step {
+	position: relative;
+	padding: 18px 0 0;
+	border: 0; border-top: 2px solid hsl(var(--fg)); border-radius: 0;
+	background: none;
+	transition: none;
+}
+.xin-step:hover { transform: none; border-color: hsl(var(--fg)); }
+.xin-step__num {
+	position: static;
+	display: block; margin-bottom: 10px;
+	font-family: var(--font-display);
+	font-size: 26px; font-weight: 600; line-height: 1;
+	font-variant-numeric: tabular-nums;
+	color: hsl(var(--muted-fg));
+}
+/* Иконка в цветном квадрате — главная примета генерённого блока. Значок
+   остаётся, плитка под ним уходит. */
+.xin-step__icon {
+	display: block; width: auto; height: auto;
+	margin-bottom: 10px;
+	border-radius: 0;
+	background: none;
+	color: hsl(var(--muted-fg));
+}
+.xin-step__icon svg { width: 18px; height: 18px; }
+.xin-step h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .xin-step p { margin: 0; font-size: 13.5px; color: hsl(var(--muted-fg)); }
 
-.xin-feature { height: 100%; padding: 22px 20px; border-radius: var(--radius-lg); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
-.xin-feature:hover { transform: translateY(-3px); border-color: hsl(var(--primary) / .35); box-shadow: var(--shadow-2); }
-.xin-feature__icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 12px; border-radius: 12px; background: hsl(var(--primary) / .12); color: hsl(var(--primary)); }
-.xin-feature__icon svg { width: 21px; height: 21px; }
-.xin-feature h3 { font-size: 16px; margin-bottom: 6px; }
+/* ==========================================================================
+   Плитки возможностей
+   ========================================================================== */
+
+.xin-feature {
+	height: 100%;
+	padding: 22px;
+	border: var(--rule); border-radius: var(--radius);
+	background: hsl(var(--card));
+	transition: border-color .16s ease;
+}
+.xin-feature:hover { transform: none; box-shadow: none; border-color: hsl(var(--fg) / .45); }
+.xin-feature__icon {
+	display: block; width: auto; height: auto;
+	margin-bottom: 12px;
+	border-radius: 0;
+	background: none;
+	color: hsl(var(--muted-fg));
+}
+.xin-feature__icon svg { width: 19px; height: 19px; }
+.xin-feature h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .xin-feature p { margin: 0; font-size: 13.5px; color: hsl(var(--muted-fg)); }
-.xin-feature--gold:hover { border-color: hsl(var(--gold) / .4); }
-.xin-feature--gold .xin-feature__icon { background: hsl(var(--gold) / .14); color: hsl(var(--gold)); }
+.xin-feature--gold:hover { border-color: hsl(var(--gold) / .55); }
+.xin-feature--gold .xin-feature__icon { background: none; color: hsl(var(--gold)); }
 
-.xin-plans { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 760px) { .xin-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.xin-plan { position: relative; display: flex; flex-direction: column; padding: 26px 24px; border-radius: var(--radius-lg); background: hsl(var(--card)); border: 1px solid hsl(var(--border)); }
-.xin-plan.is-featured { border-color: hsl(var(--gold) / .45); box-shadow: 0 18px 44px hsl(var(--gold) / .12); }
-.xin-plan.is-featured::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(120% 80% at 50% 0%, hsl(var(--gold) / .12), transparent 60%); pointer-events: none; }
-.xin-plan__flag { position: absolute; top: -11px; left: 24px; padding: .2rem .7rem; border-radius: 999px; background: hsl(var(--gold)); color: hsl(var(--gold-fg)); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
-.xin-plan h3 { font-size: 20px; margin-bottom: 4px; }
-.xin-plan__price { font-size: 26px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 16px; }
-.xin-plan__price small { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0; color: hsl(var(--muted-fg)); margin-top: 2px; }
-.xin-plan__list { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 10px; font-size: 14px; }
-.xin-plan__list li { display: flex; align-items: flex-start; gap: 9px; }
-.xin-plan__list svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: hsl(var(--primary)); }
-.xin-plan.is-featured .xin-plan__list svg { color: hsl(var(--gold)); }
-.xin-plan .btn { margin-top: auto; }
+/* ==========================================================================
+   Частые вопросы
+   Аккордеон Bootstrap приводится к списку строк: без плашек, без заливки
+   раскрытого вопроса.
+   ========================================================================== */
 
-.xin-faq .accordion-item { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: var(--radius) !important; margin-bottom: 8px; overflow: hidden; }
-.xin-faq .accordion-button { background: transparent; color: hsl(var(--fg)); font-weight: 600; font-size: 15px; padding: 16px 18px; box-shadow: none; }
-.xin-faq .accordion-button:not(.collapsed) { background: hsl(var(--primary) / .07); color: hsl(var(--primary)); }
-.xin-faq .accordion-button:focus { box-shadow: 0 0 0 3px hsl(var(--ring) / .18); }
-.xin-faq .accordion-button::after { filter: none; opacity: .6; }
-.xin-faq .accordion-body { padding: 0 18px 18px; font-size: 14px; color: hsl(var(--muted-fg)); }
+.xin-faq .accordion-item {
+	margin-bottom: 0;
+	border: 0; border-bottom: var(--rule); border-radius: 0 !important;
+	background: none;
+	overflow: hidden;
+}
+.xin-faq .accordion-item:first-child { border-top: var(--rule); }
+.xin-faq .accordion-button {
+	padding: 17px 40px 17px 0;
+	background: transparent;
+	color: hsl(var(--fg));
+	font-family: var(--font); font-size: 15px; font-weight: 550;
+	box-shadow: none;
+}
+.xin-faq .accordion-button:not(.collapsed) { background: transparent; color: hsl(var(--fg)); }
+.xin-faq .accordion-button:focus { box-shadow: none; }
+.xin-faq .accordion-button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: -2px; }
+.xin-faq .accordion-button::after { filter: none; opacity: .5; }
+.xin-faq .accordion-body { padding: 0 0 18px; font-size: 14px; color: hsl(var(--muted-fg)); max-width: 68ch; }
 
-.xin-cta--wide { text-align: center; padding: 40px 24px; }
-.xin-cta--wide h2 { font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem); margin-bottom: 8px; }
-.xin-cta--wide p { max-width: 56ch; margin: 0 auto 20px; }
-.xin-cta--wide .xin-cta__icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 16px; background: hsl(var(--primary) / .12); }
+/* ==========================================================================
+   Широкий призыв
+   ========================================================================== */
 
-.xin-info h2 { margin-top: 1.8em; }
+.xin-cta--wide { padding: 44px 26px; text-align: center; }
+.xin-cta--wide h2 { margin: 0 0 10px; font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem); }
+.xin-cta--wide p { max-width: 56ch; margin: 0 auto 22px; }
+/* Иконка в кружке над заголовком убрана вместе с ней же в .xin-cta ядра. */
+.xin-cta--wide .xin-cta__icon { display: none; }
+
+/* ==========================================================================
+   Справочная страница
+   ========================================================================== */
+
+.xin-info h2 { margin-top: 1.9em; }
 .xin-info h2:first-child { margin-top: 0; }
-.xin-info__updated { margin-top: 32px; padding-top: 16px; border-top: 1px solid hsl(var(--border)); font-size: 12.5px; }
+.xin-info__updated {
+	margin-top: 34px; padding-top: 16px;
+	border-top: var(--rule);
+	font-size: 12.5px;
+}
 
-.xin-quicklinks { display: grid; gap: 6px; }
-.xin-quicklinks a { display: flex; align-items: center; gap: .6rem; padding: .6rem .75rem; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; color: hsl(var(--fg)); }
-.xin-quicklinks a:hover { background: hsl(var(--accent)); color: hsl(var(--primary)); }
-.xin-quicklinks svg { width: 17px; height: 17px; color: hsl(var(--primary)); }
+.xin-quicklinks { display: grid; gap: 0; }
+.xin-quicklinks a {
+	display: flex; align-items: center; gap: .6rem;
+	padding: .6rem 0;
+	border-bottom: var(--rule);
+	border-radius: 0;
+	font-size: 14px; font-weight: 500;
+	color: hsl(var(--fg));
+	transition: color .16s ease;
+}
+.xin-quicklinks a:first-child { border-top: var(--rule); }
+.xin-quicklinks a:hover { background: none; color: hsl(var(--primary)); }
+.xin-quicklinks svg { width: 16px; height: 16px; flex: none; color: hsl(var(--muted-fg)); }
+.xin-quicklinks a:hover svg { color: hsl(var(--primary)); }
+
+/* ==========================================================================
+   Профиль автора: добивки к parts.css
+   ========================================================================== */
 
 .xin-profile.has-cover .xin-profile__cover { background: none; }
-.xin-profile__cover img { width: 100%; height: 100%; object-fit: cover; opacity: .5; }
-.xin-profile__tagline { margin: 2px 0 6px; font-size: 15px; color: hsl(var(--fg) / .85); }
-.xin-profile__links { display: inline-flex; gap: 4px; }
+/* Обложка приглушена, чтобы имя и цифры под ней читались без второй заливки
+   поверх картинки. */
+.xin-profile__cover img { width: 100%; height: 100%; object-fit: cover; opacity: .45; }
+[data-theme="dark"] .xin-profile__cover img { opacity: .35; }
+.xin-profile__tagline { margin: 4px 0 8px; font-size: 15px; color: hsl(var(--fg) / .85); }
+.xin-profile__links { display: inline-flex; gap: 2px; }

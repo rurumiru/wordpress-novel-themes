@@ -1,10 +1,13 @@
 /*
- * Раздел комиксов: витрина, каталог, страница тайтла и читалка.
+ * Раздел комиксов: витрина, каталог, страница тайтла, читалка страниц.
  *
- * Всё строится на тех же токенах, что и раздел новелл, поэтому обе схемы и обе
- * темы работают без отдельных правил. Отличается плотность: у комикса единица
- * витрины — постер, и его на экране должно быть заметно больше, чем карточек
- * новелл.
+ * Файл подключается последним и только пользуется системой из style.css:
+ * токены, скругления и волосяные линии приходят оттуда. Собственные значения
+ * появляются ровно в одном месте — в читалке, где полотно страниц осознанно
+ * вынесено из палитры; там же объяснено, почему.
+ *
+ * Плотность у раздела своя: единица витрины — постер, и его на экране должно
+ * быть заметно больше, чем карточек новелл.
  */
 
 /* -------------------------------------------------------------------------
@@ -13,40 +16,39 @@
 
 .xin-sections {
 	display: inline-flex;
-	padding: 3px;
 	gap: 2px;
-	border-radius: 999px;
-	background: hsl(var(--muted));
-	border: 1px solid hsl(var(--border));
+	padding: 2px;
+	border: var(--rule);
+	border-radius: var(--radius-sm);
+	background: transparent;
 }
 
 .xin-sections__item {
 	display: inline-flex;
 	align-items: center;
-	gap: 6px;
-	padding: 5px 14px;
-	border-radius: 999px;
+	padding: .3rem .7rem;
+	border-radius: 3px;
+	font-family: var(--font);
 	font-size: 13px;
-	font-weight: 600;
-	line-height: 1.2;
+	font-weight: 550;
+	line-height: 1.35;
 	color: hsl(var(--muted-fg));
 	white-space: nowrap;
-	transition: background .18s ease, color .18s ease;
+	transition: background-color .16s ease, color .16s ease;
 }
 
-.xin-sections__item svg { width: 15px; height: 15px; }
+/* Иконка у пункта в шапке ничего не различает — «Новеллы» и «Комиксы»
+   различает слово. Разметка её выводит, поэтому глушим здесь. */
+.xin-sections__item svg { display: none; }
 
 .xin-sections__item:hover { color: hsl(var(--fg)); }
 
-.xin-sections__item.is-current {
-	background: hsl(var(--card));
-	color: hsl(var(--fg));
-	box-shadow: var(--shadow-1);
-}
-
-@media (max-width: 991px) {
-	.xin-sections__item span { display: none; }
-	.xin-sections__item { padding: 5px 10px; }
+/* Текущий раздел залит чернилами, а не акцентом: киноварь в шапке спорила бы
+   с обложками, ради которых в раздел и приходят. */
+.xin-sections__item.is-current,
+.xin-sections__item.is-current:hover {
+	background: hsl(var(--fg));
+	color: hsl(var(--bg));
 }
 
 /* -------------------------------------------------------------------------
@@ -55,142 +57,133 @@
 
 .xin-bill {
 	position: relative;
-	overflow: hidden;
-	padding: 34px 0 40px;
-	isolation: isolate;
+	padding: 44px 0 48px;
+	border-bottom: var(--rule);
 }
 
-.xin-bill__art {
-	position: absolute;
-	inset: 0;
-	z-index: -2;
-}
-
-.xin-bill__art img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	filter: blur(34px) saturate(1.2);
-	transform: scale(1.2);
-	opacity: .42;
-}
-
-/* Ложе под текстом: без него светлая обложка съедает белые буквы. */
-.xin-bill::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background:
-		linear-gradient(to right, hsl(var(--bg) / .96) 0%, hsl(var(--bg) / .78) 52%, hsl(var(--bg) / .5) 100%),
-		linear-gradient(to bottom, transparent 55%, hsl(var(--bg)) 100%);
-}
+/*
+ * Размытый арт под афишей и градиентное ложе над ним убраны: это была та же
+ * подсветка, что «аврора» на главной, — самая заметная деталь экрана, ничего
+ * при этом не сообщавшая. Разметка их по-прежнему выводит, поэтому глушим
+ * здесь, а не в шаблоне.
+ */
+.xin-bill__art { display: none; }
+.xin-bill::after { content: none; }
 
 .xin-bill__in {
 	display: grid;
 	grid-template-columns: 190px minmax(0, 1fr) 210px;
-	gap: 26px;
+	gap: 36px;
 	align-items: center;
 }
 
 .xin-bill__poster {
 	display: block;
 	aspect-ratio: 2 / 3;
-	border-radius: var(--radius-lg);
 	overflow: hidden;
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
-	box-shadow: var(--shadow-3);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
+	transition: box-shadow .2s ease;
 }
 
 .xin-bill__poster img { width: 100%; height: 100%; object-fit: cover; }
+.xin-bill__poster:hover { box-shadow: inset 0 0 0 1px hsl(var(--fg) / .2); }
 
 .xin-bill__kicker {
 	display: inline-flex;
 	align-items: center;
-	gap: 6px;
-	font-size: 11.5px;
-	font-weight: 700;
-	letter-spacing: .08em;
+	gap: .6em;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .17em;
 	text-transform: uppercase;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-bill__kicker svg { width: 14px; height: 14px; }
+.xin-bill__kicker svg { width: 13px; height: 13px; }
 
-.xin-bill__title { margin: 10px 0 0; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; }
+.xin-bill__title {
+	margin: 16px 0 0;
+	font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.9rem);
+	line-height: 1.08;
+	letter-spacing: -.022em;
+}
+
 .xin-bill__title a { color: inherit; }
 .xin-bill__title a:hover { color: hsl(var(--primary)); }
 
+/* Точки-разделители рисует CSS: шаблон не знает заранее, какие из фактов
+   окажутся пустыми. */
 .xin-bill__facts {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 8px 14px;
-	margin-top: 10px;
-	font-size: 13.5px;
+	margin-top: 12px;
+	font-size: 13px;
+	font-weight: 500;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-bill__facts b {
-	display: inline-flex;
-	align-items: center;
-	gap: 4px;
-	color: hsl(var(--fg));
+.xin-bill__facts > * { display: inline-flex; align-items: center; gap: .3em; }
+.xin-bill__facts > * + *::before {
+	content: "·";
+	margin: 0 .55em;
+	color: hsl(var(--border));
+	font-weight: 400;
 }
-
-.xin-bill__facts svg { width: 15px; height: 15px; }
+.xin-bill__facts b { font-weight: 600; color: hsl(var(--fg)); }
+.xin-bill__facts svg { width: 14px; height: 14px; color: hsl(var(--gold)); }
 
 .xin-bill__lead {
-	margin: 14px 0 0;
-	max-width: 56ch;
+	margin: 16px 0 0;
+	max-width: 54ch;
 	font-size: 15px;
-	line-height: 1.55;
+	line-height: 1.6;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-bill__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.xin-bill__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 
-.xin-bill__rail {
-	display: grid;
-	gap: 6px;
-	align-content: start;
-}
+.xin-bill__rail { display: grid; align-content: start; gap: 0; }
 
 .xin-bill__rail-label {
-	font-size: 11.5px;
-	font-weight: 700;
-	letter-spacing: .07em;
+	padding-bottom: 11px;
+	border-bottom: var(--rule);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .17em;
 	text-transform: uppercase;
 	color: hsl(var(--muted-fg));
-	margin-bottom: 2px;
 }
 
 .xin-bill__rail-item {
 	display: flex;
 	align-items: center;
-	gap: 9px;
-	padding: 5px;
-	border-radius: var(--radius-sm);
-	transition: background .18s ease;
+	gap: 11px;
+	padding: 9px 0;
+	border-bottom: var(--rule);
 }
 
-.xin-bill__rail-item:hover { background: hsl(var(--accent)); }
+.xin-bill__rail-item:hover .xin-bill__rail-name { color: hsl(var(--primary)); }
 
 .xin-bill__rail-cover {
 	flex: 0 0 auto;
-	width: 34px;
-	height: 51px;
+	width: 32px;
+	height: 48px;
 	overflow: hidden;
-	border-radius: 6px;
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
 }
 
 .xin-bill__rail-cover img { width: 100%; height: 100%; object-fit: cover; }
 
 .xin-bill__rail-name {
 	font-size: 12.5px;
-	font-weight: 600;
-	line-height: 1.25;
+	font-weight: 500;
+	line-height: 1.3;
+	transition: color .16s ease;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -198,12 +191,13 @@
 }
 
 @media (max-width: 991px) {
-	.xin-bill__in { grid-template-columns: 140px minmax(0, 1fr); }
+	.xin-bill { padding: 32px 0 36px; }
+	.xin-bill__in { grid-template-columns: 140px minmax(0, 1fr); gap: 24px; }
 	.xin-bill__rail { display: none; }
 }
 
 @media (max-width: 575px) {
-	.xin-bill__in { grid-template-columns: 108px minmax(0, 1fr); gap: 16px; }
+	.xin-bill__in { grid-template-columns: 104px minmax(0, 1fr); gap: 16px; }
 	.xin-bill__lead { display: none; }
 }
 
@@ -211,46 +205,61 @@
  * Неделя выходов
  * ---------------------------------------------------------------------- */
 
+/* Дни — те же вкладки, что и везде в теме: строка по волосяной линии, у
+   выбранного дня чернильное подчёркивание. Прежние кнопки-плашки читались как
+   семь одинаковых карточек и спорили с сеткой постеров под ними. */
 .xin-week__days {
 	display: flex;
-	gap: 6px;
+	gap: 22px;
+	margin-bottom: 22px;
+	padding-bottom: 0;
+	border-bottom: var(--rule);
 	overflow-x: auto;
-	padding-bottom: 4px;
-	margin-bottom: 16px;
-	scrollbar-width: thin;
+	scrollbar-width: none;
 }
+
+.xin-week__days::-webkit-scrollbar { display: none; }
 
 .xin-week__day {
-	flex: 1 0 auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 2px;
-	min-width: 62px;
-	padding: 9px 12px;
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius);
-	background: hsl(var(--card));
-	color: hsl(var(--muted-fg));
-	font-weight: 600;
+	position: relative;
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: baseline;
+	gap: .45em;
+	padding: 0 0 12px;
+	border: 0;
+	background: none;
 	cursor: pointer;
-	transition: border-color .18s ease, background .18s ease, color .18s ease;
+	font-family: var(--font);
+	font-size: 14px;
+	font-weight: 550;
+	color: hsl(var(--muted-fg));
+	transition: color .16s ease;
 }
 
-.xin-week__day:hover { border-color: hsl(var(--ring)); color: hsl(var(--fg)); }
+.xin-week__day:hover { color: hsl(var(--fg)); }
+.xin-week__day.active { color: hsl(var(--fg)); }
 
-.xin-week__day.active {
-	background: hsl(var(--primary));
-	border-color: hsl(var(--primary));
-	color: hsl(var(--primary-fg));
+.xin-week__day.active::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 -1px 0;
+	height: 2px;
+	background: hsl(var(--fg));
 }
 
-.xin-week__day.is-empty { opacity: .55; }
+.xin-week__day.is-empty { color: hsl(var(--muted-fg) / .5); }
 
-.xin-week__short { font-size: 13.5px; }
-.xin-week__count { font-size: 11.5px; font-variant-numeric: tabular-nums; opacity: .8; }
+.xin-week__short { font-size: inherit; }
 
-.xin-week__none { color: hsl(var(--muted-fg)); font-size: 14px; margin: 0; padding: 18px 0; }
+.xin-week__count {
+	font-size: 12px;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	color: hsl(var(--muted-fg));
+}
+
+.xin-week__none { margin: 0; padding: 22px 0; font-size: 14px; color: hsl(var(--muted-fg)); }
 
 /* -------------------------------------------------------------------------
  * Лента обновлений, собранная по тайтлам
@@ -259,68 +268,69 @@
 .xin-upd {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-	gap: 12px;
+	gap: 0 36px;
 }
 
+/* Рамок вокруг каждого тайтла нет: лента набирается как полоса в газете —
+   колонки, а между записями линейка. */
 .xin-upd__card {
 	display: flex;
-	gap: 12px;
-	padding: 12px;
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius-lg);
-	background: hsl(var(--card));
-	transition: border-color .18s ease;
+	gap: 14px;
+	padding: 16px 0;
+	border-top: var(--rule);
 }
-
-.xin-upd__card:hover { border-color: hsl(var(--ring)); }
 
 .xin-upd__cover {
 	flex: 0 0 auto;
-	width: 62px;
-	height: 93px;
+	width: 58px;
+	height: 87px;
 	overflow: hidden;
-	border-radius: var(--radius-sm);
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
 }
 
 .xin-upd__cover img { width: 100%; height: 100%; object-fit: cover; }
 
-.xin-upd__body { min-width: 0; flex: 1; }
+.xin-upd__body { flex: 1; min-width: 0; }
 
 .xin-upd__title {
-	margin: 0 0 6px;
-	font-size: 14.5px;
-	font-weight: 700;
-	line-height: 1.25;
+	margin: 0 0 8px;
+	font-family: var(--font-display);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.28;
+	letter-spacing: -.008em;
 }
 
 .xin-upd__title a:hover { color: hsl(var(--primary)); }
 
-.xin-upd__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.xin-upd__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
 
 .xin-upd__list a {
 	display: flex;
 	align-items: center;
-	gap: 7px;
+	gap: .55em;
 	padding: 3px 6px;
 	margin: 0 -6px;
 	border-radius: var(--radius-sm);
 	font-size: 12.5px;
 	color: hsl(var(--muted-fg));
-	transition: background .16s ease;
+	transition: background-color .16s ease, color .16s ease;
 }
 
-.xin-upd__list a:hover { background: hsl(var(--accent)); color: hsl(var(--fg)); }
-.xin-upd__list b { font-family: var(--font-mono); color: hsl(var(--fg)); }
-.xin-upd__list svg { width: 13px; height: 13px; flex: 0 0 auto; }
+.xin-upd__list a:hover { background: hsl(var(--muted)); color: hsl(var(--fg)); }
+.xin-upd__list b { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; color: hsl(var(--fg)); }
+.xin-upd__list svg { width: 12px; height: 12px; flex: 0 0 auto; opacity: .7; }
 
-.xin-upd__name {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+.xin-upd__name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.xin-upd__list time {
+	margin-left: auto;
+	flex: 0 0 auto;
+	font-size: 11.5px;
+	font-variant-numeric: tabular-nums;
 }
-
-.xin-upd__list time { margin-left: auto; flex: 0 0 auto; font-size: 11.5px; opacity: .8; }
 
 /* -------------------------------------------------------------------------
  * Топ раздела
@@ -333,9 +343,14 @@
 	display: flex;
 	gap: 26px;
 	overflow-x: auto;
-	scroll-snap-type: x mandatory;
+	scroll-snap-type: x proximity;
 	scrollbar-width: thin;
+	scrollbar-color: hsl(var(--border)) transparent;
 }
+
+.xin-top::-webkit-scrollbar { height: 6px; }
+.xin-top::-webkit-scrollbar-track { background: transparent; }
+.xin-top::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 999px; }
 
 .xin-top__item { flex: 0 0 auto; scroll-snap-align: start; }
 
@@ -343,39 +358,47 @@
 	display: grid;
 	grid-template-columns: auto 108px;
 	align-items: end;
-	gap: 4px;
+	gap: 0 12px;
 }
 
-/* Цифра ранга наполовину заезжает под обложку: это читается как афишный
-   номер, а не как подпись рядом. */
+/* Номер набран антиквой и стоит рядом с постером, а не наезжает на него:
+   прежняя цифра с обводкой перекрывала обложку и была главным пятном блока. */
 .xin-top__num {
-	font-size: 68px;
-	font-weight: 800;
-	line-height: .8;
-	letter-spacing: -.04em;
-	color: hsl(var(--card));
-	-webkit-text-stroke: 2px hsl(var(--muted-fg) / .55);
-	margin-right: -22px;
-	z-index: 1;
+	font-family: var(--font-display);
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -.03em;
+	font-variant-numeric: tabular-nums;
+	color: hsl(var(--muted-fg) / .55);
 }
+
+.xin-top__item:nth-child(-n+3) .xin-top__num { color: hsl(var(--primary)); }
 
 .xin-top__cover {
 	width: 108px;
 	aspect-ratio: 2 / 3;
 	overflow: hidden;
-	border-radius: var(--radius);
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
-	box-shadow: var(--shadow-2);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
+	transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .xin-top__cover img { width: 100%; height: 100%; object-fit: cover; }
 
-.xin-top__meta { grid-column: 2; display: grid; gap: 2px; padding-top: 7px; }
+.xin-top__item a:hover .xin-top__cover {
+	transform: translateY(-3px);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .2);
+}
+
+.xin-top__meta { grid-column: 2; display: grid; gap: 3px; padding-top: 10px; }
 
 .xin-top__name {
-	font-size: 13px;
+	font-family: var(--font-display);
+	font-size: 14px;
 	font-weight: 600;
-	line-height: 1.25;
+	line-height: 1.28;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -385,107 +408,135 @@
 .xin-top__facts {
 	display: flex;
 	align-items: center;
-	gap: 4px;
-	font-size: 11.5px;
+	gap: .3em;
+	font-size: 12.5px;
+	font-weight: 500;
 	color: hsl(var(--muted-fg));
 }
 
-.xin-top__facts svg { width: 12px; height: 12px; }
+.xin-top__facts svg { width: 12px; height: 12px; color: hsl(var(--gold)); }
 
 /* -------------------------------------------------------------------------
- * Сетка постеров
+ * Сетка постеров и карточка комикса
  * ---------------------------------------------------------------------- */
 
 .xin-cm-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	gap: 18px 14px;
+	gap: 26px 22px;
 }
 
 .xin-cm-grid--wide { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
 
 @media (max-width: 575px) {
 	.xin-cm-grid,
-	.xin-cm-grid--wide { grid-template-columns: repeat(auto-fill, minmax(108px, 1fr)); gap: 14px 10px; }
+	.xin-cm-grid--wide { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 20px 14px; }
 }
 
+.xin-cm-card { position: relative; min-width: 0; }
+
+/* Постер и подпись — всё, из чего состоит карточка. Рамку заменяет внутреннее
+   кольцо: оно не съедает пиксель картинки и не спорит с её краем. */
 .xin-cm-card__poster {
 	position: relative;
 	display: block;
 	aspect-ratio: 2 / 3;
 	overflow: hidden;
-	border-radius: var(--radius);
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
-	box-shadow: var(--shadow-1);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
+	transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.xin-cm-card__poster img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	transition: transform .4s ease;
+.xin-cm-card__poster img { width: 100%; height: 100%; object-fit: cover; }
+
+.xin-cm-card:hover .xin-cm-card__poster {
+	transform: translateY(-3px);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .2);
 }
 
-.xin-cm-card:hover .xin-cm-card__poster img { transform: scale(1.05); }
+.xin-cm-card__poster--empty { display: grid; place-items: center; color: hsl(var(--muted-fg) / .5); }
+.xin-cm-card__poster--empty svg { width: 30px; height: 30px; }
 
-.xin-cm-card__poster--empty {
-	display: grid;
-	place-items: center;
-	color: hsl(var(--muted-fg));
-}
-
-.xin-cm-card__poster--empty svg { width: 32px; height: 32px; }
-
-.xin-cm-card--blur .xin-cm-card__poster img { filter: blur(14px); }
-.xin-cm-card--blur:hover .xin-cm-card__poster img { filter: none; }
+.xin-cm-card--blur .xin-cm-card__poster img { filter: blur(14px); transform: scale(1.1); }
+.xin-cm-card--blur:hover .xin-cm-card__poster img { filter: none; transform: none; }
 
 .xin-cm-card__badges {
 	position: absolute;
-	top: 6px;
-	left: 6px;
+	inset: 7px auto auto 7px;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 4px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 5px;
+	pointer-events: none;
 }
 
+.xin-cm-card__badges .xin-badge {
+	background: hsl(28 22% 6% / .72);
+	color: hsl(40 30% 97%);
+	backdrop-filter: blur(4px);
+}
+
+.xin-cm-card__badges .xin-badge--adult { background: hsl(0 58% 46%); }
+
+/* Ранг — цифра антиквой прямо на постере, как номер на афише; плашки под ней
+   больше нет. */
 .xin-cm-card__rank {
 	position: absolute;
-	top: 6px;
-	right: 6px;
-	min-width: 22px;
-	height: 22px;
-	display: grid;
-	place-items: center;
-	padding: 0 6px;
-	border-radius: var(--radius-sm);
-	background: hsl(220 20% 4% / .72);
-	color: #fff;
-	font-size: 12px;
-	font-weight: 700;
+	inset: 3px 9px auto auto;
+	display: block;
+	min-width: 0;
+	height: auto;
+	padding: 0;
+	background: none;
+	font-family: var(--font-display);
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.1;
+	color: hsl(40 30% 97%);
+	text-shadow: 0 1px 10px hsl(28 22% 6% / .85);
+	pointer-events: none;
 }
 
-.xin-cm-card__rank.is-top { background: hsl(var(--gold)); color: hsl(var(--gold-fg)); }
+.xin-cm-card__rank.is-top { background: none; color: hsl(var(--gold)); }
 
+/*
+ * Число глав и оценка живут на самом постере и проявляются по наведению: под
+ * обложкой у карточки только имя, всё прочее отвлекает от картинки. Тёмная
+ * накладка на изображении — разрешённое исключение из палитры, она тёплая,
+ * чтобы не холодить рисунок. Наведения нет на тач-устройствах — там строка
+ * видна всегда.
+ */
 .xin-cm-card__over {
 	position: absolute;
 	inset: auto 0 0 0;
 	display: flex;
-	gap: 10px;
-	padding: 18px 8px 7px;
-	background: linear-gradient(to top, hsl(220 20% 4% / .82), transparent);
-	color: #fff;
+	gap: 12px;
+	padding: 26px 9px 8px;
+	background: linear-gradient(to top, hsl(28 22% 6% / .85), transparent);
+	color: hsl(40 30% 97%);
 	font-size: 12px;
-	font-weight: 600;
+	font-weight: 500;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .16s ease;
 }
 
-.xin-cm-card__over span { display: inline-flex; align-items: center; gap: 3px; }
+.xin-cm-card:hover .xin-cm-card__over,
+.xin-cm-card:focus-within .xin-cm-card__over { opacity: 1; }
+
+.xin-cm-card__over span { display: inline-flex; align-items: center; gap: .3em; }
 .xin-cm-card__over svg { width: 13px; height: 13px; }
 
+@media (hover: none) { .xin-cm-card__over { opacity: 1; } }
+
 .xin-cm-card__title {
-	margin: 7px 0 0;
-	font-size: 13.5px;
+	margin: 11px 0 0;
+	font-family: var(--font-display);
+	font-size: 15px;
 	font-weight: 600;
-	line-height: 1.3;
+	line-height: 1.28;
+	letter-spacing: -.008em;
 }
 
 .xin-cm-card__title a {
@@ -497,272 +548,346 @@
 
 .xin-cm-card__title a:hover { color: hsl(var(--primary)); }
 
+@media (max-width: 575px) { .xin-cm-card__title { font-size: 13.5px; } }
+
 /* -------------------------------------------------------------------------
  * Пустой раздел
  * ---------------------------------------------------------------------- */
 
-.xin-cm-empty { text-align: center; padding: 44px 20px; }
-.xin-cm-empty svg { width: 38px; height: 38px; color: hsl(var(--muted-fg)); }
-.xin-cm-empty h1, .xin-cm-empty h2 { margin: 12px 0 6px; font-size: 22px; }
-.xin-cm-empty p { margin: 0 auto 16px; max-width: 42ch; }
+.xin-cm-empty {
+	display: grid;
+	justify-items: center;
+	gap: 8px;
+	padding: 64px 24px;
+	text-align: center;
+	color: hsl(var(--muted-fg));
+}
+
+.xin-cm-empty > svg { width: 32px; height: 32px; opacity: .4; margin-bottom: 4px; }
+.xin-cm-empty h1, .xin-cm-empty h2 { margin: 0; color: hsl(var(--fg)); }
+.xin-cm-empty p { margin: 0 auto; max-width: 46ch; font-size: 14px; }
+.xin-cm-empty .btn { margin-top: 14px; }
 
 /* -------------------------------------------------------------------------
- * Страница тайтла
+ * Страница тайтла: шапка
  * ---------------------------------------------------------------------- */
 
-.xin-ct__top { position: relative; overflow: hidden; padding: 28px 0 32px; isolation: isolate; }
-
-.xin-ct__art { position: absolute; inset: 0; z-index: -2; }
-
-.xin-ct__art img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	filter: blur(40px) saturate(1.15);
-	transform: scale(1.2);
-	opacity: .4;
+.xin-ct__top {
+	position: relative;
+	padding: 36px 0 40px;
+	border-bottom: var(--rule);
 }
 
-.xin-ct__top::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background: linear-gradient(to bottom, hsl(var(--bg) / .72), hsl(var(--bg)));
-}
+/* Тот же приём, что и в афише: размытая подложка из арта убрана, шапка тайтла
+   лежит прямо на бумаге. */
+.xin-ct__art { display: none; }
+.xin-ct__top::after { content: none; }
 
 .xin-ct__topin {
 	display: grid;
-	grid-template-columns: 232px minmax(0, 1fr);
-	gap: 28px;
+	grid-template-columns: 220px minmax(0, 1fr);
+	gap: 36px;
 	align-items: start;
 }
 
 .xin-ct__cover {
 	position: relative;
 	aspect-ratio: 2 / 3;
-	border-radius: var(--radius-lg);
 	overflow: hidden;
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
-	box-shadow: var(--shadow-3);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .09);
 }
 
-.xin-ct__cover img { width: 100%; height: 100%; object-fit: cover; }
+.xin-ct__cover img { width: 100%; height: 100%; object-fit: cover; transition: filter .2s ease; }
 .xin-ct__cover.is-adult img { filter: blur(16px); }
 .xin-ct__cover.is-adult:hover img { filter: none; }
 .xin-ct__cover .xin-badge { position: absolute; top: 8px; left: 8px; }
 
-.xin-ct__name { margin: 8px 0 2px; font-size: clamp(24px, 3vw, 38px); line-height: 1.12; }
-
-.xin-ct__original { margin: 0; color: hsl(var(--muted-fg)); font-size: 14px; }
-
-.xin-ct__stats {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px 28px;
-	margin: 18px 0 0;
+.xin-ct__name {
+	margin: 10px 0 0;
+	font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.9rem);
+	line-height: 1.08;
+	letter-spacing: -.022em;
 }
 
-.xin-ct__stats div { display: grid; gap: 1px; }
+.xin-ct__original { margin: 8px 0 0; font-size: 14px; color: hsl(var(--muted-fg)); }
+
+.xin-ct__stats { display: flex; flex-wrap: wrap; gap: 14px 34px; margin: 24px 0 0; }
+.xin-ct__stats div { display: grid; gap: 3px; }
 
 .xin-ct__stats dt {
 	font-size: 11px;
-	font-weight: 700;
-	letter-spacing: .07em;
+	font-weight: 600;
+	letter-spacing: .17em;
 	text-transform: uppercase;
 	color: hsl(var(--muted-fg));
 }
 
+/* Числа набраны антиквой: в книжной вёрстке цифра — часть набора, а не
+   показание прибора. */
 .xin-ct__stats dd {
 	margin: 0;
-	font-size: 19px;
-	font-weight: 700;
+	font-family: var(--font-display);
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 1.15;
 	font-variant-numeric: tabular-nums;
 }
 
-.xin-ct__stats .is-rating { display: inline-flex; align-items: center; gap: 5px; }
-.xin-ct__stats .is-rating svg { width: 17px; height: 17px; }
+.xin-ct__stats .is-rating { display: inline-flex; align-items: center; gap: .28em; }
+.xin-ct__stats .is-rating svg { width: 16px; height: 16px; color: hsl(var(--gold)); }
 
-.xin-ct__genres { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 18px; }
-
-.xin-ct__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.xin-ct__genres { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 22px; }
+.xin-ct__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 
 @media (max-width: 767px) {
-	.xin-ct__topin { grid-template-columns: 132px minmax(0, 1fr); gap: 16px; }
-	.xin-ct__stats { gap: 10px 18px; }
-	.xin-ct__stats dd { font-size: 16px; }
+	.xin-ct__topin { grid-template-columns: 120px minmax(0, 1fr); gap: 18px; }
+	.xin-ct__stats { gap: 12px 22px; margin-top: 18px; }
+	.xin-ct__stats dd { font-size: 17px; }
 }
 
-/* --- вкладки --- */
+/* -------------------------------------------------------------------------
+ * Страница тайтла: вкладки и описание
+ * ---------------------------------------------------------------------- */
 
-.xin-ct__body { padding: 26px 0 46px; }
+.xin-ct__body { padding: 30px 0 48px; }
 
 .xin-ct__tabs {
 	display: flex;
-	gap: 4px;
+	gap: 26px;
+	margin-bottom: 26px;
+	border-bottom: var(--rule);
 	overflow-x: auto;
-	border-bottom: 1px solid hsl(var(--border));
-	margin-bottom: 22px;
 	scrollbar-width: none;
 }
+
+.xin-ct__tabs::-webkit-scrollbar { display: none; }
 
 .xin-ct__tab {
 	position: relative;
 	flex: 0 0 auto;
 	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	padding: 11px 16px;
+	align-items: baseline;
+	gap: .45em;
+	padding: 0 0 12px;
 	border: 0;
-	background: transparent;
-	color: hsl(var(--muted-fg));
-	font-size: 14.5px;
-	font-weight: 600;
+	background: none;
 	cursor: pointer;
+	font-family: var(--font);
+	font-size: 14px;
+	font-weight: 550;
+	color: hsl(var(--muted-fg));
+	transition: color .16s ease;
 }
 
+/* Счётчик глав — просто число рядом с названием вкладки: пилюля читалась как
+   отдельная кнопка внутри кнопки. */
 .xin-ct__tab b {
-	font-size: 11.5px;
-	font-weight: 700;
-	padding: 1px 6px;
-	border-radius: 999px;
-	background: hsl(var(--muted));
+	padding: 0;
+	border-radius: 0;
+	background: none;
+	font-size: 12px;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
 	color: hsl(var(--muted-fg));
 }
 
 .xin-ct__tab:hover { color: hsl(var(--fg)); }
-
 .xin-ct__tab.active { color: hsl(var(--fg)); }
 
 .xin-ct__tab.active::after {
 	content: "";
 	position: absolute;
-	left: 12px;
-	right: 12px;
-	bottom: -1px;
+	inset: auto 0 -1px 0;
 	height: 2px;
-	border-radius: 2px;
-	background: hsl(var(--primary));
+	background: hsl(var(--fg));
 }
 
-.xin-ct__synopsis { max-width: 78ch; }
-.xin-ct__synopsis.is-collapsed { max-height: 240px; overflow: hidden; mask-image: linear-gradient(to bottom, #000 60%, transparent); }
+.xin-ct__panel[hidden] { display: none; }
+
+.xin-ct__synopsis { max-width: 72ch; }
+
+/* Свёрнутое описание гасится маской, а не плашкой поверх текста: так обрыв
+   читается как край листа. */
+.xin-ct__synopsis.is-collapsed {
+	max-height: 240px;
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent);
+	mask-image: linear-gradient(to bottom, #000 58%, transparent);
+}
 
 .xin-ct__more {
-	margin-top: 8px;
+	margin-top: 10px;
+	padding: 0;
 	border: 0;
 	background: transparent;
-	padding: 0;
-	color: hsl(var(--primary));
-	font-weight: 600;
-	font-size: 13.5px;
 	cursor: pointer;
+	font-family: var(--font);
+	font-size: 13px;
+	font-weight: 600;
+	color: hsl(var(--primary));
 }
 
+.xin-ct__more:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Справка о тайтле — не панель, а таблица: линейки сверху и снизу вместо рамки
+   и заливки. */
 .xin-ct__details {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 12px 24px;
-	margin: 26px 0 0;
-	padding: 18px;
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius-lg);
-	background: hsl(var(--card));
+	gap: 16px 34px;
+	margin: 30px 0 0;
+	padding: 20px 0;
+	border-top: var(--rule);
+	border-bottom: var(--rule);
 }
 
-.xin-ct__details div { display: grid; gap: 2px; }
-.xin-ct__details dt { font-size: 12px; color: hsl(var(--muted-fg)); }
-.xin-ct__details dd { margin: 0; font-size: 14px; font-weight: 600; }
+.xin-ct__details div { display: grid; gap: 3px; }
 
-.xin-ct__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-
-/* --- главы --- */
-
-.xin-ct__toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-
-.xin-ct__search {
-	position: relative;
-	flex: 1 1 220px;
-	display: flex;
-	align-items: center;
+.xin-ct__details dt {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .17em;
+	text-transform: uppercase;
+	color: hsl(var(--muted-fg));
 }
+
+.xin-ct__details dd { margin: 0; font-size: 14px; font-weight: 500; }
+
+.xin-ct__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+
+/* -------------------------------------------------------------------------
+ * Страница тайтла: список глав
+ * ---------------------------------------------------------------------- */
+
+.xin-ct__toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+
+.xin-ct__search { position: relative; flex: 1 1 240px; display: flex; align-items: center; }
 
 .xin-ct__search svg {
 	position: absolute;
 	left: 11px;
-	width: 16px;
-	height: 16px;
+	width: 15px;
+	height: 15px;
 	color: hsl(var(--muted-fg));
 	pointer-events: none;
 }
 
 .xin-ct__search input {
 	width: 100%;
-	padding: 9px 12px 9px 34px;
+	padding: .5rem .8rem .5rem 2.15rem;
 	border: 1px solid hsl(var(--input));
-	border-radius: var(--radius);
+	border-radius: var(--radius-sm);
 	background: hsl(var(--card));
-	color: inherit;
+	color: hsl(var(--fg));
+	font-family: var(--font);
 	font-size: 14px;
 }
 
-.xin-ct__search input:focus { outline: 2px solid hsl(var(--ring) / .4); outline-offset: 1px; }
+.xin-ct__search input:focus {
+	outline: none;
+	border-color: hsl(var(--ring));
+	box-shadow: 0 0 0 3px hsl(var(--ring) / .13);
+}
 
-.xin-ct__chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+/* Верхняя линейка живёт на самом списке, а не на первой строке: поиск прячет
+   строки через `hidden`, и рамка первой уехала бы вместе с ней. */
+.xin-ct__chapters {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-top: var(--rule);
+}
 
+/* Строка главы — строка списка, а не карточка: рамка вокруг каждой из полусотни
+   глав превращала список в стену прямоугольников. */
 .xin-ct__chapter {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	padding: 8px;
-	border: 1px solid hsl(var(--border));
-	border-radius: var(--radius);
-	background: hsl(var(--card));
-	transition: border-color .18s ease, background .18s ease;
+	gap: 14px;
+	padding: 10px 8px;
+	margin: 0 -8px;
+	border-bottom: var(--rule);
+	transition: background-color .16s ease;
 }
 
-.xin-ct__chapter:hover { border-color: hsl(var(--ring)); background: hsl(var(--accent)); }
-.xin-ct__chapter.is-locked { opacity: .72; }
+.xin-ct__chapter:hover { background: hsl(var(--muted) / .55); }
+.xin-ct__chapter.is-locked { opacity: .62; }
 
 .xin-ct__thumb {
 	flex: 0 0 auto;
-	width: 48px;
-	height: 48px;
+	width: 44px;
+	height: 44px;
 	display: grid;
 	place-items: center;
 	overflow: hidden;
-	border-radius: var(--radius-sm);
+	border-radius: var(--radius-art);
 	background: hsl(var(--muted));
-	color: hsl(var(--muted-fg));
+	color: hsl(var(--muted-fg) / .6);
+	box-shadow: inset 0 0 0 1px hsl(var(--fg) / .08);
 }
 
 .xin-ct__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.xin-ct__thumb svg { width: 18px; height: 18px; }
 
-.xin-ct__chapter-text { display: grid; gap: 2px; min-width: 0; }
+.xin-ct__chapter-text { display: grid; gap: 3px; min-width: 0; }
 
-.xin-ct__chapter-name { font-size: 14px; font-weight: 600; }
-.xin-ct__chapter-name b { font-family: var(--font-mono); color: hsl(var(--muted-fg)); margin-right: 5px; font-weight: 600; }
+.xin-ct__chapter-name {
+	font-family: var(--font-display);
+	font-size: 14.5px;
+	font-weight: 600;
+	line-height: 1.3;
+}
 
-.xin-ct__chapter-meta { display: flex; gap: 6px; font-size: 12.5px; color: hsl(var(--muted-fg)); }
+.xin-ct__chapter-name b {
+	margin-right: .45em;
+	font-family: var(--font-mono);
+	font-size: 12.5px;
+	font-weight: 500;
+	color: hsl(var(--muted-fg));
+}
 
-.xin-ct__lock { margin-left: auto; color: hsl(var(--muted-fg)); }
+.xin-ct__chapter-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: .45em;
+	font-size: 12.5px;
+	font-weight: 500;
+	color: hsl(var(--muted-fg));
+}
 
-.xin-ct__none { color: hsl(var(--muted-fg)); padding: 14px 0; }
+.xin-ct__lock { margin-left: auto; flex: 0 0 auto; color: hsl(var(--muted-fg)); }
+.xin-ct__lock svg { width: 15px; height: 15px; }
+
+.xin-ct__none { margin: 0; padding: 18px 0; font-size: 14px; color: hsl(var(--muted-fg)); }
 
 /* -------------------------------------------------------------------------
- * Читалка
+ * Читалка страниц
+ *
+ * Единственное место в теме, которое осознанно живёт вне палитры. Страница
+ * комикса — рисунок с собственным светом и собственным белым; тёплая бумага
+ * вокруг него слепит и перебивает цвет кадра. Поэтому полотно всегда лежит на
+ * нейтральном тёмном фоне — одинаково в светлой схеме и в тёмной.
+ *
+ * Чтобы это не превратилось в подмену темы, значения заведены отдельными
+ * переменными --cr-*: токены style.css не переопределяются, и всё остальное на
+ * странице — кнопки, бейджи, прогресс — продолжает жить на них.
  * ---------------------------------------------------------------------- */
 
-/* `body.xin-reading` в parts.css уже красит фон, поэтому селектор здесь той же
-   силы: без `body` тёмный фон читалки проигрывал бы светлому фону страницы. */
-body.xin-reading--comic { background: hsl(220 18% 8%); }
+/* Селектор той же силы, что и `body.xin-reading` в parts.css: без `body`
+   правило проиграло бы общему фону страницы. */
+body.xin-reading--comic { background: hsl(30 4% 9%); }
 
 .xin-cr {
+	--cr-bg: 30 4% 9%;
+	--cr-fg: 36 8% 91%;
 	--cr-width: 860px;
 	--cr-gap: 0px;
 	display: block;
 	min-height: 100vh;
-	color: #e8eaee;
+	color: hsl(var(--cr-fg));
 }
 
 .xin-cr[data-width="narrow"] { --cr-width: 620px; }
@@ -774,6 +899,33 @@ body.xin-reading--comic { background: hsl(220 18% 8%); }
 .xin-cr[data-gap="small"] { --cr-gap: 8px; }
 .xin-cr[data-gap="large"] { --cr-gap: 26px; }
 
+/* Кнопки перекрашиваются своими переменными: у `.btn` цвет берётся из
+   --bs-btn-*, и обычный `color` его не переопределит. */
+.xin-cr .btn-icon,
+.xin-cr__bar .btn-icon,
+.xin-cr__foot .btn-icon {
+	--bs-btn-bg: transparent;
+	--bs-btn-color: hsl(var(--cr-fg) / .82);
+	--bs-btn-hover-bg: hsl(var(--cr-fg) / .1);
+	--bs-btn-hover-color: hsl(var(--cr-fg));
+}
+
+.xin-cr .btn-outline,
+.xin-cr__foot .btn-outline {
+	--bs-btn-bg: transparent;
+	--bs-btn-color: hsl(var(--cr-fg));
+	--bs-btn-border-color: hsl(var(--cr-fg) / .22);
+	--bs-btn-hover-bg: hsl(var(--cr-fg) / .1);
+	--bs-btn-hover-color: hsl(var(--cr-fg));
+	--bs-btn-hover-border-color: hsl(var(--cr-fg) / .34);
+}
+
+.xin-cr__foot .btn-outline:hover { color: hsl(var(--cr-fg)); }
+
+/* `.xin-muted` берёт цвет из палитры — на тёмном полотне в светлой схеме он
+   оказался бы почти чёрным. */
+.xin-cr .xin-muted { color: hsl(var(--cr-fg) / .6); }
+
 .xin-cr__bar {
 	position: sticky;
 	top: 0;
@@ -782,88 +934,102 @@ body.xin-reading--comic { background: hsl(220 18% 8%); }
 	align-items: center;
 	gap: 12px;
 	padding: 8px 14px;
-	background: hsl(220 18% 8% / .92);
+	background: hsl(var(--cr-bg) / .92);
 	backdrop-filter: blur(10px);
-	border-bottom: 1px solid hsl(0 0% 100% / .08);
+	border-bottom: 1px solid hsl(var(--cr-fg) / .12);
 	transition: transform .25s ease;
 }
 
-.xin-cr__bar .btn-icon { color: #e8eaee; }
 .xin-cr.is-immersive .xin-cr__bar { transform: translateY(-100%); }
 
 .xin-cr__where { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 
 .xin-cr__novel {
-	font-size: 12px;
-	color: hsl(0 0% 100% / .6);
+	font-size: 11.5px;
+	color: hsl(var(--cr-fg) / .55);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.xin-cr__chapter { font-size: 14px; font-weight: 600; }
+.xin-cr__chapter { font-family: var(--font-display); font-size: 14.5px; font-weight: 600; }
+
+.xin-cr__chapter b {
+	margin-right: .4em;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 500;
+	color: hsl(var(--cr-fg) / .5);
+}
 
 .xin-cr__tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 
 .xin-cr__counter {
-	font-variant-numeric: tabular-nums;
-	font-size: 13px;
-	color: hsl(0 0% 100% / .7);
-	padding: 3px 9px;
+	padding: 3px 10px;
 	border-radius: 999px;
-	background: hsl(0 0% 100% / .08);
+	background: hsl(var(--cr-fg) / .09);
+	font-size: 12.5px;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	color: hsl(var(--cr-fg) / .8);
 }
 
+/* Панель настроек действительно висит над полотном — то самое исключение, где
+   тень уместна. */
 .xin-cr__panel {
 	position: sticky;
 	top: 52px;
 	z-index: 19;
 	display: grid;
-	gap: 16px;
+	gap: 18px;
 	max-width: var(--wrap);
 	margin: 0 auto;
-	padding: 16px;
+	padding: 18px;
+	border: 1px solid hsl(var(--cr-fg) / .12);
 	border-radius: var(--radius-lg);
-	background: hsl(220 18% 12%);
-	border: 1px solid hsl(0 0% 100% / .1);
+	background: hsl(30 4% 13%);
 	box-shadow: var(--shadow-3);
 }
 
-.xin-cr__group { display: grid; gap: 8px; }
+.xin-cr__panel[hidden] { display: none; }
+
+.xin-cr__group { display: grid; gap: 9px; }
 
 .xin-cr__group-label {
-	font-size: 11.5px;
-	font-weight: 700;
-	letter-spacing: .07em;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .17em;
 	text-transform: uppercase;
-	color: hsl(0 0% 100% / .5);
+	color: hsl(var(--cr-fg) / .5);
 }
 
 .xin-cr__choices { display: flex; flex-wrap: wrap; gap: 6px; }
 
 .xin-cr__choices button {
-	padding: 7px 14px;
+	padding: .4rem .9rem;
+	border: 1px solid hsl(var(--cr-fg) / .18);
 	border-radius: 999px;
-	border: 1px solid hsl(0 0% 100% / .14);
 	background: transparent;
-	color: #e8eaee;
+	color: hsl(var(--cr-fg) / .8);
+	font-family: var(--font);
 	font-size: 13px;
-	font-weight: 600;
+	font-weight: 500;
 	cursor: pointer;
-	transition: background .18s ease, border-color .18s ease;
+	transition: background-color .16s ease, border-color .16s ease, color .16s ease;
 }
 
-.xin-cr__choices button:hover { background: hsl(0 0% 100% / .08); }
+.xin-cr__choices button:hover { border-color: hsl(var(--cr-fg) / .4); color: hsl(var(--cr-fg)); }
 
 .xin-cr__choices button.is-active {
-	background: #e8eaee;
-	border-color: #e8eaee;
-	color: hsl(220 18% 10%);
+	background: hsl(var(--cr-fg));
+	border-color: hsl(var(--cr-fg));
+	color: hsl(var(--cr-bg));
+	font-weight: 600;
 }
 
-.xin-cr__hint { margin: 0; font-size: 12.5px; color: hsl(0 0% 100% / .45); }
+.xin-cr__hint { margin: 0; font-size: 12.5px; color: hsl(var(--cr-fg) / .45); }
 
-.xin-cr__stage { padding: 0 0 30px; }
+.xin-cr__stage { padding: 0 0 32px; }
 
 .xin-cr__pages {
 	display: flex;
@@ -874,7 +1040,6 @@ body.xin-reading--comic { background: hsl(220 18% 8%); }
 }
 
 .xin-cr__page { margin: 0; }
-
 .xin-cr__page img { display: block; width: 100%; height: auto; }
 
 /* Постранично: на экране ровно один кадр, остальные спрятаны. */
@@ -897,18 +1062,18 @@ body.xin-reading--comic { background: hsl(220 18% 8%); }
 
 .xin-cr__locked {
 	max-width: 460px;
-	margin: 60px auto;
-	padding: 34px 24px;
+	margin: 64px auto;
+	padding: 36px 26px;
 	text-align: center;
-	border-radius: var(--radius-lg);
-	background: hsl(0 0% 100% / .05);
-	border: 1px solid hsl(0 0% 100% / .1);
+	border: 1px solid hsl(var(--cr-fg) / .12);
+	border-radius: var(--radius);
+	background: hsl(var(--cr-fg) / .04);
 }
 
-.xin-cr__locked svg { width: 34px; height: 34px; color: hsl(0 0% 100% / .5); }
-.xin-cr__locked h1 { margin: 12px 0 8px; font-size: 21px; }
-.xin-cr__locked p { color: hsl(0 0% 100% / .6); font-size: 14px; }
-.xin-cr__locked-actions { margin-top: 16px; }
+.xin-cr__locked > svg { width: 30px; height: 30px; color: hsl(var(--cr-fg) / .45); }
+.xin-cr__locked h1 { margin: 14px 0 8px; font-size: 21px; line-height: 1.25; letter-spacing: -.01em; }
+.xin-cr__locked p { margin: 0; font-size: 14px; color: hsl(var(--cr-fg) / .6); }
+.xin-cr__locked-actions { margin-top: 18px; }
 
 .xin-cr__foot {
 	position: sticky;
@@ -918,14 +1083,12 @@ body.xin-reading--comic { background: hsl(220 18% 8%); }
 	justify-content: space-between;
 	gap: 12px;
 	padding: 10px 14px;
-	background: hsl(220 18% 8% / .92);
+	background: hsl(var(--cr-bg) / .92);
 	backdrop-filter: blur(10px);
-	border-top: 1px solid hsl(0 0% 100% / .08);
+	border-top: 1px solid hsl(var(--cr-fg) / .12);
 }
 
-.xin-cr__foot .btn-icon { color: #e8eaee; }
-.xin-cr__foot .btn-outline { border-color: hsl(0 0% 100% / .2); color: #e8eaee; }
-.xin-cr__foot .btn-outline:hover { background: hsl(0 0% 100% / .08); }
-
-.xin-ct__chapter-name b { font-family: var(--font-mono); }
-.xin-cr__chapter b { color: hsl(0 0% 100% / .5); font-family: var(--font-mono); margin-right: 4px; }
+@media (max-width: 575px) {
+	.xin-cr__bar { gap: 8px; padding: 6px 10px; }
+	.xin-cr__panel { border-radius: var(--radius); }
+}

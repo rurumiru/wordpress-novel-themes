@@ -151,8 +151,8 @@ function xni_assets( $hook ) {
 		'outQueue'   => __( 'Главы встанут в очередь. Первая выйдет %1$s, дальше по одной: %2$s в %3$s.', 'xi-novel-import' ),
 		'outNoSched' => __( 'Главы встанут в очередь, но расписание не задано — заполните дни и время справа.', 'xi-novel-import' ),
 		'outFree'    => __( 'Открыты всем.', 'xi-novel-import' ),
-		'outPaid'    => __( 'Под ранним доступом PLUS, цена %s.', 'xi-novel-import' ),
-		'outLocked'  => __( 'Под ранним доступом PLUS, без цены.', 'xi-novel-import' ),
+		'outPaid'    => __( 'Под ранним доступом, цена %s.', 'xi-novel-import' ),
+		'outLocked'  => __( 'Под ранним доступом, без цены.', 'xi-novel-import' ),
 		'outUnlock'  => __( 'Замок снимется %s и глава встанет в ленту сегодняшним числом.', 'xi-novel-import' ),
 		'confirmFix' => __( 'Заменить текст глав этого проекта содержимым архива? Даты, статусы и цены не изменятся.', 'xi-novel-import' ),
 		/* translators: 1: done, 2: total, 3: created, 4: updated, 5: skipped, 6: failed. */

@@ -184,8 +184,6 @@ function xin_talk_walk( $comments, $depth = 0 ) {
 						<span class="xin-badge xin-badge--primary"><?php esc_html_e( 'автор', 'xin-com' ); ?></span>
 					<?php elseif ( $author_id && user_can( $author_id, 'edit_others_posts' ) ) : ?>
 						<span class="xin-badge"><?php esc_html_e( 'команда', 'xin-com' ); ?></span>
-					<?php elseif ( $author_id && xin_user_is_plus( $author_id ) ) : ?>
-						<span class="xin-badge xin-badge--gold">PLUS</span>
 					<?php endif; ?>
 					<time datetime="<?php echo esc_attr( get_comment_date( 'c', $comment ) ); ?>"><?php echo esc_html( xin_ago( strtotime( $comment->comment_date_gmt ) ) ); ?></time>
 				</div>

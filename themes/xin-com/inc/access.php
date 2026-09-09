@@ -1,6 +1,6 @@
 <?php
 /**
- * Кто и что может читать: PLUS, покупка главы, команда проекта.
+ * Кто и что может читать: покупка главы и команда проекта.
  *
  * Все проверки платного доступа проходят через xin_can_read_chapter(),
  * чтобы читалка, оглавление и экспорт отвечали одинаково.
@@ -57,10 +57,6 @@ function xin_can_read_chapter( $chapter_id, $user_id = 0 ) {
 	if ( $user_id && (int) get_post_field( 'post_author', $chapter_id ) === (int) $user_id ) {
 		return true;
 	}
-	if ( xin_user_is_plus( $user_id ) ) {
-		return true;
-	}
-
 	$novel_id = (int) get_post_meta( $chapter_id, '_xin_novel', true );
 	if ( $novel_id && $user_id && in_array( (int) $user_id, xin_novel_team( $novel_id ), true ) ) {
 		return true;

@@ -27,21 +27,29 @@ function xni_chapter_state( $state, $chapter ) {
 		return $state;
 	}
 
-	// Значок «Черновик» здесь только запутывает: глава не забыта, она ждёт срок.
+	/*
+	 * Значок «Черновик» здесь только запутывает: глава не забыта, она ждёт
+	 * срок. Оставляем один значок раннего доступа — и опознаём его по ключу
+	 * из темы, а не по подписи: подпись переводится и уже менялась.
+	 */
 	$state['badges'] = array_values( array_filter( (array) $state['badges'], static function ( $badge ) {
+		if ( isset( $badge['key'] ) ) {
+			return 'locked' === $badge['key'];
+		}
+
 		return 'PLUS' === $badge['text'];
 	} ) );
 
 	$free = (bool) get_post_meta( $chapter, XNI_ON_FREE, true );
 
-	// Значок PLUS у главы уже может стоять — второй такой же рядом только шумит.
-	// Поэтому платность уходит в текст одного значка, а не в отдельный.
-	$has_plus = (bool) $state['badges'];
+	// Значок раннего доступа у главы уже может стоять — второй такой же рядом
+	// только шумит. Поэтому платность уходит в текст одного значка.
+	$has_lock = (bool) $state['badges'];
 
 	$state['badges'][] = array(
-		'text'  => ( $free || $has_plus )
+		'text'  => ( $free || $has_lock )
 			? __( 'В очереди', 'xi-novel-import' )
-			: __( 'В очереди, по PLUS', 'xi-novel-import' ),
+			: __( 'В очереди, ранний доступ', 'xi-novel-import' ),
 		'class' => 'xin-badge--primary',
 		'icon'  => 'clock',
 	);

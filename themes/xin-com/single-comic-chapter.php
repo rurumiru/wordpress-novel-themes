@@ -125,10 +125,9 @@ while ( have_posts() ) :
 			<div class="xin-cr__locked">
 				<?php xin_the_icon( 'lock' ); ?>
 				<h1><?php esc_html_e( 'Глава пока закрыта', 'xin-com' ); ?></h1>
-				<p class="xin-muted"><?php esc_html_e( 'Ранний доступ открывается подписчикам PLUS. Так команда перевода получает поддержку раньше остальных.', 'xin-com' ); ?></p>
+				<p class="xin-muted"><?php esc_html_e( 'Пока глава открыта только команде перевода. В общий доступ она выйдет вместе со следующим выпуском.', 'xin-com' ); ?></p>
 				<div class="xin-cr__locked-actions">
 					<?php if ( is_user_logged_in() ) : ?>
-						<a class="btn btn-primary" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>"><?php esc_html_e( 'Что даёт PLUS', 'xin-com' ); ?></a>
 					<?php else : ?>
 						<a class="btn btn-primary" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Войти', 'xin-com' ); ?></a>
 					<?php endif; ?>

@@ -295,15 +295,15 @@ function xin_glossary_replace_html( $html, $rules ) {
  * @return array {chapters, hits, touched}
  */
 function xin_glossary_bulk( $novel_id, $rules, $dry = true ) {
-	$chapters = xin_get_chapters( $novel_id, 'ASC' );
-	$hits     = 0;
-	$touched  = 0;
+	$hits    = 0;
+	$touched = 0;
 
-	foreach ( $chapters as $chapter ) {
+	// Порциями: массовая замена шла по всем главам тайтла разом.
+	xin_each_chapter( $novel_id, static function ( $chapter ) use ( $rules, $dry, &$hits, &$touched ) {
 		$result = xin_glossary_replace_html( $chapter->post_content, $rules );
 
 		if ( ! $result['count'] ) {
-			continue;
+			return;
 		}
 
 		$hits += $result['count'];
@@ -315,14 +315,19 @@ function xin_glossary_bulk( $novel_id, $rules, $dry = true ) {
 				'post_content' => $result['html'],
 			) );
 		}
-	}
+	} );
 
 	if ( ! $dry && $touched ) {
-		wp_cache_flush();
+		/*
+		 * Правки уже сбросили кэш каждой затронутой главы через save_post,
+		 * поэтому полный сброс кэша сайта здесь только вредил: на большом
+		 * тайтле он выбрасывал всё, что сайт успел накопить.
+		 */
+		xin_chapters_cache_bust( $novel_id );
 	}
 
 	return array(
-		'chapters' => count( $chapters ),
+		'chapters' => xin_chapter_count( $novel_id ),
 		'hits'     => $hits,
 		'touched'  => $touched,
 	);

@@ -2,23 +2,24 @@
 
 <h1>XI&nbsp;Novels</h1>
 
-<h3>Stop running a blog. Run a novel platform.</h3>
+<h3>The best WordPress theme for novels. Here is what backs that up.</h3>
 
 <p>
-A free, GPL, zero-dependency WordPress theme that turns a plain install into a full<br>
-light-novel · web-novel · ranobe site — catalog, chapters, a distraction-free reader,<br>
-rankings, an author studio, a reader library and a reader hub.<br>
+Catalog, title page, a full-screen reader with endless scrolling, text-to-speech<br>
+and a project glossary, rankings, an author studio on the front end,<br>
+a reader library, EPUB and FB2 export — <b>all of it is in the theme</b>.<br>
+No required plugins, no external requests, no build step.<br>
 <b>And it never looks like WordPress.</b>
 </p>
 
 [![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Install](https://img.shields.io/badge/Install-two_minutes-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Docs](https://img.shields.io/badge/Docs-read-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.8.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.9.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Version](https://img.shields.io/badge/version-beta%200.8.0-f59e0b?style=flat-square)
+![Version](https://img.shields.io/badge/version-beta%200.9.0-f59e0b?style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +40,22 @@ rankings, an author studio, a reader library and a reader hub.<br>
 ![Home page](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.8.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+> **Beta 0.9.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+
+## Why this one
+
+A loud claim is worth exactly as much as the numbers and the code under it. Here they are.
+
+| | |
+|:--|:--|
+| 📚 **All of it in the theme, not in five plugins** | Catalog, chapters, reader, rankings, ratings, library, author studio, book export, discussions, project glossary, speech — one codebase, one data model, one set of settings. The three bundled plugins only cover bulk import, bulk editing and visual skinning |
+| 🚀 **It holds thousands of chapters** | Measured on a sandbox with **400 titles and 14,000 chapters**, one of them 4,000 chapters long: its title page opens in **0.52 s** on a cold cache, the catalog in 0.55 s, the ranking board in 0.45 s. The contents load in batches, the reader keeps a window of chapters around the current one, and the chapter count lives in meta instead of being recounted for every card |
+| 📖 **A reader people come back to** | Endless scrolling: finish a chapter and the next one appends itself. Size, width, leading, typeface and paper; per-paragraph bookmarks and quotes, edit suggestions to the author, a glossary of names, speech synthesis, a control rail on the left and progress with the time left |
+| 🔌 **Zero external requests** | No CDNs, no Google Fonts, no trackers. System font stacks, inline SVG icons. The page loads entirely from your own domain |
+| 🛠 **Zero build** | No npm, no composer, no compile step. Download, unzip into `wp-content/themes`, activate |
+| ✍️ **Authors publish from the site** | Author studio, chapter editor with autosave, a release schedule, a project glossary, co-authors — without ever opening `/wp-admin` |
+| 🌍 **Three languages out of the box** | 1,179 strings in the theme plus 374 across the plugins: Russian source, compiled `en_US` and `pt_BR`, an RU / EN / PT switcher in the header |
+| 🔍 **Source you can actually read** | ~19k lines with comments that explain *why it is this way*, not *what the line does*. No obfuscated page-builder JSON |
 
 > [!TIP]
 > **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
@@ -97,7 +113,7 @@ Every other answer is either a **$59–$99 marketplace theme** welded to a page 
 <td align="center">
 
 🛠️<br><b>Control panel on the site</b><br>
-<sub><code>/manage/</code> — users, roles, PLUS access, the review queue, every title, the settings</sub>
+<sub><code>/manage/</code> — users, roles, the review queue, every title, the settings</sub>
 
 </td>
 <td align="center">
@@ -141,6 +157,7 @@ Every other answer is either a **$59–$99 marketplace theme** welded to a page 
 
 | | |
 |:--|:--|
+| **0.9.0** | **The look is rebuilt and the platform holds large catalogs.** Warm paper instead of cold graphite, serif headings, hairlines instead of shadows; the title page is a cover spread with tabs and a card column, the reader gets site-width panels, a control rail and **endless scrolling** — finish a chapter and the next one appends itself. Contents load 30 at a time, the release rhythm is computed on its own, and “surprise me” opens a random title. PLUS mode is gone. Verified on 400 titles and 14,000 chapters |
 | **0.8.0** | **The theme is now XIN-Com, and it has a comics section.** Novels and comics are two sections with a switcher in the header, a home page each, their own catalogue and a page reader for comics — vertical strip or page by page, right to left for manga. Comic pages can be offloaded to S3-compatible storage, with a choice of delivery mirror in the reader. The studio sets WordPress up for the theme: permalinks, service pages, front page and menu |
 | **0.6.0** | **Book downloads close behind a role.** The control panel decides who may export EPUB and FB2: everyone, any signed-in reader, PLUS holders, “PLUS or selected roles”, or selected roles only — checkboxes over the site roles, plugin-made ones included. The button and the direct link ask the same check |
 | **0.5.0** | **Reader Hub** at `/hub/` — one page that shows the site from the inside: who talks, what they argue about, what is being read right now. Six site counters in the header, both metrics at once on the leaderboard, a profile card with a bar to the next level. Drawn as a terminal — grid and sweep on the canvas, cut corners, monospace readouts, segmented bars — and it collects nothing new about anyone beyond a 40-entry ring of recent reads |
@@ -169,7 +186,7 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 | 🏆 **Rankings** | A page of their own at `/ranking/`: three boards — score, views, chapter count — three time windows and a genre filter. The top three stand on a podium, the rest run as rows with a bar against the leader |
 | 🛰️ **Reader Hub** | `/hub/` shows the site from the inside — talk, arguments, what is being read right now, six counters and a leaderboard. Styled as a terminal, and every animation stops under `prefers-reduced-motion` |
 | 🌙 **Light, dark, or system** | Light by default, dark and “follow the system” one switch away in the header — and no white flash on load |
-| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them. Who may download at all — everyone, signed-in readers, PLUS holders or selected roles — is set in the control panel |
+| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them. Who may download at all — everyone, signed-in readers or selected roles — is set in the control panel |
 | 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
 | 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
 | 🌍 **RU / EN / PT-BR interface** | Language switch in the header, remembered in a cookie |
@@ -187,7 +204,7 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 | 💾 **Drafts that survive** | Chapter text auto-saves to the browser while you write; live word count |
 | 🔢 **Chapter numbering** | Next number pre-filled; fractional numbers (`12.5`) for side stories |
 | 🗓️ **Release schedule and queue** | Days of the week and a release time sit in the project settings, with a summary of how many chapters wait and when the next one goes out. A queued chapter carries a “Queued” badge, its release date and the time left |
-| 👑 **Early access** | Mark chapters as PLUS — locked for guests, badged in the contents |
+| 🔒 **Early access** | Mark chapters as locked — closed to guests, badged in the contents, open to the project team or after purchase |
 | 🧑‍🎤 **Public profiles** | Author page with stats and tabs: projects / chapters / articles |
 
 </details>
@@ -198,14 +215,13 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 | | |
 |:--|:--|
 | 🕵️ **Nothing screams WordPress** | Admin bar off; generator, RSD, wlwmanifest, shortlink, oEmbed, emoji, X-Pingback and asset version strings stripped; REST moved from `/wp-json/` to `/api/`; login page restyled in your brand |
-| 🛠️ **Control panel on the site** | `/manage/`: users and roles, PLUS access with an expiry date, the review queue for contributor submissions, every title, and the site settings — no `/wp-admin` needed |
+| 🛠️ **Control panel on the site** | `/manage/`: users and roles, the review queue for contributor submissions, every title, and the site settings — no `/wp-admin` needed |
 | 🎨 **Theme studio** | A bundled plugin: one screen with the knobs on the left and the live site on the right. Colour, corner radius, shadows, site width, fonts and the reading defaults — every change visible before it is saved, five presets, JSON export |
 | 🎛️ **Customizer** | The same knobs without the plugin, plus twelve home blocks you can switch off one by one, footer text, social links |
 | 👥 **Co-authors** | A project can carry several translators; each of them adds and edits its chapters, and the team shows on the title page |
-| 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase, next to PLUS |
+| 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase |
 | 💬 **Discussions (optional)** | Off by default. When on: own markup, one level of replies, spoilers, likes, author and team badges — nothing that looks like WordPress comments |
-| 👑 **PLUS access** | Grant a reader early access for 30 / 90 / 365 days or with no expiry; chapters marked PLUS open for them automatically |
-| 🗂️ **Bulk title management** | A bundled plugin: filter by owner, genre, status, cover or 18+, select with Shift — or take everything the filter found — and then publish, retag, reassign the owner or the team, set one cover on the batch, grant PLUS across a title, export CSV or delete. Every id is re-checked against `current_user_can()`, so a doctored form cannot touch a stranger’s title |
+| 🗂️ **Bulk title management** | A bundled plugin: filter by owner, genre, status, cover or 18+, select with Shift — or take everything the filter found — and then publish, retag, reassign the owner or the team, set one cover on the batch, lock or unlock every chapter of a title, export CSV or delete. Every id is re-checked against `current_user_can()`, so a doctored form cannot touch a stranger’s title |
 | 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
 | 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
 | 🌐 **Translation ready** | 982 strings in the theme and 257 more across the three bundled plugins — Russian source, compiled English and Brazilian Portuguese `.mo`, plus a build script |
@@ -263,7 +279,7 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 
 <img src="screenshots/13-manage.jpg" alt="Control panel with the user list">
 
-**Control panel** at `/manage/` — roles, PLUS access with a term, review queue, titles and settings.
+**Control panel** at `/manage/` — roles, review queue, titles and settings.
 
 </td>
 </tr>
@@ -304,7 +320,7 @@ Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
 
 <img src="screenshots/05-reader-alt.jpg" alt="Reader in the dark scheme">
 
-**Dark scheme** — neutral charcoal, switched from the header.
+**Dark scheme** — warm charcoal, switched from the header.
 
 </td>
 <td valign="top">
@@ -374,6 +390,8 @@ Step by step: **[docs/install.md](docs/install.md)** ([RU](docs/install.ru.md)).
 | External runtime calls | **Zero** | CDN fonts, trackers | Everything |
 | Front-end author studio | **Yes** | Rare | Yes |
 | Full-screen reader with settings | **Yes** | Rare | Yes |
+| Endless chapter scrolling | **Yes** | Rare | Yes |
+| Catalogs with thousands of chapters | **Verified: 14,000 chapters** | Hit or miss | Yes |
 | You own the readers and data | **Yes** | Yes | **No** |
 | Looks like WordPress | **No** | Yes | n/a |
 

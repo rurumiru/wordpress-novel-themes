@@ -101,48 +101,51 @@ add_action( 'admin_init', 'xin_block_comments_screen' );
 
 function xin_login_styles() {
 	$primary = get_theme_mod( 'xin_primary', '' );
-	$accent  = $primary ? $primary : '#2e3238';
+	$accent  = $primary ? $primary : '#b63d25';
 	?>
 	<style>
+		/*
+		 * Экран входа — первое, что видит автор, и он обязан выглядеть частью
+		 * сайта. Токены темы сюда не доезжают: страница логина грузится без
+		 * фронтовых стилей, поэтому значения продублированы из style.css.
+		 */
 		body.login {
-			background: #f5f6f8;
-			color: #1b1e24;
-			font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-		}
-		body.login::before {
-			content: ""; position: fixed; inset: -25% 45% 45% -25%;
-			background: radial-gradient(circle, <?php echo esc_html( $accent ); ?>22, transparent 65%);
-			filter: blur(90px); pointer-events: none;
+			background: #faf8f5;
+			color: #262119;
+			font-family: Candara, "Avenir Next", "Segoe UI Variable Text", "Helvetica Neue", system-ui, -apple-system, sans-serif;
 		}
 		.login h1 a {
 			background: none; width: auto; height: auto; text-indent: 0;
-			font-size: 24px; font-weight: 800; letter-spacing: -.03em; color: #1b1e24;
-			line-height: 1.2; margin-bottom: 8px;
+			font-family: "Sitka Banner", "Hoefler Text", "Iowan Old Style", Charter, Constantia, "Palatino Linotype", Georgia, serif;
+			font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: #262119;
+			line-height: 1.2; margin-bottom: 10px;
 		}
-		.login h1 a::first-letter { color: <?php echo esc_html( $accent ); ?>; }
 		.login form {
-			background: #fff; border: 1px solid #e0e3e8; border-radius: 14px;
-			box-shadow: 0 18px 40px rgba(27, 30, 36, .10); padding: 26px 24px;
+			background: #fefdfb; border: 1px solid #e2ddd7; border-radius: 8px;
+			box-shadow: none; padding: 28px 26px;
 		}
-		.login form label { color: #5a6270; font-size: 13px; }
+		.login form label { color: #746b63; font-size: 13px; }
 		.login input[type="text"], .login input[type="password"] {
-			background: #fafbfc; border: 1px solid #d6dae1; color: #1b1e24;
-			border-radius: 10px; padding: 10px 12px; box-shadow: none;
+			background: #fefdfb; border: 1px solid #d2cbc1; color: #262119;
+			border-radius: 5px; padding: 10px 12px; box-shadow: none;
 		}
 		.login input[type="text"]:focus, .login input[type="password"]:focus {
 			border-color: <?php echo esc_html( $accent ); ?>; box-shadow: 0 0 0 3px <?php echo esc_html( $accent ); ?>26;
 		}
 		.wp-core-ui .button-primary {
-			background: <?php echo esc_html( $accent ); ?>; border: 0; border-radius: 9px;
-			padding: 6px 18px; height: auto; font-weight: 700; text-shadow: none; box-shadow: none;
+			background: <?php echo esc_html( $accent ); ?>; border: 0; border-radius: 5px;
+			padding: 7px 18px; height: auto; font-weight: 600; text-shadow: none; box-shadow: none;
 		}
-		.wp-core-ui .button-primary:hover { background: <?php echo esc_html( $accent ); ?>e6; }
-		.login .button.wp-hide-pw { color: #838b98; }
-		.login #nav, .login #backtoblog { padding: 8px 24px; }
-		.login #nav a, .login #backtoblog a { color: #5a6270; }
+		.wp-core-ui .button-primary:hover { background: <?php echo esc_html( $accent ); ?>e0; }
+		.login .button.wp-hide-pw { color: #9b9187; }
+		.login #nav, .login #backtoblog { padding: 10px 26px; }
+		.login #nav a, .login #backtoblog a { color: #746b63; font-size: 13px; }
 		.login #nav a:hover, .login #backtoblog a:hover { color: <?php echo esc_html( $accent ); ?>; }
 		.login .language-switcher, .login .privacy-policy-page-link { display: none; }
-		.login .message, .login .notice { background: #fff; border-left-color: <?php echo esc_html( $accent ); ?>; color: #1b1e24; }
+		.login .message, .login .notice {
+			background: #fefdfb; border: 1px solid #e2ddd7; border-left: 2px solid <?php echo esc_html( $accent ); ?>;
+			border-radius: 5px; color: #262119; box-shadow: none;
+		}
 	</style>
 	<?php
 }

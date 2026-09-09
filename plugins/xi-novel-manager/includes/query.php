@@ -152,7 +152,7 @@ function xnm_url( $overrides = array() ) {
 
 /**
  * The chapters that belong to a novel, whatever their post status. Used for the
- * count in the table and for the PLUS switch.
+ * count in the table and for the early-access switch.
  *
  * @param int $novel_id Novel.
  */

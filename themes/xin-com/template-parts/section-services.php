@@ -76,10 +76,9 @@ if ( $xin_menu_items ) {
 		'icon'  => 'pen',
 	),
 	array(
-			'label' => __( 'PLUS', 'xin-com' ),
-			'href'  => get_post_type_archive_link( 'novel' ),
-			'icon'  => 'crown',
-			'gold'  => true,
+			'label' => __( 'Наугад', 'xin-com' ),
+			'href'  => xin_random_novel_url(),
+			'icon'  => 'sparkles',
 		),
 	);
 }

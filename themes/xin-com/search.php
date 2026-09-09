@@ -42,7 +42,7 @@ $xin_novels   = array();
 
 		<?php if ( $xin_novels ) : ?>
 			<section class="xin-section">
-				<?php xin_section_head( array( 'title' => __( 'Тайтлы', 'xin-com' ), 'icon' => 'book' ) ); ?>
+				<?php xin_section_head( array( 'title' => __( 'Тайтлы', 'xin-com' )) ); ?>
 				<div class="xin-grid xin-grid--6">
 					<?php foreach ( $xin_novels as $xin_id ) : ?>
 						<?php xin_novel_card( $xin_id ); ?>
@@ -53,7 +53,7 @@ $xin_novels   = array();
 
 		<?php if ( $xin_chapters ) : ?>
 			<section class="xin-section">
-				<?php xin_section_head( array( 'title' => __( 'Главы', 'xin-com' ), 'icon' => 'list' ) ); ?>
+				<?php xin_section_head( array( 'title' => __( 'Главы', 'xin-com' )) ); ?>
 				<div class="xin-grid xin-grid--3">
 					<?php foreach ( $xin_chapters as $xin_id ) : ?>
 						<?php xin_chapter_card( $xin_id ); ?>
@@ -64,7 +64,7 @@ $xin_novels   = array();
 
 		<?php if ( $xin_posts ) : ?>
 			<section class="xin-section">
-				<?php xin_section_head( array( 'title' => __( 'Статьи', 'xin-com' ), 'icon' => 'newspaper' ) ); ?>
+				<?php xin_section_head( array( 'title' => __( 'Статьи', 'xin-com' )) ); ?>
 				<div class="xin-grid xin-grid--3">
 					<?php foreach ( $xin_posts as $xin_id ) : ?>
 						<?php xin_post_card( $xin_id ); ?>

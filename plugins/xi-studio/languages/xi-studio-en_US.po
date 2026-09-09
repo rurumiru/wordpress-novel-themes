@@ -1,123 +1,18 @@
 # English (US) translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Studio 0.8.0-beta\n"
+"Project-Id-Version: XI Studio 0.9.0-beta\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "XIN-Com — облик сайта целиком"
-msgstr "XIN-Com — the whole look of the site"
-
-msgid "Вернуть все значения по умолчанию?"
-msgstr "Return every value to its default?"
-
-msgid "Вернуть цвет темы"
-msgstr "Back to the theme colour"
-
-msgid "Всё сохранено"
-msgstr "Everything is saved"
-
-msgid "Выгрузить"
-msgstr "Export"
-
-msgid "Глава"
-msgstr "Chapter"
-
-msgid "Главная"
-msgstr "Home"
-
-msgid "Готовый набор меняет сразу всё. Дальше можно править по мелочи."
-msgstr "A preset changes everything at once. Fine-tune afterwards."
-
-msgid "Есть несохранённые изменения"
-msgstr "Unsaved changes"
-
-msgid "Загрузить"
-msgstr "Import"
-
-msgid "Каталог"
-msgstr "Catalog"
-
-msgid "Монитор"
-msgstr "Desktop"
-
-msgid "Набор применён — проверьте и сохраните"
-msgstr "Preset applied — look it over and save"
-
-msgid "Наборы"
-msgstr "Presets"
-
-msgid "Настройки из файла подставлены — проверьте и сохраните"
-msgstr "Settings from the file are in — look them over and save"
-
-msgid "Настройки не сохранены. Уйти со страницы?"
-msgstr "The settings are not saved. Leave the page?"
-
-msgid "Не удалось сохранить"
-msgstr "Could not save"
-
-msgid "Недостаточно прав."
-msgstr "Not enough permissions."
-
-msgid "Обновить"
-msgstr "Reload"
-
-msgid "Открыть студию"
-msgstr "Open the studio"
-
-msgid "Планшет"
-msgstr "Tablet"
-
-msgid "Предпросмотр сайта"
-msgstr "Site preview"
-
-msgid "Сбросить"
-msgstr "Reset"
-
-msgid "Светлая"
-msgstr "Light"
-
-msgid "Сохранено"
-msgstr "Saved"
-
-msgid "Сохранить"
-msgstr "Save"
-
-msgid "Страница"
-msgstr "Page"
-
-msgid "Студия настраивает тему XIN-Com — включите её в «Внешний вид → Темы», и экран заработает."
-msgstr "The studio tunes the XIN-Com theme — activate it under Appearance → Themes and this screen comes alive."
-
-msgid "Студия темы"
-msgstr "Theme studio"
-
-msgid "Схема"
-msgstr "Scheme"
-
-msgid "Тайтл"
-msgstr "Title"
-
-msgid "Телефон"
-msgstr "Phone"
-
-msgid "Тёмная"
-msgstr "Dark"
-
-msgid "Файл не похож на настройки студии"
-msgstr "That file does not look like studio settings"
-
-msgid "Ширина экрана"
-msgstr "Screen width"
-
-msgid "по умолчанию"
-msgstr "default"
-
 msgid "XI Studio настроила сайт под тему:"
 msgstr "XI Studio has set the site up for the theme:"
+
+msgid "XIN-Com — облик сайта целиком"
+msgstr "XIN-Com — the whole look of the site"
 
 msgid "Без назначенного меню тема рисует запасной набор ссылок. Он рабочий, но им нельзя управлять: ни порядок поменять, ни свой пункт добавить."
 msgstr "With no menu assigned the theme draws a fallback set of links. It works, but there is nothing to manage: you cannot reorder it or add an item of your own."
@@ -134,14 +29,32 @@ msgstr "Will be fixed"
 msgid "В порядке"
 msgstr "All good"
 
+msgid "Вернуть все значения по умолчанию?"
+msgstr "Return every value to its default?"
+
+msgid "Вернуть цвет темы"
+msgstr "Back to the theme colour"
+
 msgid "Все страницы на месте."
 msgstr "All pages are in place."
 
 msgid "Всё настроено"
 msgstr "Everything is set up"
 
+msgid "Всё сохранено"
+msgstr "Everything is saved"
+
 msgid "Выберите пояс сами в «Настройки → Общие»: подставить его за вас — значит угадывать."
 msgstr "Pick the zone yourself in Settings → General: filling it in for you would mean guessing."
+
+msgid "Выгрузить"
+msgstr "Export"
+
+msgid "Глава"
+msgstr "Chapter"
+
+msgid "Главная"
+msgstr "Home"
 
 msgid "Главная и блог"
 msgstr "Front page and blog"
@@ -152,11 +65,26 @@ msgstr "The front page and the blog are set."
 msgid "Главное меню"
 msgstr "Main menu"
 
+msgid "Готовый набор меняет сразу всё. Дальше можно править по мелочи."
+msgstr "A preset changes everything at once. Fine-tune afterwards."
+
+msgid "Есть несохранённые изменения"
+msgstr "Unsaved changes"
+
 msgid "Заведу страницы «Главная» и «Блог» и назначу их в настройках чтения."
 msgstr "I will create the “Home” and “Blog” pages and assign them in the reading settings."
 
+msgid "Загрузить"
+msgstr "Import"
+
+msgid "Кабинет автора, библиотека, рейтинг, уголок читателя и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404."
+msgstr "The author studio, the library, the ranking, the reader's corner and the theme's other screens are WordPress pages with templates assigned. Until the page exists, the link to it lands on a 404."
+
 msgid "Кабинет автора, библиотека, рейтинг, уголок читателя, PLUS и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404."
 msgstr "The author studio, the library, the ranking, the reader hub, PLUS and the theme's other screens are WordPress pages with templates assigned. Until a page exists, the link to it leads to a 404."
+
+msgid "Каталог"
+msgstr "Catalog"
 
 msgid "Меню назначено, пунктов добавлено: %d"
 msgstr "Menu assigned, items added: %d"
@@ -170,8 +98,17 @@ msgstr "There was nothing to change — it is all set up already."
 msgid "Место «Главное меню» пустует, показывается запасной набор ссылок."
 msgstr "The “Main menu” location is empty, a fallback set of links is shown."
 
+msgid "Монитор"
+msgstr "Desktop"
+
 msgid "На главной лента записей, отдельной страницы блога нет."
 msgstr "The front page shows the post feed, and the blog has no page of its own."
+
+msgid "Набор применён — проверьте и сохраните"
+msgstr "Preset applied — look it over and save"
+
+msgid "Наборы"
+msgstr "Presets"
 
 msgid "Настроить (%d)"
 msgstr "Set up (%d)"
@@ -182,17 +119,38 @@ msgstr "Site setup"
 msgid "Настройка сайта под тему"
 msgstr "Setting the site up for the theme"
 
+msgid "Настройки из файла подставлены — проверьте и сохраните"
+msgstr "Settings from the file are in — look them over and save"
+
+msgid "Настройки не сохранены. Уйти со страницы?"
+msgstr "The settings are not saved. Leave the page?"
+
 msgid "Не получилось:"
 msgstr "Did not work:"
 
+msgid "Не удалось сохранить"
+msgstr "Could not save"
+
 msgid "Не хватает: %s"
 msgstr "Missing: %s"
+
+msgid "Недостаточно прав."
+msgstr "Not enough permissions."
+
+msgid "Обновить"
+msgstr "Reload"
 
 msgid "Обновления"
 msgstr "Updates"
 
 msgid "От него зависят «сегодня» и «вчера» в ленте обновлений, «9 часов назад» у глав и день недели в расписании комиксов. При нулевом смещении всё это считается по Гринвичу и расходится с тем, что видит читатель."
 msgstr "“Today” and “yesterday” in the updates feed, “9 hours ago” on chapters and the weekday in the comics schedule all depend on it. At a zero offset they are counted in Greenwich time and drift away from what the reader sees."
+
+msgid "Открыть студию"
+msgstr "Open the studio"
+
+msgid "Планшет"
+msgstr "Tablet"
 
 msgid "Пока WordPress показывает на главной ленту записей, у блога нет собственной страницы — и ссылка «Блог» не появляется ни в шапке, ни в подвале: тема выводит её только тогда, когда страница блога задана."
 msgstr "While WordPress shows the post feed on the front page, the blog has no page of its own — and the “Blog” link appears neither in the header nor in the footer: the theme only shows it once a blog page is set."
@@ -203,11 +161,20 @@ msgstr "I will set /%postname%/ and rebuild the URL rules."
 msgid "Постоянные ссылки"
 msgstr "Permalinks"
 
+msgid "Предпросмотр сайта"
+msgstr "Site preview"
+
 msgid "Рейтинг"
 msgstr "Ranking"
 
 msgid "Решать вам"
 msgstr "Your call"
+
+msgid "Сбросить"
+msgstr "Reset"
+
+msgid "Светлая"
+msgstr "Light"
 
 msgid "Сделано:"
 msgstr "Done:"
@@ -233,11 +200,35 @@ msgstr "Pages created: %d"
 msgid "Состояние и зачем это нужно"
 msgstr "State, and why it matters"
 
+msgid "Сохранено"
+msgstr "Saved"
+
+msgid "Сохранить"
+msgstr "Save"
+
 msgid "Стоит UTC. Если площадка не в Лондоне, даты будут врать."
 msgstr "It is set to UTC. Unless the site lives in London, the dates will lie."
 
+msgid "Страница"
+msgstr "Page"
+
 msgid "Структура ссылок: /%postname%/"
 msgstr "Permalink structure: /%postname%/"
+
+msgid "Студия настраивает тему XIN-Com — включите её в «Внешний вид → Темы», и экран заработает."
+msgstr "The studio tunes the XIN-Com theme — activate it under Appearance → Themes and this screen comes alive."
+
+msgid "Студия темы"
+msgstr "Theme studio"
+
+msgid "Схема"
+msgstr "Scheme"
+
+msgid "Тайтл"
+msgstr "Title"
+
+msgid "Телефон"
+msgstr "Phone"
 
 msgid "Тема XIN-Com не активна. Часть проверок ничего не значит без неё."
 msgstr "The XIN-Com theme is not active. Some of these checks mean nothing without it."
@@ -251,11 +242,17 @@ msgstr "The theme is not active: there is nothing to create the pages with."
 msgid "Тема строит адреса тайтлов и глав сама: /novels/тайтл/ и /comics/тайтл/глава/. При ссылках «по умолчанию» переписывание адресов в WordPress выключено целиком, и всё это превращается в ?p=123."
 msgstr "The theme builds the addresses of titles and chapters itself: /novels/title/ and /comics/title/chapter/. With plain links, URL rewriting in WordPress is off entirely, and all of that turns into ?p=123."
 
+msgid "Тёмная"
+msgstr "Dark"
+
 msgid "Уголок читателя"
 msgstr "Reader hub"
 
 msgid "Уже сделанный выбор не переписывается."
 msgstr "A choice already made is never overwritten."
+
+msgid "Файл не похож на настройки студии"
+msgstr "That file does not look like studio settings"
 
 msgid "Часовой пояс"
 msgstr "Time zone"
@@ -265,4 +262,10 @@ msgstr "Only what sits at its default and gets in the theme's way is fixed: if a
 
 msgid "Что проверяем"
 msgstr "What is checked"
+
+msgid "Ширина экрана"
+msgstr "Screen width"
+
+msgid "по умолчанию"
+msgstr "default"
 

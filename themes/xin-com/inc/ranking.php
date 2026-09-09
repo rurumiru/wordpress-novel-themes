@@ -104,184 +104,222 @@ function xin_ranking_link() {
 }
 
 /**
- * The ids in the running for a board, before they are scored.
+ * Условия отбора, общие для всех показателей доски.
  *
- * @param string $period Period key.
- * @param string $genre  Genre slug, or an empty string for every genre.
+ * @param string $period Период.
+ * @param string $genre  Слаг жанра или пустая строка.
+ * @return array sql-куски: join и where.
  */
-function xin_ranking_candidates( $period, $genre ) {
+function xin_ranking_scope( $period, $genre ) {
+	global $wpdb;
+
 	$periods = xin_ranking_periods();
 	$days    = isset( $periods[ $period ] ) ? (int) $periods[ $period ][1] : 0;
 
-	$args = array(
-		'post_type'      => 'novel',
-		'post_status'    => 'publish',
-		'posts_per_page' => -1,
-		'fields'         => 'ids',
-		'no_found_rows'  => true,
-	);
+	$join  = '';
+	$where = '';
 
 	if ( $days ) {
-		$args['date_query'] = array(
-			array(
-				'column' => 'post_modified_gmt',
-				'after'  => $days . ' days ago',
-			),
+		$where .= $wpdb->prepare(
+			' AND p.post_modified_gmt > %s',
+			gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS )
 		);
 	}
 
 	if ( $genre ) {
-		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
-			array( 'taxonomy' => 'genre', 'field' => 'slug', 'terms' => $genre ),
-		);
+		$term = get_term_by( 'slug', $genre, 'genre' );
+
+		if ( $term && ! is_wp_error( $term ) ) {
+			$join .= $wpdb->prepare(
+				" INNER JOIN {$wpdb->term_relationships} tr ON tr.object_id = p.ID
+				  INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+				       AND tt.taxonomy = 'genre' AND tt.term_id = %d",
+				$term->term_id
+			);
+		} else {
+			// Жанра нет — доска обязана выйти пустой, а не «как будто без фильтра».
+			$where .= ' AND 1 = 0';
+		}
 	}
 
-	$query = new WP_Query( $args );
-	return array_map( 'absint', $query->posts );
+	return array( 'join' => $join, 'where' => $where );
 }
 
 /**
- * Chapter counts for many novels in one query, so a board of fifty rows does
- * not cost fifty round trips.
+ * Среднее по всем оценённым тайтлам — та самая C во взвешенной оценке.
  *
- * @param array $novel_ids Novel ids.
- * @return array id => count.
+ * @param array $scope Куски запроса из xin_ranking_scope().
+ * @return float
  */
-function xin_ranking_chapter_counts( $novel_ids ) {
+function xin_ranking_mean( $scope ) {
 	global $wpdb;
 
-	$novel_ids = array_filter( array_map( 'absint', (array) $novel_ids ) );
-	if ( ! $novel_ids ) {
-		return array();
-	}
+	$sql = "SELECT AVG( CAST( val.meta_value AS DECIMAL(10,4) ) )
+		FROM {$wpdb->posts} p
+		INNER JOIN {$wpdb->postmeta} val ON val.post_id = p.ID AND val.meta_key = '_xin_rating'
+		INNER JOIN {$wpdb->postmeta} cnt ON cnt.post_id = p.ID AND cnt.meta_key = '_xin_rating_count'
+		{$scope['join']}
+		WHERE p.post_type = 'novel' AND p.post_status = 'publish'
+		  AND CAST( cnt.meta_value AS UNSIGNED ) > 0
+		  {$scope['where']}";
 
-	$counts = array_fill_keys( $novel_ids, 0 );
-	$in     = implode( ',', $novel_ids );
-
-	// $in is built from absint output and holds nothing but integers.
-	$rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
-		"SELECT pm.meta_value AS novel_id, COUNT(*) AS total
-		 FROM {$wpdb->postmeta} pm
-		 INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-		 WHERE pm.meta_key = '_xin_novel'
-		   AND pm.meta_value IN ({$in})
-		   AND p.post_type = 'chapter'
-		   AND p.post_status = 'publish'
-		 GROUP BY pm.meta_value"
-	);
-
-	foreach ( (array) $rows as $row ) {
-		$counts[ (int) $row->novel_id ] = (int) $row->total;
-	}
-
-	return $counts;
+	// Куски собраны здесь же через $wpdb->prepare(), пользовательских строк в них нет.
+	return (float) $wpdb->get_var( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
 }
 
 /**
- * Scores and orders a board.
+ * Строит доску.
  *
- * @param string $metric Metric key.
- * @param string $period Period key.
- * @param string $genre  Genre slug.
- * @param int    $limit  How many rows to return.
- * @return array List of array( id, score, display, votes ), best first.
+ * Прежде отбирались ID всех опубликованных тайтлов без предела, а очки
+ * считались обходом этого списка в PHP с get_post_meta() на каждый шаг. На
+ * каталоге в десятки тысяч тайтлов это десятки тысяч запросов на один показ
+ * страницы — то место, где тема на большом сайте и падала по таймауту.
+ * Теперь сортировка и предел выполняются базой, а в PHP приезжает ровно
+ * столько строк, сколько показывает доска.
+ *
+ * @param string $metric Показатель.
+ * @param string $period Период.
+ * @param string $genre  Жанр.
+ * @param int    $limit  Сколько строк вернуть.
+ * @return array Список array( id, score, display, votes ), лучшие первыми.
  */
 function xin_ranking_board( $metric, $period, $genre = '', $limit = 50 ) {
-	$key   = 'xin_rank_' . md5( $metric . '|' . $period . '|' . $genre . '|' . $limit );
+	global $wpdb;
+
+	$limit  = max( 1, min( 200, (int) $limit ) );
+	$key    = 'xin_rank_' . xin_ranking_version() . '_' . md5( $metric . '|' . $period . '|' . $genre . '|' . $limit );
 	$cached = get_transient( $key );
+
 	if ( is_array( $cached ) ) {
 		return $cached;
 	}
 
-	$ids   = xin_ranking_candidates( $period, $genre );
+	$scope = xin_ranking_scope( $period, $genre );
 	$board = array();
 
-	if ( ! $ids ) {
-		set_transient( $key, $board, 10 * MINUTE_IN_SECONDS );
-		return $board;
-	}
-
 	if ( 'chapters' === $metric ) {
-		$counts = xin_ranking_chapter_counts( $ids );
-		foreach ( $ids as $id ) {
-			$n = isset( $counts[ $id ] ) ? $counts[ $id ] : 0;
-			if ( ! $n ) {
-				continue;
-			}
-			$board[] = array( 'id' => $id, 'score' => (float) $n, 'display' => number_format_i18n( $n ), 'votes' => 0 );
+		$sql = "SELECT p.ID AS id, COUNT( ch.ID ) AS score
+			FROM {$wpdb->posts} p
+			INNER JOIN {$wpdb->postmeta} link ON link.meta_key = '_xin_novel' AND CAST( link.meta_value AS UNSIGNED ) = p.ID
+			INNER JOIN {$wpdb->posts} ch ON ch.ID = link.post_id AND ch.post_type = 'chapter' AND ch.post_status = 'publish'
+			{$scope['join']}
+			WHERE p.post_type = 'novel' AND p.post_status = 'publish'
+			  {$scope['where']}
+			GROUP BY p.ID
+			HAVING score > 0
+			ORDER BY score DESC, p.post_date DESC
+			LIMIT {$limit}";
+
+		$rows = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+
+		foreach ( (array) $rows as $row ) {
+			$n       = (int) $row->score;
+			$board[] = array( 'id' => (int) $row->id, 'score' => (float) $n, 'display' => number_format_i18n( $n ), 'votes' => 0 );
 		}
 	} elseif ( 'views' === $metric ) {
-		foreach ( $ids as $id ) {
-			$n = (int) get_post_meta( $id, '_xin_views', true );
-			if ( ! $n ) {
-				continue;
-			}
-			$board[] = array( 'id' => $id, 'score' => (float) $n, 'display' => xin_num( $n ), 'votes' => 0 );
+		$sql = "SELECT p.ID AS id, CAST( v.meta_value AS UNSIGNED ) AS score
+			FROM {$wpdb->posts} p
+			INNER JOIN {$wpdb->postmeta} v ON v.post_id = p.ID AND v.meta_key = '_xin_views'
+			{$scope['join']}
+			WHERE p.post_type = 'novel' AND p.post_status = 'publish'
+			  AND CAST( v.meta_value AS UNSIGNED ) > 0
+			  {$scope['where']}
+			ORDER BY score DESC, p.post_date DESC
+			LIMIT {$limit}";
+
+		$rows = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+
+		foreach ( (array) $rows as $row ) {
+			$n       = (int) $row->score;
+			$board[] = array( 'id' => (int) $row->id, 'score' => (float) $n, 'display' => xin_num( $n ), 'votes' => 0 );
 		}
 	} else {
-		// Weighted rating. C is the mean score across everything that has been
-		// rated at all; m is how many votes it takes to pull free of it.
-		$m     = xin_ranking_weight();
-		$sum   = 0.0;
-		$rated = 0;
-		$raw   = array();
+		/*
+		 * Взвешенная оценка: тайтл с тремя пятёрками не должен обгонять тайтл
+		 * с четырьмя сотнями голосов и оценкой 4,8. Формула та же, что была в
+		 * PHP, — просто считает её база.
+		 */
+		$m    = (float) xin_ranking_weight();
+		$mean = xin_ranking_mean( $scope );
 
-		foreach ( $ids as $id ) {
-			$votes = (int) get_post_meta( $id, '_xin_rating_count', true );
-			if ( $votes < 1 ) {
-				continue;
-			}
-			$value = (float) get_post_meta( $id, '_xin_rating', true );
-			$raw[] = array( 'id' => $id, 'value' => $value, 'votes' => $votes );
-			$sum  += $value;
-			$rated++;
-		}
-
-		if ( ! $rated ) {
-			set_transient( $key, $board, 10 * MINUTE_IN_SECONDS );
-			return $board;
-		}
-
-		$c = $sum / $rated;
-
-		foreach ( $raw as $item ) {
-			$weighted = ( $item['votes'] / ( $item['votes'] + $m ) ) * $item['value']
-				+ ( $m / ( $item['votes'] + $m ) ) * $c;
-
-			$board[] = array(
-				'id'      => $item['id'],
-				'score'   => $weighted,
-				'display' => number_format_i18n( round( $item['value'], 1 ), 1 ),
-				'votes'   => $item['votes'],
+		if ( $mean > 0 ) {
+			$sql = $wpdb->prepare(
+				"SELECT p.ID AS id,
+					CAST( val.meta_value AS DECIMAL(10,4) ) AS value,
+					CAST( cnt.meta_value AS UNSIGNED ) AS votes,
+					( CAST( cnt.meta_value AS UNSIGNED ) / ( CAST( cnt.meta_value AS UNSIGNED ) + %f ) ) * CAST( val.meta_value AS DECIMAL(10,4) )
+					+ ( %f / ( CAST( cnt.meta_value AS UNSIGNED ) + %f ) ) * %f AS score
+				FROM {$wpdb->posts} p
+				INNER JOIN {$wpdb->postmeta} val ON val.post_id = p.ID AND val.meta_key = '_xin_rating'
+				INNER JOIN {$wpdb->postmeta} cnt ON cnt.post_id = p.ID AND cnt.meta_key = '_xin_rating_count'
+				{$scope['join']}
+				WHERE p.post_type = 'novel' AND p.post_status = 'publish'
+				  AND CAST( cnt.meta_value AS UNSIGNED ) > 0
+				  {$scope['where']}
+				ORDER BY score DESC, votes DESC
+				LIMIT {$limit}",
+				$m,
+				$m,
+				$m,
+				$mean
 			);
+
+			$rows = $wpdb->get_results( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
+
+			foreach ( (array) $rows as $row ) {
+				$board[] = array(
+					'id'      => (int) $row->id,
+					'score'   => (float) $row->score,
+					'display' => number_format_i18n( round( (float) $row->value, 1 ), 1 ),
+					'votes'   => (int) $row->votes,
+				);
+			}
 		}
 	}
 
-	usort( $board, static function ( $a, $b ) {
-		if ( $a['score'] === $b['score'] ) {
-			return 0;
-		}
-		return ( $a['score'] < $b['score'] ) ? 1 : -1;
-	} );
-
-	$board = array_slice( $board, 0, $limit );
+	/*
+	 * Записи доски всё равно понадобятся шаблону: поднимаем их разом, иначе
+	 * каждая строка сама сходит в базу за заголовком и обложкой.
+	 */
+	$ids = wp_list_pluck( $board, 'id' );
+	if ( $ids ) {
+		_prime_post_caches( $ids, false, true );
+	}
 
 	set_transient( $key, $board, 10 * MINUTE_IN_SECONDS );
+
 	return $board;
 }
 
 /**
- * A rating, a view count or a chapter tally changing makes the boards stale.
+ * Версия досок. Входит в имя транзиента, поэтому сброс — это +1 к числу.
+ *
+ * @return int
+ */
+function xin_ranking_version() {
+	return (int) get_option( 'xin_rank_version', 1 );
+}
+
+/**
+ * Оценка, просмотры или новая глава делают доски устаревшими.
+ *
+ * Прежде здесь выполнялся `DELETE ... LIKE '_transient_xin_rank_%'` — обход
+ * всей таблицы настроек. Он висел на сохранении каждой главы, поэтому импорт
+ * на пять тысяч глав означал пять тысяч таких обходов. Теперь меняется одно
+ * число, а прежние доски просто дотлевают по своему сроку в десять минут.
+ * Статический флаг не даёт делать это дважды за запрос.
+ *
+ * @return void
  */
 function xin_ranking_forget() {
-	global $wpdb;
+	static $done = false;
 
-	// Transient names are hashed, so there is no way to target them one by one.
-	$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
-		"DELETE FROM {$wpdb->options}
-		 WHERE option_name LIKE '_transient_xin_rank_%'
-		    OR option_name LIKE '_transient_timeout_xin_rank_%'"
-	);
+	if ( $done ) {
+		return;
+	}
+
+	$done = true;
+	update_option( 'xin_rank_version', xin_ranking_version() + 1, false );
 }
 add_action( 'xin_rating_saved', 'xin_ranking_forget' );
 add_action( 'save_post_novel', 'xin_ranking_forget' );

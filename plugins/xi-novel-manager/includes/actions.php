@@ -40,11 +40,11 @@ function xnm_actions() {
 			'owner'      => __( 'Сменить владельца…', 'xi-novel-manager' ),
 			'translator' => __( 'Поставить команду перевода…', 'xi-novel-manager' ),
 		),
-		__( 'Обложка и PLUS', 'xi-novel-manager' ) => array(
+		__( 'Обложка и ранний доступ', 'xi-novel-manager' ) => array(
 			'cover_set'    => __( 'Поставить обложку…', 'xi-novel-manager' ),
 			'cover_remove' => __( 'Убрать обложку', 'xi-novel-manager' ),
-			'plus_on'      => __( 'Все главы — ранний доступ PLUS', 'xi-novel-manager' ),
-			'plus_off'     => __( 'Снять PLUS со всех глав', 'xi-novel-manager' ),
+			'plus_on'      => __( 'Все главы — ранний доступ', 'xi-novel-manager' ),
+			'plus_off'     => __( 'Снять ранний доступ со всех глав', 'xi-novel-manager' ),
 		),
 		__( 'Прочее', 'xi-novel-manager' ) => array(
 			'reslug'  => __( 'Пересобрать адреса глав', 'xi-novel-manager' ),

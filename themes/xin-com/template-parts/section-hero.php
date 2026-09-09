@@ -5,7 +5,7 @@ if ( ! $xin_ids ) {
 	return;
 }
 ?>
-<section class="xin-hero xin-aurora" data-xin-hero>
+<section class="xin-hero" data-xin-hero>
 	<div class="xin-hero__grid">
 
 		<div class="xin-hero__text">
@@ -18,7 +18,6 @@ if ( ! $xin_ids ) {
 				?>
 				<div class="xin-hero__slide" data-xin-hero-slide="<?php echo (int) $xin_i; ?>" <?php echo 0 === $xin_i ? '' : 'hidden'; ?>>
 					<div class="xin-hero__eyebrow">
-						<span class="xin-hero__pulse"><?php xin_the_icon( 'flame' ); ?></span>
 						<?php echo esc_html( get_theme_mod( 'xin_hero_eyebrow', __( 'Сейчас в тренде', 'xin-com' ) ) ); ?>
 					</div>
 
@@ -59,14 +58,13 @@ if ( ! $xin_ids ) {
 		</div>
 
 		<div class="xin-hero__deck" data-xin-hero-deck>
-			<span class="xin-hero__glow" aria-hidden="true"></span>
 			<?php foreach ( $xin_ids as $xin_i => $xin_id ) : ?>
 				<?php $xin_cover = xin_cover_url( $xin_id, 'xin-cover-lg' ); ?>
 				<button
 					type="button"
 					class="xin-hero__card"
 					data-xin-hero-card="<?php echo (int) $xin_i; ?>"
-					data-pos="<?php echo 0 === $xin_i ? '0' : ( 1 === $xin_i ? '1' : 'hidden' ); ?>"
+					data-pos="<?php echo esc_attr( xin_hero_start_pos( $xin_i, count( $xin_ids ) ) ); ?>"
 					aria-label="<?php echo esc_attr( get_the_title( $xin_id ) ); ?>"
 				>
 					<?php if ( $xin_cover ) : ?>

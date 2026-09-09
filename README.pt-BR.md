@@ -2,23 +2,24 @@
 
 <h1>XI&nbsp;Novels</h1>
 
-<h3>Pare de manter um blog. Coloque uma plataforma de novels no ar.</h3>
+<h3>O melhor tema WordPress para novels. E aqui está o que sustenta isso.</h3>
 
 <p>
-Um tema WordPress gratuito, GPL e sem nenhuma dependência que transforma uma<br>
-instalação limpa em um site completo de light novels, web novels e traduções — catálogo,<br>
-capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaço do leitor.<br>
+Catálogo, página do título, leitor em tela cheia com rolagem infinita, voz<br>
+e glossário do projeto, rankings, estúdio do autor no próprio site,<br>
+biblioteca do leitor, exportação em EPUB e FB2 — <b>tudo isso já está no tema</b>.<br>
+Nenhum plugin obrigatório, nenhuma requisição externa, nenhuma etapa de build.<br>
 <b>E em nenhum momento parece WordPress.</b>
 </p>
 
 [![Demo ao vivo](https://img.shields.io/badge/Demo_ao_vivo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
 [![Instalação](https://img.shields.io/badge/Instala%C3%A7%C3%A3o-dois_minutos-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Documentação](https://img.shields.io/badge/Documenta%C3%A7%C3%A3o-ler-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.8.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-beta_0.9.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.8.0-f59e0b?style=flat-square)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-beta_0.9.0-f59e0b?style=flat-square)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4_%E2%86%92_7.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
@@ -39,7 +40,22 @@ capítulos, leitor em tela cheia, rankings, painel do autor, biblioteca e espaç
 ![Página inicial](screenshots/01-home.jpg)
 
 > [!NOTE]
-> **Beta 0.8.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
+> **Beta 0.9.0 — a plataforma funciona de ponta a ponta.** Dá para instalar hoje e publicar obras e capítulos. O que ainda não está fechado é a **camada de apresentação**: o Bootstrap 5 é a base atual, não o destino.
+
+## Por que este
+
+Uma afirmação forte vale exatamente o que houver de número e de código embaixo dela. Aqui estão.
+
+| | |
+|:--|:--|
+| 📚 **Tudo no tema, não em cinco plugins** | Catálogo, capítulos, leitor, rankings, notas, biblioteca, estúdio do autor, exportação de livros, discussões, glossário do projeto, voz — um código, um modelo de dados, um conjunto de ajustes. Os três plugins que acompanham cobrem só importação em massa, edição em massa e a aparência |
+| 🚀 **Aguenta milhares de capítulos** | Medido num ambiente com **400 títulos e 14 000 capítulos**, um deles com 4 000: a página do título abre em **0,52 s** com cache frio, o catálogo em 0,55 s, o ranking em 0,45 s. O índice carrega em partes, o leitor mantém uma janela de capítulos em torno do atual e a contagem de capítulos fica em meta, em vez de ser refeita a cada card |
+| 📖 **Um leitor que faz voltar** | Rolagem infinita: terminou o capítulo, o próximo se acrescenta sozinho. Tamanho, largura, entrelinha, tipo e papel; marcadores e citações por parágrafo, sugestões de correção ao autor, glossário de nomes, síntese de voz, uma barra de controles à esquerda e progresso com o tempo restante |
+| 🔌 **Zero requisições externas** | Sem CDN, sem Google Fonts, sem rastreadores. Fontes do sistema, ícones em SVG embutido. A página carrega inteira do seu domínio |
+| 🛠 **Zero build** | Sem npm, sem composer, sem etapa de compilação. Baixe, descompacte em `wp-content/themes`, ative |
+| ✍️ **O autor publica pelo site** | Estúdio do autor, editor de capítulo com salvamento automático, calendário de lançamento, glossário do projeto, coautores — sem abrir o `/wp-admin` |
+| 🌍 **Três idiomas de fábrica** | 1.179 textos no tema e mais 374 nos plugins: fonte em russo, `en_US` e `pt_BR` compilados, seletor RU / EN / PT no cabeçalho |
+| 🔍 **Código que dá para ler** | ~19 mil linhas com comentários que explicam *por que é assim*, não *o que a linha faz*. Nada de JSON ofuscado de construtor de páginas |
 
 > [!TIP]
 > **Demo ao vivo — [xi.community](https://xi.community).** Um site de verdade rodando este tema: navegue pelo catálogo, abra uma obra, experimente o leitor e suas configurações.
@@ -141,6 +157,7 @@ As outras respostas são um **tema de marketplace de US$ 59–99** soldado a um 
 
 | | |
 |:--|:--|
+| **0.9.0** | **A aparência foi refeita e a plataforma aguenta catálogos grandes.** Papel quente no lugar do grafite frio, títulos serifados, linhas finas em vez de sombras; a página do título virou uma capa dupla com abas e uma coluna de cards, o leitor ganhou painéis na largura do site, uma barra de controles e **rolagem infinita** — terminou o capítulo, o próximo se acrescenta sozinho. O índice carrega de 30 em 30, o ritmo de lançamento é calculado sozinho e “surpresa” abre um título aleatório. O modo PLUS foi removido. Verificado com 400 títulos e 14 000 capítulos |
 | **0.8.0** | **O tema agora é XIN-Com e ganhou uma seção de quadrinhos.** Novels e quadrinhos são duas seções com um seletor no cabeçalho, cada uma com sua página inicial e seu catálogo, e os quadrinhos ainda com um leitor de páginas: em tira vertical ou página a página, da direita para a esquerda no mangá. As páginas dos quadrinhos podem ir para armazenamento compatível com S3, e o leitor escolhe o espelho de entrega. O estúdio configura o WordPress para o tema: links, páginas de serviço, página inicial e menu |
 | **0.6.0** | **O download de livros fecha atrás de uma função.** O painel de controle define quem pode exportar EPUB e FB2: todos, qualquer pessoa conectada, quem tem PLUS, “PLUS ou funções selecionadas” ou somente as funções selecionadas — caixas sobre as funções do site, incluindo as criadas por plugins. O botão e o link direto fazem a mesma verificação |
 | **0.5.0** | **Espaço do leitor** em `/hub/` — uma página que mostra a plataforma por dentro: quem fala, sobre o que discutem, o que está sendo lido agora. Seis contadores do site no cabeçalho, as duas métricas de uma vez no quadro de líderes, um cartão de perfil com a barra até o próximo nível. Desenhado como um terminal — grade e varredura no fundo, cantos cortados, leituras monoespaçadas, barras segmentadas — e não coleta nada novo sobre ninguém além de um anel de 40 leituras recentes |
@@ -374,6 +391,8 @@ Passo a passo: **[docs/install.md](docs/install.md)** ([RU](docs/install.ru.md))
 | Chamadas externas em execução | **Zero** | Fontes de CDN, rastreadores | Tudo |
 | Painel do autor no front-end | **Sim** | Raro | Sim |
 | Leitor em tela cheia com configurações | **Sim** | Raro | Sim |
+| Rolagem infinita de capítulos | **Sim** | Raro | Sim |
+| Catálogos com milhares de capítulos | **Verificado: 14 000 capítulos** | Depende da sorte | Sim |
 | Os leitores e os dados são seus | **Sim** | Sim | **Não** |
 | Parece WordPress | **Não** | Sim | n/a |
 

@@ -6,7 +6,7 @@
  * если читатель имеет к ним доступ.
  *
  * Кому вообще позволено скачивать, решает настройка «Скачивание книг» в панели
- * управления: всем, вошедшим, по PLUS или по выбранным ролям. Проверка одна на
+ * управления: всем, вошедшим или по выбранным ролям. Проверка одна на
  * ссылку и на сам файл — xin_can_download().
  *
  * @package XI_Novels
@@ -29,8 +29,6 @@ function xin_download_audiences() {
 	return array(
 		'all'       => __( 'Всем, включая гостей', 'xin-com' ),
 		'members'   => __( 'Любому вошедшему', 'xin-com' ),
-		'plus'      => __( 'Только с доступом PLUS', 'xin-com' ),
-		'plus_role' => __( 'PLUS или выбранные роли', 'xin-com' ),
 		'roles'     => __( 'Только выбранным ролям', 'xin-com' ),
 	);
 }
@@ -43,6 +41,15 @@ function xin_download_audiences() {
  */
 function xin_download_audience() {
 	$mode = get_theme_mod( 'xin_download_audience', 'all' );
+
+	/*
+	 * Режимы PLUS убраны вместе с самим PLUS. Сайт, где стояло «только PLUS»,
+	 * не должен от обновления темы вдруг открыть выгрузку всем: прежний выбор
+	 * читается как ближайший по смыслу — «только выбранным ролям».
+	 */
+	if ( 'plus' === $mode || 'plus_role' === $mode ) {
+		return 'roles';
+	}
 
 	return isset( xin_download_audiences()[ $mode ] ) ? $mode : 'all';
 }
@@ -130,12 +137,8 @@ function xin_can_download( $user_id = 0 ) {
 		$can = false;
 	} elseif ( 'members' === $mode ) {
 		$can = true;
-	} elseif ( 'roles' === $mode ) {
-		$can = xin_download_role_match( $user_id );
-	} elseif ( 'plus_role' === $mode ) {
-		$can = xin_download_role_match( $user_id ) || xin_user_is_plus( $user_id );
 	} else {
-		$can = xin_user_is_plus( $user_id );
+		$can = xin_download_role_match( $user_id );
 	}
 
 	/**
@@ -167,13 +170,7 @@ function xin_download_denied() {
 		);
 	}
 
-	if ( 'roles' === $mode ) {
-		$text = __( 'Скачивание книг открыто только отдельным ролям площадки.', 'xin-com' );
-	} elseif ( 'plus_role' === $mode ) {
-		$text = __( 'Скачивание книг открыто по доступу PLUS и отдельным ролям площадки.', 'xin-com' );
-	} else {
-		$text = __( 'Скачивание книг входит в доступ PLUS.', 'xin-com' );
-	}
+	$text = __( 'Скачивание книг открыто только отдельным ролям площадки.', 'xin-com' );
 
 	return array( 'text' => $text, 'url' => '', 'link' => '' );
 }
@@ -232,9 +229,11 @@ function xin_export_throttled() {
 function xin_export_chapters( $novel_id ) {
 	$out = array();
 
-	foreach ( xin_get_chapters( $novel_id, 'ASC' ) as $chapter ) {
+	// Порциями: иначе перед сборкой книги в памяти лежат сразу и все записи
+	// глав, и весь готовый текст.
+	xin_each_chapter( $novel_id, static function ( $chapter ) use ( &$out ) {
 		if ( ! xin_can_read_chapter( $chapter->ID ) ) {
-			continue;
+			return;
 		}
 
 		$out[] = array(
@@ -243,7 +242,7 @@ function xin_export_chapters( $novel_id ) {
 			'label'   => xin_chapter_label( $chapter->ID ),
 			'content' => xin_export_clean( apply_filters( 'the_content', $chapter->post_content ) ),
 		);
-	}
+	} );
 
 	return $out;
 }

@@ -132,7 +132,6 @@ $xin_tabs = array(
 			xin_section_head( array(
 				'eyebrow' => __( 'визитка', 'xin-com' ),
 				'title'   => __( 'Читают чаще всего', 'xin-com' ),
-				'icon'    => 'flame',
 			) );
 			?>
 			<div class="xin-podium">
@@ -228,7 +227,6 @@ $xin_tabs = array(
 			<?php
 			xin_section_head( array(
 				'title'      => __( 'Последние главы автора', 'xin-com' ),
-				'icon'       => 'clock',
 				'more_href'  => add_query_arg( 'tab', 'chapters', $xin_url ),
 				'more_label' => __( 'Все главы', 'xin-com' ),
 			) );

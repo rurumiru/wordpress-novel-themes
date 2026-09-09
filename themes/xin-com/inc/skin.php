@@ -32,18 +32,18 @@ function xin_skin_fields() {
 			'type'    => 'color',
 			'default' => '',
 			'label'   => __( 'Цвет премиума', 'xin-com' ),
-			'hint'    => __( 'Коины, PLUS, медали рейтинга.', 'xin-com' ),
+			'hint'    => __( 'Медали рейтинга, ранний доступ, награды автора.', 'xin-com' ),
 		),
 		'xin_hue' => array(
 			'group'   => 'color',
 			'type'    => 'range',
-			'default' => 220,
+			'default' => 34,
 			'min'     => 0,
 			'max'     => 360,
 			'step'    => 1,
 			'unit'    => '°',
 			'label'   => __( 'Оттенок нейтральных', 'xin-com' ),
-			'hint'    => __( 'Фон, рамки и текст строятся из одного тона. 220 — холодный графит.', 'xin-com' ),
+			'hint'    => __( 'Фон, рамки и текст строятся из одного тона. 34 — тёплая бумага, 220 — холодный графит.', 'xin-com' ),
 		),
 		'xin_saturation' => array(
 			'group'   => 'color',
@@ -59,13 +59,13 @@ function xin_skin_fields() {
 		'xin_radius' => array(
 			'group'   => 'shape',
 			'type'    => 'range',
-			'default' => 12,
+			'default' => 8,
 			'min'     => 0,
 			'max'     => 22,
 			'step'    => 1,
 			'unit'    => 'px',
 			'label'   => __( 'Скругление', 'xin-com' ),
-			'hint'    => __( 'Карточки, кнопки и поля. Ноль — строгие прямые углы.', 'xin-com' ),
+			'hint'    => __( 'Панели, кнопки и поля. Обложки скруглены отдельно и слабо — иллюстрацию нельзя обрезать по углам. Ноль — строгие прямые углы.', 'xin-com' ),
 		),
 		'xin_shadow' => array(
 			'group'   => 'shape',
@@ -91,23 +91,36 @@ function xin_skin_fields() {
 		'xin_font_ui' => array(
 			'group'   => 'type',
 			'type'    => 'choice',
-			'default' => 'inter',
+			'default' => 'humanist',
 			'choices' => array(
-				'inter'   => __( 'Inter / Segoe UI', 'xin-com' ),
-				'system'  => __( 'Системный', 'xin-com' ),
-				'grotesk' => __( 'Гротеск помягче', 'xin-com' ),
-				'serif'   => __( 'С засечками', 'xin-com' ),
+				'humanist' => __( 'Гуманистический (Candara)', 'xin-com' ),
+				'system'   => __( 'Системный', 'xin-com' ),
+				'grotesk'  => __( 'Нейтральный гротеск', 'xin-com' ),
+				'serif'    => __( 'С засечками', 'xin-com' ),
 			),
 			'label'   => __( 'Шрифт интерфейса', 'xin-com' ),
 			'hint'    => __( 'Только системные стеки — ничего не грузится со стороны.', 'xin-com' ),
 		),
+		'xin_font_title' => array(
+			'group'   => 'type',
+			'type'    => 'choice',
+			'default' => 'banner',
+			'choices' => array(
+				'banner'  => __( 'Книжная антиква (Sitka Banner)', 'xin-com' ),
+				'heading' => __( 'Антиква помягче (Sitka Heading)', 'xin-com' ),
+				'classic' => __( 'Классическая (Palatino)', 'xin-com' ),
+				'sans'    => __( 'Без засечек', 'xin-com' ),
+			),
+			'label'   => __( 'Шрифт заголовков', 'xin-com' ),
+			'hint'    => __( 'Названия тайтлов и заголовки разделов. Интерфейса не касается.', 'xin-com' ),
+		),
 		'xin_font_read' => array(
 			'group'   => 'type',
 			'type'    => 'choice',
-			'default' => 'georgia',
+			'default' => 'sitka',
 			'choices' => array(
+				'sitka'   => __( 'Книжный (Sitka Text)', 'xin-com' ),
 				'georgia' => __( 'Georgia', 'xin-com' ),
-				'book'    => __( 'Книжный', 'xin-com' ),
 				'palatino'=> __( 'Palatino', 'xin-com' ),
 				'sans'    => __( 'Без засечек', 'xin-com' ),
 			),
@@ -127,12 +140,13 @@ function xin_skin_fields() {
 		'xin_read_width' => array(
 			'group'   => 'read',
 			'type'    => 'range',
-			'default' => 720,
+			'default' => 1120,
 			'min'     => 560,
-			'max'     => 980,
+			'max'     => 1160,
 			'step'    => 20,
 			'unit'    => 'px',
 			'label'   => __( 'Ширина колонки чтения', 'xin-com' ),
+			'hint'    => __( 'По умолчанию — во всю ширину сайта. Узкая колонка читается легче: глазу проще найти начало следующей строки.', 'xin-com' ),
 		),
 		'xin_read_lead' => array(
 			'group'   => 'read',
@@ -268,19 +282,44 @@ function xin_skin_values( $values = null ) {
  */
 function xin_skin_font_stacks() {
 	return array(
-		'ui'   => array(
-			'inter'   => '"Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif',
-			'system'  => 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-			'grotesk' => '"Avenir Next", "Trebuchet MS", "Segoe UI", system-ui, sans-serif',
-			'serif'   => '"Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif',
+		'ui'    => array(
+			'humanist' => 'Candara, "Avenir Next", "Segoe UI Variable Text", "Helvetica Neue", system-ui, -apple-system, "Noto Sans", Arial, sans-serif',
+			'system'   => 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+			'grotesk'  => '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+			'serif'    => '"Sitka Small", Constantia, "Iowan Old Style", Georgia, serif',
 		),
-		'read' => array(
-			'georgia'  => '"Georgia", "Times New Roman", "Noto Serif", serif',
-			'book'     => '"Literata", "Iowan Old Style", "Charter", Georgia, serif',
+		'title' => array(
+			'banner'  => '"Sitka Banner", "Hoefler Text", "Iowan Old Style", Charter, Constantia, "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", serif',
+			'heading' => '"Sitka Heading", "Iowan Old Style", Constantia, Georgia, serif',
+			'classic' => '"Palatino Linotype", "Book Antiqua", Palatino, "Iowan Old Style", Georgia, serif',
+			'sans'    => 'Candara, "Avenir Next", "Segoe UI Variable Text", system-ui, -apple-system, Arial, sans-serif',
+		),
+		'read'  => array(
+			'sitka'    => '"Sitka Text", Charter, "Iowan Old Style", Constantia, Georgia, "Noto Serif", serif',
+			'georgia'  => 'Georgia, "Times New Roman", "Noto Serif", serif',
 			'palatino' => '"Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif',
-			'sans'     => '"Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif',
+			'sans'     => 'Candara, "Segoe UI", system-ui, -apple-system, Arial, sans-serif',
 		),
 	);
+}
+
+/**
+ * Ключи шрифтов, оставшиеся от прежнего набора.
+ *
+ * Сайт, где выбран `inter` или `book`, не должен после обновления темы молча
+ * съехать на умолчание: прежний выбор переводится в ближайший новый.
+ *
+ * @param string $group ui|title|read
+ * @param string $key   Сохранённое значение.
+ * @return string
+ */
+function xin_skin_font_legacy( $group, $key ) {
+	$map = array(
+		'ui'   => array( 'inter' => 'humanist' ),
+		'read' => array( 'book' => 'sitka' ),
+	);
+
+	return isset( $map[ $group ][ $key ] ) ? $map[ $group ][ $key ] : $key;
 }
 
 /**
@@ -292,28 +331,28 @@ function xin_skin_font_stacks() {
 function xin_skin_neutrals( $scheme ) {
 	if ( 'dark' === $scheme ) {
 		return array(
-			'bg'       => array( 14, 7 ),
-			'fg'       => array( 14, 91 ),
-			'card'     => array( 13, 11 ),
-			'popover'  => array( 13, 14 ),
-			'muted'    => array( 12, 16 ),
-			'muted-fg' => array( 10, 64 ),
-			'accent'   => array( 12, 20 ),
-			'border'   => array( 11, 24 ),
-			'input'    => array( 11, 28 ),
+			'bg'       => array( 10, 8 ),
+			'fg'       => array( 16, 89 ),
+			'card'     => array( 9, 11.5 ),
+			'popover'  => array( 9, 14 ),
+			'muted'    => array( 8, 16 ),
+			'muted-fg' => array( 9, 62 ),
+			'accent'   => array( 8, 21 ),
+			'border'   => array( 7, 22.5 ),
+			'input'    => array( 7, 28 ),
 		);
 	}
 
 	return array(
-		'bg'       => array( 20, 98.5 ),
-		'fg'       => array( 15, 12 ),
-		'card'     => array( 0, 100 ),
-		'popover'  => array( 0, 100 ),
-		'muted'    => array( 14, 95.5 ),
-		'muted-fg' => array( 9, 44 ),
-		'accent'   => array( 14, 92.5 ),
-		'border'   => array( 13, 89 ),
-		'input'    => array( 13, 85 ),
+		'bg'       => array( 33, 97 ),
+		'fg'       => array( 14, 13 ),
+		'card'     => array( 40, 99.5 ),
+		'popover'  => array( 40, 99.5 ),
+		'muted'    => array( 20, 93.5 ),
+		'muted-fg' => array( 8, 42 ),
+		'accent'   => array( 22, 90 ),
+		'border'   => array( 16, 86.5 ),
+		'input'    => array( 16, 79 ),
 	);
 }
 
@@ -326,31 +365,31 @@ function xin_skin_neutrals( $scheme ) {
 function xin_skin_shadows( $scheme ) {
 	if ( 'dark' === $scheme ) {
 		return array(
-			'flat' => array( 'none', 'none', '0 8px 24px hsl(220 20% 2% / .45)' ),
+			'flat' => array( 'none', 'none', '0 8px 24px hsl(0 0% 0% / .45)' ),
 			'soft' => array(
-				'0 1px 2px hsl(220 20% 2% / .5)',
-				'0 6px 18px hsl(220 20% 2% / .55)',
-				'0 18px 44px hsl(220 20% 2% / .6)',
+				'0 1px 2px hsl(0 0% 0% / .5)',
+				'0 6px 20px hsl(0 0% 0% / .55)',
+				'0 20px 48px hsl(0 0% 0% / .62)',
 			),
 			'deep' => array(
-				'0 2px 4px hsl(220 20% 2% / .6)',
-				'0 10px 28px hsl(220 20% 2% / .7)',
-				'0 26px 60px hsl(220 20% 2% / .78)',
+				'0 2px 4px hsl(0 0% 0% / .6)',
+				'0 12px 30px hsl(0 0% 0% / .7)',
+				'0 28px 64px hsl(0 0% 0% / .78)',
 			),
 		);
 	}
 
 	return array(
-		'flat' => array( 'none', 'none', '0 6px 20px hsl(220 15% 12% / .08)' ),
+		'flat' => array( 'none', 'none', '0 6px 20px hsl(28 20% 10% / .08)' ),
 		'soft' => array(
-			'0 1px 2px hsl(220 15% 12% / .05), 0 1px 3px hsl(220 15% 12% / .06)',
-			'0 4px 12px hsl(220 15% 12% / .07), 0 2px 4px hsl(220 15% 12% / .05)',
-			'0 12px 30px hsl(220 15% 12% / .10), 0 4px 8px hsl(220 15% 12% / .05)',
+			'0 1px 2px hsl(28 20% 10% / .05), 0 1px 3px hsl(28 20% 10% / .06)',
+			'0 4px 12px hsl(28 20% 10% / .07), 0 2px 4px hsl(28 20% 10% / .05)',
+			'0 12px 30px hsl(28 20% 10% / .10), 0 4px 8px hsl(28 20% 10% / .05)',
 		),
 		'deep' => array(
-			'0 2px 4px hsl(220 15% 12% / .10)',
-			'0 8px 24px hsl(220 15% 12% / .14), 0 3px 6px hsl(220 15% 12% / .08)',
-			'0 22px 50px hsl(220 15% 12% / .20), 0 8px 16px hsl(220 15% 12% / .10)',
+			'0 2px 4px hsl(28 20% 10% / .10)',
+			'0 8px 24px hsl(28 20% 10% / .14), 0 3px 6px hsl(28 20% 10% / .08)',
+			'0 22px 50px hsl(28 20% 10% / .20), 0 8px 16px hsl(28 20% 10% / .10)',
 		),
 	);
 }
@@ -369,7 +408,7 @@ function xin_skin_css( $values = null ) {
 	$hue = (int) $value['xin_hue'];
 	$sat = (int) $value['xin_saturation'];
 
-	if ( 220 !== $hue || 100 !== $sat ) {
+	if ( 34 !== $hue || 100 !== $sat ) {
 		foreach ( array( 'light', 'dark' ) as $scheme ) {
 			$vars = '';
 			foreach ( xin_skin_neutrals( $scheme ) as $token => $pair ) {
@@ -391,7 +430,7 @@ function xin_skin_css( $values = null ) {
 	}
 
 	$radius = (int) $value['xin_radius'];
-	if ( 12 !== $radius ) {
+	if ( 8 !== $radius ) {
 		$css .= sprintf(
 			':root{--radius:%dpx;--radius-sm:%dpx;--radius-lg:%dpx;}',
 			$radius,
@@ -418,12 +457,22 @@ function xin_skin_css( $values = null ) {
 	$stacks = xin_skin_font_stacks();
 	$vars   = '';
 
-	if ( 'inter' !== $value['xin_font_ui'] && isset( $stacks['ui'][ $value['xin_font_ui'] ] ) ) {
-		$vars .= '--font:' . $stacks['ui'][ $value['xin_font_ui'] ] . ';';
+	$fonts = array(
+		'ui'    => array( 'xin_font_ui', 'humanist', '--font' ),
+		'title' => array( 'xin_font_title', 'banner', '--font-display' ),
+		'read'  => array( 'xin_font_read', 'sitka', '--font-read' ),
+	);
+
+	foreach ( $fonts as $group => $font ) {
+		list( $field, $default, $token ) = $font;
+
+		$key = xin_skin_font_legacy( $group, isset( $value[ $field ] ) ? $value[ $field ] : $default );
+
+		if ( $key !== $default && isset( $stacks[ $group ][ $key ] ) ) {
+			$vars .= $token . ':' . $stacks[ $group ][ $key ] . ';';
+		}
 	}
-	if ( 'georgia' !== $value['xin_font_read'] && isset( $stacks['read'][ $value['xin_font_read'] ] ) ) {
-		$vars .= '--font-read:' . $stacks['read'][ $value['xin_font_read'] ] . ';';
-	}
+
 	if ( $vars ) {
 		$css .= ':root{' . $vars . '}';
 	}
@@ -435,7 +484,7 @@ function xin_skin_css( $values = null ) {
 		number_format( (int) $value['xin_read_lead'] / 10, 2, '.', '' )
 	);
 
-	if ( 19 !== (int) $value['xin_read_size'] || 720 !== (int) $value['xin_read_width'] || 19 !== (int) $value['xin_read_lead'] ) {
+	if ( 19 !== (int) $value['xin_read_size'] || 1120 !== (int) $value['xin_read_width'] || 19 !== (int) $value['xin_read_lead'] ) {
 		$css .= '.xin-rd{' . $read . '}';
 	}
 
@@ -467,19 +516,20 @@ function xin_skin_reader_defaults() {
 function xin_skin_presets() {
 	$presets = array(
 		'graphite' => array(
-			'label'  => __( 'Графит', 'xin-com' ),
-			'note'   => __( 'Как в коробке: холодный нейтральный и спокойный акцент.', 'xin-com' ),
+			'label'  => __( 'Печатный двор', 'xin-com' ),
+			'note'   => __( 'Как в коробке: тёплая бумага, чернильный текст, штемпельный акцент.', 'xin-com' ),
 			'values' => array(),
 		),
 		'paper' => array(
-			'label'  => __( 'Бумага', 'xin-com' ),
-			'note'   => __( 'Тёплый белый, засечки, широкая колонка — ближе к книге.', 'xin-com' ),
+			'label'  => __( 'Сепия', 'xin-com' ),
+			'note'   => __( 'Ещё теплее и мягче: широкая колонка, палатино, сепия в читалке.', 'xin-com' ),
 			'values' => array(
-				'xin_hue'        => 34,
-				'xin_saturation' => 60,
+				'xin_hue'        => 32,
+				'xin_saturation' => 140,
 				'xin_radius'     => 6,
 				'xin_shadow'     => 'flat',
 				'xin_font_read'  => 'palatino',
+				'xin_font_title' => 'classic',
 				'xin_read_size'  => 20,
 				'xin_read_width' => 760,
 				'xin_read_lead'  => 20,
@@ -487,8 +537,8 @@ function xin_skin_presets() {
 			),
 		),
 		'ink' => array(
-			'label'  => __( 'Чернила', 'xin-com' ),
-			'note'   => __( 'Тёмная схема по умолчанию, глубокие тени, ночная бумага.', 'xin-com' ),
+			'label'  => __( 'Графит', 'xin-com' ),
+			'note'   => __( 'Холодный нейтральный и тёмная схема по умолчанию.', 'xin-com' ),
 			'values' => array(
 				'xin_default_scheme' => 'dark',
 				'xin_hue'            => 232,
@@ -521,7 +571,7 @@ function xin_skin_presets() {
 				'xin_shadow'      => 'flat',
 				'xin_wrap'        => 1080,
 				'xin_font_ui'     => 'serif',
-				'xin_font_read'   => 'book',
+				'xin_font_read'   => 'georgia',
 				'xin_read_width'  => 620,
 				'xin_read_size'   => 18,
 			),

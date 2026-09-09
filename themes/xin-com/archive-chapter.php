@@ -68,7 +68,7 @@ $xin_open      = false;
 							<?php endif; ?>
 							<?php the_title(); ?>
 							<?php if ( get_post_meta( $xin_id, '_xin_locked', true ) ) : ?>
-								<span class="xin-badge xin-badge--gold"><?php xin_the_icon( 'lock' ); ?>PLUS</span>
+								<span class="xin-badge xin-badge--gold"><?php xin_the_icon( 'lock' ); ?><?php esc_html_e( 'Ранний доступ', 'xin-com' ); ?></span>
 							<?php endif; ?>
 						</span>
 					</span>

@@ -1,12 +1,45 @@
-.xin-brand__text { font-weight: 800; letter-spacing: -.03em; font-size: 19px; color: hsl(var(--fg)); }
-.navbar-brand:hover .xin-brand__text { color: hsl(var(--primary)); transition: color .18s ease; }
-.xin-brand__text b { color: hsl(var(--primary)); font-weight: 800; }
-.xin-footer__brand { margin-bottom: 12px; font-size: 18px; }
+/* ==========================================================================
+   XIN-Com · widgets.css
+   Логотип, добивки к афише, аватары, поля и кнопки внутри виджетов и блоков
+   Gutenberg. Каркас сайдбара и вид самих виджетов задаёт pages.css — здесь
+   только то, что приходит из чужой разметки: блоки редактора, календарь,
+   облако меток, форма поиска.
+   ========================================================================== */
 
-.xin-banner__slide { min-height: var(--banner-h, 360px); }
-@media (max-width: 767px) { .xin-banner__slide { min-height: min(var(--banner-h, 360px), 300px); } }
-.xin-banner__eyebrow { margin: 0 0 4px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: hsl(0 0% 100% / .78); }
+/* ==========================================================================
+   Логотип
+   Единственная надпись сайта, набранная антиквой в шапке. Вторая половина
+   названия раньше красилась акцентом — получалась двухцветная вывеска;
+   теперь она просто приглушена.
+   ========================================================================== */
+
+.xin-brand__text {
+	font-family: var(--font-display);
+	font-size: 19px; font-weight: 600;
+	letter-spacing: -.02em;
+	color: hsl(var(--fg));
+}
+.xin-brand__text b { font-weight: 600; color: hsl(var(--muted-fg)); }
+.navbar-brand:hover .xin-brand__text { color: hsl(var(--fg)); }
+
+.xin-footer__brand { margin-bottom: 14px; font-size: 18px; }
+
+/* ==========================================================================
+   Афиша: добивки к .xin-banner из ядра
+   ========================================================================== */
+
+.xin-banner__slide { min-height: var(--banner-h, 340px); }
+@media (max-width: 767px) { .xin-banner__slide { min-height: min(var(--banner-h, 340px), 280px); } }
+
+.xin-banner__eyebrow {
+	margin: 0 0 8px;
+	font-family: var(--font);
+	font-size: 11px; font-weight: 600; line-height: 1;
+	letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(40 22% 84%);
+}
 .xin-banner__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
 .xin-banner__slide.is-center .xin-banner__body { text-align: center; align-content: center; }
 .xin-banner__slide.is-center .xin-banner__body p { margin-inline: auto; }
 .xin-banner__slide.is-center .xin-banner__actions { justify-content: center; }
@@ -14,30 +47,44 @@
 .xin-banner__slide.is-right .xin-banner__body p { margin-inline-start: auto; }
 .xin-banner__slide.is-right .xin-banner__actions { justify-content: flex-end; }
 
-.avatar, img.avatar { border-radius: 999px; object-fit: cover; }
-.xin-profile__avatar img, .xin-profile__avatar .avatar { width: 100%; height: 100%; border-radius: 999px; }
-.xin-author-card img, .xin-author-card .avatar { width: 56px; height: 56px; border-radius: 999px; }
+/* ==========================================================================
+   Аватары
+   ========================================================================== */
+
+.avatar,
+img.avatar { border-radius: 999px; object-fit: cover; }
+.xin-profile__avatar img,
+.xin-profile__avatar .avatar { width: 100%; height: 100%; border-radius: 999px; }
+.xin-author-card img,
+.xin-author-card .avatar { width: 56px; height: 56px; border-radius: 999px; }
 .xin-comment__avatar img { border-radius: 999px; }
+
+/* ==========================================================================
+   Поля и кнопки внутри виджетов
+   Виджеты приходят из чужой разметки, поэтому поля и кнопки приводятся к тем
+   же правилам, что и .xin-btn: радиус --radius-sm, без теней и подпрыгиваний.
+   ========================================================================== */
 
 .widget select,
 .widget input[type="text"],
 .widget input[type="search"],
 .widget input[type="email"] {
 	width: 100%;
-	padding: .6rem .9rem;
-	font-family: inherit;
-	font-size: 14px;
-	color: hsl(var(--fg));
-	background: hsl(var(--bg));
+	padding: .6rem .85rem;
 	border: 1px solid hsl(var(--input));
-	border-radius: 999px;
+	border-radius: var(--radius-sm);
+	background: hsl(var(--bg));
+	color: hsl(var(--fg));
+	font-family: var(--font); font-size: 14px;
+	transition: border-color .16s ease, box-shadow .16s ease;
 }
 .widget select:focus,
 .widget input:focus {
 	outline: none;
 	border-color: hsl(var(--ring));
-	box-shadow: 0 0 0 3px hsl(var(--ring) / .18);
+	box-shadow: 0 0 0 3px hsl(var(--ring) / .13);
 }
+
 .widget button,
 .widget input[type="submit"],
 .widget .wp-block-search__button,
@@ -45,22 +92,16 @@
 .search-submit,
 .wp-block-file__button,
 .wp-block-button__link {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: .4rem;
-	padding: .6rem 1.15rem;
-	border: 0;
-	border-radius: 999px;
+	display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+	padding: .58rem 1.05rem;
+	border: 1px solid transparent;
+	border-radius: var(--radius-sm);
 	background: hsl(var(--primary));
 	color: hsl(var(--primary-fg));
-	font-family: inherit;
-	font-size: 13.5px;
-	font-weight: 700;
-	line-height: 1.2;
+	font-family: var(--font); font-size: 14px; font-weight: 550; line-height: 1.25;
 	cursor: pointer;
-	box-shadow: 0 6px 18px hsl(var(--primary) / .22);
-	transition: background-color .18s ease, transform .18s ease;
+	box-shadow: none;
+	transition: background-color .16s ease, color .16s ease;
 }
 .widget button:hover,
 .widget input[type="submit"]:hover,
@@ -68,57 +109,158 @@
 .search-submit:hover,
 .wp-block-file__button:hover,
 .wp-block-button__link:hover {
-	background: hsl(var(--primary) / .86);
+	background: hsl(var(--primary) / .87);
 	color: hsl(var(--primary-fg));
 }
 .widget button:active,
 .wp-block-search__button:active,
-.search-submit:active { transform: scale(.98); }
+.search-submit:active { transform: none; }
 
 .wp-block-search__inside-wrapper { gap: 8px; }
 .wp-block-search__input {
-	padding: .6rem .95rem;
-	color: hsl(var(--fg));
-	background: hsl(var(--bg));
+	padding: .6rem .85rem;
 	border: 1px solid hsl(var(--input));
-	border-radius: 999px;
+	border-radius: var(--radius-sm);
+	background: hsl(var(--bg));
+	color: hsl(var(--fg));
+	font-family: var(--font); font-size: 14px;
 }
-.wp-block-search__input:focus { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .18); }
+.wp-block-search__input:focus {
+	outline: none;
+	border-color: hsl(var(--ring));
+	box-shadow: 0 0 0 3px hsl(var(--ring) / .13);
+}
 .wp-block-search__button-outside .wp-block-search__button { margin-left: 0; }
+.screen-reader-text + .wp-block-search__inside-wrapper { margin-top: 0; }
+
+/* ==========================================================================
+   Списки блоков Gutenberg
+   ========================================================================== */
 
 .widget ul.wp-block-latest-posts,
 .widget ol.wp-block-latest-comments,
 .widget ul.wp-block-categories,
 .widget ul.wp-block-archives,
-.widget ul.wp-block-page-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.widget ul.wp-block-page-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
 .wp-block-latest-posts__post-date,
-.wp-block-latest-comments__comment-date { display: block; font-size: 11.5px; color: hsl(var(--muted-fg)); }
+.wp-block-latest-comments__comment-date {
+	display: block;
+	font-size: 11.5px; font-weight: 500;
+	color: hsl(var(--muted-fg));
+}
 .wp-block-latest-comments__comment-meta { font-size: 13.5px; }
 .wp-block-latest-comments__comment-avatar { border-radius: 999px; }
+
+/* Заголовок внутри виджета — надзаголовок, как везде в теме: блок Gutenberg
+   ставит сюда обычный h2/h3, и без этого правила он спорит с .widget-title. */
 .widget .wp-block-heading,
 .widget h2:not(.widget-title),
-.widget h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin: 0 0 12px; }
+.widget h3 {
+	margin: 0 0 12px;
+	font-family: var(--font);
+	font-size: 11px; font-weight: 600; line-height: 1;
+	letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
 
-.wp-block-tag-cloud a { display: inline-flex; margin: 0 4px 6px 0; padding: .25rem .7rem; border-radius: 999px; background: hsl(var(--muted)); font-size: 12.5px !important; font-weight: 600; }
-.wp-block-tag-cloud a:hover { background: hsl(var(--primary) / .12); color: hsl(var(--primary)); }
+/* Метки — те же чипы жанров: пилюля с волосяной рамкой, без заливки. */
+.wp-block-tag-cloud a {
+	display: inline-flex; align-items: center;
+	margin: 0 5px 6px 0;
+	padding: .3rem .8rem;
+	border: var(--rule); border-radius: 999px;
+	background: none;
+	font-size: 12.5px !important; font-weight: 500;
+	color: hsl(var(--fg));
+	transition: border-color .16s ease, background-color .16s ease;
+}
+.wp-block-tag-cloud a:hover {
+	border-color: hsl(var(--fg) / .55);
+	background: hsl(var(--muted) / .6);
+	color: hsl(var(--fg));
+}
+
+/* ==========================================================================
+   Календарь
+   ========================================================================== */
 
 .wp-calendar-table { font-size: 13px; }
-.wp-calendar-table caption { padding-bottom: 8px; font-weight: 700; color: hsl(var(--muted-fg)); }
-.wp-calendar-table th { background: transparent; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: hsl(var(--muted-fg)); }
-.wp-calendar-table td { text-align: center; padding: .35rem; }
-.wp-calendar-table td a { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 999px; background: hsl(var(--primary) / .14); color: hsl(var(--primary)); font-weight: 700; }
-.wp-calendar-nav { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12.5px; }
-
-.wp-block-rss { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.wp-block-rss__item-publish-date, .wp-block-rss__item-author { font-size: 11.5px; color: hsl(var(--muted-fg)); }
-.wp-block-quote, .wp-block-pullquote { border-left: 3px solid hsl(var(--primary)); padding-left: 1.125rem; font-style: italic; }
-.wp-block-image figcaption, .wp-block-embed figcaption { font-size: 12.5px; color: hsl(var(--muted-fg)); text-align: center; }
-.wp-block-separator { border: 0; border-top: 1px solid hsl(var(--border)); opacity: 1; }
-.wp-block-table table { border-collapse: collapse; }
-.wp-block-table td, .wp-block-table th { border-color: hsl(var(--border)); }
-.wp-block-code { background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); border-radius: var(--radius-sm); padding: 1rem 1.125rem; }
+.wp-calendar-table caption {
+	padding-bottom: 10px;
+	font-size: 11px; font-weight: 600;
+	letter-spacing: .17em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
+.wp-calendar-table th {
+	background: transparent;
+	font-size: 11px; font-weight: 600;
+	letter-spacing: .08em; text-transform: uppercase;
+	color: hsl(var(--muted-fg));
+}
+.wp-calendar-table td { padding: .35rem; text-align: center; border-bottom: 0; }
+/* День со записями — чернильный кружок: в календаре он единственный
+   интерактивный элемент, цветом его выделять незачем. */
+.wp-calendar-table td a {
+	display: inline-grid; place-items: center;
+	width: 26px; height: 26px;
+	border-radius: 999px;
+	background: hsl(var(--fg)); color: hsl(var(--bg));
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+.wp-calendar-table td a:hover { background: hsl(var(--primary)); color: hsl(var(--primary-fg)); }
+.wp-calendar-nav {
+	display: flex; justify-content: space-between;
+	margin-top: 10px; padding-top: 10px;
+	border-top: var(--rule);
+	font-size: 12.5px;
+	color: hsl(var(--muted-fg));
+}
 .wp-block-calendar table caption { color: hsl(var(--muted-fg)); }
-.screen-reader-text + .wp-block-search__inside-wrapper { margin-top: 0; }
-.xin-footer__credit { padding: 12px 16px 20px; text-align: center; font-size: 12px; color: hsl(var(--muted-fg) / .8); }
+
+/* ==========================================================================
+   Прочие блоки редактора
+   ========================================================================== */
+
+.wp-block-rss { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.wp-block-rss__item-publish-date,
+.wp-block-rss__item-author { font-size: 11.5px; color: hsl(var(--muted-fg)); }
+
+/* Цитата книжная, как blockquote в ядре: тонкая линейка и другой цвет вместо
+   курсива — длинный курсивный абзац на кириллице читается хуже. */
+.wp-block-quote,
+.wp-block-pullquote {
+	padding-left: 1.35rem;
+	border-left: 2px solid hsl(var(--primary) / .5);
+	font-style: normal;
+	color: hsl(var(--muted-fg));
+}
+
+.wp-block-image figcaption,
+.wp-block-embed figcaption { font-size: 12.5px; color: hsl(var(--muted-fg)); text-align: center; }
+.wp-block-image img,
+.wp-block-embed iframe { border-radius: var(--radius-art); }
+
+.wp-block-separator { border: 0; border-top: var(--rule); opacity: 1; }
+.wp-block-table table { border-collapse: collapse; }
+.wp-block-table td,
+.wp-block-table th { border-color: hsl(var(--border)); }
+.wp-block-code {
+	padding: 1rem 1.125rem;
+	border: var(--rule); border-radius: var(--radius-sm);
+	background: hsl(var(--muted));
+}
+
+/* ==========================================================================
+   Подпись в подвале
+   ========================================================================== */
+
+.xin-footer__credit {
+	padding: 12px 16px 24px;
+	text-align: center;
+	font-size: 12px;
+	color: hsl(var(--muted-fg));
+}
 .xin-footer__credit a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .xin-footer__credit a:hover { color: hsl(var(--primary)); }

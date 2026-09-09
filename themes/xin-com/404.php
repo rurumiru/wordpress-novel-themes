@@ -18,7 +18,7 @@ get_header();
 	<?php $xin_popular = xin_get_novels( 'popular', 6 ); ?>
 	<?php if ( $xin_popular ) : ?>
 		<section class="xin-section" style="text-align:left">
-			<?php xin_section_head( array( 'title' => __( 'Пока вы здесь — популярное', 'xin-com' ), 'icon' => 'flame' ) ); ?>
+			<?php xin_section_head( array( 'title' => __( 'Пока вы здесь — популярное', 'xin-com' )) ); ?>
 			<div class="xin-grid xin-grid--6">
 				<?php foreach ( $xin_popular as $xin_id ) : ?>
 					<?php xin_novel_card( $xin_id ); ?>

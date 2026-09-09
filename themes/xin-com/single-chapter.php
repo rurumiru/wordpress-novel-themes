@@ -9,10 +9,16 @@ while ( have_posts() ) :
 	$xin_next     = xin_adjacent_chapter( $xin_id, 1 );
 	$xin_locked   = (bool) get_post_meta( $xin_id, '_xin_locked', true );
 	$xin_label    = xin_chapter_label( $xin_id );
-	$xin_all      = $xin_novel_id ? xin_get_chapters( $xin_novel_id, 'ASC' ) : array();
+	$xin_window   = $xin_novel_id ? xin_chapter_window( $xin_novel_id, $xin_id, 40 ) : array( 'posts' => array(), 'before' => 0, 'after' => 0, 'total' => 0 );
 	$xin_words    = str_word_count( wp_strip_all_tags( get_the_content() ) );
 	$xin_gloss    = $xin_novel_id ? xin_glossary_rules( $xin_novel_id ) : array();
 	$xin_minutes  = max( 1, (int) round( $xin_words / 180 ) );
+
+	// Края книги — для переходов из панели оглавления.
+	$xin_edge_first = $xin_novel_id ? xin_first_chapter( $xin_novel_id ) : null;
+	$xin_edge_last  = $xin_novel_id ? xin_last_chapter( $xin_novel_id ) : null;
+	$xin_first_url  = $xin_edge_first ? get_permalink( $xin_edge_first->ID ) : '';
+	$xin_last_url   = $xin_edge_last ? get_permalink( $xin_edge_last->ID ) : '';
 	?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -33,6 +39,8 @@ while ( have_posts() ) :
 	data-paper="default"
 	data-novel-id="<?php echo (int) $xin_novel_id; ?>"
 	data-chapter-id="<?php echo (int) $xin_id; ?>"
+	data-next-id="<?php echo (int) ( $xin_next ? $xin_next->ID : 0 ); ?>"
+	data-novel-url="<?php echo esc_url( $xin_novel_id ? get_permalink( $xin_novel_id ) : '' ); ?>"
 	data-novel-title="<?php echo esc_attr( $xin_novel_id ? get_the_title( $xin_novel_id ) : '' ); ?>"
 	data-chapter-title="<?php the_title_attribute(); ?>"
 	data-cover="<?php echo esc_attr( $xin_novel_id ? xin_cover_url( $xin_novel_id, 'xin-cover-sm' ) : '' ); ?>"
@@ -75,6 +83,43 @@ while ( have_posts() ) :
 		</div>
 	</header>
 
+	<?php
+	/*
+	 * Рельс управления. Всё, чем читатель пользуется по ходу главы, вынесено
+	 * влево и не уезжает: верхняя панель прячется при прокрутке вниз, и
+	 * тянуться за оглавлением или размером шрифта каждый раз наверх — работа.
+	 * На узких экранах рельса нет: там для этого есть панели сверху и снизу.
+	 */
+	?>
+	<nav class="xin-rd__rail" aria-label="<?php esc_attr_e( 'Управление чтением', 'xin-com' ); ?>">
+		<button type="button" class="xin-rd__rail-btn" data-xin-rd-toc title="<?php esc_attr_e( 'Оглавление', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Оглавление', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'list' ); ?>
+		</button>
+		<button type="button" class="xin-rd__rail-btn" data-xin-rd-settings title="<?php esc_attr_e( 'Как читать', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Настройки чтения', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'type' ); ?>
+		</button>
+		<button type="button" class="xin-rd__rail-btn xin-theme-toggle" data-xin-theme title="<?php esc_attr_e( 'Сменить тему', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Сменить тему', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'sun', 'xin-i-sun' ); ?><?php xin_the_icon( 'moon', 'xin-i-moon' ); ?>
+		</button>
+		<button type="button" class="xin-rd__rail-btn" data-xin-jump-bm hidden title="<?php esc_attr_e( 'К закладке', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'К закладке', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'bookmark', '', true ); ?>
+		</button>
+
+		<span class="xin-rd__rail-sep" aria-hidden="true"></span>
+
+		<button type="button" class="xin-rd__rail-btn" data-xin-rd-talk title="<?php esc_attr_e( 'Обсуждение', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'К обсуждению', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'comment' ); ?>
+		</button>
+		<button type="button" class="xin-rd__rail-btn" data-xin-rd-top title="<?php esc_attr_e( 'Наверх', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Наверх', 'xin-com' ); ?>">
+			<?php xin_the_icon( 'chevron-up' ); ?>
+		</button>
+		<?php if ( $xin_next ) : ?>
+			<a class="xin-rd__rail-btn" href="<?php echo esc_url( get_permalink( $xin_next->ID ) ); ?>" title="<?php esc_attr_e( 'Следующая глава', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Следующая глава', 'xin-com' ); ?>">
+				<?php xin_the_icon( 'chevron-right' ); ?>
+			</a>
+		<?php endif; ?>
+	</nav>
+
 	<main class="xin-rd__main">
 		<div class="xin-rd__inner">
 			<?php if ( $xin_novel_id ) : ?>
@@ -83,18 +128,23 @@ while ( have_posts() ) :
 				</a>
 			<?php endif; ?>
 
-			<h1 class="xin-rd__title" data-xin-gl-scope>
-				<?php if ( $xin_label ) : ?>
-					<span class="xin-muted"><?php printf( esc_html__( 'Глава %s.', 'xin-com' ), esc_html( $xin_label ) ); ?></span>
-				<?php endif; ?>
-				<?php the_title(); ?>
-			</h1>
+			<?php if ( $xin_label ) : ?>
+				<p class="xin-rd__no"><?php printf( esc_html__( 'Глава %s', 'xin-com' ), esc_html( $xin_label ) ); ?></p>
+			<?php endif; ?>
 
+			<h1 class="xin-rd__title" data-xin-gl-scope><?php the_title(); ?></h1>
+
+			<?php
+			/*
+			 * Метастрока без иконок: четыре значка над первым абзацем главы
+			 * спорили с текстом. Разделители рисует CSS.
+			 */
+			?>
 			<div class="xin-rd__meta">
-				<span><?php xin_the_icon( 'calendar' ); ?><?php echo esc_html( get_the_date() ); ?></span>
-				<span><?php xin_the_icon( 'clock' ); ?><?php printf( esc_html__( '~%d мин чтения', 'xin-com' ), (int) $xin_minutes ); ?></span>
-				<span><?php xin_the_icon( 'eye' ); ?><?php echo esc_html( xin_num( xin_get_views( $xin_id ) ) ); ?></span>
-				<span><?php xin_the_icon( 'user' ); ?><?php the_author_posts_link(); ?></span>
+				<span><?php echo esc_html( get_the_date() ); ?></span>
+				<span><?php printf( esc_html__( '~%d мин чтения', 'xin-com' ), (int) $xin_minutes ); ?></span>
+				<span><?php echo esc_html( xin_num( xin_get_views( $xin_id ) ) ); ?> <?php esc_html_e( 'просмотров', 'xin-com' ); ?></span>
+				<span><?php the_author_posts_link(); ?></span>
 			</div>
 
 			<div class="xin-rd__rule" aria-hidden="true"></div>
@@ -109,7 +159,7 @@ while ( have_posts() ) :
 					<h2><?php esc_html_e( 'Глава раннего доступа', 'xin-com' ); ?></h2>
 
 					<?php if ( $xin_buy ) : ?>
-						<p class="xin-muted"><?php esc_html_e( 'Её можно открыть подпиской PLUS или разовой покупкой — деньги идут команде проекта.', 'xin-com' ); ?></p>
+						<p class="xin-muted"><?php esc_html_e( 'Её можно открыть разовой покупкой — деньги идут команде проекта.', 'xin-com' ); ?></p>
 						<div class="xin-locked__actions">
 							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( $xin_buy ); ?>">
 								<?php
@@ -118,17 +168,33 @@ while ( have_posts() ) :
 									: esc_html__( 'Купить главу', 'xin-com' );
 								?>
 							</a>
-							<a class="btn btn-outline btn-sm" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>"><?php esc_html_e( 'Что даёт PLUS', 'xin-com' ); ?></a>
 						</div>
 					<?php elseif ( is_user_logged_in() ) : ?>
-						<p class="xin-muted"><?php esc_html_e( 'Ранний доступ открывается подписчикам PLUS. Так переводчик получает поддержку раньше остальных.', 'xin-com' ); ?></p>
-						<div class="xin-locked__actions">
-							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>"><?php esc_html_e( 'Что даёт PLUS', 'xin-com' ); ?></a>
-						</div>
+						<p class="xin-muted"><?php esc_html_e( 'Пока она открыта только команде проекта. В общий доступ глава выйдет вместе со следующим выпуском.', 'xin-com' ); ?></p>
 					<?php else : ?>
-						<p class="xin-muted"><?php esc_html_e( 'Войдите в аккаунт с подпиской PLUS, чтобы продолжить чтение.', 'xin-com' ); ?></p>
+						<p class="xin-muted"><?php esc_html_e( 'Войдите в аккаунт — возможно, доступ у вас уже есть.', 'xin-com' ); ?></p>
 						<div class="xin-locked__actions">
 							<a class="btn btn-primary btn-sm" href="<?php echo esc_url( xin_login_url( get_permalink() ) ); ?>"><?php esc_html_e( 'Войти', 'xin-com' ); ?></a>
+						</div>
+					<?php endif; ?>
+
+					<?php
+					/*
+					 * Из закрытой главы всегда есть куда пойти: предыдущая глава
+					 * читателю доступна, а страница тайтла — это оглавление.
+					 * Тупик вместо развилки — самая обидная страница на сайте.
+					 */
+					$xin_prev_open = xin_adjacent_chapter( $xin_id, 'prev' );
+					$xin_novel_ref = xin_chapter_novel_id( $xin_id );
+					?>
+					<?php if ( $xin_prev_open || $xin_novel_ref ) : ?>
+						<div class="xin-locked__nav">
+							<?php if ( $xin_prev_open ) : ?>
+								<a href="<?php echo esc_url( get_permalink( $xin_prev_open->ID ) ); ?>"><?php xin_the_icon( 'chevron-left' ); ?><?php esc_html_e( 'Предыдущая глава', 'xin-com' ); ?></a>
+							<?php endif; ?>
+							<?php if ( $xin_novel_ref ) : ?>
+								<a href="<?php echo esc_url( get_permalink( $xin_novel_ref ) ); ?>"><?php xin_the_icon( 'list' ); ?><?php esc_html_e( 'Всё оглавление', 'xin-com' ); ?></a>
+							<?php endif; ?>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -202,6 +268,37 @@ while ( have_posts() ) :
 				</div>
 			<?php endif; ?>
 
+			<?php
+			/*
+			 * Конец главы отбивается наборным знаком, а не пустотой: читатель
+			 * должен понять, что текст кончился, до того как увидит навигацию.
+			 */
+			?>
+			<p class="xin-rd__end" aria-hidden="true">&#10086;</p>
+
+			<?php if ( $xin_next ) : ?>
+				<a class="xin-rd__onward" href="<?php echo esc_url( get_permalink( $xin_next->ID ) ); ?>" data-xin-next data-xin-gl-scope>
+					<span class="xin-rd__onward-kicker"><?php esc_html_e( 'Следующая глава', 'xin-com' ); ?></span>
+					<span class="xin-rd__onward-title">
+						<?php
+						$xin_next_label = xin_chapter_label( $xin_next->ID );
+						if ( $xin_next_label ) :
+							?>
+							<i><?php printf( esc_html__( 'Глава %s.', 'xin-com' ), esc_html( $xin_next_label ) ); ?></i>
+						<?php endif; ?>
+						<?php echo esc_html( $xin_next->post_title ); ?>
+					</span>
+					<span class="xin-rd__onward-go"><?php esc_html_e( 'Читать дальше', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></span>
+				</a>
+			<?php else : ?>
+				<p class="xin-rd__last">
+					<?php esc_html_e( 'Это последняя выложенная глава. Дальше — ждать выхода следующей.', 'xin-com' ); ?>
+					<?php if ( $xin_novel_id ) : ?>
+						<a href="<?php echo esc_url( get_permalink( $xin_novel_id ) ); ?>"><?php esc_html_e( 'Вернуться к тайтлу', 'xin-com' ); ?></a>
+					<?php endif; ?>
+				</p>
+			<?php endif; ?>
+
 			<nav class="xin-rd__nav" data-xin-gl-scope>
 				<?php if ( $xin_prev ) : ?>
 					<a href="<?php echo esc_url( get_permalink( $xin_prev->ID ) ); ?>" data-xin-prev>
@@ -215,23 +312,17 @@ while ( have_posts() ) :
 					<span><?php xin_the_icon( 'chevron-left' ); ?><small><?php esc_html_e( 'Это первая глава', 'xin-com' ); ?></small></span>
 				<?php endif; ?>
 
-				<?php if ( $xin_next ) : ?>
-					<a class="is-next" href="<?php echo esc_url( get_permalink( $xin_next->ID ) ); ?>" data-xin-next>
-						<span style="min-width:0">
-							<small><?php esc_html_e( 'Следующая', 'xin-com' ); ?></small>
-							<b><?php echo esc_html( $xin_next->post_title ); ?></b>
-						</span>
-						<?php xin_the_icon( 'chevron-right' ); ?>
+				<?php if ( $xin_novel_id ) : ?>
+					<a class="xin-rd__nav-toc" href="<?php echo esc_url( get_permalink( $xin_novel_id ) . '#chapters' ); ?>">
+						<?php xin_the_icon( 'list' ); ?><small><?php esc_html_e( 'Оглавление', 'xin-com' ); ?></small>
 					</a>
-				<?php else : ?>
-					<span class="is-next"><small><?php esc_html_e( 'Это последняя глава', 'xin-com' ); ?></small><?php xin_the_icon( 'chevron-right' ); ?></span>
 				<?php endif; ?>
 			</nav>
 
 			<p class="xin-center xin-mt-3 xin-muted" style="font-size:12.5px">
 				<?php
 				printf(
-					
+					/* translators: 1: left arrow key, 2: right arrow key. */
 					esc_html__( 'Листайте клавишами %1$s и %2$s', 'xin-com' ),
 					'<span class="xin-kbd">←</span>',
 					'<span class="xin-kbd">→</span>'
@@ -295,6 +386,8 @@ while ( have_posts() ) :
 		<?php endif; ?>
 		<span class="xin-rd__dock-bar"><i data-xin-rd-fill style="width:0"></i></span>
 		<span class="xin-rd__dock-pct" data-xin-rd-pct>0%</span>
+		<?php /* Сколько осталось до конца главы — считает reader.js от полного времени. */ ?>
+		<span class="xin-rd__dock-left" data-xin-rd-left data-minutes="<?php echo (int) $xin_minutes; ?>"></span>
 		<?php if ( $xin_next ) : ?>
 			<a class="btn btn-primary btn-sm" href="<?php echo esc_url( get_permalink( $xin_next->ID ) ); ?>">
 				<?php esc_html_e( 'Дальше', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?>
@@ -303,12 +396,38 @@ while ( have_posts() ) :
 	</div>
 
 	<aside class="xin-rd__toc" data-xin-rd-sheet data-xin-rd-toc-panel aria-label="<?php esc_attr_e( 'Оглавление', 'xin-com' ); ?>">
-		<h3 style="display:flex;justify-content:space-between;align-items:center">
+		<h3>
 			<?php esc_html_e( 'Оглавление', 'xin-com' ); ?>
-			<button type="button" class="btn btn-icon" data-xin-rd-close><?php xin_the_icon( 'close' ); ?></button>
+			<button type="button" class="btn btn-icon" data-xin-rd-close aria-label="<?php esc_attr_e( 'Закрыть', 'xin-com' ); ?>"><?php xin_the_icon( 'close' ); ?></button>
 		</h3>
-		<ul data-xin-gl-scope>
-			<?php foreach ( $xin_all as $xin_item ) : ?>
+
+		<?php if ( $xin_window['total'] > count( $xin_window['posts'] ) ) : ?>
+			<p class="xin-rd__tocnote">
+				<?php
+				$xin_shown = (int) count( $xin_window['posts'] );
+				printf(
+					/* translators: 1: shown chapters, 2: declined word, 3: total chapters. */
+					esc_html__( 'Рядом с текущей: %1$d %2$s из %3$d.', 'xin-com' ),
+					$xin_shown,
+					esc_html( xin_plural( $xin_shown, __( 'глава', 'xin-com' ), __( 'главы', 'xin-com' ), __( 'глав', 'xin-com' ) ) ),
+					(int) $xin_window['total']
+				);
+				?>
+				<a href="<?php echo esc_url( get_permalink( $xin_novel_id ) . '#chapters' ); ?>"><?php esc_html_e( 'Всё оглавление', 'xin-com' ); ?></a>
+			</p>
+		<?php endif; ?>
+
+		<label class="xin-rd__tocfind">
+			<?php xin_the_icon( 'search' ); ?>
+			<input type="search" data-xin-rd-toc-search placeholder="<?php esc_attr_e( 'Найти главу…', 'xin-com' ); ?>" aria-label="<?php esc_attr_e( 'Найти главу', 'xin-com' ); ?>">
+		</label>
+
+		<?php if ( $xin_window['before'] ) : ?>
+			<a class="xin-rd__tocedge" href="<?php echo esc_url( $xin_first_url ); ?>"><?php xin_the_icon( 'chevron-up' ); ?><?php printf( esc_html__( 'Выше ещё %d', 'xin-com' ), (int) $xin_window['before'] ); ?></a>
+		<?php endif; ?>
+
+		<ul data-xin-gl-scope data-xin-rd-toc-list>
+			<?php foreach ( $xin_window['posts'] as $xin_item ) : ?>
 				<li>
 					<a href="<?php echo esc_url( get_permalink( $xin_item->ID ) ); ?>" class="<?php echo (int) $xin_item->ID === (int) $xin_id ? 'is-current' : ''; ?>">
 						<span class="xin-chapters__num"><?php echo esc_html( '#' . xin_chapter_label( $xin_item->ID ) ); ?></span>
@@ -320,6 +439,10 @@ while ( have_posts() ) :
 				</li>
 			<?php endforeach; ?>
 		</ul>
+
+		<?php if ( $xin_window['after'] ) : ?>
+			<a class="xin-rd__tocedge" href="<?php echo esc_url( $xin_last_url ); ?>"><?php xin_the_icon( 'chevron-down' ); ?><?php printf( esc_html__( 'Ниже ещё %d', 'xin-com' ), (int) $xin_window['after'] ); ?></a>
+		<?php endif; ?>
 	</aside>
 
 	<aside class="xin-rd__panel" data-xin-rd-sheet data-xin-rd-panel aria-label="<?php esc_attr_e( 'Настройки чтения', 'xin-com' ); ?>">

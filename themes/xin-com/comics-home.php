@@ -139,7 +139,6 @@ $xin_days_short = array(
 			xin_section_head( array(
 				'eyebrow'  => __( 'неделя', 'xin-com' ),
 				'title'    => __( 'Когда что выходит', 'xin-com' ),
-				'icon'     => 'calendar',
 				'subtitle' => __( 'День берётся из дат последних глав, поэтому расписание не расходится с выходами.', 'xin-com' ),
 			) );
 			?>
@@ -191,7 +190,6 @@ $xin_days_short = array(
 			xin_section_head( array(
 				'eyebrow'    => __( 'лента', 'xin-com' ),
 				'title'      => __( 'Свежие главы', 'xin-com' ),
-				'icon'       => 'clock',
 				'more_href'  => xin_section_updates_link( 'comic' ),
 				'more_label' => __( 'Все обновления', 'xin-com' ),
 			) );
@@ -246,7 +244,6 @@ $xin_days_short = array(
 			xin_section_head( array(
 				'eyebrow'    => __( 'выбор читателей', 'xin-com' ),
 				'title'      => __( 'Топ раздела', 'xin-com' ),
-				'icon'       => 'trophy',
 				'more_href'  => add_query_arg( 'sort', 'popular', $xin_catalog ),
 				'more_label' => __( 'Весь рейтинг', 'xin-com' ),
 			) );
@@ -289,7 +286,6 @@ $xin_days_short = array(
 			xin_section_head( array(
 				'eyebrow'    => __( 'новинки', 'xin-com' ),
 				'title'      => __( 'Недавно добавленные', 'xin-com' ),
-				'icon'       => 'sparkles',
 				'more_href'  => $xin_catalog,
 				'more_label' => __( 'Весь каталог', 'xin-com' ),
 			) );
@@ -308,7 +304,6 @@ $xin_days_short = array(
 			xin_section_head( array(
 				'eyebrow' => __( 'по вкусу', 'xin-com' ),
 				'title'   => __( 'Жанры раздела', 'xin-com' ),
-				'icon'    => 'tag',
 			) );
 			?>
 			<div class="xin-genres">

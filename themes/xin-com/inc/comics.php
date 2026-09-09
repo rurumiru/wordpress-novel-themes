@@ -163,39 +163,34 @@ function xin_comics_genres() {
 		return $cached;
 	}
 
-	$ids = get_posts( array(
-		'post_type'      => 'novel',
-		'post_status'    => 'publish',
-		'posts_per_page' => -1,
-		'fields'         => 'ids',
-		'no_found_rows'  => true,
-		'meta_query'     => xin_format_meta_clause( 'comic' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-	) );
+	global $wpdb;
+
+	/*
+	 * Прежде отсюда уезжали ID всех комиксов, а потом на каждый ID шёл
+	 * отдельный запрос за жанрами. Считает база — одним проходом и сразу
+	 * в нужном порядке.
+	 */
+	$rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		"SELECT tt.term_id AS term_id, COUNT(*) AS total
+		 FROM {$wpdb->posts} p
+		 INNER JOIN {$wpdb->postmeta} fmt ON fmt.post_id = p.ID AND fmt.meta_key = '_xin_format' AND fmt.meta_value = 'comic'
+		 INNER JOIN {$wpdb->term_relationships} tr ON tr.object_id = p.ID
+		 INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id AND tt.taxonomy = 'genre'
+		 WHERE p.post_type = 'novel' AND p.post_status = 'publish'
+		 GROUP BY tt.term_id
+		 ORDER BY total DESC
+		 LIMIT 40"
+	);
 
 	$counts = array();
 
-	foreach ( $ids as $id ) {
-		foreach ( (array) get_the_terms( $id, 'genre' ) as $term ) {
-			if ( ! $term instanceof WP_Term ) {
-				continue;
-			}
+	foreach ( (array) $rows as $row ) {
+		$term = get_term( (int) $row->term_id, 'genre' );
 
-			if ( ! isset( $counts[ $term->term_id ] ) ) {
-				$counts[ $term->term_id ] = array(
-					'term'  => $term,
-					'count' => 0,
-				);
-			}
-
-			++$counts[ $term->term_id ]['count'];
+		if ( $term instanceof WP_Term ) {
+			$counts[] = array( 'term' => $term, 'count' => (int) $row->total );
 		}
 	}
-
-	uasort( $counts, static function ( $a, $b ) {
-		return $b['count'] <=> $a['count'];
-	} );
-
-	$counts = array_values( $counts );
 
 	set_transient( 'xin_comics_genres', $counts, 15 * MINUTE_IN_SECONDS );
 

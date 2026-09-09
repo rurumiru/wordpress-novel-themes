@@ -34,7 +34,7 @@ if ( ! $xin_banner ) {
 
 <?php if ( xin_show( 'xin_show_stats' ) && $xin_stats['novels'] > 0 ) : ?>
 	<div class="xin-wrap xin-reveal">
-		<dl class="xin-glass xin-stats">
+		<dl class="xin-stats">
 			<div class="xin-stats__item">
 				<dt class="xin-stats__num" data-xin-count="<?php echo (int) $xin_stats['novels']; ?>">0</dt>
 				<dd class="xin-stats__label"><?php esc_html_e( 'тайтлов', 'xin-com' ); ?></dd>
@@ -61,7 +61,6 @@ if ( ! $xin_banner ) {
 		'eyebrow'  => __( 'вы читали', 'xin-com' ),
 		'title'    => __( 'Продолжить чтение', 'xin-com' ),
 		'subtitle' => __( 'История хранится в вашем браузере', 'xin-com' ),
-		'icon'     => 'clock',
 	) );
 	?>
 	<div class="xin-continue" data-xin-continue-list></div>
@@ -84,7 +83,6 @@ if ( ! $xin_banner ) {
 			'eyebrow'    => __( 'дебюты', 'xin-com' ),
 			'title'      => __( 'Новинки', 'xin-com' ),
 			'subtitle'   => __( 'Свежие тайтлы на площадке', 'xin-com' ),
-			'icon'       => 'sparkles',
 			'more_href'  => get_post_type_archive_link( 'novel' ),
 			'more_label' => __( 'Весь каталог', 'xin-com' ),
 		) );
@@ -112,7 +110,6 @@ $xin_genres = get_terms( array(
 		xin_section_head( array(
 			'title'    => __( 'Жанры', 'xin-com' ),
 			'subtitle' => __( 'Выберите настроение — остальное подберём', 'xin-com' ),
-			'icon'     => 'compass',
 		) );
 		?>
 		<div class="xin-genres">
@@ -136,7 +133,6 @@ $xin_genres = get_terms( array(
 			'eyebrow'    => __( 'только что', 'xin-com' ),
 			'title'      => __( 'Последние главы', 'xin-com' ),
 			'subtitle'   => __( 'Свежие публикации со всего сайта', 'xin-com' ),
-			'icon'       => 'clock',
 			'more_href'  => get_post_type_archive_link( 'chapter' ),
 			'more_label' => __( 'Все обновления', 'xin-com' ),
 		) );
@@ -175,7 +171,6 @@ $xin_genres = get_terms( array(
 			'eyebrow'    => __( 'выбор читателей', 'xin-com' ),
 			'title'      => __( 'Самые любимые', 'xin-com' ),
 			'subtitle'   => __( 'Топ по оценкам сообщества', 'xin-com' ),
-			'icon'       => 'heart',
 			'more_href'  => xin_ranking_link(),
 			'more_label' => __( 'Весь рейтинг', 'xin-com' ),
 		) );
@@ -199,18 +194,16 @@ $xin_genres = get_terms( array(
 		<div class="xin-grid xin-grid--2">
 			<div class="xin-reveal">
 				<a class="xin-cta" href="<?php echo esc_url( xin_page_url( 'become-author' ) ); ?>">
-					<span class="xin-cta__icon"><?php xin_the_icon( 'book-open' ); ?></span>
 					<h3><?php esc_html_e( 'Стать автором', 'xin-com' ); ?></h3>
 					<p><?php esc_html_e( 'Публикуйте свои новеллы и переводы, ведите главы в удобном редакторе, собирайте аудиторию. Свой формат, свой темп.', 'xin-com' ); ?></p>
 					<span class="xin-cta__more"><?php esc_html_e( 'Узнать как', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></span>
 				</a>
 			</div>
 			<div class="xin-reveal" style="transition-delay:90ms">
-				<a class="xin-cta xin-cta--gold" href="<?php echo esc_url( xin_page_url( 'plus' ) ); ?>">
-					<span class="xin-cta__icon"><?php xin_the_icon( 'sparkles' ); ?></span>
-					<h3><?php esc_html_e( 'Членство PLUS', 'xin-com' ); ?></h3>
-					<p><?php esc_html_e( 'Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков.', 'xin-com' ); ?></p>
-					<span class="xin-cta__more"><?php esc_html_e( 'Узнать больше', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></span>
+				<a class="xin-cta xin-cta--dice" href="<?php echo esc_url( xin_random_novel_url() ); ?>" rel="nofollow">
+					<h3><?php esc_html_e( 'Наугад', 'xin-com' ); ?></h3>
+					<p><?php esc_html_e( 'Не выбирается? Откроем случайный тайтл из каталога — иногда так находится лучшее.', 'xin-com' ); ?></p>
+					<span class="xin-cta__more"><?php esc_html_e( 'Открыть случайный', 'xin-com' ); ?><?php xin_the_icon( 'chevron-right' ); ?></span>
 				</a>
 			</div>
 		</div>

@@ -24,7 +24,6 @@ get_header();
 		xin_section_head( array(
 			'eyebrow' => __( 'продолжить', 'xin-com' ),
 			'title'   => __( 'На чём вы остановились', 'xin-com' ),
-			'icon'    => 'clock',
 		) );
 		?>
 		<div class="xin-continue" data-xin-continue-list></div>
@@ -35,7 +34,6 @@ get_header();
 		xin_section_head( array(
 			'title'    => __( 'Закладки', 'xin-com' ),
 			'subtitle' => __( 'Тайтлы, отмеченные закладкой в каталоге', 'xin-com' ),
-			'icon'     => 'bookmark',
 		) );
 		?>
 		<div class="xin-grid xin-grid--6" data-xin-lib-list></div>

@@ -175,15 +175,13 @@ function xin_novel_card( $novel_id, $args = array() ) {
 				<?php endif; ?>
 				<?php if ( $status && 'completed' === $status->slug ) : ?>
 					<span class="xin-badge xin-badge--primary"><?php echo esc_html( $status->name ); ?></span>
+				<?php elseif ( xin_novel_is_fresh( $novel_id ) ) : ?>
+					<span class="xin-badge xin-badge--fresh"><?php esc_html_e( 'новая глава', 'xin-com' ); ?></span>
 				<?php endif; ?>
 			</div>
 
 			<?php if ( $args['rank'] ) : ?>
 				<span class="xin-novel__rank<?php echo $args['rank'] <= 3 ? ' xin-novel__rank--gold' : ''; ?>"><?php echo (int) $args['rank']; ?></span>
-			<?php endif; ?>
-
-			<?php if ( $count ) : ?>
-				<span class="xin-novel__chip"><?php xin_the_icon( 'book-open' ); ?><?php echo (int) $count; ?></span>
 			<?php endif; ?>
 		</a>
 
@@ -195,11 +193,22 @@ function xin_novel_card( $novel_id, $args = array() ) {
 				<div class="xin-novel__author"><?php echo esc_html( xin_novel_author( $novel_id ) ); ?></div>
 			<?php endif; ?>
 			<?php if ( $args['show_meta'] ) : ?>
+				<?php
+				/*
+				 * Число глав переехало сюда с обложки: чип поверх картинки
+				 * закрывал угол иллюстрации и повторял то, что и так стоит
+				 * в метастроке. Разделители «·» рисует CSS, поэтому здесь
+				 * не нужно решать, какой пункт оказался последним.
+				 */
+				?>
 				<div class="xin-novel__meta">
 					<?php if ( $rating['count'] ) : ?>
 						<span class="is-rating"><?php xin_the_icon( 'star', '', true ); ?><?php echo esc_html( number_format( $rating['value'], 1, ',', '' ) ); ?></span>
 					<?php endif; ?>
 					<span><?php xin_the_icon( 'eye' ); ?><?php echo esc_html( xin_num( xin_get_views( $novel_id ) ) ); ?></span>
+					<?php if ( $count ) : ?>
+						<span title="<?php echo esc_attr( sprintf( '%d %s', $count, xin_plural( $count, __( 'глава', 'xin-com' ), __( 'главы', 'xin-com' ), __( 'глав', 'xin-com' ) ) ) ); ?>"><?php xin_the_icon( 'book-open' ); ?><?php echo (int) $count; ?></span>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</div>
@@ -286,6 +295,32 @@ function xin_fav_button( $novel_id, $inline = false ) {
 	);
 }
 
+/**
+ * Стартовая позиция обложки в колоде витрины.
+ *
+ * theme.js раскладывает колоду по смещению от текущего слайда: -1 слева,
+ * 0 в центре, 1 справа, всё остальное прячется. До первого запуска скрипта
+ * разметка должна показывать ровно ту же тройку, иначе на первом кадре
+ * колода выглядит однобокой, а потом прыгает.
+ *
+ * @param int $i     Номер слайда.
+ * @param int $total Всего слайдов.
+ * @return string
+ */
+function xin_hero_start_pos( $i, $total ) {
+	if ( 0 === $i ) {
+		return '0';
+	}
+	if ( 1 === $i ) {
+		return '1';
+	}
+	if ( $total > 2 && $i === $total - 1 ) {
+		return '-1';
+	}
+
+	return 'hidden';
+}
+
 function xin_novel_showcase( $novel_id ) {
 	$bg    = xin_background_url( $novel_id, 'xin-banner' );
 	$cover = xin_cover_url( $novel_id, 'xin-cover' );
@@ -332,6 +367,39 @@ function xin_rank_row( $novel_id, $rank ) {
 	<?php
 }
 
+/**
+ * Строка главы в оглавлении тайтла.
+ *
+ * Отдельная функция, потому что те же строки догружает кнопка «Показать ещё»
+ * через REST: разметка обязана совпадать до атрибута, иначе поиск по списку и
+ * отметка «вы читали» перестанут находить догруженные главы.
+ *
+ * @param int|WP_Post $chapter Глава.
+ * @return void
+ */
+function xin_chapter_row( $chapter ) {
+	$chapter = get_post( $chapter );
+
+	if ( ! $chapter ) {
+		return;
+	}
+
+	$locked = (bool) get_post_meta( $chapter->ID, '_xin_locked', true );
+	$label  = xin_chapter_label( $chapter->ID );
+	?>
+	<li data-xin-chapter-item>
+		<a href="<?php echo esc_url( get_permalink( $chapter->ID ) ); ?>">
+			<span class="xin-bk__num"><?php echo $label ? esc_html( $label ) : '—'; ?></span>
+			<span class="xin-bk__name"><?php echo esc_html( $chapter->post_title ); ?></span>
+			<?php if ( $locked ) : ?>
+				<span class="xin-bk__lock" title="<?php esc_attr_e( 'Ранний доступ', 'xin-com' ); ?>"><?php xin_the_icon( 'lock' ); ?></span>
+			<?php endif; ?>
+			<span class="xin-nv__date"><?php echo esc_html( get_the_date( 'j M Y', $chapter->ID ) ); ?></span>
+		</a>
+	</li>
+	<?php
+}
+
 function xin_chapter_card( $chapter_id ) {
 	$novel_id = xin_chapter_novel_id( $chapter_id );
 	$cover    = $novel_id ? xin_cover_url( $novel_id, 'xin-cover-sm' ) : '';
@@ -357,7 +425,7 @@ function xin_chapter_card( $chapter_id ) {
 			<span class="xin-chapcard__foot">
 				<span><?php echo esc_html( xin_ago( get_post_time( 'U', true, $chapter_id ) ) ); ?></span>
 				<?php if ( $locked ) : ?>
-					<span class="xin-badge xin-badge--gold"><?php xin_the_icon( 'lock' ); ?><?php esc_html_e( 'PLUS', 'xin-com' ); ?></span>
+					<span class="xin-badge xin-badge--gold"><?php xin_the_icon( 'lock' ); ?><?php esc_html_e( 'Ранний доступ', 'xin-com' ); ?></span>
 				<?php endif; ?>
 			</span>
 		</span>
@@ -411,12 +479,15 @@ function xin_section_head( $args = array() ) {
 			<?php if ( $args['eyebrow'] ) : ?>
 				<div class="xin-head__eyebrow"><?php echo esc_html( $args['eyebrow'] ); ?></div>
 			<?php endif; ?>
-			<h2>
-				<?php if ( $args['icon'] ) : ?>
-					<?php xin_the_icon( $args['icon'] ); ?>
-				<?php endif; ?>
-				<?php echo esc_html( $args['title'] ); ?>
-			</h2>
+			<?php
+			/*
+			 * Иконку рядом с заголовком секции больше не рисуем. Аргумент
+			 * `icon` остался в сигнатуре, чтобы не ломать чужие вызовы, но
+			 * ни на что не влияет: набор разноцветных значков над каждым
+			 * блоком превращал главную в панель приложения, а не в витрину.
+			 */
+			?>
+			<h2><?php echo esc_html( $args['title'] ); ?></h2>
 			<?php if ( $args['subtitle'] ) : ?>
 				<p class="xin-head__sub"><?php echo esc_html( $args['subtitle'] ); ?></p>
 			<?php endif; ?>
@@ -655,7 +726,7 @@ function xin_hidden_query_fields( $url, $except = array() ) {
  * дописать своё через фильтр — тема при этом от него не зависит.
  *
  * @param int|WP_Post $chapter Глава.
- * @return array badges (list of ['text','class','icon']) и date.
+ * @return array badges (list of ['key','text','class','icon']) и date.
  */
 function xin_chapter_state( $chapter ) {
 	$chapter = get_post( $chapter );
@@ -667,12 +738,24 @@ function xin_chapter_state( $chapter ) {
 	$badges = array();
 
 	if ( get_post_meta( $chapter->ID, '_xin_locked', true ) ) {
-		$badges[] = array( 'text' => 'PLUS', 'class' => 'xin-badge--gold', 'icon' => 'lock' );
+		/*
+		 * `key` — то, за что цепляются плагины. Подпись переводится и со
+		 * временем меняется (раньше здесь стояло «PLUS»), поэтому опознавать
+		 * значок по тексту нельзя: перевод или правка формулировки молча
+		 * ломали бы чужой код.
+		 */
+		$badges[] = array(
+			'key'   => 'locked',
+			'text'  => __( 'Ранний доступ', 'xin-com' ),
+			'class' => 'xin-badge--gold',
+			'icon'  => 'lock',
+		);
 	}
 
 	if ( 'future' === $chapter->post_status ) {
 		// Штатное отложенное WordPress: дата публикации уже известна.
 		$badges[] = array(
+			'key'   => 'scheduled',
 			'text'  => __( 'Отложена', 'xin-com' ),
 			'class' => 'xin-badge--primary',
 			'icon'  => 'clock',
@@ -686,6 +769,7 @@ function xin_chapter_state( $chapter ) {
 		if ( 'publish' !== $chapter->post_status ) {
 			$status = get_post_status_object( $chapter->post_status );
 			$badges[] = array(
+				'key'   => 'status',
 				'text'  => $status ? $status->label : $chapter->post_status,
 				'class' => '',
 				'icon'  => '',

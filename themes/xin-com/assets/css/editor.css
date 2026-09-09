@@ -1,19 +1,46 @@
+/*
+ * Стили редактора: то, что видит автор в админке, должно совпадать с тем,
+ * что увидит читатель. Токены сюда не доезжают — редактор грузится в своём
+ * окружении, — поэтому значения продублированы вручную из style.css.
+ */
+
 .editor-styles-wrapper {
-	font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+	font-family: Candara, "Avenir Next", "Segoe UI Variable Text", "Helvetica Neue", system-ui, -apple-system, sans-serif;
 	font-size: 16.5px;
-	line-height: 1.8;
+	line-height: 1.7;
+	color: #262119;
 }
+
 .editor-styles-wrapper .wp-block {
-	max-width: 820px;
+	max-width: 780px;
 }
+
 .editor-styles-wrapper h1, .editor-styles-wrapper h2,
 .editor-styles-wrapper h3, .editor-styles-wrapper h4 {
-	font-weight: 700;
-	letter-spacing: -.01em;
+	font-family: "Sitka Banner", "Hoefler Text", "Iowan Old Style", Charter, Constantia, "Palatino Linotype", Georgia, serif;
+	font-weight: 600;
+	line-height: 1.16;
+	letter-spacing: -.018em;
 }
+
+/* Курсив в длинной кириллической цитате читается хуже отступа и цвета. */
 .editor-styles-wrapper blockquote {
-	border-left: 3px solid #e1173f;
-	padding-left: 1.125rem;
-	font-style: italic;
+	border-left: 2px solid rgba(182, 61, 37, .5);
+	padding-left: 1.35rem;
+	font-style: normal;
+	color: #746b63;
 }
-.editor-styles-wrapper a { color: #e1173f; }
+
+.editor-styles-wrapper a { color: #b63d25; }
+
+.editor-styles-wrapper hr { border: 0; border-top: 1px solid #e2ddd7; }
+
+.editor-styles-wrapper code, .editor-styles-wrapper pre {
+	font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Consolas, monospace;
+}
+.editor-styles-wrapper pre {
+	background: #f1ece4;
+	border: 1px solid #e2ddd7;
+	border-radius: 5px;
+	padding: 1rem 1.125rem;
+}

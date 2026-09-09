@@ -276,7 +276,7 @@ $wp_customize->add_section( 'xin_home', array(
 	);
 	foreach ( $blocks as $key => $label ) {
 		$wp_customize->add_setting( $key, array(
-			'default'           => true,
+			'default'           => xin_show_default( $key ),
 			'sanitize_callback' => 'wp_validate_boolean',
 		) );
 		$wp_customize->add_control( $key, array(
@@ -364,8 +364,25 @@ $wp_customize->add_section( 'xin_footer', array(
 }
 add_action( 'customize_register', 'xin_customize_register' );
 
+/**
+ * Показывать ли блок главной по умолчанию.
+ *
+ * Почти всё включено. Выключены два блока, которые ничего не сообщают
+ * читателю: полоса из девяти иконок дублировала главное меню, а счётчики
+ * «тайтлов / глав / прочтений» — витринная цифра ради цифры. Оба остались
+ * в коде и в кастомайзере: кому нужны, включит одной галочкой.
+ *
+ * @param string $key Ключ настройки.
+ * @return bool
+ */
+function xin_show_default( $key ) {
+	$off = array( 'xin_show_services', 'xin_show_stats' );
+
+	return ! in_array( $key, $off, true );
+}
+
 function xin_show( $key ) {
-	return (bool) get_theme_mod( $key, true );
+	return (bool) get_theme_mod( $key, xin_show_default( $key ) );
 }
 
 function xin_hex_to_hsl( $hex ) {

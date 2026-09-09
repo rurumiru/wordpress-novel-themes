@@ -25,15 +25,15 @@
 	}
 
 		function initTheme() {
-		var btn = $('[data-xin-theme]');
-		if (!btn) return;
-
+		// Переключателей может быть несколько: в шапке сайта и в рельсе читалки.
+		$$('[data-xin-theme]').forEach(function (btn) {
 		btn.addEventListener('click', function () {
 			var now = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
 			document.documentElement.setAttribute('data-theme', now);
 			// Строкой, без JSON: ровно в этом виде значение читает скрипт в
 			// <head>, который ставит data-theme до первой отрисовки.
 			try { localStorage.setItem(LS_THEME, now); } catch (e) {}
+		});
 		});
 	}
 
@@ -231,16 +231,41 @@ var startX = null;
 		$$('[data-xin-tabs]').forEach(function (root) {
 			var buttons = $$('[data-xin-tab]', root);
 			var panels = $$('[data-xin-tabpanel]', root);
-			buttons.forEach(function (btn) {
-				btn.addEventListener('click', function () {
-					buttons.forEach(function (b) {
-						b.classList.toggle('active', b === btn);
-						b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-					});
-					panels.forEach(function (panel) {
-						panel.hidden = panel.dataset.xinTabpanel !== btn.dataset.xinTab;
-					});
+
+			function show(key, push) {
+				var hit = false;
+				buttons.forEach(function (b) {
+					var on = b.dataset.xinTab === key;
+					if (on) hit = true;
+					b.classList.toggle('active', on);
+					b.setAttribute('aria-selected', on ? 'true' : 'false');
 				});
+				if (!hit) return false;
+				panels.forEach(function (panel) {
+					panel.hidden = panel.dataset.xinTabpanel !== key;
+				});
+				/*
+				 * Адрес меняем через replaceState: вкладка — это не новая
+				 * страница, и засорять историю браузера ей незачем. Зато
+				 * ссылку со вкладкой можно скопировать и отправить.
+				 */
+				if (push && window.history && history.replaceState) {
+					history.replaceState(null, '', '#' + key);
+				}
+				return true;
+			}
+
+			buttons.forEach(function (btn) {
+				btn.addEventListener('click', function () { show(btn.dataset.xinTab, true); });
+			});
+
+			// Ссылки вида /novels/<тайтл>/#chapters приходят из читалки и из
+			// навигации — вкладка должна открыться сразу.
+			var hash = (location.hash || '').replace('#', '');
+			if (hash) show(hash, false);
+
+			window.addEventListener('hashchange', function () {
+				show((location.hash || '').replace('#', ''), false);
 			});
 		});
 	}
@@ -843,6 +868,201 @@ if (body.scrollHeight <= 240) {
 		});
 	}
 
+	/*
+	 * История чтения на карточках каталога.
+	 *
+	 * Тайтл, который читатель уже начал, отмечается тонкой полосой внизу
+	 * обложки. Данные те же, что у блока «Продолжить чтение», — ничего
+	 * дополнительно не запрашивается.
+	 */
+	function initCardProgress() {
+		var history = read(LS_HISTORY, []);
+		if (!history.length) return;
+
+		var byId = {};
+		history.forEach(function (item) {
+			if (item && item.novelId) byId[item.novelId] = item;
+		});
+
+		$$('.xin-novel').forEach(function (card) {
+			var fav = $('[data-xin-fav]', card);
+			if (!fav) return;
+
+			var id;
+			try { id = JSON.parse(fav.getAttribute('data-xin-fav')).id; } catch (e) { return; }
+
+			var entry = byId[id];
+			if (!entry) return;
+
+			var cover = $('.xin-novel__cover', card);
+			if (!cover || $('.xin-novel__progress', cover)) return;
+
+			var pct = Math.max(2, Math.min(100, Math.round((entry.progress || 0) * 100)));
+			var bar = document.createElement('span');
+			bar.className = 'xin-novel__progress';
+			bar.innerHTML = '<i style="width:' + pct + '%"></i>';
+			bar.title = (i18n.youStopped || 'Вы остановились здесь') + (entry.title ? ': ' + entry.title : '');
+			cover.appendChild(bar);
+		});
+	}
+
+	/*
+	 * Кнопка «Показать ещё» в оглавлении.
+	 *
+	 * Дописывает следующую порцию строк в тот же список. В разметке лежит
+	 * обычная ссылка на следующую страницу оглавления, поэтому без скрипта
+	 * (и без fetch) кнопка просто листает страницу, как раньше.
+	 */
+	function initChapterMore() {
+		var btn = $('[data-xin-more]');
+		var list = $('[data-xin-chapter-list]');
+		if (!btn || !list || !window.fetch || !window.XIN) return;
+
+		var shown = $('[data-xin-more-shown]');
+		var label = $('[data-xin-more-label]');
+		var busy = false;
+
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
+			if (busy) return;
+			busy = true;
+			btn.classList.add('is-busy');
+
+			var next = (parseInt(btn.dataset.page, 10) || 1) + 1;
+			var url = XIN.restUrl + 'chapters?novel=' + encodeURIComponent(btn.dataset.novel) + '&page=' + next;
+
+			fetch(url, { headers: { 'X-WP-Nonce': XIN.nonce } })
+				.then(function (r) { return r.json(); })
+				.then(function (d) {
+					if (!d || !d.rows) return;
+
+					list.insertAdjacentHTML('beforeend', d.rows);
+					btn.dataset.page = d.page;
+
+					if (shown) shown.textContent = d.shown;
+
+					if (d.page >= d.pages) {
+						btn.hidden = true;
+					} else {
+						var per = parseInt(btn.dataset.per, 10) || 30;
+						var left = Math.min(per, d.total - d.shown);
+						if (label) label.textContent = (i18n.showMore || 'Показать ещё %d').replace('%d', left);
+						btn.href = btn.href.replace(/([?&])ch=\d+/, '$1ch=' + (d.page + 1));
+					}
+
+					// Догруженные строки тоже должны получить отметку «вы читали».
+					initReadMark();
+				})
+				.catch(function () { btn.hidden = false; })
+				.then(function () {
+					busy = false;
+					btn.classList.remove('is-busy');
+				});
+		});
+	}
+
+	/*
+	 * Главная кнопка на странице тайтла знает, начинал ли читатель книгу.
+	 *
+	 * Подставляется тот же адрес, на котором он закрыл читалку, — история
+	 * лежит в браузере, поэтому серверу об этом знать не нужно и страница
+	 * остаётся кэшируемой.
+	 */
+	function initContinueCta() {
+		var cta = $('[data-xin-continue-cta]');
+		if (!cta) return;
+
+		var novelId = parseInt(cta.getAttribute('data-xin-continue-cta'), 10);
+		if (!novelId) return;
+
+		var entry = null;
+		read(LS_HISTORY, []).forEach(function (item) {
+			if (item && item.novelId === novelId) entry = item;
+		});
+
+		if (!entry || !entry.url) return;
+
+		var label = $('[data-xin-cta-label]', cta);
+		cta.href = entry.url;
+		if (label) {
+			label.textContent = entry.title
+				? (i18n.continueAt || 'Продолжить') + ': ' + entry.title
+				: (i18n.continueAt || 'Продолжить');
+		}
+		cta.classList.add('is-continue');
+	}
+
+	/*
+	 * Отметка «вы дочитали до сюда» в оглавлении тайтла.
+	 *
+	 * Сравниваются пути адресов, а не идентификаторы: в истории лежит ровно
+	 * тот адрес, по которому читатель ушёл в главу.
+	 */
+	function initReadMark() {
+		var list = $('[data-xin-chapter-list]');
+		if (!list) return;
+
+		var history = read(LS_HISTORY, []);
+		if (!history.length) return;
+
+		var paths = {};
+		history.forEach(function (item) {
+			if (!item || !item.url) return;
+			try { paths[new URL(item.url, location.href).pathname] = item; } catch (e) {}
+		});
+
+		$$('a[href]', list).forEach(function (link) {
+			var path;
+			try { path = new URL(link.getAttribute('href'), location.href).pathname; } catch (e) { return; }
+
+			var entry = paths[path];
+			if (!entry) return;
+
+			var row = link.closest('li') || link;
+			row.classList.add('is-read');
+
+			var mark = document.createElement('span');
+			mark.className = 'xin-nv__read';
+			mark.textContent = i18n.readHere || 'вы читали';
+
+			// Отметка встаёт сразу после названия, а не в конец строки за датой:
+			// иначе она читается как отдельная колонка.
+			var date = link.querySelector('.xin-nv__date');
+			if (date) { link.insertBefore(mark, date); } else { link.appendChild(mark); }
+		});
+	}
+
+	/*
+	 * Клавиши: «/» открывает поиск, «r» уводит на случайный тайтл. Обе
+	 * молчат, пока курсор стоит в поле ввода, иначе они мешали бы набору.
+	 */
+	function initKeys() {
+		document.addEventListener('keydown', function (e) {
+			if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+			var el = document.activeElement;
+			var tag = el ? (el.tagName || '').toLowerCase() : '';
+			if (tag === 'input' || tag === 'textarea' || tag === 'select' || (el && el.isContentEditable)) return;
+
+			if (e.key === '/') {
+				var dialog = document.getElementById('xin-search');
+				if (dialog && window.bootstrap && window.bootstrap.Modal) {
+					e.preventDefault();
+					window.bootstrap.Modal.getOrCreateInstance(dialog).show();
+				}
+				return;
+			}
+
+			if (e.key === 'r' || e.key === 'к') {
+				var url = (window.XIN && window.XIN.randomUrl) || '';
+				if (url) {
+					e.preventDefault();
+					window.location.href = url;
+				}
+			}
+		});
+	}
+
 	document.addEventListener('DOMContentLoaded', function () {
 		initTheme();
 		initSelects();
@@ -863,6 +1083,11 @@ if (body.scrollHeight <= 240) {
 		initChapterFilter();
 		initSynopsis();
 		initRate();
+		initCardProgress();
+		initContinueCta();
+		initChapterMore();
+		initReadMark();
+		initKeys();
 	});
 
 window.xinHistory = {

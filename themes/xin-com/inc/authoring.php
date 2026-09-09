@@ -394,7 +394,6 @@ function xin_create_pages() {
 		'ranking'       => array( __( 'Рейтинг', 'xin-com' ), 'template-ranking.php' ),
 		'hub'           => array( __( 'Уголок читателя', 'xin-com' ), 'template-hub.php' ),
 		'become-author' => array( __( 'Стать автором', 'xin-com' ), 'template-become-author.php' ),
-		'plus'          => array( __( 'PLUS', 'xin-com' ), 'template-plus.php' ),
 		'help'          => array( __( 'Справка', 'xin-com' ), 'template-info.php' ),
 		'rules'         => array( __( 'Правила площадки', 'xin-com' ), 'template-info.php' ),
 		'contacts'      => array( __( 'Контакты', 'xin-com' ), 'template-info.php' ),
@@ -457,22 +456,43 @@ function xin_ranking_page_url() {
 }
 
 function xin_author_stats( $user_id ) {
-	$novels = get_posts( array(
-		'post_type'      => 'novel',
-		'author'         => $user_id,
-		'posts_per_page' => -1,
-		'fields'         => 'ids',
-	) );
+	global $wpdb;
 
-	$views    = 0;
-	$chapters = 0;
-	foreach ( $novels as $id ) {
-		$views    += xin_get_views( $id );
-		$chapters += xin_chapter_count( $id );
-	}
+	$user_id = (int) $user_id;
+
+	/*
+	 * Считает база. Прежде отсюда уезжали ID всех тайтлов автора, а дальше на
+	 * каждый шёл запрос за просмотрами и ещё один — за списком глав. У автора
+	 * с сотней проектов профиль стоил пару сотен запросов.
+	 */
+	$totals = $wpdb->get_row( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->prepare(
+			"SELECT COUNT(*) AS novels,
+			        COALESCE( SUM( CAST( v.meta_value AS UNSIGNED ) ), 0 ) AS views
+			 FROM {$wpdb->posts} p
+			 LEFT JOIN {$wpdb->postmeta} v ON v.post_id = p.ID AND v.meta_key = '_xin_views'
+			 WHERE p.post_type = 'novel' AND p.post_author = %d
+			   AND p.post_status IN ( 'publish', 'draft', 'pending', 'private' )",
+			$user_id
+		)
+	);
+
+	$chapters = (int) $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->prepare(
+			"SELECT COUNT(*)
+			 FROM {$wpdb->posts} ch
+			 INNER JOIN {$wpdb->postmeta} link ON link.post_id = ch.ID AND link.meta_key = '_xin_novel'
+			 INNER JOIN {$wpdb->posts} nv ON nv.ID = CAST( link.meta_value AS UNSIGNED )
+			 WHERE ch.post_type = 'chapter' AND ch.post_status = 'publish'
+			   AND nv.post_type = 'novel' AND nv.post_author = %d",
+			$user_id
+		)
+	);
+
+	$views = $totals ? (int) $totals->views : 0;
 
 	return array(
-		'novels'   => count( $novels ),
+		'novels'   => $totals ? (int) $totals->novels : 0,
 		'chapters' => $chapters,
 		'views'    => $views,
 		'posts'    => (int) count_user_posts( $user_id, 'post' ),

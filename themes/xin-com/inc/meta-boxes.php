@@ -138,6 +138,57 @@ function xin_novel_art_box( $post ) {
 	<?php
 }
 
+/**
+ * Тайтлы для выпадающего списка в админке.
+ *
+ * Прежде оба списка забирали все тайтлы без предела: на каталоге в десятки
+ * тысяч записей экран главы либо не открывался вовсе, либо отдавал список
+ * с десятками тысяч <option>. Здесь список ограничен, а выбранный тайтл
+ * добавляется отдельно — иначе правка старой главы молча сбросила бы связь.
+ *
+ * @param int $selected ID выбранного тайтла.
+ * @return array {items: id => заголовок, more: bool}
+ */
+function xin_novel_choices( $selected = 0 ) {
+	/**
+	 * Сколько тайтлов показывать в выпадающих списках админки.
+	 *
+	 * @param int $limit Предел.
+	 */
+	$limit = max( 20, (int) apply_filters( 'xin_admin_novel_limit', 300 ) );
+
+	$novels = get_posts( array(
+		'post_type'              => 'novel',
+		'posts_per_page'         => $limit + 1,
+		'orderby'                => 'modified',
+		'order'                  => 'DESC',
+		'post_status'            => array( 'publish', 'draft', 'pending', 'private' ),
+		'no_found_rows'          => true,
+		'update_post_meta_cache' => false,
+		'update_post_term_cache' => false,
+	) );
+
+	$more = count( $novels ) > $limit;
+	$novels = array_slice( $novels, 0, $limit );
+
+	$items = array();
+	foreach ( $novels as $novel ) {
+		$items[ (int) $novel->ID ] = $novel->post_title;
+	}
+
+	$selected = (int) $selected;
+	if ( $selected && ! isset( $items[ $selected ] ) ) {
+		$title = get_the_title( $selected );
+		if ( $title ) {
+			$items = array( $selected => $title ) + $items;
+		}
+	}
+
+	natcasesort( $items );
+
+	return array( 'items' => $items, 'more' => $more );
+}
+
 function xin_chapter_box( $post ) {
 	wp_nonce_field( 'xin_save_meta', 'xin_meta_nonce' );
 
@@ -145,22 +196,19 @@ function xin_chapter_box( $post ) {
 	$number   = get_post_meta( $post->ID, '_xin_number', true );
 	$locked   = (bool) get_post_meta( $post->ID, '_xin_locked', true );
 
-	$novels = get_posts( array(
-		'post_type'      => 'novel',
-		'posts_per_page' => -1,
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-		'post_status'    => array( 'publish', 'draft', 'pending' ),
-	) );
+	$choices = xin_novel_choices( $novel_id );
 	?>
 	<p>
 		<label for="xin_novel"><strong><?php esc_html_e( 'Новелла', 'xin-com' ); ?></strong></label>
 		<select id="xin_novel" name="xin_novel" style="width:100%">
 			<option value="">— <?php esc_html_e( 'не выбрана', 'xin-com' ); ?> —</option>
-			<?php foreach ( $novels as $novel ) : ?>
-				<option value="<?php echo (int) $novel->ID; ?>" <?php selected( $novel_id, $novel->ID ); ?>><?php echo esc_html( $novel->post_title ); ?></option>
+			<?php foreach ( $choices['items'] as $xin_choice_id => $xin_choice_title ) : ?>
+				<option value="<?php echo (int) $xin_choice_id; ?>" <?php selected( $novel_id, $xin_choice_id ); ?>><?php echo esc_html( $xin_choice_title ); ?></option>
 			<?php endforeach; ?>
 		</select>
+		<?php if ( ! empty( $choices['more'] ) ) : ?>
+			<span class="description"><?php esc_html_e( 'Показаны недавно изменённые тайтлы. Выбранный остаётся в списке всегда.', 'xin-com' ); ?></span>
+		<?php endif; ?>
 	</p>
 	<p>
 		<label for="xin_number"><strong><?php esc_html_e( 'Номер главы', 'xin-com' ); ?></strong></label>
@@ -168,13 +216,13 @@ function xin_chapter_box( $post ) {
 		<span class="description"><?php esc_html_e( 'Дробный номер — экстра/интерлюдия: 12.5', 'xin-com' ); ?></span>
 	</p>
 	<p>
-		<label><input type="checkbox" name="xin_locked" value="1" <?php checked( $locked ); ?>> <?php esc_html_e( 'Ранний доступ: PLUS или покупка', 'xin-com' ); ?></label>
+		<label><input type="checkbox" name="xin_locked" value="1" <?php checked( $locked ); ?>> <?php esc_html_e( 'Ранний доступ: только команда проекта или покупка', 'xin-com' ); ?></label>
 	</p>
 	<?php if ( xin_woo_active() ) : ?>
 		<p>
 			<label for="xin_product"><strong><?php esc_html_e( 'Товар WooCommerce', 'xin-com' ); ?></strong></label>
 			<input type="number" id="xin_product" name="xin_product" value="<?php echo esc_attr( (int) get_post_meta( $post->ID, '_xin_product', true ) ); ?>" style="width:100%">
-			<span class="description"><?php esc_html_e( 'ID товара для разовой покупки главы. Пусто — только PLUS.', 'xin-com' ); ?></span>
+			<span class="description"><?php esc_html_e( 'ID товара для разовой покупки главы. Пусто — глава открыта только команде проекта.', 'xin-com' ); ?></span>
 		</p>
 	<?php endif; ?>
 	<?php
@@ -336,10 +384,10 @@ function xin_chapter_filter() {
 		return;
 	}
 	$current = isset( $_GET['xin_novel_filter'] ) ? absint( $_GET['xin_novel_filter'] ) : 0;
-	$novels  = get_posts( array( 'post_type' => 'novel', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
+	$choices = xin_novel_choices( $current );
 	echo '<select name="xin_novel_filter"><option value="">' . esc_html__( 'Все новеллы', 'xin-com' ) . '</option>';
-	foreach ( $novels as $novel ) {
-		printf( '<option value="%d" %s>%s</option>', (int) $novel->ID, selected( $current, $novel->ID, false ), esc_html( $novel->post_title ) );
+	foreach ( $choices['items'] as $novel_id => $novel_title ) {
+		printf( '<option value="%d" %s>%s</option>', (int) $novel_id, selected( $current, $novel_id, false ), esc_html( $novel_title ) );
 	}
 	echo '</select>';
 }

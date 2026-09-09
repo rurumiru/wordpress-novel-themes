@@ -90,18 +90,23 @@
 
 	window.xinReader = { open: openPanel, close: closePanels };
 
-	var settingsBtn = $('[data-xin-rd-settings]');
-	if (settingsBtn) settingsBtn.addEventListener('click', function () { openPanel(panel); });
-	var tocBtn = $('[data-xin-rd-toc]');
-	if (tocBtn) {
-		tocBtn.addEventListener('click', function () {
+	/*
+	 * Обработчики вешаются на все кнопки с меткой, а не на первую найденную:
+	 * одна и та же команда есть и в верхней панели, и в рельсе слева, а
+	 * querySelector отдавал только верхнюю — рельс не работал вовсе.
+	 */
+	$$('[data-xin-rd-settings]').forEach(function (btn) {
+		btn.addEventListener('click', function () { openPanel(panel); });
+	});
+
+	$$('[data-xin-rd-toc]').forEach(function (btn) {
+		btn.addEventListener('click', function () {
 			openPanel(toc);
-			
+
 			var cur = toc && toc.querySelector('.is-current');
 			if (cur) cur.scrollIntoView({ block: 'center' });
 		});
-	}
-	$$('[data-xin-rd-close]').forEach(function (b) { b.addEventListener('click', closePanels); });
+	});
 	if (scrim) scrim.addEventListener('click', closePanels);
 	document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanels(); });
 
@@ -121,8 +126,27 @@
 	var progress = document.querySelector('[data-xin-progress]');
 	var fill = $('[data-xin-rd-fill]');
 	var pct = $('[data-xin-rd-pct]');
+	var left = $('[data-xin-rd-left]');
+	var totalMinutes = left ? parseInt(left.getAttribute('data-minutes'), 10) || 0 : 0;
 	var text = $('[data-xin-rd-text]');
 	var hotzone = $('[data-xin-rd-hotzone]');
+
+	/*
+	 * Поиск по окну оглавления в читалке. Ищет только по показанным главам —
+	 * полный список живёт на странице тайтла, и об этом сказано в панели.
+	 */
+	(function tocSearch() {
+		var input = $('[data-xin-rd-toc-search]');
+		var list = $('[data-xin-rd-toc-list]');
+		if (!input || !list) return;
+
+		input.addEventListener('input', function () {
+			var q = input.value.trim().toLowerCase();
+			Array.prototype.forEach.call(list.children, function (row) {
+				row.hidden = !!q && row.textContent.toLowerCase().indexOf(q) === -1;
+			});
+		});
+	})();
 
 	var lastY = window.scrollY;
 	var lastPct = -1;
@@ -153,6 +177,18 @@
 			if (progress) progress.style.width = whole + '%';
 			if (fill) fill.style.width = whole + '%';
 			if (pct) pct.textContent = whole + '%';
+
+			/*
+			 * «Осталось ~N мин» полезнее процента: процент говорит, где ты, а
+			 * минуты — успеешь ли дочитать сейчас. Меньше минуты не показываем,
+			 * иначе строка мигает у самого низа.
+			 */
+			if (left && totalMinutes) {
+				var rest = Math.ceil(totalMinutes * (1 - p));
+				left.textContent = rest > 0
+					? (window.XIN && XIN.i18n && XIN.i18n.leftMin ? XIN.i18n.leftMin.replace('%d', rest) : '~' + rest + ' мин')
+					: '';
+			}
 		}
 
 		if (Math.abs(y - lastY) > 6) {
@@ -213,7 +249,8 @@
 		var selected = null;
 		var clickAt = 0;
 		var toastTimer = 0;
-		var jumpBtn = document.querySelector('[data-xin-jump-bm]');
+		var jumpBtns = $$('[data-xin-jump-bm]');
+		var jumpBtn = jumpBtns[0] || null;
 		var suggest = document.querySelector('[data-xin-suggest]');
 		var ttsBar = document.querySelector('[data-xin-tts]');
 		var synth = window.speechSynthesis || null;
@@ -279,7 +316,7 @@
 				if (on) p.setAttribute('data-bm-color', rec.color || 'default');
 				else p.removeAttribute('data-bm-color');
 			});
-			if (jumpBtn) jumpBtn.hidden = !rec;
+			jumpBtns.forEach(function (b) { b.hidden = !rec; });
 			syncKit();
 		}
 		function closeTools() {
@@ -631,10 +668,12 @@
 			if (action === 'link') copy(location.protocol + '//' + location.host + location.pathname + '#' + selected.id, i18n.linkCopied);
 		});
 
-		if (jumpBtn) jumpBtn.addEventListener('click', function () {
-			var rec = readBm()[chapterId];
-			var p = rec && qs('p[data-paragraph-id="' + rec.id + '"]', text);
-			if (p) p.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		jumpBtns.forEach(function (b) {
+			b.addEventListener('click', function () {
+				var rec = readBm()[chapterId];
+				var p = rec && qs('p[data-paragraph-id="' + rec.id + '"]', text);
+				if (p) p.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			});
 		});
 
 		if (suggest) {
@@ -764,7 +803,299 @@
 		}
 	});
 
-		var readKey = 'xin-read-' + (meta.novelId || '0');
+		/*
+	 * Бесконечная прокрутка.
+	 *
+	 * Дочитал главу — следующая дописывается в тот же поток текста, и читать
+	 * можно дальше не перезагружая страницу. Главы приезжают по одной и только
+	 * когда до низа осталось около экрана: так у книги на тысячи глав в памяти
+	 * браузера всё равно лежит столько, сколько человек успел прочесть.
+	 *
+	 * Дописываем внутрь того же `[data-xin-rd-text]`, а не рядом с ним, — тогда
+	 * прогресс, закладки, инструменты абзаца и озвучка продолжают видеть один
+	 * контейнер и работать без переделки.
+	 */
+	/* Две кнопки рельса, которым не нашлось готового обработчика. */
+	$$('[data-xin-rd-top]').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		});
+	});
+
+	$$('[data-xin-rd-talk]').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var talk = document.getElementById('xin-talk');
+
+			// Пока читается одна глава, обсуждение тут же — просто прокручиваем.
+			if (talk && !talk.hidden) {
+				talk.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				return;
+			}
+
+			/*
+			 * После дозагрузки обсуждение первой главы спрятано: ниже по потоку
+			 * оно относилось бы не к той главе. Адрес в строке браузера при этом
+			 * уже указывает на ту главу, которую читатель видит, — открываем её
+			 * страницу, там обсуждение своё.
+			 */
+			var here = window.location.pathname + window.location.search;
+			window.location.href = here + '#xin-talk';
+			window.location.reload();
+		});
+	});
+
+	function initEndless() {
+		var cfg = window.XIN || {};
+		if (!cfg.endless || !window.fetch || !('IntersectionObserver' in window)) return;
+		if (!root || !text) return;
+
+		var nextId = parseInt(root.dataset.nextId, 10) || 0;
+		if (!nextId) return;
+
+		var words = cfg.i18n || {};
+		var busy = false;
+		var appended = 0;
+		var chain = function () {};
+
+		var sentinel = document.createElement('div');
+		sentinel.className = 'xin-rd__sentinel';
+		var note = document.createElement('p');
+		note.className = 'xin-rd__loading';
+		note.textContent = words.loadingNext || '';
+		note.hidden = true;
+		sentinel.appendChild(note);
+		text.parentNode.insertBefore(sentinel, text.nextSibling);
+
+		var onward = $('.xin-rd__onward');
+		var dockNext = dock ? dock.querySelector('.btn-primary') : null;
+
+		function seam(data) {
+			var wrap = document.createElement('div');
+			wrap.className = 'xin-rd__seam';
+			wrap.setAttribute('data-url', data.url);
+			wrap.setAttribute('data-id', data.id);
+
+			if (data.label) {
+				var no = document.createElement('span');
+				no.className = 'xin-rd__seam-no';
+				no.textContent = (words.chapterNo || 'Глава %s').replace('%s', data.label);
+				wrap.appendChild(no);
+			}
+
+			var h = document.createElement('h2');
+			h.textContent = data.title;
+			wrap.appendChild(h);
+
+			var link = document.createElement('a');
+			link.className = 'xin-rd__seam-link';
+			link.href = data.url;
+			link.textContent = words.chapterPage || '';
+			wrap.appendChild(link);
+
+			wrap.setAttribute('data-title', data.title);
+			return wrap;
+		}
+
+		/*
+		 * Первая дописанная глава отменяет «подвал одной главы»: навигация,
+		 * подсказка про стрелки и обсуждение относятся к той главе, с которой
+		 * читатель пришёл, и ниже по потоку становятся неправдой.
+		 */
+		var folded = false;
+		function foldTail() {
+			if (folded) return;
+			folded = true;
+			['.xin-rd__nav', '.xin-rd__last'].forEach(function (sel) {
+				var el = $(sel);
+				if (el) el.hidden = true;
+			});
+			var hint = document.querySelector('.xin-rd__inner > .xin-center');
+			if (hint) hint.hidden = true;
+			var talk = document.querySelector('.xin-rd__inner .xin-talk');
+			if (talk) talk.hidden = true;
+		}
+
+		/*
+		 * Карточка «следующая глава» и кнопка «Дальше» в нижней панели ведут
+		 * туда, куда прокрутка приведёт сама. Пока главы дописываются, обе
+		 * лишние: они предлагают уйти со страницы, на которой ты уже читаешь
+		 * ту самую следующую главу.
+		 */
+		function retarget() {
+			if (onward) onward.hidden = true;
+			if (dockNext) dockNext.hidden = true;
+		}
+
+		var seams = [];
+
+		// Адрес и заголовок меняются на ту главу, что сейчас под шапкой.
+		var spy = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (!entry.isIntersecting) return;
+				var el = entry.target;
+				var url = el.getAttribute('data-url');
+				var title = el.getAttribute('data-title');
+				if (!url) return;
+
+				if (window.history && history.replaceState) {
+					history.replaceState(null, '', url);
+				}
+				if (title) {
+					document.title = title;
+					var barTitle = document.querySelector('.xin-rd__bar-title b');
+					if (barTitle) barTitle.textContent = title;
+					root.dataset.chapterTitle = title;
+					root.dataset.chapterId = el.getAttribute('data-id') || '';
+				}
+			});
+		}, { rootMargin: '-72px 0px -70% 0px' });
+
+		/*
+		 * Место, где чтение останавливается: закрытая глава или конец книги.
+		 * Раньше поток просто обрывался без объяснений — со стороны это
+		 * выглядело сломанной подгрузкой. Теперь читателю прямо сказано, во
+		 * что он упёрся, и предложено, куда идти дальше.
+		 */
+		function stopBlock(kind, data) {
+			var box = document.createElement('div');
+			box.className = 'xin-rd__stop';
+
+			if (kind === 'locked' && data.label) {
+				var no = document.createElement('span');
+				no.className = 'xin-rd__stop-no';
+				no.textContent = (words.chapterNo || 'Глава %s').replace('%s', data.label);
+				box.appendChild(no);
+			}
+
+			var h = document.createElement('p');
+			h.className = 'xin-rd__stop-title';
+			h.textContent = kind === 'locked' ? (data.title || '') : (words.bookEnd || '');
+			box.appendChild(h);
+
+			var note2 = document.createElement('p');
+			note2.className = 'xin-rd__stop-note';
+			note2.textContent = kind === 'locked' ? (words.lockedAhead || '') : (words.bookEndNote || '');
+			box.appendChild(note2);
+
+			var act = document.createElement('div');
+			act.className = 'xin-rd__stop-act';
+
+			if (kind === 'locked') {
+				var open = document.createElement('a');
+				open.className = 'btn btn-primary btn-sm';
+				open.href = data.url;
+				open.textContent = words.openChapter || '';
+				act.appendChild(open);
+
+				if (data.next) {
+					var skip = document.createElement('button');
+					skip.type = 'button';
+					skip.className = 'btn btn-outline btn-sm';
+					skip.textContent = words.skipLocked || '';
+					skip.addEventListener('click', function () {
+						box.remove();
+						nextId = data.next;
+						io.observe(sentinel);
+						load();
+					});
+					act.appendChild(skip);
+				}
+			} else {
+				var last = seams.length ? seams[seams.length - 1].getAttribute('data-url') : '';
+				if (last) {
+					var talkLink = document.createElement('a');
+					talkLink.className = 'btn btn-outline btn-sm';
+					talkLink.href = last + '#xin-talk';
+					talkLink.textContent = words.discussChapter || '';
+					act.appendChild(talkLink);
+				}
+				var up = document.createElement('a');
+				up.className = 'btn btn-outline btn-sm';
+				up.href = root.dataset.novelUrl || '';
+				up.textContent = words.toNovel || '';
+				if (up.href) act.appendChild(up);
+			}
+
+			if (act.children.length) box.appendChild(act);
+			text.appendChild(box);
+		}
+
+		function load() {
+			if (busy || !nextId) return;
+			busy = true;
+			note.hidden = false;
+
+			fetch(cfg.restUrl + 'chapter/' + nextId, { headers: { 'X-WP-Nonce': cfg.nonce } })
+				.then(function (r) { return r.ok ? r.json() : null; })
+				.then(function (d) {
+					if (!d) {
+						nextId = 0;
+						io.disconnect();
+						return;
+					}
+
+					if (d.locked || !d.html) {
+						nextId = 0;
+						io.disconnect();
+						foldTail();
+						stopBlock('locked', d);
+						return;
+					}
+
+					var mark = seam(d);
+					text.appendChild(mark);
+					seams.push(mark);
+					spy.observe(mark);
+
+					var holder = document.createElement('div');
+					holder.innerHTML = d.html;
+					while (holder.firstChild) { text.appendChild(holder.firstChild); }
+
+					appended++;
+					nextId = d.next || 0;
+					foldTail();
+					retarget();
+
+					document.dispatchEvent(new CustomEvent('xin:chapter-appended', { detail: { id: d.id, url: d.url } }));
+
+					if (!nextId) {
+						io.disconnect();
+						stopBlock('end', d);
+					}
+				})
+				.catch(function () { nextId = 0; })
+				.then(function () {
+					busy = false;
+					note.hidden = true;
+					chain();
+				});
+		}
+
+		var io = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) { if (entry.isIntersecting) load(); });
+		}, { rootMargin: '900px 0px' });
+
+		io.observe(sentinel);
+
+		/*
+		 * Наблюдатель сообщает только о переходе «видно / не видно». Если глава
+		 * короткая, метка после дозагрузки так и остаётся в зоне видимости —
+		 * события больше не будет, и чтение упрётся в одну подгруженную главу.
+		 * Поэтому после каждой удачной загрузки проверяем расстояние сами и,
+		 * если до конца снова близко, тянем следующую.
+		 */
+		chain = function () {
+			if (!nextId || busy) return;
+			var box = sentinel.getBoundingClientRect();
+			if (box.top < window.innerHeight + 900) {
+				window.setTimeout(load, 60);
+			}
+		};
+	}
+
+	initEndless();
+
+	var readKey = 'xin-read-' + (meta.novelId || '0');
 	try {
 		var list = JSON.parse(localStorage.getItem(readKey) || '[]');
 		var id = parseInt(meta.chapterId, 10);

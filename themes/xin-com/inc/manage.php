@@ -2,7 +2,7 @@
 /**
  * Панель управления площадкой прямо на сайте.
  *
- * Роли, доступ PLUS, модерация и настройки темы — без захода в /wp-admin.
+ * Роли, модерация и настройки темы — без захода в /wp-admin.
  *
  * @package XI_Novels
  */
@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const XIN_MANAGE_SLUG = 'manage';
-const XIN_PLUS_META   = '_xin_plus_until';
 
 function xin_manage_page() {
 	static $page = null;
@@ -57,62 +56,6 @@ function xin_role_label( $user ) {
 	return isset( $roles[ $role ] ) ? $roles[ $role ] : $role;
 }
 
-function xin_plus_until( $user_id = 0 ) {
-	$user_id = $user_id ? $user_id : get_current_user_id();
-	return $user_id ? (int) get_user_meta( $user_id, XIN_PLUS_META, true ) : 0;
-}
-
-function xin_user_is_plus( $user_id = 0 ) {
-	$user_id = $user_id ? $user_id : get_current_user_id();
-	if ( ! $user_id ) {
-		return false;
-	}
-	if ( user_can( $user_id, 'edit_others_posts' ) ) {
-		return true;
-	}
-
-	$until = xin_plus_until( $user_id );
-
-	return -1 === $until || ( $until > 0 && $until > time() );
-}
-
-function xin_plus_label( $user_id ) {
-	$until = xin_plus_until( $user_id );
-
-	if ( -1 === $until ) {
-		return __( 'Бессрочно', 'xin-com' );
-	}
-	if ( $until > time() ) {
-		/* translators: %s: date */
-		return sprintf( __( 'до %s', 'xin-com' ), date_i18n( get_option( 'date_format' ), $until ) );
-	}
-	if ( $until > 0 ) {
-		return __( 'истёк', 'xin-com' );
-	}
-
-	return '';
-}
-
-function xin_set_plus( $user_id, $days ) {
-	$days = (int) $days;
-
-	if ( 0 === $days ) {
-		delete_user_meta( $user_id, XIN_PLUS_META );
-		return 0;
-	}
-	if ( $days < 0 ) {
-		update_user_meta( $user_id, XIN_PLUS_META, -1 );
-		return -1;
-	}
-
-	$from  = xin_plus_until( $user_id );
-	$start = $from > time() ? $from : time();
-	$until = $start + $days * DAY_IN_SECONDS;
-	update_user_meta( $user_id, XIN_PLUS_META, $until );
-
-	return $until;
-}
-
 function xin_manage_stats() {
 	$counts = count_users();
 
@@ -121,12 +64,6 @@ function xin_manage_stats() {
 		'novels'   => (int) wp_count_posts( 'novel' )->publish,
 		'chapters' => (int) wp_count_posts( 'chapter' )->publish,
 		'pending'  => (int) wp_count_posts( 'novel' )->pending + (int) wp_count_posts( 'chapter' )->pending,
-		'plus'     => count( get_users( array(
-			'meta_key'     => XIN_PLUS_META,
-			'meta_compare' => 'EXISTS',
-			'fields'       => 'ID',
-			'number'       => 500,
-		) ) ),
 	);
 }
 
@@ -156,9 +93,6 @@ function xin_manage_router() {
 		case 'role':
 			xin_manage_do_role( $back );
 			break;
-		case 'plus':
-			xin_manage_do_plus( $back );
-			break;
 		case 'moderate':
 			xin_manage_do_moderate( $back );
 			break;
@@ -187,18 +121,6 @@ function xin_manage_do_role( $back ) {
 
 	$user->set_role( $role );
 	xin_manage_back( array_merge( $back, array( 'msg' => 'role-set' ) ) );
-}
-
-function xin_manage_do_plus( $back ) {
-	$user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;
-	$days    = isset( $_POST['days'] ) ? (int) $_POST['days'] : 0;
-
-	if ( ! $user_id || ! get_userdata( $user_id ) ) {
-		xin_manage_back( array_merge( $back, array( 'msg' => 'nope' ) ) );
-	}
-
-	xin_set_plus( $user_id, $days );
-	xin_manage_back( array_merge( $back, array( 'msg' => 0 === $days ? 'plus-off' : 'plus-on' ) ) );
 }
 
 function xin_manage_do_moderate( $back ) {
@@ -278,8 +200,6 @@ function xin_manage_notice() {
 
 	$map = array(
 		'role-set'  => array( 'ok', __( 'Роль изменена.', 'xin-com' ) ),
-		'plus-on'   => array( 'ok', __( 'Доступ PLUS выдан.', 'xin-com' ) ),
-		'plus-off'  => array( 'ok', __( 'Доступ PLUS снят.', 'xin-com' ) ),
 		'published' => array( 'ok', __( 'Опубликовано.', 'xin-com' ) ),
 		'drafted'   => array( 'ok', __( 'Убрано в черновики.', 'xin-com' ) ),
 		'trashed'   => array( 'ok', __( 'Перенесено в корзину.', 'xin-com' ) ),
