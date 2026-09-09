@@ -312,6 +312,18 @@ function xin_demo_install( $args = array() ) {
 		update_post_meta( $post_id, '_xin_demo', 1 );
 		update_post_meta( $post_id, '_xin_views', 1200 + $index * 640 );
 
+		// Рубрика: без неё запись падает в «Без рубрики», и блог выглядит
+		// так, будто его не вели.
+		if ( ! empty( $post['cat'] ) ) {
+			$term = term_exists( $post['cat'], 'category' );
+			if ( ! $term ) {
+				$term = wp_insert_term( $post['cat'], 'category' );
+			}
+			if ( ! is_wp_error( $term ) ) {
+				wp_set_post_terms( $post_id, array( (int) $term['term_id'] ), 'category' );
+			}
+		}
+
 		if ( $args['covers'] && ! has_post_thumbnail( $post_id ) ) {
 			$file = $tmp . 'xin-post-' . $post_id . '.jpg';
 			xin_demo_draw( $post['title'], ( 200 + $index * 38 ) % 360, 1600, 900, $file, false );

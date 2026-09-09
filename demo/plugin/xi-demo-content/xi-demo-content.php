@@ -3,7 +3,7 @@
  * Plugin Name: XIN-Com — демо-контент
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
  * Description: Наполняет сайт демонстрационным каталогом: 12 тайтлов, 48 глав, жанры, теги, записи блога и баннеры. Обложки рисуются на месте. Удаляется одной кнопкой.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Author: XI Community

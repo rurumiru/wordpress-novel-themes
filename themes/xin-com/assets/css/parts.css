@@ -245,6 +245,11 @@
    белым по бумаге. */
 .xin-blog-hero__bg ~ .xin-blog-hero__body { color: hsl(40 30% 97%); }
 .xin-blog-hero__body h2 { margin: 10px 0; font-size: clamp(1.4rem, 1.1rem + 1.8vw, 2.4rem); }
+/* Заголовок берёт цвет у карточки. Без этого он держит собственный тёмный
+   цвет от глобальных стилей WordPress — наследование туда не доходит, — и на
+   тёмной обложке заголовок пропадал в картинке. */
+.xin-blog-hero__body h2 { color: inherit; }
+.xin-blog-hero__body h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .xin-blog-hero__body p { margin: 0 0 1em; font-size: 14.5px; color: hsl(var(--muted-fg)); }
 .xin-blog-hero__bg ~ .xin-blog-hero__body p { color: hsl(40 22% 88%); }
 .xin-blog-hero__meta {
