@@ -2,367 +2,270 @@
 
 <h1>XI&nbsp;Novels</h1>
 
-<h3>The best WordPress theme for novels. Here is what backs that up.</h3>
+<h3>Two WordPress themes for a site where people read.</h3>
 
 <p>
-Catalog, title page, a full-screen reader with endless scrolling, text-to-speech<br>
-and a project glossary, rankings, an author studio on the front end,<br>
-a reader library, EPUB and FB2 export — <b>all of it is in the theme</b>.<br>
-No required plugins, no external requests, no build step.<br>
-<b>And it never looks like WordPress.</b>
+A catalog of titles, a title page, a full-screen reader, a reader's library,<br>
+an author studio, book downloads, discussions, a project glossary, chapter alerts —<br>
+<b>all of it lives in the theme</b>. No required plugins, no external requests, no build step.<br>
+<b>And on no screen does it look like WordPress.</b>
 </p>
 
-[![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
+[![Live demo](https://img.shields.io/badge/Live_demo-xi.community-b45309?style=for-the-badge)](https://xi.community)
 [![Install](https://img.shields.io/badge/Install-two_minutes-2ea44f?style=for-the-badge&logo=wordpress&logoColor=white)](#install)
 [![Docs](https://img.shields.io/badge/Docs-read-21759b?style=for-the-badge)](docs/)
-[![Changelog](https://img.shields.io/badge/Changelog-beta_0.9.0-6366f1?style=for-the-badge)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/Changelog-version_2.0-6366f1?style=for-the-badge)](CHANGELOG.md)
 
 <br>
 
-![Version](https://img.shields.io/badge/version-beta%200.9.0-f59e0b?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.0.0-b45309?style=flat-square)
 [![License](https://img.shields.io/badge/license-GPL--2.0--or--later-e1173f?style=flat-square)](LICENSE)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%20%E2%86%92%207.x-21759b?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org/)
-[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.3-7952b3?style=flat-square&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
 
 ![Build step](https://img.shields.io/badge/build%20step-none-2ea44f?style=flat-square)
 ![npm dependencies](https://img.shields.io/badge/npm%20dependencies-0-2ea44f?style=flat-square)
 ![External runtime calls](https://img.shields.io/badge/external%20runtime%20calls-0-2ea44f?style=flat-square)
-[![i18n](https://img.shields.io/badge/interface-RU%20%2F%20EN%20%2F%20PT--BR-3b82f6?style=flat-square)](#languages)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](#contributing)
+[![Languages](https://img.shields.io/badge/interface-RU%20%2F%20EN%20%2F%20PT--BR-3b82f6?style=flat-square)](#languages)
 
 **English** · [Русский](README.ru.md) · [Português&nbsp;(BR)](README.pt-BR.md)
 
-[📢 Telegram channel](https://t.me/licht_re) · [💬 Community chat](https://t.me/xicommunity)
+[📢 Channel](https://t.me/licht_re) · [💬 Community chat](https://t.me/xicommunity)
 
 </div>
 
-![Home page](screenshots/01-home.jpg)
+![XIN-V2 home page](screenshots/xin-v2/01-home.jpg)
 
-> [!NOTE]
-> **Beta 0.9.0 — the platform works end to end.** You can install it today and publish titles and chapters. What is not final is the **presentation layer**: Bootstrap 5 is the current base, not the destination.
+---
+
+## Version 2 — what changed
+
+The repository now ships **two themes**, and they share one database: switching between them is a
+click in the admin, with nothing to migrate.
+
+| | |
+|:--|:--|
+| **XIN-V2** — the new one | Warm paper, a serif for headings, hairlines instead of shadows. A reader with endless scrolling and speech, a reader's library, a community corner, sign-in on the site itself. Written from scratch for large libraries. |
+| **XIN-Com** — the classic | The same platform in a denser, magazine-like key. Comics section, banners, management panel, rankings by period. It stays in the repository and keeps getting fixes. |
+
+Two **new plugins** arrived: `XIN Turbo` speeds up any WordPress, and `XIN Setup` brings the site
+and the content it already has into the shape the theme expects — from one screen.
+
+The full list is in [CHANGELOG.md](CHANGELOG.md).
+
+---
 
 ## Why this one
 
-A loud claim is worth exactly as much as the numbers and the code under it. Here they are.
+A loud claim is worth exactly as much as the measurements and the code under it. Here they are.
 
 | | |
 |:--|:--|
-| 📚 **All of it in the theme, not in five plugins** | Catalog, chapters, reader, rankings, ratings, library, author studio, book export, discussions, project glossary, speech — one codebase, one data model, one set of settings. The three bundled plugins only cover bulk import, bulk editing and visual skinning |
-| 🚀 **It holds thousands of chapters** | Measured on a sandbox with **400 titles and 14,000 chapters**, one of them 4,000 chapters long: its title page opens in **0.52 s** on a cold cache, the catalog in 0.55 s, the ranking board in 0.45 s. The contents load in batches, the reader keeps a window of chapters around the current one, and the chapter count lives in meta instead of being recounted for every card |
-| 📖 **A reader people come back to** | Endless scrolling: finish a chapter and the next one appends itself. Size, width, leading, typeface and paper; per-paragraph bookmarks and quotes, edit suggestions to the author, a glossary of names, speech synthesis, a control rail on the left and progress with the time left |
-| 🔌 **Zero external requests** | No CDNs, no Google Fonts, no trackers. System font stacks, inline SVG icons. The page loads entirely from your own domain |
-| 🛠 **Zero build** | No npm, no composer, no compile step. Download, unzip into `wp-content/themes`, activate |
-| ✍️ **Authors publish from the site** | Author studio, chapter editor with autosave, a release schedule, a project glossary, co-authors — without ever opening `/wp-admin` |
-| 🌍 **Three languages out of the box** | 1,179 strings in the theme plus 374 across the plugins: Russian source, compiled `en_US` and `pt_BR`, an RU / EN / PT switcher in the header |
-| 🔍 **Source you can actually read** | ~19k lines with comments that explain *why it is this way*, not *what the line does*. No obfuscated page-builder JSON |
+| 📚 **All of it in the theme, not in five plugins** | Catalog, chapters, reader, rankings, ratings, library, author studio, book export, discussions, project glossary, alerts — one codebase, one data model, one set of settings. |
+| 🚀 **It holds large libraries** | Chapter order lives as its own index in the title's meta. The contents of a four-thousand-chapter title cost **6 queries**, the "next chapter" jump costs 6 as well, and a catalog of 24 cards with all their meta and covers costs **9**. Without cache priming those same 24 cards cost 91. |
+| 📖 **A reader people come back to** | Endless scrolling: finish a chapter and the next one appends itself, and the address bar changes to it. Size, width, paper, theme; per-paragraph bookmarks and quotes; glossary notes; read-aloud; a progress bar. |
+| 🔌 **Zero external requests** | No CDN, no Google Fonts, no trackers. Four typefaces sit in the theme — 22 files, Cyrillic and Latin only. The page loads entirely from your own domain. |
+| 🛠 **Zero build** | No npm, no composer, no compile step. Download, unzip into `wp-content/themes`, activate. |
+| ✍️ **Authors publish from the site** | Studio, chapter editor, release schedule, early access, co-authors, project glossary — without ever opening `/wp-admin`. |
+| 🌍 **Three languages out of the box** | 601 strings in the theme: Russian source, compiled `en_US` and `pt_BR`, an RU / EN / PT switcher in the header. |
+| 🔍 **Source you can actually read** | ~13,000 lines of PHP with comments that explain *why it is this way*, not *what the line does*. No obfuscated page-builder JSON. |
 
 > [!TIP]
-> **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the catalog, open a title, try the reader and its settings.
+> **Live demo — [xi.community](https://xi.community).** A real site running this theme: browse the
+> catalog, open a title, try the reader and its settings.
 
+---
+
+## XIN-V2
+
+<table>
+<tr>
+<td width="50%"><img src="screenshots/xin-v2/02-catalog.jpg" alt="Catalog"></td>
+<td width="50%"><img src="screenshots/xin-v2/03-novel.jpg" alt="Title page"></td>
+</tr>
+<tr>
+<td><b>Catalog.</b> Filters by status, year, genre and tag; four sort orders. Every filter change is a plain link, so a selection can be shared and opened from a bookmark.</td>
+<td><b>Title page.</b> Contents, rating, length, similar titles, the project team, a book download, and a button for chapter alerts.</td>
+</tr>
+<tr>
+<td><img src="screenshots/xin-v2/04-reader.jpg" alt="Reader"></td>
+<td><img src="screenshots/xin-v2/05-reader-dark.jpg" alt="Reader, dark theme"></td>
+</tr>
+<tr>
+<td><b>Reader.</b> Contents on the left as a window around the current chapter, a vertical rail on the right, a progress bar on top. The dotted underline is a glossary note.</td>
+<td><b>Dark theme.</b> The reader's choice is applied before the first paint — no white flash on load.</td>
+</tr>
+<tr>
+<td><img src="screenshots/xin-v2/06-library.jpg" alt="Library"></td>
+<td><img src="screenshots/xin-v2/07-hub.jpg" alt="Reader hub"></td>
+</tr>
+<tr>
+<td><b>Library.</b> Where the reader stopped, what they saved, what they read recently. All of it in the account rather than the browser: the shelf travels with them to a phone.</td>
+<td><b>Reader hub.</b> What was updated, what people are talking about, who reads the most. A signed-in reader also gets their own streak and badges.</td>
+</tr>
+<tr>
+<td><img src="screenshots/xin-v2/08-studio.jpg" alt="Author studio"></td>
+<td><img src="screenshots/xin-v2/09-manage.jpg" alt="Management panel"></td>
+</tr>
+<tr>
+<td><b>Author studio.</b> Titles, chapters, release schedule, early access, cover, genres, co-authors, project glossary — without opening the admin once.</td>
+<td><b>Management panel.</b> The comment queue, author requests and roles — on the site, not in the <code>/wp-admin</code> tables.</td>
+</tr>
+</table>
 
 <details>
-<summary><b>What is still moving, and what is already stable</b></summary>
+<summary><b>What the reader actually does</b></summary>
 
 <br>
 
-The plan is to benchmark alternatives to Bootstrap and keep whichever wins on real numbers.
+| | |
+|:--|:--|
+| **Endless scrolling** | The next chapter is appended two screens before the current one ends. The address bar changes to whichever chapter is in front of the reader: the tab closes where they were reading and opens there again. |
+| **Reading settings** | Eight font sizes, four column widths, plain and sepia paper, light and dark theme, a mode without the contents rail. All of it lives in the reader's browser and survives the jump to the next chapter. |
+| **Bookmarks and quotes** | One click on a paragraph. A bookmark marks the spot with a rule in the margin; a quote copies with a link straight to that paragraph. |
+| **Project glossary** | Names, titles and technique names get a dotted underline, and the note appears on hover and on keyboard focus. One term is marked once per paragraph. |
+| **Read aloud** | The browser's own speech synthesis, paragraph by paragraph, highlighting what is being read. It starts from the paragraph in view, not from the top of the chapter. |
+| **Contents as a window** | On a title with thousands of chapters only a hundred around the current one reach the markup; the rest loads through "above" and "below". |
+| **Keys** | Arrows turn chapters, `+` and `−` change the size, `Esc` closes the paragraph buttons. |
 
-**What gets measured before a framework stays:** payload after gzip, render-blocking bytes, Largest Contentful Paint on a mid-range phone, layout shift on the catalog grid, and how the reader feels during a 40-minute session — line rhythm, contrast at night, how quickly settings apply.
+</details>
 
-**Candidates on the bench:** Bootstrap 5 (now) · Tailwind with a build-free CDN-less subset · UnoCSS · Bulma · Pico.css · plain CSS with only the theme's own tokens and no framework at all.
+<details>
+<summary><b>Early access, payment and the project team</b></summary>
 
-Expect the markup of shared components (navbar, offcanvas, modal, forms, tabs) to change between betas. **The data model, template hierarchy and hooks are already stable** — themes built on top of them will survive the swap. Benchmarks and the decision will land in [CHANGELOG.md](CHANGELOG.md); measurements from your own installs are welcome in issues.
+<br>
 
-**About the demo:** xi.community runs on the WordPress build until the team's own platform on **Elixir** ships. Once that launches, the site moves over to it and this theme stays here as the WordPress implementation — free, GPL and maintained on its own track.
+A locked chapter understands two locks at once:
+
+* **a date** — `_xin_unlock_at`: the chapter opens for everyone at the appointed moment, and until
+  then it is visible to the author, to editors and to the project team;
+* **a purchase** — `_xin_product`: a WooCommerce product. The key is shared with XIN-Com, so a
+  chapter bought there opens here too.
+
+One check covers everything: the chapter page, the contents, endless scrolling and the book export
+all answer the same way. A locked chapter reaches neither the EPUB nor the FB2.
+
+The project team is `_xin_team` on the title. A co-author edits the title and its chapters and
+reads early access; only the title's owner and editors change who is on it.
 
 </details>
 
 ---
 
-## Why a novel site is not a blog
+## Speed
 
-Novel sites are their own genre of website. A title has chapters, chapters have order, readers return for the next one, authors publish several times a week, and everyone reads at night on a phone. WordPress out of the box gives you posts and categories — which fits exactly none of that.
+The numbers below were taken on this repository with a cold object cache. To repeat them: turn on
+`SAVEQUERIES` and count queries around the call.
 
-Every other answer is either a **$59–$99 marketplace theme** welded to a page builder, or a **SaaS that owns your readers**. This repository is the third option: the entire platform as one theme you can read, fork, rename and ship — for free, forever.
+| What | Queries | Time |
+|:--|--:|--:|
+| Catalog, 24 cards with all meta and covers | **9** | 11.6 ms |
+| Contents, a window of 100 chapters | **6** | 6.1 ms |
+| "Previous / next" jump | **6** | 3.8 ms |
+| A whole title page | 15 | 11.3 ms |
+| Home page summary | 10 | 8.4 ms |
 
-> **No page builder. No “pro version”. No subscription. No npm. No CDN. No phone-home.**
+The same 24 cards without meta priming cost **91 queries**. The difference is that the theme pulls
+the meta, terms and covers for the whole list in one query instead of one query per card.
+
+Chapter order is not rebuilt by a query on every page: it sits as an array of IDs in the title's
+meta and rebuilds itself when a chapter appears, changes its number, changes status or goes away.
+That is why the contents of a four-thousand-chapter title cost the same as the contents of four.
+
+The view counter does not write a row per visitor: views accumulate in the object cache and land as
+one `UPDATE` per batch. The increment happens in the database itself — two visitors in the same
+second count as two, not as one.
+
+With the `XIN Turbo` plugin a guest's page is served without starting WordPress at all:
+
+| | No cache | Cached |
+|:--|--:|--:|
+| Title page | 0.41 s | **0.015 s** |
+| Repeat visit with an ETag | — | **304, 0 bytes** |
+
+---
+
+## Plugins
+
+The theme works without them. Each one covers its own job and can be removed on its own.
+
+| Plugin | What for |
+|:--|:--|
+| **XIN Turbo** | Speed for all of WordPress, not just this theme. A page cache that serves guests without starting the core, a trimmed document head and asset queue, lazy images and embeds, a slowed-down heartbeat, a nightly database sweep. Every switch says what it turns off and what that costs. |
+| **XIN Setup** | One screen showing what on the site is set up for the theme and what is not: permalinks, the home page, discussions, cover sizes, genres, section pages, menus. Separately, it fixes the content you already have: chapters with no title attached, chapters with no number, titles with no cover and no excerpt. Every fix shows a number first, applies second, and always works in batches. |
+| **XIN-V2 Kit** | Keeps post types, taxonomies and meta outside the theme, so titles and chapters survive a change of look. Plus a Doctor screen: data inconsistencies and their repair. |
+| [**XI Studio**](plugins/xi-studio) | The theme's appearance without a line of CSS. |
+| [**XI Novel Import**](plugins/xi-novel-import) | Bulk chapter import from files and other sites. |
+| [**XI Novel Manager**](plugins/xi-novel-manager) | Bulk editing of titles and chapters. |
+| **XI from Fictioneer** | Moving a library over from the Fictioneer theme. |
 
 <table>
 <tr>
-<td width="33%" align="center">
-
-📚<br><b>Catalog & rankings</b><br>
-<sub>Covers, genres, filters that survive pagination, and a weighted ranking page of its own</sub>
-
-</td>
-<td width="33%" align="center">
-
-📖<br><b>Full-screen reader</b><br>
-<sub>No chrome, four papers, glossary, paragraph tools, read-aloud in a device voice</sub>
-
-</td>
-<td width="33%" align="center">
-
-✍️<br><b>Author studio</b><br>
-<sub>Projects, chapters and a prose editor built for chapters — never a trip to <code>/wp-admin</code></sub>
-
-</td>
+<td width="50%"><img src="screenshots/xin-v2/15-turbo.jpg" alt="XIN Turbo"></td>
+<td width="50%"><img src="screenshots/xin-v2/16-setup.jpg" alt="XIN Setup"></td>
 </tr>
 <tr>
-<td align="center">
-
-🛠️<br><b>Control panel on the site</b><br>
-<sub><code>/manage/</code> — users, roles, the review queue, every title, the settings</sub>
-
-</td>
-<td align="center">
-
-📥<br><b>EPUB & FB2</b><br>
-<sub>Any title downloads as a proper e-book, with locked chapters honoured per reader</sub>
-
-</td>
-<td align="center">
-
-🛰️<br><b>Reader Hub</b><br>
-<sub><code>/hub/</code> shows the site from the inside — talk, arguments, what is being read now</sub>
-
-</td>
-</tr>
-<tr>
-<td align="center">
-
-🎨<br><b>Theme studio</b><br>
-<sub>Knobs on the left, the live site on the right; colour, shape, fonts, reading defaults</sub>
-
-</td>
-<td align="center">
-
-🌍<br><b>Three languages</b><br>
-<sub>RU / EN / PT-BR end to end — theme, studio and both bundled plugins</sub>
-
-</td>
-<td align="center">
-
-🚫<br><b>Zero dependencies</b><br>
-<sub>No build step, no npm, no CDN, no tracker — PHP, CSS and JS you can read in an evening</sub>
-
-</td>
+<td><b>XIN Turbo.</b> No "optimise everything" button: a button like that eventually breaks a site, and the owner has no idea which of thirty settings did it.</td>
+<td><b>XIN Setup.</b> A list you read top to bottom. Next to every item: how it is now, what it will become, and why it matters.</td>
 </tr>
 </table>
 
 ---
 
-## What landed recently
+## Install
 
-| | |
-|:--|:--|
-| **0.9.0** | **The look is rebuilt and the platform holds large catalogs.** Warm paper instead of cold graphite, serif headings, hairlines instead of shadows; the title page is a cover spread with tabs and a card column, the reader gets site-width panels, a control rail and **endless scrolling** — finish a chapter and the next one appends itself. Contents load 30 at a time, the release rhythm is computed on its own, and “surprise me” opens a random title. PLUS mode is gone. Verified on 400 titles and 14,000 chapters |
-| **0.8.0** | **The theme is now XIN-Com, and it has a comics section.** Novels and comics are two sections with a switcher in the header, a home page each, their own catalogue and a page reader for comics — vertical strip or page by page, right to left for manga. Comic pages can be offloaded to S3-compatible storage, with a choice of delivery mirror in the reader. The studio sets WordPress up for the theme: permalinks, service pages, front page and menu |
-| **0.6.0** | **Book downloads close behind a role.** The control panel decides who may export EPUB and FB2: everyone, any signed-in reader, PLUS holders, “PLUS or selected roles”, or selected roles only — checkboxes over the site roles, plugin-made ones included. The button and the direct link ask the same check |
-| **0.5.0** | **Reader Hub** at `/hub/` — one page that shows the site from the inside: who talks, what they argue about, what is being read right now. Six site counters in the header, both metrics at once on the leaderboard, a profile card with a bar to the next level. Drawn as a terminal — grid and sweep on the canvas, cut corners, monospace readouts, segmented bars — and it collects nothing new about anyone beyond a 40-entry ring of recent reads |
-| **0.4.0** | **Paragraph tools and on-device text-to-speech.** Click a paragraph: bookmark it in one of four colours, link straight to it, quote it into the discussion, suggest an edit with a live diff, or have the chapter read aloud from that point. **Queued chapters say when they go out**, and the release schedule moved into the author’s own project settings |
-| **0.3.3** | **Rankings became a page of their own** at `/ranking/`: three boards, three time windows, a genre filter and a weighted score, so one five-star vote cannot outrun four hundred honest ones. **Bulk title management** arrived as a bundled plugin |
-| **0.3.0** | **A chapter editor of the theme’s own** instead of TinyMCE, a **project glossary** the translator keeps, and **XI Studio** — the theme studio with a live preview of the site beside the knobs |
+**The theme.**
 
-Every release, in full: **[CHANGELOG.md](CHANGELOG.md)**.
+1. Download `xin-v2` from [releases](../../releases) or copy the `themes/xin-v2` folder into
+   `wp-content/themes`.
+2. Activate it: **Appearance → Themes**.
+3. Activate `XIN-V2 Kit` from `plugins/xin-v2-kit` — it keeps the post types outside the theme.
+4. Activate `XIN Setup` and open **Tools → Theme setup**. It shows what is missing and creates the
+   section pages, the menus and the settings.
 
----
+That is all. No build, no dependencies.
 
-## Features
+**Moving from XIN-Com.** Switch the theme — the data stays where it is, because the `_xin_*` model
+is shared. XIN-Com names its section pages differently, so after switching open
+**Tools → Theme setup**: it creates the missing ones and leaves the existing ones alone.
 
-<details open>
-<summary><b>📖 &nbsp; For readers</b></summary>
-
-| | |
-|:--|:--|
-| 📚 **Catalog** | Covers, genres, tags, release status, sorting by views / rating / freshness, filters that survive pagination |
-| 📖 **Full-screen reader** | No site header, no footer, no sidebar. Auto-hiding top bar, contents drawer, progress dock, `←` / `→` paging |
-| 🎨 **Reading settings** | Font size, line height, column width, serif / sans, four paper themes (site / white / sepia / night) — saved per browser, applied to every chapter |
-| 🔤 **Glossary in the reader** | Rename anything while you read: select a word, type how it should read, and every chapter follows — any case or exact case, whole word or not, for one title or for the whole site. Kept in the browser and exportable as a file, so a machine-translated release gets fixed once and passed on |
-| 🗣️ **Paragraph tools and read-aloud** | Click a paragraph: bookmark it in one of four colours, link to it, quote it, suggest an edit with a live diff, or have the chapter read aloud from there in a voice already installed on the device — rate, pitch, volume and a preview included |
-| 🔖 **Library without an account** | Bookmarks, reading history and “continue reading” live in `localStorage` |
-| 🕒 **Updates feed** | Every fresh chapter on the site, grouped into a Today / Yesterday / date timeline |
-| 🏆 **Rankings** | A page of their own at `/ranking/`: three boards — score, views, chapter count — three time windows and a genre filter. The top three stand on a podium, the rest run as rows with a bar against the leader |
-| 🛰️ **Reader Hub** | `/hub/` shows the site from the inside — talk, arguments, what is being read right now, six counters and a leaderboard. Styled as a terminal, and every animation stops under `prefers-reduced-motion` |
-| 🌙 **Light, dark, or system** | Light by default, dark and “follow the system” one switch away in the header — and no white flash on load |
-| 📥 **EPUB and FB2** | Any title downloads as a proper e-book — cover, table of contents, chapters. Locked chapters are included only for readers who may read them. Who may download at all — everyone, signed-in readers or selected roles — is set in the control panel |
-| 🏅 **Streaks and achievements** | Days in a row, chapters read, ten quiet achievements on the profile — no points, no leaderboards |
-| 🔑 **Sign-in on the site itself** | Sign in, sign up and password recovery on one centered page in your own design — readers never see `/wp-login.php` |
-| 🌍 **RU / EN / PT-BR interface** | Language switch in the header, remembered in a cookie |
-
-</details>
-
-<details>
-<summary><b>✍️ &nbsp; For authors and translators</b></summary>
-
-| | |
-|:--|:--|
-| ✍️ **Author studio on the front end** | Create projects and chapters without ever opening `/wp-admin` |
-| 🧰 **An editor built for chapters** | The theme’s own editor, not TinyMCE: paste from Word arrives clean, a scene break is one button, «tidy» fixes quotes, dashes and stray spaces, find-and-replace works across the chapter, and focus mode drops everything but the page |
-| 🔤 **Project glossary** | Keep the names of the project in one list and every reader gets them automatically — or write them into the chapters in one pass, with a dry run that counts the matches first |
-| 💾 **Drafts that survive** | Chapter text auto-saves to the browser while you write; live word count |
-| 🔢 **Chapter numbering** | Next number pre-filled; fractional numbers (`12.5`) for side stories |
-| 🗓️ **Release schedule and queue** | Days of the week and a release time sit in the project settings, with a summary of how many chapters wait and when the next one goes out. A queued chapter carries a “Queued” badge, its release date and the time left |
-| 🔒 **Early access** | Mark chapters as locked — closed to guests, badged in the contents, open to the project team or after purchase |
-| 🧑‍🎤 **Public profiles** | Author page with stats and tabs: projects / chapters / articles |
-
-</details>
-
-<details>
-<summary><b>🛠️ &nbsp; For the owner</b></summary>
-
-| | |
-|:--|:--|
-| 🕵️ **Nothing screams WordPress** | Admin bar off; generator, RSD, wlwmanifest, shortlink, oEmbed, emoji, X-Pingback and asset version strings stripped; REST moved from `/wp-json/` to `/api/`; login page restyled in your brand |
-| 🛠️ **Control panel on the site** | `/manage/`: users and roles, the review queue for contributor submissions, every title, and the site settings — no `/wp-admin` needed |
-| 🎨 **Theme studio** | A bundled plugin: one screen with the knobs on the left and the live site on the right. Colour, corner radius, shadows, site width, fonts and the reading defaults — every change visible before it is saved, five presets, JSON export |
-| 🎛️ **Customizer** | The same knobs without the plugin, plus twelve home blocks you can switch off one by one, footer text, social links |
-| 👥 **Co-authors** | A project can carry several translators; each of them adds and edits its chapters, and the team shows on the title page |
-| 🛒 **Paid chapters** | A bridge to WooCommerce: attach a product to a chapter and it opens after purchase |
-| 💬 **Discussions (optional)** | Off by default. When on: own markup, one level of replies, spoilers, likes, author and team badges — nothing that looks like WordPress comments |
-| 🗂️ **Bulk title management** | A bundled plugin: filter by owner, genre, status, cover or 18+, select with Shift — or take everything the filter found — and then publish, retag, reassign the owner or the team, set one cover on the batch, lock or unlock every chapter of a title, export CSV or delete. Every id is re-checked against `current_user_can()`, so a doctored form cannot touch a stranger’s title |
-| 🧩 **Own widgets** | “Novel picks” (views / rating / new / updated) and “Latest chapters” |
-| 👥 **Accounts on your terms** | Registration toggle and the role new accounts get (author / contributor / reader) live in the customizer; repeated failures are throttled and a hidden field catches bots |
-| 🌐 **Translation ready** | 982 strings in the theme and 257 more across the three bundled plugins — Russian source, compiled English and Brazilian Portuguese `.mo`, plus a build script |
-
-</details>
+**Page cache.** It is turned on separately, in **Settings → Speed** → "Install the interceptor".
+The plugin writes `wp-content/advanced-cache.php` and sets `WP_CACHE` in `wp-config.php`, and takes
+both back out when you turn it off.
 
 ---
 
-## Screenshots
+## Languages
 
-<sub>Every shot is the theme itself, running with the demo content from this repository. Nothing is mocked up.</sub>
+The interface is built in three languages: Russian is the source, `en_US` and `pt_BR` are compiled.
+The RU / EN / PT switcher sits in the header; the choice lives in a cookie, so the links people
+share stay ordinary.
+
+Rebuild after editing strings:
+
+```
+php tools/build-translations.php
+```
+
+The builder takes the strings straight from the source, checks them against the maps in
+`tools/i18n/`, reports what is missing and what is no longer used, and writes `.po` and `.mo`
+without `msgfmt`. A missing string exits non-zero, so it doubles as a check.
+
+![Home page in English](screenshots/xin-v2/14-home-en.jpg)
+
+---
+
+## On a phone
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-<img src="screenshots/02-catalog.jpg" alt="Catalog: genre chips, filters and a grid of covers">
-
-**Catalog** — genre chips, status filter, five sort orders, six covers per row.
-
-</td>
-<td width="50%" valign="top">
-
-<img src="screenshots/03-novel.jpg" alt="Title page: header with cover, description, contents and sidebar">
-
-**Title page** — a compact header, then flat sections: description, contents with search, and a sidebar of facts, rating and similar titles.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-<img src="screenshots/04-reader.jpg" alt="Full-screen reader with the chapter text">
-
-**Reader** — no site header, no footer, no sidebar. The bar hides while you read.
-
-</td>
-<td valign="top">
-
-<img src="screenshots/06-reader-settings.jpg" alt="Reader settings panel">
-
-**Reading settings** — size, leading, column width, serif or sans, four papers.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-<img src="screenshots/14-account.jpg" alt="Sign-in and sign-up page">
-
-**Sign in and sign up** on the site itself — one centered page for login, registration and password recovery.
-
-</td>
-<td valign="top">
-
-<img src="screenshots/13-manage.jpg" alt="Control panel with the user list">
-
-**Control panel** at `/manage/` — roles, review queue, titles and settings.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-<img src="screenshots/07-profile.jpg" alt="Author profile with tabs and statistics">
-
-**Author profile** — cover, statistics, podium of the most-read titles, tabs.
-
-</td>
-<td valign="top">
-
-<img src="screenshots/10-library.jpg" alt="Library page">
-
-**Library** — bookmarks and history, kept in the browser.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-<img src="screenshots/08-updates.jpg" alt="Update feed grouped by day">
-
-**Updates** — every fresh chapter, grouped into Today / Yesterday / date.
-
-</td>
-<td valign="top">
-
-<img src="screenshots/09-blog.jpg" alt="Blog with a lead story">
-
-**Blog** — lead story, category pills, sidebar.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-<img src="screenshots/05-reader-alt.jpg" alt="Reader in the dark scheme">
-
-**Dark scheme** — warm charcoal, switched from the header.
-
-</td>
-<td valign="top">
-
-<img src="screenshots/12-mobile.jpg" alt="Mobile layout with bottom navigation">
-
-**Mobile** — bottom navigation, one-column layout.
-
-</td>
+<td width="50%"><img src="screenshots/xin-v2/12-mobile.jpg" alt="Home page on a phone"></td>
+<td width="50%"><img src="screenshots/xin-v2/13-mobile-reader.jpg" alt="Reader on a phone"></td>
 </tr>
 </table>
 
----
-
-<a name="install"></a>
-
-## Install in two minutes
-
-```bash
-git clone https://github.com/rurumiru/wordpress-novel-themes.git
-cp -r wordpress-novel-themes/themes/xin-com /path/to/wordpress/wp-content/themes/
-```
-
-1. **Appearance → Themes → XIN-Com → Activate.** On activation the theme creates the “Author studio” and “My library” pages and seeds release statuses (Ongoing / Completed / On hiatus / Announced).
-2. **Settings → Permalinks → Post name.**
-3. **Novels → Add new** — your first title.
-4. Optional: switch on the bundled plugins in `plugins/` — the theme studio, bulk import, bulk title management.
-
-<details>
-<summary><b>Try it without a database</b></summary>
-
-<br>
-
-No MySQL? The repo ships a sandbox recipe: PHP’s built-in server plus the official SQLite drop-in, seeded with demo titles and chapters.
-
-```bash
-php -S localhost:8080 -t wordpress tools/dev-router.php
-```
-
-Step by step: **[docs/install.md](docs/install.md)** ([RU](docs/install.ru.md)).
-
-</details>
+On a narrow screen the reader's rail moves to the bottom, under the thumb, and the contents hide
+behind their own screen.
 
 ---
 
@@ -370,213 +273,35 @@ Step by step: **[docs/install.md](docs/install.md)** ([RU](docs/install.ru.md)).
 
 | | |
 |:--|:--|
-| **[Installation](docs/install.md)** ([RU](docs/install.ru.md)) | Production install, dev sandbox on SQLite, permalinks, first title |
-| **[Authoring](docs/authoring.md)** ([RU](docs/authoring.ru.md)) | The studio, chapter numbering, early access |
-| **[Import & heavy uploads](docs/import.md)** ([RU](docs/import.ru.md)) | The bundled importer: JSON/CSV manifests **and folders or ZIP archives of `.txt` / `.html` / `.md` chapter files**, plus WP All Import and WP-CLI recipes, and every PHP / nginx / LiteSpeed / Cloudflare limit you must raise before large covers will upload |
-| **[Customizing](docs/customizing.md)** | Design tokens, customizer options, child theme, hooks |
-| **[Development](docs/development.md)** | File map, data model, template hierarchy, translations, coding style |
-| **[Demo content](demo/README.md)** | A plugin that fills the site with 12 titles, 48 chapters, blog posts and banners from **Tools → Demo content**, and removes it again with one button; CLI scripts for servers with SSH |
+| [Install](docs/install.md) | In detail, including moving from other themes |
+| [Publishing](docs/authoring.md) | Author studio, schedule, early access, glossary |
+| [Import](docs/import.md) | Bulk chapter loading |
+| [Customising](docs/customizing.md) | Appearance settings |
+| [Development](docs/development.md) | Hooks, filters, structure |
 
 ---
 
-## How it compares
+## Compatibility
 
-| | This repo | Paid marketplace themes | Novel SaaS platforms |
-|:--|:--|:--|:--|
-| Price | **Free, GPL** | $59–$99 + renewals | Revenue share / monthly |
-| Source you can read | **Yes, ~19k lines, commented API** | Obfuscated builder JSON | None |
-| Page builder required | **No** | Usually yes | n/a |
-| npm / composer / build | **None** | Often | n/a |
-| External runtime calls | **Zero** | CDN fonts, trackers | Everything |
-| Front-end author studio | **Yes** | Rare | Yes |
-| Full-screen reader with settings | **Yes** | Rare | Yes |
-| Endless chapter scrolling | **Yes** | Rare | Yes |
-| Catalogs with thousands of chapters | **Verified: 14,000 chapters** | Hit or miss | Yes |
-| You own the readers and data | **Yes** | Yes | **No** |
-| Looks like WordPress | **No** | Yes | n/a |
+* WordPress 6.4 → 7.x
+* PHP 8.0+
+* MySQL / MariaDB and SQLite (through `sqlite-database-integration`)
+* WooCommerce — only for paid chapters, not required
 
 ---
-
-<a name="tech-stack"></a>
-
-## Tech stack
-
-Deliberately boring and dependency-light — you can read the whole thing in an evening.
-
-| Layer | What is used | Why |
-|:--|:--|:--|
-| CMS | **WordPress 6.4+** (tested to 7.0), classic theme, no FSE | The site editor cannot express a reader, a studio or a ranking without ten plugins |
-| PHP | **7.4+**, plain procedural WordPress API | No composer, no autoloader, no framework — drops into any host |
-| CSS framework | **Bootstrap 5.3.3**, bundled locally in `assets/vendor/` | Grid, navbar, offcanvas, modal, dropdown, tabs, forms, pagination — accessible and battle-tested |
-| Design layer | **Custom CSS with HSL design tokens** (`style.css`, `skin.css`, `pages.css`, `parts.css`) | Bootstrap is re-skinned through CSS variables; the light and dark ladders are built from measured contrast |
-| JS | **Vanilla ES5**, ~3.2k lines + Bootstrap bundle | No build step, no npm, no framework |
-| Data model | Two post types (`novel`, `chapter`), three taxonomies (`genre`, `novel_tag`, `novel_status`), post meta | Standard WordPress — your content stays portable |
-| Editor | Own `contenteditable` editor, ~600 lines | A chapter needs paste cleanup, scene breaks and focus — not a page builder |
-| Client storage | `localStorage` for library, history, reading settings, glossary, drafts | Readers keep their place without an account |
-| REST | Three namespaced routes under `/api/xin/v1/` — `rate`, `like`, `skin` | Anonymous rating, discussion likes and the studio’s live preview, without a plugin |
-| i18n | Gettext `.po` / `.mo` + build script | No translation plugin required |
-| Icons | Inline SVG sprite in PHP | No icon font, no external request |
-| Fonts | System stack | Nothing loaded from Google |
-| Bundled plugins | **XI Studio**, **XIN-Com Import**, **XIN-Com Manager** — ~3.7k lines of PHP | Optional, every one of them: the theme runs alone, the plugins add the studio, bulk import and bulk management |
-| Dev sandbox | PHP built-in server + **SQLite** drop-in | Preview without installing MySQL |
-
-<details>
-<summary><b>Repository layout</b></summary>
-
-```
-themes/xin-com/      the theme — everything above lives here
-  inc/                 post types, meta boxes, template tags, customizer,
-                       widgets, author studio, i18n, nav walkers, cleanup
-  template-parts/      home sections, catalog, studio screens
-  assets/              css (7 files), js (5 files), vendor/bootstrap
-  languages/           en_US and pt_BR, .po + .mo
-demo/                  demo content: a plugin with two buttons, plus CLI scripts
-plugins/               xi-studio (theme studio), xi-novel-import (bulk import),
-                       xi-novel-manager (bulk title management), and notes on
-                       which third-party plugins the project uses and why
-tools/                 dev-server router, bulk importer, translation builder,
-                       i18n/ with one RU -> locale map per language
-docs/                  install, authoring, import, customizing, development
-screenshots/           what it looks like
-```
-
-</details>
-
----
-
-<a name="languages"></a>
-
-## Languages
-
-The interface ships in **Russian** (source strings), **English** (`languages/en_US.mo`) and **Brazilian Portuguese** (`languages/pt_BR.mo`) — 982 strings each, plus 257 more across the bundled plugins (studio 36, import 127, manager 94). A visitor switches with the RU / EN / PT control in the header and the choice is remembered in a cookie; **Customize → Brand → Main language** decides what a first-time visitor sees.
-
-![The same home page in English](screenshots/11-home-en.jpg)
-
-<sub>The same site, switched with <code>?lang=en</code> or the control in the header.</sub>
-
-Adding a fourth language is one file — a PHP map of Russian source string to translation:
-
-```bash
-cp tools/i18n/en_US.php tools/i18n/de_DE.php
-# translate the right-hand side of every line, then
-php tools/build-translations.php
-```
-
-The script re-reads every translatable string in the theme, reports what a map is missing or no longer uses, and writes `.po` and `.mo` for every map in `tools/i18n/`. Register the locale in `xin_languages()` (`inc/i18n.php`) and it joins the header switch. WordPress’s own strings and date formats come from the site language pack — install it under **Settings → General** if the admin should speak that language too.
-
----
-
-## Roadmap
-
-Ideas that fit the “no dependencies” rule. Vote with 👍 in issues, or send a PR.
-
-**Next**
-
-- [ ] **Framework bake-off** — Bootstrap vs Tailwind subset vs UnoCSS vs Bulma vs Pico vs no framework, judged on gzip size, LCP on a mid-range phone, layout shift and reading comfort
-- [ ] **Zero-CSS-framework build** as the likely endgame: the theme already carries its own token system, so a framework may end up being dead weight
-- [ ] Reader typography pass: measured line length, optical margins, per-language line rhythm
-- [ ] Additional locales: DE, ES, ID, VI
-
-<details>
-<summary><b>Done</b></summary>
-
-<br>
-
-- [x] **Reader Hub** — one page that shows the site from the inside: who talks, what they argue about, what people are reading right now. Styled as a terminal: grid and sweep on the canvas, cut corners, monospace readouts, segmented bars. Nothing new is collected about people except a 40-entry ring of recent reads
-- [x] **Rankings as a page of their own** — three boards, three time windows, a genre filter and a weighted score
-- [x] **Bulk title management** — filter, select with Shift and act on hundreds of titles at once, CSV out
-- [x] EPUB / FB2 export for a whole title
-- [x] Reading streaks and simple achievements
-- [x] Translator teams (several authors per project)
-- [x] Optional paid chapters via WooCommerce bridge
-- [x] Bulk chapter import — `.txt`, `.md`, `.html`, `.docx` and ZIP batches, processed ten files at a time so shared hosting survives it. Export a Google Doc as `.docx` and it goes through the same path
-- [x] Optional discussions module (opt-in, off by default)
-- [x] Reader paragraph tools and on-device text-to-speech
-- [x] Scheduled chapter queue with a release countdown
-- [x] Three languages end to end: Russian, English, Brazilian Portuguese — theme, studio and both plugins
-
-</details>
-
----
-
-<a name="faq"></a>
-
-## FAQ
-
-<details>
-<summary><b>Will it work on shared hosting?</b></summary><br>
-Yes. It is a classic theme: PHP files, CSS, JS. No composer, no node, no cron.
-</details>
-
-<details>
-<summary><b>Do I need any plugins?</b></summary><br>
-No. Caching and anti-spam are optional — see <a href="plugins/README.md">plugins/</a>. The three plugins in this repository are optional too: the theme runs without them.
-</details>
-
-<details>
-<summary><b>Can I sell a site built on it?</b></summary><br>
-Yes. GPL. Rename it, rebrand it, charge for it — no attribution required.
-</details>
-
-<details>
-<summary><b>Can I use the design without WordPress?</b></summary><br>
-The CSS and JS are additionally offered under MIT, so yes.
-</details>
-
-<details>
-<summary><b>Does it work with the block editor?</b></summary><br>
-Chapters and titles use the classic editor by design (authors write long text). Pages and blog posts work with blocks normally.
-</details>
-
-<details>
-<summary><b>How many chapters can it handle?</b></summary><br>
-Chapter lists are cached and sorted by numeric meta; sites with thousands of chapters per title are the design target.
-</details>
-
-<details>
-<summary><b>Is there a demo?</b></summary><br>
-Yes — <a href="https://xi.community">xi.community</a> is a live site running this theme. You can also clone the repo and run the sandbox: it seeds a demo catalog in one command, and every screenshot above comes from it.
-</details>
-
----
-
-## Using it? A link back is nice
-
-The licence asks for nothing beyond the GPL: use the theme commercially, fork it, rebrand it, sell services around it. But if your site runs on it and you mention that somewhere — in the footer, in an about page, in a post — it genuinely helps the project stay alive.
-
-The theme ships a ready line: **Customize → footer → “Running on XIN-Com”**, off by default. Or paste your own:
-
-```html
-<a href="https://github.com/rurumiru/wordpress-novel-themes">Running on the XIN-Com theme</a>
-```
-
-**Want to support the work?** Come to Telegram — [📢 channel](https://t.me/licht_re) and [💬 community chat](https://t.me/xicommunity). Bug reports, screenshots of your site, feature ideas and plain thanks are all welcome; every version is discussed there first.
-
----
-
-<a name="contributing"></a>
 
 ## Contributing
 
-Issues and pull requests are welcome. Two rules: **no build step** (the theme stays editable with a text editor) and **no external runtime dependencies**.
+Patches are welcome. Before you send one:
 
-Merged work is credited by name in [CHANGELOG.md](CHANGELOG.md) — the reader’s paragraph tools and the voice studio came in that way, from [@HeavenlyCatCodes](https://github.com/HeavenlyCatCodes).
-
-## License
-
-**GPL-2.0-or-later** for the theme as a whole — the only correct license for a WordPress derivative work.
-
-The parts that are not WordPress-derived — CSS in `assets/css/` and JavaScript in `assets/js/` — are additionally offered under **MIT**, so the design system can travel to non-WordPress projects. Bootstrap 5.3.3 is bundled under its own MIT license. Screenshots are illustrative and not part of the licensed code.
+* interface strings go through `__()` with the theme's text domain;
+* a comment explains **why** it is done this way, not what the line does;
+* after editing strings run `php tools/build-translations.php`, which is also the check;
+* a new theme file is required in `functions.php` next to the others.
 
 ---
 
-<div align="center">
+## Licence
 
-### If this saved you a hundred dollars and a weekend — star the repo. ⭐
-
-[![Live demo](https://img.shields.io/badge/Live_demo-xi.community-f59e0b?style=for-the-badge)](https://xi.community)
-[![Telegram](https://img.shields.io/badge/Telegram-community-229ED9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xicommunity)
-
-<sub>Keywords: wordpress light novel theme · ranobe theme · web novel wordpress · webnovel platform · manga novel site · chapter reader theme · fiction wordpress theme · free novel theme · GPL novel platform · дизайн для ранобэ · тема WordPress для новелл</sub>
-
-</div>
+[GPL-2.0-or-later](LICENSE). A link back to the repository is not required by the licence, but it
+makes the authors happy.
