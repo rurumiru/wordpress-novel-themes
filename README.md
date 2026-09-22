@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>XI&nbsp;Novels</h1>
+<h1>Web XI&nbsp;Novels</h1>
 
 <h3>Two WordPress themes for a site where people read.</h3>
 
