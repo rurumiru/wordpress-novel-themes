@@ -221,6 +221,7 @@ function xni_job_step() {
 
 	if ( $job['cursor'] >= $job['total'] ) {
 		$job['done'] = true;
+		do_action('xni_import_complete',(int)($job['args']['novel_id']??0));
 
 		if ( 'import' === $job['type'] && ! empty( $job['args']['autosort'] ) ) {
 			xni_resort( (int) $job['args']['novel_id'] );

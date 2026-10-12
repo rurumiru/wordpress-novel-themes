@@ -8,6 +8,13 @@ wp-content/upgrade/
 *.sqlite
 
 # Local dev artifacts
+tools/dev-login.json
+artifacts/
+tools/create-dev-user.php
+tools/inspect-local.php
+tools/install-test-covers.php
+tools/preview-studio.php
+tools/seed-reader-texts.php
 *.log
 debug.log
 .env

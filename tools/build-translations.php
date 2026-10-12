@@ -24,6 +24,14 @@ $targets = array(
 		'prefix' => '',
 	),
 	array(
+		'domain' => 'xin-v2',
+		'name'   => 'XIN-V2',
+		'src'    => $root . '/themes/xin-v2',
+		'maps'   => __DIR__ . '/i18n/xin-v2',
+		'out'    => $root . '/themes/xin-v2/languages',
+		'prefix' => '',
+	),
+	array(
 		'domain' => 'xi-studio',
 		'name'   => 'XI Studio',
 		'src'    => $root . '/plugins/xi-studio',
@@ -48,6 +56,12 @@ $targets = array(
 		'prefix' => 'xi-novel-manager-',
 	),
 );
+
+// Optional domain keeps a theme-only rebuild from touching plugin catalogs.
+if (isset($argv[1])) {
+	$targets = array_values(array_filter($targets, static function ($target) use ($argv) { return $target['domain'] === $argv[1]; }));
+	if (!$targets) { fwrite(STDERR, "Unknown translation domain\n"); exit(1); }
+}
 
 $version = '1.0.0';
 if ( preg_match( "/define\(\s*'XIN_VERSION',\s*'([^']+)'/", file_get_contents( $theme . '/functions.php' ), $m ) ) {
@@ -92,6 +106,14 @@ $collect = static function ( $dir, $domain ) {
 		}
 	}
 
+
+	/* Page template names are translated by WordPress through the theme's
+	   own domain, so they belong in the same files as everything else. */
+	foreach ( glob( $dir . '/*.php' ) as $file ) {
+		if ( preg_match( '~Template Name:\s*(.+)~', file_get_contents( $file ), $m ) ) {
+			$all[ trim( $m[1] ) ] = true;
+		}
+	}
 	$all = array_keys( $all );
 	sort( $all );
 
@@ -212,8 +234,13 @@ foreach ( $targets as $target ) {
 
 		$base = $target['out'] . '/' . $target['prefix'] . $locale;
 
-		$write_po( $base . '.po', $name, $header, $map );
-		$count = $write_mo( $base . '.mo', $header, $map );
+		/* Only what this target actually says goes into the files: a map shared
+		   between targets carries strings this one never uses, and they would sit
+		   in every visitor's .mo for nothing. */
+		$used = array_intersect_key( $map, array_flip( $all ) );
+
+		$write_po( $base . '.po', $name, $header, $used );
+		$count = $write_mo( $base . '.mo', $header, $used );
 
 		echo '  ' . $locale . ': ' . $count . " entries written\n";
 	}

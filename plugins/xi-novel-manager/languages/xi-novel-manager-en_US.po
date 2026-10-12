@@ -1,7 +1,7 @@
 # English (US) translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XIN-Com — bulk management 0.9.0-beta\n"
+"Project-Id-Version: XIN-Com — bulk management 2.0.0\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10,9 +10,6 @@ msgstr ""
 
 msgid "18+"
 msgstr "18+"
-
-msgid "XIN-Com — управление тайтлами"
-msgstr "XIN-Com — bulk title management"
 
 msgid "Авторство"
 msgstr "Authorship"
@@ -37,9 +34,6 @@ msgstr "Restore from the trash"
 
 msgid "Все главы — ранний доступ"
 msgstr "All chapters to early access"
-
-msgid "Все главы — ранний доступ PLUS"
-msgstr "All chapters — PLUS early access"
 
 msgid "Выберите действие."
 msgstr "Choose an action."
@@ -104,9 +98,6 @@ msgstr "Private"
 msgid "Любая"
 msgstr "Any"
 
-msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com."
-msgstr "Bulk editing and deletion of titles: search and filters, genres and tags, owner and team, covers, PLUS and 18+, CSV export. Works with the post types of the XIN-Com theme."
-
 msgid "Массовое управление"
 msgstr "Bulk management"
 
@@ -148,9 +139,6 @@ msgstr "Nothing found. Try loosening the filters."
 
 msgid "Обложка"
 msgstr "Cover"
-
-msgid "Обложка и PLUS"
-msgstr "Cover and PLUS"
 
 msgid "Обложка и ранний доступ"
 msgstr "Cover and early access"
@@ -253,9 +241,6 @@ msgstr "Tick at least one title first."
 
 msgid "Снять 18+"
 msgstr "Clear 18+"
-
-msgid "Снять PLUS со всех глав"
-msgstr "Clear PLUS from every chapter"
 
 msgid "Снять ранний доступ со всех глав"
 msgstr "Clear early access on all chapters"

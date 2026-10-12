@@ -1,0 +1,1401 @@
+/*
+Theme Name:  XI Community Library
+Theme URI:   https://github.com/rurumiru/wordpress-novel-themes
+Author:      XI Community
+Author URI:  https://xi.community/
+Description: Платформа XI Community для каталога новелл, чтения глав, библиотеки читателя и кабинета автора. Редакционный дизайн на локальных ресурсах без сборки.
+Version:     3.0.0
+Requires at least: 6.4
+Tested up to: 7.0
+Requires PHP: 8.0
+License:     GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Attribution: not required by the licence, but a link back to https://github.com/rurumiru/wordpress-novel-themes makes the authors happy
+Text Domain: xin-v2
+Domain Path: /languages
+Tags:        blog, custom-colors, custom-menu, custom-logo, featured-images, translation-ready, full-width-template, two-columns, editor-style, block-styles
+*/
+
+/* ============================================================
+   База
+   Дизайн-система переехала из проекта, где сброс давал Tailwind.
+   Здесь он свой: без box-sizing колонки шире заданной ширины, а
+   ссылки без сброса приходят подчёркнуто-синими из браузера.
+   ============================================================ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+
+ul, ol { margin: 0; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+img, svg, video { max-width: 100%; }
+
+img { height: auto; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+button { cursor: pointer; }
+
+table { border-collapse: collapse; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   XIN-V2 — дизайн-система
+   tokens + shared components (nav, btn, chip, cover, footer)
+   Совместимо с Tailwind CDN: Tailwind dark: использует .dark на <html>,
+   мы добавляем data-theme="light|dark|sepia" поверх.
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+  /* Бумага: тёплый нейтральный фон, белые поверхности, тонкие границы */
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --surface-2: #f2f0eb;
+  --surface-3: #e9e6df;
+  --surface-hover: #f5f3ef;
+
+  --border: #e6e2da;
+  --border-strong: #d7d1c6;
+
+  --text: #1a1815;
+  --text-2: #43403a;
+  --text-3: #6b665d;
+  --text-muted: #767168;   /* 4.5:1 на --bg — норма WCAG AA для обычного текста */
+  --text-faint: #8d877c;   /* 3.3:1 — только для крупного и декоративного */
+
+  /* Акцент — чернильный индиго: спокойный, не спорит с обложками */
+  --accent: #3d4f8a;
+  --accent-hover: #31406f;
+  --accent-soft: #edeff7;
+  --accent-text: #ffffff;
+  --accent-ring: rgba(61,79,138,0.16);
+
+  /* Жанровые метки — приглушённые, «книжные» */
+  --tag-fantasy-bg: #eceef8;   --tag-fantasy-fg: #454f86;
+  --tag-romance-bg: #f8ecef;   --tag-romance-fg: #97465e;
+  --tag-action-bg: #f7eee6;    --tag-action-fg: #91542b;
+  --tag-scifi-bg: #e9f0f4;     --tag-scifi-fg: #3c6379;
+  --tag-mystery-bg: #f0ecf5;   --tag-mystery-fg: #5f4a7d;
+  --tag-slice-bg: #ecf1ea;     --tag-slice-fg: #4a6b48;
+  --tag-horror-bg: #f4eaea;    --tag-horror-fg: #8a3f3f;
+  --tag-litrpg-bg: #f6f0e2;    --tag-litrpg-fg: #7d6528;
+
+  --ok: #2f7a53;
+  --warn: #a8791f;
+  --err: #b23b3b;
+  --gold: #b08528;
+
+  --paper-bg: #ffffff;
+  --paper-text: #1c1a17;
+  --paper-text-2: #4c4841;
+  --paper-rule: #eceae4;
+
+  /* Тени — только чтобы приподнять, без «пухлости» */
+  --shadow-xs: 0 1px 1px rgba(26,24,21,0.04);
+  --shadow-sm: 0 1px 2px rgba(26,24,21,0.06);
+  --shadow-md: 0 4px 16px -8px rgba(26,24,21,0.16), 0 1px 2px rgba(26,24,21,0.04);
+  --shadow-lg: 0 16px 40px -18px rgba(26,24,21,0.24), 0 2px 6px rgba(26,24,21,0.05);
+  --shadow-cover: 0 1px 2px rgba(26,24,21,0.10), 0 6px 16px -10px rgba(26,24,21,0.30);
+  --shadow-cover-lg: 0 2px 4px rgba(26,24,21,0.10), 0 16px 32px -16px rgba(26,24,21,0.40);
+
+  /* Гарнитуры выбраны по кириллице: Fraunces и Source Serif Pro её не
+     покрывают, и русский заголовок молча падал в Georgia. Playfair держит
+     тот же высокий контраст, Source Serif 4 — та же гарнитура, что Pro,
+     только с кириллицей. */
+  --display: "Playfair Display", "Fraunces", Georgia, serif;
+  --serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Радиусы: сдержанные. --r-pill намеренно НЕ круглый —
+     таблетки-«пузыри» убраны по всему сайту; для реально круглых
+     элементов (прогресс-бары, точки) есть --r-round. */
+  --r-xs: 3px;
+  --r-sm: 5px;
+  --r-md: 7px;
+  --r-lg: 10px;
+  --r-xl: 14px;
+  --r-pill: 6px;
+  --r-round: 999px;
+}
+
+/* Tailwind dark class и data-theme="dark" — синхронизированы */
+.dark, [data-theme="dark"] {
+  --bg: #131317;
+  --surface: #1a1a1f;
+  --surface-2: #212127;
+  --surface-3: #2a2a31;
+  --surface-hover: #23232a;
+
+  --border: #272730;
+  --border-strong: #35353f;
+
+  --text: #ece9e4;
+  --text-2: #c2beb7;
+  --text-3: #96918a;
+  --text-muted: #86827c;   /* 4.5:1 на --surface */
+  --text-faint: #696662;   /* 3:1 — крупное и декоративное */
+
+  --accent: #93a6e6;
+  --accent-hover: #a9b8ee;
+  --accent-soft: #1e2333;
+  --accent-text: #12131a;
+  --accent-ring: rgba(147,166,230,0.22);
+
+  --tag-fantasy-bg: #1f2436;   --tag-fantasy-fg: #a9b6e8;
+  --tag-romance-bg: #2f2028;   --tag-romance-fg: #e0a3b5;
+  --tag-action-bg: #2e2319;    --tag-action-fg: #dfab7e;
+  --tag-scifi-bg: #1a2730;     --tag-scifi-fg: #97c0d6;
+  --tag-mystery-bg: #262033;   --tag-mystery-fg: #bda6dd;
+  --tag-slice-bg: #1d2620;     --tag-slice-fg: #9cc09a;
+  --tag-horror-bg: #2b1e1e;    --tag-horror-fg: #d99b9b;
+  --tag-litrpg-bg: #2a2417;    --tag-litrpg-fg: #d8bd76;
+
+  --ok: #57a97b;
+  --warn: #cfa042;
+  --err: #d06a6a;
+  --gold: #cfa042;
+
+  --paper-bg: #1a1a1f;
+  --paper-text: #e2dfd9;
+  --paper-text-2: #a8a49d;
+  --paper-rule: #272730;
+
+  --shadow-xs: 0 1px 1px rgba(0,0,0,0.35);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px -8px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-lg: 0 16px 40px -18px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,0.35);
+  --shadow-cover: 0 1px 2px rgba(0,0,0,0.5), 0 6px 16px -10px rgba(0,0,0,0.7);
+  --shadow-cover-lg: 0 2px 4px rgba(0,0,0,0.5), 0 16px 32px -16px rgba(0,0,0,0.8);
+}
+
+/* sepia — ТОЛЬКО в читалке. Применяется через [data-paper="sepia"] на корне читалки
+   (.reader-v1), чтобы не «утекало» на остальной сайт при выходе из читалки. */
+.reader-v1[data-paper="sepia"] {
+  --bg: #f4ecd8;
+  --surface: #fbf5e3;
+  --surface-2: #f0e7cf;
+  --surface-3: #e7dcc0;
+  --surface-hover: #efe6cd;
+
+  --border: #ddd2b6;
+  --border-strong: #c9bd9c;
+
+  --text: #2b2418;
+  --text-2: #4a3f2a;
+  --text-3: #6b5e44;
+  --text-muted: #8b7e62;
+  --text-faint: #b3a685;
+
+  --accent: #5a3a1a;
+  --accent-hover: #6f4a25;
+  --accent-soft: #ebdfc4;
+  --accent-text: #fbf5e3;
+  --accent-ring: rgba(90,58,26,0.25);
+
+  --paper-bg: #fbf5e3;
+  --paper-text: #2b2418;
+  --paper-text-2: #5a4a32;
+  --paper-rule: #ddd2b6;
+
+  background: var(--bg);
+}
+/* Совместимость: оставляем старый selector для случаев, когда sepia всё-таки на html */
+html[data-theme="sepia"] .reader-v1 {
+  --bg: #f4ecd8; --surface: #fbf5e3; --surface-2: #f0e7cf; --surface-3: #e7dcc0;
+  --border: #ddd2b6; --text: #2b2418; --text-2: #4a3f2a; --text-3: #6b5e44;
+  --text-muted: #8b7e62; --accent: #5a3a1a; --accent-soft: #ebdfc4;
+  --paper-bg: #fbf5e3; --paper-text: #2b2418; --paper-rule: #ddd2b6;
+}
+
+/* ============================================================
+   Базовые типографские утилиты
+   ============================================================ */
+.xv-display { font-family: var(--display); font-weight: 500; letter-spacing: -0.015em; }
+.xv-serif { font-family: var(--serif); }
+.xv-mono { font-family: var(--mono); }
+.xv-sans { font-family: var(--sans); }
+
+body.xv-editor-body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: var(--sans) !important;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   Top nav
+   ============================================================ */
+.xv-page { min-height: 100vh; background: var(--bg); }
+
+.xv-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.xv-nav-inner {
+  max-width: 1440px; margin: 0 auto;
+  padding: 0 clamp(22px, 3.3vw, 62px);
+  height: 58px;
+  display: flex; align-items: center; gap: 18px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+.xv-logo {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--display);
+  font-size: 20px; font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.xv-logo-mark {
+  width: 26px; height: 26px;
+  background: var(--text);
+  color: var(--surface);
+  border-radius: var(--r-xs);
+  display: grid; place-items: center;
+  font-family: var(--display);
+  font-weight: 600; font-size: 15px;
+  font-style: italic;
+}
+.xv-logo-text { text-transform: lowercase; }
+.xv-nav-links {
+  display: flex; gap: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: visible;   /* было hidden — обрезало dropdown-меню */
+}
+.xv-nav-links a {
+  position: relative;
+  padding: 8px 2px;
+  margin: 0 10px;
+  border-radius: 0;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.xv-nav-links a:hover { color: var(--text); }
+.xv-nav-links a.active { color: var(--text); font-weight: 600; }
+.xv-nav-links a.active::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--text); border-radius: 2px;
+}
+
+/* ── Dropdown nav ── */
+.xv-nav-dropdown { position: relative; }
+.xv-nav-drop-btn {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 2px;
+  margin: 0 10px;
+  border-radius: 0;
+  font-size: 14px; font-weight: 500;
+  color: var(--text-3);
+  background: none; border: 0; cursor: pointer;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+.xv-nav-drop-btn:hover { color: var(--text); }
+.xv-nav-drop-btn.active { color: var(--text); font-weight: 600; }
+.xv-nav-drop-btn.active::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--text); border-radius: 2px;
+}
+.xv-nav-drop-caret {
+  font-size: 9px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: var(--text-faint);
+}
+.xv-nav-drop-caret.rotated { transform: rotate(180deg); color: var(--accent); }
+/* Меню — slide-down + fade.
+   top: 100% без зазора — gap делаем padding-top, чтобы мышь не «выпадала»
+   между кнопкой и меню при движении курсора вниз. */
+.xv-nav-drop-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  min-width: 260px;
+  padding: 14px 8px 8px;   /* padding-top = «мост» над рамкой меню */
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+/* Видимый блок меню — внутри через pseudo-element/wrapper */
+.xv-nav-drop-menu-inner {
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow:
+    0 2px 0 rgba(47,109,240,0.08),
+    0 16px 40px rgba(15,20,25,0.14),
+    0 4px 10px rgba(15,20,25,0.06);
+  padding: 8px;
+  position: relative;
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+}
+/* Стрелочка вверх — на inner */
+.xv-nav-drop-menu-inner::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 50%; transform: translateX(-50%);
+  width: 12px; height: 6px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: var(--border);
+}
+.xv-nav-drop-menu-inner::after {
+  content: "";
+  position: absolute;
+  top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 5px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+}
+.xv-nav-dropdown:hover .xv-nav-drop-menu,
+.xv-nav-drop-menu.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.xv-nav-drop-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.15s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.xv-nav-drop-item::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--accent-soft), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.xv-nav-drop-item:hover { background: var(--surface-2); transform: translateX(2px); }
+.xv-nav-drop-item:hover::before { opacity: 1; }
+.xv-nav-drop-item.active { background: var(--accent-soft); }
+.xv-nav-drop-item.active .xv-nav-drop-label { color: var(--accent); font-weight: 600; }
+.xv-nav-drop-item.active .xv-nav-drop-icon { background: var(--accent); color: var(--accent-text); }
+.xv-nav-drop-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft); color: var(--accent);
+  font-size: 14px; flex-shrink: 0;
+  transition: all 0.15s;
+  box-shadow: 0 2px 6px rgba(47,109,240,0.15);
+}
+.xv-nav-drop-item:hover .xv-nav-drop-icon {
+  background: var(--accent); color: var(--accent-text);
+  box-shadow: 0 4px 10px rgba(47,109,240,0.35);
+}
+.xv-nav-drop-label { font-size: 13.5px; font-weight: 500; color: var(--text); line-height: 1.2; }
+.xv-nav-drop-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.3; }
+/* Разделитель между пунктами */
+.xv-nav-drop-item + .xv-nav-drop-item {
+  margin-top: 2px;
+}
+@media (max-width: 1280px) {
+  .xv-nav-drop-btn { padding: 8px 10px; font-size: 13px; }
+}
+.xv-nav-right {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+}
+.xv-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface-2);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  padding: 8px 14px;
+  width: 240px;
+  min-width: 160px;
+  flex-shrink: 1;
+  color: var(--text-3);
+  font-size: 13px;
+  transition: border 0.15s, background 0.15s;
+}
+@media (max-width: 1280px) {
+  .xv-search { width: 180px; }
+  .xv-nav-links a { padding: 8px 10px; font-size: 13px; }
+  .xv-nav-inner { gap: 12px; }
+}
+@media (max-width: 1100px) {
+  .xv-search .kbd { display: none; }
+  .xv-search { width: 140px; }
+}
+.xv-search:focus-within { background: var(--surface); border-color: var(--border-strong); box-shadow: 0 0 0 3px var(--accent-ring); }
+.xv-search input {
+  flex: 1; min-width: 0;
+  background: none; border: none; outline: none;
+  color: var(--text);
+  font-family: inherit; font-size: inherit;
+}
+.xv-search input::placeholder { color: var(--text-muted); }
+.xv-search .kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  background: var(--surface);
+}
+.xv-icon-btn {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  background: none; border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  color: var(--text-3);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+.xv-icon-btn:hover { background: var(--surface-2); color: var(--text); }
+.xv-icon-btn .badge-dot {
+  position: absolute; top: 6px; right: 6px;
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+}
+.xv-icon-btn .badge-num {
+  position: absolute; top: 2px; right: 2px;
+  min-width: 16px; height: 16px;
+  padding: 0 4px;
+  font-family: var(--sans); font-weight: 700; font-size: 10px;
+  color: #fff;
+  background: var(--err);
+  border-radius: 999px;
+  display: grid; place-items: center;
+  border: 2px solid var(--surface);
+}
+.xv-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6ea1ff, #2f6df0);
+  display: grid; place-items: center;
+  color: #fff;
+  font-weight: 700; font-size: 12px;
+  font-family: var(--sans);
+  overflow: hidden;
+  text-decoration: none;
+}
+.xv-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Theme toggle */
+.xv-theme-toggle {
+  display: inline-flex;
+  background: var(--surface-2);
+  border-radius: var(--r-pill);
+  padding: 3px;
+}
+.xv-theme-toggle button {
+  width: 30px; height: 28px;
+  border: 0; background: transparent;
+  border-radius: var(--r-pill);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: grid; place-items: center;
+}
+.xv-theme-toggle button.on {
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.xv-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-2);
+  border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background 0.14s, border-color 0.14s, color 0.14s;
+  font-family: inherit;
+  text-decoration: none;
+}
+.xv-btn:hover { background: var(--surface-2); border-color: var(--border-strong); color: var(--text); }
+.xv-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+.xv-btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--accent-text); }
+.xv-btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-3);
+}
+.xv-btn.ghost:hover { background: var(--surface-2); color: var(--text); }
+.xv-btn.danger {
+  background: var(--err); border-color: var(--err); color: #fff;
+}
+.xv-btn.danger:hover { filter: brightness(0.92); color: #fff; }
+.xv-btn.sm { padding: 6px 11px; font-size: 12px; }
+.xv-btn.lg { padding: 11px 20px; font-size: 13.5px; font-weight: 600; }
+.xv-btn.block { width: 100%; }
+
+/* ============================================================
+   Section
+   ============================================================ */
+.xv-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px clamp(22px, 3.3vw, 62px);
+}
+/* «Широкая» секция шире обычной, но всё равно в центре: без предела
+   на большом мониторе контент расползался от края до края, а шапка и
+   подвал оставались в своих 1440 и не совпадали с ним по краю. */
+.xv-section.xv-section-wide,
+.xv-section-wide {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(22px, 3.3vw, 70px);
+  padding-right: clamp(22px, 3.3vw, 70px);
+}
+.xv-section-head {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 20px;
+}
+.xv-section-head h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 26px; font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.xv-section-head .sub {
+  font-size: 13px;
+  color: var(--text-3);
+}
+.xv-section-head .more {
+  margin-left: auto;
+  font-size: 13px; color: var(--text-3);
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 4px;
+  text-decoration: none;
+}
+.xv-section-head .more:hover { color: var(--accent); }
+
+/* ============================================================
+   Cover
+   ============================================================ */
+.xv-cover {
+  aspect-ratio: 2 / 3;
+  background: var(--surface-3);
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-cover);
+  display: block;
+}
+.xv-cover img, .xv-cover svg { width: 100%; height: 100%; display: block; object-fit: cover; }
+.xv-cover .badge-rank {
+  position: absolute; top: 8px; left: 8px;
+  background: rgba(15,20,25,0.78);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 600; font-size: 13px;
+  padding: 3px 8px;
+  border-radius: var(--r-xs);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.xv-cover .badge-rank.gold { background: linear-gradient(135deg, #f7c14a, #d99416); color: #2b1f00; }
+.xv-cover .badge-lock {
+  position: absolute; top: 6px; right: 6px;
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  background: rgba(26, 24, 21, 0.72);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  border-radius: var(--r-xs);
+  font-size: 10px;
+}
+/* На миниатюрах (списки обновлений, рейлы) замок уменьшаем — иначе он съедает обложку */
+.updates-cover .badge-lock,
+.upd-cover .badge-lock,
+.rk-cover .badge-lock,
+.np-pop-cover .badge-lock {
+  width: 13px; height: 13px; top: 3px; right: 3px;
+  font-size: 7px; border-radius: 2px;
+}
+.xv-cover .badge-status {
+  position: absolute; bottom: 8px; left: 8px;
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: rgba(15,20,25,0.7);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: var(--r-pill);
+}
+
+/* ============================================================
+   Chips (genre)
+   ============================================================ */
+.xv-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 9px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: var(--r-xs);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.xv-chip.fantasy { background: var(--tag-fantasy-bg); color: var(--tag-fantasy-fg); }
+.xv-chip.romance { background: var(--tag-romance-bg); color: var(--tag-romance-fg); }
+.xv-chip.action  { background: var(--tag-action-bg); color: var(--tag-action-fg); }
+.xv-chip.scifi   { background: var(--tag-scifi-bg); color: var(--tag-scifi-fg); }
+.xv-chip.mystery { background: var(--tag-mystery-bg); color: var(--tag-mystery-fg); }
+.xv-chip.slice   { background: var(--tag-slice-bg); color: var(--tag-slice-fg); }
+.xv-chip.horror  { background: var(--tag-horror-bg); color: var(--tag-horror-fg); }
+.xv-chip.litrpg  { background: var(--tag-litrpg-bg); color: var(--tag-litrpg-fg); }
+.xv-chip.accent  { background: var(--accent-soft); color: var(--accent); }
+.xv-chip.warn    { background: var(--tag-litrpg-bg); color: var(--tag-litrpg-fg); }
+.xv-chip.danger  { background: var(--tag-horror-bg); color: var(--tag-horror-fg); }
+.xv-chip.lg { padding: 5px 12px; font-size: 12px; }
+
+/* Stat row */
+.xv-stat {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+.xv-stat svg, .xv-stat i { color: var(--text-muted); }
+
+.xv-stars { display: inline-flex; align-items: center; gap: 3px; color: var(--gold); }
+.xv-stars svg, .xv-stars i { width: 14px; height: 14px; font-size: 14px; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.xv-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 40px 36px 32px;
+  margin-top: 64px;
+}
+.xv-footer-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 768px) {
+  .xv-footer { padding: 28px 18px 20px; }
+  .xv-footer-inner { grid-template-columns: 1fr 1fr !important; gap: 24px; }
+  .xv-footer-inner > div:first-child { grid-column: 1 / -1; }
+  .xv-footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+}
+.xv-footer h3,
+.xv-footer h4 {
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.xv-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.xv-footer a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+.xv-footer a:hover { color: var(--accent); }
+.xv-footer-bottom {
+  max-width: 1440px; margin: 32px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--text-muted);
+}
+
+/* ============================================================
+   Cards / lists / utilities
+   ============================================================ */
+.xv-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 20px;
+}
+.xv-card-pad-lg { padding: 28px; }
+
+.xv-grid-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.xv-novel-card {
+  display: block;
+  transition: transform 0.18s;
+  text-decoration: none;
+  color: inherit;
+}
+.xv-novel-card:hover { transform: translateY(-2px); }
+.xv-novel-card .xv-cover { margin-bottom: 12px; transition: box-shadow 0.18s; }
+.xv-novel-card:hover .xv-cover { box-shadow: var(--shadow-cover-lg); }
+.xv-novel-card-body { padding: 0 2px; }
+.xv-novel-card-title {
+  font-family: var(--display);
+  font-size: 16px; font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.xv-novel-card-author { font-size: 12px; color: var(--text-3); margin-bottom: 8px; }
+.xv-novel-card-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.xv-novel-card-rating { font-size: 12px; font-weight: 600; color: var(--text-2); }
+
+@media (max-width: 1280px) { .xv-grid-row { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 1024px) { .xv-grid-row { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 768px) { .xv-grid-row { grid-template-columns: repeat(3, 1fr); gap: 12px; } }
+@media (max-width: 480px) { .xv-grid-row { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+/* Tabs */
+.xv-tabs {
+  display: flex; gap: 4px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.xv-tab {
+  background: none; border: 0;
+  padding: 10px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  text-decoration: none;
+  font-family: inherit;
+}
+.xv-tab.on { color: var(--accent); border-color: var(--accent); }
+.xv-tab:hover:not(.on) { color: var(--text); }
+
+/* Forms */
+.xv-input, .xv-textarea, .xv-select,
+input.xv-input, textarea.xv-textarea, select.xv-select {
+  /* !important — нужно перебивать @tailwindcss/forms (CDN), который инжектит
+     `background-color:#fff` через элементный селектор после нашего CSS. */
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border) !important;
+  background-color: var(--surface) !important;
+  background-image: none;
+  background-repeat: no-repeat;
+  color: var(--text) !important;
+  font-family: inherit;
+  font-size: 14px;
+  border-radius: var(--r-sm);
+  transition: border 0.15s, box-shadow 0.15s;
+}
+.xv-input::placeholder, .xv-textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1;
+}
+/* В тёмной теме инпуты тоже тёмные — сильное правило, чтобы tailwind-forms точно не перебил */
+[data-theme="dark"] .xv-input,
+[data-theme="dark"] .xv-textarea,
+[data-theme="dark"] .xv-select,
+.dark .xv-input, .dark .xv-textarea, .dark .xv-select {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+/* Перебиваем @tailwindcss/forms: его background-image-стрелка повторялась
+   из-за нашего background:shorthand. Возвращаем одну корректную SVG-стрелку. */
+select.xv-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%238a909a' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+[data-theme="dark"] select.xv-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23989fab' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+}
+.xv-input:focus, .xv-textarea:focus, .xv-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-ring);
+}
+.xv-input::placeholder, .xv-textarea::placeholder { color: var(--text-muted); }
+.xv-label {
+  display: block;
+  font-size: 12px; font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.xv-label-hint {
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.xv-help {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 4px;
+}
+.xv-error {
+  font-size: 12px;
+  color: var(--err);
+  margin-top: 4px;
+}
+.xv-checkbox {
+  appearance: none;
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid; place-items: center;
+  flex: none;
+}
+.xv-checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.xv-checkbox:checked::after {
+  content: "";
+  width: 5px; height: 10px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+/* ============================================================
+   Modals — универсальный центрированный диалог
+   ============================================================ */
+.xv-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 16px;
+}
+/* x-show ставит inline display:none, при показе откатывает на дефолт элемента — без !important
+   inline display:flex может потеряться. Класс с !important решает это раз и навсегда. */
+.xv-modal-overlay[style*="display: none"] { display: none !important; }
+.xv-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%; max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+}
+.xv-modal.lg { max-width: 720px; }
+.xv-modal.xl { max-width: 960px; }
+.xv-modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px; margin-bottom: 16px;
+}
+.xv-modal-title {
+  font-family: var(--display); font-size: 18px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.xv-modal-close {
+  background: none; border: 0;
+  font-size: 24px; line-height: 1;
+  color: var(--text-3); cursor: pointer;
+  padding: 0 4px;
+}
+.xv-modal-close:hover { color: var(--text); }
+
+/* ============================================================
+   Chapter list row (manager) — железобетонная сетка
+   ============================================================ */
+.xv-chrow {
+  display: grid !important;
+  grid-template-columns: 18px 14px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 8px 12px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  user-select: none;
+  transition: background 0.1s;
+  border-radius: var(--r-sm);
+}
+.xv-chrow > * { min-width: 0; }
+.xv-chrow .xv-chrow-title {
+  display: flex; align-items: center; gap: 6px;
+  min-width: 0; overflow: hidden;
+  text-decoration: none; color: var(--text);
+  font-size: 13px; font-weight: 500;
+}
+.xv-chrow .xv-chrow-title > span:first-child {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+}
+.xv-chrow .xv-chrow-actions {
+  display: flex !important; align-items: center; gap: 2px;
+  flex-shrink: 0; flex-wrap: nowrap;
+}
+.xv-chrow .xv-chrow-actions .xv-btn {
+  padding: 4px 6px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Адаптив TOP-NAV: hamburger / search overlay / drawer
+   ============================================================ */
+.xv-burger { display: none; }
+.xv-show-mobile { display: none; }
+.xv-search-mobile-btn { display: none; }
+
+@media (max-width: 1024px) {
+  .xv-burger { display: grid; }
+  .xv-nav-links-desktop { display: none; }
+  .xv-search-desktop { display: none; }
+  .xv-search-mobile-btn { display: grid; }
+  .xv-show-mobile { display: grid; }
+  .xv-hide-mobile { display: none !important; }
+  .xv-nav-inner { padding: 0 14px; height: 56px; gap: 8px; }
+  .xv-logo { font-size: 18px; }
+  .xv-logo-mark { width: 26px; height: 26px; font-size: 14px; }
+  .xv-nav-right { gap: 4px; }
+}
+@media (max-width: 480px) {
+  .xv-logo-text { display: none; }
+  .xv-section { padding: 16px 12px; }
+}
+
+/* ── DRAWER ── */
+.xv-drawer-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+}
+.xv-drawer {
+  width: 88vw; max-width: 360px; height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+}
+.xv-drawer-enter        { transition: transform 0.25s ease, opacity 0.2s ease; }
+.xv-drawer-enter-start  { transform: translateX(-100%); opacity: 0; }
+.xv-drawer-enter-end    { transform: translateX(0);    opacity: 1; }
+.xv-drawer-leave        { transition: transform 0.2s ease, opacity 0.15s ease; }
+.xv-drawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.xv-drawer-user {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px;
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  text-decoration: none; color: inherit;
+  margin-bottom: 16px;
+}
+.xv-drawer-auth {
+  display: grid; gap: 8px; margin-bottom: 16px;
+}
+.xv-drawer-section-title {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 700;
+  margin: 18px 0 6px;
+}
+/* Подзаголовок группы в drawer (Читать / Сообщество) */
+.xv-drawer-group-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); font-weight: 700;
+  margin: 14px 0 4px;
+  padding: 0 2px;
+  display: flex; align-items: center; gap: 6px;
+}
+.xv-drawer-group-label::after {
+  content: "";
+  flex: 1; height: 1px;
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.xv-drawer-nav { display: grid; gap: 2px; }
+.xv-drawer-nav a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  color: var(--text-2);
+  font-size: 14px; font-weight: 500;
+}
+.xv-drawer-nav a i { width: 18px; text-align: center; color: var(--text-3); font-size: 14px; }
+.xv-drawer-nav a:hover { background: var(--surface-2); color: var(--text); }
+.xv-drawer-nav a.active {
+  background: var(--accent-soft); color: var(--accent); font-weight: 600;
+}
+.xv-drawer-nav a.active i { color: var(--accent); }
+.xv-drawer-themes {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+}
+.xv-drawer-themes button {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.xv-drawer-themes button.on {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.xv-drawer-logout {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── SEARCH OVERLAY ── */
+.xv-search-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 80px 16px 16px;
+}
+.xv-search-overlay-form {
+  width: 100%; max-width: 600px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 8px 8px 8px 18px;
+  box-shadow: var(--shadow-lg);
+}
+.xv-search-overlay-form > i { color: var(--text-muted); }
+.xv-search-overlay-form input {
+  flex: 1; min-width: 0;
+  background: none; border: 0; outline: none;
+  font-family: inherit; font-size: 16px;
+  color: var(--text); padding: 8px 0;
+}
+.xv-search-overlay-form input::placeholder { color: var(--text-muted); }
+
+/* ============================================================
+   Threaded comments (Novelpia-style)
+   ============================================================ */
+.xv-comments .comment-list { display: grid; gap: 0; }
+.xv-comments .comment-replies { display: grid; gap: 0; margin-top: 0; }
+.xv-comments .comment-card {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 18px 4px 16px;
+}
+.xv-comments .comment-replies > .comment-item:last-child .comment-card,
+.xv-comments .comment-list > .comment-item:last-child .comment-card {
+  border-bottom: 0;
+}
+.xv-comments .comment-card-head {
+  display: flex; align-items: flex-start; gap: 12px;
+  margin-bottom: 12px;
+}
+.xv-comments .comment-avatar-wrap { flex: none; display: block; }
+.xv-comments .comment-avatar {
+  border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.xv-comments .comment-head-body { flex: 1; min-width: 0; padding-top: 2px; }
+.xv-comments .comment-name {
+  font-weight: 700; color: var(--text); font-size: 15px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.xv-comments .comment-name-link {
+  color: inherit; text-decoration: none;
+}
+.xv-comments .comment-name-link:hover { color: var(--accent); }
+.xv-comments .comment-meta-row {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.xv-comments .comment-time {
+  font-family: var(--mono); letter-spacing: 0.01em;
+}
+.xv-comments .comment-chapter-ref {
+  display: inline-flex; align-items: center; gap: 5px;
+  color: var(--text-3);
+  text-decoration: none;
+  font-weight: 500;
+}
+.xv-comments .comment-chapter-ref:hover { color: var(--accent); }
+.xv-comments .comment-badge {
+  font-family: var(--sans); font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 7px; border-radius: var(--r-pill);
+  background: var(--accent-soft); color: var(--accent);
+}
+.xv-comments .comment-badge.author {
+  background: var(--accent); color: var(--accent-text);
+}
+.xv-comments .comment-body {
+  font-family: var(--serif); font-size: 15px; line-height: 1.6;
+  color: var(--text); white-space: pre-wrap; word-wrap: break-word;
+  padding-left: 60px;
+}
+.xv-comments .comment-replies .comment-body { padding-left: 48px; }
+.xv-comments .comment-body p { margin: 0 0 0.6em; }
+.xv-comments .comment-body p:last-child { margin-bottom: 0; }
+.xv-comments .comment-body img:not(.xv-sticker) {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 6px 0;
+}
+
+.xv-comments .comment-actions {
+  display: flex; gap: 18px; align-items: center;
+  margin-top: 12px;
+  padding-left: 60px;
+  flex-wrap: wrap;
+}
+.xv-comments .comment-replies .comment-actions { padding-left: 48px; }
+.xv-comments .comment-actions-right {
+  display: flex; gap: 18px; align-items: center;
+  margin-left: auto;
+}
+.xv-comments .comment-action {
+  background: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit; font-size: 12.5px; font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px 0;
+  transition: color .15s;
+}
+.xv-comments .comment-action:hover { color: var(--accent); }
+.xv-comments .comment-action i { font-size: 13px; }
+.xv-comments .comment-action.on { color: var(--accent); }
+.xv-comments .comment-action-recommend.on { color: var(--accent); }
+.xv-comments .comment-action-like.on { color: var(--err); }
+.xv-comments .comment-action-replies {
+  color: var(--text-2);
+}
+.xv-comments .comment-action-replies i { font-size: 10px; transition: transform .15s; }
+.xv-comments .comment-action-report { color: var(--text-muted); }
+.xv-comments .comment-action-report:hover { color: var(--err); }
+
+/* Сортировка комментариев */
+.xv-comments .comments-sort-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 8px; padding: 8px 0;
+  border-bottom: 2px solid var(--border);
+  flex-wrap: wrap;
+}
+.xv-comments .comments-count {
+  font-size: 14px; color: var(--text-2); font-weight: 500;
+}
+.xv-comments .comments-count strong { color: var(--accent); font-weight: 700; }
+.xv-comments .comments-sort-options { display: flex; gap: 4px; align-items: center; }
+.xv-comments .comments-sort-btn {
+  background: none; border: 0; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 10px; border-radius: var(--r-sm);
+  display: inline-flex; align-items: center; gap: 5px;
+  transition: color .15s, background .15s;
+}
+.xv-comments .comments-sort-btn i { font-size: 5px; color: var(--text-muted); }
+.xv-comments .comments-sort-btn:hover { color: var(--text); }
+.xv-comments .comments-sort-btn.on { color: var(--text); font-weight: 700; }
+.xv-comments .comments-sort-btn.on i { color: var(--accent); }
+@media (max-width: 600px) {
+  .xv-comments .comments-sort-bar { gap: 6px; }
+  .xv-comments .comments-sort-btn { padding: 6px 6px; font-size: 12px; }
+}
+
+/* Стикеры внутри тела комментария */
+.xv-comments .comment-body .xv-sticker {
+  display: inline-block;
+  width: 80px; height: 80px;
+  vertical-align: middle;
+  margin: 2px 4px;
+  object-fit: contain;
+}
+.xv-sticker-picker {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+.xv-comments .comment-reply-form {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+/* Уровни вложенности — отступ и тонкая боковая полоса */
+.xv-comments .comment-item { position: relative; }
+.xv-comments .comment-replies > .comment-item { position: relative; }
+.xv-comments .comment-replies > .comment-item::before {
+  content: ""; position: absolute;
+  left: -14px; top: 18px; bottom: 18px;
+  width: 2px; background: var(--border);
+}
+
+@media (max-width: 600px) {
+  .xv-comments .comment-item { margin-left: 0 !important; }
+  .xv-comments .comment-replies > .comment-item { margin-left: 14px !important; }
+  .xv-comments .comment-body,
+  .xv-comments .comment-actions { padding-left: 48px !important; }
+  .xv-comments .comment-replies .comment-body,
+  .xv-comments .comment-replies .comment-actions { padding-left: 0 !important; }
+  .xv-comments .comment-actions { gap: 12px; }
+  .xv-comments .comment-actions-right { gap: 12px; }
+  .xv-comments .comment-action span { display: none; }
+  .xv-comments .comment-action-replies span,
+  .xv-comments .comment-action-reply span { display: inline; }
+}
+
+/* ── Mobile bottom-nav (фиксирован, поверх контента) ── */
+.xv-bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 55;
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 4px);
+  display: none;
+}
+.xv-bottom-nav-row {
+  display: flex; justify-content: space-around; align-items: end;
+  height: 56px; padding: 4px 4px 0;
+  max-width: 600px; margin: 0 auto;
+}
+.xv-bottom-nav-row a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 4px;
+  color: var(--text-3);
+  font-size: 9px; font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+}
+.xv-bottom-nav-row a.active { color: var(--accent); }
+.xv-bottom-nav-row a i { font-size: 16px; }
+.xv-bottom-nav-row .center {
+  position: relative; margin-top: -16px;
+}
+.xv-bottom-nav-row .center .dot {
+  width: 46px; height: 46px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  border: 3px solid var(--surface);
+  box-shadow: 0 6px 18px var(--accent-ring);
+}
+.xv-bottom-nav-row .center .dot i { font-size: 18px; color: #fff; }
+.xv-bottom-nav-row .center span { color: var(--accent); margin-top: 4px; }
+
+/* Universal page wrap */
+@media (max-width: 1024px) {
+  .xv-section { padding: 18px 14px; }
+  .xv-bottom-nav { display: block; }
+  /* Резерв снизу под нижнюю нав */
+  html.no-reader body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Anti-tailwind reset for body in xin-v2 mode */
+html.xv-editor-html, html.xv-editor-html body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Generic flex helpers (минимальный набор, чтобы не тащить лишнего) */
+.xv-row { display: flex; align-items: center; gap: 10px; }
+.xv-col { display: flex; flex-direction: column; gap: 10px; }
+.xv-spacer { flex: 1; }
+.xv-mt-2 { margin-top: 8px; } .xv-mt-3 { margin-top: 12px; } .xv-mt-4 { margin-top: 16px; }
+.xv-mb-2 { margin-bottom: 8px; } .xv-mb-3 { margin-bottom: 12px; } .xv-mb-4 { margin-bottom: 16px; }
+.xv-text-muted { color: var(--text-muted); }
+.xv-text-3 { color: var(--text-3); }
+.xv-text-accent { color: var(--accent); }
+.xv-text-ok { color: var(--ok); }
+.xv-text-warn { color: var(--warn); }
+.xv-text-err { color: var(--err); }
+
+/* Alerts */
+.xv-alert {
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  color: var(--text-2);
+}
+.xv-alert.ok { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 8%, var(--surface)); color: var(--ok); }
+.xv-alert.warn { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 8%, var(--surface)); color: var(--warn); }
+.xv-alert.err { border-color: var(--err); background: color-mix(in srgb, var(--err) 8%, var(--surface)); color: var(--err); }

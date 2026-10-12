@@ -1,0 +1,15 @@
+/* Редактор: тот же ритм, что и на странице главы. */
+.editor-styles-wrapper {
+  font-family: "Source Serif Pro", Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #1a1815;
+  background: #ffffff;
+}
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}

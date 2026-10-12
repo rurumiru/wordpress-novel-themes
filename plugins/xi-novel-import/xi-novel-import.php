@@ -3,7 +3,7 @@
  * Plugin Name: XIN-Com — импорт глав
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
  * Description: Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска.
- * Version: 1.2.1
+ * Version: 2.0.0
  * Requires PHP: 7.4
  * Author: XI Community
  * Author URI: https://xi.community/

@@ -1,0 +1,87 @@
+/* Экран настроек XIN Turbo. Ничего яркого: это страница, на которую
+   заходят раз в полгода и читают, а не любуются. */
+
+.xt-wrap { max-width: 860px; }
+
+.xt-lede {
+  max-width: 62ch;
+  color: #50575e;
+  font-size: 14px;
+}
+
+.xt-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.xt-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.xt-tile-value { font-size: 24px; font-weight: 600; line-height: 1.1; }
+.xt-tile-label { font-size: 12px; color: #646970; }
+.xt-tile-note  { font-size: 11px; color: #8c8f94; }
+
+.xt-state {
+  padding: 14px 16px;
+  margin-bottom: 22px;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.xt-state p { margin: 0 0 10px; }
+
+.xt-ok   { color: #146c43; }
+.xt-warn { color: #8a6100; }
+.xt-off  { color: #646970; }
+
+.xt-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.xt-last { margin-top: 10px !important; font-size: 12px; color: #8c8f94; }
+
+.xt-group {
+  padding: 4px 20px 16px;
+  margin-bottom: 16px;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.xt-group h2 { font-size: 15px; }
+
+.xt-field {
+  padding: 12px 0;
+  border-top: 1px solid #f0f0f1;
+}
+
+.xt-field:first-of-type { border-top: 0; }
+
+.xt-switch,
+.xt-number {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.xt-switch-label { font-weight: 600; }
+
+.xt-number input { width: 110px; }
+
+.xt-note {
+  margin: 5px 0 0 26px;
+  max-width: 70ch;
+  color: #646970;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.xt-number + .xt-note { margin-left: 0; }

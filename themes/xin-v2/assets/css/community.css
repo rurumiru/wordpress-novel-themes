@@ -1,0 +1,1163 @@
+/* ============================================================
+   XIN-V2 — страницы читателя и модератора
+   Библиотека, уголок, вход, управление, информационные страницы.
+   Только токены из style.css: палитру здесь не заводим.
+   ============================================================ */
+
+/* ---------- общее ---------- */
+
+.xv-section-narrow {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.xv-page-note {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.xv-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.xv-dot {
+  color: var(--text-faint);
+  margin-inline: 6px;
+}
+
+.xv-shelf,
+.xv-hub-block,
+.xv-hub-mine,
+.xv-manage-block,
+.xv-plus-soon {
+  margin-top: 44px;
+}
+
+/* ---------- вход и регистрация ---------- */
+
+.xv-auth {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 32px;
+}
+
+.xv-auth-head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.xv-auth-title {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.xv-auth-lede {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.xv-auth-tabs {
+  margin-bottom: 20px;
+}
+
+.xv-auth-form .xv-field {
+  margin-bottom: 16px;
+}
+
+.xv-auth-form .xv-btn {
+  margin-top: 18px;
+}
+
+.xv-auth-foot {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.xv-auth-note {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+
+/* ---------- продолжить читать ---------- */
+
+.xv-continue {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.xv-continue-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.xv-continue-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.xv-continue-cover {
+  flex: 0 0 auto;
+  width: 46px;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.xv-continue-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.xv-continue-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.xv-continue-title {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.xv-continue-note {
+  font-size: 12.5px;
+  color: var(--accent);
+}
+
+.xv-continue-when {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+/* ---------- история ---------- */
+
+.xv-history {
+  border-top: 1px solid var(--border);
+}
+
+.xv-history-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.xv-history-row:hover {
+  background: var(--surface-hover);
+}
+
+.xv-history-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.xv-history-chapter,
+.xv-history-when {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.xv-history-when {
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* ---------- уголок читателя ---------- */
+
+.xv-hub-me {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.xv-hub-me-figures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+
+.xv-hub-me-figures .xv-stat-value {
+  display: block;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.xv-hub-me-figures .xv-stat-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.xv-badges {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.xv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* Полученная отметка — заливкой, а не цветным текстом: так её видно
+   боковым зрением, а неполученные остаются спокойным фоном. */
+.xv-badge.is-on {
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.xv-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.xv-badge-left {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--text-faint);
+}
+
+.xv-hub-shelf {
+  margin-top: 22px;
+}
+
+.xv-hub-invite {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  margin-top: 28px;
+  background: var(--surface-2);
+  border-radius: var(--r-lg);
+}
+
+.xv-hub-invite p {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.xv-hub-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+/* ---------- разговоры ---------- */
+
+.xv-talk {
+  border-top: 1px solid var(--border);
+}
+
+.xv-talk-row {
+  display: block;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.xv-talk-row:hover {
+  background: var(--surface-hover);
+}
+
+.xv-talk-text {
+  display: block;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.xv-talk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.xv-talk-who {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.xv-talk-likes {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xv-talk-likes svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- доска читателей ---------- */
+
+.xv-board {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.xv-board-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.xv-board-row.is-me {
+  background: var(--accent-soft);
+}
+
+.xv-board-num {
+  width: 20px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: right;
+}
+
+.xv-board-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xv-board-count {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- управление ---------- */
+
+.xv-queue {
+  display: grid;
+  gap: 10px;
+}
+
+.xv-queue-row {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.xv-queue-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.xv-queue-who {
+  font-weight: 700;
+}
+
+.xv-queue-where {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.xv-queue-where:hover {
+  text-decoration: underline;
+}
+
+.xv-queue-when {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.xv-queue-text {
+  margin: 8px 0 12px;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.xv-queue-actions,
+.xv-role-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.xv-queue-actions form {
+  margin: 0;
+}
+
+.xv-roles {
+  border-top: 1px solid var(--border);
+}
+
+.xv-role-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.xv-role-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xv-role-fixed {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.xv-select.sm {
+  padding: 5px 8px;
+  font-size: 13px;
+  width: auto;
+}
+
+/* ---------- информационная страница ---------- */
+
+.xv-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 40px;
+  align-items: start;
+}
+
+.xv-info-body {
+  max-width: 72ch;
+}
+
+.xv-info-side {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 24px;
+}
+
+.xv-info-toc ul,
+.xv-info-more ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.xv-info-toc a,
+.xv-info-more a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  border-left: 2px solid var(--border);
+  font-size: 13.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.xv-info-toc a:hover,
+.xv-info-more a:hover {
+  border-left-color: var(--accent);
+  color: var(--text);
+}
+
+/* ---------- поддержка ---------- */
+
+.xv-plus-text {
+  max-width: 66ch;
+}
+
+.xv-plus-cta {
+  justify-content: flex-start;
+  margin-top: 24px;
+}
+
+/* ---------- оглавление читалки: догрузка ---------- */
+
+.xv-reader-toc-more {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  background: none;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-xs);
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.xv-reader-toc-more:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* ---------- узкие экраны ---------- */
+
+@media (max-width: 900px) {
+  .xv-info {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .xv-info-side {
+    position: static;
+    order: -1;
+  }
+
+  .xv-hub-me {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .xv-auth {
+    padding: 22px 18px;
+  }
+
+  .xv-history-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .xv-history-chapter {
+    grid-column: 1 / -1;
+  }
+
+  .xv-queue-when {
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+   Читалка: прогресс, закладки, цитаты, озвучка, дочитывание
+   ============================================================ */
+
+.xv-reader-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.xv-reader-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .12s linear;
+}
+
+/* Абзац с закладкой: полоса слева, не заливка — заливка спорит с текстом. */
+.xv-chapter-text [data-xv-p] {
+  position: relative;
+}
+
+.xv-chapter-text [data-xv-p].is-marked::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: .35em;
+  bottom: .35em;
+  width: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.xv-chapter-text [data-xv-p].is-speaking {
+  background: var(--accent-soft);
+  border-radius: var(--r-xs);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+}
+
+.xv-p-tools {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.xv-p-tools button {
+  padding: 3px 9px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-pill);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.xv-p-tools button:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* Дочитанные главы отбиваются линией с воздухом: иначе текст сливается
+   в одно бесконечное полотно и место остановки не найти. */
+.xv-chapter-more {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--paper-rule);
+}
+
+.xv-chapter-more-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.xv-chapter-more .xv-chapter-title {
+  font-size: 26px;
+}
+
+.xv-chapter-tail {
+  min-height: 1.4em;
+  margin: 28px 0 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.xv-reader-tools [data-xv-speak].is-on {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+@media (max-width: 720px) {
+  .xv-chapter-text [data-xv-p].is-marked::before {
+    left: -10px;
+  }
+}
+
+/* ---------- глоссарий ---------- */
+
+/* Пунктир, а не цвет: термин должен читаться как часть текста, а не как
+   ссылка, по которой надо идти. */
+.xv-term {
+  border-bottom: 1px dotted var(--text-faint);
+  cursor: help;
+}
+
+.xv-term:hover,
+.xv-term:focus-visible {
+  border-bottom-color: var(--accent);
+}
+
+.xv-term-note {
+  position: absolute;
+  z-index: 70;
+  max-width: 280px;
+  padding: 9px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+/* ---------- выгрузка книги ---------- */
+
+.xv-download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.xv-download-label {
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.xv-download-links {
+  display: flex;
+  gap: 6px;
+}
+
+/* ============================================================
+   Баннеры, виджеты, боковая колонка
+   ============================================================ */
+
+.xv-promos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.xv-promo {
+  position: relative;
+  display: flex;
+  min-height: 132px;
+  padding: 18px 20px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  color: inherit;
+}
+
+.xv-promo-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Поверх картинки — сплошная подложка снизу, а не тень по всему полю:
+   заголовок должен читаться, а обложка оставаться видимой. */
+.xv-promo-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20,18,16,.82) 0%, rgba(20,18,16,.45) 60%, rgba(20,18,16,.1) 100%);
+}
+
+.xv-promo-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  max-width: 30em;
+}
+
+.xv-promo-image ~ .xv-promo-body {
+  color: #fff;
+}
+
+.xv-promo-badge {
+  align-self: flex-start;
+  padding: 2px 8px;
+  margin-bottom: 2px;
+  background: var(--accent);
+  border-radius: var(--r-pill);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.xv-promo-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+.xv-promo-title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.xv-promo-text {
+  font-size: 13.5px;
+  line-height: 1.45;
+  opacity: .85;
+}
+
+.xv-promo-cta {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- виджеты ---------- */
+
+.xv-with-sidebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 44px;
+  align-items: start;
+}
+
+.xv-sidebar {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  gap: 28px;
+}
+
+.xv-widget-title,
+.xv-widget h2,
+.xv-widget h4 {
+  margin: 0 0 10px;
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.xv-widget-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.xv-widget-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.xv-widget-list a {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 8px 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.xv-widget-list a:hover .xv-widget-title-line {
+  color: var(--accent);
+}
+
+.xv-widget-title-line {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+
+.xv-widget-note {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.xv-widget-covers img {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 51px;
+  object-fit: cover;
+  border-radius: var(--r-xs);
+}
+
+.xv-widget ul:not(.xv-widget-list) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 13.5px;
+}
+
+@media (max-width: 900px) {
+  .xv-with-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .xv-sidebar {
+    position: static;
+  }
+}
+
+/* ============================================================
+   Комиксы
+   ============================================================ */
+
+.xv-comic {
+  max-width: var(--site-max);
+  margin: 0 auto;
+  padding: 0 20px 48px;
+}
+
+.xv-comic-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 22px 0 16px;
+}
+
+.xv-comic-novel {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.xv-comic-title {
+  margin: 4px 0 0;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.xv-comic-num {
+  color: var(--text-faint);
+  margin-right: 8px;
+}
+
+.xv-comic-head-tools {
+  display: flex;
+  gap: 8px;
+}
+
+/* Полоса страниц. Направление задаётся одним атрибутом — от него зависит
+   и раскладка, и порядок: манга листается справа налево. */
+.xv-comic-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: #111;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.xv-comic-page {
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+}
+
+.xv-comic[data-xv-fit="wide"] .xv-comic-page { max-width: 1100px; }
+.xv-comic[data-xv-fit="full"] .xv-comic-page { max-width: none; }
+
+.xv-comic[data-xv-dir="rtl"] .xv-comic-pages,
+.xv-comic[data-xv-dir="ltr"] .xv-comic-pages {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 2px;
+}
+
+.xv-comic[data-xv-dir="rtl"] .xv-comic-pages {
+  flex-direction: row-reverse;
+}
+
+.xv-comic[data-xv-dir="rtl"] .xv-comic-page,
+.xv-comic[data-xv-dir="ltr"] .xv-comic-page {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+  max-height: calc(100vh - 200px);
+  scroll-snap-align: center;
+}
+
+.xv-comic-count {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+
+/* ---------- оглавление комикса ---------- */
+
+.xv-comic-toc {
+  display: grid;
+  gap: 8px;
+}
+
+.xv-comic-toc-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+}
+
+.xv-comic-toc-row:hover {
+  border-color: var(--border-strong);
+}
+
+.xv-comic-toc-row.is-locked {
+  opacity: .65;
+}
+
+.xv-comic-toc-thumb {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: var(--r-xs);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.xv-comic-toc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.xv-comic-toc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.xv-comic-toc-title {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.xv-comic-toc-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-right: 6px;
+}
+
+.xv-comic-toc-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.xv-comic-toc-lock svg {
+  width: 12px;
+  height: 12px;
+}
+
+@media (max-width: 720px) {
+  .xv-comic { padding-inline: 0; }
+  .xv-comic-head { padding-inline: 16px; }
+  .xv-comic-pages { border-radius: 0; }
+}
+
+/* ---------- переключатель языка ---------- */
+
+.xv-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding: 2px;
+  background: var(--surface-2);
+  border-radius: var(--r-pill);
+}
+
+.xv-lang-btn {
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.xv-lang-btn:hover {
+  color: var(--text);
+}
+
+.xv-lang-btn.is-on {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-xs);
+}
+
+@media (max-width: 900px) {
+  .xv-lang { display: none; }
+}

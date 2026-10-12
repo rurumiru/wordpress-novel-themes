@@ -1,3 +1,12 @@
+# 3.0.0 — Primary XI Novels design
+
+- XIN-V2 becomes the primary theme with redesigned navigation, logo, discovery catalog, title pages, homepage modules and illustrated carousel.
+- Single-chapter reader; redundant inline navigation removed; reading preferences persist.
+- Unified Manrope UI typography and discussion cards with role badges and improved mobile replies.
+- Personal rating UI; replacement votes preserve imported aggregate ratings and reject invalid values.
+- Fixed frontend studio form handler names and chapter index invalidation after relationship/number metadata updates.
+- XIN Setup 3: automatic activation/import setup, idempotent page creation, pretty permalinks, route checks and authenticated batched counters.
+- Updated RU/EN/PT-BR presentation, current screenshots, generated cover prompts and local release checks.
 # Changelog
 
 All notable changes to this project are documented here.

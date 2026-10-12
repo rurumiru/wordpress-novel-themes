@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XIN-Com — chapter import 0.9.0-beta\n"
+"Project-Id-Version: XIN-Com — chapter import 2.0.0\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,17 +32,11 @@ msgstr "0 — o capítulo é gratuito. Acima de zero — o capítulo sai em aces
 msgid "Google не отдал документ. Откройте доступ по ссылке или опубликуйте документ в интернете: Файл → Поделиться → Опубликовать в интернете."
 msgstr "O Google não devolveu o documento. Compartilhe por link ou publique na web: Arquivo → Compartilhar → Publicar na web."
 
-msgid "WooCommerce сейчас выключен — цена сохранится, но купить главу отдельно будет нельзя, доступ пойдёт по PLUS."
-msgstr "O WooCommerce está desligado — o preço será guardado, mas o capítulo não poderá ser comprado avulso; o acesso passa pelo PLUS."
-
 msgid "WooCommerce сейчас выключен — цена сохранится, но купить главу отдельно будет нельзя: глава останется у команды проекта."
 msgstr "O WooCommerce está desligado: o preço é mantido, mas o capítulo não poderá ser comprado avulso — ele fica com a equipe do projeto."
 
 msgid "WordPress не сохранил запись."
 msgstr "O WordPress não salvou o post."
-
-msgid "XIN-Com — импорт глав"
-msgstr "XIN-Com — importação de capítulos"
 
 msgid "ZIP с файлами .txt, .md, .html или .docx. Имя файла становится названием главы."
 msgstr "Um ZIP com arquivos .txt, .md, .html ou .docx. O nome do arquivo vira o título do capítulo."
@@ -88,9 +82,6 @@ msgstr "Na fila"
 
 msgid "В очереди сейчас: %s"
 msgstr "Esperando na fila: %s"
-
-msgid "В очереди, по PLUS"
-msgstr "Na fila, PLUS"
 
 msgid "В очереди, ранний доступ"
 msgstr "Na fila, acesso antecipado"
@@ -143,9 +134,6 @@ msgstr "Os capítulos entram na fila, mas não há agenda definida — preencha 
 msgid "Главы встанут в очередь. Первая выйдет %1$s, дальше по одной: %2$s в %3$s."
 msgstr "Os capítulos entram na fila. O primeiro sai em %1$s, depois um por vez: %2$s às %3$s."
 
-msgid "Главы лягут черновиками и выйдут в дни и часы из расписания ниже. Перекрывает выбранный статус."
-msgstr "Os capítulos ficam como rascunhos e saem nos dias e horários da agenda abaixo. Sobrepõe o status escolhido."
-
 msgid "Главы лягут черновиками: на сайте их не будет, пока вы не опубликуете их сами."
 msgstr "Os capítulos ficam como rascunhos: não vão ao ar até você publicá-los."
 
@@ -172,9 +160,6 @@ msgstr "O documento está vazio."
 
 msgid "Домен CDN перед бакетом. Пусто — страницы отдаются прямо с адреса хранилища."
 msgstr "Um domínio de CDN na frente do bucket. Em branco, as páginas vêm direto do endereço do armazenamento."
-
-msgid "Если снять — глава выйдет под ранним доступом PLUS."
-msgstr "Se desmarcar, o capítulo sai em acesso antecipado PLUS."
 
 msgid "Если снять — глава выйдет под ранним доступом."
 msgstr "Se desmarcar, o capítulo sai sob acesso antecipado."
@@ -233,9 +218,6 @@ msgstr "Chave de acesso"
 msgid "Ключ или секрет заданы константами в wp-config.php — они сильнее полей формы. Это правильный способ: в базе доступа тогда не остаётся."
 msgstr "A chave ou o segredo vêm de constantes no wp-config.php — elas têm prioridade sobre os campos do formulário. Esse é o caminho certo: nenhum acesso fica no banco de dados."
 
-msgid "Массовый импорт глав из .docx, .txt, .md, .html, ZIP-архивов и Google Docs — порциями, без нагрузки на сервер. Замена текста в существующих главах, очередь публикации по расписанию, авторазблокировка платных глав и таймер до следующего выпуска."
-msgstr "Importação em massa de capítulos a partir de .docx, .txt, .md, .html, arquivos ZIP e Google Docs — em lotes, sem sobrecarregar o servidor. Substituição de texto em capítulos existentes, fila de publicação por agenda, desbloqueio automático de capítulos pagos e contagem regressiva até o próximo lançamento."
-
 msgid "На сервере нет расширения ZipArchive — .docx разобрать нечем."
 msgstr "O servidor não tem a extensão ZipArchive — não há como ler .docx."
 
@@ -290,9 +272,6 @@ msgstr "Numerar a partir de"
 msgid "Обработка"
 msgstr "Processando"
 
-msgid "Опубликовать"
-msgstr "Publicar"
-
 msgid "Опубликовать сразу"
 msgstr "Publicar de uma vez"
 
@@ -307,9 +286,6 @@ msgstr "Abrir para todos"
 
 msgid "Отправлять страницы комиксов в хранилище"
 msgstr "Enviar páginas de quadrinhos para o armazenamento"
-
-msgid "Очередь"
-msgstr "Fila"
 
 msgid "Папка в бакете"
 msgstr "Pasta no bucket"
@@ -332,12 +308,6 @@ msgstr "Um por linha, “Nome|endereço”. O leitor ganha a escolha do servidor
 msgid "Поведение"
 msgstr "Comportamento"
 
-msgid "Под ранним доступом PLUS, без цены."
-msgstr "Em acesso antecipado PLUS, sem preço."
-
-msgid "Под ранним доступом PLUS, цена %s."
-msgstr "Em acesso antecipado PLUS, preço %s."
-
 msgid "Под ранним доступом, без цены."
 msgstr "Sob acesso antecipado, sem preço."
 
@@ -349,9 +319,6 @@ msgstr "Marcar as páginas como públicas ao enviar"
 
 msgid "Поставить в очередь"
 msgstr "Colocar na fila"
-
-msgid "Поставить главы в очередь по расписанию"
-msgstr "Colocar os capítulos na fila conforme a agenda"
 
 msgid "Прервано."
 msgstr "Interrompido."
@@ -431,9 +398,6 @@ msgstr "Salvar como rascunhos"
 msgid "Ср"
 msgstr "Qua"
 
-msgid "Статус"
-msgstr "Status"
-
 msgid "Страниц в хранилище: %1$d. Глав комиксов на сайте: %2$d."
 msgstr "Páginas no armazenamento: %1$d. Capítulos de quadrinhos no site: %2$d."
 
@@ -502,9 +466,6 @@ msgstr "O armazenamento não explicou o motivo."
 
 msgid "Цена главы"
 msgstr "Preço do capítulo"
-
-msgid "Черновики"
-msgstr "Rascunhos"
 
 msgid "Чт"
 msgstr "Qui"

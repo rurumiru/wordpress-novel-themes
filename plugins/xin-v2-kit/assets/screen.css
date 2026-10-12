@@ -1,0 +1,55 @@
+/* Экран диагностики. Тон тот же, что у темы: волосяные линии, без плашек. */
+
+.erk-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.erk-lede {
+  color: #6b665d;
+  margin: 0 0 18px;
+  font-size: 13.5px;
+}
+
+.erk-summary { margin-bottom: 16px; }
+.erk-summary-ok { color: #2f7a53; font-size: 14px; margin: 0; }
+.erk-summary-bad { color: #8a5a1f; font-size: 14px; margin: 0; }
+
+.erk-table { border-radius: 6px; }
+.erk-table th { font-weight: 600; }
+.erk-col-count { width: 100px; }
+.erk-col-fix { width: 120px; }
+
+.erk-row-ok td { opacity: 0.65; }
+
+.erk-hint {
+  margin: 4px 0 0;
+  color: #6b665d;
+  font-size: 12.5px;
+  max-width: 70ch;
+}
+
+.erk-note {
+  margin: 4px 0 0;
+  color: #8a5a1f;
+  font-size: 12.5px;
+  max-width: 70ch;
+}
+
+.erk-items {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+}
+
+.erk-count {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+}
+
+.erk-ok { color: #2f7a53; font-size: 15px; }
+.erk-manual { color: #857f75; font-size: 12.5px; }
+
+.erk-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.erk-batch { color: #857f75; font-size: 12.5px; }

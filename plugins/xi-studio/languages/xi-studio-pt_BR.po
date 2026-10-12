@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XI Studio 0.9.0-beta\n"
+"Project-Id-Version: XI Studio 2.0.0\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,9 +79,6 @@ msgstr "Importar"
 
 msgid "Кабинет автора, библиотека, рейтинг, уголок читателя и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404."
 msgstr "O estúdio do autor, a biblioteca, o ranking, o cantinho do leitor e as demais telas do tema são páginas do WordPress com modelos atribuídos. Enquanto a página não existir, o link para ela cai em 404."
-
-msgid "Кабинет автора, библиотека, рейтинг, уголок читателя, PLUS и остальные экраны темы — это страницы WordPress с назначенными шаблонами. Пока страницы нет, ссылка на неё ведёт в 404."
-msgstr "O estúdio do autor, a biblioteca, o ranking, o cantinho do leitor, o PLUS e as demais telas do tema são páginas do WordPress com modelos atribuídos. Enquanto a página não existir, o link para ela leva a um 404."
 
 msgid "Каталог"
 msgstr "Catálogo"

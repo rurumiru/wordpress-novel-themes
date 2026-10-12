@@ -1,3 +1,4 @@
+> XIN-V2 3 is now the primary theme. The legacy XIN-Com notes below remain for that alternative theme. Current XIN-V2 UI overrides live in assets/css/site-header.css and assets/css/interface.css; frontend actions use the xv_ prefix. See design-v3.md, install.md and tools/verify-release.php.
 # Development
 
 ## File map

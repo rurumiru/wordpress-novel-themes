@@ -1,6 +1,17 @@
 # Tools
 
-Four small scripts. None of them is required to run the theme.
+Development, packaging and import scripts. None is required to run the theme.
+
+## XIN-V2 3 release checks
+
+```bash
+php tools/verify-release.php /path/to/wordpress/wp-load.php
+php tools/build-translations.php xin-v2
+php tools/build-zip.php --src=themes/xin-v2 --out=dist/xin-v2-3.0.0.zip
+php tools/build-zip.php --src=plugins/xin-setup --out=dist/xin-setup-3.0.0.zip
+```
+
+Run `verify-release.php` against a local development installation. It checks setup, routing, frontend handlers, chapter indexing and ratings, creates temporary draft fixtures, then moves those fixtures to trash. See [the validation report](../docs/validation-v3.md) for the checked scenarios and limits.
 
 ## `build-zip.php`
 

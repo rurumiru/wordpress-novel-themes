@@ -3,7 +3,7 @@
  * Plugin Name:       XI Studio — студия темы
  * Plugin URI:        https://github.com/rurumiru/wordpress-novel-themes
  * Description:       Экран настройки облика темы XIN-Com: цвет, форма, шрифты и читалка — с живым предпросмотром сайта, готовыми наборами и переносом настроек файлом.
- * Version:           0.4.1
+ * Version:           2.0.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            XI Community

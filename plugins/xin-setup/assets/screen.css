@@ -1,0 +1,105 @@
+/* Экран настройки. Список, который читают сверху вниз: ничего яркого,
+   всё внимание на том, что не готово. */
+
+.xs-wrap { max-width: 900px; }
+
+.xs-lede { color: #50575e; font-size: 14px; }
+
+.xs-head { margin: 14px 0 22px; }
+
+.xs-left { font-size: 15px; color: #8a6100; margin: 0; }
+.xs-done { font-size: 15px; color: #146c43; margin: 0; }
+
+.xs-block {
+  padding: 4px 20px 18px;
+  margin-bottom: 18px;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 6px;
+}
+
+.xs-block h2 { font-size: 15px; }
+
+.xs-block-note {
+  max-width: 74ch;
+  margin-top: -4px;
+  color: #646970;
+  font-size: 13px;
+}
+
+.xs-block-act { display: flex; gap: 8px; margin-top: 14px; }
+
+.xs-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid #f0f0f1;
+}
+
+.xs-row:first-of-type { border-top: 0; }
+
+.xs-row h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.xs-row-body { min-width: 0; }
+.xs-row-act { flex: 0 0 auto; }
+
+.xs-now {
+  margin: 0 0 4px;
+  font-size: 12.5px;
+  color: #3c434a;
+}
+
+.xs-why {
+  margin: 0;
+  max-width: 74ch;
+  color: #646970;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Число рядом с заголовком — это то, ради чего сюда пришли. */
+.xs-count {
+  display: inline-block;
+  padding: 1px 8px;
+  margin-left: 6px;
+  background: #fcf0d8;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #8a6100;
+}
+
+.xs-tick {
+  font-size: 12px;
+  color: #146c43;
+  white-space: nowrap;
+}
+
+.xs-pages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.xs-page {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #f6f7f7;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.xs-page.is-todo { background: #fcf6e8; }
+
+.xs-page-link { font-size: 12px; }
+.xs-page-miss { font-size: 12px; color: #8a6100; }
+
+.xs-all { border-color: #c3c4c7; background: #f6f7f7; }

@@ -132,6 +132,7 @@ function xni_import( $chapters, $args ) {
 	}
 
 	delete_transient( 'xin_site_stats' );
+	do_action('xni_import_complete',$novel_id);
 
 	return array(
 		'novel_id' => $novel_id,

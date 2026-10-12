@@ -1,0 +1,8 @@
+<?php if(!defined('ABSPATH'))exit; ?>
+<nav class="xv-pia-reader-footer" aria-label="<?php esc_attr_e('Навигация чтения','xin-v2'); ?>"><div>
+<a data-xv-prev href="<?php echo esc_url($xv_near['prev']?get_permalink($xv_near['prev']):'#'); ?>"<?php if(!$xv_near['prev'])echo ' hidden aria-hidden="true"'; ?>><?php xv_the_icon('chevron-left'); ?><span><?php esc_html_e('Предыдущая','xin-v2'); ?></span></a><span class="xv-pia-reader-off" data-xv-prev-empty<?php if($xv_near['prev'])echo ' hidden'; ?>><?php xv_the_icon('chevron-left'); ?><span><?php esc_html_e('Предыдущая','xin-v2'); ?></span></span>
+<a href="<?php echo esc_url(xv_page_url('template-library.php')?:xv_login_url()); ?>"><?php xv_the_icon('clock'); ?><span><?php esc_html_e('История чтения','xin-v2'); ?></span></a>
+<button type="button" data-xv-reader-panel="toc" aria-controls="xv-reader-toc-panel" aria-expanded="false"><?php xv_the_icon('list'); ?><span><?php esc_html_e('Оглавление','xin-v2'); ?></span></button>
+<?php if(xv_discussion_open($xv_id)||get_comments_number()) : ?><a href="#comments"><?php xv_the_icon('comment'); ?><span><?php esc_html_e('Комментарии','xin-v2'); ?></span></a><?php endif; ?>
+<a data-xv-next href="<?php echo esc_url($xv_near['next']?get_permalink($xv_near['next']):'#'); ?>"<?php if(!$xv_near['next'])echo ' hidden aria-hidden="true"'; ?>><span><?php esc_html_e('Следующая','xin-v2'); ?></span><?php xv_the_icon('chevron-right'); ?></a><span class="xv-pia-reader-off" data-xv-next-empty<?php if($xv_near['next'])echo ' hidden'; ?>><span><?php esc_html_e('Следующая','xin-v2'); ?></span><?php xv_the_icon('chevron-right'); ?></span>
+</div></nav>

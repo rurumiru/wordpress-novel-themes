@@ -1,18 +1,18 @@
 # Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XIN-Com 0.9.0-beta\n"
+"Project-Id-Version: XIN-Com 2.0.0\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+msgid "Информационная страница"
+msgstr "Página de informações"
+
 msgid "%1$d %2$s назад"
 msgstr "%1$d %2$s atrás"
-
-msgid "%1$s · %2$s"
-msgstr "%1$s · %2$s"
 
 msgid "%1$s · %2$s · %3$s"
 msgstr "%1$s · %2$s · %3$s"
@@ -20,20 +20,11 @@ msgstr "%1$s · %2$s · %3$s"
 msgid "%1$s — %2$s"
 msgstr "%1$s — %2$s"
 
-msgid "%d глав"
-msgstr "%d capítulos"
-
 msgid "%d глав прочитано"
 msgstr "%d capítulos lidos"
 
-msgid "%d глава"
-msgstr "%d capítulo"
-
 msgid "%d глава прочитана"
 msgstr "%d capítulo lido"
-
-msgid "%d главы"
-msgstr "%d capítulos"
 
 msgid "%d главы прочитано"
 msgstr "%d capítulos lidos"
@@ -71,9 +62,6 @@ msgstr "%s leituras"
 msgid "%s сек."
 msgstr "%s s"
 
-msgid "%s сек. назад"
-msgstr "há %s s"
-
 msgid "%s тайтл"
 msgstr "%s obra"
 
@@ -92,15 +80,6 @@ msgstr "%s — capítulos gratuitos publicados"
 msgid "**жирный**, _курсив_, ||спойлер||"
 msgstr "**negrito**, _itálico_, ||spoiler||"
 
-msgid "+30 дней"
-msgstr "+30 dias"
-
-msgid "+90 дней"
-msgstr "+90 dias"
-
-msgid "+год"
-msgstr "+1 ano"
-
 msgid "Boosty, Patreon, кошелёк — показывается кнопкой в профиле."
 msgstr "Boosty, Patreon, uma carteira — aparece como botão no perfil."
 
@@ -112,18 +91,6 @@ msgstr "ID da imagem de capa do perfil"
 
 msgid "ID товара для разовой покупки главы. Пусто — глава открыта только команде проекта."
 msgstr "ID do produto para comprar este capítulo avulso. Deixe vazio e o capítulo fica só com a equipe do projeto."
-
-msgid "ID товара для разовой покупки главы. Пусто — только PLUS."
-msgstr "ID do produto para a compra avulsa do capítulo. Vazio significa apenas PLUS."
-
-msgid "Inter / Segoe UI"
-msgstr "Inter / Segoe UI"
-
-msgid "PLUS"
-msgstr "PLUS"
-
-msgid "PLUS или выбранные роли"
-msgstr "PLUS ou funções selecionadas"
 
 msgid "Palatino"
 msgstr "Palatino"
@@ -178,9 +145,6 @@ msgstr "Parágrafo"
 
 msgid "Абзац отмечен закладкой."
 msgstr "Parágrafo marcado."
-
-msgid "Абзац=p; Заголовок=h2; Подзаголовок=h3"
-msgstr "Parágrafo=p; Título=h2; Subtítulo=h3"
 
 msgid "Автор"
 msgstr "Autor"
@@ -254,20 +218,8 @@ msgstr "Selo"
 msgid "Белая"
 msgstr "Branco"
 
-msgid "Бесплатно"
-msgstr "Grátis"
-
-msgid "Бессрочно"
-msgstr "Sem prazo"
-
 msgid "Библиотека"
 msgstr "Biblioteca"
-
-msgid "Библиотека без ограничений"
-msgstr "Biblioteca sem limites"
-
-msgid "Библиотека привязана к аккаунту"
-msgstr "A biblioteca fica vinculada à conta"
 
 msgid "Ближайший выпуск"
 msgstr "Próximo lançamento"
@@ -280,9 +232,6 @@ msgstr "Barra lateral do blog"
 
 msgid "Боковая колонка тайтла"
 msgstr "Barra lateral da obra"
-
-msgid "Больше всех пишет"
-msgstr "Quem mais escreve"
 
 msgid "Браузерные уведомления, когда выходят бесплатные главы"
 msgstr "Alertas do navegador quando saem capítulos gratuitos"
@@ -347,12 +296,6 @@ msgstr "Esta obra ainda não tem capítulos disponíveis."
 msgid "В этот день ничего не выходило: %s свободен."
 msgstr "Nada saiu nesse dia: %s está livre."
 
-msgid "Ваша оценка"
-msgstr "Sua nota"
-
-msgid "Ваши цифры"
-msgstr "Seus números"
-
 msgid "Вернуть"
 msgstr "Refazer"
 
@@ -364,9 +307,6 @@ msgstr "Voltar para %s"
 
 msgid "Весь каталог"
 msgstr "Todo o catálogo"
-
-msgid "Весь открытый каталог"
-msgstr "Todo o catálogo aberto"
 
 msgid "Весь рейтинг"
 msgstr "Ranking completo"
@@ -391,9 +331,6 @@ msgstr "Largura total"
 
 msgid "Возможно, тайтл переехал или ссылка устарела. Попробуйте найти его в каталоге."
 msgstr "Talvez a obra tenha mudado de lugar ou o link esteja velho. Tente encontrá-la no catálogo."
-
-msgid "Войдите в аккаунт с подпиской PLUS, чтобы продолжить чтение."
-msgstr "Entre em uma conta com assinatura PLUS para continuar a leitura."
 
 msgid "Войдите в аккаунт — возможно, доступ у вас уже есть."
 msgstr "Entre na conta: talvez você já tenha acesso."
@@ -451,9 +388,6 @@ msgstr "Todas as obras"
 
 msgid "Всем, включая гостей"
 msgstr "Para todos, visitantes incluídos"
-
-msgid "Всё из бесплатного плана"
-msgstr "Tudo do plano grátis"
 
 msgid "Всё оглавление"
 msgstr "Índice completo"
@@ -545,14 +479,8 @@ msgstr "Capítulos"
 msgid "Глав не найдено"
 msgstr "Nenhum capítulo encontrado"
 
-msgid "Глав пока нет"
-msgstr "Ainda não há capítulos"
-
 msgid "Глав пока нет."
 msgstr "Ainda não há capítulos."
-
-msgid "Глав прочитано"
-msgstr "Capítulos lidos"
 
 msgid "Глава"
 msgstr "Capítulo"
@@ -581,17 +509,11 @@ msgstr "Menu principal"
 msgid "Главы"
 msgstr "Capítulos"
 
-msgid "Главы для подписчиков"
-msgstr "Capítulos para assinantes"
-
 msgid "Главы ещё не опубликованы."
 msgstr "Os capítulos ainda não foram publicados."
 
 msgid "Главы не нашлось."
 msgstr "Capítulo não encontrado."
-
-msgid "Главы с отметкой PLUS открываются подписчикам раньше остальных читателей."
-msgstr "Os capítulos marcados com PLUS abrem para os assinantes antes dos demais leitores."
 
 msgid "Главы, набравшие больше всего разговора за две недели."
 msgstr "Os capítulos que geraram mais conversa em duas semanas."
@@ -635,9 +557,6 @@ msgstr "Volume"
 msgid "Гротеск"
 msgstr "Sem serifa"
 
-msgid "Гротеск помягче"
-msgstr "Grotesca mais suave"
-
 msgid "Гуманистический (Candara)"
 msgstr "Humanista (Candara)"
 
@@ -667,9 +586,6 @@ msgstr "Dez lançamentos"
 
 msgid "Десять глав"
 msgstr "Dez capítulos"
-
-msgid "Дней подряд"
-msgstr "Dias seguidos"
 
 msgid "Добавить"
 msgstr "Adicionar"
@@ -704,15 +620,6 @@ msgstr "Boas-vindas a %s"
 msgid "Достижения"
 msgstr "Conquistas"
 
-msgid "Доступ PLUS"
-msgstr "Acesso PLUS"
-
-msgid "Доступ PLUS выдан."
-msgstr "Acesso PLUS concedido."
-
-msgid "Доступ PLUS снят."
-msgstr "Acesso PLUS removido."
-
 msgid "Доступна 1 новая глава"
 msgstr "1 novo capítulo disponível"
 
@@ -721,9 +628,6 @@ msgstr "Número quebrado indica extra ou interlúdio: 12.5"
 
 msgid "Дробный номер — экстра/интерлюдия: 12.5"
 msgstr "Número quebrado indica extra ou interlúdio: 12.5"
-
-msgid "Если планируете принимать оплату, подойдёт любой плагин членства: он решает, кто считается подписчиком, а тема уже умеет прятать главы от гостей."
-msgstr "Se pretende receber pagamentos, qualquer plugin de assinatura serve: ele decide quem conta como assinante, e o tema já sabe esconder os capítulos de quem não é."
 
 msgid "Если страницы грузятся долго или не открываются вовсе, переключитесь на другой сервер: кадры те же, отдаёт их другой домен."
 msgstr "Se as páginas demoram ou não abrem, mude de servidor: são os mesmos quadros, servidos por outro domínio."
@@ -739,9 +643,6 @@ msgstr "Repita"
 
 msgid "Ещё теплее и мягче: широкая колонка, палатино, сепия в читалке."
 msgstr "Ainda mais quente e suave: coluna larga, Palatino, sépia no leitor."
-
-msgid "Её можно открыть подпиской PLUS или разовой покупкой — деньги идут команде проекта."
-msgstr "Dá para abrir com a assinatura PLUS ou com uma compra avulsa — o dinheiro vai para a equipe do projeto."
 
 msgid "Её можно открыть разовой покупкой — деньги идут команде проекта."
 msgstr "Dá para liberar com uma compra avulsa — o dinheiro vai para a equipe do projeto."
@@ -830,12 +731,6 @@ msgstr "Marcador removido."
 msgid "Закладки"
 msgstr "Marcadores"
 
-msgid "Закладки и история в браузере"
-msgstr "Marcadores e histórico no navegador"
-
-msgid "Закладки и история чтения синхронизируются с аккаунтом, а не только с браузером."
-msgstr "Marcadores e histórico de leitura sincronizam com a conta, não apenas com o navegador."
-
 msgid "Закладки и история чтения хранятся в этом браузере — аккаунт не нужен."
 msgstr "Marcadores e histórico de leitura ficam neste navegador — não precisa de conta."
 
@@ -854,9 +749,6 @@ msgstr "Substituir tudo"
 msgid "Заменять термины при чтении"
 msgstr "Substituir termos durante a leitura"
 
-msgid "Заметное за неделю"
-msgstr "Destaques da semana"
-
 msgid "Заморожен"
 msgstr "Congelado"
 
@@ -874,9 +766,6 @@ msgstr "Ainda não há nada aqui"
 
 msgid "Здесь появятся ваши проекты"
 msgstr "Seus projetos vão aparecer aqui"
-
-msgid "Зеркала раздачи"
-msgstr "Espelhos de entrega"
 
 msgid "Золотой"
 msgstr "Dourado"
@@ -941,14 +830,8 @@ msgstr "Painel do autor"
 msgid "Как в коробке: тёплая бумага, чернильный текст, штемпельный акцент."
 msgstr "Como vem de fábrica: papel quente, texto em tinta, acento carimbo."
 
-msgid "Как в коробке: холодный нейтральный и спокойный акцент."
-msgstr "Como vem de fábrica: um neutro frio e um destaque discreto."
-
 msgid "Как в системе"
 msgstr "Como no sistema"
-
-msgid "Как подключить"
-msgstr "Como ativar"
 
 msgid "Как сайт"
 msgstr "Como o site"
@@ -980,9 +863,6 @@ msgstr "Imagem para celular"
 msgid "Карточка тайтла"
 msgstr "Ficha da obra"
 
-msgid "Карточки, кнопки и поля. Ноль — строгие прямые углы."
-msgstr "Cartões, botões e campos. Zero significa cantos retos."
-
 msgid "Каталог"
 msgstr "Catálogo"
 
@@ -1010,9 +890,6 @@ msgstr "Clássica (Palatino)"
 msgid "Книжная антиква (Sitka Banner)"
 msgstr "Serifada de livro (Sitka Banner)"
 
-msgid "Книжный"
-msgstr "De livro"
-
 msgid "Книжный (Sitka Text)"
 msgstr "De livro (Sitka Text)"
 
@@ -1021,9 +898,6 @@ msgstr "O botão «Publicar e começar o próximo» mantém o ritmo. Cada capít
 
 msgid "Когда что выходит"
 msgstr "O que sai e quando"
-
-msgid "Коины, PLUS, медали рейтинга."
-msgstr "Moedas, PLUS, medalhas de ranking."
 
 msgid "Колонки виджетов в подвале (вместо меню)."
 msgstr "Colunas de widgets no rodapé (em vez do menu)."
@@ -1103,14 +977,8 @@ msgstr "Logins separados por vírgula. Cada um poderá adicionar e editar os cap
 msgid "Логины через запятую. Каждый сможет добавлять и править главы этого проекта."
 msgstr "Logins separados por vírgula. Cada um poderá adicionar e editar os capítulos deste projeto."
 
-msgid "Лучшая серия"
-msgstr "Melhor sequência"
-
 msgid "Лучшее на площадке — по оценке читателей, по числу просмотров и по объёму. Пересчитывается автоматически."
 msgstr "O melhor da plataforma — por nota dos leitores, por visualizações e por tamanho. Recalculado automaticamente."
-
-msgid "Лучшие комментарии"
-msgstr "Melhores comentários"
 
 msgid "Любой регистр"
 msgstr "Ignorar maiúsculas"
@@ -1207,9 +1075,6 @@ msgstr "Ao topo"
 
 msgid "Над проектом"
 msgstr "Equipe do projeto"
-
-msgid "Над проектом работают"
-msgstr "Quem trabalha no projeto"
 
 msgid "Надпись на кнопке"
 msgstr "Texto do botão"
@@ -1397,9 +1262,6 @@ msgstr "Nenhum comentário recebeu reação ainda."
 msgid "Ниже ещё %d"
 msgstr "Mais %d abaixo"
 
-msgid "Никаких промо-блоков в читалке — только текст, полоса прогресса и ваши настройки."
-msgstr "Nenhum bloco promocional no leitor — só o texto, a barra de progresso e as suas configurações."
-
 msgid "Никого не нашлось."
 msgstr "Ninguém foi encontrado."
 
@@ -1448,17 +1310,11 @@ msgstr "Notícias da plataforma, análises de obras e notas dos tradutores."
 msgid "Новые аккаунты сейчас не создаются. Если учётная запись уже есть — войдите."
 msgstr "No momento não é possível criar contas. Se você já tem uma, entre."
 
-msgid "Новые главы"
-msgstr "Novos capítulos"
-
 msgid "Новый проект"
 msgstr "Novo projeto"
 
 msgid "Новых за месяц"
 msgstr "Novas no mês"
-
-msgid "Новых тайтлов за месяц"
-msgstr "Novas obras no mês"
 
 msgid "Ноль скруглений, ноль теней, узкая колонка. Только текст."
 msgstr "Sem cantos, sem sombras, coluna estreita. Só texto."
@@ -1523,9 +1379,6 @@ msgstr "Responder"
 msgid "Обсудить главу"
 msgstr "Discutir o capítulo"
 
-msgid "Обсуждают главы"
-msgstr "Capítulos em discussão"
-
 msgid "Обсуждение"
 msgstr "Discussão"
 
@@ -1552,9 +1405,6 @@ msgstr "Uma linha sob o nome: «tradutor de coreano», «escrevo dark fantasy».
 
 msgid "Одна-две фразы для карточки в каталоге"
 msgstr "Uma ou duas frases para a ficha no catálogo"
-
-msgid "Описание"
-msgstr "Descrição"
 
 msgid "Описание пока не заполнено."
 msgstr "Ainda não há descrição."
@@ -1640,12 +1490,6 @@ msgstr "Desfazer"
 msgid "Отметок"
 msgstr "Reações"
 
-msgid "Отметок собрано"
-msgstr "Reações recebidas"
-
-msgid "Отмечайте главы как PLUS — они видны в оглавлении с замком и открываются подписчикам."
-msgstr "Marque capítulos como PLUS — eles aparecem no índice com um cadeado e abrem para os assinantes."
-
 msgid "Отмечайте главы как ранний доступ — в оглавлении они видны с замком и открываются позже или по покупке."
 msgstr "Marque capítulos como acesso antecipado: no índice aparecem com cadeado e abrem depois, ou na compra."
 
@@ -1654,9 +1498,6 @@ msgstr "Enviar"
 
 msgid "Отправить на модерацию"
 msgstr "Enviar para moderação"
-
-msgid "Отредактируйте эту страницу в админке и опишите здесь свои условия: стоимость, способы оплаты и как выдаётся доступ. Тема показывает главы с отметкой PLUS только вошедшим пользователям — остальное определяете вы."
-msgstr "Edite esta página no admin e descreva aqui as suas condições: preço, formas de pagamento e como o acesso é liberado. O tema mostra os capítulos marcados com PLUS apenas para quem entrou na conta — o resto é com você."
 
 msgid "Оттенок нейтральных"
 msgstr "Matiz dos neutros"
@@ -1675,9 +1516,6 @@ msgstr "Nota (0–5)"
 
 msgid "Оценка взвешенная: пока у тайтла меньше %s голосов, его средняя подтягивается к средней по площадке. Так одна пятёрка не обгоняет сотню честных оценок."
 msgstr "A nota é ponderada: enquanto a obra não tem %s votos, sua média é puxada para a média do site. Assim um único cinco não passa à frente de cem votos honestos."
-
-msgid "Оценки и рейтинги"
-msgstr "Notas e rankings"
 
 msgid "Очередь на проверку"
 msgstr "Fila de revisão"
@@ -1757,26 +1595,14 @@ msgstr "Blocos de convite"
 msgid "Плотнее"
 msgstr "Mais junto"
 
-msgid "Площадка в цифрах"
-msgstr "A plataforma em números"
-
 msgid "Пн"
 msgstr "Seg"
 
 msgid "По алфавиту"
 msgstr "Por ordem alfabética"
 
-msgid "По комментариям"
-msgstr "Por comentários"
-
 msgid "По обновлению"
 msgstr "Por atualização"
-
-msgid "По одному на строку, «Название|адрес». В читалке появится выбор сервера, с которого грузить страницы: хранилище может тормозить или быть недоступно из чьей-то сети, и читатель переключится сам. Зеркало предлагается только тем главам, что выгружены целиком."
-msgstr "Um por linha, “Nome|endereço”. O leitor ganha a escolha do servidor de onde carregar as páginas: o armazenamento pode estar lento ou inacessível a partir da rede de alguém, e o leitor troca por conta própria. Um espelho só é oferecido para capítulos totalmente enviados."
-
-msgid "По отметкам"
-msgstr "Por reações"
 
 msgid "По оценке"
 msgstr "Por nota"
@@ -1799,29 +1625,14 @@ msgstr "Rodapé"
 msgid "Поддержать"
 msgstr "Apoiar"
 
-msgid "Поддержка авторов и переводчиков"
-msgstr "Apoio a autores e tradutores"
-
 msgid "Поддержка от читателей"
 msgstr "Apoio dos leitores"
-
-msgid "Поддержка переводчиков"
-msgstr "Apoio aos tradutores"
 
 msgid "Поделиться"
 msgstr "Compartilhar"
 
 msgid "Подзаголовок"
 msgstr "Subtítulo"
-
-msgid "Подключить PLUS"
-msgstr "Assinar o PLUS"
-
-msgid "Подписка для тех, кто читает много и хочет, чтобы любимые переводы выходили дальше. Ранний доступ к главам и прямая поддержка авторов."
-msgstr "Assinatura para quem lê muito e quer que as traduções favoritas continuem saindo. Acesso antecipado aos capítulos e apoio direto aos autores."
-
-msgid "Подписка — прямая помощь тем, кто ведёт ваши тайтлы и держит расписание выхода."
-msgstr "A assinatura é ajuda direta para quem toca as suas obras e mantém o calendário de lançamentos."
 
 msgid "Подробнее"
 msgstr "Saiba mais"
@@ -1834,9 +1645,6 @@ msgstr "Busca"
 
 msgid "Поиск по главам"
 msgstr "Busca nos capítulos"
-
-msgid "Поиск по главам…"
-msgstr "Buscar nos capítulos…"
 
 msgid "Поиск по голосам устройства"
 msgstr "Filtrar vozes deste dispositivo"
@@ -1889,17 +1697,11 @@ msgstr "Aparece na vitrine, na busca e na ficha da obra."
 msgid "Показывается на странице новеллы под блоком информации."
 msgstr "Aparece na página da novel, abaixo do bloco de informações."
 
-msgid "Показывается на странице тайтла под заголовком «Описание»."
-msgstr "Aparece na página da obra, sob o título «Descrição»."
-
 msgid "Полное описание"
 msgstr "Descrição completa"
 
 msgid "Полноценный редактор с картинками и вставкой из Word. Черновик сохраняется в браузере, пока вы печатаете."
 msgstr "Um editor de verdade, com imagens e colagem vinda do Word. O rascunho fica salvo no navegador enquanto você digita."
-
-msgid "Полноэкранная читалка и её настройки"
-msgstr "Leitor em tela cheia e suas configurações"
 
 msgid "Положение текста"
 msgstr "Posição do texto"
@@ -1915,9 +1717,6 @@ msgstr "Usuários"
 
 msgid "Пользователи"
 msgstr "Usuários"
-
-msgid "Пользователи и PLUS"
-msgstr "Usuários e PLUS"
 
 msgid "Пользователи и роли"
 msgstr "Usuários e papéis"
@@ -1939,9 +1738,6 @@ msgstr "Populares"
 
 msgid "Популярные жанры"
 msgstr "Gêneros populares"
-
-msgid "Популярные комиксы"
-msgstr "Quadrinhos populares"
 
 msgid "Порядок"
 msgstr "Ordem"
@@ -2147,9 +1943,6 @@ msgstr "Sexta-feira"
 msgid "Работает на теме XIN-Com"
 msgstr "Feito com o tema XIN-Com"
 
-msgid "Разговор с теми, кто читает рядом: обсуждения, отметки и то, что происходит прямо сейчас."
-msgstr "Uma conversa com quem lê ao seu lado: discussões, reações e o que está acontecendo agora."
-
 msgid "Раздел"
 msgstr "Seção"
 
@@ -2179,30 +1972,6 @@ msgstr "Quebra de cena"
 
 msgid "Ранний доступ"
 msgstr "Acesso antecipado"
-
-msgid "Ранний доступ (PLUS)"
-msgstr "Acesso antecipado (PLUS)"
-
-msgid "Ранний доступ PLUS"
-msgstr "Acesso antecipado PLUS"
-
-msgid "Ранний доступ к главам"
-msgstr "Acesso antecipado aos capítulos"
-
-msgid "Ранний доступ к главам с отметкой PLUS"
-msgstr "Acesso antecipado aos capítulos marcados com PLUS"
-
-msgid "Ранний доступ к главам, закрытые релизы и поддержка любимых переводчиков."
-msgstr "Acesso antecipado aos capítulos, lançamentos fechados e apoio aos tradutores favoritos."
-
-msgid "Ранний доступ открывается подписчикам PLUS. Так команда перевода получает поддержку раньше остальных."
-msgstr "O acesso antecipado é para assinantes PLUS. É assim que a equipe de tradução recebe apoio primeiro."
-
-msgid "Ранний доступ открывается подписчикам PLUS. Так переводчик получает поддержку раньше остальных."
-msgstr "O acesso antecipado abre para os assinantes PLUS. Assim o tradutor recebe apoio antes dos demais."
-
-msgid "Ранний доступ: PLUS или покупка"
-msgstr "Acesso antecipado: PLUS ou compra"
 
 msgid "Ранний доступ: только команда проекта или покупка"
 msgstr "Acesso antecipado: só a equipe do projeto, ou compra"
@@ -2249,9 +2018,6 @@ msgstr "As respostas que geraram retorno. As longas são cortadas."
 msgid "Роли со скачиванием"
 msgstr "Funções que podem baixar"
 
-msgid "Роли, доступ PLUS, очередь на проверку и настройки площадки — здесь, без админки WordPress."
-msgstr "Papéis, acesso PLUS, fila de revisão e configurações da plataforma ficam aqui, sem o admin do WordPress."
-
 msgid "Роли, очередь на проверку и настройки площадки — здесь, без админки WordPress."
 msgstr "Papéis, fila de revisão e ajustes do site — aqui, sem o painel do WordPress."
 
@@ -2267,17 +2033,8 @@ msgstr "Perto do atual: %1$d %2$s de %3$d."
 msgid "С возвращением"
 msgstr "Que bom ter você de volta"
 
-msgid "С доступом PLUS"
-msgstr "Com acesso PLUS"
-
 msgid "С засечками"
 msgstr "Com serifa"
-
-msgid "С ответами"
-msgstr "Mais respondidos"
-
-msgid "С отметками"
-msgstr "Mais reagidos"
 
 msgid "С чего начинает новый читатель. Свои настройки он всё равно может задать сам."
 msgstr "Por onde um leitor novo começa. Ele ainda pode ajustar do seu jeito."
@@ -2287,12 +2044,6 @@ msgstr "Site"
 
 msgid "Самые любимые"
 msgstr "Os mais queridos"
-
-msgid "Самый плодовитый автор"
-msgstr "Autor mais prolífico"
-
-msgid "Самый читаемый тайтл"
-msgstr "Obra mais lida"
 
 msgid "Сб"
 msgstr "Sáb"
@@ -2321,9 +2072,6 @@ msgstr "Publicações recentes de todo o site."
 msgid "Свежие тайтлы на площадке"
 msgstr "Obras recentes na plataforma"
 
-msgid "Свернуть"
-msgstr "Recolher"
-
 msgid "Светлая"
 msgstr "Clara"
 
@@ -2350,9 +2098,6 @@ msgstr "Em alta agora"
 
 msgid "Сейчас загружена:"
 msgstr "Agora está carregada:"
-
-msgid "Сейчас читают"
-msgstr "Lendo agora"
 
 msgid "Семь человек, вокруг которых больше всего разговора. Шкала показывает долю от первого места."
 msgstr "As sete pessoas em torno de quem gira a conversa. A barra mostra a parcela do primeiro lugar."
@@ -2387,14 +2132,8 @@ msgstr "Baixar"
 msgid "Скачивание книг"
 msgstr "Download de livros"
 
-msgid "Скачивание книг входит в доступ PLUS."
-msgstr "O download faz parte do acesso PLUS."
-
 msgid "Скачивание книг доступно не всем посетителям. Войдите в аккаунт."
 msgstr "O download não está aberto a todos os visitantes. Entre na sua conta."
-
-msgid "Скачивание книг открыто по доступу PLUS и отдельным ролям площадки."
-msgstr "O download está aberto com acesso PLUS e a algumas funções do site."
 
 msgid "Скачивание книг открыто только отдельным ролям площадки."
 msgstr "O download está aberto apenas a algumas funções do site."
@@ -2491,9 +2230,6 @@ msgstr "Mais novos primeiro"
 
 msgid "Сначала первые"
 msgstr "Do início"
-
-msgid "Снять"
-msgstr "Remover"
 
 msgid "Соавторы и переводчики"
 msgstr "Coautores e tradutores"
@@ -2618,9 +2354,6 @@ msgstr "Esquema padrão"
 msgid "Счётчик растёт сам; поле — для переноса статистики."
 msgstr "O contador sobe sozinho; o campo serve para migrar estatísticas."
 
-msgid "Таблица лидеров"
-msgstr "Placar"
-
 msgid "Тайтл"
 msgstr "Obra"
 
@@ -2696,14 +2429,8 @@ msgstr "Somente para as funções selecionadas"
 msgid "Только на устройстве"
 msgstr "Somente no dispositivo"
 
-msgid "Только с доступом PLUS"
-msgstr "Somente com acesso PLUS"
-
 msgid "Только системные стеки — ничего не грузится со стороны."
 msgstr "Apenas pilhas do sistema — nada é carregado de fora."
-
-msgid "Только что обновились"
-msgstr "Atualizados agora"
 
 msgid "Тон"
 msgstr "Tom"
@@ -2731,12 +2458,6 @@ msgstr "Três dias seguidos"
 
 msgid "Тёмная"
 msgstr "Escura"
-
-msgid "Тёмная схема по умолчанию, глубокие тени, ночная бумага."
-msgstr "Esquema escuro por padrão, sombras profundas, papel noturno."
-
-msgid "Тёплый белый, засечки, широкая колонка — ближе к книге."
-msgstr "Branco quente, serifas, coluna larga — mais perto de um livro."
 
 msgid "У вас уже есть текст — площадке остаётся его показать. Заведите проект и посмотрите, как он выглядит в каталоге."
 msgstr "Você já tem o texto — à plataforma resta mostrá-lo. Crie um projeto e veja como ele fica no catálogo."
@@ -2789,20 +2510,11 @@ msgstr "Estreita"
 msgid "Узко"
 msgstr "Estreito"
 
-msgid "Узнать больше"
-msgstr "Saiba mais"
-
 msgid "Узнать как"
 msgstr "Ver como"
 
 msgid "Управление чтением"
 msgstr "Controles de leitura"
-
-msgid "Уровень"
-msgstr "Nível"
-
-msgid "Уровень %s"
-msgstr "Nível %s"
 
 msgid "Участник"
 msgstr "Colaborador"
@@ -2821,9 +2533,6 @@ msgstr "Arquivo grande demais: o servidor recusou o envio inteiro. Reduza a capa
 
 msgid "Фильтр"
 msgstr "Filtro"
-
-msgid "Фон, рамки и текст строятся из одного тона. 220 — холодный графит."
-msgstr "Fundo, bordas e texto saem de um mesmo matiz. 220 é grafite frio."
 
 msgid "Фон, рамки и текст строятся из одного тона. 34 — тёплая бумага, 220 — холодный графит."
 msgstr "Fundo, bordas e texto saem de um mesmo matiz. 34 é papel quente, 220 é grafite frio."
@@ -2882,9 +2591,6 @@ msgstr "Chat da comunidade"
 msgid "Чем заменить"
 msgstr "Trocar por"
 
-msgid "Чернила"
-msgstr "Tinta"
-
 msgid "Чернильный"
 msgstr "Tinta"
 
@@ -2897,14 +2603,8 @@ msgstr "Quinta-feira"
 msgid "Четыре шага до первой главы"
 msgstr "Quatro passos até o primeiro capítulo"
 
-msgid "Чистое чтение"
-msgstr "Leitura limpa"
-
 msgid "Читает"
 msgstr "Lendo"
-
-msgid "Читается %s"
-msgstr "Leitura %s"
 
 msgid "Читалка"
 msgstr "Leitor"
@@ -2927,9 +2627,6 @@ msgstr "Ler"
 msgid "Читать дальше"
 msgstr "Continuar lendo"
 
-msgid "Читать каталог"
-msgstr "Ver o catálogo"
-
 msgid "Читать полностью"
 msgstr "Ler tudo"
 
@@ -2944,9 +2641,6 @@ msgstr "Ler o artigo"
 
 msgid "Читают чаще всего"
 msgstr "Os mais lidos"
-
-msgid "Членство PLUS"
-msgstr "Assinatura PLUS"
 
 msgid "Чт"
 msgstr "Qui"
@@ -2963,15 +2657,6 @@ msgstr "Três dias seguidos de leitura"
 msgid "Чтение тридцать дней подряд"
 msgstr "Trinta dias seguidos de leitura"
 
-msgid "Что входит"
-msgstr "O que está incluído"
-
-msgid "Что даёт PLUS"
-msgstr "O que o PLUS oferece"
-
-msgid "Что даёт членство"
-msgstr "O que a assinatura oferece"
-
 msgid "Что заменить"
 msgstr "O que trocar"
 
@@ -2986,9 +2671,6 @@ msgstr "O que você acha? ||assim se esconde um spoiler||"
 
 msgid "Что читают сейчас"
 msgstr "O que estão lendo agora"
-
-msgid "Чтобы увидеть свои цифры, %s."
-msgstr "Para ver seus números, %s."
 
 msgid "Чтобы участвовать в обсуждении, войдите в аккаунт."
 msgstr "Para participar da discussão, entre na sua conta."
@@ -3050,9 +2732,6 @@ msgstr "Este é o último capítulo publicado"
 msgid "Это последняя выложенная глава. Дальше — ждать выхода следующей."
 msgstr "Este é o último capítulo publicado. Daqui em diante, é esperar o próximo."
 
-msgid "Это последняя глава"
-msgstr "Este é o último capítulo"
-
 msgid "Этот абзац"
 msgstr "Este parágrafo"
 
@@ -3086,17 +2765,11 @@ msgstr "em alta"
 msgid "ваш профиль"
 msgstr "seu perfil"
 
-msgid "ваш уровень"
-msgstr "seu nível"
-
 msgid "ведёт проект"
 msgstr "toca o projeto"
 
 msgid "визитка"
 msgstr "cartão de visita"
-
-msgid "войдите"
-msgstr "entre"
 
 msgid "войдёте"
 msgstr "entrar"
@@ -3118,9 +2791,6 @@ msgstr "capítulo"
 
 msgid "глава %1$s · %2$s"
 msgstr "capítulo %1$s · %2$s"
-
-msgid "глава %s"
-msgstr "capítulo %s"
 
 msgid "главы"
 msgstr "capítulos"
@@ -3152,9 +2822,6 @@ msgstr "dias seguidos"
 msgid "дня"
 msgstr "dias"
 
-msgid "до %s"
-msgstr "até %s"
-
 msgid "доска"
 msgstr "quadro"
 
@@ -3166,9 +2833,6 @@ msgstr "substituir por"
 
 msgid "из %d"
 msgstr "de %d"
-
-msgid "истёк"
-msgstr "expirado"
 
 msgid "как в тексте"
 msgstr "como está no texto"
@@ -3208,9 +2872,6 @@ msgstr "minuto"
 
 msgid "минуты"
 msgstr "minutos"
-
-msgid "навсегда"
-msgstr "para sempre"
 
 msgid "найти"
 msgstr "localizar"
@@ -3290,9 +2951,6 @@ msgstr "por comentários"
 msgid "по отметкам"
 msgstr "por reações"
 
-msgid "по подписке"
-msgstr "por assinatura"
-
 msgid "постранично, слева направо"
 msgstr "página a página, da esquerda para a direita"
 
@@ -3332,9 +2990,6 @@ msgstr "maiúsculas"
 msgid "рейтинг"
 msgstr "ranking"
 
-msgid "рекомендуем"
-msgstr "recomendamos"
-
 msgid "реплик"
 msgstr "respostas"
 
@@ -3344,23 +2999,14 @@ msgstr "com respostas"
 msgid "с отметками"
 msgstr "com reações"
 
-msgid "свежее"
-msgstr "recentes"
-
 msgid "синхронизация %s"
 msgstr "sincronizado %s"
 
 msgid "система, культивация, перерождение"
 msgstr "sistema, cultivo, renascimento"
 
-msgid "слов"
-msgstr "palavras"
-
 msgid "справка"
 msgstr "ajuda"
-
-msgid "сравнение"
-msgstr "comparação"
 
 msgid "статей"
 msgstr "artigos"
@@ -3382,15 +3028,6 @@ msgstr "texto ajeitado"
 
 msgid "только что"
 msgstr "agora mesmo"
-
-msgid "уже в раннем доступе"
-msgstr "já em acesso antecipado"
-
-msgid "уровень %s"
-msgstr "nível %s"
-
-msgid "условия задаёт площадка"
-msgstr "as condições são definidas pela plataforma"
 
 msgid "целиком"
 msgstr "inteira"
@@ -3415,12 +3052,6 @@ msgstr "está lendo “%1$s”, capítulo %2$s"
 
 msgid "читателей"
 msgstr "leitores"
-
-msgid "читают сейчас"
-msgstr "lendo agora"
-
-msgid "членство"
-msgstr "assinatura"
 
 msgid "что вы получаете"
 msgstr "o que você recebe"

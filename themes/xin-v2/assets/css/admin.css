@@ -1,0 +1,233 @@
+/* ============================================================
+   XIN-V2 — админка
+   Не перекрашиваем wp-admin целиком: правим только свои экраны
+   и списки тайтлов и глав.
+   ============================================================ */
+
+.xv-admin {
+  --xv-a-bg: #f6f5f2;
+  --xv-a-surface: #ffffff;
+  --xv-a-border: #e2ded6;
+  --xv-a-text: #1a1815;
+  --xv-a-text-2: #57534b;
+  --xv-a-muted: #857f75;
+  --xv-a-accent: #3d4f8a;
+  --xv-a-display: "Playfair Display", Georgia, serif;
+  --xv-a-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+.xv-admin-title {
+  font-family: var(--xv-a-display);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  color: var(--xv-a-text);
+  margin: 8px 0 4px;
+}
+
+.xv-admin-lede {
+  color: var(--xv-a-muted);
+  font-size: 13.5px;
+  margin: 0 0 22px;
+}
+
+/* ── Показатели ─────────────────────────────────────────── */
+
+.xv-admin-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  border: 1px solid var(--xv-a-border);
+  border-radius: 8px;
+  background: var(--xv-a-surface);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.xv-admin-tile {
+  padding: 16px 18px;
+  border-right: 1px solid var(--xv-a-border);
+}
+
+.xv-admin-tile:last-child { border-right: 0; }
+
+.xv-admin-tile-label {
+  display: block;
+  font-family: var(--xv-a-mono);
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--xv-a-muted);
+  margin-bottom: 8px;
+}
+
+.xv-admin-tile-value {
+  display: block;
+  font-family: var(--xv-a-display);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--xv-a-text);
+}
+
+.xv-admin-tile-note {
+  display: block;
+  margin-top: 7px;
+  font-size: 11.5px;
+  color: var(--xv-a-muted);
+}
+
+/* ── Карточки ───────────────────────────────────────────── */
+
+.xv-admin-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.xv-admin-card {
+  background: var(--xv-a-surface);
+  border: 1px solid var(--xv-a-border);
+  border-radius: 8px;
+  padding: 18px 20px 8px;
+}
+
+.xv-admin-card h2 {
+  font-family: var(--xv-a-display);
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+  color: var(--xv-a-text);
+  margin: 0 0 3px;
+  padding: 0;
+}
+
+.xv-admin-card-sub {
+  font-size: 12px;
+  color: var(--xv-a-muted);
+  margin: 0 0 14px;
+}
+
+.xv-admin-empty {
+  color: var(--xv-a-muted);
+  font-size: 13px;
+  padding: 12px 0 18px;
+}
+
+.xv-admin-top {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+
+.xv-admin-top li {
+  display: grid;
+  grid-template-columns: 20px 32px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  border-top: 1px solid var(--xv-a-border);
+  margin: 0;
+}
+
+.xv-admin-top-num {
+  font-family: var(--xv-a-display);
+  font-size: 15px;
+  color: var(--xv-a-muted);
+  text-align: center;
+}
+
+.xv-admin-top-cover {
+  width: 32px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #eae6de;
+  display: block;
+}
+
+.xv-admin-top-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.xv-admin-top-body { min-width: 0; }
+
+.xv-admin-top-body a {
+  display: block;
+  font-weight: 600;
+  color: var(--xv-a-text);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xv-admin-top-body a:hover { color: var(--xv-a-accent); }
+
+.xv-admin-top-meta {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--xv-a-mono);
+  font-size: 11px;
+  color: var(--xv-a-muted);
+}
+
+.xv-admin-top-views {
+  font-family: var(--xv-a-mono);
+  font-size: 12px;
+  color: var(--xv-a-text-2);
+}
+
+.xv-admin-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.xv-admin-feed li {
+  padding: 9px 0;
+  border-top: 1px solid var(--xv-a-border);
+  margin: 0;
+}
+
+.xv-admin-feed a {
+  font-weight: 600;
+  color: var(--xv-a-text);
+  text-decoration: none;
+}
+
+.xv-admin-feed a:hover { color: var(--xv-a-accent); }
+
+.xv-admin-feed-meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--xv-a-muted);
+}
+
+.xv-admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.xv-admin-form { max-width: 720px; }
+
+/* ── Списки тайтлов и глав ──────────────────────────────── */
+
+.post-type-novel .column-xv_chapters,
+.post-type-novel .column-xv_views,
+.post-type-novel .column-xv_rating,
+.post-type-chapter .column-xv_number,
+.post-type-chapter .column-xv_lock {
+  width: 90px;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.post-type-chapter .column-xv_novel { width: 22%; }
+
+.xv-meta p { margin-bottom: 12px; }
+.xv-meta label strong { display: block; margin-bottom: 4px; font-weight: 600; }
+.xv-meta .description { display: block; margin-top: 4px; }
+
+@media (max-width: 782px) {
+  .xv-admin-tile { border-right: 0; border-bottom: 1px solid var(--xv-a-border); }
+  .xv-admin-cols { grid-template-columns: 1fr; }
+}

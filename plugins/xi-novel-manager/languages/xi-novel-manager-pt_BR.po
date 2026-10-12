@@ -1,7 +1,7 @@
 # Brazilian Portuguese translation for the XIN-Com project.
 msgid ""
 msgstr ""
-"Project-Id-Version: XIN-Com — bulk management 0.9.0-beta\n"
+"Project-Id-Version: XIN-Com — bulk management 2.0.0\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10,9 +10,6 @@ msgstr ""
 
 msgid "18+"
 msgstr "18+"
-
-msgid "XIN-Com — управление тайтлами"
-msgstr "XIN-Com — gerenciamento de títulos"
 
 msgid "Авторство"
 msgstr "Autoria"
@@ -37,9 +34,6 @@ msgstr "Restaurar da lixeira"
 
 msgid "Все главы — ранний доступ"
 msgstr "Todos os capítulos em acesso antecipado"
-
-msgid "Все главы — ранний доступ PLUS"
-msgstr "Todos os capítulos — acesso antecipado PLUS"
 
 msgid "Выберите действие."
 msgstr "Escolha uma ação."
@@ -104,9 +98,6 @@ msgstr "Privados"
 msgid "Любая"
 msgstr "Qualquer"
 
-msgid "Массовое редактирование и удаление тайтлов: поиск и фильтры, жанры и метки, автор и команда, обложки, PLUS и 18+, выгрузка в CSV. Работает с типами записей темы XIN-Com."
-msgstr "Edição e exclusão de títulos em massa: busca e filtros, gêneros e etiquetas, autor e equipe, capas, PLUS e 18+, exportação em CSV. Funciona com os tipos de post do tema XIN-Com."
-
 msgid "Массовое управление"
 msgstr "Gerenciamento em massa"
 
@@ -148,9 +139,6 @@ msgstr "Nada encontrado. Tente afrouxar os filtros."
 
 msgid "Обложка"
 msgstr "Capa"
-
-msgid "Обложка и PLUS"
-msgstr "Capa e PLUS"
 
 msgid "Обложка и ранний доступ"
 msgstr "Capa e acesso antecipado"
@@ -253,9 +241,6 @@ msgstr "Marque ao menos um título primeiro."
 
 msgid "Снять 18+"
 msgstr "Tirar 18+"
-
-msgid "Снять PLUS со всех глав"
-msgstr "Tirar o PLUS de todos os capítulos"
 
 msgid "Снять ранний доступ со всех глав"
 msgstr "Tirar o acesso antecipado de todos os capítulos"
