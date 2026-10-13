@@ -28,6 +28,11 @@ if ( ! is_user_logged_in() ) {
 	return;
 }
 
+// Every signed-in member may edit their own profile without author privileges.
+if ( ! xv_can_author() && isset($_GET['view']) && sanitize_key(wp_unslash($_GET['view'])) === 'profile' ) {
+	?><div class="xv-member-page xv-member-settings"><?php xv_author_notice(); get_template_part('template-parts/author','profile'); ?></div><?php
+	get_footer(); return;
+}
 if ( ! xv_can_author() ) {
 	?>
 	<div class="xv-section">

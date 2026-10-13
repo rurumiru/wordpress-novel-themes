@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XV_VERSION', '3.0.3' );
+define( 'XV_VERSION', '3.0.4-beta.1' );
 
 /**
  * Настройка темы. Все опции живут в одном массиве, чтобы кастомайзер и
@@ -139,6 +139,9 @@ function xv_assets() {
 	wp_enqueue_style( 'xv-wuxiaworld', get_theme_file_uri( 'assets/css/wuxiaworld.css' ), array( 'xv-wuxia' ), xv_asset_ver( 'assets/css/wuxiaworld.css' ) );
 	wp_enqueue_style( 'xv-header', get_theme_file_uri( 'assets/css/site-header.css' ), array( 'xv-wuxiaworld' ), xv_asset_ver( 'assets/css/site-header.css' ) );
 	wp_enqueue_style( 'xv-polish', get_theme_file_uri( 'assets/css/interface.css' ), array( 'xv-header' ), xv_asset_ver( 'assets/css/interface.css' ) );
+	if ( is_author() || is_page_template('template-author.php') ) {
+		wp_enqueue_style('xv-member',get_theme_file_uri('assets/css/profile.css'),array('xv-polish'),xv_asset_ver('assets/css/profile.css'));
+	}
 	wp_enqueue_script('xv-interface', get_theme_file_uri('assets/js/interface.js'), array('xv-theme'), xv_asset_ver('assets/js/interface.js'), true);
 
 	wp_enqueue_script( 'xv-theme', get_theme_file_uri( 'assets/js/theme.js' ), array(), xv_asset_ver( 'assets/js/theme.js' ), true );

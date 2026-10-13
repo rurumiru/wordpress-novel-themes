@@ -1,4 +1,6 @@
-# XI Novels 3
+# XI Novels 3 — beta
+
+**Versão beta:** os downloads das versões 3.x estão temporariamente indisponíveis enquanto o desenvolvimento continua. O código-fonte está disponível para avaliação; esta ainda não é uma versão estável.
 
 **XIN-V2 é o tema principal para WordPress:** um portal de novels, catálogo visual, leitor de um capítulo por página e estúdio para autores e tradutores.
 

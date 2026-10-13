@@ -1,4 +1,6 @@
-# XI Novels 3
+# XI Novels 3 — beta
+
+**Beta:** the 3.x release downloads are temporarily unpublished while development continues. Source code is available for review; this is not a stable release.
 
 **XIN-V2 is the primary WordPress theme for XI Novels:** an illustrated novel portal, discovery catalog, single-chapter reader and frontend studio for authors and translators.
 

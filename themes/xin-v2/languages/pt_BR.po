@@ -14,9 +14,6 @@ msgstr "Página de informações"
 msgid "%1$s · %2$s"
 msgstr "%1$s · %2$s"
 
-msgid "%1$s · %2$s · %3$s"
-msgstr "%1$s · %2$s · %3$s"
-
 msgid "%1$s — %2$s"
 msgstr "%1$s — %2$s"
 
@@ -970,9 +967,6 @@ msgstr "Pedidos para virar autor"
 
 msgid "Заявок нет."
 msgstr "Nenhum pedido."
-
-msgid "Здесь появятся тайтлы этого автора."
-msgstr "Os títulos deste autor vão aparecer aqui."
 
 msgid "Из блога"
 msgstr "Do blog"
@@ -1981,6 +1975,30 @@ msgstr "Ainda não há obras"
 
 msgid "Произведение"
 msgstr "Obra"
+
+msgid "С нами с %s года"
+msgstr "Membro desde %s"
+
+msgid "Описание профиля пока не добавлено."
+msgstr "Ainda não há uma descrição de perfil."
+
+msgid "Только для вас"
+msgstr "Visível apenas para você"
+
+msgid "Ваше пространство"
+msgstr "Seu espaço"
+
+msgid "Опубликованные работы и переводы"
+msgstr "Obras e traduções publicadas"
+
+msgid "История ещё впереди"
+msgstr "Sua história ainda está por vir"
+
+msgid "Здесь появятся опубликованные произведения и переводы пользователя."
+msgstr "As obras e traduções publicadas deste membro aparecerão aqui."
+
+msgid "Произведения"
+msgstr "Obras"
 
 msgid "Локальный dev-вход"
 msgstr "Acesso ao ambiente de desenvolvimento local"

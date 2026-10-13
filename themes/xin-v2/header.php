@@ -34,7 +34,8 @@ $xv_studio=xv_author_url();
      <div class="xv-header-account-name"><?php echo esc_html(wp_get_current_user()->display_name); ?></div>
      <a href="<?php echo esc_url(xv_page_url('template-library.php')); ?>"><?php xv_the_icon('bookmark'); ?><?php esc_html_e('Моя библиотека','xin-v2'); ?></a>
      <a href="<?php echo esc_url($xv_studio); ?>"><?php xv_the_icon('pen'); ?><?php esc_html_e('Студия автора и переводчика','xin-v2'); ?></a>
-     <a href="<?php echo esc_url(add_query_arg('view','profile',$xv_studio)); ?>"><?php xv_the_icon('user'); ?><?php esc_html_e('Профиль','xin-v2'); ?></a>
+     <a href="<?php echo esc_url(get_author_posts_url(get_current_user_id())); ?>"><?php xv_the_icon('user'); ?><?php esc_html_e('Мой профиль','xin-v2'); ?></a>
+     <a href="<?php echo esc_url(add_query_arg('view','profile',$xv_studio)); ?>"><?php xv_the_icon('settings'); ?><?php esc_html_e('Настроить профиль','xin-v2'); ?></a>
      <?php if(current_user_can('manage_options')) : ?><a href="<?php echo esc_url(xv_manage_url()); ?>"><?php xv_the_icon('settings'); ?><?php esc_html_e('Управление','xin-v2'); ?></a><?php endif; ?>
      <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>"><?php xv_the_icon('close'); ?><?php esc_html_e('Выйти','xin-v2'); ?></a>
     </div>

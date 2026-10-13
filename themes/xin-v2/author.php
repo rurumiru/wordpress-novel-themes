@@ -1,108 +1,24 @@
 <?php
-/**
- * Публичная страница автора.
- *
- * @package XIN_V2
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
+/** Public member profile. @package XIN_V2 */
+if (!defined('ABSPATH')) exit;
 get_header();
-
-$xv_author = get_queried_object();
-$xv_id     = $xv_author ? (int) $xv_author->ID : 0;
-$xv_name   = xv_author_name( $xv_id );
-$xv_novels = get_posts( array(
-	'post_type'      => 'novel',
-	'post_status'    => 'publish',
-	'author'         => $xv_id,
-	'posts_per_page' => 24,
-	'no_found_rows'  => true,
-) );
-
-$xv_chapters = 0;
-$xv_views    = 0;
-
-foreach ( $xv_novels as $xv_novel ) {
-	$xv_chapters += (int) get_post_meta( $xv_novel->ID, '_xin_chapter_count', true );
-	$xv_views    += xv_get_views( $xv_novel->ID );
-}
-
-$xv_links = array_filter( array(
-	'site'     => get_user_meta( $xv_id, 'xv_site', true ),
-	'telegram' => get_user_meta( $xv_id, 'xv_telegram', true ),
-	'donate'   => get_user_meta( $xv_id, 'xv_donate', true ),
-) );
+$member=get_queried_object(); $id=$member instanceof WP_User ? (int)$member->ID : 0;
+if(!$id) { get_footer(); return; }
+$own=is_user_logged_in() && get_current_user_id()===$id;
+$authored=get_posts(['post_type'=>'novel','post_status'=>'publish','author'=>$id,'posts_per_page'=>-1,'fields'=>'ids']);
+$team=get_posts(['post_type'=>'novel','post_status'=>'publish','posts_per_page'=>-1,'fields'=>'ids','meta_query'=>[['key'=>'_xin_team','value'=>'i:'.$id.';','compare'=>'LIKE']]]);
+$team=array_filter($team,function($book)use($id){return xv_in_team($book,$id);});
+$ids=array_values(array_unique(array_merge($authored,$team)));
+$works=new WP_Query(['post_type'=>'novel','post_status'=>'publish','post__in'=>$ids ?: [0],'posts_per_page'=>12,'paged'=>max(1,(int)get_query_var('paged')),'orderby'=>'modified','order'=>'DESC']);
+$chapters=0; $views=0;
+foreach($ids as $book){$chapters+=(int)get_post_meta($book,'_xin_chapter_count',true);$views+=xv_get_views($book);}
+$role=user_can($id,'edit_others_posts')?__('Редактор','xin-v2'):(user_can($id,'edit_posts')?__('Автор','xin-v2'):__('Читатель','xin-v2'));
+$bio=get_the_author_meta('description',$id); $tagline=get_user_meta($id,'xv_tagline',true);
+$links=array_filter(['site'=>get_user_meta($id,'xv_site',true),'telegram'=>get_user_meta($id,'xv_telegram',true),'donate'=>get_user_meta($id,'xv_donate',true)]);
 ?>
-
-<div class="xv-section xv-section-wide">
-	<header class="xv-profile-head">
-		<?php echo xv_avatar( $xv_id, 92 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-
-		<div class="xv-profile-main">
-			<h1 class="xv-profile-name"><?php echo esc_html( $xv_name ); ?></h1>
-
-			<?php $xv_tagline = get_user_meta( $xv_id, 'xv_tagline', true ); ?>
-			<?php if ( $xv_tagline ) : ?>
-				<p class="xv-profile-tagline"><?php echo esc_html( $xv_tagline ); ?></p>
-			<?php endif; ?>
-
-			<p class="xv-profile-facts">
-				<?php
-				printf(
-					/* translators: 1: тайтлы, 2: главы, 3: просмотры — каждое уже со своим словом. */
-					esc_html__( '%1$s · %2$s · %3$s', 'xin-v2' ),
-					esc_html( xv_counted( count( $xv_novels ), xv_label_titles( count( $xv_novels ) ) ) ),
-					esc_html( xv_counted( $xv_chapters, xv_label_chapters( $xv_chapters ) ) ),
-					esc_html( xv_num( $xv_views ) . ' ' . xv_label_views( $xv_views ) )
-				);
-				?>
-			</p>
-
-			<?php if ( $xv_links ) : ?>
-				<div class="xv-profile-links">
-					<?php if ( ! empty( $xv_links['site'] ) ) : ?>
-						<a class="xv-btn sm" href="<?php echo esc_url( $xv_links['site'] ); ?>" rel="nofollow noopener" target="_blank"><?php xv_the_icon( 'link' ); ?><?php esc_html_e( 'Сайт', 'xin-v2' ); ?></a>
-					<?php endif; ?>
-					<?php if ( ! empty( $xv_links['telegram'] ) ) : ?>
-						<a class="xv-btn sm" href="<?php echo esc_url( 'https://t.me/' . ltrim( $xv_links['telegram'], '@' ) ); ?>" rel="nofollow noopener" target="_blank"><?php xv_the_icon( 'telegram' ); ?>Telegram</a>
-					<?php endif; ?>
-					<?php if ( ! empty( $xv_links['donate'] ) ) : ?>
-						<a class="xv-btn sm" href="<?php echo esc_url( $xv_links['donate'] ); ?>" rel="nofollow noopener" target="_blank"><?php xv_the_icon( 'heart' ); ?><?php esc_html_e( 'Поддержать', 'xin-v2' ); ?></a>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-		</div>
-
-		<?php if ( get_current_user_id() === $xv_id && xv_author_url() ) : ?>
-			<a class="xv-btn" href="<?php echo esc_url( xv_author_url( array( 'view' => 'profile' ) ) ); ?>">
-				<?php xv_the_icon( 'settings' ); ?><?php esc_html_e( 'Настроить профиль', 'xin-v2' ); ?>
-			</a>
-		<?php endif; ?>
-	</header>
-
-	<?php $xv_bio = get_the_author_meta( 'description', $xv_id ); ?>
-	<?php if ( $xv_bio ) : ?>
-		<div class="xv-profile-bio xv-prose"><?php echo wp_kses_post( wpautop( $xv_bio ) ); ?></div>
-	<?php endif; ?>
-
-	<?php if ( $xv_novels ) : ?>
-		<section class="xv-profile-works">
-			<?php xv_section_head( array( 'title' => __( 'Работы', 'xin-v2' ) ) ); ?>
-			<div class="xv-card-row">
-				<?php foreach ( $xv_novels as $xv_novel ) : ?>
-					<?php xv_novel_card( $xv_novel->ID ); ?>
-				<?php endforeach; ?>
-			</div>
-		</section>
-	<?php else : ?>
-		<div class="xv-empty">
-			<p class="xv-empty-title"><?php esc_html_e( 'Работ пока нет', 'xin-v2' ); ?></p>
-			<p class="xv-empty-text"><?php esc_html_e( 'Здесь появятся тайтлы этого автора.', 'xin-v2' ); ?></p>
-		</div>
-	<?php endif; ?>
+<div class="xv-member-page">
+<header class="xv-member-hero"><div class="xv-member-banner" aria-hidden="true"></div><div class="xv-member-identity"><div class="xv-member-avatar"><?php echo xv_avatar($id,104); ?></div><div class="xv-member-name"><span class="xv-member-role"><?php echo esc_html($role); ?></span><h1><?php echo esc_html(xv_author_name($id)); ?></h1><?php if($tagline): ?><p><?php echo esc_html($tagline); ?></p><?php endif; ?><span class="xv-member-since"><?php printf(esc_html__('С нами с %s года','xin-v2'),esc_html(wp_date('Y',strtotime($member->user_registered)))); ?></span></div><?php if($own): ?><a class="xv-btn xv-member-edit" href="<?php echo esc_url(xv_author_url(['view'=>'profile'])); ?>"><?php xv_the_icon('settings'); ?><?php esc_html_e('Настроить профиль','xin-v2'); ?></a><?php endif; ?></div><div class="xv-member-stats"><?php foreach([[count($ids),__('Произведения','xin-v2')],[$chapters,__('Главы','xin-v2')],[$views,__('Просмотры','xin-v2')]] as $stat): ?><div><strong><?php echo esc_html(number_format_i18n($stat[0])); ?></strong><span><?php echo esc_html($stat[1]); ?></span></div><?php endforeach; ?></div></header>
+<div class="xv-member-layout"><aside class="xv-member-sidebar"><section class="xv-member-about" id="member-about"><h2><?php esc_html_e('О себе','xin-v2'); ?></h2><?php if($bio): ?><div class="xv-member-bio"><?php echo wp_kses_post(wpautop($bio)); ?></div><?php else: ?><p class="xv-member-muted"><?php esc_html_e('Описание профиля пока не добавлено.','xin-v2'); ?></p><?php endif; ?><?php if($links): ?><div class="xv-member-links"><?php foreach($links as $kind=>$url): $label=$kind==='site'?__('Сайт','xin-v2'):($kind==='donate'?__('Поддержать','xin-v2'):'Telegram'); if($kind==='telegram') $url='https://t.me/'.rawurlencode(ltrim($url,'@')); ?><a href="<?php echo esc_url($url); ?>" target="_blank" rel="nofollow noopener noreferrer"><?php xv_the_icon($kind==='donate'?'heart':'link'); ?><?php echo esc_html($label); ?><?php xv_the_icon('arrow-right'); ?></a><?php endforeach; ?></div><?php endif; ?></section><?php if($own): ?><section class="xv-member-private"><span><?php xv_the_icon('lock'); ?><?php esc_html_e('Только для вас','xin-v2'); ?></span><h2><?php esc_html_e('Ваше пространство','xin-v2'); ?></h2><a href="<?php echo esc_url(xv_page_url('template-library.php')); ?>"><?php xv_the_icon('bookmark'); ?><?php esc_html_e('Моя библиотека','xin-v2'); ?></a><?php if(xv_can_author()): ?><a href="<?php echo esc_url(xv_author_url()); ?>"><?php xv_the_icon('pen'); ?><?php esc_html_e('Творческая студия','xin-v2'); ?></a><?php endif; ?></section><?php endif; ?></aside>
+<section class="xv-member-works" id="member-works"><div class="xv-member-section-head"><h2><?php esc_html_e('Произведения','xin-v2'); ?> <span><?php echo count($ids); ?></span></h2><span><?php esc_html_e('Опубликованные работы и переводы','xin-v2'); ?></span></div><?php if($works->have_posts()): ?><div class="xv-member-books"><?php foreach($works->posts as $book) xv_novel_card($book->ID); ?></div><?php xv_pagination($works); ?><?php else: ?><div class="xv-member-empty"><?php xv_the_icon('book-open'); ?><h3><?php esc_html_e('История ещё впереди','xin-v2'); ?></h3><p><?php esc_html_e('Здесь появятся опубликованные произведения и переводы пользователя.','xin-v2'); ?></p><?php if($own && xv_can_author()): ?><a class="xv-btn primary" href="<?php echo esc_url(xv_author_url(['view'=>'novel'])); ?>"><?php esc_html_e('Новое произведение','xin-v2'); ?></a><?php else: ?><a class="xv-btn" href="<?php echo esc_url(get_post_type_archive_link('novel')); ?>"><?php esc_html_e('Открыть каталог','xin-v2'); ?></a><?php endif; ?></div><?php endif; ?></section></div>
 </div>
-
 <?php get_footer(); ?>

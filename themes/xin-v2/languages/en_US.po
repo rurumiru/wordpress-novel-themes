@@ -14,9 +14,6 @@ msgstr "Information page"
 msgid "%1$s · %2$s"
 msgstr "%1$s · %2$s"
 
-msgid "%1$s · %2$s · %3$s"
-msgstr "%1$s · %2$s · %3$s"
-
 msgid "%1$s — %2$s"
 msgstr "%1$s — %2$s"
 
@@ -970,9 +967,6 @@ msgstr "Author requests"
 
 msgid "Заявок нет."
 msgstr "No requests."
-
-msgid "Здесь появятся тайтлы этого автора."
-msgstr "This author’s titles will appear here."
 
 msgid "Из блога"
 msgstr "From the blog"
@@ -1981,6 +1975,30 @@ msgstr "No titles yet"
 
 msgid "Произведение"
 msgstr "Title"
+
+msgid "С нами с %s года"
+msgstr "Member since %s"
+
+msgid "Описание профиля пока не добавлено."
+msgstr "No profile bio yet."
+
+msgid "Только для вас"
+msgstr "Only visible to you"
+
+msgid "Ваше пространство"
+msgstr "Your space"
+
+msgid "Опубликованные работы и переводы"
+msgstr "Published works and translations"
+
+msgid "История ещё впереди"
+msgstr "Your story is still ahead"
+
+msgid "Здесь появятся опубликованные произведения и переводы пользователя."
+msgstr "This member’s published works and translations will appear here."
+
+msgid "Произведения"
+msgstr "Works"
 
 msgid "Локальный dev-вход"
 msgstr "Local development sign-in"
