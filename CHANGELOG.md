@@ -622,4 +622,3 @@ First public beta. Everything below works end to end; the presentation layer is 
 - Demo import skips unmarked titles, posts and banners when their slugs collide with demo content.
 - Centered the reader column across its text, metadata and discussion; retained the reader width settings.
 - Hidden the WordPress toolbar on frontend pages for all users; retained it in wp-admin.
-
