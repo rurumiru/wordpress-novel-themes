@@ -47,7 +47,7 @@ $xv_tabs['lost'] = __( 'Забыли пароль', 'xin-v2' );
 
 		<?php if ( 'login' === $xv_do ) : ?>
 			<?php $xv_dev_login = xv_local_dev_available() && isset($_GET['dev']); ?>
-			<?php if($xv_dev_login) : ?><div class="xv-dev-login-note"><strong>Локальный dev-вход</strong><p>Тестовый редактор <code>dev-preview</code> — студия, тайтлы и главы. Пароль находится в локальном файле <code>novelforge/tools/dev-login.json</code>.</p></div><?php endif; ?>
+			<?php if($xv_dev_login) : ?><div class="xv-dev-login-note"><strong><?php esc_html_e('Локальный dev-вход','xin-v2'); ?></strong><p><?php esc_html_e('Тестовый редактор: dev-preview. Пароль находится в локальном файле novelforge/tools/dev-login.json.','xin-v2'); ?></p></div><?php endif; ?>
 
 			<form class="xv-auth-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="xv_login">

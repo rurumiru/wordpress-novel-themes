@@ -448,7 +448,7 @@ return array(
 	'Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать.' => 'Fill this page in the admin: site rules, answers, contacts, policies — whatever readers need to know.',
 	'Например: Печать девятого неба' => 'For example: Seal of the Ninth Heaven',
 	'Настройки' => 'Settings',
-	'Настройки действуют на все правила проекта. «Слово целиком» бережёт склонения: «Чэн» не тронет «Чэня».' => 'These settings apply to every rule of the project. “Whole word” protects inflections: “Чэн” will not touch “Чэня”.',
+	'Настройки действуют на все правила проекта. «Слово целиком» бережёт склонения: «Чэн» не тронет «Чэня».' => 'These settings apply to every rule of the project. “Whole word” protects inflections: “Chen” will not match “Chena”.',
 	'Настройки проекта' => 'Project settings',
 	'Настройки профиля' => 'Profile settings',
 	'Настройки сохранены.' => 'Settings saved.',

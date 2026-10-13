@@ -141,6 +141,9 @@ function xv_counted( $n, $label ) {
 	return sprintf( '%s %s', number_format_i18n( $n ), $label );
 }
 function xv_plural( $n, $one, $few, $many ) {
+	if ( function_exists('xv_current_lang') && xv_current_lang() !== 'ru' ) {
+		return abs((int)$n) === 1 ? $one : $many;
+	}
 	$n = abs( (int) $n ) % 100;
 	$d = $n % 10;
 
@@ -719,8 +722,11 @@ function xv_update_row( $chapter ) {
 				<span class="xv-upd-title"><?php echo esc_html( get_the_title( $chapter ) ); ?></span>
 			</a>
 		</div>
-		<div class="xv-upd-author"><?php echo esc_html( xv_novel_author( $novel->ID ) ); ?></div>
-		<div class="xv-upd-time"><?php echo esc_html( $state['date'] ); ?></div>
+		<div class="xv-upd-author"><?php
+			$translator = trim( (string) get_post_meta( $novel->ID, '_xin_translator', true ) );
+			echo esc_html( $translator ?: get_the_author_meta( 'display_name', $chapter->post_author ) );
+		?></div>
+		<time class="xv-upd-time" datetime="<?php echo esc_attr( get_post_time( 'c', true, $chapter ) ); ?>" title="<?php echo esc_attr( get_the_date( 'd.m.Y H:i', $chapter ) ); ?>"><?php echo esc_html( $state['date'] ); ?></time>
 	</div>
 	<?php
 }

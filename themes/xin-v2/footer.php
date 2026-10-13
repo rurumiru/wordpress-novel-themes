@@ -71,7 +71,7 @@ $xv_brand = xv_brand();
 					$xv_pages = array_filter(array_map('get_page_by_path', array('help', 'rules', 'contacts', 'become-author')));
 					foreach ( $xv_pages as $xv_page ) :
 						?>
-						<li><a href="<?php echo esc_url( get_permalink( $xv_page ) ); ?>"><?php echo esc_html( $xv_page->post_title ); ?></a></li>
+						<li><a href="<?php echo esc_url( get_permalink( $xv_page ) ); ?>"><?php echo esc_html( xv_ui_label($xv_page->post_title) ); ?></a></li>
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>

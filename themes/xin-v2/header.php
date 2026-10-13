@@ -26,7 +26,7 @@ $xv_studio=xv_author_url();
    <button type="button" class="xv-header-icon xv-header-search-button" data-xv-search-open aria-label="<?php esc_attr_e('Поиск','xin-v2'); ?>"><?php xv_the_icon('search'); ?></button>
    <button type="button" class="xv-header-icon xv-header-theme" data-xv-theme-toggle aria-label="<?php esc_attr_e('Сменить тему','xin-v2'); ?>" aria-pressed="true"><span class="xv-theme-sun"><?php xv_the_icon('sun'); ?></span><span class="xv-theme-moon"><?php xv_the_icon('moon'); ?></span></button>
    <div class="xv-header-languages"><?php xv_lang_switcher(); ?></div>
-   <?php if (xv_local_dev_available() && !is_user_logged_in()) : ?><a class="xv-header-dev" href="<?php echo esc_url(add_query_arg('dev','1',xv_login_url($xv_studio))); ?>">Dev-вход</a><?php endif; ?>
+   <?php if (xv_local_dev_available() && !is_user_logged_in()) : ?><a class="xv-header-dev" href="<?php echo esc_url(add_query_arg('dev','1',xv_login_url($xv_studio))); ?>"><?php esc_html_e('Dev-вход','xin-v2'); ?></a><?php endif; ?>
    <?php if (is_user_logged_in()) : ?>
    <div class="xv-header-account" data-xv-drop>
     <button type="button" class="xv-header-avatar" data-xv-drop-btn aria-expanded="false" aria-controls="xv-account-menu" aria-label="<?php esc_attr_e('Профиль','xin-v2'); ?>"><?php echo xv_avatar(get_current_user_id(),34); ?></button>
@@ -66,7 +66,7 @@ $xv_studio=xv_author_url();
  <div class="xv-site-drawer-head"><a class="xv-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php xv_site_logo(); ?></a><button type="button" class="xv-header-icon" data-xv-drawer-close aria-label="<?php esc_attr_e('Закрыть','xin-v2'); ?>"><?php xv_the_icon('close'); ?></button></div>
  <nav><?php foreach($xv_nav as $item) : ?><?php if(empty($item['children'])) : ?><a href="<?php echo esc_url($item['url']); ?>"><?php xv_the_icon($item['icon']); ?><?php echo esc_html($item['label']); ?></a><?php else : ?><div class="xv-site-drawer-label"><?php echo esc_html($item['label']); ?></div><?php foreach($item['children'] as $child) : ?><a href="<?php echo esc_url($child['url']); ?>"><?php xv_the_icon($child['icon']); ?><?php echo esc_html($child['label']); ?></a><?php endforeach; endif; endforeach; ?></nav>
  <div class="xv-site-drawer-tools"><?php xv_lang_switcher(); ?><button type="button" class="xv-header-icon" data-xv-theme-toggle aria-label="<?php esc_attr_e('Сменить тему','xin-v2'); ?>"><?php xv_the_icon('sun'); ?></button></div>
- <?php if(xv_local_dev_available() && !is_user_logged_in()) : ?><a class="xv-header-dev" href="<?php echo esc_url(add_query_arg('dev','1',xv_login_url($xv_studio))); ?>">Dev-вход</a><?php endif; ?>
+ <?php if(xv_local_dev_available() && !is_user_logged_in()) : ?><a class="xv-header-dev" href="<?php echo esc_url(add_query_arg('dev','1',xv_login_url($xv_studio))); ?>"><?php esc_html_e('Dev-вход','xin-v2'); ?></a><?php endif; ?>
 </aside>
 <?php endif; ?>
 <?php if(!is_singular('chapter') && !is_page_template('template-author.php')) get_template_part('template-parts/site','announcement'); ?>

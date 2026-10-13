@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<div class="xv-section xv-section-wide">
+<div class="xv-section xv-section-wide xv-updates-page">
 	<header class="xv-page-head">
 		<h1 class="xv-page-title"><?php esc_html_e( 'Обновления', 'xin-v2' ); ?></h1>
 		<p class="xv-page-lede"><?php esc_html_e( 'Свежие главы по всем тайтлам — в порядке выхода.', 'xin-v2' ); ?></p>

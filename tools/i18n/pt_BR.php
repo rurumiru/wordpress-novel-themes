@@ -428,7 +428,7 @@ return array(
 	'Наполните эту страницу в админке: правила площадки, ответы на вопросы, контакты, политика — всё, что читателю нужно знать.' => 'Preencha esta página no admin: regras da plataforma, respostas a dúvidas, contatos, políticas — tudo o que o leitor precisa saber.',
 	'Например: Печать девятого неба' => 'Por exemplo: Selo do Nono Céu',
 	'Настройки' => 'Configurações',
-	'Настройки действуют на все правила проекта. «Слово целиком» бережёт склонения: «Чэн» не тронет «Чэня».' => 'Estas opções valem para todas as regras do projeto. «Palavra inteira» preserva as flexões: «Чэн» não mexe em «Чэня».',
+	'Настройки действуют на все правила проекта. «Слово целиком» бережёт склонения: «Чэн» не тронет «Чэня».' => 'Estas opções valem para todas as regras do projeto. «Palavra inteira» preserva as flexões: “Chen” não corresponde a “Chena”.',
 	'Настройки проекта' => 'Configurações do projeto',
 	'Настройки профиля' => 'Configurações do perfil',
 	'Настройки сохранены.' => 'Configurações salvas.',

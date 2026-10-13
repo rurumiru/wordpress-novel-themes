@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XV_VERSION', '3.0.1' );
+define( 'XV_VERSION', '3.0.3' );
 
 /**
  * Настройка темы. Все опции живут в одном массиве, чтобы кастомайзер и
@@ -151,6 +151,9 @@ function xv_assets() {
 		'loggedIn' => is_user_logged_in(),
 		'login'    => esc_url_raw( xv_login_url() ),
 		'i18n'    => array(
+			'wordCount' => __( '%1$s слов · ≈ %2$s мин чтения.', 'xin-v2' ),
+			'replyPlaceholder' => __( 'Ваш ответ…', 'xin-v2' ),
+			'reply' => __( 'Ответить', 'xin-v2' ),
 			'searchHint' => __( 'Название, автор, тег…', 'xin-v2' ),
 			'nothing'    => __( 'Ничего не нашлось', 'xin-v2' ),
 			'saved'      => __( 'Сохранено', 'xin-v2' ),

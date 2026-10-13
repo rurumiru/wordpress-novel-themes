@@ -57,3 +57,10 @@ Screenshots below are real browser renders at a 390-pixel viewport. Responsive c
 [XIN Setup 3](../plugins/xin-setup/README.md) configures pages, menus, permalinks, taxonomies and counters after activation/import. See [installation](install.md) and the [local validation report](validation-v3.md).
 
 Screenshots use a local demo database. Sample story text, imported rating/view counts and generated covers are demonstration content, not production activity. [Cover prompts and provenance](media/covers/PROMPTS.md).
+# Ranking redesign — 3.0.3
+
+The ranking page now has three highlighted leaders, a numbered list with vote counts and views, three sorting modes and a genre filter. Mobile cards use a compact layout.
+
+![Ranking](../screenshots/xin-v2-3/ranking-desktop.jpg)
+
+![Brazilian Portuguese mobile ranking](../screenshots/xin-v2-3/ranking-mobile-pt.jpg)

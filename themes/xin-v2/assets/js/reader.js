@@ -209,7 +209,7 @@
 				if (chapter.number !== '') {
 					var kicker = doc.createElement('p');
 					kicker.className = 'xv-chapter-kicker';
-					kicker.textContent = (window.xvData.i18n.chapter || 'Глава %s').replace('%s', chapter.number);
+					kicker.textContent = (window.xvData.i18n.chapter || 'Chapter %s').replace('%s', chapter.number);
 					head.appendChild(kicker);
 				}
 
@@ -308,7 +308,7 @@
 		var number = block.getAttribute('data-xv-number');
 		var heading = doc.querySelector('.xv-pia-reader-number');
 		if (heading && number !== null) {
-			heading.textContent = number === '' ? '' : ((window.xvData && window.xvData.i18n.chapter) || 'Глава %s').replace('%s', number);
+			heading.textContent = number === '' ? '' : ((window.xvData && window.xvData.i18n.chapter) || 'Chapter %s').replace('%s', number);
 		}
 
 		['prev', 'next'].forEach(function (direction) {

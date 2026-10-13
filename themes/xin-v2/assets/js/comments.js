@@ -143,10 +143,10 @@
 			form.setAttribute('data-parent', id);
 			form.innerHTML =
 				'<div class="xv-cmt-form-body">' +
-				'<textarea class="xv-textarea" rows="2" placeholder="Ваш ответ…" required></textarea>' +
+				'<textarea class="xv-textarea" rows="2" placeholder="' + ((window.xvData && window.xvData.i18n.replyPlaceholder) || 'Your reply…') + '" required></textarea>' +
 				'<div class="xv-cmt-form-foot">' +
 				'<span class="xv-cmt-form-note" data-xv-cmt-note></span>' +
-				'<button type="submit" class="xv-btn primary sm">Ответить</button>' +
+				'<button type="submit" class="xv-btn primary sm">' + ((window.xvData && window.xvData.i18n.reply) || 'Reply') + '</button>' +
 				'</div></div>';
 
 			thread.querySelector('[data-xv-cmt-children]').appendChild(form);

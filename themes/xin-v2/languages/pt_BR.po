@@ -80,6 +80,9 @@ msgstr "Todos"
 msgid "Все главы"
 msgstr "Todos os capítulos"
 
+msgid "Все жанры"
+msgstr "Todos os gêneros"
+
 msgid "Все новеллы"
 msgstr "Todas as novels"
 
@@ -186,7 +189,7 @@ msgid "Закрыть"
 msgstr "Fechar"
 
 msgid "Заморожен"
-msgstr "Congelado"
+msgstr "Em pausa"
 
 msgid "Зарегистрироваться"
 msgstr "Cadastrar"
@@ -214,6 +217,9 @@ msgstr "Quadrinhos"
 
 msgid "Комментарий не найден."
 msgstr "Comentário não encontrado."
+
+msgid "Контакты"
+msgstr "Contato"
 
 msgid "Крупнее"
 msgstr "Maior"
@@ -360,7 +366,7 @@ msgid "Отправить"
 msgstr "Enviar"
 
 msgid "Оценка"
-msgstr "Nota"
+msgstr "Avaliação"
 
 msgid "Панель управления"
 msgstr "Painel de gerência"
@@ -372,10 +378,10 @@ msgid "Перевод"
 msgstr "Tradução"
 
 msgid "По обновлению"
-msgstr "Por atualização"
+msgstr "Atualizados recentemente"
 
 msgid "По оценке"
-msgstr "Por nota"
+msgstr "Por avaliação"
 
 msgid "По просмотрам"
 msgstr "Por visualizações"
@@ -522,7 +528,7 @@ msgid "Статусы"
 msgstr "Status"
 
 msgid "Стать автором"
-msgstr "Virar autor"
+msgstr "Tornar-se autor"
 
 msgid "Страница %d"
 msgstr "Página %d"
@@ -630,7 +636,7 @@ msgid "минуты"
 msgstr "minutos"
 
 msgid "оценка"
-msgstr "nota"
+msgstr "avaliação"
 
 msgid "просмотров"
 msgstr "visualizações"
@@ -987,7 +993,7 @@ msgid "История"
 msgstr "Histórico"
 
 msgid "К содержанию"
-msgstr "Ao sumário"
+msgstr "Ir para o conteúdo"
 
 msgid "К списку глав"
 msgstr "À lista de capítulos"
@@ -1361,9 +1367,6 @@ msgstr "Editar"
 msgid "Редактор"
 msgstr "Editor"
 
-msgid "Рейтинг соберётся, как только появятся тайтлы."
-msgstr "O ranking se monta assim que houver títulos."
-
 msgid "Ровный график: команда переводит, а не ищет, на что жить."
 msgstr "Um ritmo firme: a equipe traduz em vez de procurar de que viver."
 
@@ -1514,9 +1517,6 @@ msgstr "Uma linha por termo: “termo = nota”. Linha começada com cerquilha �
 msgid "Строка о себе"
 msgstr "Uma linha sobre você"
 
-msgid "Считать пока нечего"
-msgstr "Ainda não há o que contar"
-
 msgid "Счёт откроет первый, кто дочитает главу."
 msgstr "A contagem abre com a primeira pessoa a terminar um capítulo."
 
@@ -1587,7 +1587,7 @@ msgid "Читать вслух"
 msgstr "Ler em voz alta"
 
 msgid "Читать полностью ↓"
-msgstr "Ler por inteiro ↓"
+msgstr "Ler mais ↓"
 
 msgid "Читают больше всех"
 msgstr "Quem mais lê"
@@ -1606,9 +1606,6 @@ msgstr "O que está acontecendo com a biblioteca agora."
 
 msgid "Что читают прямо сейчас"
 msgstr "O que estão lendo agora"
-
-msgid "Что читают чаще всего — и что оценили выше всего."
-msgstr "O que mais se lê — e o que recebeu as notas mais altas."
 
 msgid "Что-то пошло не так."
 msgstr "Alguma coisa deu errado."
@@ -1698,10 +1695,10 @@ msgid "отложено читать"
 msgstr "guardado para ler"
 
 msgid "оценки"
-msgstr "notas"
+msgstr "avaliações"
 
 msgid "оценок"
-msgstr "notas"
+msgstr "avaliações"
 
 msgid "по просмотрам за всё время"
 msgstr "por visualizações, de todos os tempos"
@@ -1884,7 +1881,7 @@ msgid "Откройте новую историю"
 msgstr "Descubra uma nova história"
 
 msgid "Открыть рейтинг"
-msgstr "Ver classificação"
+msgstr "Ver ranking"
 
 msgid "Открыть студию"
 msgstr "Abrir estúdio"
@@ -1908,7 +1905,7 @@ msgid "Популярные произведения"
 msgstr "Obras populares"
 
 msgid "Порядок рейтинга"
-msgstr "Ordem da classificação"
+msgstr "Ordem do ranking"
 
 msgid "Похожие произведения"
 msgstr "Obras semelhantes"
@@ -1920,7 +1917,7 @@ msgid "Предыдущая подборка"
 msgstr "Destaque anterior"
 
 msgid "Рейтинг читателей"
-msgstr "Classificação dos leitores"
+msgstr "Ranking dos leitores"
 
 msgid "Ресурсы"
 msgstr "Recursos"
@@ -1938,7 +1935,7 @@ msgid "Следующая подборка"
 msgstr "Próximo destaque"
 
 msgid "Смотреть все"
-msgstr "Ver todas"
+msgstr "Ver tudo"
 
 msgid "Создавайте главы, сохраняйте черновики и планируйте публикации прямо здесь."
 msgstr "Escreva capítulos, salve rascunhos e agende publicações aqui."
@@ -1966,3 +1963,93 @@ msgstr "Largura"
 
 msgid "Фильтры и поиск"
 msgstr "Filtros e busca"
+
+msgid "Истории, которые читают и рекомендуют. Найдите свою следующую книгу."
+msgstr "Histórias que os leitores adoram e recomendam. Encontre sua próxima leitura."
+
+msgid "Тройка лидеров"
+msgstr "Os três primeiros"
+
+msgid "Рейтинг составлен по всем опубликованным произведениям."
+msgstr "O ranking inclui todas as obras publicadas."
+
+msgid "Попробуйте выбрать другой жанр."
+msgstr "Tente escolher outro gênero."
+
+msgid "Произведений пока нет"
+msgstr "Ainda não há obras"
+
+msgid "Произведение"
+msgstr "Obra"
+
+msgid "Локальный dev-вход"
+msgstr "Acesso ao ambiente de desenvolvimento local"
+
+msgid "Тестовый редактор: dev-preview. Пароль находится в локальном файле novelforge/tools/dev-login.json."
+msgstr "Editor de teste: dev-preview. A senha está no arquivo local novelforge/tools/dev-login.json."
+
+msgid "Академия"
+msgstr "Academia"
+
+msgid "Исекай"
+msgstr "Isekai"
+
+msgid "Мистика"
+msgstr "Sobrenatural"
+
+msgid "Научная фантастика"
+msgstr "Ficção científica"
+
+msgid "Психология"
+msgstr "Psicológico"
+
+msgid "Dev-вход"
+msgstr "Acesso de desenvolvimento"
+
+msgid "Ваш ответ…"
+msgstr "Sua resposta…"
+
+msgid "%1$s слов · ≈ %2$s мин чтения."
+msgstr "%1$s palavras · ≈ %2$s min de leitura."
+
+msgid "Драма"
+msgstr "Drama"
+
+msgid "Фэнтези"
+msgstr "Fantasia"
+
+msgid "Романтика"
+msgstr "Romance"
+
+msgid "Боевик"
+msgstr "Ação"
+
+msgid "Приключения"
+msgstr "Aventura"
+
+msgid "Фантастика"
+msgstr "Ficção científica"
+
+msgid "Детектив"
+msgstr "Mistério"
+
+msgid "Триллер"
+msgstr "Suspense"
+
+msgid "Ужасы"
+msgstr "Terror"
+
+msgid "Повседневность"
+msgstr "Cotidiano"
+
+msgid "Боевые искусства"
+msgstr "Artes marciais"
+
+msgid "Сянься"
+msgstr "Xianxia"
+
+msgid "Сюаньхуань"
+msgstr "Xuanhuan"
+
+msgid "Правила"
+msgstr "Regras"

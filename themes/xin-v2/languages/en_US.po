@@ -80,6 +80,9 @@ msgstr "All"
 msgid "Все главы"
 msgstr "All chapters"
 
+msgid "Все жанры"
+msgstr "All genres"
+
 msgid "Все новеллы"
 msgstr "All novels"
 
@@ -214,6 +217,9 @@ msgstr "Comics"
 
 msgid "Комментарий не найден."
 msgstr "Comment not found."
+
+msgid "Контакты"
+msgstr "Contact"
 
 msgid "Крупнее"
 msgstr "Larger"
@@ -462,7 +468,7 @@ msgid "Редактировать новеллу"
 msgstr "Edit novel"
 
 msgid "Рейтинг"
-msgstr "Ranking"
+msgstr "Rankings"
 
 msgid "Роль изменена."
 msgstr "Role changed."
@@ -987,7 +993,7 @@ msgid "История"
 msgstr "History"
 
 msgid "К содержанию"
-msgstr "To contents"
+msgstr "Skip to content"
 
 msgid "К списку глав"
 msgstr "To the chapter list"
@@ -1361,9 +1367,6 @@ msgstr "Edit"
 msgid "Редактор"
 msgstr "Editor"
 
-msgid "Рейтинг соберётся, как только появятся тайтлы."
-msgstr "The ranking builds itself as soon as there are titles."
-
 msgid "Ровный график: команда переводит, а не ищет, на что жить."
 msgstr "A steady schedule: the team translates instead of looking for a way to get by."
 
@@ -1514,9 +1517,6 @@ msgstr "One line per term: “term = note”. A line starting with a hash is ski
 msgid "Строка о себе"
 msgstr "A line about you"
 
-msgid "Считать пока нечего"
-msgstr "Nothing to count yet"
-
 msgid "Счёт откроет первый, кто дочитает главу."
 msgstr "The count opens with the first person to finish a chapter."
 
@@ -1587,7 +1587,7 @@ msgid "Читать вслух"
 msgstr "Read aloud"
 
 msgid "Читать полностью ↓"
-msgstr "Read in full ↓"
+msgstr "Read more ↓"
 
 msgid "Читают больше всех"
 msgstr "Reading the most"
@@ -1606,9 +1606,6 @@ msgstr "What is happening to the library right now."
 
 msgid "Что читают прямо сейчас"
 msgstr "What people are reading right now"
-
-msgid "Что читают чаще всего — и что оценили выше всего."
-msgstr "What gets read the most — and what got rated the highest."
 
 msgid "Что-то пошло не так."
 msgstr "Something went wrong."
@@ -1966,3 +1963,93 @@ msgstr "Width"
 
 msgid "Фильтры и поиск"
 msgstr "Filters and search"
+
+msgid "Истории, которые читают и рекомендуют. Найдите свою следующую книгу."
+msgstr "Stories readers love and recommend. Find your next book."
+
+msgid "Тройка лидеров"
+msgstr "Top three"
+
+msgid "Рейтинг составлен по всем опубликованным произведениям."
+msgstr "Rankings include all published titles."
+
+msgid "Попробуйте выбрать другой жанр."
+msgstr "Try choosing a different genre."
+
+msgid "Произведений пока нет"
+msgstr "No titles yet"
+
+msgid "Произведение"
+msgstr "Title"
+
+msgid "Локальный dev-вход"
+msgstr "Local development sign-in"
+
+msgid "Тестовый редактор: dev-preview. Пароль находится в локальном файле novelforge/tools/dev-login.json."
+msgstr "Test editor: dev-preview. The password is in the local file novelforge/tools/dev-login.json."
+
+msgid "Академия"
+msgstr "Academy"
+
+msgid "Исекай"
+msgstr "Isekai"
+
+msgid "Мистика"
+msgstr "Supernatural"
+
+msgid "Научная фантастика"
+msgstr "Science fiction"
+
+msgid "Психология"
+msgstr "Psychological"
+
+msgid "Dev-вход"
+msgstr "Dev sign-in"
+
+msgid "Ваш ответ…"
+msgstr "Your reply…"
+
+msgid "%1$s слов · ≈ %2$s мин чтения."
+msgstr "%1$s words · ≈ %2$s min read."
+
+msgid "Драма"
+msgstr "Drama"
+
+msgid "Фэнтези"
+msgstr "Fantasy"
+
+msgid "Романтика"
+msgstr "Romance"
+
+msgid "Боевик"
+msgstr "Action"
+
+msgid "Приключения"
+msgstr "Adventure"
+
+msgid "Фантастика"
+msgstr "Science fiction"
+
+msgid "Детектив"
+msgstr "Mystery"
+
+msgid "Триллер"
+msgstr "Thriller"
+
+msgid "Ужасы"
+msgstr "Horror"
+
+msgid "Повседневность"
+msgstr "Slice of life"
+
+msgid "Боевые искусства"
+msgstr "Martial arts"
+
+msgid "Сянься"
+msgstr "Xianxia"
+
+msgid "Сюаньхуань"
+msgstr "Xuanhuan"
+
+msgid "Правила"
+msgstr "Rules"

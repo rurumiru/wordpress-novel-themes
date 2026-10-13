@@ -1,59 +1,24 @@
 <?php
-/**
- * Template Name: Рейтинг
- *
+/** Template Name: Рейтинг
  * @package XIN_V2
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
+if (!defined('ABSPATH')) exit;
 get_header();
-
-$xv_by = isset( $_GET['by'] ) ? sanitize_key( wp_unslash( $_GET['by'] ) ) : 'popular';
-
-$xv_tabs = array(
-	'popular' => __( 'По просмотрам', 'xin-v2' ),
-	'rating'  => __( 'По оценке', 'xin-v2' ),
-	'updated' => __( 'По обновлению', 'xin-v2' ),
-);
-
-if ( ! isset( $xv_tabs[ $xv_by ] ) ) {
-	$xv_by = 'popular';
-}
-
-$xv_list = xv_get_novels( $xv_by, 30 );
+$by=isset($_GET['by'])?sanitize_key(wp_unslash($_GET['by'])):'popular';
+$tabs=['popular'=>__('По просмотрам','xin-v2'),'rating'=>__('По оценке','xin-v2'),'updated'=>__('По обновлению','xin-v2')];
+if(!isset($tabs[$by])) $by='popular';
+$genre=isset($_GET['genre'])?absint($_GET['genre']):0;
+$query=['post_type'=>'novel','post_status'=>'publish','posts_per_page'=>50,'no_found_rows'=>true,'order'=>'DESC'];
+if($by==='updated') { $query['meta_key']='_xin_last_chapter_at'; $query['orderby']=['meta_value_num'=>'DESC','ID'=>'DESC']; }
+else { $query['meta_key']=$by==='rating'?'_xin_rating':'_xin_views'; $query['orderby']=['meta_value_num'=>'DESC','ID'=>'DESC']; }
+if($genre) $query['tax_query']=[['taxonomy'=>'genre','field'=>'term_id','terms'=>$genre]];
+$books=get_posts($query); $genres=get_terms(['taxonomy'=>'genre','hide_empty'=>true]); $base=get_permalink();
 ?>
-
-<div class="xv-section xv-section-wide">
-	<header class="xv-page-head">
-		<h1 class="xv-page-title"><?php the_title(); ?></h1>
-		<p class="xv-page-lede"><?php esc_html_e( 'Что читают чаще всего — и что оценили выше всего.', 'xin-v2' ); ?></p>
-	</header>
-
-	<div class="xv-tabs">
-		<?php foreach ( $xv_tabs as $xv_key => $xv_label ) : ?>
-			<a class="xv-tab <?php echo $xv_by === $xv_key ? 'on' : ''; ?>" href="<?php echo esc_url( add_query_arg( 'by', $xv_key, get_permalink() ) ); ?>"><?php echo esc_html( $xv_label ); ?></a>
-		<?php endforeach; ?>
-	</div>
-
-	<?php if ( $xv_list ) : ?>
-		<div class="xv-ranking">
-			<?php foreach ( $xv_list as $xv_i => $xv_novel ) : ?>
-				<?php xv_rank_row( $xv_novel->ID, $xv_i + 1 ); ?>
-			<?php endforeach; ?>
-		</div>
-	<?php else : ?>
-		<div class="xv-empty">
-			<p class="xv-empty-title"><?php esc_html_e( 'Считать пока нечего', 'xin-v2' ); ?></p>
-			<p class="xv-empty-text"><?php esc_html_e( 'Рейтинг соберётся, как только появятся тайтлы.', 'xin-v2' ); ?></p>
-		</div>
-	<?php endif; ?>
-
-	<?php if ( get_the_content() ) : ?>
-		<div class="xv-prose xv-ranking-note"><?php the_content(); ?></div>
-	<?php endif; ?>
+<div class="xv-leaderboard">
+<header class="xv-leaderboard-head"><span class="xv-leaderboard-eyebrow"><?php esc_html_e('ВЫБОР ЧИТАТЕЛЕЙ','xin-v2'); ?></span><h1><?php esc_html_e('Рейтинг','xin-v2'); ?></h1><p><?php esc_html_e('Истории, которые читают и рекомендуют. Найдите свою следующую книгу.','xin-v2'); ?></p></header>
+<div class="xv-leaderboard-controls"><nav aria-label="<?php esc_attr_e('Порядок рейтинга','xin-v2'); ?>"><?php foreach($tabs as $key=>$label): ?><a href="<?php echo esc_url(add_query_arg(['by'=>$key,'genre'=>$genre],$base)); ?>"<?php if($by===$key) echo ' aria-current="page"'; ?>><?php echo esc_html($label); ?></a><?php endforeach; ?></nav><form method="get" action="<?php echo esc_url($base); ?>"><input type="hidden" name="by" value="<?php echo esc_attr($by); ?>"><label for="ranking-genre"><?php esc_html_e('Жанр','xin-v2'); ?></label><select id="ranking-genre" name="genre"><option value="0"><?php esc_html_e('Все жанры','xin-v2'); ?></option><?php if(!is_wp_error($genres)) foreach($genres as $term): ?><option value="<?php echo (int)$term->term_id; ?>"<?php selected($genre,$term->term_id); ?>><?php echo esc_html($term->name); ?></option><?php endforeach; ?></select><button type="submit"><?php esc_html_e('Применить','xin-v2'); ?></button></form></div>
+<?php if($books): ?><section class="xv-podium" aria-label="<?php esc_attr_e('Тройка лидеров','xin-v2'); ?>"><?php foreach(array_slice($books,0,3) as $i=>$book): $rating=xv_rating($book->ID); ?><article class="xv-podium-card"><span class="xv-podium-number"><?php echo str_pad((string)($i+1),2,'0',STR_PAD_LEFT); ?></span><a class="xv-podium-cover" href="<?php echo esc_url(get_permalink($book)); ?>"><img src="<?php echo esc_url(xv_cover_url($book->ID)); ?>" alt="" decoding="async"></a><div class="xv-podium-copy"><small><?php echo esc_html($tabs[$by]); ?></small><h2><a href="<?php echo esc_url(get_permalink($book)); ?>"><?php echo esc_html(get_the_title($book)); ?></a></h2><p class="xv-podium-author"><?php echo esc_html(xv_novel_author($book->ID)); ?></p><p class="xv-podium-excerpt"><?php echo esc_html(wp_trim_words(get_the_excerpt($book),18)); ?></p><div class="xv-podium-metrics"><span>★ <?php echo esc_html(number_format_i18n($rating['value'],1)); ?></span><span><?php echo esc_html(number_format_i18n((int)get_post_meta($book->ID,'_xin_views',true))); ?> <?php esc_html_e('просмотров','xin-v2'); ?></span></div></div></article><?php endforeach; ?></section>
+<div class="xv-leaderboard-list"><div class="xv-leaderboard-columns"><span>#</span><span><?php esc_html_e('Произведение','xin-v2'); ?></span><span><?php esc_html_e('Оценка','xin-v2'); ?></span><span><?php esc_html_e('Просмотры','xin-v2'); ?></span></div><?php foreach(array_slice($books,3) as $i=>$book): $rating=xv_rating($book->ID); ?><article class="xv-leaderboard-row"><span class="xv-leaderboard-position"><?php echo str_pad((string)($i+4),2,'0',STR_PAD_LEFT); ?></span><a class="xv-leaderboard-book" href="<?php echo esc_url(get_permalink($book)); ?>"><img src="<?php echo esc_url(xv_cover_url($book->ID)); ?>" alt="" loading="lazy"><span><strong><?php echo esc_html(get_the_title($book)); ?></strong><small><?php echo esc_html(xv_novel_author($book->ID)); ?></small></span></a><div class="xv-leaderboard-rating"><strong>★ <?php echo esc_html(number_format_i18n($rating['value'],1)); ?></strong><small><?php echo esc_html(xv_counted($rating['count'],xv_label_ratings($rating['count']))); ?></small></div><span class="xv-leaderboard-views"><?php echo esc_html(number_format_i18n((int)get_post_meta($book->ID,'_xin_views',true))); ?></span></article><?php endforeach; ?></div><p class="xv-leaderboard-footnote"><?php esc_html_e('Рейтинг составлен по всем опубликованным произведениям.','xin-v2'); ?></p>
+<?php else: ?><div class="xv-empty"><h2><?php esc_html_e('Произведений пока нет','xin-v2'); ?></h2><p><?php esc_html_e('Попробуйте выбрать другой жанр.','xin-v2'); ?></p></div><?php endif; ?>
 </div>
-
 <?php get_footer(); ?>

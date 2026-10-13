@@ -38,7 +38,7 @@
 			var minutes = Math.max(1, Math.round(words / 180));
 
 			out.textContent = words
-				? words.toLocaleString('ru-RU') + ' слов · ≈ ' + minutes + ' мин чтения. '
+				? ((window.xvData && window.xvData.i18n.wordCount) || '%1$s words · ≈ %2$s min read.').replace('%1$s',words.toLocaleString(document.documentElement.lang || 'en')).replace('%2$s',minutes)
 				: '';
 		};
 
