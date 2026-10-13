@@ -25,3 +25,12 @@ body{font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothi
 .xv-form-grid,.xv-form-grid>*{min-width:0}
 @media(max-width:900px){.xv-studio-shell,.xv-form-grid{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:760px){.xv-author-head-actions{gap:8px}.xv-author-head-actions .xv-btn{font-size:12px;padding:9px 11px}.xv-form-layout{grid-template-columns:minmax(0,1fr)}.xv-studio-shell{grid-template-columns:minmax(0,1fr)}.xv-work-head{flex-wrap:wrap}.xv-work-head>div{min-width:0;flex:1}.xv-work-head-title{overflow-wrap:anywhere}.xv-studio-shell .xv-stat-strip{flex-wrap:wrap}}
+
+/* One centered reading column, including discussion and chapter metadata. */
+.single-chapter .xv-reader,.single-chapter .xv-reader.no-side{display:block!important;width:100%;max-width:none;margin-inline:auto!important;padding-inline:24px;box-sizing:border-box}
+.single-chapter .xv-paper-wrap{width:100%;max-width:var(--reader-width,800px);margin-inline:auto!important;min-width:0}
+.single-chapter .xv-paper{width:100%;max-width:none!important;margin-inline:auto!important;box-sizing:border-box}
+html[data-reader-width="narrow"] .single-chapter .xv-paper-wrap{--reader-width:620px}
+html[data-reader-width="wide"] .single-chapter .xv-paper-wrap{--reader-width:1000px}
+html[data-reader-width="full"] .single-chapter .xv-paper-wrap{--reader-width:1150px}
+@media(max-width:600px){.single-chapter .xv-reader,.single-chapter .xv-reader.no-side{padding-inline:20px}}

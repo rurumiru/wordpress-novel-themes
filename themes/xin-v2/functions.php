@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'XV_VERSION', '3.0.0' );
+define( 'XV_VERSION', '3.0.1' );
 
 /**
  * Настройка темы. Все опции живут в одном массиве, чтобы кастомайзер и

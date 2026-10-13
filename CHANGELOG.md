@@ -616,3 +616,10 @@ First public beta. Everything below works end to end; the presentation layer is 
 
 - Comments are removed by design across templates, post-type support and the admin menu.
 - No build step, no npm or composer dependencies.
+# 3.0.1
+
+- Added an installable demo plugin with 15 titles, 65 chapters and three bundled illustrated covers and homepage artworks.
+- Demo import skips unmarked titles, posts and banners when their slugs collide with demo content.
+- Centered the reader column across its text, metadata and discussion; retained the reader width settings.
+- Hidden the WordPress toolbar on frontend pages for all users; retained it in wp-admin.
+

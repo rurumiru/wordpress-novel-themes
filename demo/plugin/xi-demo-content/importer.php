@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** The dataset. */
 function xin_demo_data() {
-	return require __DIR__ . '/content.php';
+	$data = require __DIR__ . '/content.php';
+	$data['novels'] = array_merge( require __DIR__ . '/illustrated-content.php', $data['novels'] );
+	return apply_filters( 'xin_demo_dataset', $data );
 }
 
 /** True when the XIN-Com theme (or anything providing its types) is active. */
@@ -127,7 +129,7 @@ function xin_demo_attach( $file, $title, $parent ) {
 	unlink( $file );
 
 	$id = wp_insert_attachment( array(
-		'post_mime_type' => 'image/jpeg',
+		'post_mime_type' => wp_check_filetype( $dest )['type'],
 		'post_title'     => $title,
 		'post_status'    => 'inherit',
 	), $dest, $parent );
@@ -192,6 +194,7 @@ function xin_demo_install( $args = array() ) {
 
 	foreach ( $data['novels'] as $index => $novel ) {
 		$existing = get_page_by_path( $novel['slug'], OBJECT, 'novel' );
+		if ( $existing && ! get_post_meta( $existing->ID, '_xin_demo', true ) ) { continue; }
 
 		$novel_id = wp_insert_post( array(
 			'ID'           => $existing ? $existing->ID : 0,
@@ -227,7 +230,11 @@ function xin_demo_install( $args = array() ) {
 
 		if ( $args['covers'] && ! has_post_thumbnail( $novel_id ) ) {
 			$file = $tmp . 'xin-cover-' . $novel_id . '.jpg';
-			xin_demo_draw( $novel['title'], $novel['hue'], 800, 1200, $file );
+			if ( ! empty( $novel['cover'] ) && is_file( __DIR__ . '/covers/' . basename( $novel['cover'] ) ) ) {
+				copy( __DIR__ . '/covers/' . basename( $novel['cover'] ), $file );
+			} else {
+				xin_demo_draw( $novel['title'], $novel['hue'], 800, 1200, $file, false );
+			}
 			$cover = xin_demo_attach( $file, $novel['title'], $novel_id );
 			if ( $cover ) {
 				set_post_thumbnail( $novel_id, $cover );
@@ -237,7 +244,13 @@ function xin_demo_install( $args = array() ) {
 
 		if ( $args['covers'] && ! empty( $novel['featured'] ) && ! get_post_meta( $novel_id, '_xin_background', true ) ) {
 			$wide = $tmp . 'xin-art-' . $novel_id . '.jpg';
-			xin_demo_draw( $novel['title'], ( $novel['hue'] + 20 ) % 360, 1920, 720, $wide, false );
+			if ( ! empty( $novel['cover'] ) && function_exists( 'imagecreatefromjpeg' ) ) {
+				$source = imagecreatefromjpeg( __DIR__ . '/covers/' . basename( $novel['cover'] ) );
+				$artwork = imagecreatetruecolor(1920,720);
+				$crop_height = (int) ( imagesx($source) * 720 / 1920 );
+				imagecopyresampled($artwork,$source,0,0,0,(int)(imagesy($source)*.15),1920,720,imagesx($source),$crop_height);
+				imagejpeg($artwork,$wide,90); imagedestroy($source); imagedestroy($artwork);
+			} else { xin_demo_draw( $novel['title'], ( $novel['hue'] + 20 ) % 360, 1920, 720, $wide, false ); }
 			$art = xin_demo_attach( $wide, $novel['title'] . ' — art', $novel_id );
 			if ( $art ) {
 				update_post_meta( $novel_id, '_xin_background', $art );
@@ -258,6 +271,7 @@ function xin_demo_install( $args = array() ) {
 
 		foreach ( $novel['chapters'] as $position => $chapter ) {
 			$number = $position + 1;
+			if ( isset( $known[(string)(float)$number] ) && ! get_post_meta( $known[(string)(float)$number], '_xin_demo', true ) ) { continue; }
 			$body   = '';
 			foreach ( $chapter[1] as $paragraph ) {
 				$body .= '<p>' . $paragraph . "</p>\n";
@@ -291,6 +305,7 @@ function xin_demo_install( $args = array() ) {
 	foreach ( $data['posts'] as $index => $post ) {
 		$slug     = sanitize_title( $post['title'] );
 		$existing = get_page_by_path( $slug, OBJECT, 'post' );
+		if ( $existing && ! get_post_meta( $existing->ID, '_xin_demo', true ) ) { continue; }
 
 		$post_id = wp_insert_post( array(
 			'ID'           => $existing ? $existing->ID : 0,
@@ -345,6 +360,7 @@ function xin_demo_install( $args = array() ) {
 		foreach ( $data['banners'] as $index => $banner ) {
 			$slug     = 'demo-banner-' . ( $index + 1 );
 			$existing = get_page_by_path( $slug, OBJECT, 'xin_banner' );
+			if ( $existing && ! get_post_meta( $existing->ID, '_xin_demo', true ) ) { continue; }
 
 			$banner_id = wp_insert_post( array(
 				'ID'          => $existing ? $existing->ID : 0,
@@ -384,6 +400,8 @@ function xin_demo_install( $args = array() ) {
 	wp_defer_term_counting( false );
 
 	delete_transient( 'xin_site_stats' );
+	if ( function_exists('xv_forget_lists') ) { xv_forget_lists(); }
+	do_action( 'xni_import_complete' );
 	wp_cache_flush();
 
 	return $count;

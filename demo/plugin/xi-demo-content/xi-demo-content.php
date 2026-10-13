@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: XIN-Com — демо-контент
+ * Plugin Name: XI Novels — демо-контент
  * Plugin URI: https://github.com/rurumiru/wordpress-novel-themes
- * Description: Наполняет сайт демонстрационным каталогом: 12 тайтлов, 48 глав, жанры, теги, записи блога и баннеры. Обложки рисуются на месте. Удаляется одной кнопкой.
- * Version: 1.1.0
+ * Description: Наполняет сайт демонстрационным каталогом: 15 тайтлов, 65 глав, жанры, теги, записи блога и баннеры. Обложки рисуются на месте. Удаляется одной кнопкой.
+ * Version: 3.0.1
  * Requires at least: 6.4
  * Requires PHP: 7.4
  * Author: XI Community
@@ -39,7 +39,7 @@ function xin_demo_screen() {
 	$notice    = isset( $_GET['xin-demo'] ) ? sanitize_key( wp_unslash( $_GET['xin-demo'] ) ) : '';
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Демо-контент XIN-Com', 'xi-demo' ); ?></h1>
+		<h1><?php esc_html_e( 'Демо-контент XI Novels', 'xi-demo' ); ?></h1>
 
 		<?php if ( 'installed' === $notice ) : ?>
 			<div class="notice notice-success"><p>
@@ -67,14 +67,14 @@ function xin_demo_screen() {
 
 		<?php if ( ! $ready ) : ?>
 			<div class="notice notice-warning"><p>
-				<?php esc_html_e( 'Сначала активируйте тему XIN-Com: демо создаёт новеллы и главы, а этих типов записей сейчас нет.', 'xi-demo' ); ?>
+				<?php esc_html_e( 'Сначала активируйте тему XI Novels: демо создаёт новеллы и главы, а этих типов записей сейчас нет.', 'xi-demo' ); ?>
 			</p></div>
 		<?php endif; ?>
 
 		<div class="card" style="max-width:760px">
 			<h2><?php esc_html_e( 'Что появится на сайте', 'xi-demo' ); ?></h2>
-			<p><?php esc_html_e( '12 тайтлов с описаниями, жанрами, статусами, оценками и просмотрами; 48 глав (по 4 на тайтл, последняя в каждом — PLUS); 12 жанров и 12 тегов; 5 записей блога; 3 баннера для главной.', 'xi-demo' ); ?></p>
-			<p><?php esc_html_e( 'Обложки и арты рисуются на месте: градиент с дугами, 800×1200 и 1920×720. Чужих картинок и чужих текстов в пакете нет.', 'xi-demo' ); ?></p>
+			<p><?php esc_html_e( '15 тайтлов с описаниями, жанрами, статусами, оценками и просмотрами; 65 глав с демонстрационными текстами, включая главы с ранним доступом; 12 жанров и 12 тегов; 5 записей блога; 3 баннера для главной.', 'xi-demo' ); ?></p>
+			<p><?php esc_html_e( 'Три иллюстрированных тайтла с готовыми обложками, 12 абстрактных обложек без текста и широкие арты для главной. Все изображения и тексты включены в пакет; внешний сервис не нужен.', 'xi-demo' ); ?></p>
 
 			<?php if ( ! $gd ) : ?>
 				<p><strong><?php esc_html_e( 'Библиотека GD недоступна — импорт пройдёт без картинок.', 'xi-demo' ); ?></strong></p>
@@ -90,7 +90,7 @@ function xin_demo_screen() {
 				<input type="hidden" name="action" value="xin_demo_install">
 
 				<p>
-					<label><input type="checkbox" name="covers" value="1" checked <?php disabled( ! $gd ); ?>> <?php esc_html_e( 'Нарисовать обложки и арты', 'xi-demo' ); ?></label><br>
+					<label><input type="checkbox" name="covers" value="1" checked <?php disabled( ! $gd ); ?>> <?php esc_html_e( 'Импортировать обложки и арты', 'xi-demo' ); ?></label><br>
 					<label><input type="checkbox" name="draft" value="1"> <?php esc_html_e( 'Создать черновиками, а не опубликовать', 'xi-demo' ); ?></label>
 				</p>
 

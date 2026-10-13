@@ -29,7 +29,7 @@ function xv_local_dev_available() {
 }
 
 add_filter('show_admin_bar', function($show) {
-    return xv_local_dev_available() && wp_get_current_user()->user_login === 'dev-preview' ? false : $show;
+    return is_admin() ? $show : false;
 });
 
 function xv_site_logo() {
