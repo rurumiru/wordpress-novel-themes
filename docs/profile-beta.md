@@ -10,4 +10,4 @@ Validation: saved the local test editor's tagline and bio through the browser, v
 
 ![Mobile profile](../screenshots/xin-v2-3/profile-mobile.jpg)
 
-This remains beta software. No new public release or tag was created.
+This remains beta software. It ships in the [3.0.4-beta.1](https://github.com/rurumiru/wordpress-novel-themes/releases/tag/v3.0.4-beta.1) pre-release.
